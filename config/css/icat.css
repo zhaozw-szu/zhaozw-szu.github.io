@@ -151,3 +151,12 @@
     --style-border-dashed: 1px dashed var(--icat-theme-op);
     --style-border-forever: 2px solid var(--icat-lighttext);
 }
+
+#article-container a[target="_blank"] img {
+    display: inline;
+    margin: 0;
+}
+
+figcaption {
+    display: none;
+}
