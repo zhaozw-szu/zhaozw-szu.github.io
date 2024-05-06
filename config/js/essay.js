@@ -1,43 +1,31 @@
 function whenDOMReady() {
-    if (location.pathname == '/essay/') 
-        console.log("即刻短文页面加载了！")
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log("DOMContentLoaded了！"),
-            setTimeout(
-                () => { 
-                    console.log("DOMContentLoaded了！1111"),
-                    changeTime(), 
-                    btf.loadLightbox(document.querySelectorAll('#icat-bber img')), 
-                    window.lazyLoadInstance && window.lazyLoadInstance.update(), 
-                    reflashWaterFall();
-                }
-            , 300)
-        })
-        if (document.readyState === "interactive" || document.readyState === "complete") {
-            console.log('DOM已经加载完成');
-            setTimeout(
-                () => { 
-                    console.log("DOM已经加载完成1111"),
-                    changeTime(), 
-                    btf.loadLightbox(document.querySelectorAll('#icat-bber img')), 
-                    window.lazyLoadInstance && window.lazyLoadInstance.update(), 
-                    reflashWaterFall();
-                }
-            , 300)
-        }
-        
+    if (location.pathname == '/essay/'){
+        setTimeout(
+            () => { 
+                console.log("DOMContentLoaded了！2222");
+                btf.loadLightbox(document.querySelectorAll('#icat-bber img'));
+                window.lazyLoadInstance && window.lazyLoadInstance.update();
+                setTimeout(
+                    () => { 
+                        console.log("DOMContentLoaded了！3333");
+                        reflashWaterFall();
+                        changeTime();
+                    }
+                , 300)
+            }
+        , 300)
+    }   
 }
-
-whenDOMReady()
-document.addEventListener("pjax:complete", whenDOMReady)
-
-
+document.addEventListener("DOMContentLoaded", whenDOMReady),
+document.addEventListener("pjax:complete", whenDOMReady),
 
 // 适配pjax
 
 window.onresize = () => {
-    console.log("窗口大小改变了！");
-    waterfall('#waterfall');
+    if (location.pathname == '/essay/'){
+        console.log("窗口大小改变了！");
+        waterfall('#waterfall');
+    }
 };
 
 // 自适应
