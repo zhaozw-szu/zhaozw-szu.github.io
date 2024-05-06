@@ -3591,6 +3591,9 @@ figure.highlight pre .javascript .function {
   -ms-animation: slide-in 0.6s 0.4s backwards;
   animation: slide-in 0.6s 0.4s backwards;
 }
+#icat-bber .icat-page #waterfall .icat-bber-item .icat-bber-content .icat-bber-image .imgbox img {
+  width: 100%;
+}
 #icat-bber .icat-page #waterfall .icat-bber-item .icat-bber-content .icat-bber-video {
   position: relative;
   padding: 30% 50%;
