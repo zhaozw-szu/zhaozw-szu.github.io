@@ -5,6 +5,7 @@ function whenDOMReady() {
             console.log("DOMContentLoaded了！"),
             setTimeout(
                 () => { 
+                    console.log("DOMContentLoaded了！1111"),
                     changeTime(), 
                     btf.loadLightbox(document.querySelectorAll('#icat-bber img')), 
                     window.lazyLoadInstance && window.lazyLoadInstance.update(), 
@@ -12,29 +13,32 @@ function whenDOMReady() {
                 }
             , 300)
         })
-        document.addEventListener('load', function () {
-            console.log("load"),
+        if (document.readyState === "interactive" || document.readyState === "complete") {
+            console.log('DOM已经加载完成');
             setTimeout(
-                () => { console
+                () => { 
+                    console.log("DOM已经加载完成1111"),
                     changeTime(), 
                     btf.loadLightbox(document.querySelectorAll('#icat-bber img')), 
                     window.lazyLoadInstance && window.lazyLoadInstance.update(), 
                     reflashWaterFall();
                 }
             , 300)
-        })
+        }
+        
 }
 
 whenDOMReady()
 document.addEventListener("pjax:complete", whenDOMReady)
 
 
+
 // 适配pjax
 
-// window.onresize = () => {
-//     console.log("窗口大小改变了！");
-//     waterfall('#waterfall');
-// };
+window.onresize = () => {
+    console.log("窗口大小改变了！");
+    waterfall('#waterfall');
+};
 
 // 自适应
 
@@ -74,7 +78,6 @@ function changeTime() {
     });
 }
 function reflashWaterFall() {
-    console.log("PJAX (局部页面加载)完成了！");
     document.querySelector("#waterfall") &&
     setTimeout(function() {
         waterfall("#waterfall");
