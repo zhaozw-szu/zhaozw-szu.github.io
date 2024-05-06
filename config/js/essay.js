@@ -1,18 +1,44 @@
 function whenDOMReady() {
-    if (location.pathname == '/essay/') document.addEventListener('DOMContentLoaded', function () {setTimeout(() => { changeTime(), btf.loadLightbox(document.querySelectorAll('#icat-bber img')), window.lazyLoadInstance && window.lazyLoadInstance.update(), reflashWaterFall();}, 300)})
+    if (location.pathname == '/essay/') 
+        console.log("即刻短文页面加载了！")
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("DOMContentLoaded了！"),
+            setTimeout(
+                () => { 
+                    changeTime(), 
+                    btf.loadLightbox(document.querySelectorAll('#icat-bber img')), 
+                    window.lazyLoadInstance && window.lazyLoadInstance.update(), 
+                    reflashWaterFall();
+                }
+            , 300)
+        })
+        document.addEventListener('load', function () {
+            console.log("load"),
+            setTimeout(
+                () => { console
+                    changeTime(), 
+                    btf.loadLightbox(document.querySelectorAll('#icat-bber img')), 
+                    window.lazyLoadInstance && window.lazyLoadInstance.update(), 
+                    reflashWaterFall();
+                }
+            , 300)
+        })
 }
+
 whenDOMReady()
 document.addEventListener("pjax:complete", whenDOMReady)
 
+
 // 适配pjax
 
-window.onresize = () => {
-    waterfall('#waterfall');
-};
+// window.onresize = () => {
+//     console.log("窗口大小改变了！");
+//     waterfall('#waterfall');
+// };
 
 // 自适应
 
-function timeDiff(timeObj, today) {
+function timeDiff(timeObj, today){
     const timeObjUTC = Date.UTC(timeObj.getFullYear(), timeObj.getMonth(), timeObj.getDate());
     const todayUTC = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
 
@@ -48,6 +74,7 @@ function changeTime() {
     });
 }
 function reflashWaterFall() {
+    console.log("PJAX (局部页面加载)完成了！");
     document.querySelector("#waterfall") &&
     setTimeout(function() {
         waterfall("#waterfall");
