@@ -3,12 +3,12 @@
 <meta property="og:url" content="http://example.com/essay/index.html">
 <meta property="og:site_name" content="zhaozw后院">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/coverImage/cover1.jpg">
+<meta property="og:image" content="http://example.com/img/coverImage/cover3.jpg">
 <meta property="article:published_time" content="2024-05-06T01:42:46.000Z">
 <meta property="article:modified_time" content="2024-05-06T01:52:44.409Z">
 <meta property="article:author" content="Zhaozw">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/coverImage/cover1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/essay/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="http://example.com/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/essay/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
@@ -185,7 +185,7 @@
     document.querySelector(".icat-page").insertAdjacentHTML("beforeend", essayTips);
 })();
 async function essayFormat(item,baseUrl) {
-    const contentRegex = /#(.*?)\s|\n/g,
+    const contentRegex = /#(.*?)\s/g,
         imageRegex = /\!\[(.*?)\]\((.*?)\)/g,
         playerRegex = /{\s*player\s*(.*)\s*}/g,
         linkRegex = /(?<!\!)\[(.*?)\]\((.*?)\)/g,
@@ -193,6 +193,7 @@ async function essayFormat(item,baseUrl) {
         fromRegex = /(?<![\w\/])(?<!\{)\{([^{}\s]+)\}(?!\})(?![\w\/])/g;
     let time = new Date((item.createdTs - (new Date().getTimezoneOffset() * 60)) * 1000).toISOString(),
         content = item.content,
+        tag = content.match(contentRegex),
         image = '',
         img = content.match(imageRegex);
         aplayer = content.match(/{\s*music\s*(.*?)\s*(.*?)\s*}/g),
@@ -216,7 +217,17 @@ async function essayFormat(item,baseUrl) {
     link = link ? ((type = link[0].replace(linkRegex, '$2')), `<a class="icat-bber-content-link" href='${type.startsWith('/') ? type : (type.startsWith('http') ? type : 'https://' + type)}' title="${link[0].replace(linkRegex, '$1') ? link[0].replace(linkRegex, '$1') : '跳转到短文指引的链接' }" target="_blank"><i class="iconfont icat-jump-link"></i>链接</a>`) : '';
     from = from ? `<div class="icat-bber-info-from"><span>${from[0].replace(fromRegex, '$1')}</span></div>` : '';
     content = content.replace(contentRegex, '').replace(imageRegex, '').replace(/\{(.*?)\}/g, '').replace(linkRegex, '').trim();
-
+    content = content.replace(/\n/g, "<br>").trim();
+    console.log(content)
+    _tag = []
+    for (let i = 0; i < tag.length; i++) {
+        if (tag[i].includes('说说')) {
+            continue;
+        }
+        _tag.push(tag[i].replace(/#|\n/g, ''));
+    }
+    tag = _tag
+    console.log(tag)
     return `
         <div class="icat-bber-item">
             <div class="icat-bber-content">
@@ -231,6 +242,9 @@ async function essayFormat(item,baseUrl) {
                     <div class="icat-bber-info-time">
                         <i class="iconfont icat-time-fill"></i>
                         <time class="datatime" datetime="${time}"></time>
+                    </div>
+                    <div class="icat-bber-info-time">
+                        ${tag}
                     </div>
                     ${link}
                     ${from}
