@@ -152,10 +152,7 @@
     --style-border-forever: 2px solid var(--icat-lighttext);
 }
 
-#article-container a[target="_blank"] img {
-    display: inline;
-    margin: 0;
-}
+
 
 figcaption {
     display: none;
@@ -639,4 +636,16 @@ figcaption {
     color: var(--icat-fontcolor);
 }
 
-/* 即刻短文样式 */
+/* 解决链接图片显示不正确问题 */
+
+#article-container a[target="_blank"] img {
+    display: inline;
+    margin: 0;
+}
+
+
+/* 解决公式内换行不正确问题 */
+.MJX-TEX mjx-mspace {
+    display: block;
+}
+
