@@ -2368,7 +2368,7 @@ figure.highlight pre .javascript .function {
   background-position-y: 50%;
 }
 #icat-about-page #one .map {
-  background: url("https://img.meuicat.com/blog/19.webp") no-repeat center;
+  background: url("/img/atlas.png") no-repeat center;
   background-size: 100%;
   overflow: hidden;
   -webkit-transition: 2s;
@@ -3092,7 +3092,7 @@ figure.highlight pre .javascript .function {
   margin-right: 0;
 }
 [data-theme='dark'] #icat-about-page #one .map {
-  background: url("https://img.meuicat.com/blog/20.webp") no-repeat center;
+  background: url("/img/atlas.png") no-repeat center;
   background-size: 100%;
 }
 [data-theme='dark'] #icat-about-page #one .map:hover {
