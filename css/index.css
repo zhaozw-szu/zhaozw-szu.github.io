@@ -2495,22 +2495,41 @@ figure.highlight pre .javascript .function {
   align-items: center;
   height: 12px;
   border-radius: 30px;
-  background-color: #f3f3f3;
+  background-color: #4298b4;
   position: relative;
 }
 #icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress {
-  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 30%;
-  height: 100%;
-  border-radius: 30px;
+  top: 50%;
+}
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle,
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle1 {
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  z-index: 1;
+}
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle1 {
+  width: 10px;
+  height: 10px;
+  background-color: #4298b4;
+  z-index: 2;
 }
 #icat-about-page .Philosophical .P-box-left .image {
   position: absolute;
   right: 0px;
-  top: 10px;
+  top: 120px;
   width: 220px;
   -webkit-transition: -webkit-transform 2s cubic-bezier(0.13, 0.45, 0.21, 1.02);
   -moz-transition: -moz-transform 2s cubic-bezier(0.13, 0.45, 0.21, 1.02);
