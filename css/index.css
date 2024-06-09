@@ -2502,8 +2502,7 @@ figure.highlight pre .javascript .function {
   position: absolute;
   top: 50%;
 }
-#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle,
-#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle1 {
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle {
   border-radius: 50%;
   position: absolute;
   -webkit-transform: translate(-50%, -50%);
@@ -2511,8 +2510,6 @@ figure.highlight pre .javascript .function {
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-}
-#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -2521,6 +2518,13 @@ figure.highlight pre .javascript .function {
   z-index: 1;
 }
 #icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress-circle1 {
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   width: 10px;
   height: 10px;
   background-color: #4298b4;
