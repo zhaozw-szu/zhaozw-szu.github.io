@@ -2476,10 +2476,9 @@ figure.highlight pre .javascript .function {
   padding-right: 3rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  display: grid;
-  grid-template-columns: 100%;
 }
 #icat-about-page .Philosophical .P-box-left .traits-box .title {
+  width: 100%;
   font-size: 12px;
 }
 #icat-about-page .Philosophical .P-box-left .traits-box .loadercontent {
