@@ -2470,6 +2470,45 @@ figure.highlight pre .javascript .function {
   -ms-transform: rotate(-10deg);
   transform: rotate(-10deg);
 }
+#icat-about-page .Philosophical .P-box-left .traits-box {
+  width: 60%;
+  padding-left: 0rem;
+  padding-right: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 100%;
+}
+#icat-about-page .Philosophical .P-box-left .traits-box .title {
+  font-size: 12px;
+}
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .loader {
+  margin-top: 10px;
+  --height-of-loader: 12px;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: #f3f3f3;
+  position: relative;
+}
+#icat-about-page .Philosophical .P-box-left .traits-box .loadercontent .progress {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  border-radius: 30px;
+}
 #icat-about-page .Philosophical .P-box-left .image {
   position: absolute;
   right: 0px;
