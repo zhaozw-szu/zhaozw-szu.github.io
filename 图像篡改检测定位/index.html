@@ -1,0 +1,677 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>图像篡改检测定位 | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="已读论文汇总  橘色为A类会议、期刊:黄色为B类会议、期刊:绿色为C类会议、期刊:  Backbone骨干网络，多为图像分类的网络。   [Attention Is All You Need] (NeurIPS ‘17) [**Paper]** [**Code_official]** [**Code_community]**  [EfficientNet: Rethinking Model Sca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像篡改检测定位">
+<meta property="og:url" content="https://zhaozw-szu.github.io/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E5%AE%9A%E4%BD%8D/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="已读论文汇总  橘色为A类会议、期刊:黄色为B类会议、期刊:绿色为C类会议、期刊:  Backbone骨干网络，多为图像分类的网络。   [Attention Is All You Need] (NeurIPS ‘17) [**Paper]** [**Code_official]** [**Code_community]**  [EfficientNet: Rethinking Model Sca">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
+<meta property="article:published_time" content="2024-03-28T13:09:54.000Z">
+<meta property="article:modified_time" content="2024-08-21T13:20:16.812Z">
+<meta property="article:author" content="Zhaozw">
+<meta property="article:tag" content="合集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E5%AE%9A%E4%BD%8D/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '图像篡改检测定位',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-21 21:20:16'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">56</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">图像篡改检测定位</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-28T13:09:54.000Z" title="发表于 2024-03-28 21:09:54">2024-03-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-21T13:20:16.812Z" title="更新于 2024-08-21 21:20:16">2024-08-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="图像篡改检测定位"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a href="/%E8%AE%BA%E6%96%87%E6%80%BB%E9%9B%86/">已读论文汇总</a></p>
+<blockquote>
+<p>橘色为A类会议、期刊:<a href=""><img src="https://img.shields.io/badge/A%E7%B1%BB-%E5%B9%B4%E4%BB%BD-red" alt="A类"></a><br>黄色为B类会议、期刊:<a href=""><img src="https://img.shields.io/badge/B%E7%B1%BB-%E5%B9%B4%E4%BB%BD-yellow" alt="B类"></a><br>绿色为C类会议、期刊:<a href=""><img src="https://img.shields.io/badge/C%E7%B1%BB-%E5%B9%B4%E4%BB%BD-green" alt="C类"></a></p>
+</blockquote>
+<h3 id="Backbone"><a href="#Backbone" class="headerlink" title="Backbone"></a>Backbone</h3><p><strong>骨干网络</strong>，多为图像分类的网络。</p>
+<ul>
+<li><input disabled="" type="checkbox"> [Attention Is All You Need] (<em>NeurIPS ‘17</em>) <strong>[**<a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper/7181-attention-is-all"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/models/transformer.py"><strong>Code_official</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/jadore801120/attention-is-all-you-need-pytorch"><strong>Code_community</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks] (<em>ICML ‘19</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.11946"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale] (<em>ICLR ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.11929"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/google-research/vision_transformer"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Multi-Dimensional Model Compression of Vision Transformer] (<em>ICME ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.00043"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Deep Residual Learning for Image Recognition (<em>CVPR ‘16</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1512.03385"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Generative Adversarial Networks (<em>NeurIPS ‘14</em>) <strong>[**<a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/2014/hash/5ca3e9b122f61f8f06494c97b1afccf3-Abstract.html"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Masked Auto-Encoders Meet Generative Adversarial Networks and Beyond (<em>CVPR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://feizc.github.io/resume/ganmae.pdf"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> A Kernel Perspective of Skip Connections in Convolutional Networks (<em>ICLR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.14810"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> EfficientViT: Memory Efficient Vision Transformer with Cascaded Group Attention (<em>CVPR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.07027"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/microsoft/Cream/tree/main/EfficientViT"><strong>Code</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://blog.csdn.net/P_LarT/article/details/130687567"><strong>Note_community</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Vision Transformers Need Registers <em>(ICLR ‘24)</em> **[<a target="_blank" rel="noopener" href="https://openreview.net/forum?id=2dnO3LLiJ1">Paper</a>]</li>
+<li><input disabled="" type="checkbox"> EfficientViT: Lightweight Multi-Scale Attention for On-Device Semantic Segmentation <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.14756"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/mit-han-lab/efficientvit"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> <a href="/SAM/">Segment Anything</a><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.02643"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/segment-anything"><img src="https://img.shields.io/github/stars/facebookresearch/segment-anything?style=flat" alt="GitHub"></a></li>
+</ul>
+<h3 id="Image-Tampering"><a href="#Image-Tampering" class="headerlink" title="Image Tampering"></a>Image Tampering</h3><p><strong>图像篡改检测定位</strong></p>
+<h4 id="Image-Editing"><a href="#Image-Editing" class="headerlink" title="Image Editing"></a>Image Editing</h4><details open>
+<summary>2024</summary>
+
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization/">Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization</a> <a target="_blank" rel="noopener" href="https://link.springer.com/chapter/10.1007/978-3-031-53311-2_15"><img src="https://img.shields.io/badge/MMM-2024-green" alt="MMM"></a>  <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.01790"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/idt-iti/mmfusion-iml"><img src="https://img.shields.io/github/stars/idt-iti/mmfusion-iml?style=flat" alt="GitHub"></a></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/">A New Benchmark and Model for Challenging Image Manipulation Detection</a> <a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/28571"><img src="https://img.shields.io/badge/AAAI-2024-red" alt="AAAI"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.14218"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/ZhenfeiZ/CIMD"><img src="https://img.shields.io/github/stars/ZhenfeiZ/CIMD?style=flat" alt="GitHub"></a> </p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="/MGQFormer-Mask-Guided-Query-Based-Transformer-for-Image-Manipulation-Localization/">MGQFormer: Mask-Guided Query-Based Transformer for Image Manipulation Localization</a> <a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/28520"><img src="https://img.shields.io/badge/AAAI-2024-red" alt="AAAI"></a></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/">Learning Discriminative Noise Guidance for Image Forgery Detection and Localization</a> <a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/28608"><img src="https://img.shields.io/badge/AAAI-2024-red" alt="AAAI"></a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/">CatmullRom Splines-Based Regression for Image Forgery Localization</a> <a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/28548"><img src="https://img.shields.io/badge/AAAI-2024-red" alt="AAAI"></a></p>
+  <details close>
+  
+<ul>
+<li><input disabled="" type="checkbox"> Multi-view Feature Extraction via Tunable Prompts is Enough for Image Manipulation Localization <a target="_blank" rel="noopener" href="https://openreview.net/forum?id=Ci5g2dnrMK"><img src="https://img.shields.io/badge/MM_'24-dc3545" alt="paper"></a></li>
+<li><input disabled="" type="checkbox"> Datasets, Clues and State-of-the-Arts for Multimedia Forensics: An Extensive Review <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.06999"><img src="https://img.shields.io/badge/ESWA_'24-28a745" alt="Static Badge"></a></li>
+<li><input disabled="" type="checkbox"> TGIF: Text-Guided Inpainting Forgery Dataset <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2407.11566"><img src="https://img.shields.io/badge/arXiv_'24-6c757d" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://github.com/IDLabMedia/tgif-dataset"><img src="https://img.shields.io/github/stars/IDLabMedia/tgif-dataset?style=flat" alt="GitHub"></a></li>
+<li><input disabled="" type="checkbox"> Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.13565"><img src="https://img.shields.io/badge/arXiv_'24-6c757d" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://github.com/multimediaFor/MPC"><img src="https://img.shields.io/github/stars/multimediaFor/MPC?style=flat" alt="GitHub"></a></li>
+<li><input disabled="" type="checkbox"> GIM: A Million-scale Benchmark for Generative Image Manipulation Detection and Localization <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.16531"><img src="https://img.shields.io/badge/arXiv_'24-6c757d" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://github.com/chenyirui/GIM"><img src="https://img.shields.io/github/stars/chenyirui/GIM?style=flat" alt="GitHub"></a></li>
+<li><input disabled="" type="checkbox"> IMDL-BenCo: A Comprehensive Benchmark and Codebase for Image Manipulation Detection &amp; Localization <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.10580"><img src="https://img.shields.io/badge/arXiv_'24-6c757d" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://github.com/scu-zjz/IMDLBenCo"><img src="https://img.shields.io/github/stars/scu-zjz/IMDLBenCo?style=flat" alt="GitHub"></a></li>
+<li><input disabled="" type="checkbox"> DH-GAN: Image manipulation localization via a dual homology-aware generative adversarial network <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.patcog.2024.110658"><img src="https://img.shields.io/badge/PR_'24-ffc107" alt="Static Badge"></a></li>
+<li><input disabled="" type="checkbox"> DA-HFNet: Progressive Fine-Grained Forgery Image Detection and Localization Based on Dual Attention <a target="_blank" rel="noopener" href="http://arxiv.org/abs/2406.01489"><img src="https://img.shields.io/badge/arXiv_'24-6c757d" alt="Static Badge"></a></li>
+<li><input disabled="" type="checkbox"> EC-Net: General image tampering localization network based on edge distribution guidance and contrastive learning (<em>KBS ‘24</em>) <strong>[<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.knosys.2024.111656">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Frequency-constrained transferable adversarial attack on image manipulation detection and localization (<em>TVC ‘24</em>) <strong>[<a target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s00371-024-03482-4">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> A Contribution-Aware Noise Feature representation model for image manipulation localization (<em>KBS ‘24</em>) <strong>[<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.knosys.2024.111988">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Effective Image Tampering Localization via Enhanced Transformer and Co-attention Fusion <em>(ICASSP ‘24)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.09306">Paper</a>]</strong>  <a target="_blank" rel="noopener" href="https://github.com/multimediaFor/EITLNet"><img src="https://img.shields.io/github/stars/multimediaFor/EITLNet?style=flat" alt="GitHub"></a></li>
+<li><input disabled="" type="checkbox"> PROMPT-IML: Image Manipulation Localization with Pre-trained Foundation Models Through Prompt Tuning <em>(arXiv ‘24)</em> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.00653"><strong>[Paper]</strong></a></li>
+<li><input disabled="" type="checkbox"> Diffusion models meet image counter-forensics <em>(WACV ‘24)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.13629">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/mtailanian/diff-cf">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Research about the Ability of LLM in the Tamper-Detection Area <em>(arXiv ‘24)</em> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.13504"><strong>[Paper]</strong></a></li>
+<li><input disabled="" type="checkbox"> Deep Image Composition Meets Image Forgery <em>(arXiv ‘24)</em> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2404.02897"><strong>[Paper]</strong></a> <strong>[<a target="_blank" rel="noopener" href="https://github.com/99eren99/DIS25k">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Fusion Transformer with Object Mask Guidance for Image Forgery Analysis <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2403.12229">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> UnionFormer: Unified-Learning Transformer with Multi-View Representation for Image Manipulation Detection and Localization <em>(CVPR ‘24)</em>  </li>
+<li><input disabled="" type="checkbox"> Towards Modern Image Manipulation Localization: A Large-Scale Dataset and Novel Methods <em>(CVPR ‘24)</em>  </li>
+<li><input disabled="" type="checkbox"> EditGuard: Versatile Image Watermarking for Tamper Localization and Copyright Protection <em>(CVPR ‘24)</em>   <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.08883"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/xuanyuzhang21/EditGuard"><img src="https://img.shields.io/github/stars/xuanyuzhang21/EditGuard?style=flat" alt="GitHub"></a></li>
+<li><input disabled="" type="checkbox"> DiffForensics: Leveraging Diffusion Prior to Image Forgery Detection and Localization <em>(CVPR ‘24)</em> </li>
+<li><input disabled="" type="checkbox"> IML-ViT: Image Manipulation Localization by Vision Transformer <em>(AAAI ‘24)</em> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.14863"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/SunnyHaze/IML-ViT"><img src="https://img.shields.io/github/stars/SunnyHaze/IML-ViT?style=flat" alt="GitHub"></a></li>
+<li><input disabled="" type="checkbox"> CIMGEN: Controlled Image Manipulation by Finetuning Pretrained Generative Models on Limited Data <em>(arXiv ‘24)</em> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.13006"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a></li>
+</ul>
+  </details></li>
+</ul>
+<details open>
+<summary>2023</summary>
+
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="/TruFor-Leveraging-all-round-clues-for-trustworthy-image-forgery-detection-and-localization/">TruFor: Leveraging all-round clues for trustworthy image forgery detection and localization</a> <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Guillaro_TruFor_Leveraging_All-Round_Clues_for_Trustworthy_Image_Forgery_Detection_and_CVPR_2023_paper.html"><img src="https://img.shields.io/badge/CVPR-2023-red" alt="CVPR"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.10957"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/grip-unina/TruFor"><img src="https://img.shields.io/github/stars/grip-unina/TruFor?style=flat" alt="GitHub"></a> <a target="_blank" rel="noopener" href="https://grip-unina.github.io/TruFor/"><img src="https://img.shields.io/badge/project-blue" alt="project"></a></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<a href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning/">CFL-Net: Image Forgery Localization Using Contrastive Learning</a> <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/WACV2023/html/Niloy_CFL-Net_Image_Forgery_Localization_Using_Contrastive_Learning_WACV_2023_paper.html"><img src="https://img.shields.io/badge/WACV-2023-yellow" alt="CVPR"></a> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.02182"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/Kishor-Bhaumik/CFLNet"><img src="https://img.shields.io/github/stars/Kishor-Bhaumik/CFLNet?style=flat" alt="GitHub"></a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="/Towards-Generic-Image-Manipulation-Detection-with-Weakly-Supervised-Self-Consistency-Learning/">Towards Generic Image Manipulation Detection with Weakly-Supervised Self-Consistency Learning</a> <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/ICCV2023/html/Zhai_Towards_Generic_Image_Manipulation_Detection_with_Weakly-Supervised_Self-Consistency_Learning_ICCV_2023_paper.html"><img src="https://img.shields.io/badge/ICCV-2023-red" alt="ICCV"></a> <a target="_blank" rel="noopener" href="https://github.com/yhZhai/WSCL"><img src="https://img.shields.io/github/stars/yhZhai/WSCL?style=flat" alt="GitHub"></a> <a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/373686108_Towards_Generic_Image_Manipulation_Detection_with_Weakly-Supervised_Self-Consistency_Learningl"><img src="https://img.shields.io/badge/ResearchGate-blue" alt="ResearchGate"></a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="/Pre-training-free-Image-Manipulation-Localization-through-Non-Mutually-Exclusive-Contrastive-Learning/">Pre-training-free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning</a> <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/ICCV2023/html/Zhou_Pre-Training-Free_Image_Manipulation_Localization_through_Non-Mutually_Exclusive_Contrastive_Learning_ICCV_2023_paper.html"><img src="https://img.shields.io/badge/ICCV-2023-red" alt="ICCV"></a> <a target="_blank" rel="noopener" href="https://github.com/Knightzjz/NCL-IML"><img src="https://img.shields.io/github/stars/Knightzjz/NCL-IML?style=flat" alt="GitHub"></a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="/Uncertainty-Uncertainty-Learning-for-Improving-Image-Manipulation-Detection/">Uncertainty-Uncertainty Learning for Improving Image Manipulation Detection</a> <a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/ICCV2023/html/Ji_Uncertainty-guided_Learning_for_Improving_Image_Manipulation_Detection_ICCV_2023_paper.html"><img src="https://img.shields.io/badge/ICCV-2023-red" alt="ICCV"></a></p>
+  <details close>
+  
+<ul>
+<li><input disabled="" type="checkbox"> PL-GNet: Pixel Level Global Network for detection and localization of image forgeries <em>(IMAGE ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S092359652300111X">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/znshi/PL-GNet">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Pixel-Inconsistency Modeling for Image Manipulation Localization <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.00234">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Progressive Feedback-Enhanced Transformer for Image Forgery Localization <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.08910">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/multimediaFor/ProFact">Code(N&#x2F;A)</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Secondary Labeling  A Novel Labeling Strategy for Image Manipulation Detection <em>(MM ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://doi.org/10.1145/3581783.3613839">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> GP-Net: Image Manipulation Detection and Localization via Long-Range Modeling and Transformers (<em>Appl. Sci.  (IF: 2.8, not included in CCFs), MDPI, ‘23</em>) <strong>[<a target="_blank" rel="noopener" href="https://www.mdpi.com/2076-3417/13/21/12053">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> DS-Net: Dual supervision neural network for image manipulation localization <em>(IET-IPR ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://ietresearch.onlinelibrary.wiley.com/doi/abs/10.1049/ipr2.12885">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Learning to Immunize Images for Tamper Localization and Self Recovery <em>(TPAMI ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.15902.pdf">Paper</a>]</strong> </li>
+<li><input disabled="" type="checkbox"> Semantic-agnostic progressive subtractive network for image manipulation detection and localization <em>(Neurocomputing ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.neucom.2023.126263">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Towards Effective Image Manipulation Detection with Proposal Contrastive Learning <em>(TCSVT ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.08529.pdf">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/Sandy-Zeng/PCL">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Effective image tampering localization with multi-scale ConvNeXt feature fusion (<em>JVCIR ‘23)</em> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2208.13739"><strong>Paper</strong></a></strong>]** <strong>[<a target="_blank" rel="noopener" href="https://github.com/multimediaFor/ConvNeXtFF">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Evading Detection Actively: Toward Anti-Forensics against Forgery Localization (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.10036"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/tansq/SEAR"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [ReLoc: A Restoration-Assisted Framework for Robust Image Tampering Localization] (<em>TIFS ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.03930"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/ZhuangPeiyu/ReLoc"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Image manipulation detection by multiple tampering traces and edge artifact enhancement (<em>PR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0031320322005064"><strong>Paper</strong></a></strong>]** (<em>EMT-Net</em>)</li>
+<li><input disabled="" type="checkbox"> [TBFormer: Two-Branch Transformer for Image Forgery Localization] (<em>SPL ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.13004"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/free1dom1/tbformer"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Detecting and Grounding Multi-Modal Media Manipulation] (<em>CVPR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.02556"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/rshaojimmy/MultiModal-DeepFake"><strong>Code</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://rshaojimmy.github.io/Projects/MultiModal-DeepFake"><strong>Project</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Hierarchical Fine-Grained Image Forgery Detection and Localization] (<em>CVPR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.17111"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/CHELSEA234/HiFi_IFDL"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Edge-aware Regional Message Passing Controller for Image Forgery Localization] (<em>CVPR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Li_Edge-Aware_Regional_Message_Passing_Controller_for_Image_Forgery_Localization_CVPR_2023_paper.pdf"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://youtu.be/2pDR-hOFcQw"><strong>Video</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> AutoSplice: A Text-prompt Manipulated Image Dataset for Media Forensics (<em>CVPRW ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.06870"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/shanface33/autosplice_dataset"><strong>Dataset</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> CTP-Net: Character Texture Perception Network for Document Image Forgery Localization (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.02158v1"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> TrainFors: A Large Benchmark Training Dataset for Image Manipulation Detection and Localization (<em>ICCV ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.05264"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/vimal-isi-edu/TrainFors"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> SAFL-Net: Semantic-Agnostic Feature Learning Network with Auxiliary Plugins for Image Manipulation Detection (<em>ICCV ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/ICCV2023/html/Sun_SAFL-Net_Semantic-Agnostic_Feature_Learning_Network_with_Auxiliary_Plugins_for_Image_ICCV_2023_paper.html"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Rethinking Image Forgery Detection via Contrastive Learning and Unsupervised Clustering (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.09307"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/HighwayWu/FOCAL"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Pixel-Inconsistency Modeling for Image Manipulation Localization (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.00234"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Perceptual MAE for Image Manipulation Localization: A High-level Vision Learner Focusing on Low-level Features (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.06525"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [On the Security of the One-and-a-Half-Class Classifier for SPAM Feature-Based Image Forensics] (<em>TIFS ‘23</em>) <strong>(Traditional method, Analysis)</strong> <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/10098583/"><strong>Paper</strong></a></strong>]**</li>
+</ul>
+  </details></li>
+</ul>
+</details>
+
+</details>
+
+<details open>
+<summary>2022</summary>
+
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+<a href="/PSCC-Net-Progressive-Spatio-Channel-Correlation-Network-for-Image-Manipulation-Detection-and-Localization/">PSCC-Net: Progressive Spatio-Channel Correlation Network for Image Manipulation Detection and Localization</a> <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9819903/"><img src="https://img.shields.io/badge/TCSVT-2022-yellow" alt="TCSVT"></a> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.10596"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/proteus1991/PSCC-Net"><strong>Code</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+<a href="/MVSS-Net-Multi-View-Multi-Scale-Supervised-Networks-for-Image-Manipulation-Detection/">MVSS-Net: Multi-View Multi-Scale Supervised Networks for Image Manipulation Detection</a> <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9819903"><img src="https://img.shields.io/badge/TPAMI-2022-red" alt="TPAMI"></a> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2112.08935"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/dong03/MVSS-Net"><strong>Code</strong></a></strong>]**</p>
+  <details close>
+  
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+DS-UNet: A dual streams UNet for refined image forgery localization <em>(InfoS ‘22)</em> <strong>[<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1016/j.ins.2022.08.005">Paper</a>]</strong></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+MSMG-Net: Multi-scale Multi-grained Supervised Metworks for Multi-task Image Manipulation Detection and Localization (<em>ArXiv ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.03140"><strong>Paper</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Towards JPEG-Resistant Image Forgery Detection and Localization Via Self-Supervised Domain Adaptation (<em>TPAMI ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9904872"><strong>Paper</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+ESRNet: Efficient Search and Recognition Network for Image Manipulation Detection (<em>TOMCCAP ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://doi.org/10.1145/3506853"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/tampered816/rrr"><strong>Tool</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Learning to localize image forgery using end-to-end attention network (<em>Neurocomputing ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0925231222011274"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/sadaf-ali/-Learning-to-Localize-Image-Forgery-Using-End-to-End-Attention-Network"><strong>Code</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+[Robust Image Forgery Detection Over Online Social Network Shared Images] (<em>CVPR ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wu_Robust_Image_Forgery_Detection_Over_Online_Social_Network_Shared_Images_CVPR_2022_paper.pdf"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/HighwayWu/ImageForensicsOSN"><strong>Code</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+[ObjectFormer for Image Manipulation Detection and Localization] (<em>CVPR ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.14681"><strong>Paper</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+GCA-Net: Utilizing Gated Context Attention for Improving Image Forgery Localization and Detection (<em>CVPRW ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2112.04298"><strong>Paper</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Non-Semantic Evaluation of Image Forensics Tools: Methodology and Database (<em>WACV ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2105.02700"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/qbammey/trace"><strong>Code</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+[JPEG Compression-aware Image Forgery Localization] (<em>MM ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/3503161.3547749"><strong>Paper</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+[Image Manipulation Localization Using Multi-Scale Feature Fusion and Adaptive Edge Supervision] (<em>TMM ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9996125/"><strong>Paper</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+[Self-Adversarial Training incorporating Forgery Attention for Image Forgery Localization] (<em>TIFS ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2107.02434"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/tansq/SATFL"><strong>Code</strong></a></strong>]** (<em>LocateNet &#x2F; SATFL</em>)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+M2TR: Multi-modal Multi-scale Transformers for Deepfake Detection (<em>ICMR ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.09770"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/wangjk666/M2TR-Multi-modal-Multi-scale-Transformers-for-Deepfake-Detection"><strong>Code</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+A Principled Design of Image Representation: Towards Forensic Tasks (<em>TPAMI ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.00913"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/ShurenQi/DIR"><strong>Code</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+[TBNet: A Two-stream Boundary-aware Network for Generic Image Manipulation Localization] (<em>KDE ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.04508"><strong>Paper</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+[Learning JPEG Compression Artifacts for Image Manipulation Detection and Localization] (<em>IJCV ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.12947"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/mjkwon2021/CAT-Net"><strong>Code</strong></a></strong>]**</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Fighting Malicious Media Data: A Survey on Tampering Detection and Deepfake Detection (<em>arXiv ‘22</em>) (<strong>Survey</strong>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.05667"><strong>Paper</strong></a></strong>]** </p>
+  </details></li>
+</ul>
+</li>
+</ul>
+</details>
+
+<details>
+<summary>2021</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> MSTA-Net: Forgery Detection by Generating Manipulation Trace Based on Multi-Scale Self-Texture Attention (<em>TCSVT ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9643421"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Image Manipulation Detection by Multi-View Multi-Scale Supervision (<em>ICCV ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.06832"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/dong03/MVSS-Net"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [TransForensics: Image Forgery Localization with Dense Self-Attention] (<em>ICCV ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.03871"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Self-supervised Domain Adaptation for Forgery Localization of JPEG Compressed Images (<em>ICCV ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/ICCV2021/html/Rao_Self-Supervised_Domain_Adaptation_for_Forgery_Localization_of_JPEG_Compressed_Images_ICCV_2021_paper.html"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Image Tampering Localization Using a Dense Fully Convolutional Network (<em>TIFS ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9393396"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/ZhuangPeiyu/Dense-FCN-for-tampering-localization"><strong>Code</strong></a></strong>]** (<em>DenseFCN</em>)</li>
+<li><input disabled="" type="checkbox"> Image Manipulation Localization Using Attentional Cross-Domain CNN Features (<em>TNNLS ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://doi.org/10.1109/TNNLS.2021.3130168"><strong>Paper</strong></a></strong>]**</li>
+</ul>
+</details>
+
+<details open>
+<summary>2020 and before</summary>
+
+<ul>
+<li><p><input disabled="" type="checkbox"> 
+ManTra-Net: Manipulation Tracing Network for Detection and Localization of Image Forgeries With Anomalous Features (<em>CVPR ‘19</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8953774"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/ISICV/ManTraNet"><strong>Code</strong></a></strong>]**<br><a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_CVPR_2019/html/Wu_ManTra-Net_Manipulation_Tracing_Network_for_Detection_and_Localization_of_Image_CVPR_2019_paper.html"><img src="https://img.shields.io/badge/CVPR-2024-red" alt="CVPR"></a> <a target="_blank" rel="noopener" href="https://github.com/ISICV/ManTraNet"><img src="https://img.shields.io/github/stars/ISICV/ManTraNet?style=flat" alt="GitHub"></a> </p>
+  <details close>
+  
+<ul>
+<li><input disabled="" type="checkbox"> A Full-Image Full-Resolution End-to-EndTrainable CNN Framework for Image Forgery Detection (<em>IEEE Access ‘20</em>) **[<a href="./">Paper</a>]</li>
+<li><input disabled="" type="checkbox"> <img src="https://img.shields.io/badge/ICME-'20-ffc53d.svg" alt="ConfnPubs">Constrained R-CNN: A general image manipulation detection model <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.08217"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/VedantWani/Constrained-R-CNN"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> A CNNBased Camera Model Fingerprint (<em>TIFS ‘20</em>) **[<a href="./">Paper</a>]</li>
+<li><input disabled="" type="checkbox"> An Adaptive Neural Network for Unsupervised Mosaic Consistency Analysis in Image Forensics (<em>CVPR ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="http://openaccess.thecvf.com/content_CVPR_2020/html/Bammey_An_Adaptive_Neural_Network_for_Unsupervised_Mosaic_Consistency_Analysis_in_CVPR_2020_paper.html"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/qbammey/adaptive_cfa_forensics"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> A dense u-net with cross-layer intersection for detection and localization of image forgery (<em>ICASSP ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9054068"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45366180/article/details/128413821"><strong>Note_unofficial</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Generate, Segment, and Refine: Towards Generic Manipulation Segmentation] (<em>AAAI ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1811.09729"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/pengzhou1108/GSRNet"><strong>Code</strong></a></strong>]** (<em>GSRNet</em>)</li>
+<li><input disabled="" type="checkbox"> SPAN: Spatial Pyramid Attention Network for Image Manipulation Localization (<em>ECCV ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123660307.pdf"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/tsaishien-chen/SPAN"><strong>Code</strong></a></strong>]**  <a target="_blank" rel="noopener" href="http://media.ee.ntu.edu.tw/research/SPAN/"><img src="https://img.shields.io/badge/Project-Page-159957.svg" alt="GitHub Page"></a> </li>
+<li><input disabled="" type="checkbox"> [Hybrid LSTM and Encoder-Decoder Architecture for Detection of Image Forgeries] (<em>TIP ‘19</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1903.02495"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/jawadbappy/forgery_localization_HLED"><strong>Code</strong></a></strong>]**</li>
+</ul>
+  </details></li>
+</ul>
+</details>
+
+<h4 id="CNN-synthesized"><a href="#CNN-synthesized" class="headerlink" title="CNN-synthesized"></a>CNN-synthesized</h4><p><em>上面的一些论文还包含了检测由合成图像的GANs或DM生成的篡改图像的方法</em></p>
+<details open>
+<summary>CNN-synthesized</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection <em>(CVPR ‘24)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.16649">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Preserving Fairness Generalization in Deepfake Detection <em>(CVPR ‘24)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.17229">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/Purdue-M2/Fairness-Generalization">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Leveraging Representations from Intermediate Encoder-blocks for Synthetic Image Detection <em>(arXiv ‘24)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.19091">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/mever-team/rine">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.16649">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> AntifakePrompt: Prompt-Tuned Vision-Language Models are Fake Image Detectors (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.17419"><strong>Paper</strong></a></strong>]** <strong>[<a target="_blank" rel="noopener" href="https://github.com/nctu-eva-lab/AntifakePrompt">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> MaLP: Manipulation Localization Using a Proactive Scheme (<em>CVPR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.16976"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/vishal3477/pro_loc"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Discrepancy-Guided Reconstruction Learning for Image Forgery Detection (<em>IJCAI ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.13349"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/znshi/DisGRL"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Generalizable Synthetic Image Detection via Language-guided Contrastive Learning (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.13800"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/HighwayWu/LASTED"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Detect Any Deepfakes: Segment Anything Meets Face Forgery Detection and Localization (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.17075"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/laiyingxin2/DADF"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Discrepancy-Guided Reconstruction Learning for Image Forgery Detection (<em>arXiv ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.13349"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Masked Relation Learning for DeepFake Detection (<em>TIFS ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://doi.org/10.1109/TIFS.2023.3249566"><strong>Paper</strong></a></strong>]**</li>
+</ul>
+</details>
+### Image Splicing
+
+<p><strong>图像的拼接篡改检测定位</strong></p>
+<details open>
+<summary>2024</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> Towards Effective Image Forensics via A Novel Computationally Efficient Framework and A New Image Splice Dataset <em>(arXiv ‘24)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.06998">Paper</a>]</strong></li>
+</ul>
+</details>
+
+<details open>
+<summary>2023</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> GreatSplicing: A Semantically Rich Splicing Dataset <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.10070">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="http://www.greatsplicing.net/">Dataset</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Multi-scale attention context-aware network for detection and localization of image splicing: Efficient and robust identification network <em>(Appl. Intell. 23’)</em> <strong>[<a target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s10489-022-04421-3">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> A Multi-Stream Fusion Network for Image Splicing Localization <em>(MMM ‘23)</em> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.01128"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Attacking Image Splicing Detection and Localization Algorithms Using Synthetic Traces <em>(TIFS ‘23)</em> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.12314"><strong>Paper</strong></a></strong>]** <strong>[<a target="_blank" rel="noopener" href="https://doi.org/10.1109/TIFS.2023.3346312">IEEE Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Biomedical Image Splicing Detection using Uncertainty-Guided Refinement <em>(arXiv ‘23)</em> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.16388"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> A New Method to Detect Splicing Image Forgery Using Convolutional Neural Network (<em>Applied Science (IF: 2.8, not included in CCFs), MDPI, ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://www.mdpi.com/2076-3417/13/3/1272"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Multi-scale Target-Aware Framework for Constrained Image Splicing Detection and Localization (<em>MM ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.09357"><strong>Paper</strong></a></strong>]**</li>
+</ul>
+</details>
+
+<details open>
+<summary>2022</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> [Multi-Task SE-Network for Image Splicing Localization] (<em>TCSVT ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9591639"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/YulansZhang/Multi-task-SE-Network-for-Image-Splicing-Localization"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [ET: Edge-Enhanced Transformer for Image Splicing Detection] (<em>SPL ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9769936"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Image splicing forgery detection by combining synthetic adversarial networks and hybrid dense U-net based on multiple spaces] (<em>IJIS ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://doi.org/10.1002/int.22939"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/yelusaleng/SAN_and_HDU-Net"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [SISL:Self-Supervised Image Signature Learning for Splicing Detection &amp; Localization] (<em>CVPRW ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.07824"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Deep Metric Color Embeddings for Splicing Localization in Severely Degraded Images (<em>TIFS ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.10737"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Coarse-to-fine-grained method for image splicing region detection (<em>PR ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.patcog.2021.108347"><strong>Paper</strong></a></strong>]**</li>
+</ul>
+</details>
+
+<details>
+<summary>2021</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> [CAT-Net: Compression Artifact Tracing Network for Detection and Localization of Image Splicing] (<em>WACV ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9423390"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/mjkwon2021/CAT-Net"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Image Splicing Detection, Localization and Attribution via JPEG Primary Quantization Matrix Estimation and Clustering (<em>TIFS ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9622213"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/andreacos/CnnJpegPrimaryQuantizationEstimation"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Multiple Image Splicing Dataset (MISD): A Dataset for Multiple Splicing (<em>Data, MDPI ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.09674"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Reality Transform Adversarial Generators for Image Splicing Forgery Detection and Localization (<em>ICCV ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="http://openaccess.thecvf.com/content/ICCV2021/html/Bi_Reality_Transform_Adversarial_Generators_for_Image_Splicing_Forgery_Detection_and_ICCV_2021_paper.html"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Multi-Task Wavelet Corrected Network for Image Splicing Forgery Detection and Localization] (<em>ICME ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9428466/"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Detection and Localization of Multiple Image Splicing Using MobileNet V1 (<em>IEEE Access ‘21</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.09674"><strong>Paper</strong></a></strong>]**</li>
+</ul>
+</details>
+
+<details>
+<summary>2020 and before</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> D-Unet: A Dual-encoder U-Net for Image Splicing Forgery Detection and Localization <em>(arXiv ‘20)</em> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.01821"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Exposing splicing forgery in realistic scenes using deep fusion network (<em>InfoS ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0020025520302796"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Locating splicing forgery by adaptive-SVD noise estimation and vicinity noise descriptor (<em>Neurocomputing ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0925231220300278"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Adversarial Learning for Constrained Image Splicing Detection and Localization Based on Atrous Convolution (<em>TIFS ‘19</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/8658131"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/yaqiliu-cs/CISDL-DMAC"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [RRU-Net: The Ringed Residual U-Net for Image Splicing Forgery Detection] (<em>CVPRW’ 19</em>) <strong>[**<a target="_blank" rel="noopener" href="http://openaccess.thecvf.com/content_CVPRW_2019/html/CV-COPS/Bi_RRU-Net_The_Ringed_Residual_U-Net_for_Image_Splicing_Forgery_Detection_CVPRW_2019_paper.html?ref=https://githubhelp.com"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/yelusaleng/RRU-Net"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Mixed adversarial generators for image splice detection (<em>NeuIPS ‘19</em>) <strong>[**<a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/8315-the-point-where-reality-meets-fantasy-mixed-adversarial-generators-for-image-splice-detection"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/vlkniaz/MAGritte"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Image Splicing Localization via Semi-global Network and Fully Connected Conditional Random Fields (<em>ECCV ‘18</em>)</li>
+<li><input disabled="" type="checkbox"> Image splicing localization using a multi-task fully convolutional network (mfcn) (<em>JVCIR ‘18</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1709.02016"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/namtpham/image_tampering_detection_references.git"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Fighting Fake News: Image Splice Detection via Learned Self-Consistency] (<em>ECCV ‘18</em>) <strong>[**<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content_ECCV_2018/html/Jacob_Huh_Fighting_Fake_News_ECCV_2018_paper.html"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/minyoungg/selfconsistency"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> Deep Fusion Network for Splicing Forgery Localization (<em>ECCV ‘18</em>)</li>
+<li><input disabled="" type="checkbox"> Deep matching and validation network: An end-to-end solution to constrained image splicing localization and detection (<em>MM ‘17</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1705.09765"><strong>Paper</strong></a></strong>]**</li>
+</ul>
+</details>
+
+<h3 id="Copy-Move"><a href="#Copy-Move" class="headerlink" title="Copy Move"></a>Copy Move</h3><p><strong>复制移动篡改定位</strong>问题</p>
+<details open>
+<summary>Copy Move</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> An effective image copy-move forgery detection using entropy image <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.11793">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> CMFDFormer: Transformer-based Copy-Move Forgery Detection with Continual Learning <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.13263">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> An approach for copy-move image multiple forgery detection based on an optimized pre-trained deep learning model <em>(KBS ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0950705123002587">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Image Copy-Move Forgery Detection via Deep Cross-Scale PatchMatch (<em>ICME ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.04188"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [BusterNet: Detecting Copy-Move Image Forgery with Source&#x2F;Target Localization] (<em>ECCV ‘18</em>) <strong>[**<a target="_blank" rel="noopener" href="http://openaccess.thecvf.com/content_ECCV_2018/html/Rex_Yue_Wu_BusterNet_Detecting_Copy-Move_ECCV_2018_paper.html"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/isi-vista/BusterNet"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [A Serial Image Copy-Move Forgery Localization Scheme With Source&#x2F;Target Distinguishment] (<em>TMM ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9207851/"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/imagecbj/A-serial-image-copy-move-forgery-localization-scheme-with-source-target-distinguishment"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [DOA-GAN: Dual-Order Attentive Generative Adversarial Network for Image Copy-Move Forgery Detection and Localization] (<em>CVPR ‘20</em>) <strong>[**<a target="_blank" rel="noopener" href="http://openaccess.thecvf.com/content_CVPR_2020/html/Islam_DOA-GAN_Dual-Order_Attentive_Generative_Adversarial_Network_for_Image_Copy-Move_Forgery_CVPR_2020_paper.html"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/asrafulashiq/doagan_clean"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Two-Stage Copy-Move Forgery Detection with Self Deep Matching and Proposal SuperGlue] (<em>TIP ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.08697"><strong>Paper</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> QDL-CMFD: A Quality-independent and deep Learning-based Copy-Move image forgery detection method (<em>Neurocomputing ‘22</em>) <strong>[**<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0925231222011031"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/MehradAria/QDL-CMFD"><strong>Code</strong></a></strong>]**</li>
+<li><input disabled="" type="checkbox"> [Shrinking the Semantic Gap: Spatial Pooling of Local Moment Invariants for Copy-Move Forgery Detection] <em>(TIFS ‘23)</em> <strong>[**<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.09135"><strong>Paper</strong></a></strong>]** <strong>[**<a target="_blank" rel="noopener" href="https://github.com/ChaoWang1016/word2phraseCMFD"><strong>Code</strong></a></strong>]**</li>
+</ul>
+</details>
+
+<h3 id="Tamper-Text-in-Detection"><a href="#Tamper-Text-in-Detection" class="headerlink" title="Tamper Text in Detection"></a>Tamper Text in Detection</h3><p>图像中的<strong>文本篡改检测</strong>问题 (parts of)</p>
+<details open>
+<summary>Tamper Text</summary>
+
+<ul>
+<li><input disabled="" type="checkbox"> A Two-Stage Dual-Path Framework for Text Tampering Detection and Recognition <em>(arXiv ‘24)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.13545">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Toward Real Text Manipulation Detection: New Dataset and New Solution <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.06934">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/DrLuo/RTM">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Towards Robust Tampered Text Detection in Document Image: New dataset and New Solution (<em>CVPR ‘23</em>) <strong>[**<a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Qu_Towards_Robust_Tampered_Text_Detection_in_Document_Image_New_Dataset_CVPR_2023_paper.pdf"><strong>Paper</strong></a></strong>]** <strong>[<a target="_blank" rel="noopener" href="https://github.com/qcf-568/DocTamper">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Progressive Supervision for Tampering Localization in Document Images (<em>ICONIP ‘23</em>) <strong>[<a target="_blank" rel="noopener" href="https://link.springer.com/chapter/10.1007/978-981-99-8184-7_11">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> SigScatNet: A Siamese + Scattering based Deep Learning Approach for Signature Forgery Detection and Similarity Assessment <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.05579.pdf">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Image Generation and Learning Strategy for Deep Document Forgery Detection <em>(arXiv ‘23)</em> <strong>[<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.03650">Paper</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Forgery-free signature verification with stroke-aware cycle-consistent generative adversarial network <em>(Neurocomputing ‘22)</em> <strong>[<a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.neucom.2022.08.017">Paper</a>]</strong> <strong>[<a target="_blank" rel="noopener" href="https://github.com/KAKAFEI123/Stroke-cCycleGAN">Code</a>]</strong></li>
+<li><input disabled="" type="checkbox"> Document Forgery Detection in the Context of Double JPEG Compression <em>(ICPR ‘22)</em> <strong>[<a target="_blank" rel="noopener" href="https://link.springer.com/chapter/10.1007/978-3-031-37745-7_5">Paper</a>]</strong></li>
+</ul>
+</details>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E5%AE%9A%E4%BD%8D/">https://zhaozw-szu.github.io/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E5%AE%9A%E4%BD%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%90%88%E9%9B%86/">合集</a></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization/" title="Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization</div></div></a></div><div class="next-post pull-right"><a href="/2024%E5%8D%8E%E4%B8%BA%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B%EF%BC%88%E4%BA%8C%EF%BC%89/" title="2024华为精英挑战赛（二）"><img class="cover" src="/img/coverImage/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2024华为精英挑战赛（二）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%95%B0%E6%8D%AE%E9%9B%86/" title="图像篡改数据集"><img class="cover" src="/img/coverImage/cover2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-29</div><div class="title">图像篡改数据集</div></div></a></div><div><a href="/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E5%AE%9A%E4%BD%8D%E8%A7%86%E9%A2%91%E6%80%BB%E7%BB%93/" title="图像篡改检测定位视频合集"><img class="cover" src="/img/coverImage/cover2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-09</div><div class="title">图像篡改检测定位视频合集</div></div></a></div><div><a href="/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%90%88%E9%9B%86/" title="损失函数合集"><img class="cover" src="/img/coverImage/cover4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-10</div><div class="title">损失函数合集</div></div></a></div><div><a href="/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88%E3%80%81%E7%89%B9%E5%BE%81%E9%87%87%E6%A0%B7%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" title="特征融合、特征采样方法合集"><img class="cover" src="/img/coverImage/cover3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-08</div><div class="title">特征融合、特征采样方法合集</div></div></a></div><div><a href="/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/" title="论文合集"><img class="cover" src="/img/coverImage/cover1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-09</div><div class="title">论文合集</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">56</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论真的可以使用了！！！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Backbone"><span class="toc-number">1.</span> <span class="toc-text">Backbone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Tampering"><span class="toc-number">2.</span> <span class="toc-text">Image Tampering</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Image-Editing"><span class="toc-number">2.1.</span> <span class="toc-text">Image Editing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CNN-synthesized"><span class="toc-number">2.2.</span> <span class="toc-text">CNN-synthesized</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Copy-Move"><span class="toc-number">3.</span> <span class="toc-text">Copy Move</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tamper-Text-in-Detection"><span class="toc-number">4.</span> <span class="toc-text">Tamper Text in Detection</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/IAD/" title="IAD"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IAD"/></a><div class="content"><a class="title" href="/IAD/" title="IAD">IAD</a><time datetime="2024-07-22T13:19:51.000Z" title="发表于 2024-07-22 21:19:51">2024-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/PromptAD/" title="PromptAD"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PromptAD"/></a><div class="content"><a class="title" href="/PromptAD/" title="PromptAD">PromptAD</a><time datetime="2024-07-09T13:21:40.000Z" title="发表于 2024-07-09 21:21:40">2024-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"/></a><div class="content"><a class="title" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective">A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective</a><time datetime="2024-07-08T02:07:13.000Z" title="发表于 2024-07-08 10:07:13">2024-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/DeepClustering/" title="DeepClustering"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DeepClustering"/></a><div class="content"><a class="title" href="/DeepClustering/" title="DeepClustering">DeepClustering</a><time datetime="2024-07-04T06:41:10.000Z" title="发表于 2024-07-04 14:41:10">2024-07-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/20240627%E8%AE%B2%E5%BA%A7/" title="20240627讲座"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20240627讲座"/></a><div class="content"><a class="title" href="/20240627%E8%AE%B2%E5%BA%A7/" title="20240627讲座">20240627讲座</a><time datetime="2024-06-27T12:11:02.000Z" title="发表于 2024-06-27 20:11:02">2024-06-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

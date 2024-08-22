@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Learning Transferable Visual Models From Natural Language Supervision | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Learning Transferable Visual Models From Natural Language Supervision  官方解读博客： CLIP: Connecting text and images (openai.com) 1 CLIP 论文解读：1.1 背景和动机[借助文本的监督方法属于有监督和无监督的一个中间地带] 借助文本的监督方法属于：”借助有限的标注数据进行有监">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Transferable Visual Models From Natural Language Supervision">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Learning Transferable Visual Models From Natural Language Supervision  官方解读博客： CLIP: Connecting text and images (openai.com) 1 CLIP 论文解读：1.1 背景和动机[借助文本的监督方法属于有监督和无监督的一个中间地带] 借助文本的监督方法属于：”借助有限的标注数据进行有监">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg">
+<meta property="article:published_time" content="2024-03-29T06:42:55.000Z">
+<meta property="article:modified_time" content="2024-04-30T14:14:58.361Z">
+<meta property="article:author" content="Zhaozw">
+<meta property="article:tag" content="clip">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Learning Transferable Visual Models From Natural Language Supervision',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-30 22:14:58'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">56</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Learning Transferable Visual Models From Natural Language Supervision</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-29T06:42:55.000Z" title="发表于 2024-03-29 14:42:55">2024-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-30T14:14:58.361Z" title="更新于 2024-04-30 22:14:58">2024-04-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%BA%E6%96%87/baseline/">baseline</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Learning Transferable Visual Models From Natural Language Supervision"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Learning Transferable Visual Models From Natural Language Supervision<a target="_blank" rel="noopener" href="https://arxiv.org/abs//2103.00020"><img src="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv"></a> <a target="_blank" rel="noopener" href="https://github.com/OpenAI/CLIP"><img src="https://img.shields.io/github/stars/ZhenfeiZ/CIMD?style=flat" alt="GitHub"></a></p>
+<p><strong>官方解读博客：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://openai.com/research/clip">CLIP: Connecting text and images (openai.com)</a></p>
+<h2 id="1-CLIP-论文解读："><a href="#1-CLIP-论文解读：" class="headerlink" title="1 CLIP 论文解读："></a><strong>1 CLIP 论文解读：</strong></h2><h3 id="1-1-背景和动机"><a href="#1-1-背景和动机" class="headerlink" title="1.1 背景和动机"></a><strong>1.1 背景和动机</strong></h3><p><strong>[借助文本的监督方法属于有监督和无监督的一个中间地带]</strong> 借助文本的监督方法属于：”借助有限的标注数据进行有监督训练” 和 “借助几乎无限量的原始文本进行无监督训练” 二者之间的中间地带。相同的是，这两种方式都使用静态的 Softmax 分类器来执行预测，缺乏动态输出的机制。这严重限制了它们的灵活性和 “Zero-Shot” 能力。</p>
+<p><strong>[CLIP 方法及其结果]</strong> 在本文中作者研究了借助大规模自然语言监督训练图像分类器。互联网上存在大量公开可用的无标注文本数据集，作者创建了一个包含4亿对 (图像，文本) 的新数据集，并通过对比语言-图像预训练的方式训练了 CLIP 模型，是一种从自然语言监督中学习视觉模型的有效新方法。作者发现 CLIP 类似于 GPT 家族，在预训练期间学习执行一系列任务，包括动作识别，OCR，地理定位，ImageNet-1K 图像分类，细粒度图像分类任务等。作者通过在30多个现有数据集上对 CLIP 的 “Zero-Shot” 迁移学习性能进行测试，并发现 CLIP 可以与有监督训练得到的模型性能相当。比如，CLIP 在 ImageNet-1K 上的性能与专门有监督训练的 ResNet-50 相当，但是却没有使用 1.28M 的 ImageNet-1K 训练数据集。</p>
+<h3 id="1-2-自然语言的监督"><a href="#1-2-自然语言的监督" class="headerlink" title="1.2 自然语言的监督"></a><strong>1.2 自然语言的监督</strong></h3><p>本文方法的核心是从自然语言的监督中获得感知能力。只要是你的方法具备这一特点，都可以称之为 “接受了自然语言的监督”。那这种方法有哪些优势呢？其一就是可扩展性。因为它不需要经典机器学习方法中大量的有标签数据。</p>
+<h3 id="1-3-CLIP-的数据集"><a href="#1-3-CLIP-的数据集" class="headerlink" title="1.3 CLIP 的数据集"></a><strong>1.3 CLIP 的数据集</strong></h3><p>本文的一个主要特点是想利用互联网上大量公开可用的数据。由于现有的数据集 (MS-COCO 约100,000张，YFCC100M 高质量的仅仅约 15M 张，和 ImageNet-1K 大小相似) 不够大，可能会低估这一研究领域的潜力。</p>
+<p>为了解决这个问题，作者构建了一个新的数据集，其中包含4亿对 (图像，文本) 对，这些数据来自互联网上各种公开可用的资源。而且这个数据清理得非常好，质量是非常高的，这也可能是 CLIP 这么强大的主要原因之一。结果数据集的总字数与用于训练 GPT-2 的 WebText 数据集相似，因此作者将此数据集称为 WebImageText (WIT)。</p>
+<h3 id="1-4-CLIP-的预训练方法"><a href="#1-4-CLIP-的预训练方法" class="headerlink" title="1.4 CLIP 的预训练方法"></a><strong>1.4 CLIP 的预训练方法</strong></h3><p>本文采取基于对比学习的高效预训练方法。作者的思路是这样的：一开始的方法是联合训练了一个处理图像的 CNN 和一个处理文本的 Transformer 模型，来预测图像的 caption。这个实验结果如下图1的蓝色曲线所示，可以看到其 Scalability 是很差的。橘红色曲线是预测文本的词袋，其效率是蓝色曲线的3倍。这两种方法都有一个关键的相似性，即试图去预测每幅图片对应的文字的确切单词是什么。但我们知道这可不是一件容易的事，因为与同一幅图像对应的描述、注释和相关文本种类繁多。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-25eb6d56491be12552c88613e2a0a3d1_720w.png" alt="img"></p>
+<p>图1：不同方法的 Zero-Shot ImageNet-1K 精度</p>
+<p>基于最近的图像对比表征学习方面的研究，可以仅预测整个文本与哪个图像配对，而不是该文本的确切单词，实验结果如下图1的绿色曲线所示，其效率是橘红色曲线的4倍。具体的做法是：</p>
+<p><strong>对比学习阶段：</strong><br>如下图2所示，给定一个 Batch 的N个 (图片，文本) 对，图片输入给 Image Encoder 得到表征$T_1$,$T_2$,…,$T_N$，文本输入给 Text Encoder 得到表征$I_1$,$I_2$,…,$I_N$，作者认为$(I_j,T_j)$属于是正样本，$(I_i,T_j)$属于负样本。最大化N个正样本的 Cosine 相似度，最小化$N^2-N$个负样本的 Cosine 相似度。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-65e1dbb935aa7804189dc100783a4940_720w.png" alt="img">]</p>
+<p>图2：CLIP 的对比学习阶段</p>
+<p>作者从头开始训练 CLIP，不使用 ImageNet-1K 权重初始化 Image Encoder，也不使用预先训练的权重初始化 Text Encoder。同时使用线性投影 (权重为$W_i,W_t$) 将每个编码器的表征映射到多模态的嵌入空间。数据增强只使用随机裁剪，温度系数$\tau$的对数形式随整个模型一起训练。</p>
+<p><strong>Zero-Shot Transfer：</strong>如下图4所示，这个阶段是使用 CLIP 的预训练好的 Image Encoder 和 Text Encoder 来做 Zero-Shot Transfer。比如来一张 ImageNet-1K 验证集的图片，我们希望 CLIP 预训练好的模型能完成这个分类的任务。但是你想想看，这个 Image Encoder 是没有分类头 (最后的 Classifier) 的，也就是说它没法直接去做分类任务，所以说呢 CLIP 采用了下面的 Prompt Template 模式：</p>
+<p>比如来一张 ImageNet-1K 验证集的图片，作者把它喂入 CLIP 预训练好的 Image Encoder，得到特征 $I_1$，接下来把所有类别的词汇 “cat”, “dog” 等，做成一个 prompt：”A photo of a {object}”，并将这个 prompt 喂入 CLIP 预训练好的 Text Encoder，依次得到特征$T_1$,$T_2$,…,$T_N$，最后看<strong>哪个的余弦相似度和 $I_1$最高</strong>，就代表<strong>该图片是哪个类别的</strong>。</p>
+<p>那我们就可以注意到貌似这个 prompt 的加入很关键，正好弥补了 Image Encoder 没有分类头的问题，又正好用上了 CLIP 训练好的 Text Encoder。</p>
+<p>而且重要的是，CLIP 的这种推理的方法摆脱了类别的限制，比如一张 “三轮车” 的图片，假设 ImageNet 里面没有 “三轮车” 这个类，那么基于 ImageNet 所训练的任何模型都无法正确地讲这个图片分类为 “三轮车” ，但是 CLIP 的范式是可以做到的，只需要去做成一个 prompt：”A photo of a {tricycle}”。</p>
+<p>那么我们不禁要问：<strong>其他任务可以像这样使用 prompt 吗？或者什么样的 prompt 可以带来 Zero-Shot 的性能提升？</strong>作者做了实验发现：</p>
+<ul>
+<li><p>对于细粒度图像分类任务，比如 Oxford-IIIT Pets 数据集，prompt 就可以设置为：”A photo of a {label}, a type of pet.”。比如 Food101 数据集，prompt 就可以设置为：”A photo of a {label}, a type of food.”。比如 FGVC Aircraft 数据集，prompt 就可以设置为：”A photo of a {label}, a type of aircraft.”</p>
+</li>
+<li><p>对于 OCR 任务，加上一些文本或者数字的引号可以提升性能。</p>
+</li>
+<li><p>对于卫星图像分类数据集，prompt 就可以设置为：”a satellite photo of a {label}.”。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-2e0561dbbcf5ae00c5053824d2148c25_720w.png" alt="img">]</p>
+<p>图4：CLIP 的 Zero-Shot Transfer</p>
+</li>
+</ul>
+<p>作者还开脑洞尝试了通过使用多个上下文的 prompt 来 Ensemble 多个 Zero-Shot 分类器，比如一个 prompt 是 ‘A photo of a big {label}”，另一个 prompt 是 ‘A photo of a small {label}”。作者观察到这样可以可靠地提高性能。在 ImageNet 上，作者集成了 80 个不同的上下文提示，这比上面讨论的单个默认提示提高了 3.5% 的性能。当一起考虑时，如下图5所示是 Prompt 工程和 Ensemble 策略如何改变一组 CLIP 模型的性能，可以看到 Prompt 工程和 Ensemble 策略将 ImageNet 精度提高了近 5%，其中蓝色的线代表直接嵌入类名的结果。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-12b0f33645fcb5ffb3fdcea97a2bc0b6_720w.png" alt="img">]</p>
+<p>图5：prompt 工程和 Ensemble 对 Zero-Shot 性能的影响</p>
+<h3 id="1-5-CLIP-的模型选择"><a href="#1-5-CLIP-的模型选择" class="headerlink" title="1.5 CLIP 的模型选择"></a><strong>1.5 CLIP 的模型选择</strong></h3><p>对于 Image Encoder，作者尝试了改进版的 ResNet-50 和 ViT，对于 Text Encoder，作者使用改进版的 Transformer，作者使用了一个带有8个注意头的 63M 参数的12层512宽 Transformer 模型，其输入是一个大小为49152的词汇表的 BPE[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/625165635?utm_id=0#ref_2">2]</a>小写表征。为了计算效率，最大序列长度为76。文本序列用 [SOS] 和 [EOS] 令牌括起来，[EOS] 处 Transformer 末层的输出被视为文本的特征，然后通过 LN，后接 Linear 层投影到多模态空间中。</p>
+<p>至于模型缩放的问题，作者发现对于图像编码器 ResNet，同时缩放其深度，宽度，和输入分辨率的效果是最优的。而对于文本编码器 Transformer，作者只缩放模型的宽度，使其与 ResNet 宽度的计算增量成正比，而无需缩放深度，因为作者发现 CLIP 的性能对文本编码器的容量不太敏感。</p>
+<h3 id="1-6-零样本迁移-Zero-Shot-Transfer-实验结果"><a href="#1-6-零样本迁移-Zero-Shot-Transfer-实验结果" class="headerlink" title="1.6 零样本迁移 (Zero-Shot Transfer) 实验结果"></a><strong>1.6 零样本迁移 (Zero-Shot Transfer) 实验结果</strong></h3><p>本节中的 Zero-Shot 是指研究对未见过的数据集的泛化性能，也就是说一个模型训练号以后，在它从未见到过的新数据集上的性能如何。</p>
+<p>作者进一步探索 CLIP 的 Zero-Shot 性能。为了说明这一点，作者比较了 CLIP 与基于 ResNet-50 完全监督的、正则化的逻辑回归分类器的性能。实验结果如下图7所示，在一共对比的27个数据集中，Zero-Shot CLIP 在16个数据集上面战胜了全监督的 ResNet-50 模型。</p>
+<p>在细粒度分类任务上，可以观察到性能上的广泛差异。在其中两个数据集 (Stanford Cars 和 Food101) 上，Zero-Shot CLIP 在 ResNet-50 特征上的表现比逻辑回归好 20% 以上，而在另外两个数据集 (Flowers102 和 FGVCAircraft) 上，Zero-Shot CLIP 的表现比逻辑回归差 10% 以上。在 OxfordPets 和 Birdsnap 上，二者的表现更为接近。</p>
+<p>在 ImageNet、CIFAR10&#x2F;100、STL10 和 PascalVOC2007 等 “更广义的” 分类数据集上，二者的性能相对相似，在所有情况下，Zero-Shot CLIP 都有轻微的优势。在 STL10 上，CLIP 在不使用任何训练样本的情况下达到了 99.3% 的精度。在 Kinetics70 上，CLIP的表现比ResNet-50高出14.5%，在 UCF101 上，Zero-Shot CLIP 的性能也比 ResNet-50 的性能高出 7.7%。作者推测这估计是因为与 ImageNet 中以名词为中心的对象监督相比，自然语言对涉及动词的视觉概念提供了更广泛的监督。</p>
+<p>也可以看到，Zero-Shot CLIP 在一些专业、复杂或抽象的任务上相当弱，如卫星图像分类 (EuroSAT 和RESISC45)、淋巴结肿瘤检测 (PatchCamelyon)、合成场景中的物体计数 (CLEVRCounts)、与自动驾驶相关的任务，如德国交通标志识别 (GTSRB)、识别到最近汽车的距离 (KITTI distance)。这些结果突出了 Zero-Shot CLIP 在更复杂任务中的较差能力。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-9f59b5dfeae10e475d35e3a2b715b0ba_720w.png" alt="img">]</p>
+<p>图7：Zero-Shot CLIP 与完全监督的基线相比具有竞争力</p>
+<blockquote>
+<p><strong>CLIP 零样本迁移的 Data Efficiency</strong></p>
+</blockquote>
+<p>除此之外，作者还进行了一个有趣的实验，即探究 CLIP 的零样本迁移的性能与其他模型的少样本学习性能的比较。这里的其他模型，作者使用的是 ImageNet-21K 数据集上面预训练的 BiT-M ResNet-152x2。如下图8所示的结果是零样本迁移 (Zero-Shot Transfer) 的 data efficiency，即少样本学习 (Few-Shot Learning) 在样本量为多少时的性能能够跟上 CLIP 零样本迁移的性能。可以发现每个数据集的效率差异很大，从有的数据集不到一个标记到有的数据集需要184个标记。比如，Flowers102 数据集可以在 1-shot 的情况下就能够跟上 CLIP 零样本迁移的性能，但是像 FER2013 数据集在 184-shot 的情况下才能够做得到。平均估计数据效率为每个类 20.8 个示例。对于 ImageNet 数据集，CLIP 零样本迁移的结果与在相同特征空间上训练的 16-shot 线性分类器的结果相当。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-f0b49427382cb9fbf87dbc6ae3eec46d_720w.png" alt="img">]</p>
+<p>图8：CLIP Zero-Shot Transfer 的 data efficiency</p>
+<h3 id="1-7-表征学习-Representation-Learning-实验结果"><a href="#1-7-表征学习-Representation-Learning-实验结果" class="headerlink" title="1.7 表征学习 (Representation Learning) 实验结果"></a><strong>1.7 表征学习 (Representation Learning) 实验结果</strong></h3><p>为了更全面地评估 CLIP 模型的效果，作者进一步评估了它的表征学习能力。关于表征学习的评估方法，有很多方法来评估某个表征的质量，以及一个 “理想” 的表征应该具有哪些属性。一种比较常见的方法是冻住模型的骨干部分，只训练最后的分类器，通过在某个数据集上的精度来衡量提取到的特性的好坏。</p>
+<p>如下图9所示是本文关于表征学习研究结果。作者首先研究了[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/625165635?utm_id=0#ref_3">3]</a>论文的12个数据集，虽然像 ResNet-50 和 ResNet-101 这样的小型 CLIP 模型比在 ImageNet-1K 上训练的其他 ResNet 表现更好，但它们比在 ImageNet-21K (BiT-M) 上训练的 ResNet 表现更差。这些小型 CLIP 模型在具有类似计算需求的情况下，也不如 EfficientNet 系列的模型。作者继续在27个更多的数据集上做了相关研究，在这个更广泛的评估套件上，CLIP 的优势更加明显。所有 CLIP 模型，无论规模如何，在计算效率方面都优于其他模型。最佳模型的平均分数的提高从 2.6% 增加到 5%。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-04eacca100b96d628b95e2f7538bb332_720w.png" alt="img">]</p>
+<p>图9：CLIP 模型与最先进的计算机视觉模型 Linear Probe 性能的比较</p>
+<p>作者还研究了 CLIP 的特征在各种各样的数据集上与最佳 ImageNet 模型的特征的比较。最佳 ImageNet 模型的特征用的是 Noisy Student EfficientNet-L2 的最佳模型的特征。结果发现在27个数据集上，CLIP 取得了21个数据集的优势。CLIP 在需要 OCR (SST2，HatefulMemes) ，地理定位和场景识别 (Country211, SUN397) 的任务上改进最多。此外，CLIP 在细粒度的汽车和交通标志识别方面也做得更好 (Stanford Cars 和 GTSRB)。</p>
+<p>[<img src="/postimages/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/v2-2faa222d0c791900c6e1551b568a3d6f_720w.webp" alt="img">]</p>
+<p>图10：CLIP 的特征在各种各样的数据集上优于最佳 ImageNet 模型的特征</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/">https://zhaozw-szu.github.io/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/clip/">clip</a></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision2/" title="Learning Transferable Visual Models From Natural Language Supervision2"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Learning Transferable Visual Models From Natural Language Supervision2</div></div></a></div><div class="next-post pull-right"><a href="/Hexo%E6%8A%80%E5%B7%A7/" title="Hexo技巧"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hexo技巧</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision2/" title="Learning Transferable Visual Models From Natural Language Supervision2"><img class="cover" src="/img/coverImage/cover2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-29</div><div class="title">Learning Transferable Visual Models From Natural Language Supervision2</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">56</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论真的可以使用了！！！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-CLIP-%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1 CLIP 论文解读：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%83%8C%E6%99%AF%E5%92%8C%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 背景和动机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E7%9A%84%E7%9B%91%E7%9D%A3"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 自然语言的监督</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-CLIP-%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 CLIP 的数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-CLIP-%E7%9A%84%E9%A2%84%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 CLIP 的预训练方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-CLIP-%E7%9A%84%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 CLIP 的模型选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E9%9B%B6%E6%A0%B7%E6%9C%AC%E8%BF%81%E7%A7%BB-Zero-Shot-Transfer-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 零样本迁移 (Zero-Shot Transfer) 实验结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0-Representation-Learning-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">1.7.</span> <span class="toc-text">1.7 表征学习 (Representation Learning) 实验结果</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/IAD/" title="IAD"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IAD"/></a><div class="content"><a class="title" href="/IAD/" title="IAD">IAD</a><time datetime="2024-07-22T13:19:51.000Z" title="发表于 2024-07-22 21:19:51">2024-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/PromptAD/" title="PromptAD"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PromptAD"/></a><div class="content"><a class="title" href="/PromptAD/" title="PromptAD">PromptAD</a><time datetime="2024-07-09T13:21:40.000Z" title="发表于 2024-07-09 21:21:40">2024-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"/></a><div class="content"><a class="title" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective">A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective</a><time datetime="2024-07-08T02:07:13.000Z" title="发表于 2024-07-08 10:07:13">2024-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/DeepClustering/" title="DeepClustering"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DeepClustering"/></a><div class="content"><a class="title" href="/DeepClustering/" title="DeepClustering">DeepClustering</a><time datetime="2024-07-04T06:41:10.000Z" title="发表于 2024-07-04 14:41:10">2024-07-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/20240627%E8%AE%B2%E5%BA%A7/" title="20240627讲座"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="20240627讲座"/></a><div class="content"><a class="title" href="/20240627%E8%AE%B2%E5%BA%A7/" title="20240627讲座">20240627讲座</a><time datetime="2024-06-27T12:11:02.000Z" title="发表于 2024-06-27 20:11:02">2024-06-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.31/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
