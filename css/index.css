@@ -4292,6 +4292,80 @@ figure.highlight pre .javascript .function {
 #recent-posts > .recent-post-item >.recent-post-info > .content {
   -webkit-line-clamp: 2;
 }
+.wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.wrapper aside {
+  display: inline-block;
+  min-width: 80px;
+  vertical-align: top;
+}
+.wrapper aside ul {
+  list-style: none;
+  padding: 0;
+}
+.wrapper aside li {
+  margin-bottom: 10px;
+}
+.wrapper aside button {
+  width: 100%;
+  padding: 10px;
+  background-color: #dae8fc;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+.wrapper aside button:hover {
+  background-color: #0056b3;
+}
+.wrapper .main-content {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #fff;
+  padding: 10px;
+}
+.wrapper .post-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.wrapper .post-item h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+.wrapper .post-item p {
+  margin: 0;
+  color: #666;
+}
+.wrapper .post-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 .tag-cloud-list a {
   display: inline-block;
   padding: 0 8px;
