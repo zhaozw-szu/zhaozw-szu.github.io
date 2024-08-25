@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-08-25 15:53:42'
+  postUpdate: '2024-08-25 21:42:21'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -168,159 +168,8 @@
       </div>
       <div class="category-bar-item" id="篡改检测">
       <a href="/categories/篡改检测/">篡改检测</a>
-      </div><div class="category-bar-item" id="关于"><a href="/about/">关于</a></div></div><div class="category-bar-next" id="category-bar-next" onclick="scrollCategoryBarToRight()"><i class="fa-solid"></i></div><a class="category-bar-more" href="/categories/">更多</a></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%90%88%E9%9B%86/" title="损失函数合集"><img class="post-bg" src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="损失函数合集"></a></div><div class="recent-post-info"><a class="article-title" href="/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%90%88%E9%9B%86/" title="损失函数合集">损失函数合集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T08:43:58.000Z" title="发表于 2024-05-10 16:43:58">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%90%88%E9%9B%86/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">交叉熵损失CrossEntropyLoss
-交叉熵损失鼓励模型对同一类别提取相似特征。这可能有助于对Imagenet或cityscape等数据集进行分类或分割，在这些数据集中，相同类别的对象应该具有类似的特征。然而，在图像伪造定位中，由于不同的操作会在被篡改区域留下不同的伪造足迹，因此对数据集中所有被篡改区域提取相似的特征并不是最优的。因此，在没有附加约束的情况下，一个常见的基于交叉熵损失的框架容易对特定的伪造模式进行过拟合，这不利于泛化。
-import torch.nn as nncriterion = nn.CrossEntropyLoss(weight = imbalance_weight)loss = criterion(pred, tar.long().detach()) 
-块对比损失PatchContrastLoss
-来自于CFL-Net
-  我们首先将 $ F∈R^{256×H×W} $ 在空间上划分为k×k个块，从而得到 $
-f_i\in R^{256\times h\times w} $ ，其中 $ i\in\{1,2,3…k^2\} $ 、 $
-h=\ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/AAIG%E8%AF%BE%E4%BB%A3%E8%A1%A8/" title="AAIG课代表"><img class="post-bg" src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AAIG课代表"></a></div><div class="recent-post-info"><a class="article-title" href="/AAIG%E8%AF%BE%E4%BB%A3%E8%A1%A8/" title="AAIG课代表">AAIG课代表</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T06:58:54.000Z" title="发表于 2024-05-10 14:58:54">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/AAIG%E8%AF%BE%E4%BB%A3%E8%A1%A8/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">b站up主 AAIG课代表
-
-
-
-
-
-
-
-
-
-
-id
-bvid
-关键词
-title
-description
-
-
-
-
-1
-BV1qr421u7vJ
-安全大模型
-揭秘阿里安全审核领域的“专家”｜集内容安全/舆情分析/代码漏洞修复为一身的AI安全大模型长什么样子？
-
-
-
-2
-BV1aF4m1w7RB
-机器语言大模型ML
-《追AI的人》第38期直播清华大学网络研究院副院长张超教授分享《机器语言大模型MLM：面向软件安全分析》
-
-
-
-3
-BV1dt421j7Fy
-
-揭秘阿里AI的全生命期风险治理实践！
-
-
-
-4
-BV1DM4m1Q7Kt
-内容安全
-防范看不见的直播“陷阱”！解密内容安全背后的四大挑战！电商平台五大要素是？分别有哪些风险？
-
-
-
-5
-BV1KJ4m157Sn
-阿里安全大模型
-《追AI的人》第37期阿里巴巴安全部御风大模型算法能力负责人秦鹏达分享《如何用安全大模型锻造企业“盾牌”？浅谈阿里安全大模型的实践应用！》
-
-
-
-6
-BV1YH4y1H7zZ
-生成式AI
-文字变电 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/JIG%E5%9B%BE%E5%9B%BE/" title="JIG图图"><img class="post-bg" src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JIG图图"></a></div><div class="recent-post-info"><a class="article-title" href="/JIG%E5%9B%BE%E5%9B%BE/" title="JIG图图">JIG图图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-10T06:56:34.000Z" title="发表于 2024-05-10 14:56:34">2024-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/JIG%E5%9B%BE%E5%9B%BE/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">b站up主 JIG图图的视频一览：
-
-
-
-
-
-
-
-
-
-
-id
-bv
-关键词
-题目
-描述
-
-
-
-
-1
-BV1w54y1Q7fj
-机器学习
-【图图Seminar01】汪荣贵：机器学习基本知识体系与入门方法
-《中国图象图形学报》图图Seminar 1期 报告人：合肥工业大学 汪荣贵
-
-
-2
-BV1dz4y1X7a7
-实验数据
-【图图Seminar02】陈强：从Cell封面论文谈AI研究中的实验数据问题
-《中国图象图形学报》图图Seminar 2期 报告人：南京理工大学 陈强
-
-
-3
-BV1bK411p7En
-低见度图像
-【图图Seminar03】石争浩：从先验到深度：低见度图像智能增强
-《中国图象图形学报》图图Seminar 3期 报告人：西安理工大学 石争浩
-
-
-4
-BV1XK4y1x71s
-画质增强
-【图图Seminar04】任文琦：智能画质增强专题
-《中国图象图形学报》图图Seminar 4期——行知论坛论坛：智能画质增强专题
-报告人：中国科学院信息工程研究所 任文琦
-
-
-4
-BV1UD ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Towards-Effective-Image-Manipulation-Detection-with-Proposal-Contrastive-Learning/" title="Towards_Effective_Image_Manipulation_Detection_with_Proposal_Contrastive_Learning"><img class="post-bg" src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Towards_Effective_Image_Manipulation_Detection_with_Proposal_Contrastive_Learning"></a></div><div class="recent-post-info"><a class="article-title" href="/Towards-Effective-Image-Manipulation-Detection-with-Proposal-Contrastive-Learning/" title="Towards_Effective_Image_Manipulation_Detection_with_Proposal_Contrastive_Learning">Towards_Effective_Image_Manipulation_Detection_with_Proposal_Contrastive_Learning</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-05T09:50:58.000Z" title="发表于 2024-05-05 17:50:58">2024-05-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/Towards-Effective-Image-Manipulation-Detection-with-Proposal-Contrastive-Learning/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">Towards Effective Image Manipulation Detection with Proposal
-Contrastive Learning
-摘要：
-​
-深度模型在图像操作检测中得到了广泛而成功的应用，旨在对篡改图像进行分类和定位篡改区域。现有的方法大多集中于从被篡改图像中提取全局特征，而忽略了单个被篡改图像中被篡改区域与真实区域之间的局部特征的关系。为了利用这种空间关系，我们提出了建议对比学习（PCL）来进行有效的图像操作检测。我们的PCL由一个双流架构组成，通过分别从RGB和噪声视图中提取两种类型的全局特征。为了进一步提高鉴别能力，我们通过吸引/排斥基于命题的代理命题对比学习任务来利用局部特征的关系。此外，我们还证明了我们的PCL在实践中可以很容易地适应未标记的数据，这可以降低人工标记的成本，并促进更一般化的特性。在几个标准数据集中进行的大量实验表明，我们的PCL可以作为一个通用的模块来获得一致的改进。
-</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/" title="CatmullRom Splines-Based Regression for Image Forgery Localization"><img class="post-bg" src="/postimages/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/image-20240503215025883.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CatmullRom Splines-Based Regression for Image Forgery Localization"></a></div><div class="recent-post-info"><a class="article-title" href="/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/" title="CatmullRom Splines-Based Regression for Image Forgery Localization">CatmullRom Splines-Based Regression for Image Forgery Localization</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-03T08:32:21.000Z" title="发表于 2024-05-03 16:32:21">2024-05-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">发表于AAAI2024，提出基于CatmullRom样条的回归网络，和为了抑制FPs（假阳性），设计了综合再评分算法（CRA）。</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024%E5%8D%8E%E4%B8%BA%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B%EF%BC%88%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81%E9%89%B4%E8%B5%8F%EF%BC%89/" title="2024华为精英挑战赛（优秀代码鉴赏）(施工中)"><img class="post-bg" src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024华为精英挑战赛（优秀代码鉴赏）(施工中)"></a></div><div class="recent-post-info"><a class="article-title" href="/2024%E5%8D%8E%E4%B8%BA%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B%EF%BC%88%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81%E9%89%B4%E8%B5%8F%EF%BC%89/" title="2024华为精英挑战赛（优秀代码鉴赏）(施工中)">2024华为精英挑战赛（优秀代码鉴赏）(施工中)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-05-03T04:25:22.000Z" title="发表于 2024-05-03 12:25:22">2024-05-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/2024%E5%8D%8E%E4%B8%BA%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B%EF%BC%88%E4%BC%98%E7%A7%80%E4%BB%A3%E7%A0%81%E9%89%B4%E8%B5%8F%EF%BC%89/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">2024
-华为软件精英挑战赛决赛代码（初赛粤港澳赛区冠军，复赛粤港澳赛区冠军，全球总决赛第
-4 名）)
-这是 2024 华为软件精英挑战赛
-“适可而止矣，涓埃之事，亦央原神” 队的决赛代码。
-我们属于粤港澳赛区，三名队员（cq、yhf、xsf）都是来自华南理工大学的本科生。在2024华为软件精英挑战赛中成绩如下：
-
-初赛：粤港澳赛区冠军
-复赛：粤港澳赛区冠军、全国第 2 名
-决赛：全球总决赛第 4 名（季军/三等奖）
-
-
-成功之处：
-
-我们的代码实现能力比较强，能够高效准确地将想法落地并测试效果。有很多想法预期效果很好但实际徒劳无功甚至负作用，而个别想法看似普通却会有很惊喜的效果。我认为将
-idea 快速落地并测试是在华为软挑取得好成绩的关键。
-有一点点算法基本功（三人都有 icpc/ccpc
-银），但相比其他一些队伍并不亮眼。
-虽然没有单元测试，但编写了很多集成测试，帮助我们迅速定位没有正常达到目标的模块。
-临时抱佛脚学习了 git（之前只会用 zip
-压缩+微信传代码）、cmake、clang-format 等工具，并写了一些 python  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" title="实验记录"><img class="post-bg" src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实验记录"></a></div><div class="recent-post-info"><a class="article-title" href="/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/" title="实验记录">实验记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-11T12:02:09.000Z" title="发表于 2024-04-11 20:02:09">2024-04-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">Log_v06061627(HRnet)
-
-'Ep001_0.7317(Mixed_0to8_+1_0)' 'Ep001_0.7390(Mixed_0to8_+1_0)'
-latest
-
-
-latest(test_single)
-INFO 06-11 16:45:27] average iou is :0.7120123814515966 INFO 06-11
-16:45:27] Score: F1: 0.8900, IoU: 0.7120 INFO 06-11 16:45:27] 8 is lower
-than 0.1, 6.8966 % of the total INFO 06-11 16:45:27] 5 is between 0.1
-and 0.5, 4.3103 % of the total INFO 06-11 16:45:27] 1 is between 0.5 and
-0.9, 0.8621 % of the total INFO 06-11 16:45:27] 102 is between 0.9 and
-1, 87.9310 % of the ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning2/" title="CFL-Net:Image Forgery Localization Using Contrastive Learning2"><img class="post-bg" src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CFL-Net:Image Forgery Localization Using Contrastive Learning2"></a></div><div class="recent-post-info"><a class="article-title" href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning2/" title="CFL-Net:Image Forgery Localization Using Contrastive Learning2">CFL-Net:Image Forgery Localization Using Contrastive Learning2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-11T07:24:17.000Z" title="发表于 2024-04-11 15:24:17">2024-04-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/">篡改检测</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/">对比学习</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning2/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">CFL-Net: Image Forgery Localization Using Contrastive Learning
+      </div><div class="category-bar-item" id="关于"><a href="/about/">关于</a></div></div><div class="category-bar-next" id="category-bar-next" onclick="scrollCategoryBarToRight()"><i class="fa-solid"></i></div><a class="category-bar-more" href="/categories/">更多</a></div><div class="recent-post-item"><div class="post_cover right"><a href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization2/" title="Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization2"><img class="post-bg" src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization2"></a></div><div class="recent-post-info"><a class="article-title" href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization2/" title="Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization2">Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-29T07:24:50.000Z" title="发表于 2024-03-29 15:24:50">2024-03-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/">篡改检测</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization2/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">Exploring Multi-Modal Fusion for Image Manipulation Detection and
+Localization 
 
 
 
@@ -336,23 +185,54 @@ post1post2
 
 
 
-总体框架流程：
+数据集
+下载 train 数据集:
 
+Casiav2
+tampCOCO
+IMD2020
+FantasticReality
 
-image-20240508214833256
+下载 test 数据:
 
-ASPP流程：
+Casiav1
+corel
+CocoGlide
+Columbia
+COVER
+DSO-1
 
+创建Casiav1+数据集需要corel数据集。
+测试集的数据列表分为操纵图像和真实图像，并存在于名为的文件中：
+./data/IDT-&lt;DATASET_NAME&gt;-manip.txt./data/IDT-&lt;DATASET_NAME&gt;-auth.txt
+这是为了在评估本地化时易于使用，因为您只使用操纵的图像（真实图像的本地化F1始终为0！）。
+为了便于使用和再现，训练的数据列表分为训练文件和val文件。我们使用Kwon等人在CA ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision2/" title="Learning Transferable Visual Models From Natural Language Supervision2"><img class="post-bg" src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learning Transferable Visual Models From Natural Language Supervision2"></a></div><div class="recent-post-info"><a class="article-title" href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision2/" title="Learning Transferable Visual Models From Natural Language Supervision2">Learning Transferable Visual Models From Natural Language Supervision2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-29T06:52:49.000Z" title="发表于 2024-03-29 14:52:49">2024-03-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/baseline/">baseline</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision2/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">在 CUDA GPU 上, 运行如下指令:
+ $ conda install --yes -c pytorch pytorch=1.7.1 torchvision cudatoolkit=11.0$  pip install ftfy regex tqdm$ pip install git+https://github.com/openai/CLIP.git
+Zero-Shot Prediction：
+import osimport clipimport torchfrom torchvision.datasets import CIFAR100# Load the modeldevice = &quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;model, preprocess = clip.load(&#x27;ViT-B/32&#x27;, device)# Download the datasetcifar100 = CIFAR100(root=os.path.expanduser(&quot ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/" title="Learning Transferable Visual Models From Natural Language Supervision"><img class="post-bg" src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learning Transferable Visual Models From Natural Language Supervision"></a></div><div class="recent-post-info"><a class="article-title" href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/" title="Learning Transferable Visual Models From Natural Language Supervision">Learning Transferable Visual Models From Natural Language Supervision</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-29T06:42:55.000Z" title="发表于 2024-03-29 14:42:55">2024-03-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/baseline/">baseline</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">Learning Transferable Visual Models From Natural Language
+Supervision
 
-image-20240411165011289
+官方解读博客：
+CLIP: Connecting text and
+images (openai.com)
+1 CLIP 论文解读：
+1.1 背景和动机
+[借助文本的监督方法属于有监督和无监督的一个中间地带]
+借助文本的监督方法属于：”借助有限的标注数据进行有监督训练” 和
+“借助几乎无限量的原始文本进行无监督训练”
+二者之间的中间地带。相同的是，这两种方式都使用静态的 Softmax
+分类器来执行预测，缺乏动态输出的机制。这严重限制了它们的灵活性和
+“Zero-Shot” 能力。
+[CLIP 方法及其结果]
+在本文中作者研究了借助大规模自然语言监督训练图像分类器。互联网上存在大量公开可用的无标注文本数据集，作者创建了一个包含4亿对
+(图像，文本) 的新数据集，并通过对比语言-图像预训练的方式训练了 CLIP
+模型，是一种从自然语言监督中学习视觉模型的有效新方法。作者发现 CLIP
+类似于 GPT
+家族，在预 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/" title="A New Benchmark and Model for Challenging Image Manipulation Detection"><img class="post-bg" src="/postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326151650512.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A New Benchmark and Model for Challenging Image Manipulation Detection"></a></div><div class="recent-post-info"><a class="article-title" href="/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/" title="A New Benchmark and Model for Challenging Image Manipulation Detection">A New Benchmark and Model for Challenging Image Manipulation Detection</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-28T13:42:41.000Z" title="发表于 2024-03-28 21:42:41">2024-03-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/">篡改检测</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">发表于AAAI2024，包含RGB和频率特征的hrnet双分支架构，能够检测双压缩伪影的压缩伪影学习模型。</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization/" title="Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization"><img class="post-bg" src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization"></a></div><div class="recent-post-info"><a class="article-title" href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization/" title="Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization">Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-03-28T13:14:48.000Z" title="发表于 2024-03-28 21:14:48">2024-03-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/">篡改检测</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">Exploring Multi-Modal Fusion for Image Manipulation Detection and
+Localization 
 
-对比学习损失函数的具体计算流程如下：
-
-
-CFL-Net-contrast-loss.drawio
-
-</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning/" title="CFL-Net:Image Forgery Localization Using Contrastive Learning"><img class="post-bg" src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CFL-Net:Image Forgery Localization Using Contrastive Learning"></a></div><div class="recent-post-info"><a class="article-title" href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning/" title="CFL-Net:Image Forgery Localization Using Contrastive Learning">CFL-Net:Image Forgery Localization Using Contrastive Learning</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-10T08:28:35.000Z" title="发表于 2024-04-10 16:28:35">2024-04-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/">篡改检测</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/">对比学习</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">CFL-Net: Image Forgery Localization Using Contrastive Learning
-
+         
+希腊信息技术研究所，研究和技术研究中心，希腊塞萨洛尼基
 
 
 论文（arxiv）
@@ -368,53 +248,22 @@ post1post2
 
 
 摘要
-  传统的伪造定位方法的缺点是过度拟合和只关注少数特定的伪造痕迹。我们需要一种更通用的图像伪造定位方法，能够很好地适应各种伪造条件。底层伪造区域定位的一个关键假设是，无论伪造类型如何，每个伪造图像样本中未被篡改和被篡改区域的特征分布都存在差异。在本文中，我们的目标是利用这种差异特征分布来帮助图像伪造定位。
-  具体来说，我们使用对比损耗来学习映射到一个特征空间，在该空间中，每个图像的未篡改区域和被篡改区域之间的特征被很好地分离。此外，该方法不需要对伪造类型进行任何先验知识或假设，就可以对伪造区域进行局部定位。我们证明，我们的工作优于几个现有的方法在三个基准的图像处理数据集。
-引言
-  交叉熵损失鼓励模型对同一类别提取相似特征。这可能有助于对Imagenet或cityscape等数据集进行分类或分割，在这些数据集中，相同类别的对象应该具有类似的特征。然而 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/Deep-High-Resolution-Representation-Learning-for-Human-Pose-Estimation/" title="Deep High-Resolution Representation Learning for Human Pose Estimation"><img class="post-bg" src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep High-Resolution Representation Learning for Human Pose Estimation"></a></div><div class="recent-post-info"><a class="article-title" href="/Deep-High-Resolution-Representation-Learning-for-Human-Pose-Estimation/" title="Deep High-Resolution Representation Learning for Human Pose Estimation">Deep High-Resolution Representation Learning for Human Pose Estimation</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-09T09:13:42.000Z" title="发表于 2024-04-09 17:13:42">2024-04-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/">论文</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BA%E6%96%87/baseline/">baseline</a></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-comments"></i><a class="twikoo-count" href="/Deep-High-Resolution-Representation-Learning-for-Human-Pose-Estimation/#post-comment"><i class="fa-solid fa-spinner fa-spin"></i></a><span class="article-meta-label"> 条评论</span></span></div><div class="content">Deep High-Resolution Representation Learning for Human Pose
-Estimation
+最近的图像操作定位和检测技术通常利用由噪声敏感滤波器产生的法医伪影和痕迹，如SRM和Bayar卷积。
+在本文中，我们展示了在这种方法中常用的不同过滤器擅长于揭示不同类型的操作，并提供互补的法医痕迹。因此，我们探索了合并这些滤波器输出的方法，其目的是利用所产生的伪影的互补性来执行图像操作定位和检测（IMLD）。
+我们提出了两种不同的方法：一种是从每个法医过滤器产生独立的特征，然后将它们融合（称为晚期融合），另一种是执行不同模态输出的早期混合并产生早期组合特征（这称为早期融合）。
+我们证明了这两种方法在图像操作定位和检测方面都取得了具有竞争力的性能，在多个数据集上优于最先进的模型1。
+方法
+编码器解码器框架
 
 
-
-Illustrating the architecture of the
-proposed HRNet
-
-算法流程如下：
-
-
-architecture
-
-其中Bottleneck的网络如下：
-
-
-Bottleneck
-
-stage：
-
-
-stage2
-
-
-
-stage3
-
-
-
-stage4
-
-其中BasicBlock的网络如下：
-
-
-BasicBlock
-
-</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="page-number" href="/page/6/#content-inner">6</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论真的可以使用了！！！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/" title="Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization"><img src="/postimages/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/image-20240824155623293.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization"/></a><div class="content"><a class="title" href="/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/" title="Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization">Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization</a><time datetime="2024-08-24T07:47:02.000Z" title="发表于 2024-08-24 15:47:02">2024-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/DH-GAN/" title="DH-GAN"><img src="/postimages/DH-GAN/image-20240824153543322.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DH-GAN"/></a><div class="content"><a class="title" href="/DH-GAN/" title="DH-GAN">DH-GAN</a><time datetime="2024-08-24T07:26:52.000Z" title="发表于 2024-08-24 15:26:52">2024-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/IAD/" title="IAD"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IAD"/></a><div class="content"><a class="title" href="/IAD/" title="IAD">IAD</a><time datetime="2024-07-22T13:19:51.000Z" title="发表于 2024-07-22 21:19:51">2024-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/PromptAD/" title="PromptAD"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PromptAD"/></a><div class="content"><a class="title" href="/PromptAD/" title="PromptAD">PromptAD</a><time datetime="2024-07-09T13:21:40.000Z" title="发表于 2024-07-09 21:21:40">2024-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"/></a><div class="content"><a class="title" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective">A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective</a><time datetime="2024-07-08T02:07:13.000Z" title="发表于 2024-07-08 10:07:13">2024-07-08</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+Architectu ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">评论真的可以使用了！！！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/" title="Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization"><img src="/postimages/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/image-20240824155623293.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization"/></a><div class="content"><a class="title" href="/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/" title="Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization">Multi-view_Feature_Extraction_via_Tunable_Prompts_is_Enough_for_Image_Manipulation_Localization</a><time datetime="2024-08-24T07:47:02.000Z" title="发表于 2024-08-24 15:47:02">2024-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/DH-GAN/" title="DH-GAN"><img src="/postimages/DH-GAN/image-20240824153543322.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DH-GAN"/></a><div class="content"><a class="title" href="/DH-GAN/" title="DH-GAN">DH-GAN</a><time datetime="2024-08-24T07:26:52.000Z" title="发表于 2024-08-24 15:26:52">2024-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/IAD/" title="IAD"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IAD"/></a><div class="content"><a class="title" href="/IAD/" title="IAD">IAD</a><time datetime="2024-07-22T13:19:51.000Z" title="发表于 2024-07-22 21:19:51">2024-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/PromptAD/" title="PromptAD"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PromptAD"/></a><div class="content"><a class="title" href="/PromptAD/" title="PromptAD">PromptAD</a><time datetime="2024-07-09T13:21:40.000Z" title="发表于 2024-07-09 21:21:40">2024-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective"/></a><div class="content"><a class="title" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective">A_Survey_on_Deep_Clustering:_From_the_Prior_Perspective</a><time datetime="2024-07-08T02:07:13.000Z" title="发表于 2024-07-08 10:07:13">2024-07-08</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%96%B9%E6%B3%95/"><span class="card-category-list-name">方法</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/"><span class="card-category-list-name">篡改检测</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BA%E6%96%87/"><span class="card-category-list-name">论文</span><span class="card-category-list-count">12</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BA%E6%96%87/baseline/"><span class="card-category-list-name">baseline</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/"><span class="card-category-list-name">篡改检测</span><span class="card-category-list-count">8</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BA%E6%96%87/%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">对比学习</span><span class="card-category-list-count">2</span></a></li></ul></li></ul></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/typora/" style="font-size: 1.1em; color: #999">typora</a> <a href="/tags/Mask-Guided/" style="font-size: 1.1em; color: #999">Mask-Guided</a> <a href="/tags/NP/" style="font-size: 1.34em; color: #99a3b0">NP++</a> <a href="/tags/%E5%90%88%E9%9B%86/" style="font-size: 1.5em; color: #99a9bf">合集</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 1.1em; color: #999">数据集</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 1.1em; color: #999">实验</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 1.26em; color: #999fa8">比赛</a> <a href="/tags/BayarConv/" style="font-size: 1.42em; color: #99a6b7">BayarConv</a> <a href="/tags/markdown/" style="font-size: 1.34em; color: #99a3b0">markdown</a> <a href="/tags/hrnet/" style="font-size: 1.1em; color: #999">hrnet</a> <a href="/tags/%E8%AE%B2%E5%BA%A7/" style="font-size: 1.18em; color: #999ca1">讲座</a> <a href="/tags/%E6%96%B9%E6%B3%95/" style="font-size: 1.1em; color: #999">方法</a> <a href="/tags/FOCAL/" style="font-size: 1.1em; color: #999">FOCAL</a> <a href="/tags/JS%E6%95%A3%E5%BA%A6/" style="font-size: 1.1em; color: #999">JS散度</a> <a href="/tags/Query-Based/" style="font-size: 1.1em; color: #999">Query-Based</a> <a href="/tags/%E6%8A%A5%E5%91%8A/" style="font-size: 1.34em; color: #99a3b0">报告</a> <a href="/tags/SRM%E5%8D%B7%E7%A7%AF/" style="font-size: 1.26em; color: #999fa8">SRM卷积</a> <a href="/tags/clip/" style="font-size: 1.18em; color: #999ca1">clip</a> <a href="/tags/ASPP/" style="font-size: 1.18em; color: #999ca1">ASPP</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">20</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">11</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">15</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">58</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-25T07:53:41.839Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => { 
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Query-Based/" style="font-size: 1.1em; color: #999">Query-Based</a> <a href="/tags/markdown/" style="font-size: 1.34em; color: #99a3b0">markdown</a> <a href="/tags/%E5%AE%9E%E9%AA%8C/" style="font-size: 1.1em; color: #999">实验</a> <a href="/tags/SRM%E5%8D%B7%E7%A7%AF/" style="font-size: 1.26em; color: #999fa8">SRM卷积</a> <a href="/tags/%E8%AE%B2%E5%BA%A7/" style="font-size: 1.18em; color: #999ca1">讲座</a> <a href="/tags/%E6%96%B9%E6%B3%95/" style="font-size: 1.1em; color: #999">方法</a> <a href="/tags/typora/" style="font-size: 1.1em; color: #999">typora</a> <a href="/tags/NP/" style="font-size: 1.34em; color: #99a3b0">NP++</a> <a href="/tags/%E6%8A%A5%E5%91%8A/" style="font-size: 1.34em; color: #99a3b0">报告</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 1.1em; color: #999">数据集</a> <a href="/tags/%E5%90%88%E9%9B%86/" style="font-size: 1.5em; color: #99a9bf">合集</a> <a href="/tags/FOCAL/" style="font-size: 1.1em; color: #999">FOCAL</a> <a href="/tags/JS%E6%95%A3%E5%BA%A6/" style="font-size: 1.1em; color: #999">JS散度</a> <a href="/tags/ASPP/" style="font-size: 1.18em; color: #999ca1">ASPP</a> <a href="/tags/Mask-Guided/" style="font-size: 1.1em; color: #999">Mask-Guided</a> <a href="/tags/hrnet/" style="font-size: 1.1em; color: #999">hrnet</a> <a href="/tags/clip/" style="font-size: 1.18em; color: #999ca1">clip</a> <a href="/tags/BayarConv/" style="font-size: 1.42em; color: #99a6b7">BayarConv</a> <a href="/tags/%E6%AF%94%E8%B5%9B/" style="font-size: 1.26em; color: #999fa8">比赛</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/06/"><span class="card-archive-list-date">六月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/05/"><span class="card-archive-list-date">五月 2024</span><span class="card-archive-list-count">20</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">11</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/03/"><span class="card-archive-list-date">三月 2024</span><span class="card-archive-list-count">15</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">58</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-08-25T13:42:21.499Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => { 
   const getCommentUrl = () => {
     const eleGroup = document.querySelectorAll('#recent-posts .article-title')
     let urlArray = []
