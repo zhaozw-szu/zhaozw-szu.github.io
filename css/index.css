@@ -6271,13 +6271,10 @@ h1.page-title + .tag-cloud-list {
   z-index: 1;
 }
 .recent-post-item#swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .ark-swiper-item-info a.ark-swiper-item-title {
-  border-style: dotted;
-  border-width: 0 0 3px 0;
   width: 100%;
   height: 60px;
   color: var(--ark-post-item-font-color);
   font-family: 'TaikoMagic';
-  border-color: rgba(153,54,44,0.8);
   text-align: center;
   display: -webkit-box;
   display: -moz-box;
@@ -6297,7 +6294,7 @@ h1.page-title + .tag-cloud-list {
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 1.2;
+  padding-bottom: 10px;
 }
 .recent-post-item#swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .ark-swiper-item-info a.ark-swiper-item-title .ark-swiper-item-title-link {
   display: -webkit-box;
