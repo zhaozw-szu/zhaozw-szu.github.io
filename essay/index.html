@@ -3,12 +3,12 @@
 <meta property="og:url" content="https://zhaozw-szu.github.io/essay/index.html">
 <meta property="og:site_name" content="zhaozw后院">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg">
 <meta property="article:published_time" content="2024-05-06T01:42:46.000Z">
 <meta property="article:modified_time" content="2024-05-06T01:52:44.409Z">
 <meta property="article:author" content="Zhaozw">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/essay/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/essay/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
@@ -281,7 +281,7 @@ async function essayFormat(item,baseUrl) {
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
-      tags: 'ams'
+      tags: 'all'
     },
     chtml: {
       scale: 1.1
@@ -308,10 +308,18 @@ async function essayFormat(item,baseUrl) {
   script.id = 'MathJax-script'
   script.async = true
   document.head.appendChild(script)
+  //- console.log('MathJax loaded')
 } else {
-  MathJax.startup.document.state(0)
-  MathJax.texReset()
-  MathJax.typesetPromise()
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
 }</script><script>(() => {
   const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
   if ($mermaid.length === 0) return
