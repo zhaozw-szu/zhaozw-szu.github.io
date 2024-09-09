@@ -1,16 +1,16 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning   \(Yiming Chen, Haiwei Wu, Fengpeng Li, Kemou Li,\\&lt;br&#x2F;&gt;Zheng Li, Kahim Wong, Xiangyu Chen, Binbin">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning   Yiming Chen, Haiwei Wu, Fengpeng Li, Kemou Li,   Zheng Li, Kahim Wong, Xiangyu Chen, Binbin Song,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning">
-<meta property="og:url" content="https://zhaozw-szu.github.io/newNet/index.html">
+<meta property="og:url" content="https://zhaozw-szu.github.io/KaggleNet/index.html">
 <meta property="og:site_name" content="zhaozw后院">
-<meta property="og:description" content="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning   \(Yiming Chen, Haiwei Wu, Fengpeng Li, Kemou Li,\\&lt;br&#x2F;&gt;Zheng Li, Kahim Wong, Xiangyu Chen, Binbin">
+<meta property="og:description" content="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning   Yiming Chen, Haiwei Wu, Fengpeng Li, Kemou Li,   Zheng Li, Kahim Wong, Xiangyu Chen, Binbin Song,">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
-<meta property="article:published_time" content="2024-08-30T01:42:12.000Z">
-<meta property="article:modified_time" content="2024-09-03T13:06:25.189Z">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/KaggleNet/image-20240903142646600.png">
+<meta property="article:published_time" content="2024-09-09T07:02:57.000Z">
+<meta property="article:modified_time" content="2024-09-09T07:08:36.313Z">
 <meta property="article:author" content="Zhaozw">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/newNet/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/KaggleNet/image-20240903142646600.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/KaggleNet/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
   localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
@@ -55,7 +55,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-09-03 21:06:25'
+  postUpdate: '2024-09-09 15:08:36'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -152,19 +152,23 @@
         }
       }
       detectApple()
-    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-30T01:42:12.000Z" title="发表于 2024-08-30 09:42:12">2024-08-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-03T13:06:25.189Z" title="更新于 2024-09-03 21:06:25">2024-09-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><center>
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/KaggleNet/image-20240903142646600.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-09T07:02:57.000Z" title="发表于 2024-09-09 15:02:57">2024-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-09T07:08:36.313Z" title="更新于 2024-09-09 15:08:36">2024-09-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><center>
 Towards Generalizable Deepfake Detection via Clustered and Adversarial
 Forgery Learning
 </center>
 <center>
-<span class="math inline">\(Yiming Chen, Haiwei Wu, Fengpeng Li, Kemou
-Li,\\&lt;br/&gt;Zheng Li, Kahim Wong, Xiangyu Chen, Binbin
-Song,\\&lt;br/&gt;    Shuning Xu, Jun Liu, Jiantao Zhou ^ *\)</span>
+Yiming Chen, Haiwei Wu, Fengpeng Li, Kemou Li,
+</center>
+<center>
+Zheng Li, Kahim Wong, Xiangyu Chen, Binbin Song,
+</center>
+<center>
+Shuning Xu, Jun Liu, $ Jiantao Zhou ^ * $
 </center>
 <center>
 September 2, 2024
 </center>
-<h1 id="团队详细信息">1团队详细信息</h1>
+<h1 id="团队详细信息">1 团队详细信息</h1>
 <p>团队名称：JTGroup<br/>组长：mortonchen（yimingchen98@gmail.com）<br/>团队成员人数（按字母顺序排列）：</p>
 <ul>
 <li>chxy95 (chxy95@gmail.com)</li>
@@ -185,7 +189,7 @@ Zhou2<br/>∗通讯作者<br/>1https://skliotsc.um.edu.mo/
 <h2 id="动机">2.1动机</h2>
 <p>​  在获得官方的训练和验证数据后，我们发现即使是简单的小模型（如Efficient-b0[1]）也可以毫不费力地拟合训练集，并在验证集上实现显著的检测性能。这这表明训练集和验证集是同分布的，并且由相当同质的特征类型组成。虽然这种过拟合问题使小模型能够表现良好，但它不利于在实际场景中检测未知数据。在图1给出了一个说明性的例子，它通过t-SNE可视化了训练集和验证集的特征分布：</p>
 <figure>
-<img src="../postimages/newNet/image-20240902200824430.png"
+<img src="../postimages/KaggleNet/image-20240902200824430.png"
 alt="image-20240902200824430" />
 <figcaption aria-hidden="true">image-20240902200824430</figcaption>
 </figure>
@@ -198,7 +202,7 @@ href="https://zhaozw-szu.github.io/Robust-Camera-Model-Identification-Over-Onlin
 <p>​  该方法可分为三个阶段：
 1)数据准备、2)训练和3)推理，其基本过程如图2所示。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903113352343.png"
+<img src="../postimages/KaggleNet/image-20240903113352343.png"
 alt="image-20240903113352343" />
 <figcaption aria-hidden="true">image-20240903113352343</figcaption>
 </figure>
@@ -211,19 +215,19 @@ alt="image-20240903113352343" />
 <h2 id="第一阶段数据准备">2.3第一阶段：数据准备</h2>
 <p>​  我们所提出的方法的框架，如图3所示，包括两个主要阶段：数据准备和训练。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903142646600.png"
+<img src="../postimages/KaggleNet/image-20240903142646600.png"
 alt="image-20240903142646600" />
 <figcaption aria-hidden="true">image-20240903142646600</figcaption>
 </figure>
 <p>​  在数据准备阶段，我们专注于通过图像编辑（Edit）和稳定扩散（SD，Stable
-Diffusion）技术生成新的数据来增强现有的数据集。然后，我们进行聚类来重新组装数据集，旨在提高我们的方法的检测性能和鲁棒性。在训练阶段，我们引入了一系列的专家模型，并使用三种类型的损失对其进行优化：<span
-class="math inline">\(\mathcal{L}_{\mathrm{KL}}\)</span>、<span
+Diffusion）技术生成新的数据来增强现有的数据集。然后，我们进行聚类来重新组装数据集，旨在提高我们的方法的检测性能和鲁棒性。在训练阶段，我们引入了一系列的专家模型，并使用三种类型的损失对其进行优化：
+<span class="math inline">\(\mathcal{L}_{\mathrm{KL}}\)</span>、<span
 class="math inline">\(\mathcal{L}_{\mathrm{CE}}\)</span>和<span
 class="math inline">\(\mathcal{L}_{\mathrm{NCE}}\)</span>。这种多损失方法确保了模型能够有效地区分真实图像和篡改图像。</p>
 <h3 id="数据生成">2.3.1数据生成</h3>
 <p>​  为了增强模型泛化和缓解过拟合，我们使用图像编辑和稳定扩散（SD）技术扩展了训练数据集。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903143630833.png"
+<img src="../postimages/KaggleNet/image-20240903143630833.png"
 alt="image-20240903143630833" />
 <figcaption aria-hidden="true">image-20240903143630833</figcaption>
 </figure>
@@ -234,15 +238,18 @@ class="math inline">\(I_0\)</span>开始，我们首先将其转换为中间潜�
 ”，分别被用来创造年老的、一般的和恢复活力的面孔。生成的图像反映了广泛的风格和特征，用真实数据和篡改数据的不同表示丰富了训练集。<br/>​  通过结合图像编辑和SD生成的结果，我们产生了一个增强的数据集<span
 class="math inline">\(\cal{D}\)</span>，它显著增强了训练数据的可变性。然后在随后的训练阶段中使用这个全面的数据集，确保模型暴露于广泛的特征变化，从而提高其泛化到看不见的数据的能力。</p>
 <h3 id="数据聚类">2.3.2数据聚类</h3>
-<p>​  在原始数据集中，训练集和验证集的分配是随机分配的。然而，在实际的伪造检测场景中，测试中遇到的伪造类型通常与训练中遇到的不同。当模型遇到新的、看不见的伪造类型时，这种差异会导致性能的显著下降。为了解决这个问题，我们提出了一种数据聚类方法来重新分配训练和验证数据集。其主要目标是根据伪造类型对数据集进行聚类，从而模拟实际的测试条件，其中模型暴露在更广泛的各种看不见的伪造。数据集群的详细过程包括以下三个步骤：<br/>​  <strong>分类器模型训练：</strong>我们首先使用一个EfficientNet-b0[1]（Eff-b0）模型来训练一个轻量级的伪造特征提取器。该模型在原始训练集上进行训练，仅使用交叉熵（CE）损失：<span
+<p>​  在原始数据集中，训练集和验证集的分配是随机分配的。然而，在实际的伪造检测场景中，测试中遇到的伪造类型通常与训练中遇到的不同。当模型遇到新的、看不见的伪造类型时，这种差异会导致性能的显著下降。为了解决这个问题，我们提出了一种数据聚类方法来重新分配训练和验证数据集。其主要目标是根据伪造类型对数据集进行聚类，从而模拟实际的测试条件，其中模型暴露在更广泛的各种看不见的伪造。数据集群的详细过程包括以下三个步骤：<br/>​  <strong>分类器模型训练：</strong>我们首先使用一个EfficientNet-b0[1]（Eff-b0）模型来训练一个轻量级的伪造特征提取器。该模型在原始训练集上进行训练，仅使用交叉熵（CE）损失：
+<span
 class="math inline">\(\mathcal{L}_{\mathrm{CE}}\)</span>：<br/><span
 class="math display">\[\mathcal{L}_{\mathrm{CE}}=-\sum_{i=1}^N\sum_{l=1}^L\mathbf{y}_l^{(n)}\log(\hat{\mathbf{y}}_l^{(n)}),\]</span><br/>​  式中，<span
 class="math inline">\(\mathbf{y}_l^{(n)}\)</span>表示第n个样本中伪造类型l的ground
 truth软标签，<span
 class="math inline">\(\hat{\mathbf{y}}_l^{(n)}\)</span>为Effb0模型对应的预测概率输出。该模型学习了能够有效区分伪造类型的鉴别特征。<br/>​  <strong>聚类特征提取：</strong>一旦Eff-b0模型被训练，我们使用它来从整个训练集<span
-class="math inline">\(\mathcal{D}=\{(\mathbf{I}^{(n)},y^{(n)})\}_{n=1}^{N}\)</span>中提取特征。对于每幅图像，我们只保留最后一层的输出特征向量，对第n幅图像表示为<span
-class="math inline">\(\mathbf{u}^{(n)}\in\mathbb{R}^{d}\)</span>。该过程得到了一个大小为N×d的特征矩阵，封装了整个训练数据集的伪造特征。<br/>​  <strong>基于聚类的重新拆分：</strong>利用提取的特征矩阵，我们应用无监督聚类算法，特别是K-means，将图像分成K个聚类。每个聚类<span
-class="math inline">\(\mathcal{C}_{k}\)</span>代表一组不同的伪造特征，并对应于在后续训练阶段中使用的一组原始图像Dk。聚类后，我们随机重组并将这些K个簇合并成<span
+class="math inline">\(\mathcal{D}=\{(\mathbf{I}^{(n)},y^{(n)})\}_{n=1}^{N}\)</span>中提取特征。对于每幅图像，我们只保留最后一层的输出特征向量，对第n幅图像表示为
+$~ \mathbf{u}^{(n)}\in\mathbb{R}^{d} $
+。该过程得到了一个大小为N×d的特征矩阵，封装了整个训练数据集的伪造特征。<br/>​  <strong>基于聚类的重新拆分：</strong>利用提取的特征矩阵，我们应用无监督聚类算法，特别是K-means，将图像分成K个聚类。每个聚类<span
+class="math inline">\(\mathcal{C}_{k}\)</span>代表一组不同的伪造特征，并对应于在后续训练阶段中使用的一组原始图像<span
+class="math inline">\(\mathcal{D}_k\)</span>。聚类后，我们随机重组并将这些K个簇合并成<span
 class="math inline">\(I\)</span>个折叠<span
 class="math inline">\(\{\mathcal{F}_1,\mathcal{F}_2,\ldots,\mathcal{F}_I\}\)</span>。每个折叠包<span
 class="math inline">\(\mathcal{F}_{i}\)</span>含所有原始图像集<span
@@ -250,7 +257,7 @@ class="math inline">\(\mathcal{D}_k\)</span>，但训练集<span
 class="math inline">\(\mathcal{F}_{i}^{\mathrm{train}}\)</span>和验证集<span
 class="math inline">\(\mathcal{F}_{i}^{\mathrm{val}}\)</span>分区不同。这种旋转为每个折叠中的数据分布提供了一个独特的视角，并确保每个集群作为验证集一次，通过模拟实际的测试场景来促进鲁棒的特征学习，其中验证集包含伪造类型的图像，而在相应的训练集中不存在。该设置测试了模型推广到不可见的伪造类型的能力，确保了在现实世界条件下对其性能进行全面的评估。<br/>​  图5描述了来自不同集群的真假数据的预览。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903145603867.png"
+<img src="../postimages/KaggleNet/image-20240903145603867.png"
 alt="image-20240903145603867" />
 <figcaption aria-hidden="true">image-20240903145603867</figcaption>
 </figure>
@@ -259,7 +266,7 @@ alt="image-20240903145603867" />
 <h3 id="网络架构">2.4.1网络架构</h3>
 <p>​  训练阶段的网络体系结构旨在确保模型能够有效地推广到不同的数据分布中，同时重新维护对伪造和对抗性攻击[6]。如图3所示，该体系结构由几个完整的组件组成，每个组件都有影响整体模型性能的特定角色。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903142646600.png"
+<img src="../postimages/KaggleNet/image-20240903142646600.png"
 alt="image-20240903142646600" />
 <figcaption aria-hidden="true">image-20240903142646600</figcaption>
 </figure>
@@ -270,7 +277,8 @@ class="math inline">\(\{M_1(\mathbf{I};\boldsymbol{\theta}_1),M_2(\mathbf{I};\bo
 class="math inline">\(M_i\)</span>，由<span
 class="math inline">\(\theta_i\)</span>参数化，专门从其各自的折叠<span
 class="math inline">\(\mathcal{F}_{i}\)</span>中学习图像。每个专家的输出是一个高维特征向量<span
-class="math inline">\(\mathbf{v}_{i}=M_i(\mathbf{I};\boldsymbol{\theta}_i)\in\mathbb{R}^d\)</span>，它在随后的两个关键操作中使用：首先，用它来计算InfoNCE损失的[7]<span
+class="math inline">\(\mathbf{v}_{i}=M_i(\mathbf{I};\boldsymbol{\theta}_i)\in\mathbb{R}^d\)</span>，它在随后的两个关键操作中使用：首先，用它来计算InfoNCE损失的[7]
+<span
 class="math inline">\(\mathcal{L}_{\mathrm{NCE}}\)</span>；其次，它通过一个概率头来生成交叉熵损失<span
 class="math inline">\(\mathcal{L}_{\mathrm{CE}}\)</span>的对数。<br/>​  <strong>概率头：</strong>将每个专家模型的高维特征向量<span
 class="math inline">\(\mathbf{v}_{i}\)</span>输入到相应的可训练概率头<span
@@ -289,7 +297,8 @@ class="math inline">\(\mathcal{L}_{\mathrm{NCE}}\)</span>。InfoNCE损失鼓励�
 class="math display">\[\mathcal{L}_{\text{NCE}}=-\log\frac{\exp(\sin(\mathbf{v}_q,\mathbf{v}_p)/\tau)}{\sum_j\exp(\sin(\mathbf{v}_q,\mathbf{v}_j)/\tau)},\]</span><br/>​  其中，<span
 class="math inline">\(\mathbf{v}_q\)</span>和<span
 class="math inline">\(\mathbf{v}_p\)</span>分别表示同一聚类内的查询向量和正样本向量，<span
-class="math inline">\(\mathbf{v}_j\)</span>表示来自其他聚类的特征向量。函数sim（·）通常指余弦相似度，<span
+class="math inline">\(\mathbf{v}_j\)</span>表示来自其他聚类的特征向量。函数<span
+class="math inline">\(sin(\cdot)\)</span>通常指余弦相似度，<span
 class="math inline">\(\tau\)</span>是一个温度尺度因子，可以调整正负样本的相对重要性。<br/>​  在我们的实现中，我们专注于通过最大化不同伪造特征和真实特征之间的距离来增强模型的区分能力。具体来说，我们将真-真样本对视为正样本，真-假样本对视为负样本。该方法可以使模型有效地区分真实图像和伪造图像，从而提高检测精度。这种基于聚类的目标不仅增强了模型在已知伪造类型上的性能，而且通过关注特征表示的相似性，提高了模型处理未知伪造的能力。</p>
 <h3 id="对抗性目标">2.4.3对抗性目标</h3>
 <p>​  对抗性目标被嵌入到训练管道中，以增强模型对对抗性攻击的鲁棒性。这是通过使用kl-散度损失<span
@@ -299,9 +308,8 @@ class="math inline">\(\mathbf{I}_{\mathrm{adv}}\in\mathbb{R}^{H\times
 W\times C}\)</span>，这些例子是通过在原始输入图像<span
 class="math inline">\(\mathbf{I}\)</span>中添加小扰动<span
 class="math inline">\(\delta\in\mathbb{R}^{H\times W\times
-C}\)</span>而产生的。<br/>​  用<span
-class="math inline">\(f_{i}=M_{i}\circ
-H_{i}\circ\sigma\)</span>表示第<span
+C}\)</span>而产生的。<br/>​  用 $~f_{i}=M_{i}\circ H_{i}\circ\sigma $
+表示第<span
 class="math inline">\(i\)</span>个专家模型的预测概率的函数，其中<span
 class="math inline">\(\sigma(\cdot)\)</span>为softmax函数。AE生成的优化目标是最大限度地提高<span
 class="math inline">\(\mathbf{I}_{\mathrm{adv}}\)</span>与<span
@@ -365,7 +373,7 @@ class="math display">\[\hat{y}=\arg\max_{c\in\{0,1\}}(\hat{\mathbf{y}}_c),\]</sp
 <p>​  表1列举了所提出的方法的网络架构细节，包括7个专家编码器，由来自效率网[1]和ConvNeXt
 [9]的变体组成，促进了跨不同复杂度级别的联合特征学习。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903161617646.png"
+<img src="../postimages/KaggleNet/image-20240903161617646.png"
 alt="image-20240903161617646" />
 <figcaption aria-hidden="true">image-20240903161617646</figcaption>
 </figure>
@@ -387,13 +395,13 @@ class="math inline">\(\gamma\)</span>为决定过去参数影响的衰减因子�
 class="math inline">\(\gamma\)</span>设置为0.995，这意味着在每一步中保留了99.5%的当前EMA值，剩下的0.5%由当前参数贡献。<br/>​  EMA的使用确保了模型参数的收敛更平稳，从而防止了可能导致次优解的急剧振荡。这种平滑效果也有助于减少过拟合的风险，因为它通过作为正则化的一种形式，有效地平均梯度更新中的噪声。<br/>​  我们的实验结果表明，将EMA策略集成到训练过程中，可以显著提高模型的性能。具体来说，我们观察到在曲线下面积（AUC）度量中增加了大约0.005，这表明模型的准确性和稳定性得到了提高。这一改进强调了EMA在改进模型的预测能力方面的有效性，使其在检测深度伪造方面更加鲁棒和可靠。</p>
 <h2 id="方法概论">3.3方法概论</h2>
 <p>​  在本节中，我们使用交叉熵损失和AUC评估度量在MultiFF数据集上评估所提方法的性能，如表2所示。<br/><img
-src="../postimages/newNet/image-20240903163802649.png"
+src="../postimages/KaggleNet/image-20240903163802649.png"
 alt="image-20240903163802649" /></p>
 <p>​  具体来说，我们引入了几个基线来进行比较。这些基线使用标准的官方训练/验证分割进行训练，并仅使用交叉熵损失进行优化。从表中可以看出，虽然基线在验证集上表现良好，达到AUC得分高于0.99，但它们并不能有效地推广到公共测试集。例如，使用Efficient-b0的基线在公共测试集上只达到了0.86397的AUC。<br/>​  相比之下，我们提出的框架在数据集级别引入了创新的聚类，使得相应的验证集更具挑战性。此外，通过结合聚类和对抗性优化目标，学习到的伪造特征表现出增强的泛化性。这种增强允许由我们的框架支持的Efficient-B0实现0.90767的AUC，超过相应的基线4.37%的AUC。最后，通过整合来自不同专家（网络）的信息，我们的方法在公共测试集上实现了0.98051的AUC，将其置于初步排行榜的前沿，并验证了我们提出的解决方案的有效性。</p>
 <h2 id="方法鲁棒性">3.4方法鲁棒性</h2>
 <p>​  虽然所提出的模型主要是为了增强跨域场景中的检测泛化，但我们也评估了其在更常见的退化场景中的鲁棒性，如添加噪声[10]、JPEG压缩、模糊和降采样。这种评估在现实应用中是至关重要的，因为这些类型的后处理操作通常被用来消除或隐藏伪造的伪造痕迹。为了实现这一点，我们将这些后处理操作应用于原始验证集，并在图6中报告定量结果。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903164202077.png"
+<img src="../postimages/KaggleNet/image-20240903164202077.png"
 alt="image-20240903164202077" />
 <figcaption aria-hidden="true">image-20240903164202077</figcaption>
 </figure>
@@ -401,7 +409,7 @@ alt="image-20240903164202077" />
 <h2 id="消融研究">3.5消融研究</h2>
 <p>​  本小节分析了每个组件在第一阶段的重新分裂策略，以及第二阶段的聚类、对抗和分类目标方面，如何对我们提出的框架有贡献。消融结果列在表3中，其中第一行给出了基线框架的性能作为比较，而最后一行是经过各种消融研究后建立的最佳焦点框架。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903164320811.png"
+<img src="../postimages/KaggleNet/image-20240903164320811.png"
 alt="image-20240903164320811" />
 <figcaption aria-hidden="true">image-20240903164320811</figcaption>
 </figure>
@@ -433,7 +441,7 @@ KB。这些增强的数据集主要用于训练阶段，以增强数据的多样
 [27]、RECEE [28]和CFM
 [29]，以与我们的方法进行比较。为了确保公平的比较，我们在FaceForensics++训练集上重新训练了所有的方法。此外，还包括2019年DFDC比赛的冠军解决方案（DFDC-1st-place-[30]）作为参考。请注意，我们没有重新训练DFDC-1st-place的方法，因此，其结果仅供参考，不构成严格的比较。</p>
 <figure>
-<img src="../postimages/newNet/image-20240903165509638.png"
+<img src="../postimages/KaggleNet/image-20240903165509638.png"
 alt="image-20240903165509638" />
 <figcaption aria-hidden="true">image-20240903165509638</figcaption>
 </figure>
@@ -445,59 +453,39 @@ alt="image-20240903165509638" />
 <li>第二阶段的联合特征优化目标：优化引入了协同特征优化目标，增强了整体学习过程和模型泛化。</li>
 </ul>
 <p>​  这些创新的灵感来自于我们研究小组的学术出版物，这些出版物主要发表在信息法医领域的顶级期刊和会议上。具有代表性的出版物如下：</p>
-<blockquote>
-<p>H. W. Wu, J. T. Zhou, X. Y. Zhang, J. Y. Tian, and W. W. Sun, “Robust
-Camera Model Identification over Online Social Network Shared Images via
-Multi-Scenario Learning”, in TIFS’24 (CCF-A, JCR-Q1) [5]. <br/><a
-href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/">Robust
-Camera Model Identification Over Online Social Network Shared Images via
-Multi-Scenario Learning</a></p>
-</blockquote>
-<blockquote>
-<p>S. R. Qi, Y. S. Zhang, C. Wang, J. T. Zhou, and X. C. Cao, “A
+<ul>
+<li>H. W. Wu, J. T. Zhou, X. Y. Zhang, J. Y. Tian, and W. W. Sun,
+“Robust Camera Model Identification over Online Social Network Shared
+Images via Multi-Scenario Learning”, in TIFS’24 (CCF-A, JCR-Q1)
+[5].</li>
+<li>S. R. Qi, Y. S. Zhang, C. Wang, J. T. Zhou, and X. C. Cao, “A
 Principled Design of Image Representation: Towards Forensic Tasks”, in
-TPAMI’23 (CCF-A, JCR-Q1) [31].</p>
-</blockquote>
-<blockquote>
-<p>H. W. Wu, J. T. Zhou, J. Y. Tian, J. Liu, and Y. Qiao, “Robust Image
+TPAMI’23 (CCF-A, JCR-Q1) [31].</li>
+<li>H. W. Wu, J. T. Zhou, J. Y. Tian, J. Liu, and Y. Qiao, “Robust Image
 Forgery Detection against Transmission over Online Social Networks”, in
-TIFS’23 (CCF-A, JCR-Q1) [32].</p>
-</blockquote>
-<blockquote>
-<p>F. P. Li, K. M. Li, J. Y. Tian and J. T. Zhou, “Regroup Median Loss
-for Combating Label Noise”, in AAAI’24 (CCF-A, JCR-Q1) [4].</p>
-</blockquote>
-<blockquote>
-<p>J. Liu, J. T. Zhou, J. D. Zeng, and J. Y. Tian, “DifAttack:
+TIFS’23 (CCF-A, JCR-Q1) [32]</li>
+<li>F. P. Li, K. M. Li, J. Y. Tian and J. T. Zhou, “Regroup Median Loss
+for Combating Label Noise”, in AAAI’24 (CCF-A, JCR-Q1) [4].</li>
+<li>J. Liu, J. T. Zhou, J. D. Zeng, and J. Y. Tian, “DifAttack:
 Query-Efficient Black-Box Attack via Disentangled Feature Space”, in
-AAAI’24 (CCF-A, JCR-Q1) [6].</p>
-</blockquote>
-<blockquote>
-<p>Y. M. Chen, J. Y. Tian, X. Y. Chen, and J. T. Zhou, “Effective
+AAAI’24 (CCF-A, JCR-Q1) [6].</li>
+<li>Y. M. Chen, J. Y. Tian, X. Y. Chen, and J. T. Zhou, “Effective
 Ambiguity Attack Against Passport-based DNN Intellectual Property
-Protection Schemes through Fully Connected Layer Substitution”, in
-CVPR’23 (CCF-A, JCR-Q1) [33].</p>
-</blockquote>
-<blockquote>
-<p>Y. M. Chen, H. W. Wu, and J. T. Zhou, “Progressive Poisoned Data
-Isolation for Training-time Backdoor Defense”, in AAAI’24 (CCF-A, JCRQ1)
-[3].</p>
-</blockquote>
-<blockquote>
-<p>B. B. Song, X. Y. Chen, S. N. Xu, and J. T. Zhou, “Under-Display
+Protection Schemes through Fully Connected Layer Substitution”, in
+CVPR’23(CCF-A, JCR-Q1) [33].</li>
+<li>Y. M. Chen, H. W. Wu, and J. T. Zhou, “Progressive Poisoned Data
+Isolation for Training-time Backdoor Defense”, in AAAI’24 (CCF-A,
+JCR-Q1) [3].</li>
+<li>B. B. Song, X. Y. Chen, S. N. Xu, and J. T. Zhou, “Under-Display
 Camera Image Restoration with Scattering Effect”, in ICCV’23 (CCF-A,
-JCRQ1) [34].</p>
-</blockquote>
-<blockquote>
-<p>H. W. Wu, J. T. Zhou, J. Y. Tian, and J. Liu, “Robust Image Forgery
+JCR-Q1) [34].</li>
+<li>H. W. Wu, J. T. Zhou, J. Y. Tian, and J. Liu, “Robust Image Forgery
 Detection over Online Social Network Shared Images”, in CVPR’22 (CCFA,
-JCR-Q1) [35].</p>
-</blockquote>
-<blockquote>
-<p>Y. M. Li, J. T. Zhou, X. W. Zheng, J. Y. Tian, and Y. Y. Tang,
+JCR-Q1) [35].</li>
+<li>Y. M. Li, J. T. Zhou, X. W. Zheng, J. Y. Tian, and Y. Y. Tang,
 “Robust Subspace Clustering With Independent and Piecewise Identically
-Distributed Noise Modeling”, in CVPR’19 (CCF-A, JCR-Q1) [10].</p>
-</blockquote>
+Distributed Noise Modeling”, in CVPR’19 (CCF-A, JCR-Q1) [10].</li>
+</ul>
 <h1 id="其他详细信息5">5其他详细信息（5%）</h1>
 <h2 id="实施">5.1实施</h2>
 <h3 id="系统配置">5.1.1系统配置</h3>
@@ -681,7 +669,7 @@ Inf. Process. Syst.</strong>, 2019.</p>
 Druzhinin, and A. A. Kalinin, “Albumentations: Fast and flexible image
 augmentations,” <strong>Information</strong>, vol. 11, no. 2, 2020.
 [Online]. Available: https://www.mdpi.com/2078-2489/11/2/125</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/newNet/">https://zhaozw-szu.github.io/newNet/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/experimet/" title="experimet"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">experimet</div></div></a></div><div class="next-post pull-right"><a href="/Towards-Modern-Image-Manipulation-Localization-A-Large-Scale-Dataset-and-Novel-Methods/" title="Towards Modern Image Manipulation Localization A Large-Scale Dataset and Novel Methods"><img class="cover" src="/postimages/Towards-Modern-Image-Manipulation-Localization-A-Large-Scale-Dataset-and-Novel-Methods/image-20240826165320985.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Towards Modern Image Manipulation Localization A Large-Scale Dataset and Novel Methods</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/KaggleNet/">https://zhaozw-szu.github.io/KaggleNet/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/KaggleNet/image-20240903142646600.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/ImageForensicsOSN/" title="ImageForensicsOSN"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ImageForensicsOSN</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
   if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
     return;
   }
@@ -708,7 +696,7 @@ augmentations,” <strong>Information</strong>, vol. 11, no. 2, 2020.
         break;
     }
   }  
-}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">1团队详细信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF35"><span class="toc-number">2.</span> <span class="toc-text">2解决方案详细信息（35%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">2.1动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="toc-number">2.2.</span> <span class="toc-text">2.2提出的方法概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">2.3.</span> <span class="toc-text">2.3第一阶段：数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1数据生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%81%9A%E7%B1%BB"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2数据聚类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E8%AE%AD%E7%BB%83"><span class="toc-number">2.4.</span> <span class="toc-text">2.4第二阶段：训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-number">2.4.1.</span> <span class="toc-text">2.4.1网络架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E7%B1%BB%E7%9B%AE%E6%A0%87"><span class="toc-number">2.4.2.</span> <span class="toc-text">2.4.2聚类目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%8A%97%E6%80%A7%E7%9B%AE%E6%A0%87"><span class="toc-number">2.4.3.</span> <span class="toc-text">2.4.3对抗性目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E7%9B%AE%E6%A0%87"><span class="toc-number">2.4.4.</span> <span class="toc-text">2.4.4分类目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E4%BC%98%E5%8C%96"><span class="toc-number">2.4.5.</span> <span class="toc-text">2.4.5整体优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8E%A8%E7%90%86"><span class="toc-number">2.5.</span> <span class="toc-text">2.5第三阶段：推理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E7%BB%B4%E4%BA%BA%E8%84%B8%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%9035"><span class="toc-number">3.</span> <span class="toc-text">3.多维人脸伪造检测分析（35%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">3.1.</span> <span class="toc-text">3.1方法复杂性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AE%AD%E7%BB%83"><span class="toc-number">3.2.</span> <span class="toc-text">3.2方法训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%AE%BA"><span class="toc-number">3.3.</span> <span class="toc-text">3.3方法概论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E9%B2%81%E6%A3%92%E6%80%A7"><span class="toc-number">3.4.</span> <span class="toc-text">3.4方法鲁棒性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-number">3.5.</span> <span class="toc-text">3.5消融研究</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E6%96%B9%E6%B3%95%E6%8F%8F%E8%BF%B025"><span class="toc-number">4.</span> <span class="toc-text">4全局方法描述（25%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%85%88%E8%AE%AD%E7%BB%83%E5%A5%BD%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">4.1预先训练好的模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE"><span class="toc-number">4.2.</span> <span class="toc-text">4.2额外生成数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%80%A7%E4%BC%98%E5%8A%BF"><span class="toc-number">4.3.</span> <span class="toc-text">4.3定性优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%A2%96%E6%80%A7%E8%AE%A8%E8%AE%BA"><span class="toc-number">4.4.</span> <span class="toc-text">4.4新颖性讨论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF5"><span class="toc-number">5.</span> <span class="toc-text">5其他详细信息（5%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD"><span class="toc-number">5.1.</span> <span class="toc-text">5.1实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1系统配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%89%A9%E5%85%85%E5%92%8C%E5%A4%84%E7%90%86"><span class="toc-number">5.1.2.</span> <span class="toc-text">5.1.2数据的扩充和处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E5%92%8C%E4%BC%98%E5%8C%96%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.1.3.</span> <span class="toc-text">5.1.3超参数和优化设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E5%8A%AA%E5%8A%9B"><span class="toc-number">5.2.</span> <span class="toc-text">5.2人工努力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%97%E6%97%B6"><span class="toc-number">5.3.</span> <span class="toc-text">5.3耗时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%A7%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">5.4.</span> <span class="toc-text">5.4更大的影响</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">6.</span> <span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"><img src="/postimages/KaggleNet/image-20240903142646600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"/></a><div class="content"><a class="title" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning">Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning</a><time datetime="2024-09-09T07:02:57.000Z" title="发表于 2024-09-09 15:02:57">2024-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/ImageForensicsOSN/" title="ImageForensicsOSN"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ImageForensicsOSN"/></a><div class="content"><a class="title" href="/ImageForensicsOSN/" title="ImageForensicsOSN">ImageForensicsOSN</a><time datetime="2024-09-04T01:26:12.000Z" title="发表于 2024-09-04 09:26:12">2024-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="科研工具"/></a><div class="content"><a class="title" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具">科研工具</a><time datetime="2024-09-03T14:22:26.612Z" title="发表于 2024-09-03 22:22:26">2024-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning"><img src="/postimages/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/image-20240902210022345.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning"/></a><div class="content"><a class="title" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning">Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning</a><time datetime="2024-09-02T12:16:56.000Z" title="发表于 2024-09-02 20:16:56">2024-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/experimet/" title="experimet"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="experimet"/></a><div class="content"><a class="title" href="/experimet/" title="experimet">experimet</a><time datetime="2024-09-02T01:42:21.000Z" title="发表于 2024-09-02 09:42:21">2024-09-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">1 团队详细信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF35"><span class="toc-number">2.</span> <span class="toc-text">2解决方案详细信息（35%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">2.1动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="toc-number">2.2.</span> <span class="toc-text">2.2提出的方法概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-number">2.3.</span> <span class="toc-text">2.3第一阶段：数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1数据生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%81%9A%E7%B1%BB"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2数据聚类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E8%AE%AD%E7%BB%83"><span class="toc-number">2.4.</span> <span class="toc-text">2.4第二阶段：训练</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-number">2.4.1.</span> <span class="toc-text">2.4.1网络架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E7%B1%BB%E7%9B%AE%E6%A0%87"><span class="toc-number">2.4.2.</span> <span class="toc-text">2.4.2聚类目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%8A%97%E6%80%A7%E7%9B%AE%E6%A0%87"><span class="toc-number">2.4.3.</span> <span class="toc-text">2.4.3对抗性目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E7%9B%AE%E6%A0%87"><span class="toc-number">2.4.4.</span> <span class="toc-text">2.4.4分类目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E4%BC%98%E5%8C%96"><span class="toc-number">2.4.5.</span> <span class="toc-text">2.4.5整体优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8E%A8%E7%90%86"><span class="toc-number">2.5.</span> <span class="toc-text">2.5第三阶段：推理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E7%BB%B4%E4%BA%BA%E8%84%B8%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%9035"><span class="toc-number">3.</span> <span class="toc-text">3.多维人脸伪造检测分析（35%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="toc-number">3.1.</span> <span class="toc-text">3.1方法复杂性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AE%AD%E7%BB%83"><span class="toc-number">3.2.</span> <span class="toc-text">3.2方法训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%AE%BA"><span class="toc-number">3.3.</span> <span class="toc-text">3.3方法概论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E9%B2%81%E6%A3%92%E6%80%A7"><span class="toc-number">3.4.</span> <span class="toc-text">3.4方法鲁棒性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-number">3.5.</span> <span class="toc-text">3.5消融研究</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E6%96%B9%E6%B3%95%E6%8F%8F%E8%BF%B025"><span class="toc-number">4.</span> <span class="toc-text">4全局方法描述（25%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%85%88%E8%AE%AD%E7%BB%83%E5%A5%BD%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.1.</span> <span class="toc-text">4.1预先训练好的模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE"><span class="toc-number">4.2.</span> <span class="toc-text">4.2额外生成数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%80%A7%E4%BC%98%E5%8A%BF"><span class="toc-number">4.3.</span> <span class="toc-text">4.3定性优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E9%A2%96%E6%80%A7%E8%AE%A8%E8%AE%BA"><span class="toc-number">4.4.</span> <span class="toc-text">4.4新颖性讨论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF5"><span class="toc-number">5.</span> <span class="toc-text">5其他详细信息（5%）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD"><span class="toc-number">5.1.</span> <span class="toc-text">5.1实施</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1系统配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E6%89%A9%E5%85%85%E5%92%8C%E5%A4%84%E7%90%86"><span class="toc-number">5.1.2.</span> <span class="toc-text">5.1.2数据的扩充和处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E5%92%8C%E4%BC%98%E5%8C%96%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.1.3.</span> <span class="toc-text">5.1.3超参数和优化设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E5%8A%AA%E5%8A%9B"><span class="toc-number">5.2.</span> <span class="toc-text">5.2人工努力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%97%E6%97%B6"><span class="toc-number">5.3.</span> <span class="toc-text">5.3耗时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%A7%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">5.4.</span> <span class="toc-text">5.4更大的影响</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">6.</span> <span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"><img src="/postimages/KaggleNet/image-20240903142646600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"/></a><div class="content"><a class="title" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning">Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning</a><time datetime="2024-09-09T07:02:57.000Z" title="发表于 2024-09-09 15:02:57">2024-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/ImageForensicsOSN/" title="ImageForensicsOSN"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ImageForensicsOSN"/></a><div class="content"><a class="title" href="/ImageForensicsOSN/" title="ImageForensicsOSN">ImageForensicsOSN</a><time datetime="2024-09-04T01:26:12.000Z" title="发表于 2024-09-04 09:26:12">2024-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="科研工具"/></a><div class="content"><a class="title" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具">科研工具</a><time datetime="2024-09-03T14:22:26.612Z" title="发表于 2024-09-03 22:22:26">2024-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning"><img src="/postimages/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/image-20240902210022345.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning"/></a><div class="content"><a class="title" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning">Robust_Camera_Model_Identification_Over_Online_Social_Network_Shared_Images_via_Multi-Scenario_Learning</a><time datetime="2024-09-02T12:16:56.000Z" title="发表于 2024-09-02 20:16:56">2024-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/experimet/" title="experimet"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="experimet"/></a><div class="content"><a class="title" href="/experimet/" title="experimet">experimet</a><time datetime="2024-09-02T01:42:21.000Z" title="发表于 2024-09-02 09:42:21">2024-09-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
