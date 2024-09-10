@@ -233,8 +233,9 @@ class="math inline">\(\mathcal{C}_{\phi}\)</span>将<span
 class="math inline">\(\mathbf{T}\)</span>转换为<span
 class="math inline">\(\mathbf{\hat{y}}=\mathcal{C}_{\phi}(\mathbf{T})\)</span>来计算损失<span
 class="math inline">\(\ell(\mathbf{\hat{y}},y)\)</span>，其中<span
-class="math inline">\(\ell\)</span>是广泛使用的交叉熵损失，即：<br/><span
-class="math display">\[\ell(\hat{\mathbf{y}},y)=-\sum_{i=1}^Y\mathcal{I}[y=i]\cdot\log(\hat{\mathbf{y}}^{&lt;i&gt;}).\]</span><br/>​  这里<span
+class="math inline">\(\ell\)</span>是广泛使用的交叉熵损失，即： <span
+class="math display">\[\ell(\hat{\mathbf{y}},y)=-\sum_{i=1}^Y\mathcal{I}[y=i]\cdot\log(\hat{\mathbf{y}}^{&lt;i&gt;}).\]</span>
+​  这里<span
 class="math inline">\(\mathbf{\hat{y}}^{&lt;i&gt;}\)</span>表示<span
 class="math inline">\(\mathbf{\hat{y}}\)</span>的第<span
 class="math inline">\(i\)</span>个条目，<span
@@ -247,16 +248,19 @@ class="math inline">\(\mathbf{X_1}\)</span>和<span
 class="math inline">\(\mathbf{X_2}\)</span>，它们的痕迹<span
 class="math inline">\(\mathbf{T_1}\)</span>和<span
 class="math inline">\(\mathbf{T_2}\)</span>首先由训练过的<span
-class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>提取。然后，通过余弦相似度计算这些痕迹被同一相机拍摄的概率：<br/><span
-class="math display">\[S(\mathbf{T}_1,\mathbf{T}_2)=\cos\Big(\frac{\mathbf{T}_1}{||\mathbf{T}_1||},\frac{\mathbf{T}_2}{||\mathbf{T}_2||}\Big).\]</span><br/>​  对于闭集分类案例的测试过程，给出一组已知标签的<span
+class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>提取。然后，通过余弦相似度计算这些痕迹被同一相机拍摄的概率：
+<span
+class="math display">\[S(\mathbf{T}_1,\mathbf{T}_2)=\cos\Big(\frac{\mathbf{T}_1}{||\mathbf{T}_1||},\frac{\mathbf{T}_2}{||\mathbf{T}_2||}\Big).\]</span>
+​  对于闭集分类案例的测试过程，给出一组已知标签的<span
 class="math inline">\(y_i\in\{1,2,\cdots,Y\}\)</span>的图像，<span
 class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>首先提取它们的痕迹<span
 class="math inline">\(\mathbf{T_i}\)</span>。然后，平均相同相机模型的痕迹，可以形成一个痕迹池<span
 class="math inline">\(\{\mathbf{\bar{T}}_{i}\}_{i=1}^{Y}\)</span>。换句话说，池中的每个元素代表一个特定相机模型的平均痕迹。当一个测试图像<span
 class="math inline">\(\mathbf{X_t}\)</span>出现时，其预测的相机类型<span
-class="math inline">\(y_t\)</span>可以从痕迹池中搜索最大的相似性，即：<br/><span
-class="math display">\[y_t=\underset{i}{\mathrm{argmax}}S(\mathbf{T}_t,\bar{\mathbf{T}}_i)\]</span><br/>​  其中，<span
-class="math inline">\(\mathbf{T_t}\)</span>为通过<span
+class="math inline">\(y_t\)</span>可以从痕迹池中搜索最大的相似性，即：
+<span
+class="math display">\[y_t=\underset{i}{\mathrm{argmax}}S(\mathbf{T}_t,\bar{\mathbf{T}}_i)\]</span>
+​  其中，<span class="math inline">\(\mathbf{T_t}\)</span>为通过<span
 class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>提取的测试图像的痕迹。<br/>​  虽然我们的基线CMI可以用于提取摄像机痕迹，并最终在上述两个测试用例中被采用，但在有损传输上的性能，如各种OSN传输场景，可能会严重降低。这些场景所引入的扭曲很可能会破坏相机的痕迹，这在本质上是脆弱的。在表I中，我们简要展示了FODB
 [12]数据集上不同的osn造成的畸变，包括平均分辨率和文件大小的减少，以及平均采用的JPEG质量因子（QFs）。</p>
 <figure>
@@ -309,51 +313,66 @@ class="math inline">\(\{\mathbf{T}_{n}\}_{n=1}^{N}\)</span>是它们由STATE
 <span
 class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>提取的痕迹。有关<span
 class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>的细节将推迟到下一小节。同时，利用每个分类器<span
-class="math inline">\(\mathcal{C}_{\phi_n}\)</span>，根据第n个场景中的训练数据来监督训练过程，损失如下：<br/><span
-class="math display">\[\mathcal{L}_n=\ell(\mathcal{C}_{\boldsymbol{\phi}_n}(\mathbf{T}_n),y),\]</span><br/>​  其中，<span
+class="math inline">\(\mathcal{C}_{\phi_n}\)</span>，根据第n个场景中的训练数据来监督训练过程，损失如下：
+<span
+class="math display">\[\mathcal{L}_n=\ell(\mathcal{C}_{\boldsymbol{\phi}_n}(\mathbf{T}_n),y),\]</span>
+​  其中，<span
 class="math inline">\(\ell\)</span>为(1)中给出的交叉熵损失。<br/>​  值得注意的是，损失函数(4)和损失函数(1)之间的关键区别在于前者涉及多个非共享分类器，而后者只使用一个。另外，请注意，<span
 class="math inline">\(\mathbf{T}_{n}\)</span>和<span
 class="math inline">\(\mathcal{C}_{\phi_n}\)</span>应该有相同的下标n，以便逐场景实现MSL训练场景。</p>
 <h3 id="反向过程">2)反向过程</h3>
 <p>​  在反向过程中，分类器<span
-class="math inline">\(\mathcal{C}_{\phi_n}\)</span>的参数更新为：<br/><span
-class="math display">\[\phi_n=\phi_n-r\nabla_{\phi_n}\mathcal{L}_n,\]</span><br/>​  其中，r是学习率。同样，提取器<span
-class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>的反向更新可以表示为：<br/><span
-class="math display">\[\theta=\theta-r\sum_{n=1}^N\nabla_{\theta}\mathcal{L}_n.\]</span><br/>​  然而，这里的<span
+class="math inline">\(\mathcal{C}_{\phi_n}\)</span>的参数更新为： <span
+class="math display">\[\phi_n=\phi_n-r\nabla_{\phi_n}\mathcal{L}_n,\]</span>
+​  其中，r是学习率。同样，提取器<span
+class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>的反向更新可以表示为：
+<span
+class="math display">\[\theta=\theta-r\sum_{n=1}^N\nabla_{\theta}\mathcal{L}_n.\]</span>
+​  然而，这里的<span
 class="math inline">\(\sum_{n=1}^N\nabla_{\boldsymbol{\theta}}\mathcal{L}_n\)</span>由N项组成，对应于N个场景，其中不一致的梯度方向可能导致冲突，导致<span
 class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>
 [18]的次优训练。此外，通过<span
-class="math inline">\(\mathbf{T}_n=\mathcal{N}_{\boldsymbol{\theta}}(\mathbf{X}_n)\)</span>和使用链规则，(6)可以重写为：<br/><span
-class="math display">\[\theta=\theta-r\sum_{n=1}^N\left(\frac{\partial\mathbf{T}_n}{\partial\boldsymbol{\theta}}\right)^T\nabla_{\mathbf{T}_n}\mathcal{L}_n,\]</span><br/>​  其中，<span
+class="math inline">\(\mathbf{T}_n=\mathcal{N}_{\boldsymbol{\theta}}(\mathbf{X}_n)\)</span>和使用链规则，(6)可以重写为：
+<span
+class="math display">\[\theta=\theta-r\sum_{n=1}^N\left(\frac{\partial\mathbf{T}_n}{\partial\boldsymbol{\theta}}\right)^T\nabla_{\mathbf{T}_n}\mathcal{L}_n,\]</span>
+​  其中，<span
 class="math inline">\(\partial\mathbf{T}_n/\partial\boldsymbol{\theta}\)</span>为<span
 class="math inline">\(\mathbf{T}_n\)</span>的雅可比矩阵。为了减轻梯度冲突对(6)或(7)中<span
 class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>更新的影响，一种解决方案是设计非冲突梯度<span
 class="math inline">\(\mathbf{L}_{n}\)</span>作为<span
 class="math inline">\(\nabla_{\phi_n}\mathcal{L}_n\)</span>的替代品。<br/>​  根据[20]，可以通过基于一致性水平逐元素掩膜<span
 class="math inline">\(\nabla_{\phi_n}\mathcal{L}_n\)</span>来形成非冲突梯度<span
-class="math inline">\(\mathbf{L}_{n}\)</span>。具体来说，<br/><span
-class="math display">\[\mathbf{L}_n=\mathbf{M}_n\odot\nabla_{\mathbf{T}_n}\mathcal{L}_n,\]</span><br/>​  其中，<span
+class="math inline">\(\mathbf{L}_{n}\)</span>。具体来说， <span
+class="math display">\[\mathbf{L}_n=\mathbf{M}_n\odot\nabla_{\mathbf{T}_n}\mathcal{L}_n,\]</span>
+​  其中，<span
 class="math inline">\(\odot\)</span>表示元素级乘法。这里的<span
 class="math inline">\(\mathbf{M}_n\)</span>是一个与<span
-class="math inline">\(\nabla_{\phi_n}\mathcal{L}_n\)</span>具有相同维数的二进制矩阵，定义为：<br/><span
-class="math display">\[\begin{aligned}\mathbf{M}_{n}&amp;=\mathcal{I}[\mathbf{P}\succcurlyeq\mathbf{U}]\odot\mathcal{I}[\nabla_{\mathbf{T}_{n}}\mathcal{L}_{n}\succcurlyeq\mathbf{0}]\\&amp;+\mathcal{I}[\mathbf{P}\preccurlyeq\mathbf{U}]\odot\mathcal{I}[\nabla_{\mathbf{T}_{n}}\mathcal{L}_{n}\preccurlyeq\mathbf{0}],\end{aligned}\]</span><br/>​  其中<span
+class="math inline">\(\nabla_{\phi_n}\mathcal{L}_n\)</span>具有相同维数的二进制矩阵，定义为：
+<span
+class="math display">\[\begin{aligned}\mathbf{M}_{n}&amp;=\mathcal{I}[\mathbf{P}\succcurlyeq\mathbf{U}]\odot\mathcal{I}[\nabla_{\mathbf{T}_{n}}\mathcal{L}_{n}\succcurlyeq\mathbf{0}]\\&amp;+\mathcal{I}[\mathbf{P}\preccurlyeq\mathbf{U}]\odot\mathcal{I}[\nabla_{\mathbf{T}_{n}}\mathcal{L}_{n}\preccurlyeq\mathbf{0}],\end{aligned}\]</span>
+​  其中<span
 class="math inline">\(\mathcal{I}\)</span>为标准指标函数，适当尺寸的<span
 class="math inline">\(\mathbf{U}\)</span>表示一个从均匀分布<span
 class="math inline">\(U(0,1)\)</span>中抽样的随机矩阵，<span
 class="math inline">\(\geq(\preccurlyeq)\)</span>为元素不等式。此外，<span
-class="math inline">\(\mathbf{P}\)</span>测量了给定梯度中包含的正符号的纯度（一致性），其表述为：<br/><span
-class="math display">\[\mathbf{P}=\frac{1}{2}\big(1+\frac{\sum_n\mathbf{G}_n}{\sum_n|\mathbf{G}_n|}\big),\]</span><br/>​  其中<span
+class="math inline">\(\mathbf{P}\)</span>测量了给定梯度中包含的正符号的纯度（一致性），其表述为：
+<span
+class="math display">\[\mathbf{P}=\frac{1}{2}\big(1+\frac{\sum_n\mathbf{G}_n}{\sum_n|\mathbf{G}_n|}\big),\]</span>
+​  其中<span
 class="math inline">\(\mathbf{G}_{n}=\mathrm{sign}(\mathbf{T}_{n})\odot\nabla_{\mathbf{T}_{n}}\mathcal{L}_{n}\)</span>在批处理维度上合并了梯度贡献，所有的计算包括除值和绝对值操作都是逐元素进行。<br/>​  然而，由（10）计算的<span
 class="math inline">\(\mathbf{P}\)</span>依赖于单个反向的特定梯度<span
 class="math inline">\(\nabla_{\mathbf{T}_{n}}\mathcal{L}_{n}\)</span>（或输入<span
 class="math inline">\(\mathbf{X}\)</span>），限制了其在局部描述梯度一致性的能力。这可能导致不稳定的训练或在某些情况下较差的局部最小值，例如当批中的冲突相互抵消时。因此，我们建议通过动量平均[46]来考虑历史梯度，而不是只涉及当前反向的梯度。这样，<span
 class="math inline">\(\mathbf{P}\)</span>就可以全局计算不同场景的一致性，稳定了随机梯度下降（SGD，stochastic
 gradient descent）中的训练更新。<br/>​  为了将动量的概念应用于<span
-class="math inline">\(\mathbf{P}\)</span>的生成，我们重新定义了第t个反向过程中的纯度为：<br/><span
-class="math display">\[\mathbf{P}^{(t)}=\frac{1}{2}\big(1+\frac{\sum_n\mathbf{g}_n^{(t)}}{\sum_n|\mathbf{g}_n^{(t)}|}\big),\]</span><br/>​  其中<br/><span
+class="math inline">\(\mathbf{P}\)</span>的生成，我们重新定义了第t个反向过程中的纯度为：
+<span
+class="math display">\[\mathbf{P}^{(t)}=\frac{1}{2}\big(1+\frac{\sum_n\mathbf{g}_n^{(t)}}{\sum_n|\mathbf{g}_n^{(t)}|}\big),\]</span>
+​  其中 <span
 class="math display">\[\begin{aligned}\mathbf{g}_n^{(t)}&amp;
 =\mu\cdot\mathbf{g}_{n}^{(t-1)}+(1-\mu)\mathbf{G}_{n}^{(t)}
-\\&amp;=\mu^{t-1}\mathbf{g}_{n}^{(1)}+\sum_{i=1}^{t-2}\mu^{i}(1-\mu)\mathbf{G}^{(t-i)}+(1-\mu)\mathbf{G}_{n}^{(t)}\end{aligned}\]</span><br/>​  在之前的t−1个历史反向过程上累积梯度，<span
+\\&amp;=\mu^{t-1}\mathbf{g}_{n}^{(1)}+\sum_{i=1}^{t-2}\mu^{i}(1-\mu)\mathbf{G}^{(t-i)}+(1-\mu)\mathbf{G}_{n}^{(t)}\end{aligned}\]</span>
+​  在之前的t−1个历史反向过程上累积梯度，<span
 class="math inline">\(\mathbf{g}_n^{(1)}\)</span>被初始化为<span
 class="math inline">\(\mathbf{G}_{n}^{(1)}\)</span>。这里的<span
 class="math inline">\(\mu\)</span>是控制最近梯度的权重的衰减因子。在实践中，我们根据经验设置<span
@@ -367,7 +386,8 @@ class="math inline">\(\mathbf{P}\)</span>来相应地计算出(9)中的掩模<sp
 class="math inline">\(\mathbf{M}_{n}\)</span>和(8)中的非冲突梯度<span
 class="math inline">\(\mathbf{L}_{n}\)</span>。最后，使用<span
 class="math inline">\(\mathbf{L}_{n}\)</span>通过以下方式更新<span
-class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>的参数：<br/><span
+class="math inline">\(\mathcal{N}_{\boldsymbol{\theta}}\)</span>的参数：
+<span
 class="math display">\[\theta=\theta-r\sum_{n=1}^N\left(\frac{\partial\mathbf{T}_n}{\partial\boldsymbol{\theta}}\right)^T\mathbf{L}_n.\]</span></p>
 <h3 id="msl训练算法">3) MSL训练算法</h3>
 <p>​  我们总结了算法1中的整个MSL训练过程。</p>
@@ -397,9 +417,11 @@ class="math inline">\(\frac{W}{\hat{W}}\)</span>，总共得到<span
 class="math inline">\(\hat{H}\times\hat{W}\)</span>个块。对于第<span
 class="math inline">\(i\)</span>个块<span
 class="math inline">\(\mathbf{R}_{i}\)</span>，我们计算相关的平滑度指标，即香农熵<span
-class="math inline">\(E_i\)</span>：<br/><span
-class="math display">\[E_i=-\sum_{v=0}^{255}p_v\mathrm{log}(p_v),\]</span><br/>​  其中<br/><span
-class="math display">\[p_{v}=\frac{\hat{H}\hat{W}}{HW}\sum_{h=0}^{H/\hat{H}}\sum_{w=0}^{W/\hat{W}}\mathcal{I}[\mathbf{R}_{i}^{&lt;h,w&gt;}=v]\]</span><br/>​  为<span
+class="math inline">\(E_i\)</span>： <span
+class="math display">\[E_i=-\sum_{v=0}^{255}p_v\mathrm{log}(p_v),\]</span>
+​  其中 <span
+class="math display">\[p_{v}=\frac{\hat{H}\hat{W}}{HW}\sum_{h=0}^{H/\hat{H}}\sum_{w=0}^{W/\hat{W}}\mathcal{I}[\mathbf{R}_{i}^{&lt;h,w&gt;}=v]\]</span>
+​  为<span
 class="math inline">\(\mathbf{R}_{i}\)</span>内的像素值为v的概率。然后，通过将<span
 class="math inline">\(\{E_i\}\)</span>分组和重塑为维数<span
 class="math inline">\(\hat{H}\times\hat{W}\)</span>，可以得到平滑矩阵<span
@@ -417,15 +439,19 @@ class="math inline">\(\hat{C}\)</span>是标记化后的通道数。然后通过
 class="math inline">\(\hat{C}/K\)</span>通道的注意力，对展平的<span
 class="math inline">\(\mathbf{\hat{x}}^{f}\)</span>和<span
 class="math inline">\(\hat{\mathbf{s}}\)</span>计算K头注意力，结果是k头特征<span
-class="math inline">\(\{\hat{\mathbf{X}}_k^a\}_{k=1}^K\)</span>，其中：<br/><span
-class="math display">\[\hat{\mathbf{X}}_k^a=\text{Attention}(\hat{\mathbf{S}}\mathbf{Q}_k,\hat{\mathbf{X}}^f\mathbf{K}_k,\hat{\mathbf{X}}^f\mathbf{V}_k),k=1,\ldots,K,\]</span><br/>​  <span
-class="math inline">\(\mathbf{Q}_k\)</span>、<span
+class="math inline">\(\{\hat{\mathbf{X}}_k^a\}_{k=1}^K\)</span>，其中：
+<span
+class="math display">\[\hat{\mathbf{X}}_k^a=\text{Attention}(\hat{\mathbf{S}}\mathbf{Q}_k,\hat{\mathbf{X}}^f\mathbf{K}_k,\hat{\mathbf{X}}^f\mathbf{V}_k),k=1,\ldots,K,\]</span>
+​  <span class="math inline">\(\mathbf{Q}_k\)</span>、<span
 class="math inline">\(\mathbf{K}_k\)</span>、<span
-class="math inline">\(\mathbf{V}_k\in\mathbb{R}^{\hat{C}^{2}/K}\)</span>是交叉注意函数[48]的第k个投影的查询、键和值矩阵。这里，交叉注意力的执行是：<br/><span
-class="math display">\[\mathrm{Attention}(\mathbf{Q},\mathbf{K},\mathbf{V})=\mathrm{SoftMax}(\frac{\mathbf{QK}^{T}}{\sqrt{\hat{C}/K}})\mathbf{V}.\]</span><br/>​  接下来，所有头<span
+class="math inline">\(\mathbf{V}_k\in\mathbb{R}^{\hat{C}^{2}/K}\)</span>是交叉注意函数[48]的第k个投影的查询、键和值矩阵。这里，交叉注意力的执行是：
+<span
+class="math display">\[\mathrm{Attention}(\mathbf{Q},\mathbf{K},\mathbf{V})=\mathrm{SoftMax}(\frac{\mathbf{QK}^{T}}{\sqrt{\hat{C}/K}})\mathbf{V}.\]</span>
+​  接下来，所有头<span
 class="math inline">\(\{\hat{\mathbf{X}}_k^a\}_{k=1}^K\)</span>的拼接输出用来线性预测，得到展平的注意力<span
-class="math inline">\(\mathbf{\hat{X}}^{a}\)</span>：<br/><span
-class="math display">\[\mathbf{X}^a=\mathrm{MLP}(\mathrm{Concat}(\hat{\mathbf{X}}_1^a,\hat{\mathbf{X}}_2^a,\ldots,\hat{\mathbf{X}}_K^a)),\]</span><br/>​  其中<span
+class="math inline">\(\mathbf{\hat{X}}^{a}\)</span>： <span
+class="math display">\[\mathbf{X}^a=\mathrm{MLP}(\mathrm{Concat}(\hat{\mathbf{X}}_1^a,\hat{\mathbf{X}}_2^a,\ldots,\hat{\mathbf{X}}_K^a)),\]</span>
+​  其中<span
 class="math inline">\(\mathrm{MLP}(\cdot)\)</span>代表一个具有GELU激活[49]的MLP。最后，通过将其重塑为<span
 class="math inline">\(\hat{H}\times\hat{W}\times\hat
 C\)</span>分辨率，获得细化的注意力特征<span
@@ -477,7 +503,8 @@ alt="image-20240903094227527" />
 </figure>
 <p>图6。在SIHDR数据集上的闭集分类任务的混淆矩阵。对于每个矩阵，纵轴和横轴分别代表实际的标签和预测的标签。在这里，每一行（列）代表一个独特的相机模型，例如，第一行、第二行和最后一行分别对应于GioneeS55、Huaiwei-P8和iPhone
 5S。有关相机型号的具体信息，请参考我们的代码网站。</p>
-<p>​  为了评估分类任务，我们在图6中显示了混淆矩阵，并在表3中显示了相应的精度（PRC）、召回率（RCL）和F1分数。在形式上，中国和RCL的定义为：<br/><span
+<p>​  为了评估分类任务，我们在图6中显示了混淆矩阵，并在表3中显示了相应的精度（PRC）、召回率（RCL）和F1分数。在形式上，中国和RCL的定义为：
+<span
 class="math display">\[\mathrm{PRC}=\frac{1}{Y}\sum_{y=1}^{Y}\frac{\mathrm{TP}_{y}}{\mathrm{TP}_{y}+\mathrm{FP}_{y}},\]</span></p>
 <p><span
 class="math display">\[\mathrm{RCL}=\frac{1}{Y}\sum_{y=1}^{Y}\frac{\mathrm{TP}_{y}}{\mathrm{TP}_{y}+\mathrm{FN}_{y}},\]</span></p>
@@ -485,7 +512,8 @@ class="math display">\[\mathrm{RCL}=\frac{1}{Y}\sum_{y=1}^{Y}\frac{\mathrm{TP}_{
 class="math inline">\(\mathrm{FP}_{y}\)</span>和<span
 class="math inline">\(\mathrm{FN}_{y}\)</span>分别代表给定类y的真阳性、假阳性和假阴性。那么宏观平均的F1得分可以计算如下：</p>
 <p><span
-class="math display">\[\mathrm{F1}=\frac{1}{y}\sum_{y=1}^{Y}\frac{2\times\mathrm{TP}_{y}}{2\times\mathrm{TP}_{y}+\mathrm{FP}_{y}+\mathrm{FN}_{y}}.\]</span><br/><img
+class="math display">\[\mathrm{F1}=\frac{1}{y}\sum_{y=1}^{Y}\frac{2\times\mathrm{TP}_{y}}{2\times\mathrm{TP}_{y}+\mathrm{FP}_{y}+\mathrm{FN}_{y}}.\]</span>
+<img
 src="../postimages/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/image-20240903094839265.png"
 alt="image-20240903094839265" /></p>
 <p>​  从表三可以看出，在NoTrans的情况下，我们的方法取得了相当令人满意的结果（96.38%
@@ -616,7 +644,7 @@ alt="image-20240903110000029" />
   }  
 }</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%85%A7%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E8%AF%86%E5%88%AB%E7%9A%84%E5%9F%BA%E7%BA%BF%E6%96%B9%E6%A1%88"><span class="toc-text">照相机模型识别的基线方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%B2%81%E6%A3%92%E7%9B%B8%E6%9C%BA%E6%A8%A1%E5%9E%8B%E8%AF%86%E5%88%AB"><span class="toc-text">鲁棒相机模型识别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-%E5%A4%9A%E5%9C%BA%E6%99%AF%E5%AD%A6%E4%B9%A0mslmulti-scenario-learning"><span class="toc-text">A.
 多场景学习（MSL，Multi-Scenario Learning）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-text">1)前向过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-text">2)反向过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#msl%E8%AE%AD%E7%BB%83%E7%AE%97%E6%B3%95"><span class="toc-text">3) MSL训练算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E6%B8%85%E6%99%B0%E8%AF%86%E5%88%AB%E7%97%95%E8%BF%B9%E6%8F%90%E5%8F%96%E5%99%A8statesmooth-aware-trace-extractor"><span class="toc-text">B.
-清晰识别痕迹提取器（STATE，SmooTh-Aware Trace Extractor）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">A.实验设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">1)训练数据集：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">2)测试数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C"><span class="toc-text">3)在线社交网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95"><span class="toc-text">4)比较方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">5)实现细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E5%BC%80%E9%9B%86%E9%AA%8C%E8%AF%81%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">B.开集验证任务的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E9%97%AD%E9%9B%86%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%AF%84%E4%BB%B7"><span class="toc-text">C. 闭集分类任务的评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-%E5%BC%80%E6%94%BE%E5%BC%8F%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%AF%84%E4%BB%B7"><span class="toc-text">D. 开放式分类任务的评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#e.-%E5%90%8E%E5%A4%84%E7%90%86%E8%AF%84%E4%BB%B7"><span class="toc-text">E. 后处理评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f.-%E5%86%8D%E4%BC%A0%E8%BE%93%E5%92%8C%E4%BA%A4%E5%8F%89%E4%BC%A0%E8%BE%93%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">F. 再传输和交叉传输的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#g.-%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">G. 消融研究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E6%BB%91%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%9A%84%E9%87%87%E7%94%A8"><span class="toc-text">1)平滑注意力的采用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#msl%E6%A8%A1%E5%9D%97%E7%9A%84%E9%87%87%E7%94%A8"><span class="toc-text">2)MSL模块的采用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%BA%BF%E6%8F%90%E5%8F%96%E5%99%A8%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">3)基线提取器的选择：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#msl%E4%B8%ADn%E4%B8%AA%E5%9C%BA%E6%99%AF%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">4)MSL中，N个场景的影响：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i.%E8%AE%BE%E5%A4%87%E6%A0%87%E8%AF%86%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">I.设备标识的评估</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"><img src="/postimages/KaggleNet/image-20240903142646600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"/></a><div class="content"><a class="title" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning">Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning</a><time datetime="2024-09-09T07:02:57.000Z" title="发表于 2024-09-09 15:02:57">2024-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/ImageForensicsOSN/" title="ImageForensicsOSN"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ImageForensicsOSN"/></a><div class="content"><a class="title" href="/ImageForensicsOSN/" title="ImageForensicsOSN">ImageForensicsOSN</a><time datetime="2024-09-04T01:26:12.000Z" title="发表于 2024-09-04 09:26:12">2024-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="科研工具"/></a><div class="content"><a class="title" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具">科研工具</a><time datetime="2024-09-03T14:22:26.612Z" title="发表于 2024-09-03 22:22:26">2024-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning"><img src="/postimages/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/image-20240902210022345.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning"/></a><div class="content"><a class="title" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning">Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning</a><time datetime="2024-09-02T12:16:56.000Z" title="发表于 2024-09-02 20:16:56">2024-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/experimet/" title="experimet"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="experimet"/></a><div class="content"><a class="title" href="/experimet/" title="experimet">experimet</a><time datetime="2024-09-02T01:42:21.000Z" title="发表于 2024-09-02 09:42:21">2024-09-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+清晰识别痕迹提取器（STATE，SmooTh-Aware Trace Extractor）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">A.实验设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">1)训练数据集：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">2)测试数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C"><span class="toc-text">3)在线社交网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95"><span class="toc-text">4)比较方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">5)实现细节</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E5%BC%80%E9%9B%86%E9%AA%8C%E8%AF%81%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">B.开集验证任务的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E9%97%AD%E9%9B%86%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%AF%84%E4%BB%B7"><span class="toc-text">C. 闭集分类任务的评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-%E5%BC%80%E6%94%BE%E5%BC%8F%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1%E7%9A%84%E8%AF%84%E4%BB%B7"><span class="toc-text">D. 开放式分类任务的评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#e.-%E5%90%8E%E5%A4%84%E7%90%86%E8%AF%84%E4%BB%B7"><span class="toc-text">E. 后处理评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f.-%E5%86%8D%E4%BC%A0%E8%BE%93%E5%92%8C%E4%BA%A4%E5%8F%89%E4%BC%A0%E8%BE%93%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">F. 再传输和交叉传输的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#g.-%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">G. 消融研究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E6%BB%91%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%9A%84%E9%87%87%E7%94%A8"><span class="toc-text">1)平滑注意力的采用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#msl%E6%A8%A1%E5%9D%97%E7%9A%84%E9%87%87%E7%94%A8"><span class="toc-text">2)MSL模块的采用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%BA%BF%E6%8F%90%E5%8F%96%E5%99%A8%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">3)基线提取器的选择：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#msl%E4%B8%ADn%E4%B8%AA%E5%9C%BA%E6%99%AF%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">4)MSL中，N个场景的影响：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#i.%E8%AE%BE%E5%A4%87%E6%A0%87%E8%AF%86%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">I.设备标识的评估</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"><img src="/postimages/KaggleNet/image-20240903142646600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"/></a><div class="content"><a class="title" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning">Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning</a><time datetime="2024-09-09T07:02:57.000Z" title="发表于 2024-09-09 15:02:57">2024-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/ImageForensicsOSN/" title="ImageForensicsOSN"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ImageForensicsOSN"/></a><div class="content"><a class="title" href="/ImageForensicsOSN/" title="ImageForensicsOSN">ImageForensicsOSN</a><time datetime="2024-09-04T01:26:12.000Z" title="发表于 2024-09-04 09:26:12">2024-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="科研工具"/></a><div class="content"><a class="title" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具">科研工具</a><time datetime="2024-09-03T14:22:26.612Z" title="发表于 2024-09-03 22:22:26">2024-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning"><img src="/postimages/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/image-20240902210022345.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning"/></a><div class="content"><a class="title" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning">Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning</a><time datetime="2024-09-02T12:16:56.000Z" title="发表于 2024-09-02 20:16:56">2024-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/experimet/" title="experimet"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="experimet"/></a><div class="content"><a class="title" href="/experimet/" title="experimet">experimet</a><time datetime="2024-09-02T01:42:21.000Z" title="发表于 2024-09-02 09:42:21">2024-09-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
