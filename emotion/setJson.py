@@ -27,7 +27,7 @@ for emotion_list in emotion_lists:
     
     for emotion in emotions:
         # 构建图标 URL
-        icon_url = f"https://fastly.jsdelivr.net/gh/zhaozw-szu/emotion/{emotion_list}/{emotion}"
+        icon_url = f"https://zhaozw-szu.github.io/emotion/{emotion_list}/{emotion}"
         icon_html = f"<img src=\"{icon_url}\">"
         
         # 添加到容器
