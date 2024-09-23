@@ -3561,7 +3561,7 @@ figure.highlight pre .javascript .function {
   background-color: #f4f4f4;
 }
 aside {
-  width: 250px;
+  width: auto;
   padding: 10px;
   background-color: #fff;
   border-right: 1px solid #ddd;
@@ -3576,6 +3576,7 @@ aside ul#directory li {
   margin-bottom: 2px;
   cursor: pointer;
   border-radius: 4px;
+  background-color: #dae8fc;
   -webkit-transition: #f4f4f4 0.3s ease;
   -moz-transition: #f4f4f4 0.3s ease;
   -o-transition: #f4f4f4 0.3s ease;
