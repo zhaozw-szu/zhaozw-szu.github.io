@@ -4471,8 +4471,6 @@ aside ul#directory ul {
 .wrapper .main-content .swiperBar {
   width: 100%;
   position: relative;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
   background-color: #fff;
   margin-bottom: 15px;
 }
