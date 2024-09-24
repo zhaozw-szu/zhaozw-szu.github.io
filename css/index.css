@@ -4414,7 +4414,6 @@ aside ul#directory ul {
   display: flex;
   width: 100%;
   background-color: #fff;
-  padding: 15px;
   border-radius: 8px;
   -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -4424,8 +4423,12 @@ aside ul#directory ul {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  padding: 5px;
 }
 .wrapper .button-group {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -4438,7 +4441,6 @@ aside ul#directory ul {
   -ms-flex-pack: start;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
-  margin-bottom: 15px;
 }
 .wrapper .button-group button {
   padding: 10px;
@@ -4466,21 +4468,21 @@ aside ul#directory ul {
   -ms-flex: 1;
   flex: 1;
   background-color: #fff;
-  padding: 10px;
+  padding: 5px;
+  background-color: #fff;
+  margin-bottom: 5px;
 }
 .wrapper .main-content .swiperBar {
   width: 100%;
   position: relative;
-  background-color: #fff;
-  margin-bottom: 15px;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container {
+.wrapper .main-content #ark-swiper-container {
   width: 100%;
   height: 200px;
   overflow: hidden;
   position: relative;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper {
   width: 100%;
   height: 200px;
   display: -webkit-box;
@@ -4496,7 +4498,7 @@ aside ul#directory ul {
   -ms-flex-direction: row;
   flex-direction: row;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item {
   width: 100%;
   position: relative;
   display: -webkit-box;
@@ -4515,7 +4517,7 @@ aside ul#directory ul {
   -webkit-box-shadow: 0 0 3px inset var(--ark-post-item-box-shadow);
   box-shadow: 0 0 3px inset var(--ark-post-item-box-shadow);
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info {
   width: 60%;
   display: -webkit-box;
   display: -moz-box;
@@ -4546,7 +4548,7 @@ aside ul#directory ul {
   position: relative;
   z-index: 1;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title {
   width: 100%;
   height: 60px;
   color: var(--ark-post-item-font-color);
@@ -4572,12 +4574,12 @@ aside ul#directory ul {
   justify-content: center;
   padding-bottom: 10px;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title .ark-swiper-item-title-link {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title .ark-swiper-item-title-link {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description {
   color: var(--ark-post-item-font-color);
   display: -webkit-box;
   display: -moz-box;
@@ -4589,14 +4591,14 @@ aside ul#directory ul {
   height: 100%;
   overflow: hidden;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description .ark-swiper-item-description-text {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description .ark-swiper-item-description-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 4;
   line-height: 1.2;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover {
   width: 40%;
   height: 100%;
   display: -webkit-box;
@@ -4621,7 +4623,7 @@ aside ul#directory ul {
   overflow: hidden;
   z-index: 0;
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover img {
+.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover img {
   object-fit: cover;
   width: 100%;
   z-index: 1;
@@ -4629,28 +4631,28 @@ aside ul#directory ul {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
 }
-.wrapper .main-content .swiperBar #ark-swiper-container .swiper-pagination {
-  bottom: 5px;
+.wrapper .main-content #ark-swiper-container .swiper-pagination {
+  bottom: 0;
   left: 0;
   right: 0;
   margin: 0 auto;
 }
-.wrapper .main-content .post-item {
+.wrapper .post-item {
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #f9f9f9;
 }
-.wrapper .main-content .post-item h3 {
+.wrapper .post-item h3 {
   margin: 0 0 10px 0;
   color: #333;
 }
-.wrapper .main-content .post-item p {
+.wrapper .post-item p {
   margin: 0;
   color: #666;
 }
-.wrapper .main-content .post-item img {
+.wrapper .post-item img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
