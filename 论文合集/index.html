@@ -1,0 +1,735 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>论文合集 | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance(TIFS24) 现有问题： 在被操纵的图像中，被篡改区域的边界是分离被操纵和未被操纵像素的关键位置，在定位被操纵区域时应特别注意并明确利用这一点。然而，如何利用这些边界信息来提高检测被操纵图像区域的性能仍有待探索。。 解决方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文合集">
+<meta property="og:url" content="https://zhaozw-szu.github.io/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance(TIFS24) 现有问题： 在被操纵的图像中，被篡改区域的边界是分离被操纵和未被操纵像素的关键位置，在定位被操纵区域时应特别注意并明确利用这一点。然而，如何利用这些边界信息来提高检测被操纵图像区域的性能仍有待探索。。 解决方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
+<meta property="article:published_time" content="2024-04-09T12:24:25.000Z">
+<meta property="article:modified_time" content="2024-09-24T07:51:44.959Z">
+<meta property="article:author" content="Zhaozw">
+<meta property="article:tag" content="合集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '论文合集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-09-24 15:51:44'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">论文合集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-09T12:24:25.000Z" title="发表于 2024-04-09 20:24:25">2024-04-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-24T07:51:44.959Z" title="更新于 2024-09-24 15:51:44">2024-09-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="论文合集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr />
+<p><a
+href="/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/">Attentive
+and Contrastive Image Manipulation Localization With Boundary
+Guidance</a>(TIFS24)</p>
+<p><em>现有问题</em>：
+在被操纵的图像中，被篡改区域的边界是分离被操纵和未被操纵像素的关键位置，在定位被操纵区域时应特别注意并明确利用这一点。然而，如何利用这些边界信息来提高检测被操纵图像区域的性能仍有待探索。。</p>
+<p><em>解决方案</em>：提出了一种新的边界引导图像操纵定位模型，该模型通过精心设计的注意力和对比学习机制充分利用被篡改区域的边界信息，在框架的解码器中引入了一个边界感知注意模块，旨在指导模型通过提取被操纵区域的边界来强调图像操作的非自然混合，我们提出了一种边界引导的篡改对比损失，鼓励模型将样本的边缘从篡改和非篡改区域扩大到最大的程度。</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<p>其网路架构如下：</p>
+<figure>
+<img
+src="../postimages/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/image-20240910222829501.png"
+alt="image-20240910222829501" />
+<figcaption aria-hidden="true">image-20240910222829501</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/image-20240910221211400.png"
+alt="image-20240910221211400" />
+<figcaption aria-hidden="true">image-20240910221211400</figcaption>
+</figure>
+</details>
+<hr />
+<p><a
+href="/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/">A
+New Benchmark and Model for Challenging Image Manipulation
+Detection</a>(AAAI24)<br/><em>现有问题</em>：</p>
+<ul>
+<li>所有现有的IMD技术在从大图像中检测小的篡改区域时都遇到了挑战。</li>
+<li>基于压缩的IMD方法在相同质量因子的双重压缩的情况下面临困难。</li>
+</ul>
+<p><em>解决方案</em>：包含RGB和频率特征的双分支架构，能够检测双压缩伪影的压缩伪影学习模型。</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<blockquote>
+<p>RGB和频率特征的双分支架构</p>
+</blockquote>
+<figure>
+<img
+src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326151650512.png"
+alt="image-20240326151650512" />
+<figcaption aria-hidden="true">image-20240326151650512</figcaption>
+</figure>
+<blockquote>
+<p>双压缩伪影的压缩伪影学习模型</p>
+</blockquote>
+<figure>
+<img
+src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326170313123.png"
+alt="image-20240326170313123" />
+<figcaption aria-hidden="true">image-20240326170313123</figcaption>
+</figure>
+</details>
+<hr />
+<p><a
+href="/MGQFormer-Mask-Guided-Query-Based-Transformer-for-Image-Manipulation-Localization/">MGQFormer:
+Mask-Guided Query-Based Transformer for Image Manipulation
+Localization</a>(AAAI24)</p>
+<p><em>现有问题</em>： -
+所有现有的IMD主要通过交叉熵损失使用真值掩码，该损失优先考虑逐像素精度，但忽略了篡改区域的空间位置和形状细节。</p>
+<p><em>解决方案</em>：一种基于掩码引导查询的转换器框架（MGQFormer），该框架使用基本事实掩码来引导可学习查询令牌（LQT）识别伪造区域。</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<figure>
+<img
+src="../postimages/MGQFormer-Mask-Guided-Query-Based-Transformer-for-Image-Manipulation-Localization/image-20240401164940206.png"
+alt="image-20240401164940206" />
+<figcaption aria-hidden="true">image-20240401164940206</figcaption>
+</figure>
+<p>  利用BayarConv和Transformer编码器从输入图像中提取RGB和噪声特征，过空间和通道注意模块（SCAM,spatial
+and channel attention
+module）对多模态特征进行融合。其特征提取器如下:</p>
+<p><img
+src="../postimages/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/image-20240822164324909.png"
+alt="image-20240822164324909" /><br/>  我们设计了两个可学习的查询token来表示真实和伪造的特征，它们用于在我们提出的基于查询的Transformer解码器中搜索篡改区域。为了使查询token有效参考和基于查询的解码器快速收敛，我们提出了一种利用GroundTruth掩模的空间位置和形状细节的掩模引导训练策略。其解码器如下:</p>
+<figure>
+<img
+src="../postimages/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/image-20240822170134582.png"
+alt="image-20240822170134582" />
+<figcaption aria-hidden="true">image-20240822170134582</figcaption>
+</figure>
+<p>  具体来说，我们将噪声的GT掩模输入MGQFrorer，以获得引导查询token（GQT)和辅助掩模
+$ M_{aux} $ 。然后，利用辅助损失 $ L_{aux} $
+，使GQT包含伪造区域的空间和形状信息。此外，我们提出了一种掩模引导的损失
+$ L_{guide} $ 来减小LQT和GQT之间的距离。</p>
+</details>
+<hr />
+<p><a
+href="/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/">Learning
+Discriminative Noise Guidance for Image Forgery Detection and
+Localization</a>(AAAI24)</p>
+<p><em>现有问题</em>： -
+随着篡改和后处理技术的发展，这两个区域在噪声域之间的差异变得不那么明显，甚至不那么隐藏。鉴于这些缺陷，我们建议明确地学习和利用噪声的不一致性可以进一步提高IFDL的性能。</p>
+<p><em>解决方案</em>：通过关注噪声域内的操纵痕迹来检测和定位图像伪造，一种两阶段判别噪声引导的方法，第一阶段训练一个噪声提取器，以明确地扩大真实区域和伪造区域之间的噪声分布差异，第二阶段将噪声不一致和RGB数据集成，以进行伪造检测和定位。</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<p>一阶段：</p>
+<p><img
+src="../postimages/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/image-20240502204239503.png"
+alt="image-20240502204239503" /><br/>为了明确地分离出这两个区域（真实的和伪造的)的噪声分布，我们引入了JS散度来约束
+$ G_d $ 。首先，我们利用 groundtruth掩模，将 $ G_d $ 划分为真实区域 $
+N_a $ 的噪声和伪造区域 $ N_f $ 的噪声。</p>
+<figure>
+<img
+src="./../postimages/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/image-20240822220206200.png"
+alt="image-20240822220206200" />
+<figcaption aria-hidden="true">image-20240822220206200</figcaption>
+</figure>
+<p>式中， $ _a $ 、 $ _f $ 为 $ N_a $ 和 $ N_f $ 的标准差， $ _a $ 、 $
+_f $ 为 $ N_a $ 和 $ N_f $ 的平均值。</p>
+<p><span
+class="math display">\[\mathbf{L_{n}}=\lambda\left(1-JSD\right)+\left(1-\lambda\right)\mathcal{L}\left(Y,G_{c}\right)\]</span>
+二阶段：</p>
+<figure>
+<img
+src="../postimages/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/image-20240502211812066.png"
+alt="image-20240502211812066" />
+<figcaption aria-hidden="true">image-20240502211812066</figcaption>
+</figure>
+<p>利用两个分支来处理RGB和噪声信息，为了保证噪声不一致对RGB的引导作用，我们设计了CAGF，并将其与ResNet块交替放置。在噪声的引导下，RGB分支可以提取出与篡改伪影高度相关的特征。</p>
+</details>
+<hr />
+<p><a
+href="/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/">CatmullRom
+Splines-Based Regression for Image Forgery Localization</a>(AAAI24)</p>
+<p><em>现有问题</em>： 假阳性（FPs）和不准确的边界。</p>
+<p><em>解决方案</em>：基于CatmullRom样条的回归网络（CSR-Net, CatmullRom
+Splines-based Regression
+Network），首次尝试将回归方法引入像素级任务。为了明确抑制假阳性样本和避免不确定性边界，我们设计两个相互互补和强化的组件，即综合再评分算法（CRA,Comprehensive
+Re-scoring
+Algorithm），综合评估每个区域的信任分数作为篡改区域，而垂直纹理交互感知（VTP,
+Vertical Texture-interactive Perception）控制生成更准确的区域边缘。</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<figure>
+<img
+src="../postimages/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/image-20240503215025883.png"
+alt="image-20240503215025883" />
+<figcaption aria-hidden="true">image-20240503215025883</figcaption>
+</figure>
+<p>在本文中，我们精心设计了一个定制的基于CatmullRom样条的回归网络（CSR-Net），并尝试将回归方法引入像素级图像篡改定位（本文中的IFL）。</p>
+<p>详细地说，与传统的边界盒检测方法相比，我们引入了CatmullRom定位技术，该技术对目标区域控制点的轮廓进行了建模，从而实现了更准确和有效的篡改区域定位。然后，为了抑制FPs（假阳性），设计了综合再评分算法（CRA），我们为每个区域实例重新分配分数，区域实例的综合得分由分类得分（CLS）和实例得分（INS）两部分组成。</p>
+<p>此外，我们还提出了一个可学习的区域纹理提取模块垂直纹理交互感知（VTP）来进一步参考边缘。</p>
+<figure>
+<img
+src="../postimages/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/image-20240823161357950.png"
+alt="image-20240823161357950" />
+<figcaption aria-hidden="true">image-20240823161357950</figcaption>
+</figure>
+<p>因此，CSRNet可以在不接近FPs的情况下感知所有被篡改的区域，并实现准确的定位。大量的实验表明，CSR-Net优于现有的最先进的方法，不仅在自然图像数据集上，而且在社交媒体数据集上。</p>
+</details>
+<hr />
+<p><a
+href="/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/">Multi-view
+Feature Extraction via Tunable Prompts is Enough for Image Manipulation
+Localization</a>(ACMMM24)</p>
+<p><em>现有问题</em>：IML任务中公共训练数据集的稀缺直接阻碍了模型的性能。</p>
+<p><em>解决方案</em>：提出了一个Prompt-IML框架，该框架通过采用可调提示来利用预训练模型的丰富先验知识。</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<blockquote>
+<p>通过集成可调提示，从单个预先训练过的主干中提取和调整多视图特征，从而保持性能和鲁棒性</p>
+</blockquote>
+<figure>
+<img
+src="../postimages/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/image-20240824155623293.png"
+alt="image-20240824155623293" />
+<figcaption aria-hidden="true">image-20240824155623293</figcaption>
+</figure>
+<blockquote>
+<p>特征对齐和融合的FAF模块</p>
+</blockquote>
+<figure>
+<img
+src="../postimages/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/image-20240824220942200.png"
+alt="image-20240824220942200" />
+<figcaption aria-hidden="true">image-20240824220942200</figcaption>
+</figure>
+</details>
+<hr />
+<p><a href="/UnionFormer/">UnionFormer: Unified-Learning Transformer
+with Multi-View Representation for Image Manipulation Detection and
+Localization</a>(CVPR24)</p>
+<p><em>现有问题</em>：以往的方法主要利用为高级视觉任务设计的深度卷积神经网络作为特征编码器或直接连接来自不同层的特征，不能充分表示篡改痕迹；目前的高级方法关注于像素或补丁级的一致性，而忽略了对象级的信息，在自然语言提示的引导下，自动生成的伪造部分更有可能表现出对象的不一致。</p>
+<p><em>解决方案</em>：设计了专门用于提取取证工件的边界敏感特征交互网络（BSFI-Net,
+Boundary Sensitive Feature Interaction
+Network）设计了用于图像操作检测和定位的多视图表示的统一学习transformer框架</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<blockquote>
+<p>cnn-Transformer并发网络
+BSFI-Net，该网络在保持边缘灵敏度的同时，促进了两个分支中不同尺度的特征之间的彻底交互。</p>
+</blockquote>
+<figure>
+<img src="../postimages/UnionFormer/image-20240617110632461.png"
+alt="image-20240617110632461" />
+<figcaption aria-hidden="true">image-20240617110632461</figcaption>
+</figure>
+<blockquote>
+<p>采用对比监督来促进两个视图之间的协作</p>
+</blockquote>
+<figure>
+<img src="../postimages/UnionFormer/image-20240618124629395.png"
+alt="image-20240618124629395" />
+<figcaption aria-hidden="true">image-20240618124629395</figcaption>
+</figure>
+<blockquote>
+<p>统一伪造判别表示，每个篡改判别查询都表示对应建议的三个视图中的篡改线索</p>
+</blockquote>
+<figure>
+<img src="../postimages/UnionFormer/image-20240617214850871.png"
+alt="image-20240617214850871" />
+<figcaption aria-hidden="true">image-20240617214850871</figcaption>
+</figure>
+</details>
+<hr />
+<p><a
+href="/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/">Learning
+Discriminative Noise Guidance for Image Forgery Detection and
+Localization</a>(AAAI24)</p>
+<p><em>现有问题</em>：篡改痕迹主要来源于真实区域和伪造区域的噪声分布则不一致性。</p>
+<p><em>解决方案</em>：使用两阶段训练方法：第一阶段训练一个噪声提取器，以明确地扩大真实区域和伪造区域之间的噪声分布差异。第二阶段是将噪声不一致和RGB数据集成，以进行伪造检测和定位。</p>
+<details close>
+<br/>
+<summary>
+具体情况
+</summary>
+<blockquote>
+<p>第一阶段，训练一个特征提取器，使用的是DNE，一个盲去噪网络，使用JS散度来约束Gd，将Gd
+划分为真实区域Na和伪造区域Nf，将其视为两个高斯分布</p>
+</blockquote>
+<p><span class="math display">\[
+JSD=\\log\\frac{\\sqrt{\\sigma_{a}^{2}+\\sigma_{f}^{2}}}{2}-\\frac{\\log\\sigma_{a}+\\log\\sigma_{f}}{2}+\\frac{(\\mu_{a}-\\mu_{f})^{2}}{\\sigma_{a}^{2}+\\sigma_{f}^{2}}+\\frac{1}{2}
+\]</span></p>
+<p><span class="math display">\[
+\\mathbf{L_{n}}=\\lambda\\left(1-JSD\\right)+\\left(1-\\lambda\\right)\\mathcal{L}\\left(Y,G_{c}\\right)
+\]</span></p>
+<figure>
+<img
+src="../postimages/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/image-20240502204239503.png"
+alt="image-20240502204239503" />
+<figcaption aria-hidden="true">image-20240502204239503</figcaption>
+</figure>
+<blockquote>
+<p>第二阶段，使用一阶段训练好的特征提取器DNE，为了保证噪声不一致对RGB的引导作用，我们设计了CAGF，并将其与ResNet块交替放置。</p>
+</blockquote>
+<figure>
+<img
+src="../postimages/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/image-20240502211812066.png"
+alt="image-20240502211812066" />
+<figcaption aria-hidden="true">image-20240502211812066</figcaption>
+</figure>
+</details>
+<hr />
+<p>CVPR '23:</p>
+<p><a
+href="/TruFor-Leveraging-all-round-clues-for-trustworthy-image-forgery-detection-and-localization/">TruFor:
+Leveraging all-round clues for trustworthy image forgery detection and
+localization</a></p>
+<p>ICCV '23:</p>
+<p><a
+href="/Towards-Generic-Image-Manipulation-Detection-with-Weakly-Supervised-Self-Consistency-Learning/">Towards
+Generic Image Manipulation Detection with Weakly-Supervised
+Self-Consistency Learning</a></p>
+<p>WACV' 23:</p>
+<p><a
+href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning/">CFL-Net:
+Image Forgery Localization Using Contrastive Learning</a> (<em>WACV
+'23</em>) <strong>[</strong><a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.02182"><strong>Paper</strong></a><strong>]</strong>
+<strong>[</strong><a
+target="_blank" rel="noopener" href="https://github.com/niloy193/CFLNet"><strong>Code</strong></a><strong>]</strong></p>
+<p>TPAMI '22:</p>
+<p><a
+href="/MVSS-Net-Multi-View-Multi-Scale-Supervised-Networks-for-Image-Manipulation-Detection/">MVSS-Net:
+Multi-View Multi-Scale Supervised Networks for Image Manipulation
+Detection</a></p>
+<details close>
+<br/>
+<summary>
+CLIP
+</summary>
+<p><br/>原论文：<br/><a
+href="/Learning-Transferable-Visual-Models-From-Natural-Language-Supervision/">Learning
+Transferable Visual Models From Natural Language Supervision</a></p>
+Coop：<br/><a href="/Prompt-Learning-for-Vision-Language-Models/">Prompt
+Learning for Vision Language Models</a><br/>
+</details>
+<details close>
+<br/>
+<summary>
+HRnet
+</summary>
+<p><br/>原论文：<br/><a href="/HRnet/">Deep High-Resolution
+Representation Learning for Human Pose Estimation</a></p>
+</details>
+<details close>
+<br/>
+<summary>
+自监督学习——对比学习
+</summary>
+<p><a href="">SimCLR</a></p>
+<p>https://proceedings.mlr.press/v119/chen20j.html</p>
+<p>https://github.com/google-research/simclr</p>
+<p>https://paperswithcode.com/paper/a-simple-framework-for-contrastive-learning</p>
+<p>本文介绍了SimCLR：一个用于视觉表征对比学习的简单框架。我们简化了最近提出的对比自监督学习算法，而不需要专门的架构或内存库。为了理解是什么使对比预测任务能够学习有用的表征，我们系统地研究了我们框架的主要组成部分。我们表明：（1）数据增强的组成在定义有效的预测任务中起着关键作用；（2）在表征和对比损失之间引入可学习的非线性变换，大大提高了学习表征的质量；（3）与监督学习相比，对比学习受益于更大的批量和更多的训练步骤。通过结合这些发现，我们能够在ImageNet上大大优于以前的自监督和半监督学习方法。在SimCLR学习的自监督表示上训练的线性分类器实现了76.5%的top-1准确率，这比以前的最先进技术提高了7%，与监督ResNet-50的性能相匹配。当只对1%的标签进行微调时，我们实现了85.8%的前五名准确率，比AlexNet少了100倍的标签。</p>
+<p><a href="">Matrix Information Theory for Self-Supervised
+Learning</a></p>
+<p>https://paperswithcode.com/paper/kernel-ssl-kernel-kl-divergence-for-self</p>
+</details>
+<details close>
+<summary>
+监督对比学习
+</summary>
+<blockquote>
+<p><a
+target="_blank" rel="noopener" href="https://paperswithcode.com/paper/supervised-contrastive-learning">Supervised
+Contrastive Learning | Papers With Code</a><br/>&gt; <br/>&gt; <a
+target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper_files/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html">Supervised
+Contrastive Learning NeurIPS 2020</a></p>
+</blockquote>
+</details>
+<details close>
+<summary>
+arXiv
+</summary>
+<p><br/><a href="/FOCAL/">Rethinking Image Forgery Detection via
+Contrastive Learning and Unsupervised Clustering</a></p>
+<p>图像伪造检测旨在检测和定位图像中的伪造区域。大多数现有的伪造检测算法都提出了将像素分类为伪造或原始的分类问题。然而，伪造像素和原始像素的定义仅在单个图像内是相对的，例如，图像a中的伪造区域实际上是其源图像B中的原始区域（拼接伪造）。现有的方法严重忽视了这种相对定义，不必要地将不同图像中的伪造（原始）区域混合到同一类别中。为了解决这一困境，我们提出了模糊控制聚类（FOCAL）方法，这是一种新的、简单但非常有效的基于对比学习和无监督聚类的图像伪造检测方法。</p>
+具体而言，FOCAL
+1）利用像素级对比学习，以逐图像的方式监督高级取证特征提取，明确地反映了上述相对定义；2）
+采用动态无监督聚类算法（而不是经过训练的算法）将学习到的特征聚类为伪造/原始类别，进一步抑制了训练数据对跨图像的影响；以及3）允许在不需要重新训练的情况下通过简单的特征级级联来进一步提高检测性能。<br/>
+</details>
+<details close>
+<summary>
+论文（c）
+</summary>
+<p><br/>MMM '24：<br/><a
+href="/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization/">Exploring
+Multi-Modal Fusion for Image Manipulation Detection and
+Localization</a></p>
+<p>图片分别经过阶梯分析丰富模型SRM（高通滤波器） , bayar
+卷积之后和通过NoisePrint++提取的特征送入多尺度编码器进行编码，之后分别通过异常检测解码器和置信度解码器获得预测图和置信图，最后池化后通过篡改解码器，得到篡改可能分数。</p>
+</details>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/">https://zhaozw-szu.github.io/%E8%AE%BA%E6%96%87%E5%90%88%E9%9B%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%90%88%E9%9B%86/">合集</a></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning/" title="CFL-Net:Image Forgery Localization Using Contrastive Learning"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CFL-Net:Image Forgery Localization Using Contrastive Learning</div></div></a></div><div class="next-post pull-right"><a href="/HRnet/" title="HRnet"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HRnet</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/AAIG%E8%AF%BE%E4%BB%A3%E8%A1%A8/" title="AAIG课代表"><img class="cover" src="/img/coverImage/cover1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-10</div><div class="title">AAIG课代表</div></div></a></div><div><a href="/DeepClustering/" title="DeepClustering"><img class="cover" src="/img/coverImage/cover2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-04</div><div class="title">DeepClustering</div></div></a></div><div><a href="/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E5%AE%9A%E4%BD%8D/" title="图像篡改检测定位"><img class="cover" src="/img/coverImage/cover3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">图像篡改检测定位</div></div></a></div><div><a href="/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%90%88%E9%9B%86/" title="损失函数合集"><img class="cover" src="/img/coverImage/cover2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-10</div><div class="title">损失函数合集</div></div></a></div><div><a href="/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88%E3%80%81%E7%89%B9%E5%BE%81%E9%87%87%E6%A0%B7%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" title="特征融合、特征采样方法合集"><img class="cover" src="/img/coverImage/cover5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-08</div><div class="title">特征融合、特征采样方法合集</div></div></a></div><div><a href="/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E5%AE%9A%E4%BD%8D%E8%A7%86%E9%A2%91%E6%80%BB%E7%BB%93/" title="图像篡改检测定位视频合集"><img class="cover" src="/img/coverImage/cover5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-09</div><div class="title">图像篡改检测定位视频合集</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/" title="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance"><img src="/postimages/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/image-20240910110200920.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance"/></a><div class="content"><a class="title" href="/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/" title="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance">Attentive and Contrastive Image Manipulation Localization With Boundary Guidance</a><time datetime="2024-09-10T02:46:55.000Z" title="发表于 2024-09-10 10:46:55">2024-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"><img src="/postimages/KaggleNet/image-20240903142646600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning"/></a><div class="content"><a class="title" href="/KaggleNet/" title="Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning">Towards Generalizable Deepfake Detection via Clustered and Adversarial Forgery Learning</a><time datetime="2024-09-09T07:02:57.000Z" title="发表于 2024-09-09 15:02:57">2024-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/ImageForensicsOSN/" title="ImageForensicsOSN"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ImageForensicsOSN"/></a><div class="content"><a class="title" href="/ImageForensicsOSN/" title="ImageForensicsOSN">ImageForensicsOSN</a><time datetime="2024-09-04T01:26:12.000Z" title="发表于 2024-09-04 09:26:12">2024-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="科研工具"/></a><div class="content"><a class="title" href="/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/" title="科研工具">科研工具</a><time datetime="2024-09-03T14:22:26.612Z" title="发表于 2024-09-03 22:22:26">2024-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning"><img src="/postimages/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/image-20240902210022345.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning"/></a><div class="content"><a class="title" href="/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/" title="Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning">Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning</a><time datetime="2024-09-02T12:16:56.000Z" title="发表于 2024-09-02 20:16:56">2024-09-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

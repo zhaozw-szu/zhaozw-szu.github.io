@@ -197,6 +197,8 @@ template {
 .article-sort-item-title,
 #recent-posts > .recent-post-item >.recent-post-info > .article-title,
 #recent-posts > .recent-post-item >.recent-post-info > .content,
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-title,
+#recent-posts > .recent-post-item1 >.recent-post-info > .content1,
 #aside-content .aside-list > .aside-list-item .content > .name,
 #aside-content .aside-list > .aside-list-item .content > .title,
 #aside-content .aside-list > .aside-list-item .content > .comment,
@@ -223,6 +225,7 @@ template {
 .cardHover,
 .layout > div:first-child:not(.recent-posts),
 #recent-posts > .recent-post-item,
+#recent-posts > .recent-post-item1,
 #aside-content .card-widget,
 .layout > .recent-posts .pagination > *:not(.space) {
   border-radius: 8px;
@@ -238,6 +241,7 @@ template {
 .cardHover:hover,
 .layout > div:first-child:not(.recent-posts):hover,
 #recent-posts > .recent-post-item:hover,
+#recent-posts > .recent-post-item1:hover,
 #aside-content .card-widget:hover,
 .layout > .recent-posts .pagination > *:not(.space):hover {
   -webkit-box-shadow: var(--card-hover-box-shadow);
@@ -4404,6 +4408,182 @@ aside ul#directory ul {
 }
 #recent-posts > .recent-post-item >.recent-post-info > .content {
   -webkit-line-clamp: 2;
+}
+#recent-posts > .recent-post-item1 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item1 {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: auto;
+  }
+}
+#recent-posts > .recent-post-item1.ads-wrap {
+  display: block !important;
+  height: auto !important;
+}
+#recent-posts > .recent-post-item1 .post_cover {
+  overflow: hidden;
+  width: 42%;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item1 .post_cover {
+    width: 100%;
+    height: 230px;
+  }
+}
+#recent-posts > .recent-post-item1 .post_cover .post-bg {
+  padding: 0 40px;
+  width: 100%;
+  height: auto;
+  max-height: 40vh;
+}
+#recent-posts > .recent-post-item1 .post_cover .post-bg1 {
+  padding: 0 40px;
+  width: 50%;
+  height: auto;
+  max-height: 40vh;
+}
+#recent-posts > .recent-post-item1 .post_cover.right {
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -o-box-ordinal-group: 1;
+  -ms-flex-order: 1;
+  -webkit-order: 1;
+  order: 1;
+}
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item1 .post_cover.right {
+    -webkit-box-ordinal-group: 0;
+    -moz-box-ordinal-group: 0;
+    -o-box-ordinal-group: 0;
+    -ms-flex-order: 0;
+    -webkit-order: 0;
+    order: 0;
+  }
+}
+#recent-posts > .recent-post-item1 .post_cover.middle {
+  width: 100%;
+  -webkit-box-ordinal-group: 0;
+  -moz-box-ordinal-group: 0;
+  -o-box-ordinal-group: 0;
+  -ms-flex-order: 0;
+  -webkit-order: 0;
+  order: 0;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info {
+  padding: 0 40px;
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item1 >.recent-post-info {
+    padding: 20px 20px 30px;
+    width: 100%;
+  }
+}
+#recent-posts > .recent-post-item1 >.recent-post-info.first-info {
+  margin-top: 20px;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info.no-cover {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item1 >.recent-post-info.no-cover {
+    padding: 30px 20px;
+  }
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-title {
+  color: var(--text-highlight-color);
+  font-size: 1.3em;
+  line-height: 1.4;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-line-clamp: 2;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-title .sticky {
+  margin-right: 10px;
+  color: #ff7242;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+@media screen and (max-width: 768px) {
+  #recent-posts > .recent-post-item1 >.recent-post-info > .article-title {
+    font-size: 1.43em;
+  }
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-title:hover {
+  color: #49b1f5;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap {
+  margin: 6px 0;
+  color: #858585;
+  font-size: 0.9em;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap > .post-meta-date {
+  cursor: default;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap i {
+  margin: 0 4px 0 0;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap .fa-spinner {
+  margin: 0;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap .article-meta-label {
+  padding-right: 4px;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap .article-meta-separator {
+  margin: 0 6px;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap .article-meta-link {
+  margin: 0 4px;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap a {
+  color: #858585;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .article-meta-wrap a:hover {
+  color: #49b1f5;
+  text-decoration: underline;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .content1 {
+  -webkit-line-clamp: 2;
+}
+#recent-posts > .recent-post-item1 >.recent-post-info > .content img {
+  width: 100%;
+  max-height: 60vw;
 }
 .wrapper {
   display: -webkit-box;
