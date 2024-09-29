@@ -4432,6 +4432,7 @@ aside ul#directory ul {
   width: 100%;
   height: auto;
   margin-top: 20px;
+  padding-bottom: 20px;
 }
 @media screen and (max-width: 768px) {
   #recent-posts > .recent-post-item1 {
