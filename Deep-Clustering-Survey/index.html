@@ -1,0 +1,550 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Deep_Clustering_Survey | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Deep Clustering: A Comprehensive Survey    Yazhou Ren , Member, IEEE, Jingyu Pu , Zhimeng Yang, Jie Xu , Guofeng Li, Xiaorong Pu , Philip S. Yu , Fellow, IEEE, and Lifang He , Member, IEEE  摘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep_Clustering_Survey">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Deep-Clustering-Survey/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Deep Clustering: A Comprehensive Survey    Yazhou Ren , Member, IEEE, Jingyu Pu , Zhimeng Yang, Jie Xu , Guofeng Li, Xiaorong Pu , Philip S. Yu , Fellow, IEEE, and Lifang He , Member, IEEE  摘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg">
+<meta property="article:published_time" content="2024-09-29T02:44:40.000Z">
+<meta property="article:modified_time" content="2024-09-29T12:53:14.170Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Deep-Clustering-Survey/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Deep_Clustering_Survey',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-29 20:53:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Deep_Clustering_Survey</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-29T02:44:40.000Z" title="发表于 2024-09-29 10:44:40">2024-09-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-29T12:53:14.170Z" title="更新于 2024-09-29 20:53:14">2024-09-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Deep_Clustering_Survey"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><center>
+Deep Clustering: A Comprehensive Survey <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/10585323"><img
+src="https://img.shields.io/badge/TNNLS-2024-yellow" alt="TNNLS" /></a>
+</center>
+<center>
+Yazhou Ren , Member, IEEE, Jingyu Pu , Zhimeng Yang, Jie Xu , Guofeng
+Li, Xiaorong Pu , Philip S. Yu , Fellow, IEEE, and Lifang He , Member,
+IEEE
+</center>
+<h1 id="摘要">摘要</h1>
+<p>​  聚类分析在机器学习和数据挖掘中起着不可或缺的作用。学习一个好的数据表示对聚类算法至关重要。近年来，深度聚类（DC，deep
+clustering）可以利用深度神经网络（DNNs，deep neural
+networks）学习聚类友好表示，已广泛应用于聚类任务。现有的DC总结主要集中在单视图场和网络架构上，忽略了复杂的集群应用场景。为了解决这个问题，在本文中，我们提供了一个对DC的数据源的全面总结。对于不同的数据源，我们从方法学、先验知识和体系结构等方面系统地区分了聚类方法。具体地说，DC方法被分为四类，传统的单视图DC、半监督DC、深度多视图聚类（MVC）和深度传输聚类。最后，我们讨论了DC不同领域的开放挑战和潜在的未来机遇。</p>
+<p>​  索引术语——深度聚类（DC）、多视图聚类（MVC）、半监督聚类、迁移学习。</p>
+<h1 id="引言">1. 引言</h1>
+<p>​  随着网络媒体的发展，可以很容易地收集大量复杂的数据。通过对这些数据的精确分析，我们可以挖掘出这些结论的价值，并应用于许多领域，如人脸识别[1]、[2]、情绪分析[3]、[4]和智能制造[5]、[6]。<br/>​  一个可以用于对具有不同标签的数据进行分类的模型是许多应用程序的基础。对于有标记的数据，允许将标签作为最重要的信息作为指南。对于未标记的数据，找到一个可量化的目标作为模型构建过程的指导是聚类的关键问题。在过去的几十年里，人们提出了大量基于浅模型的聚类方法，包括基于质心的聚类基于密度的聚类[9]，[10]，[11]，[12]，[13]，分布的聚类[14]、层次聚类[15]、集成聚类[16]，[17]，和多视图聚类（MVC）[18]，[19]，[20]，[21]，[22]，[23]，[24]，[25]，[26]，[27]，[28]，[29]，[30]。这些浅层模型只有在特征具有代表性时才有效，而由于特征学习能力较差，它们在复杂数据上的性能通常受到限制。<br/>​  为了将原始复杂数据映射到一个易于聚类的特征空间，许多聚类方法都侧重于特征提取或特征转换，如主成分分析（PCA）[31]、核方法[32]、光谱方法[33]和深度神经网络（DNN）[34]。在这些方法中，DNN由于其优秀的非线性映射能力和在不同场景下的灵活性，是一种很有前途的方法。一种设计良好的基于深度学习的聚类方法[称为深度聚类（DC）]，旨在有效地从数据中提取更有利于聚类的特征，并同时使用学习到的特征进行聚类。与传统的聚类方法不同，DC背后的基本概念是将聚类目标合并到深度学习提供的鲁棒表示能力中。因此，获取一个重要的数据表示成为DC的基本要求。<br/>​  DC领域的研究很多，也有一些关于DC[35]、[36]、[37]、[38]方法的总结。具体来说，现有的DC系统综述主要集中在单视图聚类任务和神经网络的架构上。例如，Aljalbout等人。[35]只关注基于深度自动编码器（DAE）的深度单视图聚类方法。Min等人从不同深度网络的角度对DC方法进行分类。Nutakki等人[37]根据其训练策略将深度单视图聚类方法分为三类：多步连续DC、联合DC和闭环多步DC。Zhou等[38]通过特征学习与聚类模块的交互方式对深度单视图聚类方法进行分类。然而，在现实世界中，聚类的数据集总是相关的，例如，阅读的品味与对电影的品味相关，而来自同一个人的侧面和满脸应该被贴上相同的标签。对于这些数据，基于半监督学习、多视图学习和迁移学习的DC方法也取得了重大进展。不幸的是，现有的评论并没有过多地讨论它们。<br/>​  因此，从数据源的角度来对DC进行分类是很重要的。在本总结中，我们从数据的初始设置结合深度学习方法的角度总结了DC。我们从网络和数据结构的角度介绍了DC技术的最新进展，如图1所示。</p>
+<figure>
+<img src="../postimages/Deep-Clustering/image-20240929105628373.png"
+alt="image-20240929105628373" />
+<figcaption aria-hidden="true">image-20240929105628373</figcaption>
+</figure>
+<p>​  具体来说，我们将DC方法组织为以下四类。由于我们从数据源的角度来划分方法，所以特定方法的实现并没有完全分离。方法中有一部分在内部相互关联因此，从数据源的角度来对DC进行分类是很重要的。在本总结中，我们从数据的初始设置结合深度学习方法的角度总结了DC。我们从网络和数据结构的角度介绍了DC技术的最新进展，如图1所示。具体来说，我们将DC方法组织为以下四类。由于我们从数据源的角度来划分方法，所以特定方法的实现并没有完全分离。方法中有一部分在内部相互关联。<br/>​  1)深度单视图聚类：对于传统的聚类任务，通常假设数据具有相同的形式和结构，称为单视图或单模态数据。用
+DNNs提取这些数据的表示是DC的一个重要特征。然而，更值得注意的是不同的应用深度学习技术，它们与DNNs的结构高度相关。为了比较特定DNNs的技术路线，我们将这些算法分为五类：基于DAE的DC、基于DNN的DC、基于变分自编码器（VAE，variational
+autoencoder）的DC、基于生成对抗网络（GAN，generative adversarial
+network）的DC和基于图神经网络（GNN，graph neural
+network）的DC。<br/>​  2)基于半监督学习的DC：当待处理的数据包含一小部分先验约束时，传统的聚类方法不能有效地利用这些先验信息，而半监督聚类是解决这一问题的有效方法。目前，深度半监督聚类的研究还没有得到很好的探索。然而，半监督聚类是不可避免的，因为通过在模型中添加附加信息作为约束损失，使聚类方法成为半监督聚类方法是可行的。<br/>​  3)基于多视角学习的DC：在现实世界中，数据通常来自不同的特征收集器或具有不同的结构。我们称这些数据为“多视图数据”或“多模态数据”，其中每个样本都有多个表示。基于多视图学习的DC的目的是利用多视图数据中包含的一致性和互补的信息来提高聚类性能。此外，多视图学习的思想可能对深度单视图聚类具有指导意义。在本总结中，我们将深度MVC分为三类：基于深度嵌入式聚类（DEC，deep-embedded
+clustering）、基于子空间聚类和基于GNN。<br/>​  4)基于迁移学习的DC：对于一个实例数量有限和高维度的任务，有时我们可以找到一个助手来提供额外的信息。例如，如果任务A与另一个任务B相似，并且任务B比A有更多的聚类信息（B被标记或B比A更容易聚类），那么将信息从B转移到A是有用的。无监督领域自适应（UDA，unsupervised
+domain
+adaption）的迁移学习近年来得到了广泛的发展，它包含两个领域：带有标签的源域和未标记的目标域。迁移学习的目标是将从源任务中学习到的知识或模式应用到一个不同但相关的目标任务中。基于迁移学习的DC分算方法旨在利用相关任务的信息来提高当前聚类任务的性能。<br/>​  在研究相应的聚类方法之前，有必要注意聚类数据的不同特征和条件。在本总结中，现有的DC方法从数据源进行系统分类。分析了不同聚类方法的优缺点和适用条件。最后，我们提出了在DC领域的一些有趣的研究方向。</p>
+<h1 id="定义和初步工作">2. 定义和初步工作</h1>
+<p>​  我们将在本节中介绍这些符号。在本文中，我们使用大写字母来表示矩阵，并使用小写字母来表示向量。除非另有说明，本文中使用的符号将在命名法中进行总结。<br/>​  本总结将介绍基于不同背景条件的四种DC问题。在这里，我们正式地定义了这些问题。给定一组数据样本<span
+class="math inline">\(X\)</span>，我们的目标是找到一个映射函数<span
+class="math inline">\(F\)</span>，它可以将<span
+class="math inline">\(X\)</span>映射到<span
+class="math inline">\(k\)</span>个簇中。映射结果用<span
+class="math inline">\(\hat
+Y\)</span>表示。因此，我们所处理的任务如下:<br/>​  1)深度单视图集群：
+<span class="math display">\[F(X)\to\hat{Y}.\]</span>
+​  2)半监督的深度聚类： <span
+class="math display">\[F(X,A)\to\hat{Y}.\]</span>
+​  其中A是一个约束矩阵。</p>
+<p>​  3)深度MVC： <span
+class="math display">\[F\left(X^1,\ldots,X^v\right)\to\hat{Y}\]</span>
+​  其中<span class="math inline">\(X^i\)</span>是<span
+class="math inline">\(X\)</span>的第一个视图。</p>
+<p>​  4)具有域自适应的深度聚类： <span
+class="math display">\[F(X^s,Y^s,X^t)\to\hat{Y}\]</span> ​  其中<span
+class="math inline">\((X^s,Y^s)\)</span>为已标记的源域，<span
+class="math inline">\(X^t\)</span>为未标记的目标域。</p>
+<h1 id="深度单视图聚类">3. 深度单视图聚类</h1>
+<p>​  表示学习[39]理论显示了特征学习（或表示学习）在机器学习任务中的重要性。然而，深度表示学习主要是监督学习，需要许多标记数据。正如我们之前提到的，DC问题的障碍是什么可以用来指导训练过程，如监督问题中的标签。DC中最“受监督”的信息是数据本身。因此，我们如何训练一个有效的特征提取器来获得良好的表示呢？根据特征提取器的训练方式，我们将深度单视图聚类算法分为五类：基于DAE、基于DNN、基于VAE、基于GAN和基于GNN。</p>
+<p>表1
+基于DAE和基于DNN的方法在深度单视图聚类中的总结。我们总结了基于“联合或单独”和“特征”的基于DAE的方法</p>
+<figure>
+<img src="../postimages/Deep-Clustering/image-20240929113755442.png"
+alt="image-20240929113755442" />
+<figcaption aria-hidden="true">image-20240929113755442</figcaption>
+</figure>
+<p>​  这些方法的区别主要是关于损失分量的，其中损失项的定义见表一，并解释如下。<br/>​  
+1)DAE-Based/GNN-Based: <span
+class="math inline">\(L=L_{rec}+L_c\)</span><br/>​   2)DNN-Based: <span
+class="math inline">\(L = L_{ext} + L_c\)</span><br/>​   3)VAE-Based:
+<span class="math inline">\(L = L_{ELBO} + L_c\)</span><br/>​  
+4)GAN-Based: <span class="math inline">\(L = L_{gan} +
+L_c\)</span><br/>​  在无监督学习中，我们要处理的问题是训练一个可靠的没有标签的特征提取器。在现有的工程中，主要有两种方式：<br/>​  
+1)根据以下原理优化伪标签的损失函数：缩小簇内距离，扩大簇间距离<br/>​  
+2)一个可以帮助训练特征提取器的额外任务。<br/>​  对于具有特殊特征提取器的聚类方法，如自动编码器，重构损失<span
+class="math inline">\(L_{rec}\)</span>可以解释为额外的任务。在本文中，面向聚类的损失<span
+class="math inline">\(L_c\)</span>表示聚类目标的损失。基于DAE/基于GNN的方法使用自动编码器/图自编码器作为特征提取器，因此损失函数总是由一个重构损失<span
+class="math inline">\(L_{rec}\)</span>和另一个面向聚类的损失<span
+class="math inline">\(L_c\)</span>组成。相比之下，基于DNN的方法使用额外的任务或其他策略来优化特征提取器。基于VAE的方法优化了证据损失下界（ELBO，evidence
+lower bound）<span
+class="math inline">\(L_{ELBO}\)</span>。基于GAN的方法是基于生成式的对抗性损失<span
+class="math inline">\(L_{gan}\)</span>。基于这五个维度，现有的深度单视图聚类方法总结在表一和表二中。</p>
+<p>表2 基于VAE、基于GAN和基于GNN的方法在深度单视图聚类中的总结</p>
+<figure>
+<img src="../postimages/Deep-Clustering/image-20240929115248981.png"
+alt="image-20240929115248981" />
+<figcaption aria-hidden="true">image-20240929115248981</figcaption>
+</figure>
+<h2 id="a.-基于dae">A. 基于DAE</h2>
+<p>​  自动编码器网络[39]最初是为数据的无监督表示学习而设计的，可以学习一个高度非线性的映射函数。使用DAE
+[97]是开发DC方法的一种常见方法。DAE的目的是通过最小化网络的重构损失来学习低维嵌入特征空间，其定义为：
+<span
+class="math display">\[L_{\mathrm{rec}}=\min\frac{1}{n}\sum_{i=1}^n\|x_i-\phi_r(\phi_e(x_i))\|^2\]</span>
+​  其中，<span class="math inline">\(\phi_e(\cdot)\)</span>和<span
+class="math inline">\(\phi_r(\cdot)\)</span>分别表示自动编码器的编码器网络和解码器网络。利用该编码器作为特征提取器，提出了各种聚类目标函数。我们将这些基于DAE的聚类方法总结为基于DAE的DC。在基于DAE的DC方法中，主要有两种获取标签的方法。第一种方法是将数据嵌入到低维特征中，然后用传统的聚类方法如k-means算法[7]等聚类方法对嵌入的特征进行聚类。第二种方法是联合优化特征提取器和聚类结果。我们将这两种方法称为“单独分析”和“联合分析”，并在下面对它们进行详细阐述。<br/>​  “单独分析”是指学习特征和聚类数据被单独执行。为了解决通过“单独分析”学习到的表征由于其固有的特性而不具有聚类导向的问题，Huang等人[41]提出了一种用于聚类的深度嵌入网络（DEN，deep
+embedding
+network），该网络基于DAE目标施加了两个约束：局部性保留约束和群稀疏性约束。局部保留约束使同一集群中嵌入的特征相似。群稀疏性约束的目的是对角线化表示的相似度矩阵。这两个约束条件提高了聚类性能，同时减少了簇内距离，扩大了簇间距离。大多数基于DAE的聚类方法的目标都是研究这两种距离。因此，在表一中，我们从“特征”的角度对这些方法进行了总结，说明了优化簇内距离和簇间距离的方法。<br/>​  Peng等[42]在子空间聚类领域提出了一种新的基于深度学习的框架，即具有稀疏先验（PARTY，deep
+subspace clustering with sparsity
+prior）的深度子空间聚类。PARTY通过考虑不同样本之间的关系（即结构先验）来增强自动编码器并解决了传统的子空间聚类方法的局限性。据我们所知，PARTY是第一个基于深度学习的子空间聚类方法，也是第一个在神经网络之前引入全局结构进行无监督学习的工作。与PARTY不同，Ji
+et al.
+[45]提出了另一种深度子空间聚类网络（DSC-Net）架构来学习非线性映射，并引入了一个自表达层来直接学习相似度矩阵。<br/>​  基于密度的聚类[9]，[98]是另一种流行的聚类方法。Ren等人[57]提出了基于深度密度的图像聚类（DDIC，density-based
+image
+clustering），该方法使用DAE学习低维特征表示，然后对学习到的特征进行基于密度的聚类。特别是，DDIC不需要提前知道集群的数量。<br/>​  “联合分析”的目的是学习一种更适合聚类的表示，这不同于深度学习和聚类单独进行的单独分析方法，并且神经网络在学习数据特征时没有面向聚类的目标。大多数后续的DC研究将聚类目标与特征学习相结合，使神经网络能够从数据的潜在分布中学习有利于聚类的特征。在本总结中，这些方法被总结为“联合分析”。<br/>​  受非参数算法t分布随机邻域嵌入（t-SNE，t-distributed
+stochastic neighbor
+embedding）[99]的启发，Xie等[43]提出了一个联合框架来优化特征学习和聚类目标，命名为DEC。DEC首先通过<span
+class="math inline">\(L_{rec}\)</span>学习从数据空间到较低维特征空间的映射，然后迭代优化聚类损失KL（S∥R）（即Kullback–Leibler
+(KL)散度）。这里，S表示描述嵌入数据与每个聚类质心之间相似性的数据的软赋值（质心用k-means初始化），R是调整后的目标分布，与S相比具有更纯粹的聚类赋值。<br/>​  DEC由于其联合学习框架和计算复杂度低，是DC技术中的一种代表性方法。基于DEC，已经提出了一些变体。例如，为了保证微调阶段的局部结构，提出了改进的DEC（IDEC）方法，以联合优化加权聚类损失和自编码器的重构损失。DEC与数据增强（DEC-DA）[49]在DEC中应用了数据增强策略。Li等人[50]提出了判别增强图像聚类（DBC）来处理图像表示学习和图像聚类。DBC有一个类似于DEC的管道，但学习过程是自定节奏的[100]，其中首先选择最简单的实例，并逐步扩展更复杂的样本。<br/>​  在DEC中，预测的聚类任命是由学生的t-分布计算出来的。不同的是，Dizaji等人[46]提出了一种深度嵌入的正则化聚类（DEPICT，deep-embedded
+regularized clustering），通过在卷积自编码器（CAE，convolutional
+autoencoder）的嵌入层上叠加一个新的聚类损失。此外，DEPICT的聚类损失通过聚类分配频率的先验和层级特征重构损失函数进行正则化。Yang等人，[47]直接将k-均值的目标作为聚类损失。该模型名为DC网络（DCN），是一种联合降维和k-均值聚类方法，通过学习DAE来实现降维。Shah和Koltun
+[51]提出了深度连续聚类（DCC， deep continuous
+clustering），这是一种通过将自编码器集成到范例中的扩展。DCC通过联合优化已定义的数据损失、成对损失和重建损失来进行聚类学习。特别是，它不需要对集群数量的先验知识。Tzoreff.[53]等人提出了深度鉴别聚类潜在空间（DDLSC，deep
+discriminative latent space for
+clustering），以优化关于鉴别成对损失函数的DAE。<br/>​  深度流形聚类（DMC，Deep
+manifold
+clustering）[48]是第一个将深度学习应用于流形聚类[101]，[102]中的方法。在DMC中，训练一个由堆叠的RBMs[103]组成的自动编码器来获得转换后的表示。DMC的重构损失和聚类损失都与以往的方法不同，即通过重构一个样本及其局部邻域来定义局部保持目标。利用样本和聚类中心之间的高斯核测量的惩罚系数和距离来定义面向聚类的目标。<br/>​  最近提出的基于DAE的聚类算法也利用DAE的变体来更好地学习低维特征，并通过结合传统机器学习方法的思想来提高聚类性能。例如，利用双自编码器网络（DSCDAE，dual
+autoencoder
+network）[55]的深度光谱聚类和通过集成DAE学习（SC-EDAE，spectral
+clustering via ensemble DAE
+learning）[58]的光谱聚类，目的是将光谱聚类集成到精心设计的DC自编码器中。Zhang等[56]提出了神经协同子空间聚类（NCSC，neural
+collaborative subspace clustering
+），它将两个置信映射建立在自编码器学习到的特征上，作为子空间聚类的监督信息。在数据增强下对的自适应自定速DC（ASPC-DA，adaptive
+self-paced DC with data
+augmentation）[59]中，同同时采用了自定速学习思想[100]和数据增强技术。其学习过程与DEC相同，包括两个阶段，即对自动编码器进行预训练和对编码器进行微调。<br/>​  一般来说，我们注意到所采用的网络结构与要处理的数据类型有关。例如，全连接网络通常用于提取一维数据特征，而卷积神经网络（CNNs）则用于提取图像特征。上述大多数基于DAE的DC方法都可以通过全连接的自动编码器和CAE来实现，因此，它们在一定程度上适用于各种类型的数据。然而，在计算机视觉领域，有一类专注于图像聚类的直流方法。这些方法可以追溯到[104]，并被总结为基于DNN的DC，因为它们通常使用CNNs来进行图像特征学习和语义聚类。</p>
+<h2 id="b.-基于dnn">B. 基于DNN</h2>
+<p>​  本节将介绍基于DNN的聚类方法。与基于DAE的聚类方法不同，基于DNN的方法必须设计额外的任务来训练特征提取器。在本调查中，我们从“面向聚类的损失”和“特征”两个角度总结了表I中基于DNN的DC方法。“面向聚类的损失”显示了是否存在一个损失函数，它明确地缩小了簇内的距离或扩大了簇间的距离。图2显示了基于CNN的深度无监督学习的框架。</p>
+<figure>
+<img src="../postimages/Deep-Clustering/image-20240929160431452.png"
+alt="image-20240929160431452" />
+<figcaption aria-hidden="true">image-20240929160431452</figcaption>
+</figure>
+<p>图2。基于DNN的学习框架（单视图聚类）。X是聚类的数据，f是X的特征提取器。第一部分描述了监督学习的框架。Y表示真实的标签，S表示预测的结果。使用Y和S，我们可以计算反向传播的分类损失。第二部分是具有额外任务的方法的框架。额外的任务用于训练网络进行良好的嵌入z。第三部分描述了需要调整集群分配的方法的过程。S表示预测结果，R为S的调整。</p>
+<p>​  当DNN训练过程开始时，随机初始化的特征提取器是不可靠的。因此，基于随机初始化神经网络的DC方法通常采用传统的聚类技巧，如分层聚类[105]或专注于额外的任务，如实例生成。例如，Yang等人[63]提出了一种名为JULE的联合无监督学习方法，该方法应用凝聚聚类魔法来训练特征提取器。具体来说，JULE在一个递归框架中制定了联合学习，其中将凝聚聚类的合并操作视为前向传递，并将DNN的表示学习视为后向传递。基于这个假设，JULE还应用了一个损失，即缩小了簇内距离，同时扩大了簇内距离。在每个轮次中，JULE将两个簇合并为一个簇，并计算向后通过的损失。<br/>​  Chang等人[65]提出了深度自适应图像聚类（DAC，deep
+adaptive image
+clustering）来解决特征学习和聚类相结合的问题。在DAC中，将聚类问题重构为二值成对分类问题，用以判断具有估计余弦相似度的成对图像是否属于同一聚类。然后，它自适应地选择相似的样本，以有监督的方式训练DNN。DAC为DC提供了一个新的视角，但它只关注于成对模式之间的关系。深度判别聚类（DDC，Deep
+discriminative
+clustering）分析[54]是通过引入全局和局部关系约束，更鲁棒和广义的约束。基于空间transformer的深度自适应聚类（ST-DAC，Spatial
+transformer-deep adaptive clustering
+）[69]应用视觉注意机制[106]来修改DAC的结构。Haeusser等人[68]提出了关联DC（ADC，associative
+DC），它包含一组与图像嵌入具有相同形状的质心变量。由于质心变量在迭代过程中可以传递关于数据结构的高级信息，它们引入了一个具有多个损失项的目标函数，同时训练这些质心变量和DNN参数以及聚类映射层。<br/>​  上述聚类方法通过将一个实例的聚类通过整个深度网络来估计其聚类，从而倾向于提取实例[107]的全局特征。一些聚类方法使用一个成熟的分类网络来初始化特征提取器。例如，深度集群[66]对深度模型的输出特性（如AlexNet
+[108]和VGG-16 [109]）应用k-means，并将集群分配作为“伪标签”来优化
+CNNs的参数。Hsu和Lin [67]提出了聚类CNN（CCNN，clustering
+CNN），该方法将小批量k-均值与从ImageNet数据集[110]预训练的模型集成在一起。<br/>​  为了提高模型的鲁棒性，越来越多的方法对DC
+[49]、[59]、[76]进行了数据增强。例如，Huang等人[76]扩展了经典的最大边际聚类[111]，[112]的思想，建立了一种新的深度语义聚类方法[称为划分置信度极大化（PICA，PartItion
+Confidence
+mAximization）]。在PICA中，采用了颜色抖动、随机调整尺度和水平翻转三个操作来进行数据增强和扰动。<br/>​  互信息也被作为学习表示[113]、[114]的标准，并在最近的聚类方法中流行起来，特别是对图像数据。各种数据增强技术已被应用于生成转换后的图像，并用于挖掘它们的互信息。例如，Ji等人[71]提出了用于语义聚类和图像分割的不变信息聚类（IIC，
+invariant information
+clustering）。在IIC中，每幅图像及其随机变换都被视为一个样本对。通过最大化每对聚类分配之间的互信息，该模型可以找到具有语义意义的聚类，并自然地避免退化解。深度综合相关挖掘（DCCM，deep
+comprehensive correlation
+mining）[72]是一种新的图像聚类框架，它使用伪标签丢失作为监督信息。此外，作者扩展了实例级互信息，并提出了三重互信息损失，以学习更多的区别特征。基于目前流行的对比学习[115]，Zhong等[75]提出了深度鲁棒聚类（DRC，
+deep robust
+clustering），其中引入了两个对比损失项来减少类内方差和增加类间方差。互信息和对比学习是相互关联的。在
+DRC，作者总结了一个框架，可以将最大化互信息转化为最小化对比损失。<br/>​  在语义层次的图像聚类领域，人们认为原始图像的预测应该与数据增强后图像的预测一致。因此，在无监督学习环境下，数据增强技术不仅被用于扩展训练数据，而且可以很容易地获得有监督的信息。这就是为什么数据增强可以广泛应用于许多最近提出的图像聚类方法。例如，Nina等人[70]提出了一种具有数据增强的无解码器方法（称为随机三重态挖掘（RTM，random
+triplet
+mining）），用于聚类和流形学习。为了学习一个更鲁棒的编码器，该模型由三个具有共享权值的编码器组成，在概念上是一个三重网络体系结构。第一和第二编码器将数据增强生成的相似图像作为正对，第二和第三编码器采用RTM选择的负对。通常，定义三重态网络[116]的目标是为了使正对的特征更加相似，而使负对的特征更加不同。<br/>​  虽然许多现有的DC方法联合学习表示和聚类，如JULE和DAC，但也有专门设计的表示学习方法[117]、[118]、[119]、[120]、[121]，以自我监督的方式学习图像的视觉表示。这些方法通过训练深度网络来解决额外的任务来学习语义表示。这些任务可以是预测补丁上下文[117]，在绘制补丁[118]，彩色图像[119]，解决拼图游戏[120]，和预测旋转[121]，等等。近年来，这些自监督表示学习方法已被用于图像聚类。例如，多模态DC（MMDC，multimodal
+DC）[73]利用一个预测旋转的辅助任务来提高聚类性能。通过采用最近邻（SCAN，Semantic
+clustering by adopting nearest
+neighbors）[74]进行语义聚类，首先采用自监督表示学习方法来获得语义上有意义的高级特征。然后，它将语义上有意义的最近邻作为先验信息集成到一个可学习的聚类方法中。<br/>​  由于DEC
+[43]和JULE
+[63]被提出联合学习DNNs的特征表示和聚类分配，许多基于DAE和基于DNN的DC方法被提出，并在聚类任务方面取得了很大的进展。然而，在聚类方法中提取的特征表示很难扩展到其他任务，如生成样本。深度生成模型最近引起了广泛的关注，因为它们可以使用神经网络来获取数据分布，从而可以生成样本（VAE
+[122]，GAN [123]，Pixel-RNN [124]，InfoGAN [125]，和PPGN
+[126]）。其中，GAN和VAE是两种最典型的深层生成模型。近年来，研究人员将其应用于各种任务，如半监督分类[127]、[128]、[129]、[130]、聚类[131]和图像生成[132]、[133]。在III-C节和III-D节中，我们分别介绍了基于生成模型的DC算法：基于VAE的DC和基于GAN的DC。</p>
+<h2 id="c.-基于vae">C. 基于VAE</h2>
+<p>​  基于非参数聚类（DNC，nonparametric
+clustering）[134]的深度学习是将深度信念网络应用于DC的先驱工作。然而，在基于概率图形模型的DC中，更多的研究来自于VAE的应用，它将变分推理和DAE结合在一起。<br/>​  大多数基于VAE的DC算法旨在解决一个优化问题ELBO（见推论细节[122]和[135]），p是联合概率分布，q的近似概率分布p（z|x），x是集群的输入数据，z是对应于x而生成的潜在变量：
+<span
+class="math display">\[L_{\mathrm{ELBO}}=\mathbb{E}_{q(z|x)}\biggl[\log\frac{p(x,z)}{q(z|x)}\biggr].\]</span>
+​  不同之处在于，不同的算法有不同的潜在变量生成模型或不同的正则化器。我们列出了近年来备受关注的几种基于VAE的DC处理方法如下。为了方便起见，我们忽略了概率分布的参数化形式。<br/>​  传统的VAE生成一个连续的潜在向量z，x是一个原始数据样本的向量。在聚类任务中，基于VAE的方法生成潜在向量（z，y），其中z是表示嵌入的潜在向量，y是标签。因此，优化的ELBO成为：
+<span
+class="math display">\[L_{\mathrm{ELBO}}=\mathbb{E}_{q(z,y|x)}\biggl[\log\frac{p(x,z,y)}{q(z,y|x)}\biggr].\]</span>
+​  第一个提出的无监督深度生成聚类框架是变分深度嵌入（VaDE， variational
+deep embedding）[77]。VaDE使用结合VAE的高斯混合模型（GMM，Gaussian
+mixture
+model）[136]对数据生成过程进行建模。在该方法中，是在高斯混合先验中而不是在单个高斯先验中联合考虑簇分配和潜在变量。<br/>​  与VaDE类似，高斯混合VAE（GMVAE，Gaussian
+mixture
+VAE）[78]是另一种将VAE与GMM相结合的DC方法。具体地说，GMVAE考虑生成模型<span
+class="math inline">\(p(x,z,n,c)=p(x|z)p(z|n,c)p(n)p(c)\)</span>，其中c是均匀分布的k个类别，n是正态分布。z是一个连续潜变量，其分布是均值和方差为c和n的高斯混合变量。基于平均场理论[137]，GMVAE因子<span
+class="math inline">\(p(x,z,n,c)=p(x|z)p(z|n,c)p(n)p(c)\)</span>作为后验代理。同样，将这些变分因子用神经网络参数化，并优化了ELBO损失。<br/>​  潜在树VAE（LTVAE，latent
+tree
+VAE）[80]基于GMM和VAE，应用潜在树模型[138]进行表示学习和结构学习进行聚类。不同的是，LTVAE有一个VAE的变体，具有潜在变量的上层结构。上层结构是在潜在特征之上的离散潜在变量的树形结构。所有变量之间的连通性结构被定义为通过消息传递[139]进行优化的潜在树模型的潜在结构。<br/>​  一些深度生成聚类方法的成功取决于良好的初始预训练。例如，在VaDE
+[77]中，需要进行预训练来初始化集群质心。在通过图嵌入（DGG，graph
+embedding）[140]的GMVAE的DC中，需要预训练来初始化图嵌入。虽然GMVAE
+[78]共同学习先验和后验参数，但每个类的先验都依赖于一个随机变量，而不是类本身，这似乎是违反直觉的。基于GMVAE和VaDE的思想，Prasad等人[82]为了解决他们的谬误，提出了一种利用VAE进行图像聚类（VAEIC，VAE
+for image
+clustering）的新模型。与上述方法不同的是，VAEIC的先验参数是确定性的，并且先验参数和后验参数是联合学习的，而不需要进行预训练过程。不是像GMVAE和VaDE那样执行贝叶斯分类，VAEIC采用更直接的推理和更有原则的潜在空间先验，从而得到更简单的推理模型<span
+class="math inline">\(p(x,z,c)=p(x|z)p(z|c)p(c)\)</span>和更简单的近似后验<span
+class="math inline">\(q(z,c|x)=q(c|x)q(z|x,c)\)</span>。聚类分配由<span
+class="math inline">\(q(c|z)\)</span>直接预测。此外，作者采用数据增强，设计了图像增强损失，使模型具有鲁棒性。<br/>​  除了上面提到的基于VAE的DC方法外，Figueroa和Rivera
+[79]使用连续的Gumbel-Softmax分布[141]，[142]来近似分类分布进行聚类。[81]等人扩展了变分阶梯自动编码器[143]，并提出了一种解纠缠聚类算法。Cao等人[83]提出了一种简单、可扩展、稳定的变分DC算法，该算法引入了对变分DC的通用改进。</p>
+<h1 id="半监督的深度聚类">4. 半监督的深度聚类</h1>
+<p>(施工中。。。。。)</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Deep-Clustering-Survey/">https://zhaozw-szu.github.io/Deep-Clustering-Survey/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/" title="经典网络合集"><img class="cover" src="/img/coverImage/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">经典网络合集</div></div></a></div><div class="next-post pull-right"><a href="/%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" title="聚类方法合集"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">聚类方法合集</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1. 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%9D%E6%AD%A5%E5%B7%A5%E4%BD%9C"><span class="toc-text">2. 定义和初步工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%8D%95%E8%A7%86%E5%9B%BE%E8%81%9A%E7%B1%BB"><span class="toc-text">3. 深度单视图聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-%E5%9F%BA%E4%BA%8Edae"><span class="toc-text">A. 基于DAE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E5%9F%BA%E4%BA%8Ednn"><span class="toc-text">B. 基于DNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E5%9F%BA%E4%BA%8Evae"><span class="toc-text">C. 基于VAE</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8A%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%81%9A%E7%B1%BB"><span class="toc-text">4. 半监督的深度聚类</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Efficient_Deep_Embedded_Subspace_Clustering"/></a><div class="content"><a class="title" href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering">Efficient_Deep_Embedded_Subspace_Clustering</a><time datetime="2024-10-04T03:18:03.000Z" title="发表于 2024-10-04 11:18:03">2024-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/" title="经典网络合集"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="经典网络合集"/></a><div class="content"><a class="title" href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/" title="经典网络合集">经典网络合集</a><time datetime="2024-10-03T11:19:31.000Z" title="发表于 2024-10-03 19:19:31">2024-10-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Clustering-Survey/" title="Deep_Clustering_Survey"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Clustering_Survey"/></a><div class="content"><a class="title" href="/Deep-Clustering-Survey/" title="Deep_Clustering_Survey">Deep_Clustering_Survey</a><time datetime="2024-09-29T02:44:40.000Z" title="发表于 2024-09-29 10:44:40">2024-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" title="聚类方法合集"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="聚类方法合集"/></a><div class="content"><a class="title" href="/%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" title="聚类方法合集">聚类方法合集</a><time datetime="2024-09-27T01:06:33.000Z" title="发表于 2024-09-27 09:06:33">2024-09-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/" title="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance"><img src="/postimages/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/image-20240910110200920.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance"/></a><div class="content"><a class="title" href="/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/" title="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance">Attentive and Contrastive Image Manipulation Localization With Boundary Guidance</a><time datetime="2024-09-10T02:46:55.000Z" title="发表于 2024-09-10 10:46:55">2024-09-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

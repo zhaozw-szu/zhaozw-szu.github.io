@@ -1,0 +1,516 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>经典网络合集 | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 自编码器（autoencoder） ​  自编码器（autoencoder）内部有一个隐藏层 h，可以产生编码（code）表示输入。​  该网络可以看作由两部分组成：  由函数\(h &#x3D; f ( x )\)表示的编码器 生成重构的解码器\(r &#x3D; g(h)\)，整体结构如下图所示：    image-20241003192041921  自编码器的一些基本概念">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经典网络合集">
+<meta property="og:url" content="https://zhaozw-szu.github.io/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="1. 自编码器（autoencoder） ​  自编码器（autoencoder）内部有一个隐藏层 h，可以产生编码（code）表示输入。​  该网络可以看作由两部分组成：  由函数\(h &#x3D; f ( x )\)表示的编码器 生成重构的解码器\(r &#x3D; g(h)\)，整体结构如下图所示：    image-20241003192041921  自编码器的一些基本概念">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg">
+<meta property="article:published_time" content="2024-10-03T11:19:31.000Z">
+<meta property="article:modified_time" content="2024-10-03T11:49:52.480Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '经典网络合集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-03 19:49:52'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">经典网络合集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-03T11:19:31.000Z" title="发表于 2024-10-03 19:19:31">2024-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-03T11:49:52.480Z" title="更新于 2024-10-03 19:49:52">2024-10-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="经典网络合集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="自编码器autoencoder">1. 自编码器（autoencoder）</h1>
+<p>​  自编码器（autoencoder）内部有一个隐藏层
+h，可以产生编码（code）表示输入。<br/>​  该网络可以看作由两部分组成：</p>
+<ul>
+<li>由函数<span class="math inline">\(h = f ( x
+)\)</span>表示的编码器</li>
+<li>生成重构的解码器<span class="math inline">\(r =
+g(h)\)</span>，整体结构如下图所示：</li>
+</ul>
+<figure>
+<img
+src="../postimages/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/image-20241003192041921.png"
+alt="image-20241003192041921" />
+<figcaption aria-hidden="true">image-20241003192041921</figcaption>
+</figure>
+<h2 id="自编码器的一些基本概念">自编码器的一些基本概念</h2>
+<ol type="1">
+<li>欠完备自编码器：h维度&lt;x维度。</li>
+</ol>
+<ul>
+<li>学习欠完备的表示将强制自编码器捕捉训练数据中最显著的特征。“学习欠完备的表示”意味着编码器被设计成只能生成比输入数据更简单、更压缩的表示。举一个简单的例子：</li>
+<li>假设你有一堆猫和狗的图片。一个没有任何限制的自编码器可能会尝试记住每张图片的所有细节（毛色、背景等等）。但是，如果我们限制自编码器只能生成非常简化的表示，它就会被迫关注猫和狗最明显的特征，比如猫的尖耳朵和狗的长尾巴，而忽略背景和毛色等次要特征。</li>
+</ul>
+<ol start="2" type="1">
+<li>过完备自编码器：h维度&gt;=x维度。</li>
+</ol>
+<ul>
+<li><p>过完备则与欠完备相反。“过完备”意味着编码器的表示空间非常大，能够容纳甚至超过输入数据中的所有信息。举一个简单的例子：</p></li>
+<li><p>假设你有一堆猫和狗的图片。一个过完备自编码器可能会记住每张图片的所有细节，包括背景、毛色、姿态等等。这使得它在训练数据上表现非常好，但在遇到新的猫狗图片时，可能无法很好地识别出它们的共同特征。</p></li>
+<li><p>在过完备的情况下，可能会出现编码器无法学习到有效信息的情况。这是因为：当编码维数与输入维数相等或更大时，自编码器的表示空间非常大，足以容纳输入数据中的所有信息。在这种情况下，甚至简单的线性编码器和解码器也可以直接将输入复制到输出，而不需要提取任何有用的特征。这意味着自编码器没有被迫去学习数据的分布特征，因为它可以简单地记住所有的数据。这种记忆机制使得模型在训练数据上表现很好，但在面对新数据时可能表现很差，因为它没有学到数据的内在模式或结构。</p></li>
+</ul>
+<h3 id="传统自编码器ae">1 传统自编码器（AE）</h3>
+<p>​  AE的网络结构如下：包含三层——输入层、隐藏层、输出层，每一层都是由若干个神经元组成的。</p>
+<figure>
+<img
+src="../postimages/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/image-20241003192700571.png"
+alt="image-20241003192700571" />
+<figcaption aria-hidden="true">image-20241003192700571</figcaption>
+</figure>
+<p>​  编码：<span
+class="math inline">\(h=f(x)=f(W_1X+b_1)\)</span><br/>​  解码：<span
+class="math inline">\(X_d=g(x)=g(W_2h+b_2)\)</span><br/>​  损失函数：<span
+class="math inline">\(J_{AE}\left(\theta\right)=J(X,X^d)=-\sum_{i=1}^n(x_i\log(x_i^d)+(1-x_i)\log(1-x_i^d))\)</span><br/>​  采用梯度下降法即可进行训练。此外，为了控制权重降低的程度，防止自编码器的过拟合，将在上述损失函数中加入正则化项(也称重量衰减项)，变为正则化自编码器：<span
+class="math inline">\(J_{\mathrm{ReAE}}(\theta)=J(X,X^d)+\lambda\parallel
+W\parallel_2^2\)</span></p>
+<h3 id="去噪自编码器dae">2 去噪自编码器（DAE）</h3>
+<p>​  DAE的网络结构如下，AE的目的是求h，但它没有使用h的真实值来训练，所以是无监督的。而DAE的目的是使得网络能够进行去噪，目的是求X，但它用到了X真实值做loss，所以他是监督学习。</p>
+<figure>
+<img
+src="../postimages/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/image-20241003193316595.png"
+alt="image-20241003193316595" />
+<figcaption aria-hidden="true">image-20241003193316595</figcaption>
+</figure>
+<p>​  DAE的动机是主动给X加噪，使得网络带有去噪的能力。但是在每次网络训练之前，人为地在干净的输入信号中加入噪声，增加了模型的处理时间。而且，如果加入过多的噪声，会导致输入样本的严重失真，从而降低算法的性能。</p>
+<h3 id="稀疏自编码器sae">3 稀疏自编码器（SAE）</h3>
+<figure>
+<img
+src="../postimages/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/image-20241003192700571.png"
+alt="image-20241003192700571" />
+<figcaption aria-hidden="true">image-20241003192700571</figcaption>
+</figure>
+<p>​  稀疏自编码器利用了X的先验信息，这个先验信息就是X的稀疏度。它的网络结构和AE没有什么区别，但是损失函数变了，添加了一项KL散度，是编码后h的稀疏度和真实稀疏度之间的散度。<span
+class="math inline">\(J_{SAE}(\theta)=J(X,X^d)+\beta\sum_{j=1}^tKL(\rho\parallel\hat{\rho}_j)\)</span>其中<span
+class="math inline">\(\beta\)</span>是控制稀疏惩罚的系数，为0~1。<br/>​  首先定义每个隐藏单元j
+jj的平均激活值<span class="math inline">\(\hat{\rho}_j\)</span> : <span
+class="math inline">\(\hat{\rho}_j=\frac1n\sum_{i=1}^nh_j\left(x_i\right)\)</span><br/>​  其中，n是训练样本数量，<span
+class="math inline">\(h_j{(x_i)}\)</span>第i个样本对于隐藏单元j的激活值。<br/>​  然后定义目标稀疏度<span
+class="math inline">\(\rho\)</span>,这是希望隐藏单元的平均激活值。例如，如果<span
+class="math inline">\(\rho\)</span>较小(如0.05),则希望大多数隐藏单元在任何给定时间都不活跃。<br/>​  最后，将稀疏惩罚项加入到损失函数中，使用KL散度来衡量目标稀疏度和实际稀疏度之间的差异：<span
+class="math inline">\(\mathrm{KL}(\rho||\hat{\rho}_j)=\rho\log\frac{\rho}{\hat{\rho}_j}+(1-\rho)\log\frac{1-\rho}{1-\hat{\rho}_j}\)</span><br/>​  稀疏惩罚项的总和是所有隐藏单元的KL散度之和：$
+_{j=1}^{t}(||)<span
+class="math inline">\(&lt;br/&gt;​&amp;emsp;&amp;emsp;KL散度是描述两个分布之间差异的指标，KL散度越小，分布越接近，具体公式如下：\)</span>KL(_j)=+(1-)$</p>
+<h3 id="变分自编码器vae">4 变分自编码器（VAE）</h3>
+<p>​  首先说明变分自编码器的总体意义：VAE是在自编码器基础上结合了变分贝叶斯推断的方法，旨在学习数据的隐含结构，并能够生成新的、类似于训练数据的样本。可以说VAE的主要目的是生成新的数据。VAE通过显式地建模潜在变量的概率分布，使得潜在空间结构更加明确和可解释，最终能生成新样本。这在生成对抗网络（GAN）出现之前是一个重要的进展。<br/>​  下面介绍VAE的主要做法：<br/>​  VAE的整体网络结构简图如下：</p>
+<figure>
+<img
+src="../postimages/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/image-20241003194129820.png"
+alt="image-20241003194129820" />
+<figcaption aria-hidden="true">image-20241003194129820</figcaption>
+</figure>
+<p>​  针对一个输入 <span
+class="math inline">\(x_i\)</span>（比如一个样本就是一张图像），网络结构如下（下图中的<span
+class="math inline">\(\mu_{i}^{\prime}\)</span>就是输出的<span
+class="math inline">\(X^d\)</span> ）：</p>
+<figure>
+<img
+src="../postimages/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/image-20241003194253388.png"
+alt="image-20241003194253388" />
+<figcaption aria-hidden="true">image-20241003194253388</figcaption>
+</figure>
+<p>​  总结一下VAE的架构：</p>
+<blockquote>
+<ol type="1">
+<li>我们首先给Encoder输入一个数据点<span
+class="math inline">\(x_i\)</span>,通过神经网络，我们得到隐变量<span
+class="math inline">\(z\)</span>服从的近似后验分布<span
+class="math inline">\(q_\phi(z\mid
+x_i)\)</span>的参数。我们往往认为后验分布是一个各维度独立的高斯分布，因此令Encoder输出<span
+class="math inline">\(z\mid x_i\)</span>服从的高斯分布的参数<span
+class="math inline">\(\sigma_i^2\)</span>和<span
+class="math inline">\(\mu_i\)</span>即可。<br/>&gt; 2. 有了<span
+class="math inline">\(z\mid x_i\)</span>分布的参数<span
+class="math inline">\(\sigma_i^2\)</span>和<span
+class="math inline">\(\mu_i\)</span>后，我们从对应的高斯分布中采样出一个<span
+class="math inline">\(z_i\)</span>,这个<span
+class="math inline">\(z_i\)</span>应当代表与<span
+class="math inline">\(x_i\)</span>相似的一类样本。<br/>&gt; 3.
+我们令Decoder拟合似然的分布<span class="math inline">\(p_\theta(X\mid
+z_i)\)</span>。喂给Decoder一个<span
+class="math inline">\(z_i\)</span>,它应当返回<span
+class="math inline">\(X\mid
+z_i\)</span>服从的分布的参数。我们往往认为似然也服从一个各维度独立的高斯分布，因此令Decoder输出<span
+class="math inline">\(X\mid z_i\)</span>服从的高斯分布的参数<span
+class="math inline">\(\sigma_i^{\prime2}\)</span>和<span
+class="math inline">\(\mu_i^{\prime}\)</span>即可。<br/>&gt; 4.
+在得到<span class="math inline">\(X\mid
+z_i\)</span>的分布的参数后，理论上我们需要从这个分布中进行采样，来生成可能的数据点<span
+class="math inline">\(x_{i}\)</span>。</li>
+</ol>
+</blockquote>
+<p>​  上述第四点中值得注意的是，在大部分实现中，人们往往不进行采样，而是直接将模型输出的<span
+class="math inline">\(\mu_i^{\prime}\)</span>当作是给定<span
+class="math inline">\(z_i\)</span>生成的数据点<span
+class="math inline">\(x_i\)</span>
+。<br/>​  除此之外，人们也往往认为<span
+class="math inline">\(p_\theta(X\mid
+z_i)\)</span>是一个固定方差的各维度独立的多元高斯分布，即<span
+class="math inline">\(p_\theta(X\mid
+z_i)=\mathcal{N}(X\mid\mu_i^{\prime}(z_i;\theta),\sigma^{\prime2}*I)\)</span>,其中<span
+class="math inline">\(\sigma^{\prime2}\)</span>是一个人为给定的超参数。这意味着我们实际中并不真的让模型输出<span
+class="math inline">\(\sigma_i^{\prime2}\)</span>,模型只要输出<span
+class="math inline">\(\mu_i^{\prime}\)</span>就行了。<br/>​  具体公式推导参考上面的那篇博客，下面是对博客推导思想的简单总结：</p>
+<figure>
+<img
+src="../postimages/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/5c14ac887b954cc98d2de9a26abf3558.png"
+alt="在这里插入图片描述" />
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<p>为了更好理解，还是直接博客的代码吧：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">Created on January 28, 2021</span><br><span class="line"></span><br><span class="line">@author: Siqi Miao</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">from tqdm import tqdm</span><br><span class="line">os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;] = &quot;TRUE&quot;</span><br><span class="line"></span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line"></span><br><span class="line">from torchvision import transforms</span><br><span class="line">from torchvision.utils import save_image</span><br><span class="line">from torchvision.datasets import MNIST</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class VAE(nn.Module):</span><br><span class="line"></span><br><span class="line">    def __init__(self, in_features, latent_size, y_size=0):</span><br><span class="line">        super(VAE, self).__init__()</span><br><span class="line"></span><br><span class="line">        self.latent_size = latent_size</span><br><span class="line"></span><br><span class="line">        self.encoder_forward = nn.Sequential(</span><br><span class="line">            nn.Linear(in_features + y_size, in_features),</span><br><span class="line">            nn.LeakyReLU(),</span><br><span class="line">            nn.Linear(in_features, in_features),</span><br><span class="line">            nn.LeakyReLU(),</span><br><span class="line">            nn.Linear(in_features, self.latent_size * 2)  # latent_size表示潜变量的个数，每一个变量有均值和方差两个数值</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        self.decoder_forward = nn.Sequential(</span><br><span class="line">            nn.Linear(self.latent_size + y_size, in_features), # 解码器输入的时候只需要输入编码器输出的潜在变量的均值</span><br><span class="line">            nn.LeakyReLU(),</span><br><span class="line">            nn.Linear(in_features, in_features),</span><br><span class="line">            nn.LeakyReLU(),</span><br><span class="line">            nn.Linear(in_features, in_features),</span><br><span class="line">            nn.Sigmoid()</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    def encoder(self, X):</span><br><span class="line">        out = self.encoder_forward(X)</span><br><span class="line">        mu = out[:, :self.latent_size] # 前latent_size个数据是均值</span><br><span class="line">        log_var = out[:, self.latent_size:] # 后latent_size个数据是log(方差)</span><br><span class="line">        return mu, log_var</span><br><span class="line"></span><br><span class="line">    def decoder(self, z):</span><br><span class="line">        mu_prime = self.decoder_forward(z)</span><br><span class="line">        return mu_prime</span><br><span class="line"></span><br><span class="line">    def reparameterization(self, mu, log_var):  # Reparameterization Trick</span><br><span class="line">        epsilon = torch.randn_like(log_var) # 产生和log_var维度一样的高斯分布数据</span><br><span class="line">        z = mu + epsilon * torch.sqrt(log_var.exp()) # log_var.exp()=var，sqrt(var)就是sigema</span><br><span class="line">        return z</span><br><span class="line"></span><br><span class="line">    def loss(self, X, mu_prime, mu, log_var): # mu_prime编码器的输出；mu潜变量的均值，也就是潜变量的值了；log_var潜变量的log(方差)</span><br><span class="line">        # reconstruction_loss = F.mse_loss(mu_prime, X, reduction=&#x27;mean&#x27;) is wrong!</span><br><span class="line">        #print(mu_prime.shape) # [1024,784]</span><br><span class="line">        #print(mu.shape) # [1024,64]</span><br><span class="line">        #print(log_var.shape) # [1024,64]</span><br><span class="line">        # torch.square 是一个用于计算张量中每个元素的平方的函数。这个函数返回一个新的张量，其中包含原始张量中每个元素的平方值</span><br><span class="line">        reconstruction_loss = torch.mean(torch.square(X - mu_prime).sum(dim=1)) # sum(dim=1)表示对列求和，torch.mean就相当于是对1024个样本求均值了，也就是公式里的1/n</span><br><span class="line"></span><br><span class="line">        latent_loss = torch.mean(0.5 * (log_var.exp() + torch.square(mu) - log_var).sum(dim=1)) # sum(dim=1)表示对潜变量求和，torch.mean相当于是对1024个样本求均值</span><br><span class="line">        return reconstruction_loss + latent_loss</span><br><span class="line"></span><br><span class="line">    def forward(self, X, *args, **kwargs):</span><br><span class="line">        mu, log_var = self.encoder(X)</span><br><span class="line">        z = self.reparameterization(mu, log_var)</span><br><span class="line">        mu_prime = self.decoder(z)</span><br><span class="line">        return mu_prime, mu, log_var</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class CVAE(VAE): # 继承VAE类，所以可以使用VAE的编码和解码器</span><br><span class="line"></span><br><span class="line">    def __init__(self, in_features, latent_size, y_size):</span><br><span class="line">        super(CVAE, self).__init__(in_features, latent_size, y_size)</span><br><span class="line"></span><br><span class="line">    def forward(self, X, y=None, *args, **kwargs):</span><br><span class="line">        y = y.to(next(self.parameters()).device)</span><br><span class="line">        #print(y.shape) # [1024]</span><br><span class="line">        X_given_Y = torch.cat((X, y.unsqueeze(1)), dim=1) </span><br><span class="line">        #print(X_given_Y.shape) # [1024,785]</span><br><span class="line">        </span><br><span class="line">        mu, log_var = self.encoder(X_given_Y)</span><br><span class="line">        z = self.reparameterization(mu, log_var)</span><br><span class="line">        z_given_Y = torch.cat((z, y.unsqueeze(1)), dim=1)</span><br><span class="line"></span><br><span class="line">        mu_prime_given_Y = self.decoder(z_given_Y)</span><br><span class="line">        return mu_prime_given_Y, mu, log_var</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def train(model, optimizer, data_loader, device, name=&#x27;VAE&#x27;):</span><br><span class="line">    model.train()</span><br><span class="line"></span><br><span class="line">    total_loss = 0</span><br><span class="line">    pbar = tqdm(data_loader)</span><br><span class="line">    for X, y in pbar:</span><br><span class="line">        #print(X.shape) # [1024,1,28,28]</span><br><span class="line">        #print(y.shape) # [1024]</span><br><span class="line">        batch_size = X.shape[0]</span><br><span class="line">        X = X.view(batch_size, -1).to(device)</span><br><span class="line">        #print(X.shape) # [1024,784]</span><br><span class="line">        model.zero_grad() #将模型中所有参数的梯度缓存清零。在进行反向传播计算梯度之前，必须先将之前计算的梯度清零。这是因为在 PyTorch 中，梯度是累积的。</span><br><span class="line"></span><br><span class="line">        if name == &#x27;VAE&#x27;:</span><br><span class="line">            mu_prime, mu, log_var = model(X)</span><br><span class="line">        else:</span><br><span class="line">            mu_prime, mu, log_var = model(X, y)</span><br><span class="line"></span><br><span class="line">        loss = model.loss(X.view(batch_size, -1), mu_prime, mu, log_var)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        total_loss += loss.item()</span><br><span class="line">        pbar.set_description(&#x27;Loss: &#123;loss:.4f&#125;&#x27;.format(loss=loss.item()))</span><br><span class="line"></span><br><span class="line">    return total_loss / len(data_loader)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@torch.no_grad()</span><br><span class="line">def save_res(vae, cvae, data, latent_size, device):</span><br><span class="line">    num_classes = len(data.classes)</span><br><span class="line"></span><br><span class="line">    # raw samples from dataset</span><br><span class="line">    out = [] # 用于存储每个类别的图像</span><br><span class="line">    for i in range(num_classes): </span><br><span class="line">        # 提取类别为 i 的图像</span><br><span class="line">        img = data.data[torch.where(data.targets == i)[0][:num_classes]]</span><br><span class="line">        out.append(img)</span><br><span class="line">    out = torch.stack(out).transpose(0, 1).reshape(-1, 1, 28, 28) # 将图像堆叠在一起，并转置维度以便于保存</span><br><span class="line">    save_image(out.float(), &#x27;./img/raw_samples.png&#x27;, nrow=num_classes, normalize=True) # 100张图像</span><br><span class="line"></span><br><span class="line">    # samples generated by vanilla VAE</span><br><span class="line">    z = torch.randn(num_classes ** 2, latent_size).to(device)</span><br><span class="line">    # print(z.shape) # [100,64]</span><br><span class="line">    out = vae.decoder(z)</span><br><span class="line">    save_image(out.view(-1, 1, 28, 28), &#x27;./img/vae_samples.png&#x27;, nrow=num_classes)</span><br><span class="line"></span><br><span class="line">    # sample generated by CVAE</span><br><span class="line">    z = torch.randn(num_classes ** 2, latent_size).to(device)</span><br><span class="line">    y = torch.arange(num_classes).repeat(num_classes).to(device)</span><br><span class="line">    z_given_Y = torch.cat((z, y.unsqueeze(1)), dim=1)</span><br><span class="line">    out = cvae.decoder(z_given_Y)</span><br><span class="line">    save_image(out.view(-1, 1, 28, 28), &#x27;./img/cvae_samples.png&#x27;, nrow=num_classes)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    device = &#x27;cuda&#x27; if torch.cuda.is_available() else &#x27;cpu&#x27;</span><br><span class="line">    device = torch.device(device)</span><br><span class="line"></span><br><span class="line">    batch_size = 256 * 4</span><br><span class="line">    epochs = 50</span><br><span class="line">    latent_size = 64</span><br><span class="line">    in_features = 28 * 28</span><br><span class="line">    lr = 0.001</span><br><span class="line"></span><br><span class="line">    data = MNIST(&#x27;./dataset/&#x27;, download=True, transform=transforms.ToTensor())</span><br><span class="line">    data_loader = torch.utils.data.DataLoader(data, batch_size=batch_size, shuffle=True)</span><br><span class="line"></span><br><span class="line">    # train VAE</span><br><span class="line">    vae = VAE(in_features, latent_size).to(device)</span><br><span class="line">    optimizer = torch.optim.AdamW(vae.parameters(), lr=lr)</span><br><span class="line"></span><br><span class="line">    print(&#x27;Start Training VAE...&#x27;)</span><br><span class="line">    for epoch in range(1, 1 + epochs):</span><br><span class="line">        loss = train(vae, optimizer, data_loader, device, name=&#x27;VAE&#x27;)</span><br><span class="line">        print(&quot;Epochs: &#123;epoch&#125;, AvgLoss: &#123;loss:.4f&#125;&quot;.format(epoch=epoch, loss=loss))</span><br><span class="line">    print(&#x27;Training for VAE has been done.&#x27;)</span><br><span class="line"></span><br><span class="line">    # train VCAE</span><br><span class="line">    cvae = CVAE(in_features, latent_size, y_size=1).to(device)</span><br><span class="line">    optimizer = torch.optim.AdamW(cvae.parameters(), lr=lr)</span><br><span class="line"></span><br><span class="line">    print(&#x27;Start Training CVAE...&#x27;)</span><br><span class="line">    for epoch in range(1, 1 + epochs):</span><br><span class="line">        loss = train(cvae, optimizer, data_loader, device, name=&#x27;CVAE&#x27;)</span><br><span class="line">        print(&quot;Epochs: &#123;epoch&#125;, AvgLoss: &#123;loss:.4f&#125;&quot;.format(epoch=epoch, loss=loss))</span><br><span class="line">    print(&#x27;Training for CVAE has been done.&#x27;)</span><br><span class="line"></span><br><span class="line">    save_res(vae, cvae, data, latent_size, device)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>VAE的变种：条件变分自编码器（CVAE）<br/>传统的VAE可以近似地生成输入数据，但不能定向地生成特定类型的数据。为解决这一问题，将数据x和x的部分标签(
+y
+)输入到CVAE的编码器部分。这样就会生成指定类别的数据。CVAE的结构与VAE相似，因此CVAE的计算方法和优化方法与VAE一致。由于在输入中存在一些标签Y，CVAE成为一种半监督学习形式。<br/>参考资料：<br/>[1]《Deep
+Learning》<br/>[2] Li P, Pei Y, Li J. A comprehensive survey on design
+and application of autoencoder in deep learning[J]. Applied Soft
+Computing, 2023, 138: 110176.<br/>[3] <a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348498294">机器学习方法—优雅的模型（一）：变分自编码器（VAE）
+- 知乎 (zhihu.com)</a><br/>[4] <a
+target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46146657/article/details/140666130">自编码器（autoencoder）-CSDN博客</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/">https://zhaozw-szu.github.io/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Efficient_Deep_Embedded_Subspace_Clustering</div></div></a></div><div class="next-post pull-right"><a href="/Deep-Clustering-Survey/" title="Deep_Clustering_Survey"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Deep_Clustering_Survey</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8autoencoder"><span class="toc-text">1. 自编码器（autoencoder）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">自编码器的一些基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8ae"><span class="toc-text">1 传统自编码器（AE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%BB%E5%99%AA%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8dae"><span class="toc-text">2 去噪自编码器（DAE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8sae"><span class="toc-text">3 稀疏自编码器（SAE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E5%88%86%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8vae"><span class="toc-text">4 变分自编码器（VAE）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Efficient_Deep_Embedded_Subspace_Clustering"/></a><div class="content"><a class="title" href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering">Efficient_Deep_Embedded_Subspace_Clustering</a><time datetime="2024-10-04T03:18:03.000Z" title="发表于 2024-10-04 11:18:03">2024-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/" title="经典网络合集"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="经典网络合集"/></a><div class="content"><a class="title" href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/" title="经典网络合集">经典网络合集</a><time datetime="2024-10-03T11:19:31.000Z" title="发表于 2024-10-03 19:19:31">2024-10-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Clustering-Survey/" title="Deep_Clustering_Survey"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Clustering_Survey"/></a><div class="content"><a class="title" href="/Deep-Clustering-Survey/" title="Deep_Clustering_Survey">Deep_Clustering_Survey</a><time datetime="2024-09-29T02:44:40.000Z" title="发表于 2024-09-29 10:44:40">2024-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" title="聚类方法合集"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="聚类方法合集"/></a><div class="content"><a class="title" href="/%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86/" title="聚类方法合集">聚类方法合集</a><time datetime="2024-09-27T01:06:33.000Z" title="发表于 2024-09-27 09:06:33">2024-09-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/" title="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance"><img src="/postimages/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/image-20240910110200920.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance"/></a><div class="content"><a class="title" href="/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/" title="Attentive and Contrastive Image Manipulation Localization With Boundary Guidance">Attentive and Contrastive Image Manipulation Localization With Boundary Guidance</a><time datetime="2024-09-10T02:46:55.000Z" title="发表于 2024-09-10 10:46:55">2024-09-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
