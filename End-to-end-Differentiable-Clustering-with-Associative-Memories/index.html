@@ -1,0 +1,501 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>End-to-end_Differentiable_Clustering_with_Associative_Memories | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="End-to-end Differentiable Clustering with Associative Memories Bishwajit Saha 1 Dmitry Krotov 2 Mohammed J. Zaki 1 Parikshit Ram 2 3 摘要 ​  聚类是一种广泛使用的无监督学习技术，涉及到一个密集的离散优化问题。联想记忆模型或AMs是一种可微的神经网络，定义了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="End-to-end_Differentiable_Clustering_with_Associative_Memories">
+<meta property="og:url" content="https://zhaozw-szu.github.io/End-to-end-Differentiable-Clustering-with-Associative-Memories/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="End-to-end Differentiable Clustering with Associative Memories Bishwajit Saha 1 Dmitry Krotov 2 Mohammed J. Zaki 1 Parikshit Ram 2 3 摘要 ​  聚类是一种广泛使用的无监督学习技术，涉及到一个密集的离散优化问题。联想记忆模型或AMs是一种可微的神经网络，定义了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg">
+<meta property="article:published_time" content="2024-10-06T12:52:27.000Z">
+<meta property="article:modified_time" content="2024-10-07T02:12:30.230Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/End-to-end-Differentiable-Clustering-with-Associative-Memories/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'End-to-end_Differentiable_Clustering_with_Associative_Memories',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-07 10:12:30'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-chart-simple"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-video"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">End-to-end_Differentiable_Clustering_with_Associative_Memories</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-06T12:52:27.000Z" title="发表于 2024-10-06 20:52:27">2024-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-07T02:12:30.230Z" title="更新于 2024-10-07 10:12:30">2024-10-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="End-to-end_Differentiable_Clustering_with_Associative_Memories"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>End-to-end Differentiable Clustering with Associative Memories</p>
+<p>Bishwajit Saha 1 Dmitry Krotov 2 Mohammed J. Zaki 1 Parikshit Ram 2
+3</p>
+<h1 id="摘要">摘要</h1>
+<p>​  聚类是一种广泛使用的无监督学习技术，涉及到一个密集的离散优化问题。联想记忆模型或AMs是一种可微的神经网络，定义了一个递归动力系统，它已与各种深度学习架构集成。我们揭示了AM(Associative
+Memory)动力学和聚类中所需的固有离散分配之间的新联系，提出了一种新的无约束的连续松弛问题，使端到端可微聚类，称为ClAM(clustering
+with
+AM)。利用AMs的模式完成能力，我们进一步开发了一种新的自监督聚类损失。我们对不同数据集的评估表明，ClAM受益于自监督，并显著改进了传统的Lloyd‘s
+k-means算法和最近的连续聚类松弛（剪影系数高达60%）。</p>
+<h1 id="引言">1. 引言</h1>
+<p>​  最近，传统的联想记忆或AM模型(Hopfield, 1982;
+1984)被重新制定，以显著提高其记忆存储容量，并与现代深度学习技术集成(Krotov
+&amp; Hopfield, 2016; Ramsauer et al., 2020; Krotov &amp; Hopfield,
+2021; Krotov, 2021)。这些新模型被称为密集联想记忆（Dense Associative
+Memories），是完全可微的系统，能够在突触权重中存储大量的多维向量，称为模式或“记忆”。它们可以使用反向传播算法在端到端完全可微的设置中进行训练，通常带有自监督损失。<br/>​  我们认为，这种以端到端可微的方式学习AM的突触权值的能力，以及每个数据点恰好指向一个记忆的离散分配（关联），使AM唯一适合于可微聚类的任务。我们在图1中给出了一个简单的结果，其中标准的基于原型的聚类方案（离散的和可微的）无法找到正确的聚类，但我们提出的基于AM的方案是成功的。具体来说，我们做出了以下贡献：</p>
+<ul>
+<li>我们开发一个灵活的数学框架集群AM或ClAM，这是一个新颖的连续无约束放松的离散优化问题，允许集群端到端可微的方式，同时保持整个训练的离散集群分配，与线性时间集群分配。</li>
+<li>我们利用AMs的模式完成能力来开发一个可区分的自监督损失，以提高聚类质量。</li>
+<li>我们的经验证明，ClAM能够持续提高k-means高达60%，可以同时与基于光谱的聚类方法和与基于凝聚的聚类方法竞争，并产生深刻的解释。</li>
+</ul>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="离散聚类算法">离散聚类算法</h2>
+<p>​  聚类是一个固有的硬组合优化问题。基于原型的聚类公式，如k-means聚类是np困难的，即使是对于k
+=
+2（Dasgupta，2008）。然而，广泛使用的Lloyd’s算法或Voronoi迭代方法（Lloyd，1982）可以相当有效地找到局部最优解，这可以通过多次重启和仔细的迭代来改进(Vassilvitskii
+&amp; Arthur,
+2006)。它是一种直观的离散算法，在A（根据当前原型诱导的Voronoi分区（Aurenhammer，1991）为集群的分配点）和B（基于当前集群分配更新原型点）之间交替使用。然而，该方案的离散性质使其难以逃脱任何局部最小值。我们认为，基于SGD的原型聚类能够通过逃避局部最小值来提高集群的质量，同时也继承了SGD的计算效率。光谱聚类公式（Donath
+&amp;霍夫曼，1973；Von
+Luxburg，2007）利用点的成对相似性或亲和性的特征谱（用图拉普拉斯式表示）将数据划分为“连接组件”，但没有明确地提取每个聚类的原型。这允许光谱聚类以Voronoi分区不允许的方式对数据进行分区。然而，它天真地需要二次时间（点数）来生成拉普拉斯矩阵，也需要三次时间来进行谱分解。层次聚类（Johnson，1967）基于先前建立的聚类找到连续的聚类，以自上而下的方式将它们划分，或以自下而上的方式进行组合。这些离散分层算法天真地在点的数量，尽管一些形式的自下而上的凝聚方案可以显示在二次（Sibson，1973）甚至次二次时间（3月等，2010）利用双树算法（Ram等人，2009；Curtin等人，2013；2015）。</p>
+<h2 id="密度聚类方案">密度聚类方案</h2>
+<p>​  如流行的DBSCAN（酯等，1996）和SNN（阿吉拉尔等，2001），不认为集群作为离散优化问题，但发现的问题模式数据分布，允许任意形状的集群鲁棒性噪声和异常值（桑德et
+al.，1998）。然而，多维密度估计是一项具有挑战性的任务，特别是使用非参数方法（西尔弗曼，1986；Ram
+&amp;
+Gray，2011），导致使用参数模型，如高斯混合模型（雷诺兹，2009）（可以从期望最大化的数据中估计（Dempster
+et al.，1977））。</p>
+<h2 id="可微深度聚类">可微深度聚类</h2>
+<p>​  可微性在深度聚类中至关重要，我们希望同时学习点的潜在表示，并在该潜在空间中执行聚类(Ren
+et al., 2022;Zhou et al., 2022)。现有的可微聚类公式，如范数和（Panahi et
+al.，2017）或非负矩阵分解（Kim &amp;
+Park，2008），本质上是解决约束优化，不直接适合端到端可微深度学习管道。因此，各种方案利用了某种形式的软聚类公式，如模糊k-均值（Bezdek
+et
+al.，1984）。Xie等人（2016）提出了一种新的概率k-means公式，启发于t-SNE（Minton，2008），对预先训练的自编码器（AE）的表示进行可微聚类（DEC），Guo
+et al. (2017a)
+（IDEC）显示了从联合学习表征和聚类中获得的收益。对于图像深度聚类中的表示学习，Song等人（2013）、Xie等人（2016）和Yang等人（2017）使用了堆叠自动编码器，Guo等人（2017b）（DCEC）使用卷积自动编码器（CAE）进行了进一步的改进。Chazan等人（2019年）使用了多个AEs，每个聚类一个，但（软）聚类分配是使用模糊k-means进行的。Cai等人（2022）在DEC放松中增加了一个“焦点损失”，以惩罚非离散任务，同时也增强了表征学习。深度子空间聚类（Peng等人，2016；Ji等人，2017；Zhang等人，2019）放宽了组合光谱聚类问题（同样采用部分聚类分配），并利用“self-expressive”层以可微的方式同时学习必要的拉普拉斯矩阵（相似度矩阵）和聚类。因此，深度聚类通常使用一些概率部分分配的点给多个簇，偏离了原始k-means的离散性质。此外，这些方案通常利用通过Lloyd（1982）进行的预先训练过的AEs和/或k-means来初始化网络参数。我们提出的ClAM保持了聚类的离散分配性质，并且在没有任何特殊播种的情况下工作良好。</p>
+<h2 id="联想记忆am">联想记忆（AM）</h2>
+<p>​  这是一个神经网络，它可以存储一组多维向量-记忆-作为一个循环动态系统的定点吸引子状态。它被设计为将初始状态（呈现给系统）与固定点（内存）上的最终状态关联起来，从而定义吸引力的不相交盆地或数据域的分区，因此可以表示聚类。该网络在数学上被形式化为经典的Hopfield网络（霍普菲尔德，1982），但已知其内存容量有限，只能在d维数据域中存储≈0.14d随机内存（Amit等人，1985；McEliece等人，1987）。对于相关数据，容量甚至更小，并且通常会导致一个不动点将整个数据集吸引到单个盆地中。对于相关数据，容量甚至更小，并且通常会导致一个不动点将整个数据集吸引到单个盆地中。这种行为对于集群来说是有问题的，因为集群的数量——稳定的固定点的数量——应该与数据维数解耦。Krotov
+&amp;
+Hopfield（2016）提出了现代霍普菲尔德网络或密集AM，通过在动态系统中引入快速增长的非线性激活函数，允许更密集的内存排列，以及超线性(d)内存容量。对于某些激活函数，致密AMs具有幂律甚至指数容量（克罗托夫&amp;霍普菲尔德，2016；德米西吉尔等人，2017；拉姆索尔等人，2020年；卢西贝罗和梅扎德，2023年）。Ramsauer等人（2020）证明了变压器的注意机制（Vaswani等人，2017）是具有软max激活的密集AMs的一种特殊极限情况。密集的AMs也被用于描述整个变压器块（Hoover等人，2023年），以及集成在复杂的基于能量的神经结构中（Hoover等人，2022年）。对这些结果的回顾见Krotov（2023）。密集的AMs最近也被研究与缝线连接（Burns
+&amp; Fukai，2023），并应用于异质结合环境（Liang et
+al.，2022）。在我们的工作中，我们将证明密集算法的循环动态和大内存容量使它们唯一适合聚类。</p>
+<h1 id="集群中的联想记忆">3.集群中的联想记忆</h1>
+<p>​  在本节中，我们提出了(i)基于AMs的ClAM的数学框架，（ii）激发了其对聚类的适用性，以及（iii）提出了一种学习记忆的方法，以进行良好的聚类。我们将所有这些放在我们的新的基于原型的聚类算法ClAM中。</p>
+<h2 id="联想记忆数学框架">3.1.联想记忆：数学框架</h2>
+<p>​  在d维欧几里得空间中，考虑M内存<span
+class="math inline">\(\boldsymbol{\rho}_\mu\in\mathbb{R}^d,\mu\in[M]\triangleq\{1,\ldots,M\}\)</span>（我们稍后将讨论记忆是如何学习的）。这个数学框架的关键方面是<strong>能量函数</strong>和<strong>attractor
+dynamics</strong>(Krotov &amp; Hopfield, 2021; Millidge et al.,
+2022)。一个适合聚类的能量应该是一个点（或一个粒子）<span
+class="math inline">\(v\in\mathbb{R}^d\)</span>的连续函数。此外，能量应该有M个局部最小值，对应于每个内存。最后，当一个粒子逐渐接近一个记忆时，它的能量应该主要由单个记忆决定，而剩余的M−1记忆的贡献应该很小。一个满足这些要求的能量函数为：
+<span
+class="math display">\[E(\boldsymbol{v})=-\frac{1}{\beta}\log\left(\sum_{\mu\in[M]}\exp(-\beta\|\boldsymbol{\rho}_{\mu}-\boldsymbol{v}\|^{2})\right)\]</span>
+​  用一个标量的<span class="math inline">\(\beta &gt;
+0\)</span>被解释为一个逆的“温度”。随着<span
+class="math inline">\(\beta\)</span>的增长，方程1中的exp（·）确保只有前导项仍然显著，而其余的M−1项被抑制。因此，整个能量函数将用最近记忆周围的抛物线来描述。该空间将被划分为每个记忆周围的M个吸引盆地，每个记忆周围的能量函数的形状将主要由最近的记忆来定义，并对其他记忆进行了小的修正。<br/>​  attractor
+dynamics通过dv/dt控制v在时间内空间中的移动，同时确保能量减少。这就是dE
+(v)/dt &lt;
+0，它确保了一个粒子收敛到一个局部最小值——动力学的一个不动点。attractor
+dynamics可以通过能量景观上的梯度下降来描述： <span
+class="math display">\[\tau\frac{d\boldsymbol{v}}{dt}=-\frac{1}{2}\nabla_{\boldsymbol{v}}E=\sum_{\mu\in[M]}(\rho_{\mu}-\boldsymbol{v})
+\boldsymbol{\sigma}(-\beta\|\rho_{\mu}-\boldsymbol{v}\|^{2})\]</span>
+​  其中<span class="math inline">\(\tau &gt;
+0\)</span>是一个特征时间常数，描述了粒子在能量景观上移动的速度，<span
+class="math inline">\(\sigma(\cdot)\)</span>是对记忆缩放距离的softmax函数，定义为<span
+class="math inline">\(\sigma(z_{\mu})=\exp(z_{\mu})\Big/\sum_{m=1}^{M}\exp(z_{m})\)</span>的任何<span
+class="math inline">\(\mu
+\in[M]\)</span>。这一点如图2a所示。这就保证会减少能量 <span
+class="math display">\[\frac{dE(\boldsymbol{v})}{dt}\stackrel{(\mathbf{a})}{=}\nabla_{\boldsymbol{v}}E(\boldsymbol{v})\cdot\frac{d\boldsymbol{v}}{dt}\stackrel{(\mathbf{b})}{=}-2\tau\Big\|\frac{d\boldsymbol{v}}{dt}\Big\|^2\stackrel{(\mathbf{c})}{\leq}0\]</span>
+​  其中(a)为链式规则，(b)遵循方程2，(c)中的等式表示局部平稳性。在一个离散的时间步长t+1下，对于点v从状态<span
+class="math inline">\(v_t\)</span>到<span
+class="math inline">\(v^{t+1}=v^t+\delta^{t+1}\)</span>的有效更新<span
+class="math inline">\(\delta^{t+1}\)</span>是通过有限差分： <span
+class="math display">\[\delta^{t+1}=\frac{dt}{\tau}\sum_{\mu\in[M]}(\rho_\mu-v^t)
+\sigma(-\beta\|\rho_\mu-v^t\|^2)\]</span>
+​  给定一个点S的数据集，对于每个点v∈S，我们可以用一些噪声破坏它，从而产生一个扭曲的点v˜。这可以作为AM网络v0←v˜的初始状态。AM动态是由可学习的权重ρµ，µ=1，…，M，它也对应于动态（记忆）的固定点。根据方程4，T递归的网络随时间演化，其中选择T以确保充分收敛到一个固定点（见图2b中的例子）。将最终状态vT与未损坏的v进行比较来定义损失函数
+<span class="math display">\[\mathcal{L}=\sum_{\boldsymbol{v}\in
+S}\|\boldsymbol{v}-\boldsymbol{v}^{T}\|^{2},\mathrm{~where~}\boldsymbol{v}^{0}\leftarrow\tilde{\boldsymbol{v}}\]</span>
+​  相对于AM参数ρµ，它的反向传播最小。在集群的背景下，AM模型自然诱导一个分区的数据空间不重叠盆地的吸引力，隐式定义了一个硬集群分配定点在每个盆地，并通过完全连续的和可微的动态，允许学习与标准深度学习框架，我们接下来讨论。</p>
+<h2 id="am作为一个可微离散arg-min求解器">3.2.AM作为一个可微离散arg
+min求解器</h2>
+<h2 id="理解由ams引起的分区">3.3.理解由AMs引起的分区</h2>
+<h2 id="clam聚类-与ams和自我监督">3.4.ClAM：聚类 与AMs和自我监督</h2>
+<p>​  AM框架允许对离散的k-means问题（方程6）进行一种新的端到端可微的无约束连续松弛（方程8）。</p>
+<p>方程6: <span class="math inline">\(\min_{R}\sum_{\boldsymbol{x}\in
+S}\|\boldsymbol{x}-\boldsymbol{\rho}_{\mu_{\boldsymbol{x}}^{\star}}\|^{2},\text{s.t.}\mu_{\boldsymbol{x}}^{\star}=\arg\min_{\mu\in[k]}\|\boldsymbol{x}-\boldsymbol{\rho}_{\mu}\|^{2}\)</span></p>
+<p>方程8: <span class="math inline">\(\min_R\sum_{x\in
+S}\left\|x-x_R^T\right\|^2,\mathrm{~where~}x^0\leftarrow x\)</span></p>
+<p>​  接下来，我们希望利用上述AMs（3.1）的强大模式完成能力。我们使用标准掩膜自我监督学习——我们应用（随机）掩膜<span
+class="math inline">\(m\in\{0,1\}^ d\)</span>到点<span
+class="math inline">\(x\in
+S\subset\mathbb{R}^{\bar{d}}\)</span>和利用上e递归完成部分模式<span
+class="math inline">\(x^0 = m\odot
+x\)</span>和ground-truth之间的失真掩盖值和完成模式我们的损失如下: <span
+class="math display">\[\mathcal{L}=\sum_{x\in
+S}\mathbb{E}_{m\sim\mathcal{M}}\|\bar{m}\odot(x-x_{R}^{T})\|^{2},
+x^{0}\leftarrow m\odot x\]</span> ​  其中<span
+class="math inline">\(x^T_R\)</span>由<span
+class="math inline">\(x^0\)</span>演变而来，方程4的T递归。原型R是通过SGD最小化自监督模式完成损失（方程9）来学习的。精确的学习算法在算法1的TrainClAM子程序中给出，并如图5所示。</p>
+<figure>
+<img
+src="../postimages/End-to-end-Differentiable-Clustering-with-Associative-Memories/image-20241007095524047.png"
+alt="image-20241007095524047" />
+<figcaption aria-hidden="true">image-20241007095524047</figcaption>
+</figure>
+<p>图5：算法1。对于x∈S，我们首先应用一个掩码（紫色的）m到x来得到AM递归的初始迭代x0。对于T递归，我们有一个完整的版本x
+T R。原型R用自监督损失L上的梯度∇RL进行更新（公式9）。</p>
+<p>​  在随机播种原型（第2行）之后，我们对数据（第3行）（数据批B中的每个x），我们应用随机掩码（第8行），使用当前原型（第9-12行）完成AM递归的模式，累积公式9（第13行），并使用批梯度（第14行）更新原型。</p>
+<figure>
+<img
+src="../postimages/End-to-end-Differentiable-Clustering-with-Associative-Memories/image-20241006230200990.png"
+alt="image-20241006230200990" />
+<figcaption aria-hidden="true">image-20241006230200990</figcaption>
+</figure>
+<p>​  <strong>命题3.1</strong>：算法1中的TrainClAM子例程占用<span
+class="math inline">\(O(dkTN|S|)\)</span>时间，其中<span
+class="math inline">\(|S|\)</span>是S的基数，收敛到一个<span
+class="math inline">\(O(N^{-1/2})\)</span>-平稳点。<br/>​  <span
+class="math inline">\(N^{-1/2}\)</span>项来自于光滑非凸问题的标准SGD的收敛速度（内斯特罗夫，2003），可以通过动量改进到<span
+class="math inline">\(N^{-3/2}\)</span>（Fang等人，2018），考虑到我们的提出的端到端可微性，这是很简单的。算法1的InferClAM子程序使用学习到的原型R分配集群，并一次通过S。这在聚类结束时调用一次。<br/>​  <strong>命题3.2</strong>：算法1中的InferClAM子例程需要占用<span
+class="math inline">\(O(dkTN|S|)\)</span>时间，其中<span
+class="math inline">\(|S|\)</span>是S的基数。<br/>​  从命题3.1和3.2中，我们可以看到，ClAM训练和推理在数据集S中的点<span
+class="math inline">\(|S|\)</span>数、维数d和簇数k上是线性的。对于数据集S上的N个时期，ClAM训练取<span
+class="math inline">\(O(dkTN|S|)\)</span>，其中T为AM递归深度，而k-means训练（采用Lloyd算法）取<span
+class="math inline">\(O(dkN|S|)\)</span>。因此，k-means和ClAM都与点数成线性关系，尽管ClAM运行时有一个乘法系数T，其中T通常小于10。所以k-means直觉上比ClAM快。需要注意的是，k-means和ClAM明显高于谱聚类和凝聚聚类，凝聚聚类的样本数量通常在二次和三次之间。注意，对于相同数量的时代，我们可以为基于SGD的ClAM建立收敛保证（这可以通过使用基于动量的SGD来改进），而k-means没有类似的收敛保证。</p>
+<p>（未完不待续）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/End-to-end-Differentiable-Clustering-with-Associative-Memories/">https://zhaozw-szu.github.io/End-to-end-Differentiable-Clustering-with-Associative-Memories/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Unsupervised-Learning-of-Image-Segmentation-Based-on-Differentiable-Feature-Clustering/" title="Unsupervised Learning of Image Segmentation Based on Differentiable Feature Clustering"><img class="cover" src="/img/coverImage/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Unsupervised Learning of Image Segmentation Based on Differentiable Feature Clustering</div></div></a></div><div class="next-post pull-right"><a href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Efficient_Deep_Embedded_Subspace_Clustering</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">66</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1. 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="toc-text">离散聚类算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E5%BA%A6%E8%81%9A%E7%B1%BB%E6%96%B9%E6%A1%88"><span class="toc-text">密度聚类方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E5%BE%AE%E6%B7%B1%E5%BA%A6%E8%81%9A%E7%B1%BB"><span class="toc-text">可微深度聚类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%94%E6%83%B3%E8%AE%B0%E5%BF%86am"><span class="toc-text">联想记忆（AM）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E4%B8%AD%E7%9A%84%E8%81%94%E6%83%B3%E8%AE%B0%E5%BF%86"><span class="toc-text">3.集群中的联想记忆</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%94%E6%83%B3%E8%AE%B0%E5%BF%86%E6%95%B0%E5%AD%A6%E6%A1%86%E6%9E%B6"><span class="toc-text">3.1.联想记忆：数学框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#am%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%BE%AE%E7%A6%BB%E6%95%A3arg-min%E6%B1%82%E8%A7%A3%E5%99%A8"><span class="toc-text">3.2.AM作为一个可微离散arg
+min求解器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E7%94%B1ams%E5%BC%95%E8%B5%B7%E7%9A%84%E5%88%86%E5%8C%BA"><span class="toc-text">3.3.理解由AMs引起的分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clam%E8%81%9A%E7%B1%BB-%E4%B8%8Eams%E5%92%8C%E8%87%AA%E6%88%91%E7%9B%91%E7%9D%A3"><span class="toc-text">3.4.ClAM：聚类 与AMs和自我监督</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Unsupervised-Learning-of-Image-Segmentation-Based-on-Differentiable-Feature-Clustering/" title="Unsupervised Learning of Image Segmentation Based on Differentiable Feature Clustering"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unsupervised Learning of Image Segmentation Based on Differentiable Feature Clustering"/></a><div class="content"><a class="title" href="/Unsupervised-Learning-of-Image-Segmentation-Based-on-Differentiable-Feature-Clustering/" title="Unsupervised Learning of Image Segmentation Based on Differentiable Feature Clustering">Unsupervised Learning of Image Segmentation Based on Differentiable Feature Clustering</a><time datetime="2024-10-07T02:13:01.000Z" title="发表于 2024-10-07 10:13:01">2024-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/End-to-end-Differentiable-Clustering-with-Associative-Memories/" title="End-to-end_Differentiable_Clustering_with_Associative_Memories"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="End-to-end_Differentiable_Clustering_with_Associative_Memories"/></a><div class="content"><a class="title" href="/End-to-end-Differentiable-Clustering-with-Associative-Memories/" title="End-to-end_Differentiable_Clustering_with_Associative_Memories">End-to-end_Differentiable_Clustering_with_Associative_Memories</a><time datetime="2024-10-06T12:52:27.000Z" title="发表于 2024-10-06 20:52:27">2024-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Efficient_Deep_Embedded_Subspace_Clustering"/></a><div class="content"><a class="title" href="/Efficient-Deep-Embedded-Subspace-Clustering/" title="Efficient_Deep_Embedded_Subspace_Clustering">Efficient_Deep_Embedded_Subspace_Clustering</a><time datetime="2024-10-04T03:18:03.000Z" title="发表于 2024-10-04 11:18:03">2024-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/" title="经典网络合集"><img src="/img/coverImage/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="经典网络合集"/></a><div class="content"><a class="title" href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E5%90%88%E9%9B%86/" title="经典网络合集">经典网络合集</a><time datetime="2024-10-03T11:19:31.000Z" title="发表于 2024-10-03 19:19:31">2024-10-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Clustering-Survey/" title="Deep_Clustering_Survey"><img src="/img/coverImage/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Clustering_Survey"/></a><div class="content"><a class="title" href="/Deep-Clustering-Survey/" title="Deep_Clustering_Survey">Deep_Clustering_Survey</a><time datetime="2024-09-29T02:44:40.000Z" title="发表于 2024-09-29 10:44:40">2024-09-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
