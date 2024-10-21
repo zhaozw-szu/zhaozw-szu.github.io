@@ -3554,51 +3554,64 @@ figure.highlight pre .javascript .function {
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
-.wrapper {
+.wrapper#dataset {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
-  padding: 20px;
-  background-color: #f4f4f4;
-}
-aside {
-  width: auto;
-  padding: 10px;
+  width: 100%;
   background-color: #fff;
-  border-right: 1px solid #ddd;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 10px;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 10px;
 }
-aside ul#directory {
+.wrapper#dataset aside {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+  width: auto;
+  position: relative;
+  background-color: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  min-width: 150px;
+}
+.wrapper#dataset aside ul#directory {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-aside ul#directory li {
-  padding: 5px 10px 5px 10px;
-  margin-bottom: 2px;
-  cursor: pointer;
+.wrapper#dataset aside ul#directory li {
+  padding: 8px;
+  margin-bottom: 5px;
   border-radius: 4px;
-  background-color: #dae8fc;
-  -webkit-transition: #f4f4f4 0.3s ease;
-  -moz-transition: #f4f4f4 0.3s ease;
-  -o-transition: #f4f4f4 0.3s ease;
-  -ms-transition: #f4f4f4 0.3s ease;
-  transition: #f4f4f4 0.3s ease;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
-aside ul#directory li:hover {
-  background-color: #3498db;
-  color: #fff;
+.wrapper#dataset aside ul#directory li:hover {
+  background-color: #e0f7fa;
 }
-aside ul#directory li.active {
-  background-color: #2ecc71;
-  color: #fff;
-}
-aside ul#directory ul {
-  padding-left: 10px;
-}
-.main-content {
+.wrapper#dataset .main-content {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -3606,66 +3619,47 @@ aside ul#directory ul {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.wrapper#dataset .main-content #post-list .post-item {
+  margin-bottom: 15px;
   padding: 10px;
-}
-.main-content #post-list {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -o-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-.main-content #post-list .post-item {
-  padding: 10px 15px;
-  margin-bottom: 8px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #fff;
-  -webkit-transition: box-shadow 0.3s ease;
-  -moz-transition: box-shadow 0.3s ease;
-  -o-transition: box-shadow 0.3s ease;
-  -ms-transition: box-shadow 0.3s ease;
-  transition: box-shadow 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  -o-transition: -o-transform 0.3s;
+  -ms-transition: -ms-transform 0.3s;
+  transition: transform 0.3s;
 }
-.main-content #post-list .post-item:hover {
-  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.wrapper#dataset .main-content #post-list .post-item:hover {
+  -webkit-transform: translateY(-2px);
+  -moz-transform: translateY(-2px);
+  -o-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  transform: translateY(-2px);
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
-.main-content #post-list .post-item a {
-  text-decoration: none;
-  color: #3498db;
+.wrapper#dataset .main-content #post-list .post-item a.post-title {
   font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
+  color: #007bff;
+  text-decoration: none;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  -ms-transition: color 0.3s;
+  transition: color 0.3s;
 }
-.main-content #post-list .post-item .content {
-  margin-top: 5px;
-  color: #333;
-}
-@media screen and (max-width: 768px) {
-  .wrapper {
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -o-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-  aside {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-  .main-content {
-    padding: 10px;
-  }
+.wrapper#dataset .main-content #post-list .post-item a.post-title:hover {
+  color: #0056b3;
 }
 #icat-bber {
   margin-top: 1.5rem;
@@ -4586,7 +4580,7 @@ aside ul#directory ul {
   width: 100%;
   max-height: 60vw;
 }
-.wrapper {
+#rank.wrapper {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -4606,7 +4600,7 @@ aside ul#directory ul {
   flex-direction: column;
   padding: 5px;
 }
-.wrapper .button-group {
+#rank.wrapper .button-group {
   margin-left: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -4623,7 +4617,7 @@ aside ul#directory ul {
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
 }
-.wrapper .button-group button {
+#rank.wrapper .button-group button {
   padding: 10px;
   margin-right: 10px;
   background-color: #dae8fc;
@@ -4631,16 +4625,16 @@ aside ul#directory ul {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  -webkit-transition: #f4f4f4 0.3s;
-  -moz-transition: #f4f4f4 0.3s;
-  -o-transition: #f4f4f4 0.3s;
-  -ms-transition: #f4f4f4 0.3s;
-  transition: #f4f4f4 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
-.wrapper .button-group button:hover {
+#rank.wrapper .button-group button:hover {
   background-color: #0056b3;
 }
-.wrapper .main-content {
+#rank.wrapper .main-content {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -4653,17 +4647,17 @@ aside ul#directory ul {
   background-color: #fff;
   margin-bottom: 5px;
 }
-.wrapper .main-content .swiperBar {
+#rank.wrapper .main-content .swiperBar {
   width: 100%;
   position: relative;
 }
-.wrapper .main-content #ark-swiper-container {
+#rank.wrapper .main-content #ark-swiper-container {
   width: 100%;
   height: 200px;
   overflow: hidden;
   position: relative;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper {
   width: 100%;
   height: 200px;
   display: -webkit-box;
@@ -4679,7 +4673,7 @@ aside ul#directory ul {
   -ms-flex-direction: row;
   flex-direction: row;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item {
   width: 100%;
   position: relative;
   display: -webkit-box;
@@ -4698,7 +4692,7 @@ aside ul#directory ul {
   -webkit-box-shadow: 0 0 3px inset var(--ark-post-item-box-shadow);
   box-shadow: 0 0 3px inset var(--ark-post-item-box-shadow);
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info {
   width: 60%;
   display: -webkit-box;
   display: -moz-box;
@@ -4729,7 +4723,7 @@ aside ul#directory ul {
   position: relative;
   z-index: 1;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title {
   width: 100%;
   height: 60px;
   color: var(--ark-post-item-font-color);
@@ -4755,12 +4749,12 @@ aside ul#directory ul {
   justify-content: center;
   padding-bottom: 10px;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title .ark-swiper-item-title-link {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-title .ark-swiper-item-title-link {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description {
   color: var(--ark-post-item-font-color);
   display: -webkit-box;
   display: -moz-box;
@@ -4772,14 +4766,14 @@ aside ul#directory ul {
   height: 100%;
   overflow: hidden;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description .ark-swiper-item-description-text {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-info .swiper-item-description .ark-swiper-item-description-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 4;
   line-height: 1.2;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover {
   width: 40%;
   height: 100%;
   display: -webkit-box;
@@ -4804,7 +4798,7 @@ aside ul#directory ul {
   overflow: hidden;
   z-index: 0;
 }
-.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover img {
+#rank.wrapper .main-content #ark-swiper-container .ark-swiper-wrapper .ark-swiper-item .swiper-item-cover img {
   object-fit: cover;
   width: 100%;
   z-index: 1;
@@ -4812,28 +4806,28 @@ aside ul#directory ul {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
 }
-.wrapper .main-content #ark-swiper-container .swiper-pagination {
+#rank.wrapper .main-content #ark-swiper-container .swiper-pagination {
   bottom: 0;
   left: 0;
   right: 0;
   margin: 0 auto;
 }
-.wrapper .post-item {
+#rank.wrapper .post-item {
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #f9f9f9;
 }
-.wrapper .post-item h3 {
+#rank.wrapper .post-item h3 {
   margin: 0 0 10px 0;
   color: #333;
 }
-.wrapper .post-item p {
+#rank.wrapper .post-item p {
   margin: 0;
   color: #666;
 }
-.wrapper .post-item img {
+#rank.wrapper .post-item img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
