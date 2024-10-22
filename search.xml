@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title>Box2Mask</title>
+      <link href="/Box2Mask/"/>
+      <url>/Box2Mask/</url>
+      
+        <content type="html"><![CDATA[<h1 id="摘要">摘要</h1><p>​  与使用像素级掩码标签的完全监督方法相比，盒监督实例分割利用了简单的方框注释，这在近年来引起了越来越多的研究关注。本文提出了一种新的单热实例分割方法，即Box2掩模，它将经典的水平集演化模型集成到深度神经网络学习中，在只有边界盒监督的情况下实现精确的掩模预测。具体地说，利用输入图像及其深度特征隐式演化水平集曲线，并利用基于像素亲和核的局部一致性模块挖掘局部上下文和空间关系。开发了两种类型的单阶段框架，即基于cnn和基于transformer的框架，以增强盒监督实例分割的级集演化，每个框架由三个基本组件组成：实例感知解码器、盒级匹配分配和级集演化。通过最小化水平集能量函数，每个实例的掩模映射可以在其边界框注释中进行迭代优化。在5个具有挑战性的实验数据集上，包括一般场景、遥感、医学和场景文本图像，证明了我们提出的Box2Mask方法在盒监督实例分割方面的突出性能。特别是，使用Swin-Transformer大型主干，我们的Box2Mask在COCO上获得了42.4%的掩模AP，这与最近开发的完全掩模监督方法相当。</p><h1 id="介绍">1.介绍</h1><p>​  在这项工作中，我们探索了利用经典的水平集模型[24]，[25]，[26]来进行有效的盒监督实例分割，该模型使用一个能量函数来隐式地表示对象边界曲线。基于水平集的能量函数可以利用丰富的上下文信息，包括像素强度、颜色、外观和形状，并带来了良好的图像分割结果[27]、[28]、[29]、[30]。然而，这些方法以完全掩模监督的方式执行水平集演化，其中网络被训练与像素级监督预测对象边界。与这些方法不同的是，在本工作中，我们的目标是监督只有边界框注释的水平集演化的训练。具体地说，我们提出了一种新的盒监督实例分割方法，即Box2Mask，该方法将经典的水平集模型[25]、[26]与深度神经网络相结合，迭代学习一系列隐式曲线演化的隐式水平集函数。该方法采用了经典的连续Chan-Vese能量泛函[26]。我们利用低级和高级特征来鲁棒地演化级别集曲线到对象的边界。在每个演化步骤中，水平集由一个简单的盒投影函数自动初始化，它提供了目标边界的粗略估计。基于亲和核函数开发了一个局部一致性模块，它挖掘了局部上下文和空间关系，以保证具有局部亲和一致性的层次集演化。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Bounding Box Supervision</title>
+      <link href="/Bounding-Box-Supervision/"/>
+      <url>/Bounding-Box-Supervision/</url>
+      
+        <content type="html"><![CDATA[<p>Bounding Box Supervision</p><p>Point2RBox: Combine Knowledge from Synthetic Visual Patterns forEnd-to-end Oriented Object Detection with Single PointSupervision（CVPR2024）</p><p>​  随着对面向对象检测（OOD， oriented objectdetection）需求的快速增长，最近关于从水平盒（HBox，horizontalbox）学习旋转盒（RBox，rotated box）的弱监督检测器的研究引起了越来越多的关注。在本文中，我们探索了一种更具挑战性但标签效率更高的设置，即单点监督OOD，并提出了我们的方法Point2RBox。具体来说，我们建议利用两个原则：1）合成模式知识组合：通过在图像上的每个标记点周围采样，我们将对象特征扩展到具有已知框的合成视觉模式，为框回归提供知识。2）变换自我监督：使用变换后的输入图像（例如缩放/旋转），训练输出RBox遵循相同的变换，以便网络能够感知对象之间的相对大小/旋转。检测器通过一些设计的技术进一步增强，以应对外围问题，例如锚/层分配，因为我们的点监督设置中没有对象的大小。据我们所知，Point2RBox是点监督OOD的第一个端到端解决方案。特别是，我们的方法使用了一个轻量级的范式，但在DOTA/DIOR/HRSC数据集上，它在点监督替代方案中取得了具有竞争力的性能，为41.05%/27.62%/80.01%。</p><p>Box2Mask: Box-supervised Instance Segmentation via Level-setEvolution（TPAMI2024）</p><p>​  与使用逐像素掩码标签的完全监督方法相比，框监督实例分割利用了简单的框注释，这最近引起了越来越多的研究关注。本文提出了一种新的单镜头实例分割方法，即Box2Mask，该方法将经典的水平集进化模型集成到深度神经网络学习中，仅通过边界框监督即可实现精确的掩模预测。具体来说，输入图像及其深层特征都被用来隐式地演化水平集曲线，基于像素亲和核的局部一致性模块被用来挖掘局部上下文和空间关系。开发了两种类型的单级框架，即基于CNN和基于变换器的框架，以支持盒监督实例分割的级别集演化，每个框架由三个基本组件组成：实例感知解码器、盒级匹配分配和级别集演化。通过最小化水平集能量函数，每个实例的掩码图可以在其边界框注释内迭代优化。在五个具有挑战性的测试台上的实验结果，涵盖了一般场景、遥感、医学和场景文本图像，证明了我们提出的Box2Mask方法在盒子监督实例分割方面的出色性能。特别是，借助SwinTransformer大型骨干网，我们的Box2Mask在COCO上获得了42.4%的掩码AP，这与最近开发的完全掩码监督方法相当。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Unified_Frequency-Assisted_Transformer_Framework_for_Detecting_and_Grounding_Multi-modal_Manipulation_</title>
       <link href="/Unified-Frequency-Assisted-Transformer-Framework-for-Detecting-and-Grounding-Multi-modal-Manipulation/"/>
       <url>/Unified-Frequency-Assisted-Transformer-Framework-for-Detecting-and-Grounding-Multi-modal-Manipulation/</url>

@@ -4248,6 +4248,234 @@ figure.highlight pre .javascript .function {
   font-weight: bold;
   font-size: 1.5em;
 }
+#gameContainer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff;
+  margin: 0;
+}
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  grid-template-rows: repeat(7, 100px);
+  gap: 2px;
+  background-color: #3a3f47;
+  border: 10px solid #7d8da5;
+  padding: 20px;
+}
+.cell {
+  width: 100px;
+  height: 100px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  position: relative;
+}
+.player {
+  background-color: #f44336;
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  position: absolute;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.player::before,
+.player::after {
+  content: '';
+  background-color: #000;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+}
+.player::before {
+  left: 25%;
+  top: 30%;
+}
+.player::after {
+  right: 25%;
+  top: 30%;
+}
+.box {
+  background-color: #2196f3;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+}
+.goal {
+  background-color: rgba(128,128,128,0.3);
+  border: 2px solid #808080;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.special-goal {
+  background-color: rgba(128,128,128,0.3);
+  border: 2px solid #808080;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.special-goal::before,
+.special-goal::after {
+  content: '';
+  background-color: #000;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+}
+.special-goal::before {
+  left: 25%;
+  top: 25%;
+}
+.special-goal::after {
+  left: 60%;
+  top: 25%;
+}
+.wall {
+  background-color: #7d8da5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.ground {
+  background-color: #1c1e22;
+  width: 100%;
+  height: 100%;
+}
+#controls {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  margin-left: 20px;
+}
+#controls button {
+  width: 80px;
+  height: 80px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+#controls span {
+  color: #000;
+}
+#controls #resetButton {
+  background-color: #f44336;
+  color: #000;
+}
+#controls #resetButton:hover {
+  background-color: #d32f2f;
+}
+#controls #undoButton {
+  background-color: #2196f3;
+  color: #000;
+}
+#controls #undoButton:hover {
+  background-color: #1976d2;
+}
+#controls #nextLevelButton {
+  background-color: #4caf50;
+  color: #000;
+}
+#controls #nextLevelButton:hover {
+  background-color: #388e3c;
+}
+#controls #nextLevelText {
+  margin-top: 5px;
+  color: #000;
+  font-size: 16px;
+  text-align: center;
+}
 #recent-posts > .recent-post-item:not(:first-child) {
   margin-top: 20px;
 }
