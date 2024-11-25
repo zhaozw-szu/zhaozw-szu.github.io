@@ -1,0 +1,604 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Image Manipulation Detection With Implicit Neural Representation and Limited Supervision Zhenfei Zhang1 , Mingyang Li2 , Xin Li1 , Ming-Ching Chang1 , and Jun-Wei Hsieh3 1 University at Albany, S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Image Manipulation Detection With Implicit Neural Representation and Limited Supervision Zhenfei Zhang1 , Mingyang Li2 , Xin Li1 , Ming-Ching Chang1 , and Jun-Wei Hsieh3 1 University at Albany, S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2024-11-19T02:15:22.000Z">
+<meta property="article:modified_time" content="2024-11-19T13:07:04.552Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-19 21:07:04'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">80</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-19T02:15:22.000Z" title="发表于 2024-11-19 10:15:22">2024-11-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-19T13:07:04.552Z" title="更新于 2024-11-19 21:07:04">2024-11-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><center>
+<p>Image Manipulation Detection With Implicit Neural Representation and
+Limited Supervision</p>
+<p>Zhenfei Zhang1 , Mingyang Li2 , Xin Li1 , Ming-Ching Chang1 , and
+Jun-Wei Hsieh3 1 University at Albany, State University of New York 2
+Stanford University 3 National Yang Ming Chiao Tung University</p>
+<p>{zzhang45, xli48, mchang2}<span class="citation"
+data-cites="albany.edu">@albany.edu</span> mingyang.li@stanford.edu
+jwhsieh@nycu.edu.tw</p>
+</center>
+<h1 id="摘要">摘要</h1>
+<p>​  随着篡改技术的发展，图像处理检测（IMD，Image Manipulation
+Detection）变得越来越重要。然而，大多数最先进的（SoTA，state
+of-the-art）方法都需要高质量的训练数据集，其中具有图像级和像素级注释。当应用于不同于训练数据的操纵或噪声样本时，这些方法的有效性受到影响。为了解决这些挑战，我们提出了一个统一的框架，结合了无监督和弱监督的方法的IMD。我们的方法引入了一种新的预处理阶段，基于来自隐式神经表示的可控拟合函数（INR，Implicit
+Neural
+Representation）。此外，我们引入了一种新的选择性像素级对比学习方法，它只专注于高置信度区域，从而减少了与像素级标签缺失相关的不确定性。在弱监督模式下，我们利用ground-truth图像级标签来指导自适应池化方法的预测，促进了对图像级检测的操作区域的全面探索。无监督模型采用自蒸馏训练方法进行训练，通过不同的来源从最深层获得选择高置信度的伪标签。大量的实验表明，我们提出的方法优于现有的无监督和弱监督的方法。此外，它在新的操作检测任务上有效地与完全监督的方法竞争。</p>
+<h1 id="引言">1引言</h1>
+<p>​  多种媒体篡改工具的出现，如[10,49,61,64,70,73]psp和人工智能编辑和生成方法，使得操纵媒体内容变得越来越方便。然而，这种可访问性也带来了广泛存在的错误信息的相关问题，这可能导致严重的安全影响。因此，开发和实现鲁棒篡改检测技术，即图像操作检测（IMD）方法，是有效降低这些风险的关键。以前的方法通常处理的基本操作操作如下：
+(1)拼接，包括从一个图像中获取内容并粘贴到另一个图像上，(2)复制移动，其中一个图像的部分被复制和重新定位到同一图像中的另一个位置，(3)消除，这需要擦除图像的部分，并用合成内容替换它们。<br/>​  尽管在完全监督的IMD方法方面取得了重大进展，但他们还是遇到了几个显著的挑战。</p>
+<ul>
+<li><p>首先，这些方法在面对看不见的操作类型时通常表现不佳。</p></li>
+<li><p>其次，由于它们依赖于具有图像级和像素级注释的高质量训练数据集，因此将它们扩展到看不见的操作类型面临着挑战。获取这样的数据集是昂贵的，而且在许多情况下，是不切实际的，特别是考虑到现实生活中无数种类的篡改方法。</p></li>
+<li><p>第三，虽然一些语言引导的数据集可能缺乏像素级的标签，但它们在处理现实世界的场景时具有优势。这些数据集可以潜在地增强IMD模型的泛化能力。</p></li>
+</ul>
+<p>​  为了解决完全监督的IMD方法的局限性，并提高对现实世界使用的泛化能力，我们建议将无监督和弱监督的方法集成到一个统一的IMD框架中。我们的框架允许训练使用单独的图像级标签，甚至没有任何标签，与许多无监督和弱监督的任务[14,30,48,52,56,72,74]对齐。与完全监督的方法相比，我们的方法具有优越的泛化能力，并且可以使用没有注释的数据集进行训练。我们的方法首先观察到，在大多数情况下，被篡改的区域表现出与真实区域的差异，比如颜色和照明的变化，这对需要精确建模区域的拟合函数提出了挑战。[63]的结果表明，隐式神经表示（INR）的可控拟合函数倾向于学习训练图像的平均表示。基于这一见解，我们提出了以下问题作为我们的假设：如果我们只在真实的图像上训练一个INR，拟合函数能有效地表示被篡改区域的特征吗？<br/>​  为了得到这个问题的答案，我们首先只使用来自CASIAv2
+[12]的原始图像来训练一个INR，并使用它来重建三个主流数据集。然后，我们应用完全监督的SoTA方法对重建的数据集进行评估，如图1所示。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119103521520.png"
+alt="image-20241119103521520" />
+<figcaption aria-hidden="true">image-20241119103521520</figcaption>
+</figure>
+<p>图1：我们使用三个广泛使用的评估数据集，包含真实和篡改样本进行实验。并与六种SoTA全监督IMD方法进行了性能比较。像素级F1得分计算使用篡改图像，而图像级精度计算使用真实图像计算。蓝色和橙色条分别表示通过隐式神经表示的原始数据集和重构数据集。结果表明，与原始数据集相比，所有针对重建图像的像素级检测方法的性能都有显著的下降。另一方面，使用真实图像的性能变化较小。这些分数取了CASIAv1
+[11]、Coverage[57]和Columbia[24]数据集上的平均值。</p>
+<p>​  令人惊讶的是，当使用INR重建样本时，这些方法的评价结果显著下降，而在真实图像样本中的性能变化较小。这一结果导致了我们初步假设，即INR可能不能有效地捕获篡改区域的特征。为了验证这一假设，我们计算了图2中重建图像和原始图像之间的重建误差图。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119110126166.png"
+alt="image-20241119110126166" />
+<figcaption aria-hidden="true">image-20241119110126166</figcaption>
+</figure>
+<p>图2：给出了在原始图像和重建图像之间计算的重建误差图的示例。前两行分别描述了数据样本及其对应的ground-truth掩码。前三列显示了被篡改的图像示例，而最后三列显示了真实的图像，其中ground-truth的掩码都是黑色的。显然，重建过程不能正确地重建被篡改的像素，导致错误映射中的激活。相反，在真实的样本中观察到的变化较小。</p>
+<p>​  值得注意的是，我们在被篡改样本的被篡改区域观察到激活，而在真实样本中没有明显的差异。这一观察结果启发我们将INR作为一种预处理方法，并将重建错误图与输入的RGB图像连接起来，然后将其输入给主干。我们将这种预处理方法命名为神经表示重建（NRR，Neural
+Representation
+Reconstruction）。<br/>​  在使用INR进行预处理的成功之后，我们进一步探索了我们的发现，并在我们的框架中充分利用了它。从对比学习[22]中获得灵感，我们利用NRR作为对比样本生成器，并引入选择性像素级对比学习，只关注高度自信的区域。该方法有效地减轻了与缺乏像素级标签相关的不确定性，并进一步提高了弱监督性能。我们进一步将我们的方法扩展到一个完全无监督的方法，使用选定的高置信伪标签，使用自蒸馏[69]训练策略。最后，以往的SoTA方法广泛应用于全局最大池（GMP，Global-Max
+Pooling）或全局平均池（GAP，Global-Average
+Pooling）用于图像级检测。然而，GMP可能会阻碍训练，并导致不准确的预测，因为只有最具区别性的反应是反向传播的，而忽略了整个被篡改的内容。相反，由于GAP的弱激活像素，容易产生不准确性。为了克服这一限制，我们提出了一个自适应的全局平均池，它关注于高置信的篡改区域。因此，我们的方法可以产生更全面和鲁棒的图像级预测。<br/>​  在7个数据集上进行了实验评估，其中包括5个具有一般操作类型的主流数据集和2个包含不可见的篡改样本的新数据集。结果表明，我们的方法优于SoTA弱监督和无监督方法。此外，在新的操作检测任务中，我们的方法与完全监督的方法相比，取得了具有竞争力的结果。最后，我们的方法可以很容易地扩展到没有像素级标签的数据集，这显示出了增强的通用性。<br/>​  本文的贡献包括：</p>
+<p>​  (1)我们提出了一种新的方法来实现可信的弱和无监督的IMD结果。我们的方法可以很容易地适应于没有标签或只有图像级标签的图像。</p>
+<p>​  (2)据我们所知，我们是第一个研究内隐神经表征（INR）在IMD任务中的潜力的人。利用INR的预处理步骤证明了处理被篡改案例的有效性。</p>
+<p>​  (3)我们引入了选择性监督，它减少了与没有标签相关的不确定性，并进一步提高了检测性能。</p>
+<p>​  (4)大量的实验验证了我们所提出的方法的有效性，与SoTA方法相比，它在标准和新型操作类型上都具有优越的性能。</p>
+<h1 id="相关工作">2相关工作</h1>
+<h1 id="提出的方法">3提出的方法</h1>
+<h2 id="整体架构">3.1整体架构</h2>
+<p>​  图3显示了我们的IMD框架的整体体系结构。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119110904314.png"
+alt="image-20241119110904314" />
+<figcaption aria-hidden="true">image-20241119110904314</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119110919864.png"
+alt="image-20241119110919864" />
+<figcaption aria-hidden="true">image-20241119110919864</figcaption>
+</figure>
+<p>​  基本架构由两个具有共享权重的分支组成。给定一个RGB图像<span
+class="math display">\[I\in\mathbb{R}^{H\times
+W\times3}\]</span>，其中H和W分别为其高度和宽度，我们首先应用神经表示重建（NRR）将其重建为<span
+class="math display">\[I_R\in\mathbb{R}^{H\times
+W\times3}\]</span>，并在<span class="math inline">\(I_R\)</span>和<span
+class="math inline">\(I\)</span>之间生成重构误差图<span
+class="math display">\[I_E\in\mathbb{R}^{H\times
+W\times1}\]</span>。然后我们将<span
+class="math inline">\(I\)</span>和<span
+class="math inline">\(I_E\)</span>连接起来，将它们输入第一个分支，作为主分支。与大多数IMD方法类似，主分支在最终的特征图上使用一个简单的上采样和Sigmoid激活函数生成一个掩模。然后，我们应用Otsu的方法自适应地选择激活的区域进行图像级预测，就像在[65]中所做的那样。将重建的图像<span
+class="math inline">\(I_R\)</span>输入第二分支，作为特征匹配的互补分支。经过主干处理后，我们得到了两个特征图<span
+class="math inline">\(F\)</span>和<span
+class="math inline">\(F_R\)</span>。接下来，我们通过点积计算两个特征映射之间的特征匹配分数<span
+class="math inline">\(M\)</span>，其中真实像素往往具有更高的匹配分数，反之亦然。对于操作检测的两类分类，对<span
+class="math inline">\(F\)</span>和<span
+class="math inline">\(M\)</span>应用无监督聚类，然后将两个聚类结果相交，并将像素级对比学习专门应用于更可信的交叉特征。利用所提出的自适应分类结果进行自适应全局平均池，该池集中于高置信篡改区域进行理解图像级预测。在一种弱监督的方式下，应用ground-truth图像级标签来监督预测。在无监督的情况下，从最深层中选择一组高置信的伪标签，通过自蒸馏[69]训练策略来监督浅层预测。通过比较来自Otsu的方法和聚类技术的预测来选择高置信度的伪标签，只选择那些被两个来源一致确定的来源。</p>
+<h2 id="神经表征重建nrr">3.2神经表征重建NRR</h2>
+<p>​  受[63]和图1
+2中实验观察结果的启发，我们应用NRR对输入图像进行重构。重构误差可以突出操作跟踪，从而在后续的IMD模型之前提供一个不可或缺的信息。在INR中，首先使用图像编码器将输入图像转换为特征映射<span
+class="math display">\[F_N\in\mathbb{R}^{H\times W\times
+C}\]</span>，其中H和W为高度和宽度，C为特征通道的数量。输入的坐标集可以用<span
+class="math display">\[X\in\mathbb{R}^{H\times W\times
+2}\]</span>来表示。我们通过将连接<span
+class="math inline">\(F_N\)</span>和<span
+class="math inline">\(X\)</span>进行连接，随后将它们输入多层感知器（MLP）进行解码。NRR的表述为：
+<span class="math display">\[I_{R}[x,y]=M L
+P(F_{N}[x,y],X[x,y]),\]</span> ​  其中，<span
+class="math inline">\(I_{R}\)</span>是从<span
+class="math inline">\(I\)</span>重建的RGB像素值，<span
+class="math inline">\([x,y]\)</span>是每个像素位置。NRR的主要目标是重构<span
+class="math inline">\(I\)</span>的RGB值，用损失函数表述为： <span
+class="math display">\[\mathcal{L}_{N R R}=||I-I_{R}||_{1}\,.\]</span>
+​  请注意，这种重建并不能正确地描述高频像素。因此，我们应用来自[39]的位置编码来将<span
+class="math inline">\(X\)</span>映射到一个高维空间。这种位置编码可表示为：
+<span class="math display">\[X^{&#39;}=(\sin(2^{0}\pi X),\cos(2^{0}\pi
+X),\cdot\cdot\cdot\cdot,\sin(2^{L-1}\pi X),\cos(2^{L-1}\pi X))\]</span>
+​  其中，<span
+class="math inline">\(L\)</span>是控制NRR拟合能力的预设定常数。通常情况下，<span
+class="math inline">\(L\)</span>越大，拟合就越准确。在我们的任务中，我们的目标是避免来自反映输入的NRR的输出；相反，我们希望NRR忠实地保存正常（真实）内容中的信息，同时在极端（篡改）像素中引入不忠实。我们根据经验选择<span
+class="math inline">\(L = 8\)</span>作为最优权衡。</p>
+<h2 id="选择性对比学习">3.3选择性对比学习</h2>
+<p>​  从NRR中获得<span
+class="math inline">\(I_R\)</span>后，我们使用<span
+class="math inline">\(I_E =(I_R−I)^2\)</span>计算<span
+class="math inline">\(I\)</span>和<span
+class="math inline">\(I_R\)</span>之间的重构误差图。然后，我们连接<span
+class="math inline">\(I_E\)</span>和<span
+class="math inline">\(I\)</span>，增强到主干的第一个（主）分支的输入。对于第二个（互补）分支的输入，我们发送<span
+class="math inline">\(I_R\)</span>来进行特征匹配。我们使用ResNet50
+[23]作为主干，它由四个阶段组成，匹配以前的弱监督方法。两个分支的权重共享。经过主干网处理后，我们从不同的输入源获得了2个特征输出<span
+class="math inline">\(F\)</span>和<span
+class="math inline">\(F_R\)</span>。然后，我们使用点积计算特征匹配分数<span
+class="math inline">\(M\)</span>为： <span
+class="math display">\[{M}_{x,y}=\sigma\left(\frac{P(F_{R}^{x,y})\cdot
+P(F^{x,y})}{\sqrt{C}}\right),\]</span> ​  其中，<span
+class="math inline">\({M}_{x,y}\)</span>是在空间位置<span
+class="math inline">\((x,y)\)</span>上的相似度得分。项目头<span
+class="math inline">\(P(\cdot)\)</span>包含2个卷积层和ReLU激活层。<span
+class="math inline">\(\sigma(\cdot)\)</span>表示sigmoid激活函数，<span
+class="math inline">\(\sqrt{C}\)</span>提供归一化。<br/>​  由于NRR能够正确地再现真实的像素（而不是被篡改的像素），<span
+class="math inline">\(M\)</span>中的高匹配分数往往对应于图像的真实部分。相比之下，低分数往往对应于图像的篡改的区域。由于缺乏ground-truth来监督最终特征，我们采用无监督聚类进行类似于[3,37,41,44,47,58]的伪造/原始聚类，并假设元素较少的聚类是被篡改的聚类。这一假设与当前操作数据集的真实情况相一致。原因是，在大多数情况下，被篡改的区域通常比真实的区域要小得多。<br/>​  理想情况下，我们可以通过InfoNCE
+[22]对<span class="math inline">\(M\)</span>和<span
+class="math inline">\(F\)</span>应用像素级对比学习像[58]一样。然而，我们发现这种方法在我们的实验中效果并不好，因为由于缺乏ground-truth掩膜，聚类置信度可能较低。为了解决这个问题，我们对<span
+class="math inline">\(M\)</span>和<span
+class="math inline">\(F\)</span>的聚类结果相交，并将相交的聚类表示为<span
+class="math inline">\(C_1\)</span>。在交集之后，我们将有2个集群，无论其是真实的还是被篡改的，因为它们来自于两个不同来源的相同的预测。因此，我们只将InfoNCE应用于交叉像素进行对比学习，而保持模糊像素不变。这种选择性对比学习损失的表述为：
+<span class="math display">\[\mathcal{L}_{S C
+L}=-\log\frac{\frac{1}{J}\sum_{j\in[1,J]}\exp(q\cdot
+k_{j}^{+}/\tau)}{\sum_{i\in[1,K]}\exp(q\cdot k_{i}^{-}/\tau)},\]</span>
+​  其中<span class="math inline">\(q\)</span>是一个编码查询；<span
+class="math inline">\(J\)</span>和<span
+class="math inline">\(K\)</span>分别是被选择的正键和负键的数量；<span
+class="math inline">\(\tau\)</span>是一个温度超参数。我们将正键<span
+class="math inline">\(k_{j}^{+}\)</span>设置为与原始区域相关的像素，而负键<span
+class="math inline">\(k_{i}^{-}\)</span>对应于与被篡改区域相关的像素。</p>
+<h2 id="自适应全局平均池化agap">3.4自适应全局平均池化AGAP</h2>
+<p>​  许多现有的方法使用全局最大池（GMP）和全局平均池（GAP）来进行图像级预测，以确定输入是真实的还是被篡改的。然而，GMP可能会阻碍训练，并导致不准确的预测，因为只有最具区别性的反应是反向传播的，而忽略了整个被篡改的内容。全局平均池（GAP）容易出现由于弱激活像素造成的不准确性。<br/>​  为了解决这些挑战，我们引入了自适应全局平均池（AGAP），它侧重于高置信度的篡改区域，用于全面的图像级预测。利用两个聚类结果的交集（在第3.3节中讨论），我们首先从聚类的角度将全局平均池（GAP）专门应用于相交的被篡改区域。然而，仅依赖于无监督聚类可能不能保证在没有地面真实标签的所有输入类型上的最佳性能和鲁棒性。正如在[32]中所讨论的，当图像直方图表现为双峰分布时，Otsu的方法表现良好，而聚类提供了灵活性和处理更复杂的直方图的能力。因此，我们结合Otsu和聚类来增强图像级预测和训练的鲁棒性。具体来说，GAP应用于Otsu和交叉聚类结果的篡改响应，用图像级标签进行损失计算。关于Otsu的方法和聚类的进一步细节可以在他们各自的论文[15,43]中找到。</p>
+<h2 id="弱监督和无监督的imd">3.5弱监督和无监督的IMD</h2>
+<p>​  在弱监督的IMD设置中，我们利用ground-truth图像级标签来监督使用二值交叉熵（BCE）损失的预测训练，即：
+<span class="math display">\[\mathcal{L}_{B C
+E}(g,\hat{g})=-(1-g)\log(1-\hat{g})-g\log(\hat{g}),\]</span>
+​  其中，<span class="math inline">\(g\)</span>和<span
+class="math inline">\(\hat{g}\)</span>分别为ground-truth值和预测得分。以弱监督的方式进行的最终分类损失是两个BCE损失的总和，并将两个池化结果与g进行比较。<br/>​  在没有使用标签的无监督IMD设置中，我们采用了自蒸馏训练策略[69]，使用来自最深层的伪标签作为教师来监督浅层输出。<br/>​  为了简化浅层的预测结果并减少计算开销，主干每个中间阶段的分类头在信道维度中使用空间平均池，将其重塑为单通道特征图。接下来是一个s型函数和全局最大池化。在传统的自蒸馏方法中，将地面真实损失和自蒸馏相结合可以提高整体性能，但这种方法不适用于无监督的环境。我们的实验表明，仅仅依靠自蒸馏并不能产生令人满意的结果，因为从最深层的输出可能缺乏准确性，阻碍了训练过程和整体性能。<br/>​  从选择性监督方法[31]中汲取灵感，这被证明在处理噪声标签数据集方面是有效的，我们利用它的概念，基于特征表示和给定标签之间的对齐来选择训练例子。然而，在我们的无监督设置中，标签的缺失带来了一个挑战。为了克服这一障碍，我们比较了Otsu和聚类方法获得的预测，只选择两种来源一致预测的预测作为自蒸馏训练的伪标签。<br/>​  在伪标签选择中，超过0.5的预测被认为是篡改样本。与弱监督设置类似，我们在选择的伪标签和浅层预测之间使用BCE损失来进行监督。在推理过程中，排除了浅层中的所有分类头，以避免不必要的参数。<br/>​  训练目标。我们首先将通过<span
+class="math inline">\(\mathcal{L}_{NRR}\)</span>训练的NRR作为预训练模型，在IMD训练过程中所有权重冻结。为了简单起见，我们使用符号<span
+class="math inline">\(\mathcal{L}_{cls}\)</span>来表示在无监督方法和弱监督方法中进行分类的损失函数，尽管如上所述略有不同。<br/>​  我们提出的IMD的总损失，记为<span
+class="math inline">\(\mathcal{L}_{total}\)</span>，是使用BCE损失和选择性像素级对比学习损失的分类损失的加权和：
+<span class="math display">\[\mathcal{L}_{t o t a
+l}=\alpha\mathcal{L}_{c l s}+\beta\mathcal{L}_{S C L}\]</span>
+​  其中，<span class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\beta\)</span>是加权超参数。</p>
+<h1 id="实验">4实验</h1>
+<p>​  <strong>数据集：</strong>我们的模型只使用CASIAv2
+[12]进行训练，其中包括7491个真实样本和5063个篡改图像。对于标准IMD任务的评估，我们使用了广泛使用的基准测试，包括CASIAv1
+[11]、Coverage[57]、Columbia[24]、IMD2020 [42]和NIST16 [19]。CASIAv1
+[11]由拼接和复制移动图像组成。Coverage[57]只包含使用一些后处理方法的复制移动样本。Columbia[24]由363张未压缩图像组成，平均分辨率为938×720。NIST16
+[19]和IMD2020
+[42]只包含被篡改的图像，适用于像素级评估。这些数据集涵盖了传统的操作类型，包括拼接、复制-移动和删除。对于涉及新的或更复杂的操作类型的评估，我们使用IEdit
+[51]和MagicBrush
+[68]，这是两个语言驱动的数据集，包含各种新的操作类型，如动作变化和光线变化。<br/>​  <strong>评估指标：</strong>我们使用IOU和F1分数，包括像素级的F1分数P-F1，图像级的F1分数I-F1，以及组合的F1分数C-F1。C-F1分数通过调和平均值同时统计了像素级和图像级的性能，提供了一个整体的性能比较。所有F1分数和IOU分数均使用0.5作为固定阈值进行计算。由于在IEdit
+[51]中缺乏像素级掩模，我们包括图像级ACC以进行额外的评估。<br/>​  <strong>实现细节：</strong>我们采用ResNet50
+[23]作为骨干，模型使用PyTorch [45]实现，参数随机初始化。我们应用AdamW
+[35]作为优化器。NRR中的多层感知器（MLP）遵循三隐藏层架构。NRR训练了120个轮次，初始学习速率为2×10−4，并应用权重衰减。对弱监督模式下的IMD模型进行了50次训练，初始学习率为0.0005，权值衰减。对于无监督模型，我们训练了20个轮次代，初始学习率为0.0001，应用权重衰减。图像增强仅限于随机翻转和裁剪。我们使用固定的阈值0.5从特征映射中提取二进制掩模，与之前的方法一致。弱监督训练的超参数α和β分别设置为1.0和0.1，无监督训练分别设置为1.0和0.3。对于聚类算法，我们使用了K-means
+[34]。</p>
+<h2 id="与sota方法的比较">4.1与SoTA方法的比较</h2>
+<p>​  为了与SoTA方法进行公平的比较，我们选择了源代码是公开可用的方法。应用于比较的无监督方法有NOI
+[38]、CFAl [17]、MCA [1]、NoisePrint [9]和IVC [8]，而弱监督方法包括FCN
+[46]和WSCL
+[65]。<br/>​  此外，我们使用两个新的操作数据集进行了实验，并将我们的方法与完全监督的方法进行了比较，包括RRUNet
+[2], Mantra-Net [60], SPAN [25], PSCC-Net [33], Trufor [20], CAT-Net
+[29],Hifi-Net [21], CR-CNN [62], ObjectFormer [54], and MVSS-Net
+[5]。<br/>​  <strong>与SoTA无监督方法的比较：</strong>由于无监督方法假设所有图像都包含篡改部分，他们将所有测试图像分类为篡改。因此，它们不适合进行图像级评估。我们进行了像素级实验，比较了它们定位篡改区域的能力，如表1所示。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119113617234.png"
+alt="image-20241119113617234" />
+<figcaption aria-hidden="true">image-20241119113617234</figcaption>
+</figure>
+<p>​  我们可以观察到，在五个广泛使用的标准操作基准中，我们提出的方法在无监督设置中比其他无监督方法获得了最好的检测性能。<br/>​  <strong>与SoTA弱监督方法的比较：</strong>表2为弱监督SoTA方法的实验结果。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119113655069.png"
+alt="image-20241119113655069" />
+<figcaption aria-hidden="true">image-20241119113655069</figcaption>
+</figure>
+<p>​  除了在Columbia[24]数据集中的图像级别上的F1(I-F1)得分外，我们的方法在所有其他指标上都优于SoTA方法。与WSCL相比，Columbia的I-F1得分相对较低，我们认为原因是Columbia没有后处理，所以我们的方法可能对篡改不是很敏感。然而，尽管存在这个问题，我们的方法在Columbia数据集中实现了最好的定位性能。<br/>​  <strong>比较使用新的操作数据集：</strong>为了显示我们的方法的泛化能力。我们在表3中的两个新的操作检测数据集上使用完全监督和弱监督的方法进行评估。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119113937715.png"
+alt="image-20241119113937715" />
+<figcaption aria-hidden="true">image-20241119113937715</figcaption>
+</figure>
+<p>​  我们可以看到，完全监督的方法不能适应新的操作类型，导致低检测性能，即使它们使用了一个非常大的具有图像级和像素级标签的合成训练数据集。相比之下，我们的方法在使用极少的训练数据而只使用图像级标签的情况下，取得了具有竞争力的性能。<br/>​  <strong>可视化结果：</strong>我们在图4中展示了一些与SoTA方法相比的可视化结果。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119114153339.png"
+alt="image-20241119114153339" />
+<figcaption aria-hidden="true">image-20241119114153339</figcaption>
+</figure>
+<p>​  我们的方法可以更好地定位被篡改的区域，即使没有使用像素级的标签。然而，由于缺乏像素级的标签，我们的模型不能准确地检测到被篡改的边缘。我们的方法的这些结果是由弱监督模型产生的。</p>
+<h2 id="消融研究">4.2消融研究</h2>
+<p>​  我们进行了几项消融研究来评估每个建议成分的有效性。对于这些研究，我们使用了CASIAv1
+[12]和NIST16 [19]数据集。</p>
+<p>​  <strong>提出的组件的有效性：</strong>我们引入了三个新的组件：使用神经表示重建（NRR）的预处理阶段，选择性像素对比学习（SCL）和自适应全局平均池（AGAP）的非/弱监督IMD。在弱模式下进行的消融研究见表4。很明显，随着我们所提出的模块的逐步集成，模型检测篡改的整体能力不断提高。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119114349893.png"
+alt="image-20241119114349893" />
+<figcaption aria-hidden="true">image-20241119114349893</figcaption>
+</figure>
+<p>​  <strong>伪标签选择（PLS）：</strong>在我们的无监督方法中，我们引入了PLS，它专门利用来自两个来源的高可信度伪标签来监督自蒸馏训练过程中的浅层预测。表5检查了PLS的影响。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119114437758.png"
+alt="image-20241119114437758" />
+<figcaption aria-hidden="true">image-20241119114437758</figcaption>
+</figure>
+<p>​  在没有PLS的实验中，我们使用主分支的图像级预测作为伪标签来指导浅层预测。所提出的PLS在提高无监督性能方面是有效的。</p>
+<p>​  <strong>自适应全局平均池：</strong>为了证明所提出的AGAP的优越性，我们使用不同的池方法在弱监督设置下进行了消融研究，包括全局最大池（GMP）、全局平均池（GAP）、广义平均池（GeM）[50]和全局光滑池（GsM）[55]。结果如表6所示。</p>
+<figure>
+<img
+src="../postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119114507800.png"
+alt="image-20241119114507800" />
+<figcaption aria-hidden="true">image-20241119114507800</figcaption>
+</figure>
+<p>​  同样，所提出的AGAP也取得了最好的性能，突出了其优越性。</p>
+<h1 id="结论">5结论</h1>
+<p>​  我们提出了一个新的框架，集成了无监督和弱监督方法的图像操作检测（IMD）。我们的方法具有一个开创性的预处理步骤，利用了一个来自隐式神经表示的可控拟合函数，为其提供了一个操作区域的先验。此外，我们提出了一种选择性像素级对比学习技术，该技术对高可信度的区域进行优先排序，减少了由于缺乏像素级标签而产生的不确定性。对于图像级预测，我们引入自适应全局平均池来彻底探索用于检测和鲁棒训练的操作区域。在无监督模式下，我们实现了伪标签选择，从较深的层中选择高可信度的预测作为伪标签，通过自蒸馏训练方法来监督较浅的层中的预测。大量的实验验证了我们的方法的有效性，证明了比现有的无监督和弱监督的方法更好的性能。值得注意的是，我们的方法在检测新的操作方面与完全监督的方法有效地竞争，展示了其在现实场景中的鲁棒性。<br/>​  这项工作的局限性包括被篡改区域边缘的不准确定位，导致比ground
+truth更大的预测掩模。<br/>​  未来的工作包括开发更强大的模型和有效的预滤波器，以提高像素级的检测性能。<br/>​  <strong>Acknowledgements:</strong>
+This work is supported by the DARPA Semantic Forensics (SemaFor) Program
+under contract HR001120C0123 and NSF CCSS-2348046.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/">https://zhaozw-szu.github.io/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/AdaIFL/" title="AdaIFL"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">AdaIFL</div></div></a></div><div class="next-post pull-right"><a href="/Learning-Universal-Features-for-Generalizable-Image-Forgery-Localization/" title="Learning_Universal_Features_for_Generalizable_Image_Forgery_Localization"><img class="cover" src="/img/coverImage/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Learning_Universal_Features_for_Generalizable_Image_Forgery_Localization</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">80</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">3提出的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">3.1整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E8%A1%A8%E5%BE%81%E9%87%8D%E5%BB%BAnrr"><span class="toc-text">3.2神经表征重建NRR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%80%A7%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="toc-text">3.3选择性对比学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E5%85%A8%E5%B1%80%E5%B9%B3%E5%9D%87%E6%B1%A0%E5%8C%96agap"><span class="toc-text">3.4自适应全局平均池化AGAP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E7%9B%91%E7%9D%A3%E5%92%8C%E6%97%A0%E7%9B%91%E7%9D%A3%E7%9A%84imd"><span class="toc-text">3.5弱监督和无监督的IMD</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8Esota%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.1与SoTA方法的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.2消融研究</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/" title="Generalizable_Synthetic_Image_Detection_via_Language-guided_Contrastive_Learning"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Generalizable_Synthetic_Image_Detection_via_Language-guided_Contrastive_Learning"/></a><div class="content"><a class="title" href="/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/" title="Generalizable_Synthetic_Image_Detection_via_Language-guided_Contrastive_Learning">Generalizable_Synthetic_Image_Detection_via_Language-guided_Contrastive_Learning</a><time datetime="2024-11-24T13:50:59.000Z" title="发表于 2024-11-24 21:50:59">2024-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/AIGCTraceability/" title="AIGCTraceability"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AIGCTraceability"/></a><div class="content"><a class="title" href="/AIGCTraceability/" title="AIGCTraceability">AIGCTraceability</a><time datetime="2024-11-24T12:07:30.000Z" title="发表于 2024-11-24 20:07:30">2024-11-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/AdaIFL/" title="AdaIFL"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AdaIFL"/></a><div class="content"><a class="title" href="/AdaIFL/" title="AdaIFL">AdaIFL</a><time datetime="2024-11-19T13:12:46.000Z" title="发表于 2024-11-19 21:12:46">2024-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/" title="Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision"/></a><div class="content"><a class="title" href="/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/" title="Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision">Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision</a><time datetime="2024-11-19T02:15:22.000Z" title="发表于 2024-11-19 10:15:22">2024-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Learning-Universal-Features-for-Generalizable-Image-Forgery-Localization/" title="Learning_Universal_Features_for_Generalizable_Image_Forgery_Localization"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learning_Universal_Features_for_Generalizable_Image_Forgery_Localization"/></a><div class="content"><a class="title" href="/Learning-Universal-Features-for-Generalizable-Image-Forgery-Localization/" title="Learning_Universal_Features_for_Generalizable_Image_Forgery_Localization">Learning_Universal_Features_for_Generalizable_Image_Forgery_Localization</a><time datetime="2024-11-13T08:17:38.000Z" title="发表于 2024-11-13 16:17:38">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
