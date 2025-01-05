@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>K-means_clustering_algorithms | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="K-means clustering algorithms: A comprehensive review, variants analysis, and advances in the era of big data 摘要 ​  在大数据时代，最近的科学数据收集技术的进步允许在各种数据采集地点系统地积累大量数据。同样，不同数据分析方法的指数增长，其中K-means算法仍然是最流行和最直接的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="K-means_clustering_algorithms">
+<meta property="og:url" content="https://zhaozw-szu.github.io/K-means-clustering-algorithms/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="K-means clustering algorithms: A comprehensive review, variants analysis, and advances in the era of big data 摘要 ​  在大数据时代，最近的科学数据收集技术的进步允许在各种数据采集地点系统地积累大量数据。同样，不同数据分析方法的指数增长，其中K-means算法仍然是最流行和最直接的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2024-12-02T12:36:50.000Z">
+<meta property="article:modified_time" content="2024-12-02T13:13:46.319Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/K-means-clustering-algorithms/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'K-means_clustering_algorithms',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-02 21:13:46'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">K-means_clustering_algorithms</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-02T12:36:50.000Z" title="发表于 2024-12-02 20:36:50">2024-12-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-02T13:13:46.319Z" title="更新于 2024-12-02 21:13:46">2024-12-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="K-means_clustering_algorithms"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>K-means clustering algorithms: A comprehensive review, variants
+analysis, and advances in the era of big data</p>
+<h1 id="摘要">摘要</h1>
+<p>​  在大数据时代，最近的科学数据收集技术的进步允许在各种数据采集地点系统地积累大量数据。同样，不同数据分析方法的指数增长，其中K-means算法仍然是最流行和最直接的聚类算法。该算法在许多聚类应用领域的广泛适用性可以归因于其实现的简单性和计算复杂度低。然而，K-means算法存在许多对其聚类性能的负面挑战。在算法的初始化过程中，用户必须随机选择给定数据集中的集群数量，而初始集群中心是随机选择的。此外，该算法的性能易受初始聚类选择的影响，对于大型数据集，确定最优的集群数量变得复杂，是一项非常具有挑战性的任务。此外，由于初始聚类中心的随机选择，有时会导致最小的局部收敛。进一步的限制是，某些数据对象特征通过使用欧氏距离度量作为相似性度量来确定其相似性，但这限制了算法在检测其他聚类形状时的鲁棒性，并对检测重叠聚类提出了很大的挑战。关于提高K-means算法的性能和鲁棒性，已经在文献中进行了许多研究和报道。目前的工作提出了K-means聚类算法及其变体的概述和分类。本文还讨论了k均值的历史、当前的趋势、开放的问题和挑战，以及未来的研究前景。</p>
+<h1 id="介绍">1.介绍</h1>
+<p>​  从收集的数据中提取有意义和有形的信息是数据挖掘[4]的主要目标。然而，大多数数据都是以任意的形式和类别收集的，这使得这些数据难以分析，特别是当数据对象的特征未知时。未标记数据的适当组织是由聚类分析处理的数据挖掘的一个方面。将这些未标记的数据进行有意义的分组视为数据聚类。其目标是对未标记的数据进行分组，使其特征和属性相似的数据对象聚集在一个集群中，从而使同一集群中的数据对象的相似性比其他集群中的数据对象的相似性更高。换句话说，数据聚类分析对未标记数据进行分类，以确保较高的簇内相似度和较低的簇间相似度[59]。聚类分析的过程可以比作学习过程，当处理无标记数据集[55]时，它涉及到与无监督学习相关的特定预测行为。图1清楚地说明了模式识别和机器学习中感兴趣的不同类别的学习问题，如Jain
+[95]中所讨论的。</p>
+<figure>
+<img
+src="../postimages/K-means-clustering-algorithms/image-20241202203941768.png"
+alt="image-20241202203941768" />
+<figcaption aria-hidden="true">image-20241202203941768</figcaption>
+</figure>
+<p>图1。聚类分析被认为是一个学习问题。图上的点对应于没有标签的点。相反，带有标签的点用加号、星号和叉号表示。在(c)中，必须链接和不能链接约束分别用实线、虚线和虚线表示。</p>
+<p>​  聚类分析已成功应用于解决不同领域的数据聚类问题，如医学、制造、机器人、金融部门、隐私保护、人工智能、城市开发、航空、行业、销售和营销[61,7,180,59,20,111,49]。从这些领域的数据中提取有用的信息对于提供更好的服务和产生更多的利润[181,148,172]至关重要。生成的真实数据大多是大量的、未标记的和不同的维度。这使得数据集群变得困难。不能快速地预先识别真实数据集中的集群数量。因此，对于标准的聚类算法来说，确定一个具有高密度和维数特征的真实数据集中的最优聚类数量是相当棘手的。这对传统的聚类算法提出了一个重大的挑战，其中集群的数量必须被指定为算法的输入。<br/>​  数据聚类算法分为两大类，即层次聚类算法和分区聚类算法。分层聚类算法以分层的形式将数据对象划分为集群，可以采用自下而上的方法（凝聚方法）或自上而下的方法（划分方法）。在凝聚方法中，单个数据对象根据它们的相似性进行迭代合并。在分裂法中，将初始数据集视为单个聚类，并使用数据对象相似度进行迭代分解，直到每个数据对象形成一个聚类或满足一个集合准则。层次聚类算法生成合并（凝聚）或分裂（分裂）数据对象的树状图，描述相应的聚类层次结构作为聚类分析[60]的输出。树状图是数据对象嵌套分组的图形表示，显示每个分组更改[97]的相似性级别。<br/>​  在分区聚类方法中，生成一个初始数据集的单一分区，而不是一个树状图的聚类结构。集群是以启发式方法产生的，同时优化一个全局定义在集合中所有数据对象上的标准函数，或者局部定义在数据对象[246,9,189]的子集上。使用对所有可能的值的组合搜索来优化一组数据对象上的标准函数，以得到最优值，这在计算上是不可能的。因此，分区聚类算法需要指定在不同运行时提供的不同k值，以获得产生最优聚类的最佳配置。<br/>​  K-means聚类算法是由不同学科的研究者独立提出的，包括20世纪50年代和60年代的JacQueen[135]和Jancey
+[98]。这些研究人员的不同版本的算法显示了四个常见的处理步骤，每个步骤[171]都不同。K-means聚类算法使用聚类的对象均值[197,34]生成聚类。在标准的K-means算法中，需要聚类号作为用户参数，用于从数据集的任意聚类中心选择。然而，由于其贪婪性质[95]，均值算法可能收敛到局部最小值。因此，对于给定的k值，需要选择不同的初始聚类中心进行多次运行，才能得到最优的聚类结果[243,59,19]。此外，标准算法检测球形或球形聚类，只是因为使用欧几里得度量作为其距离度量[95]。一个典型的k均值聚类过程如图2所示。</p>
+<figure>
+<img
+src="../postimages/K-means-clustering-algorithms/image-20241202204417262.png"
+alt="image-20241202204417262" />
+<figcaption aria-hidden="true">image-20241202204417262</figcaption>
+</figure>
+<p>图2。K-means聚类：
+(a)随机分布的数据集和(b)最近的聚类质心，有三个聚类[142]。</p>
+<p>​  通过向K-means聚类算法提供一组输入数据，可以很容易地识别质心向量<span
+class="math inline">\(C=\{c_{1},c_{2},...,c_{k}\}\)</span>，K是由用户定义的质心的数量。图2a显示了一个在二维空间中随机分布在<span
+class="math inline">\(-100\leq
+x_{i},y_{i}\leq100\)</span>中的数据集，图2b显示了K-means聚类结果，质心数设置为K=3。<br/>​  尽管有这些限制，K-means聚类算法被认为具有灵活性、效率和易于实现。它也是数据挖掘[59,217,105,94]中的十大聚类算法之一。K-means聚类算法的简单性和低计算复杂度使得K-means聚类算法在许多领域被广泛用于解决聚类问题。为了提高其性能，已经开发了几种K-means聚类算法。本项工作概述了K-means聚类算法及其变体，并提出了对变体的分类法。并详细讨论了该算法从一开始的研究进展、当前的趋势、开放的问题和未来研究前景的挑战。<br/>​  本文提出了以下重点研究问题，以反映这项综合综述工作的目的：<br/>​  “自成立以来，解决聚类问题的k均值算法的现有变体是什么？”在提供主要研究问题的答案时，我们考虑了以下子研究问题：</p>
+<p>​  a. 确定为改进标准K-means聚类算法而进行的研究<br/>​  b.
+在(a)的各种研究中，采用了哪些方法来提高K-means聚类算法的性能？<br/>​  c.
+所报告的K-means聚类算法变量的性能如何？<br/>​  d.
+目前涉及K-means聚类算法的研究进展如何？</p>
+<p>​  本综述工作将从四个角度提出：首先，系统地回顾K-mean聚类算法及其变体。其次，在文献中提出了一种新的K-means聚类方法的分类方法。第三，通过深入分析验证K-means聚类方法各个方面的结果。第四，概述开放的问题和挑战，并建议未来的趋势。主要思想是提出一个全面的系统回顾，将为当前的研究人员和从业者提供未来涉及K-means聚类算法的新研究的途径。本研究工作的主要贡献总结如下：</p>
+<ul>
+<li>对K-means算法进行了全面的回顾，包括提出了最近变异的变异分类和K-means聚类算法的趋势应用领域。</li>
+<li>本文确定并讨论了有关采用元启发式算法作为自动聚类数生成器来提高K-means算法的性能质量的公开研究问题。</li>
+<li>最后，确定了K-means算法的研究差距和未来范围，特别是在概述解决K-means聚类算法及其变体挑战的新视角方面。</li>
+</ul>
+<p>​  本文的其余部分组织如下：第1节介绍了拟议的审查研究的背景工作；第2节概述了方法；第3节提出了文献中K-means聚类方法的分类，然后详细讨论了K-means算法变体的审查；第4节讨论了审查结果；第5节报告了K-means算法目前正在应用的趋势领域；第6节概述了K-means聚类方法的开放问题和挑战；第7节总结了回顾。</p>
+<h1 id="研究方法">2.研究方法</h1>
+<h2 id="相关文献的检索策略和关键词">2.1.相关文献的检索策略和关键词</h2>
+<h2 id="搜索结果">2.2.搜索结果</h2>
+<h2 id="文章的筛选和选择标准">2.3.文章的筛选和选择标准</h2>
+<h2 id="与现有勘察工作的比较">2.4.与现有勘察工作的比较</h2>
+<h1 id="标准的k-means聚类算法">3.标准的K-means聚类算法</h1>
+<h2 id="k-means计算复杂度分析">3.1.K-means计算复杂度分析</h2>
+<h2 id="k-means变异体的分类法">3.2.K-means变异体的分类法</h2>
+<h2 id="k-means算法设计变体">3.3.K-means算法设计变体</h2>
+<h3 id="算法输入修改">3.3.1.算法输入修改</h3>
+<h4 id="a.数据集预处理">a.)数据集预处理</h4>
+<p>​  Huang[88]等人[88]提出了一种鲁棒的深度k-均值，作为一种简单有效的数据聚类方法，以避免标准单层公式的问题，该公式包含基于数据集复杂层次信息的数据聚类。他们提出的算法采用深度学习技术来提取深度表示，以提高聚类性能，使用深度K-means模型来学习隐式底层属性的隐藏表示。Lithio和Maitra
+[131]提出了Km-means算法作为Kmeans算法的一种有效变体，该算法允许对具有不完整记录的数据集进行聚类。当数据集有完整的记录时，该算法被简化为标准的K-means算法。Km-means算法还配备了初始化策略和方法来估计数据集中的簇的数量。Marom和Feldman
+[139]提出了一种用于大数据聚类线的Kmeans变体。当一些或所有输入向量中缺失条目，有时数据集中信息不完整时，k均值变量的问题就出现了。这个问题的一个例子在计算机视觉中很典型，一个点或k个点的位置根据它们通过针孔相机模型对二维图像的投影转换成线。在矩阵近似理论和数据科学中，考虑了数据库记录中缺失条目的所有可能值，从而将一个点变成了一条直线。然后，聚类过程考虑在k均值中心周围相交的线。</p>
+<h4 id="b.自动规格化的k">b.)自动规格化的K</h4>
+<h4 id="c.-改进了初始质心的选择">c.) 改进了初始质心的选择</h4>
+<h3 id="算法处理增强">3.3.2.算法处理增强</h3>
+<h4 id="a.数据对象分配过程的修改">a.)数据对象分配过程的修改</h4>
+<h4 id="b.迭代减少变体">b.)迭代减少变体</h4>
+<h3 id="算法输出改进变量">3.3.3.算法输出改进变量</h3>
+<h4 id="a.检测其他形状的簇">a.)检测其他形状的簇</h4>
+<h4 id="b.模糊团簇">b.)模糊团簇</h4>
+<h4 id="c.-粗糙的集群">c.) 粗糙的集群</h4>
+<h4 id="d.-重叠的集群">d.) 重叠的集群</h4>
+<h2 id="算法的概念修改">3.4.算法的概念修改</h2>
+<h3 id="一般算法的概念修改">3.4.1.一般算法的概念修改</h3>
+<h3 id="杂交变体">3.4.2.杂交变体</h3>
+<h2 id="算法实现变量">3.5.算法实现变量</h2>
+<h3 id="并行操作机的实现">3.5.1.并行操作机的实现</h3>
+<h3 id="量子机的实现">3.5.2.量子机的实现</h3>
+<h3 id="mapreduce框架的实现">3.5.3.MapReduce框架的实现</h3>
+<h3 id="其他实现范例">3.5.4.其他实现范例</h3>
+<h1 id="讨论">4.讨论</h1>
+<h1 id="k-means算法的趋势应用领域">5.K-means算法的趋势应用领域</h1>
+<h1 id="开放的问题和挑战">6.开放的问题和挑战</h1>
+<h1 id="结论">7.结论</h1>
+<p>​  K-means聚类算法以其简单性而闻名，并应用于不同领域的数据集聚类。尽管有这种优势，但由于其实现过程中固有的一些问题，其性能受到了极大的阻碍。因此，为了提高算法的总体性能，人们进行了大量的研究。这项综述工作已经能够识别出标准算法的各种局限性，以及为解决本综述工作之前所确定的问题而开发的众多变体。本文将有利于致力于扩展现有变体以实现更鲁棒和可扩展的基于k-means的聚类技术的研究人员，以及对使用标准算法的最先进的变体来满足其领域的数据聚类需求感兴趣的从业者。对现有的基于k-means的算法有问题的从业者可以很容易地识别哪种变体将充分满足他们的应用需求，或者识别可以采用的改进他们现有算法的方法。<br/>​  本研究的结果表明，人们非常关注解决K-means算法的初始化问题，而很少关注解决混合数据类型的问题。目前正在研究一些新技术，如MapReduce、并行实现和基于内核的实现，以使用标准算法解决大数据聚类问题。标准算法与自动聚类的元启发式算法的杂交是一个新的和即将到来的领域，到目前为止所做的工作很少。据报道，只有少数现有的元启发式算法与标准算法相结合来解决收敛到局部最优的问题。未来的研究可以研究自动聚类算法，混合标准或变体与其他群体智能元启发式算法。寻求基于标准算法或其变体设计改进的自动聚类的研究人员和从业者将会发现这项调查非常有用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/K-means-clustering-algorithms/">https://zhaozw-szu.github.io/K-means-clustering-algorithms/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Robust-deep-k-means/" title="Robust_deep_k-means"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Robust_deep_k-means</div></div></a></div><div class="next-post pull-right"><a href="/WMGTI/" title="WMGTI"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">WMGTI</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95"><span class="toc-text">2.研究方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%8C%AE%E7%9A%84%E6%A3%80%E7%B4%A2%E7%AD%96%E7%95%A5%E5%92%8C%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-text">2.1.相关文献的检索策略和关键词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C"><span class="toc-text">2.2.搜索结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%9A%84%E7%AD%9B%E9%80%89%E5%92%8C%E9%80%89%E6%8B%A9%E6%A0%87%E5%87%86"><span class="toc-text">2.3.文章的筛选和选择标准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E7%8E%B0%E6%9C%89%E5%8B%98%E5%AF%9F%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">2.4.与现有勘察工作的比较</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%9A%84k-means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="toc-text">3.标准的K-means聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#k-means%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">3.1.K-means计算复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k-means%E5%8F%98%E5%BC%82%E4%BD%93%E7%9A%84%E5%88%86%E7%B1%BB%E6%B3%95"><span class="toc-text">3.2.K-means变异体的分类法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#k-means%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E5%8F%98%E4%BD%93"><span class="toc-text">3.3.K-means算法设计变体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%BE%93%E5%85%A5%E4%BF%AE%E6%94%B9"><span class="toc-text">3.3.1.算法输入修改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a.%E6%95%B0%E6%8D%AE%E9%9B%86%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-text">a.)数据集预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b.%E8%87%AA%E5%8A%A8%E8%A7%84%E6%A0%BC%E5%8C%96%E7%9A%84k"><span class="toc-text">b.)自动规格化的K</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c.-%E6%94%B9%E8%BF%9B%E4%BA%86%E5%88%9D%E5%A7%8B%E8%B4%A8%E5%BF%83%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">c.) 改进了初始质心的选择</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%A4%84%E7%90%86%E5%A2%9E%E5%BC%BA"><span class="toc-text">3.3.2.算法处理增强</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a.%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%88%86%E9%85%8D%E8%BF%87%E7%A8%8B%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">a.)数据对象分配过程的修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b.%E8%BF%AD%E4%BB%A3%E5%87%8F%E5%B0%91%E5%8F%98%E4%BD%93"><span class="toc-text">b.)迭代减少变体</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%BE%93%E5%87%BA%E6%94%B9%E8%BF%9B%E5%8F%98%E9%87%8F"><span class="toc-text">3.3.3.算法输出改进变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a.%E6%A3%80%E6%B5%8B%E5%85%B6%E4%BB%96%E5%BD%A2%E7%8A%B6%E7%9A%84%E7%B0%87"><span class="toc-text">a.)检测其他形状的簇</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b.%E6%A8%A1%E7%B3%8A%E5%9B%A2%E7%B0%87"><span class="toc-text">b.)模糊团簇</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c.-%E7%B2%97%E7%B3%99%E7%9A%84%E9%9B%86%E7%BE%A4"><span class="toc-text">c.) 粗糙的集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#d.-%E9%87%8D%E5%8F%A0%E7%9A%84%E9%9B%86%E7%BE%A4"><span class="toc-text">d.) 重叠的集群</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BF%AE%E6%94%B9"><span class="toc-text">3.4.算法的概念修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E7%AE%97%E6%B3%95%E7%9A%84%E6%A6%82%E5%BF%B5%E4%BF%AE%E6%94%B9"><span class="toc-text">3.4.1.一般算法的概念修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%82%E4%BA%A4%E5%8F%98%E4%BD%93"><span class="toc-text">3.4.2.杂交变体</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%8F%98%E9%87%8F"><span class="toc-text">3.5.算法实现变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E8%A1%8C%E6%93%8D%E4%BD%9C%E6%9C%BA%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.5.1.并行操作机的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8F%E5%AD%90%E6%9C%BA%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.5.2.量子机的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapreduce%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.5.3.MapReduce框架的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AE%9E%E7%8E%B0%E8%8C%83%E4%BE%8B"><span class="toc-text">3.5.4.其他实现范例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A8%E8%AE%BA"><span class="toc-text">4.讨论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#k-means%E7%AE%97%E6%B3%95%E7%9A%84%E8%B6%8B%E5%8A%BF%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F"><span class="toc-text">5.K-means算法的趋势应用领域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E6%8C%91%E6%88%98"><span class="toc-text">6.开放的问题和挑战</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">7.结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_clustering_method_for_image_segmentation"/></a><div class="content"><a class="title" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation">Fuzzy_clustering_method_for_image_segmentation</a><time datetime="2024-12-29T14:13:57.000Z" title="发表于 2024-12-29 22:13:57">2024-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"/></a><div class="content"><a class="title" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</a><time datetime="2024-12-26T02:50:46.000Z" title="发表于 2024-12-26 10:50:46">2024-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"/></a><div class="content"><a class="title" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</a><time datetime="2024-12-23T08:43:50.000Z" title="发表于 2024-12-23 16:43:50">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_Machine_Learning"/></a><div class="content"><a class="title" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning">Fuzzy_Machine_Learning</a><time datetime="2024-12-23T03:20:44.000Z" title="发表于 2024-12-23 11:20:44">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_survey_on_deep_learning-based_image_forgery_detection"/></a><div class="content"><a class="title" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection">A_survey_on_deep_learning-based_image_forgery_detection</a><time datetime="2024-12-18T06:44:25.000Z" title="发表于 2024-12-18 14:44:25">2024-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

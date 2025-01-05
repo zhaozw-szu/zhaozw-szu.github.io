@@ -1,0 +1,541 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Robust_deep_fuzzy_k-means_clustering_for_image_data | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="​ 摘要 ​  图像聚类是计算机视觉中的一项艰巨任务，具有重要的应用价值。这项任务的关键是图像特征的质量。目前，大多数的聚类方法都面临着这一挑战。也就是说，特征学习和聚类的过程是独立运行的。为了解决这个问题，一些研究人员已经致力于一起进行特征学习和深度聚类。然而，所获得的特征缺乏成功处理高维数据的可鉴别性。为了解决这一问题，我们提出了一种新的鲁棒深度模糊𝐾-means聚类（RD-FKC，ro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robust_deep_fuzzy_k-means_clustering_for_image_data">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Robust-deep-fuzzy-k-means-clustering-for-image-data/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="​ 摘要 ​  图像聚类是计算机视觉中的一项艰巨任务，具有重要的应用价值。这项任务的关键是图像特征的质量。目前，大多数的聚类方法都面临着这一挑战。也就是说，特征学习和聚类的过程是独立运行的。为了解决这个问题，一些研究人员已经致力于一起进行特征学习和深度聚类。然而，所获得的特征缺乏成功处理高维数据的可鉴别性。为了解决这一问题，我们提出了一种新的鲁棒深度模糊𝐾-means聚类（RD-FKC，ro">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg">
+<meta property="article:published_time" content="2024-12-03T00:57:34.000Z">
+<meta property="article:modified_time" content="2024-12-24T01:29:36.647Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Robust-deep-fuzzy-k-means-clustering-for-image-data/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Robust_deep_fuzzy_k-means_clustering_for_image_data',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-24 09:29:36'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Robust_deep_fuzzy_k-means_clustering_for_image_data</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-03T00:57:34.000Z" title="发表于 2024-12-03 08:57:34">2024-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-24T01:29:36.647Z" title="更新于 2024-12-24 09:29:36">2024-12-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Robust_deep_fuzzy_k-means_clustering_for_image_data"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>​</p>
+<h1 id="摘要">摘要</h1>
+<p>​  图像聚类是计算机视觉中的一项艰巨任务，具有重要的应用价值。这项任务的关键是图像特征的质量。目前，大多数的聚类方法都面临着这一挑战。也就是说，特征学习和聚类的过程是独立运行的。为了解决这个问题，一些研究人员已经致力于一起进行特征学习和深度聚类。然而，所获得的特征缺乏成功处理高维数据的可鉴别性。为了解决这一问题，我们提出了一种新的鲁棒深度模糊𝐾-means聚类（RD-FKC，robust
+deep fuzzy 𝐾-means
+clustering）模型，该模型有效地将图像样本投影到一个具有代表性的嵌入空间中，并将隶属度精确地学习到一个组合框架中。具体来说，RD-FKC引入了拉普拉斯正则化技术来保持数据的局域性。此外，通过使用自适应损失函数，该模型对不同类型的异常值具有更强的鲁棒性。此外，为了避免潜在空间的扭曲，使提取的特征尽可能地保留原始信息，该模型引入了重构误差，并对网络参数进行了正则化处理。最后，给出了一种求解优化模型的有效算法。我们已经进行了大量的实验，说明了RD-FKC相对于现有的聚类方法的优势和优越性。</p>
+<h1 id="介绍">1.介绍</h1>
+<p>​  本文提出了一种新的深度聚类模型，即鲁棒深度模糊𝐾-均值聚类（RD-FKC），该模型将模糊聚类和深度卷积自动编码器（DCAE）集成到一个统一的框架中。图1显示了RD-FKC的框架。具体来说，我们使用拉普拉斯正则化来约束隶属度矩阵，并在嵌入特征空间中执行FKM，这不仅可以保证使用DCAE提取高维图像数据中包含的复杂和抽象信息，还可以获得局部信息，提高聚类性能。受[29]的启发，我们的模型引入了自适应损失函数，使聚类过程更加鲁棒。本文的主要贡献包括：</p>
+<ul>
+<li>将聚类嵌入到深度卷积自动编码器中，使DCAE能够学习有区别的和有代表性的特征进行聚类，然后聚类结果进而促进特征学习。也就是说，RD-FKC的目标是同时进行特征学习和聚类。</li>
+<li>利用拉普拉斯正则化方法对隶属度矩阵进行约束，使从相似样本中学习到的隶属度也相互关联。也就是说，隶属度之间的联系与约束下的样本一致，可以进一步保存图像的局部信息。</li>
+<li>RD-FKC将自适应损失函数引入到统一的框架中，可以减少各种异常值的影响，有助于增强聚类的鲁棒性。</li>
+<li>提出了一种有效的算法来优化该框架。同时，该框架是直接端到端训练的，而不需要任何繁琐的预训练过程。一系列的比较实验证实了该模型的有效性和优越性。</li>
+</ul>
+<p>​  本文后续部分的组织结构如下。第2节给出了关于模糊𝐾-均值聚类和深度卷积自动编码器的一些相关工作。第3节阐述了所提出的RDFKC模型和有效算法。比较实验和结果分析详见第4节。最后，我们将在第5节中结束该工作。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="符号">2.1.符号</h2>
+<p>​  在本文中，我们定义一个向量与一个粗体小写字母，例如𝐱，矩阵和一个粗体大写字母，例如𝐗，<span
+class="math inline">\(𝐱_𝑖\)</span>表示矩阵𝐗的第<span
+class="math inline">\(i\)</span>列，<span
+class="math inline">\(𝐱^𝑖\)</span>表示它的第<span
+class="math inline">\(i\)</span>行，<span
+class="math inline">\(𝑥_{𝑖𝑗}\)</span>是矩阵𝐗的第<span
+class="math inline">\(i\)</span>行和第<span
+class="math inline">\(j\)</span>列元素。将<span class="math inline">\(\{
+\bf
+X_{n}\}_{n=1}^{N}\)</span>作为具有𝑁张图像的图像集，提取的相关特征为<span
+class="math inline">\(\mathbf{Z}=\left[\mathbf{z}_{1},\mathbf{z}_{2},\ldots,\mathbf{z}_{N}\right]\in\mathbb{R}^{d\times
+N}\)</span>。这里，𝑑是嵌入式空间的维数。RD-FKC的目的是获得区别表示𝐙，并将其聚类为𝐶组。将<span
+class="math inline">\(\mathbf{U}=[\mathbf{u}_{1}^{T},\mathbf{u}_{2}^{T},\ldots,\mathbf{u}_{N}^{T}]^{T}\in\mathbb{R}^{N\times
+C}\)</span>和<span class="math inline">\({\bf V}=[{\bf v}_{1},{\bf
+v}_{2},\dots,{\bf v}_{C}]\,\in\,\mathbb{R}^{d\times
+C}\)</span>分别定义为隶属度矩阵和簇中心矩阵。表1列出了更多的字符，并解释了它们在首次被介绍时的含义。</p>
+<figure>
+<img
+src="../postimages/Robust-deep-fuzzy-k-means-clustering-for-image-data/image-20241203094934792.png"
+alt="image-20241203094934792" />
+<figcaption aria-hidden="true">image-20241203094934792</figcaption>
+</figure>
+<h2 id="模糊𝐾-means聚类">2.2.模糊𝐾-means聚类</h2>
+<p>​  模糊𝐾-means聚类[4]是𝐾-means的一个模糊版本，其目的是构造隶属度矩阵，然后温和地将样本划分为相应的类别。FKM的目标函数定义为：
+<span
+class="math display">\[\begin{array}{l}{\operatorname*{min}\mathcal{L}(\mathbf{U},\mathbf{V})=\sum_{n=1}^{N}\sum_{c=1}^{C}u_{n
+c}^{m}||\mathbf{x}_{n}-\mathbf{v}_{c}||_{2}^{2}}\\{\mathrm{s.t.}\quad\sum_{c=1}^{C}u_{n
+c}=1,0\leq u_{n c}\leq1}\end{array}\]</span> ​  其中，<span
+class="math inline">\(m(m&gt;1)\)</span>是一个模糊化参数。<span
+class="math inline">\(𝐱_𝑛\)</span>表示第n个样本点。<span
+class="math inline">\({\textbf{U}}={\lbrack{u_{n c}\rbrack}_{N\times
+C}}\)</span>为隶属度矩阵，<span
+class="math inline">\(𝑢_{𝑛𝑐}\)</span>表示分配给第n个样本点的第𝑐类的隶属度。<span
+class="math inline">\(\mathbf{V}=\left[\mathbf{v}_{1},\mathbf{v}_{2},\ldots,\mathbf{v}_{C}\right]\)</span>是集群中心矩阵，<span
+class="math inline">\(\mathbf{v}_{c}\,\in\,\mathbb{R}^{d}\)</span>是第𝑐个集群。<br/>​  然后，利用拉格朗日乘子，根据以下公式交替更新<span
+class="math inline">\(𝑢_{𝑛𝑐}\)</span>和<span
+class="math inline">\(\mathbf{v}_{c}\)</span>： <span
+class="math display">\[u_{n c}=\frac{1}{\sum_{l=1}^{C}(\frac{||{\bf
+k}_{n}-{\bf v}_{c}\,||_{2}^{2}}{||{\bf k}_{n}-{\bf
+v}_{l}||_{2}^{2})})^\frac{2}{m-1}}\]</span></p>
+<p><span class="math display">\[\mathbf{v}_{c}={\frac{\sum_{n=1}^{N}u_{n
+c}^{m}\mathbf{x}_{n}}{\sum_{n=1}^{N}u_{n c}^{m}}}\]</span></p>
+<h2 id="深度卷积自动编码器dcae">2.3.深度卷积自动编码器（DCAE）</h2>
+<p>​  一个经典的自动编码器通常是由全连接的层组成的，它忽略了图像的结构，并进一步引入了大量的参数。与之相比，DCAE
+[30]具有本地连接和权重共享的特点，更适合用于图像处理任务。为了利用图像中包含的空间信息，给定一个单通道图像𝐗，将DCAE的编码器和解码器定义为：
+<span class="math display">\[{\bf G}^{p}={\cal F}_{e}({\bf X}*{\bf
+W}^{p}+a^{p})\]</span></p>
+<p><span class="math display">\[\hat{\bf X}={\cal F}_{d}(\sum_{p}{\bf
+G}^{p}*\tilde{\bf W}^{p}+b)\]</span></p>
+<p>​  其中，𝐆𝑝为𝑝th特征映射，∗为卷积运算。<span
+class="math inline">\({\cal F_e}\)</span>和<span
+class="math inline">\({\cal
+F_d}\)</span>是非线性激活函数（我们在实验中使用ReLU）。下标𝑒和𝑑分别表示编码器和解码器。<span
+class="math inline">\({\bf W}^{p}\)</span>是过滤器，<span
+class="math inline">\(\tilde{\bf
+W}^{p}\)</span>是翻转操作，可以将嵌入表示恢复到原始大小的位置。<span
+class="math inline">\(𝑎^𝑝\)</span>和𝑏是相应的偏差。<br/>​  DCAE通过最小化重构误差来更新编码器和解码器的参数：
+<span
+class="math display">\[\mathcal{L(\Delta)}=\frac{1}{N}\sum_{n=1}^{N}\|F_{d}(F_{e}(\mathbf{X}_{n}))-\mathbf{X}_{n}\|_{F}^{2}\]</span>
+​  其中𝑁为图像数量，<span
+class="math inline">\(\Delta\)</span>包含所有网络参数。‖⋅‖𝐹表示一个矩阵的Frobenius范数。</p>
+<h1 id="鲁棒的深度模糊𝑲-means聚类">3.鲁棒的深度模糊𝑲-means聚类</h1>
+<h2 id="自适应损耗函数">3.1.自适应损耗函数</h2>
+<p>​  假设𝐇是一个任意矩阵，<span
+class="math inline">\(l_{2,1}\)</span>规范表示为<span
+class="math inline">\(\|\mathbf{H}\|_{2,1}=\sum_{i}||\mathbf{h}^{i}||_{2}\)</span>对大损失很鲁棒，但对小损失很脆弱，而平方Frobenius规范表示为<span
+class="math inline">\(\|\mathbf{H}\|_{F}^{2}\ =\
+\sum_{i}\|\mathbf{h}^{i}\|_{2}^{2}\)</span>很容易解决，对小损失稳健，但对大损失敏感。因此，一个结合了这两种优点的自适应损失函数被定义为：
+<span
+class="math display">\[||\mathbf{H}||_{\tau}=\sum_{i}{\frac{(1+\tau)||\mathbf{h}^{i}||_{2}^{2}}{\|\mathbf{h}^{i}\|_{2}+\tau}}\]</span>
+​  这里的𝜏&gt;0是一个自适应参数。如果𝜏→0，‖𝐇‖𝜏→‖𝐇‖2,1。如果𝜏→∞，‖𝐇‖𝜏→‖𝐇‖2𝐹。此外，‖𝐇‖𝜏具有良好的二微、非负、凸性质，有利于优化。因此，‖𝐡‖𝜏适用于损失函数，并通过调优𝜏对不同类型的异常值具有鲁棒性。<br/>​  根据以上分析，在FKM算法(1)中引入了自适应损失函数(7)，极大地提高了聚类的鲁棒性如下：
+<span
+class="math display">\[\begin{array}{l}{\operatorname*{min}\mathcal{L}(\mathbf{U},\mathbf{V})=\sum_{n=1}^{N}\sum_{c=1}^{C}u_{n
+c}^{2}||\mathbf{x}_{n}-\mathbf{v}_{c}||_{\tau}}\\{\mathrm{s.t.}\quad\sum_{c=1}^{C}u_{n
+c}=1,0\leq u_{n c}\leq1}\end{array}\]</span></p>
+<h2 id="对象的拉普拉斯正规化">3.2.对象的拉普拉斯正规化</h2>
+<p>​  图的拉普拉斯算子确保了从彼此连接的样本中学习到相似的隶属度。同时，它还可以利用数据的局部性信息。因此，我们将拉普拉斯正则化纳入聚类模型。它可以根据样本𝐱𝑖和𝐱𝑗之间的相似性来实现。我们使用热核方案[31]来构造相似度如下：
+<span
+class="math display">\[s_{ij}=\begin{cases}e^{-\frac{\|\mathbf{x}_i-\mathbf{x}_j\|}{0.5}}
+&amp; j\in NB_i \\0, &amp; \mathrm{otherwise} &amp; \end{cases}\]</span>
+​  其中，<span
+class="math inline">\(NB_i\)</span>为𝑖th样本的邻域集。然后计算<span
+class="math inline">\(𝐒=(𝐒+𝐒^𝑇)/2\)</span>，得到对称相似矩阵。结合(8)和(9)，我们可以得到以下模型：
+<span
+class="math display">\[\mathcal{L}(\mathbf{U},\mathbf{V})=\sum_{n=1}^{N}\sum_{c=1}^{C}u_{n
+c}^{2}\left\|\mathbf{x}_{n}-\mathbf{v}_{c}\right\|_{\tau}+~\mu\sum_{c=1}^{C}\sum_{n=1}^{N}\sum_{j\in
+N B_{n}}s_{n j}(u_{n c}-u_{j
+c})^{2}\\{\mathrm{s.t.}}\;\sum_{c=1}^{C}u_{n c}=1,0\leq u_{n
+c}\leq1\]</span></p>
+<h2 id="rd-fkc算法">3.3.RD-FKC算法</h2>
+<p>​  给定图像<span class="math inline">\(\{\bf
+X_{n}\}_{n=1}^{N}\)</span>，编码器首先尝试提取层次特征，然后将图像映射到一个非线性嵌入空间，以获得潜在的潜在表示𝐙。相比之下，解码器会将该特征重构回原始图像中。<br/>​  为了保证学习到的低维空间不被扭曲和破坏，RD-FKC模型结合了DCAE网络，将具有拉普拉斯正则化的鲁棒FKM损失函数嵌入到一个联合框架中，如下所示：
+$$<em>{A.}</em>{n=1}^{N}|{}<em>{n}-</em>{n}|<em>{F}<sup>{2}+<em>{n=1}^{N}</em>{c=1}</sup>{C}u</em>{n
+c}^{2}|<em>{n}-</em>{c}|_{}</p>
+<p>+~<em>{c=1}^{C}</em>{n=1}^{N}<em>{jN B</em>{n}}s_{n j}(u_{n c}-u_{j
+c})<sup>{2}+<em>{}<sup>{L}(|</sup>{()}|</em>{F}</sup>{2}+|<sup>{()}|<em>{2}^{2})\{} </em>{c=1}</sup>{C}u_{n
+c}=1,0u_{n c}$$
+​  其中，𝜇和𝛾是权衡参数。建立RD-FKC模型可分为四个部分（11）。第一项是最小化重构误差，以确保潜在的表示法尽可能多地保留原始信息。第二项表示由嵌入空间中的嵌入特征和聚类中心组成的自适应损失函数的FKM。第三项是约束隶属度矩阵，使具有相似隶属度的样本点也更接近。第四项用于避免过拟合，防止网络产生平凡解。</p>
+<h2 id="最优化">3.4.最优化</h2>
+<p>​  在（11）中，RD-FKC通过使用结合<span
+class="math inline">\(\ell_{1}\)</span>范数和<span
+class="math inline">\(\ell_{2}\)</span>范数的自适应损失函数来计算聚类误差。为了解决这个问题，我们首先考虑一个一般损失函数定义为：
+<span
+class="math display">\[\operatorname*{min}_{\mathbf{x}}g(\mathbf{x})+\sum_{i}{\frac{(1+\tau)\|d_{i}(\mathbf{x})\|_{2}^{2}}{\|d_{i}(\mathbf{x})\|_{2}+\tau}}\]</span>
+​  其中，<span
+class="math inline">\(d_{i}(\mathbf{x})\)</span>为向量输出。受[29,32]的启发，采用了一种迭代重加权的方法来求解它。通过对𝐱进行（12）的导数并将其设为零，我们得到
+<span class="math display">\[g^{\prime}({\bf
+x})+2(1+\tau)\sum_{i}\frac{\|d_{i}({\bf x})\|_{2}+2\tau}{2(\|d_{i}({\bf
+x})\|_{2}+\tau)^{2}}d_{i}({\bf x})d_{i}^{\prime}({\bf x})=0\]</span>
+​  定义 <span class="math display">\[k_{i}=(1+\tau)\frac{\|d_{i}({\bf
+x})\|_{2}+2\tau}{2(\|d_{i}({\bf x})\|_{2}+\tau)^{2}}\]</span>
+​  然后是等式（13）可以重写为 <span
+class="math display">\[g^{\prime}({\bf x})+2\sum_{i}k_{i}d_{i}({\bf
+x})d_{i}^{\prime}({\bf x})=0\]</span>
+​  需要注意的是，𝐾𝑖的值依赖于𝐱，当𝑘𝑖被固定时，（12）中的问题等于 <span
+class="math display">\[\operatorname*{min}_{\mathbf{x}}g(\mathbf{x})+\sum_{i}k_{i}\|d_{i}(\mathbf{x})\|_{2}^{2}\]</span>
+​  在[29]中证明了上述优化问题的收敛性。则（11）中的模型可以重新表述为：
+<span
+class="math display">\[\operatorname*{min}_{A.\mathrm{U.V}}\quad{\frac{1}{N}}\sum_{n=1}^{N}\|{\hat{\mathbf{X}}}_{n}-\mathbf{X}_{n}\|_{F}^{2}+\sum_{n=1}^{N}\sum_{c=1}^{C}u_{n
+c}^{2}k_{n
+c}\left\|\mathbf{z}_{n}-\mathbf{v}_{c}\right\|_{\tau}\\+~\mu\sum_{c=1}^{C}\sum_{n=1}^{N}\sum_{j\in
+N B_{n}}s_{n j}(u_{n c}-u_{j
+c})^{2}+\gamma\sum_{\ell=1}^{L}(\|\mathbf{W}^{(\ell)}\|_{F}^{2}+\|\mathbf{b}^{(\ell)}\|_{2}^{2})\\{\mathrm{s.t.}}\
+\sum_{c=1}^{C}u_{n c}=1,0\leq u_{n c}\leq1\]</span> ​  其中 <span
+class="math display">\[k_{n
+c}=(1+\tau)\frac{\|\mathbf{z}_{n}-\mathbf{v}_{c}\|_{2}+2\tau}{2(\|\mathbf{z}_{n}-\mathbf{v}_{c}\|_{2}+\tau)^{2}}\]</span>
+​  可以看出，在模型（17）中有三个变量，很难直接解决这些问题。因此，我们提出了一个迭代的替代策略来优化它。</p>
+<p><img
+src="../postimages/Robust-deep-fuzzy-k-means-clustering-for-image-data/image-20241203112655933.png"
+alt="image-20241203112655933" /> $$</p>
+<p>$$</p>
+<h1 id="实验结果及分析">4.实验结果及分析</h1>
+<p>​  在本节中，所提出的RD-FKC模型的性能估计是基于8个图像集，使用三个公共指标，包括准确率（ACC）、归一化互信息（NMI）和纯度（Pur）。为了评估RD-FKC的能力，我们将其与现有的聚类技术进行了比较，如𝐾-means聚类（KM）[3]、模糊𝐾-means聚类（FKM）[4]、RSFKM
+[34]，PCAKM，深度嵌入式聚类（DEC）[22]，深度聚类网络（DCN）[35]和深度模糊𝐾-means（DFKM）[36]。<br/>​  在接下来的章节中，我们首先列出图像数据集的特征，然后给出实验实现的细节。此外，我们还报告了RD-FKC与其他方法相比的性能。最后，分析了各参数的灵敏度。</p>
+<h2 id="数据集">4.1.数据集</h2>
+<p>​  实验中使用了八种不同类型的图像集，包括人脸、手写数字、物体和时尚数据集。表2详细描述了这些图像集的特征，图2显示了我们实验中的几个样本。</p>
+<figure>
+<img
+src="../postimages/Robust-deep-fuzzy-k-means-clustering-for-image-data/image-20241203112902796.png"
+alt="image-20241203112902796" />
+<figcaption aria-hidden="true">image-20241203112902796</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Robust-deep-fuzzy-k-means-clustering-for-image-data/image-20241203112925600.png"
+alt="image-20241203112925600" />
+<figcaption aria-hidden="true">image-20241203112925600</figcaption>
+</figure>
+<p>​  人脸上包括Jaffe、Yale、ORL和CMU-PIE。Jaffe包含213个26个×26的样本，来自10个人，有7种不同的表达。Yale有165张32张×32像素的图像。ORL由40人在不同光照条件下的400张图像组成。CMU-PIE由64人的32×32像素的图像组成。USPS是一个手写的数字数据集，包括9298个16×16像素的样本。对象数据库包含COIL20,128个×128像素的20个对象，CIFAR10包含60
+000的10类彩色图像。Fashion-MNIST是MNIST的替代品，包括10个类别的70
+000张时尚产品图片。</p>
+<h2 id="网络设置">4.2.网络设置</h2>
+<h2 id="聚类结果的比较">4.3.聚类结果的比较</h2>
+<h2 id="对鉴别力和表现形式的可视化">4.4.对鉴别力和表现形式的可视化</h2>
+<h2 id="参数分析">4.5.参数分析</h2>
+<h1 id="结论">5.结论</h1>
+<p>​  在这项工作中，我们提出了一种新的称为鲁棒深度模糊𝐾-means聚类（RD-FKC）的框架，该框架利用拉普拉斯正则化来保持输入图像的局部结构，并使用自适应损失函数通过调整𝜏来提高聚类模型的弹性。RD-FKC通过将DCAE和聚类模型整合到一个联合框架中，充分利用DCAE学习图像的判别和深度表示，然后进行鲁棒聚类，有助于解决图像聚类问题。此外，还提出了一种有效、实用的模型优化算法。在不同图像集上进行的大量可比实验表明，RD-FKC优于现有的传统和深度聚类方法。</p>
+<p>​  可以观察到，RD-FKC在CIFAR10等彩色图像上表现不佳。可能的原因是局部结构信息没有得到有效的保存。因此，在今后的工作中，我们将考虑将𝑝-拉普拉斯正则化技术[39]嵌入到聚类模型中，从而更好地实现局部信息的保存。由于引入了一个额外的超参数𝑝，我们将进一步考虑集成𝑝-拉普拉斯正则化[40]，它对各种𝑝值图应用适当的权值，以更好地理解数据的几何形状。此外，我们还将考虑如何设计一个更先进的深度卷积自动编码器网络来提取特征，从而进一步提高聚类效率。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Robust-deep-fuzzy-k-means-clustering-for-image-data/">https://zhaozw-szu.github.io/Robust-deep-fuzzy-k-means-clustering-for-image-data/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Deep-Fuzzy-K-Means-With-Adaptive-Loss-and-Entropy-Regularization/" title="Deep_Fuzzy_K-Means_With_Adaptive_Loss_and_Entropy_Regularization"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Deep_Fuzzy_K-Means_With_Adaptive_Loss_and_Entropy_Regularization</div></div></a></div><div class="next-post pull-right"><a href="/Robust-deep-k-means/" title="Robust_deep_k-means"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Robust_deep_k-means</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7"><span class="toc-text">2.1.符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%F0%9D%90%BE-means%E8%81%9A%E7%B1%BB"><span class="toc-text">2.2.模糊𝐾-means聚类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%8D%B7%E7%A7%AF%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E5%99%A8dcae"><span class="toc-text">2.3.深度卷积自动编码器（DCAE）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%B2%81%E6%A3%92%E7%9A%84%E6%B7%B1%E5%BA%A6%E6%A8%A1%E7%B3%8A%F0%9D%91%B2-means%E8%81%9A%E7%B1%BB"><span class="toc-text">3.鲁棒的深度模糊𝑲-means聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E6%8D%9F%E8%80%97%E5%87%BD%E6%95%B0"><span class="toc-text">3.1.自适应损耗函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E6%AD%A3%E8%A7%84%E5%8C%96"><span class="toc-text">3.2.对象的拉普拉斯正规化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rd-fkc%E7%AE%97%E6%B3%95"><span class="toc-text">3.3.RD-FKC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E5%8C%96"><span class="toc-text">3.4.最优化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%8F%8A%E5%88%86%E6%9E%90"><span class="toc-text">4.实验结果及分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">4.1.数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.2.网络设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E7%B1%BB%E7%BB%93%E6%9E%9C%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.3.聚类结果的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E9%89%B4%E5%88%AB%E5%8A%9B%E5%92%8C%E8%A1%A8%E7%8E%B0%E5%BD%A2%E5%BC%8F%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">4.4.对鉴别力和表现形式的可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%88%86%E6%9E%90"><span class="toc-text">4.5.参数分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_clustering_method_for_image_segmentation"/></a><div class="content"><a class="title" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation">Fuzzy_clustering_method_for_image_segmentation</a><time datetime="2024-12-29T14:13:57.000Z" title="发表于 2024-12-29 22:13:57">2024-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"/></a><div class="content"><a class="title" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</a><time datetime="2024-12-26T02:50:46.000Z" title="发表于 2024-12-26 10:50:46">2024-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"/></a><div class="content"><a class="title" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</a><time datetime="2024-12-23T08:43:50.000Z" title="发表于 2024-12-23 16:43:50">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_Machine_Learning"/></a><div class="content"><a class="title" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning">Fuzzy_Machine_Learning</a><time datetime="2024-12-23T03:20:44.000Z" title="发表于 2024-12-23 11:20:44">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_survey_on_deep_learning-based_image_forgery_detection"/></a><div class="content"><a class="title" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection">A_survey_on_deep_learning-based_image_forgery_detection</a><time datetime="2024-12-18T06:44:25.000Z" title="发表于 2024-12-18 14:44:25">2024-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

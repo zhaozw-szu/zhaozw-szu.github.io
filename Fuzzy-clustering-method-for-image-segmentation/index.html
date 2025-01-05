@@ -1,0 +1,527 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Fuzzy_clustering_method_for_image_segmentation | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一 Pixel and region level information fusion in membership regularized fuzzy clustering for image segmentation 发表于期刊Information Fusion 2023 摘要： ​  隶属度正则化模糊聚类方法应用了一个重要的先验，即相邻的数据点根据亲和度&#x2F;相似度矩阵应该具有相似的隶">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fuzzy_clustering_method_for_image_segmentation">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Fuzzy-clustering-method-for-image-segmentation/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="一 Pixel and region level information fusion in membership regularized fuzzy clustering for image segmentation 发表于期刊Information Fusion 2023 摘要： ​  隶属度正则化模糊聚类方法应用了一个重要的先验，即相邻的数据点根据亲和度&#x2F;相似度矩阵应该具有相似的隶">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2024-12-29T14:13:57.000Z">
+<meta property="article:modified_time" content="2025-01-03T08:02:48.269Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Fuzzy-clustering-method-for-image-segmentation/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Fuzzy_clustering_method_for_image_segmentation',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-03 16:02:48'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Fuzzy_clustering_method_for_image_segmentation</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-29T14:13:57.000Z" title="发表于 2024-12-29 22:13:57">2024-12-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-03T08:02:48.269Z" title="更新于 2025-01-03 16:02:48">2025-01-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Fuzzy_clustering_method_for_image_segmentation"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一">一</h1>
+<p>Pixel and region level information fusion in membership regularized
+fuzzy clustering for image segmentation</p>
+<p>发表于期刊Information Fusion 2023<br/><img
+src="../postimages/Fuzzy-clustering-method-for-image-segmentation/image-20241229221827412.png"
+alt="image-20241229221827412" /></p>
+<h2 id="摘要">摘要：</h2>
+<p>​  隶属度正则化模糊聚类方法应用了一个重要的先验，即相邻的数据点根据亲和度/相似度矩阵应该具有相似的隶属度。因此，它们在许多数据挖掘任务中都取得了良好的性能。然而，这些聚类方法在正则化过程中并没有充分利用图像空间信息。它们在图像分割问题上的性能仍然不理想。在本文中，我们首先关注于建立一个新的亲和矩阵来存储和呈现图像空间信息，以帮助成员正则化模糊聚类方法获得良好的分割结果。为此，通过融合像素级和区域级信息来计算亲和度值，以表示图像中两点之间的微妙关系。此外，为了减少图像噪声的影响，我们在算法的迭代中使用了固定的聚类中心，因此，隶属度值的更新仅以融合信息的先验为指导。在合成图像数据集和真实图像数据集上的实验结果表明，该方法比现有的聚类方法具有更好的分割效果。</p>
+<h2 id="介绍">1.介绍</h2>
+<p>​  图像分割是图像分析中的关键环节，已广泛应用于目标识别[1]、医学诊断支持系统[2]、工业过程[3]等计算机视觉任务[4,5]。它是一种将图像分割成几个具有独特属性的特定区域的技术，可以看作是一个像素聚类过程。许多关于图像分割的方法已经被提出，如基于超像素的方法[6]、基于神经网络[7,8]的监督方法、聚类[9,10]等。虽然这些技术在一定程度上对图像分割取得了良好的效果，但对于不同的图像都不具有足够的鲁棒性和效率。例如，基于超像素的方法对复杂图像不能很好地保留细节，基于神经网络的监督方法需要大量的训练样本和标记图像，而且分割结果具有粗糙的轮廓。本文主要研究了基于模糊聚类的无监督分割方法。<br/>​  在实践中，聚类由于其有效性，是图像分割中最常用和最重要的方法之一。在图像分割的聚类算法方面也有许多进展。提出了基于K-means聚类算法和一种快进量子优化算法的FFQOAK
+[11]方法。这是一种硬划分方法，只承认像素属于单个簇/段。此外，Pritpal等人[12]提出了一种基于模糊集理论和相关概念的模糊d-均值融合聚类算法。模糊集的固有模糊模型具有四个固定程度的成员关系，如真、假、真模糊和假模糊。在各种聚类方法中，模糊聚类在处理图像分割[13]的模糊特性中的有效性和鲁棒性得到了广泛的研究和应用。模糊c-均值（FCM）是一种基于模糊集理论的经典聚类算法，最初由Dunn
+[14]提出，后来由Bezdek
+[15]进行改进。模糊集理论不同于模糊集理论。每个数据的隶属度始终属于范围[0,1]。此外，模糊聚类是一种软分区方法，它允许数据点在所有聚类中都具有成员资格，在处理图像[16]中的边缘信息时比硬分区方法效果更好。但传统的模糊聚类方法在处理有噪声或其他伪影的图像时往往效果较差，因此如何在复杂图像上获得准确的分割结果仍然是一项具有挑战性的任务[17]。<br/>​  为了克服FCM的缺点，对距离测度的重新设计进行了重视和探索，因此，提出了一些核诱导的FCM变量[18,19]，这种核诱导的距离测度被视为非线性数据挖掘和图像分割的一个强大的形式工具。为了解决普通FCM对模糊指数值变化敏感的问题，宫本等人开发了最大熵FCM
+[20]，而且，两个[21,22]都引入了相对熵来改进其目标函数。近年来，为了解决不准确的分类信息或图像分割受离群值的影响，一些算法基于模糊聚类和信息融合[23–25]提出，如Musa
+et al.
+[26]试图提出一个基于模糊聚类集成聚合器的基础集群和实现成功的性能、速度和鲁棒性。<br/>​  事实上，在模糊聚类过程中涉及到一些利用空间信息的技术，并对处理有噪声的图像分割任务[27]有积极的影响。例如，Guo等人[28]开发了一种基于噪声检测（NDFCM）的自适应图像分割FCM，其中采用两种图像滤波方法来抑制噪声，并使用一个参数，通过测量每个邻域的灰度水平的方差来保持图像细节。为了实现鲁棒的分割结果与低执行时间，Lei等[29]开发了一个快速、鲁棒的模糊c均值聚类算法（FRFCM）基于平方社区空间水平信息，采用形态重建和会员滤波平滑图像详细保存，降低计算成本。Zhang等[30]在考虑空间邻域信息的基础上，考虑了测量值与理论值之间的偏差，提出了偏差-稀疏模糊c-均值（DSFCM_N）来提高图像分割的聚类性能。毕竟，研究人员正专注于使用越来越复杂的基于空间信息的技术来解决复杂的图像分割问题，但他们忽略了图像中不同层次的空间信息的使用，如区域级[31]的空间信息。<br/>​  近年来，在多视图数据集[32]和真实世界数据库[33]上，提出了许多针对不同类型数据挖掘任务的成员正则化模糊聚类方法。RSSFCA
+[34]涉及高斯度量下的正则化，将其集成到模糊聚类算法的目标函数中，以获得稀疏的隶属度，以减少噪声特征的比例。Chen等人[35]提出了一种基于空间信息构造的图的正则化FCM。[36]等人提出了一种成员变异正则化方法来修改FCM，用于具有噪声和不完整数据的图像分割。这些方法中的正则化是试图充分利用最终反对函数中对数据的先验知识来指导聚类处理[37,38]。然而，这些最近提出的隶属度正则化模糊聚类方法[39,40]大多用于数据挖掘，而不将空间信息作为先验知识，这对图像分割问题很有价值。更广泛地说，成员正则化模糊聚类的亲和性不适用于图像分割任务，存储在亲和矩阵中的先验知识不能充分反映图像像素点之间的相似性。换句话说，这些隶属度正则化模糊聚类方法需要改进，采用一种新的适当的亲和/相似矩阵获取图像分割方法来考虑数据的空间结构，这是图像数据[37,41]的主要特征。<br/>​  一般来说，亲和矩阵是一种基本的统计技术，用于度量一组数据点中的相似性或关系。它存储并呈现了关于数据内在结构的先验知识。该矩阵可以用一些半监督学习方法[42,43]得到，也可以用一些光谱聚类方法[44,45]构造。它在数据挖掘问题上工作得很好。例如，模糊聚类获得的会员可以被视为一个新的表示原始数据，然后数据点彼此应该拥有类似的会员，并基于这个角度，郭et
+al. [46]探索成员亲和力套索项（MAL）改进模糊聚类方法数据挖掘，命名MALFCM
+FCM的增强版本。实际上，对于图像分割问题，图像中两个像素点的亲和度值应该同时反映像素级和区域级上的相似性。这意味着在同一集群中分配的附近的两个点同时具有空间一致性和相似的灰度值。因此，在此基础上，本文以MALFCM为例，提出了一种新的隶属度正则化模糊聚类亲和矩阵，以提高其在图像分割上的性能。<br/>​  简而言之，虽然人们为提高图像分割结果付出了大量的努力，但现有的算法主要存在以下限制和挑战。</p>
+<p>（1）传统的模糊聚类方法只采用单一空间信息来提高其对图像分割的性能。基于聚类的图像信息是利用不同层次图像分割模型的关键。<br/>（2）在这些所讨论的模型中，由于隶属度正则化方法的亲和矩阵中存储的先验知识，不能充分反映图像像素点之间的相似性。</p>
+<p>​  在本研究中，为了解决上述挑战，我们提出了一种基于信息融合技术的模糊聚类方法。在该方法中，提出了一种新的亲和矩阵来存储和呈现关于图像的先验知识。此外，为了抑制噪声和其他异常值的影响，我们使用了一个同时考虑像素的空间信息和灰度信息的加权距离。具体来说，在该方法中，像素之间的亲和度受到两层空间约束的影响：像素级近邻域和区域级空间上下文，这是通过简单线性迭代聚类（SLIC）[6]、均值位移[47]等超像素方法获得的。与基于超像素和其他基于模糊的方法相比，一个像素的标记会受到上述两种信息的影响。通过融合这两个层次的信息，提出基于信息融合的方法将缩小同一区域像素之间的差异，减少像素的相似性属于不同地区，即使其中一些被噪声和其他异常值，同时保持图像细节。此外，预计成员关系的更新仅受融合信息的指导，因此我们在合理的迭代处理中使用固定的聚类中心进行初始化。基于此融合信息，该方法利用更多的空间数据先验知识，指导聚类过程，找到更准确和合理的分割结果。</p>
+<p>​  我们的主要贡献可以总结如下：</p>
+<ul>
+<li>新的亲和矩阵：提出了一种亲和矩阵<span
+class="math inline">\(A^{SR}\)</span>，并通过融合像素和区域级信息进行计算，改进了图像分割的隶属度正则化模糊聚类方法。这种更精确的先验知识，存储在亲和矩阵中，反映了图像中两点之间的微妙关系。</li>
+<li>基于信息融合的新模型：在新的亲和矩阵的基础上，利用加权距离融合了像素的空间信息和灰度信息。因此，提出了一种改进的成员正则化模糊聚类方法，并命名为<span
+class="math inline">\(A^{SR}MF\)</span>。</li>
+<li>使用固定聚类中心的策略：仅凭简单的直觉，在亲和矩阵中存储的融合信息的指导下，可以得到合理的分割结果。因此，我们采用了使用固定的聚类中心，利用新的亲和矩阵通过正则化项目更新隶属度值的策略，即先验知识将在分割任务中发挥更大的作用。</li>
+</ul>
+<p>​  本文的其余部分组织如下。在第二节中，我们将描述与我们的研究相关的工作的概述。在第3节中，所提出的方法在这里显示。实验结果报告见第4节。最后，我们在第5节中作出结论。</p>
+<h2 id="前期准备工作">2.前期准备工作</h2>
+<p>​  在本节中，我们将简要回顾一下与我们的研究相关的工作，包括传统的图像分割的模糊聚类、超像素技术和一些隶属度正则化模糊聚类方法。</p>
+<h3 id="图像分割的模糊聚类方法">2.1.图像分割的模糊聚类方法</h3>
+<p>​  对于图像分割，模糊聚类使用模糊隶属关系将数据/像素点分配给每个段/区域。我们以经典的FCM模型为例来说明它。给定一个图像<span
+class="math inline">\(X=\{X_{1},X_{2},\dots,X_{N}\}\)</span>，FCM通过迭代最小化如下定义的函数，将𝑁个像素点划分为𝐶个簇/段：
+<span
+class="math display">\[J_{\mathrm{FCM}}=\sum_{i=1}^{N}\sum_{j=1}^{C}u_{i
+j}^{m}\vert\vert X_{i}-P_{j}\vert\vert^{2}\]</span> ​  限制： <span
+class="math display">\[\sum_{j=1}^{C}u_{i j}=1,i=1,\ldots,N\]</span>
+​  其中<span
+class="math inline">\(m&gt;1\)</span>是控制会员模糊性的模糊因子，<span
+class="math inline">\(0\,\leq\,u_{i
+j}\,\leq\,1\)</span>，𝑃𝑗表示𝑗th集群的原型/中心值，𝑢𝑖𝑗是𝑖th数据点对𝑗th集群的会员值，FCM采用拉格朗日乘数法更新会员<span
+class="math inline">\(U(u_{i j})\)</span>和集群中心<span
+class="math inline">\(P(P_{i})\)</span>，如下 <span
+class="math display">\[u_{i j}={\frac{(\lVert
+X_{i}-P_{j}\rVert)^{-2/(m-1)}}{\sum_{j=1}^{C}(\lVert
+X_{i}-P_{j}\rVert)^{-2/(m-1)}}}\]</span></p>
+<p><span class="math display">\[P_{j}=\frac{\sum_{i=1}^{N}u_{i
+j}^{m}X_{i}}{\sum_{i=1}^{N}u_{i j}^{m}}    \]</span></p>
+<p>​  当函数收敛或达到最大迭代次数时，此更新过程就会结束。<br/>​  然而，正如我们从FCM的目标函数中可以看到的，它没有考虑任何关于数据的空间关系的信息，这使得传统的FCM对噪声和其他干扰很敏感。将空间信息纳入目标函数是缓解FCM
+[48,49]弱点的最常用的尝试之一。Ahmed等人[50]提出了具有空间约束的FCM_S，以便允许一个像素的标记受到其邻域标签的影响。目标函数：
+<span
+class="math display">\[J_{\mathrm{FCM}_{-}S}=\sum_{i=1}^{N}\sum_{j=1}^{C}u_{i
+j}^{m}(\|X_{i}-P_{j}\|^{2}+\frac{\alpha}{N_{R}}\sum_{k\in
+N_{i}}\|X_{k}-P_{j}\|^{2})\]</span> ​  其中，<span
+class="math inline">\(𝑁_𝑖\)</span>代表落入<span
+class="math inline">\(X_i\)</span>周围窗口的邻居集，<span
+class="math inline">\(N_R\)</span>为其基数，<span
+class="math inline">\(\alpha\)</span>控制空间项的影响。按照同样的思路，在[51]中提出了FCM_S的两个低复杂度变量，FCM_S1和FCM_S2，他们分别采用均值滤波图像和中值滤波图像来获取空间邻域信息。因此，简化的目标函数可以改写为
+<span
+class="math display">\[J_{\mathrm{FCM}_{S}S1/S2}=\sum_{i=1}^{N}\sum_{j=1}^{C}u_{i
+j}^{m}(||X_{i}-P_{j}||^{2}+\alpha\|\bar{X}_{i}-P_{j}||^{2})\]</span>
+​  其中<span class="math inline">\(\bar{X}_{i}\)</span>为<span
+class="math inline">\(X_i\)</span>附近指定窗口内邻居的平均值或中值。遵循这一趋势，研究人员专注于使用越来越复杂的基于空间的技术来解决复杂的图像分割问题，但他们忽略了图像中不同层次的空间信息的使用，如基于超像素技术的区域层次。</p>
+<h3 id="基于超像素的图像分割方法">2.2.基于超像素的图像分割方法</h3>
+<p>​  超像素算法根据像素的位置关系、颜色、纹理等特征将像素划分为有意义的区域。它们在捕获图像冗余方面具有很大的优势，大大降低了后续图像处理任务的复杂性，并广泛应用于图像分割应用。生成超像素的算法有很多，如平均位移算法[47]、多尺度形态梯度重建（MMGR）[52]和简单线性迭代聚类（SLIC）[6]。<br/>​  平均位移是一种基于密度估计的方法，假设不同簇的像素符合不同的概率分布，迭代计算并更新像素的平均位移向量，生成超像素区域。<br/>​  MMGR采用不同的结构元素获得多个重建图像，然后将这些重建的梯度图像融合，获得超像素图像。<br/>​  SLIC采用k-means，利用颜色和空间信息对CIELAB局部颜色空间中的像素进行聚类。在SLIC中的距离测度被表示为
+<span class="math display">\[d_{l a
+b}=\sqrt{(l_{j}-l_{i})^{2}+(a_{j}-a_{i})^{2}+(b_{j}-b_{i})^{2}}\]</span></p>
+<p><span
+class="math display">\[d_{s}={\sqrt{(x_{j}-x_{i})^{2}+(y_{j}-y_{i})^{2}}}\]</span></p>
+<p><span class="math display">\[d(i,c)=\sqrt{(d_{l a
+b})^{2}+(\frac{d_{s}}{S})^{2}m_{s}^{2}}\]</span></p>
+<p>​  其中<span
+class="math inline">\(d_{lab}\)</span>代表两个像素之间的颜色空间差异，<span
+class="math inline">\([l,a,b]^T\)</span>是CIELAB颜色空间中像素颜色的表示，<span
+class="math inline">\(𝑑_𝑠\)</span>是两个像素之间的空间距离，<span
+class="math inline">\([x,y]^T\)</span>指像素的空间位置，<span
+class="math inline">\(d(i,c)\)</span>是一个加权距离，用于测量第<span
+class="math inline">\(i\)</span>个像素和第<span
+class="math inline">\(c\)</span>个聚类中心之间的距离，<span
+class="math inline">\(m_s\)</span>是用于平衡<span
+class="math inline">\(d(i,c)\)</span>中颜色和空间信息的参数，<span
+class="math inline">\(\mathbf{S}\times\mathbf{S}\)</span>为所需超像素的大小，其中<span
+class="math inline">\(S={\sqrt{N/C_{s}}}\)</span>，𝑁为图像像素的数量，<span
+class="math inline">\(𝐶_𝑠\)</span>为超像素的数量。<br/>​  在Liu的论文[27]中，提出了一种基于均值移算法自适应局部信息的模糊聚类方法。目标函数被定义为
+<span class="math display">\[J_{L i
+u^{\prime}s}=\sum_{i=1}^{C}\sum_{j=1}^{N}u_{i j}D_{i
+j}^{L}+\lambda\sum_{i=1}^{C}\sum_{j=1}^{N}u_{i j}\log(\frac{u_{i
+j}}{\pi_{i j}})\]</span> ​  其中，𝜆是控制簇模糊性的超参数，<span
+class="math inline">\(𝐷_{𝑖𝑗}^𝐿\)</span>是结合像素级和区域级差异的距离函数，如下所示
+<span class="math display">\[D_{i j}^{L}={\frac{d_{i
+j}^{L}+d_{R_{i},j}^{L}}{2}}\]</span> ​  这里，<span
+class="math inline">\(𝑑_{𝑖𝑗}^𝐿\)</span>是𝑗th像素与𝑖th聚类中心之间的像素级距离，<span
+class="math inline">\(d_{R_{i},j}^{L}\)</span>是由均值位移算法得到的区域<span
+class="math inline">\(𝑅_𝑗\)</span>值与𝑖th聚类中心之间的区域级距离，<span
+class="math inline">\(𝑅_𝑗\)</span>是𝑗th像素所属的区域。另外，<span
+class="math inline">\(\pi_{i j}\)</span>是先验概率函数。<br/>​  在SFFCM
+[52]中，提出了另一种基于超像素的模糊c均值聚类，在多尺度形态梯度重建（MMGR）得到的超像素图像上实现直方图参数的FCM。因此，SFFCM利用区域级空间信息，在真实图像分割问题上具有良好的性能。</p>
+<h3 id="隶属度正则化模糊聚类方法">2.3.隶属度正则化模糊聚类方法</h3>
+<p>​  隶属度正则化模糊聚类是试图充分利用最终反对函数中对数据的先验知识来改进聚类处理。先验知识也以不同的形式呈现出来。Pedrycz
+[53]认为，模糊聚类获得的隶属关系是原始数据的新表示，换句话说，相邻的点应该具有相似的隶属关系。基于这一观点，并受到网络套索的启发，Guo等人[46]探索了一个新的成员亲和套索术语，并将该术语添加到FCM的目标函数中，名为MALFCM。MALFCM对应的目标函数定义如下
+<span
+class="math display">\[J_{\mathrm{MAL}}=\sum_{i=1}^{C}\sum_{j=1}^{N}u_{i
+j}^{m}||X_{j}-P_{i}||^{2}+\frac{\lambda}{2}\sum_{j=1}^{N}\sum_{k=1}^{N}\omega_{j
+k}|u_{i j}-u_{i k}|\]</span>
+​  其中，等式的第二项（12）是隶属度亲和度套索正则化，𝜆是一个折衷参数，<span
+class="math inline">\(\omega_{j k}\)</span>是点<span
+class="math inline">\(X_{j}\)</span>和点<span
+class="math inline">\(X_{k}\)</span>之间的亲和度。采用乘子交替方向法（ADMM），使上述函数最小化。<br/>​  引入隶属度正则化，隶属度亲和lasso，是为了确保附近数据的隶属度接近，所以MALFCM可以通过从原始数据中建立良好的亲和矩阵得到良好的分类结果。显然，反映数据点之间关系的矩阵在隶属度正则化聚类方法中具有重要意义。然而，在这些聚类方法中构建的亲和矩阵是用于数据挖掘的，并没有充分利用具有空间结构的数据。它们在图像分割问题上的性能仍然不理想。本文在不同层次图像信息融合的基础上，提出了一种新的隶属度正则化模糊聚类亲和矩阵，并给出了一种新的图像分割模型，并给出了一种求解的算法。</p>
+<h1 id="提出的方法mathbfasrmathbfmf">3.提出的方法：<span
+class="math inline">\(\mathbf{A}^{SR}\mathbf{MF}\)</span></h1>
+<p>​  在本研究中，基于上述分析，我们旨在利用像素级邻域和区域级上下文的融合信息来生成亲和矩阵，如图1所示。</p>
+<figure>
+<img
+src="../postimages/Fuzzy-clustering-method-for-image-segmentation/image-20241230161302607.png"
+alt="image-20241230161302607" />
+<figcaption aria-hidden="true">image-20241230161302607</figcaption>
+</figure>
+<p>​  以MALFCM为例，解释了所提出的亲和力<span
+class="math inline">\(\mathbf{A}^{SR}\)</span>在图像分割任务上，我们还引入了一种新的MALFCM距离测量，考虑了像素的空间和灰度信息。此外，我们采用了在迭代过程中使用固定的簇中心的策略，即使用新的亲和矩阵只通过ADMM更新隶属度值。我们将修改后的方法命名为ASRMF。ASRMF的主要框架如图2所示。</p>
+<figure>
+<img
+src="../postimages/Fuzzy-clustering-method-for-image-segmentation/image-20241230161435927.png"
+alt="image-20241230161435927" />
+<figcaption aria-hidden="true">image-20241230161435927</figcaption>
+</figure>
+<h2
+id="基于像素和区域级信息的融合构建亲和矩阵">3.1.基于像素和区域级信息的融合构建亲和矩阵</h2>
+<h2 id="隶属度正则化的模糊聚类模型">3.2.隶属度正则化的模糊聚类模型</h2>
+<h2 id="参数估计">3.3.参数估计</h2>
+<hr />
+<p>算法1 <span
+class="math inline">\(\mathbf{A}^{SR}\mathbf{MF}\)</span></p>
+<hr />
+<p><strong>输入：</strong>图像<span
+class="math inline">\(\mathbf{X}(x_i,i=1,2,\cdot\cdot\cdot,N)\)</span>和聚类中心<span
+class="math inline">\(\mathbf{V}\)</span>；正则化参数𝜑、终止准则𝜀和最大迭代次数𝑡𝑚𝑎𝑥；<br/><strong>输出：</strong>成员关系矩阵𝑈。<br/>1.通过SLIC算法获得超像素图像，并计算不同区域的平均值；<br/>2.初始化辅助变量𝑐和𝑞，并设置迭代数𝑡=0；<br/>3.通过输入的簇中心得到隶属度划分矩阵𝑈；<br/>4.通过等式13、等式14、等式15推导出亲和矩阵<span
+class="math inline">\(\mathbf A^{S R}(A_{j k}^{S
+R})\)</span>;<br/>5.通过等式17计算每个像素对每个簇<span
+class="math inline">\(\mathbf D(D_{i
+j})\)</span>的归属;<br/>6.<strong>repeat</strong><br/>7 Let t = t +
+1;<br/>8 通过等式26更新成员资格矩阵<span class="math inline">\(\mathbf
+𝑈\)</span>;<br/>9 通过等式30更新辅助变量𝑐;<br/>10
+通过等式32更新辅助变量q;<br/>11.直到<span class="math inline">\(t\gt
+t_{m a x}\)</span>或者<span
+class="math inline">\(\|U^{t+1}-U^{t}\|\leq\varepsilon\)</span>;</p>
+<hr />
+<h1 id="实验结果">4.实验结果</h1>
+<h2 id="参数设置">4.1.参数设置</h2>
+<h2 id="评价指标">4.2.评价指标</h2>
+<h2 id="使用固定的集群中心的合理性">4.3.使用固定的集群中心的合理性</h2>
+<h2 id="对合成图像的分析结果">4.4.对合成图像的分析结果</h2>
+<h2 id="对医学图像的检测结果">4.5.对医学图像的检测结果</h2>
+<h2 id="对真实图像的结果">4.6.对真实图像的结果</h2>
+<h1 id="运行时间分析">5.运行时间分析</h1>
+<h1 id="结论及未来的工作">6.结论及未来的工作</h1>
+<p>​  本文首先创新地融合了像素级邻域信息和区域级上下文信息两种图像信息，构建了隶属度正则化聚类方法的亲和矩阵<span
+class="math inline">\(\mathbf{A}^{SR}\)</span>，以提高其在图像分割上的性能。然后，在聚类过程中采用固定聚类中心的策略；分割结果仅依赖于亲和矩阵中存储的先验知识，可以减少异常值或噪声像素对隶属度计算的负面影响。以隶属度亲和套索为例，提出了基于信息融合的ASRMF方法，它利用新的亲和矩阵<span
+class="math inline">\(\mathbf{A}^{SR}\)</span>来指导隶属度值的更新。实验结果表明，该方法ASRMF能够在不同类型的图像分割中取得良好的效果。它的性能优于其他最先进的算法。<br/>​  本文只考虑单通道图像，而多通道图像也是一个重要的研究趋势。因此，在我们的未来工作中，我们将研究多通道和单通道融合范式[65]，以创建更好的亲和矩阵。然而，如何自动设置ASRMF的相关参数以及聚类的数量仍是一个有待进一步研究的问题。此外，如何在其他聚类方法中使用该亲和矩阵，如光谱聚类[66]，也是我们需要研究和改进的一个问题。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Fuzzy-clustering-method-for-image-segmentation/">https://zhaozw-szu.github.io/Fuzzy-clustering-method-for-image-segmentation/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80"><span class="toc-text">一</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.前期准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%9A%84%E6%A8%A1%E7%B3%8A%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-text">2.1.图像分割的模糊聚类方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%B6%85%E5%83%8F%E7%B4%A0%E7%9A%84%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E6%96%B9%E6%B3%95"><span class="toc-text">2.2.基于超像素的图像分割方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%B6%E5%B1%9E%E5%BA%A6%E6%AD%A3%E5%88%99%E5%8C%96%E6%A8%A1%E7%B3%8A%E8%81%9A%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-text">2.3.隶属度正则化模糊聚类方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95mathbfasrmathbfmf"><span class="toc-text">3.提出的方法：\(\mathbf{A}^{SR}\mathbf{MF}\)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%83%8F%E7%B4%A0%E5%92%8C%E5%8C%BA%E5%9F%9F%E7%BA%A7%E4%BF%A1%E6%81%AF%E7%9A%84%E8%9E%8D%E5%90%88%E6%9E%84%E5%BB%BA%E4%BA%B2%E5%92%8C%E7%9F%A9%E9%98%B5"><span class="toc-text">3.1.基于像素和区域级信息的融合构建亲和矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%B6%E5%B1%9E%E5%BA%A6%E6%AD%A3%E5%88%99%E5%8C%96%E7%9A%84%E6%A8%A1%E7%B3%8A%E8%81%9A%E7%B1%BB%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.2.隶属度正则化的模糊聚类模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="toc-text">3.3.参数估计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">4.实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1.参数设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">4.2.评价指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9B%BA%E5%AE%9A%E7%9A%84%E9%9B%86%E7%BE%A4%E4%B8%AD%E5%BF%83%E7%9A%84%E5%90%88%E7%90%86%E6%80%A7"><span class="toc-text">4.3.使用固定的集群中心的合理性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%90%88%E6%88%90%E5%9B%BE%E5%83%8F%E7%9A%84%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C"><span class="toc-text">4.4.对合成图像的分析结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E7%9A%84%E6%A3%80%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="toc-text">4.5.对医学图像的检测结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%9C%9F%E5%AE%9E%E5%9B%BE%E5%83%8F%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-text">4.6.对真实图像的结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90"><span class="toc-text">5.运行时间分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%E5%8F%8A%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="toc-text">6.结论及未来的工作</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_clustering_method_for_image_segmentation"/></a><div class="content"><a class="title" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation">Fuzzy_clustering_method_for_image_segmentation</a><time datetime="2024-12-29T14:13:57.000Z" title="发表于 2024-12-29 22:13:57">2024-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"/></a><div class="content"><a class="title" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</a><time datetime="2024-12-26T02:50:46.000Z" title="发表于 2024-12-26 10:50:46">2024-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"/></a><div class="content"><a class="title" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</a><time datetime="2024-12-23T08:43:50.000Z" title="发表于 2024-12-23 16:43:50">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_Machine_Learning"/></a><div class="content"><a class="title" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning">Fuzzy_Machine_Learning</a><time datetime="2024-12-23T03:20:44.000Z" title="发表于 2024-12-23 11:20:44">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_survey_on_deep_learning-based_image_forgery_detection"/></a><div class="content"><a class="title" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection">A_survey_on_deep_learning-based_image_forgery_detection</a><time datetime="2024-12-18T06:44:25.000Z" title="发表于 2024-12-18 14:44:25">2024-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

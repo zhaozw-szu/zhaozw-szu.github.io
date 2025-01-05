@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>WMGTI | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Which Model Generated This Image? A Model-Agnostic Approach for Origin Attribution 摘要 ​  视觉生成模型的最新进展使高质量图像的生成成为可能。为了防止误用生成的图像，识别生成这些图像的原始模型是很重要的。在这项工作中，我们研究了在一个实际的环境中，只有少数由源模型生成的图像可用，而源模型不能被访问。目标是检">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WMGTI">
+<meta property="og:url" content="https://zhaozw-szu.github.io/WMGTI/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Which Model Generated This Image? A Model-Agnostic Approach for Origin Attribution 摘要 ​  视觉生成模型的最新进展使高质量图像的生成成为可能。为了防止误用生成的图像，识别生成这些图像的原始模型是很重要的。在这项工作中，我们研究了在一个实际的环境中，只有少数由源模型生成的图像可用，而源模型不能被访问。目标是检">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg">
+<meta property="article:published_time" content="2024-12-02T01:30:55.000Z">
+<meta property="article:modified_time" content="2024-12-26T13:39:42.907Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/WMGTI/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'WMGTI',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-26 21:39:42'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">WMGTI</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-02T01:30:55.000Z" title="发表于 2024-12-02 09:30:55">2024-12-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-26T13:39:42.907Z" title="更新于 2024-12-26 21:39:42">2024-12-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="WMGTI"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Which Model Generated This Image? A Model-Agnostic Approach for
+Origin Attribution</p>
+<h1 id="摘要">摘要</h1>
+<p>​  视觉生成模型的最新进展使高质量图像的生成成为可能。为了防止误用生成的图像，识别生成这些图像的原始模型是很重要的。在这项工作中，我们研究了在一个实际的环境中，只有少数由源模型生成的图像可用，而源模型不能被访问。目标是检查一个给定的图像是否由源模型生成。我们首先将这个问题表述为一个少量的单类分类任务。为了解决这一任务，我们提出了OCC-CLIP，基于CLIP的框架，用于少镜头单类分类，即使在多个候选者中也能识别图像的源模型。与各种生成模型相对应的大量实验验证了我们的OCC-CLIP框架的有效性。此外，一个基于最近发布的DALL·E-3API的实验验证了我们的解决方案的实际适用性。我们的源代码可以在https://github.com/uwFengyuan/OCC-CLIP上找到。</p>
+<p>关键词：模型属性·生成的图像·CLIP分类</p>
+<h1 id="介绍">1介绍</h1>
+<p>​  最近的视觉生成模型能够产生异常质量的图像，这已经引起了公众对知识产权（IP）保护和滥用[15,31,33,34]的问责制的关注。为了应对人工智能生成内容（AIGC）带来的挑战和机遇，美国最近的一项行政命令[3]规定，所有人工智能生成的内容必须清楚地标记其来源，如稳定扩散[46]。这使得生成图像的起源归因在现实世界的应用中至关重要，指的是识别给定图像是否由特定模型生成的过程。<br/>​  为了解决上述的起源归因问题，我们在社区中探索了三种主要的方法。第一种方法涉及到[35,37,43,57,59]的水印，这需要对生成的结果进行额外的修改，从而影响生成的质量。第二种方法是在训练过程中向模型中注入指纹[10,68-70]，并使用一个有监督的分类器来识别这些指纹。这一过程需要改变训练工作。也提出了无修改的方法，它不需要修改生成或训练过程。具体来说，现有的方法利用了逆工程[29,64]，基于一个合成样本可以由创建它的生成器最准确地重建的想法。然而，逆工程方法需要访问目标模型，并需要采样许多图像作为参考。<br/>​  在这项工作中，我们的目标是在一个实际的开放世界环境中进行起源归因（图1），在这个环境中，模型参数不能被访问，并且只有由模型生成的少数样本可用。这种设置在现实世界的应用中是有意义的，因为当前的生成模型，例如DALL·E-3[2]，并不是开源的，并且从它们中取样许多图像需要大量的成本。</p>
+<figure>
+<img src="../postimages/WMGTI/image-20241202093616380.png"
+alt="image-20241202093616380" />
+<figcaption aria-hidden="true">image-20241202093616380</figcaption>
+</figure>
+<p>图1：在一个实用的、开放的世界环境中，起源归因的简单演示。检查员们收到了一些来自DALL·E-3的样本。然后用户提交一张图像，它可以是真实的照片，也可以是由DALL·E-3或其他模型生成的图像。如果确定该图像和所提供的样本是由同一模型生成的，那么我们就可以识别出DALL·E-3为查询图像的原始模型。</p>
+<p>​  为了克服这种情况下的挑战，我们首先将问题表述为一个
+few-shot的单类分类任务。然后，我们提出了一个基于clip的框架作为一个有效的解决方案，称为OCC-CLIP。使用我们的框架，我们可以确定给定的图像和少数可用的图像是否从同一模型生成。如果是这样，我们可以自信地识别生成少数图像的模型作为给定图像的原始模型。此外，我们还证明了我们的方法可以扩展到对多个源模型进行起源归因。<br/>​  在各种生成模型上的大量实验证明，我们提出的框架可以有效地确定给定图像的起源归属。此外，在few-shot可用的情况下，以及对给定的图像应用图像预处理时，我们的框架显示了优越性。它在多源起源归因场景中也被证明是有效的。此外，我们的实验，基于最近发布的DALL·E-3[2]API，证实了我们的解决方案在实际商业系统中的有效性。<br/>​  我们的主要贡献可以总结如下。</p>
+<ul>
+<li>我们提出了一个新的任务，在一个实际的设置中，生成的图像被归因于原始模型，只有很少的镜头可用的图像由模型生成。</li>
+<li>我们将这个问题表述为一个简单的一类分类任务，然后提出了一个基于CLIP的框架，称为OOC-CLIP，来解决这个问题。</li>
+<li>在8个生成模型上进行了广泛的实验，包括扩散模型和GANs。我们的解决方案在一个真实世界的图像生成系统上进行了进一步的验证，即DALL·E-3[2]。</li>
+</ul>
+<h1 id="相关工作">2相关工作</h1>
+<h1 id="方法">3方法</h1>
+<p>​  在本节中，我们首先介绍标准的基于CLIP的分类框架，然后介绍我们用于少量单类分类的OCC-CLIP框架。最后，我们将展示如何将我们的框架扩展到多个类。</p>
+<h2 id="基于clip的分类背景">3.1基于clip的分类背景</h2>
+<p>​  CLIP是一个预先训练过的多模态模型，用于预测图像是否匹配文本提示符。它包括一个图像编码器<span
+class="math inline">\(E_v(\cdot)\)</span>和文本编码器<span
+class="math inline">\(E_t(\cdot)\)</span>。预先训练好的CLIP可以通过将图像与提示列表[16]进行比较来执行few-shot多类分类，每个提示列表代表一个类。在形式上，假设我们有K个类。设<span
+class="math inline">\(X^v\in X\)</span>表示一个图像，<span
+class="math inline">\(X^t_i\)</span>表示表示第<span
+class="math inline">\(i\)</span>文本类的提示符。图像<span
+class="math inline">\(X^v\)</span>的预测类概率计算如下： <span
+class="math display">\[p(\mathrm{class}=i|v)=\frac{\exp(\mathrm{sim}(E_{i}(X_{i}^{t}),E_{v}(X^{v})))}{\sum_{j=1}^{K}\exp(\mathrm{sim}(E_{t}(X_{j}^{t}),E_{v}(X^{v})))}\]</span>
+​  其中，sim（·）测量两个嵌入之间的距离，例如，点积。<br/>​  在上面的分类中，使用手工制作的文本提示来表示类[16]。快速的设计需要专门的知识，而且创建起来很耗时。为了缓解这一问题，Zhou等人[71]引入了上下文优化（CoOp）的概念，它使用可学习的向量来细化与提示相关的单词。CoOp使模型能够根据合适的提示进行自动优化，而不是手动设计提示。形式上，第i类的提示符可以表示为<span
+class="math inline">\(X_{i}^{p}=[t]\otimes[C L A S
+S_{i}]\)</span>，其中t是可学习的上下文向量，<span
+class="math inline">\(\otimes\)</span>是一个连接操作，<span
+class="math inline">\(CLASS_i\)</span>对应于第i类的名称。优化的目的是尽量减少每个<span
+class="math inline">\(X_i^v\)</span>的 ground-truth <span
+class="math inline">\(Y_i\)</span>的误差。这是通过对可学习的提示使用交叉熵损失函数<span
+class="math inline">\(\mathcal L\)</span>来实现的。 <span
+class="math display">\[\operatorname*{min}_{X^{p}}\sum_{j=1}^{N}\sum_{i=1}^{K}\mathcal{Z}(f(E_{v}(X_{j}^{v}),E_{t}(X_{i}^{p})),Y_{i})\]</span></p>
+<h2 id="基于clip的少镜头单类分类">3.2基于clip的少镜头单类分类</h2>
+<p>​  基于clip的分类器，CoOp，可以在少数人的学习设置中实现优异的性能，其中每个类都有一些图像可用。然而，在我们的设置中，只有少数由生成模型生成的一类图像是可用的。因此，一个标准的基于clip的分类器不能直接应用于解决少量的单类分类任务。<br/>​  我们现在提出了基于clip的单类分类框架，称为OCC-CLIP。在我们的框架中（图2），从生成模型中收集到的少数图像被视为目标类，而从一个干净的数据集中随机采样的图像被标记为非目标类。</p>
+<figure>
+<img src="../postimages/WMGTI/image-20241202100630912.png"
+alt="image-20241202100630912" />
+<figcaption aria-hidden="true">image-20241202100630912</figcaption>
+</figure>
+<p>图2：OCC-CLIP的概述。输入文本由可学习的上下文向量表示，然后是两个离散的类：目标类对应于从生成模型中查询到的图像集，而非目标类对应于随机来源的开放域图像。这些类可以被标记为对比对，如非目标与目标或阴性与阳性。从CLIP模型中得到的文本和图像编码器的参数是固定的。对抗性数据增强（ADA）计算非目标图像上的每个像素的梯度。在训练阶段，这些梯度$
+^v$被应用于非目标图像。</p>
+<p>​  这两个类可以被标记为任何对比性的对，如非目标与目标或阴性与阳性。对这些图像分别对对应于目标类和非目标类的两个可学习提示进行了优化。<br/>​  为非目标类选择的少数图像不能很好地代表非目标类的整个分布，因为它们是从一个开源数据集（例如，ImageNet
+[9]）中随机采样的。为了克服这一挑战，我们提出了一种对抗性数据增强（ADA）技术，该技术在训练过程中扩展了非目标类空间的覆盖范围，更接近于目标空间的边界，从而提高了模型学习目标模型归因的能力。ADA的目标是通过在非目标图像中添加小扰动<span
+class="math inline">\(\delta
+^v\)</span>来最大化损失，而可学习提示的目标是通过学习目标和非目标类之间的边界来最小化损失。综上所述，OCC-CLIP中的优化可以表述为：
+<span
+class="math display">\[\operatorname*{min}_{X^{p}}\operatorname*{max}_{\delta^{\phantom{A}}}\sum_{j=1}^{N}\sum_{i=1}^{K}\mathcal{L}(f(E_{v}(X_{j}^{v}+\delta_{j}^{v}),E_{t}(X_{i}^{p})),Y_{i})\]</span>
+​  其中，<span class="math inline">\(\delta
+^v\)</span>是由我们的ADA技术计算出的对抗性图像扰动。<br/>​  我们的OCC-CLIP的实现见算法1。</p>
+<figure>
+<img src="../postimages/WMGTI/image-20241202102411946.png"
+alt="image-20241202102411946" />
+<figcaption aria-hidden="true">image-20241202102411946</figcaption>
+</figure>
+<p>​  如算法所示，对非目标类的图像进行了前后传递的梯度信息。梯度信息用于计算对抗性扰动。可学习的提示将在另一个向前和后向的图像上更新。在实验部分讨论了训练超参数的敏感性。<br/>​  在优化过程中，CLIP的视觉和文本编码器都被冻结。在验证过程中，如果将其分类为目标类，则将确定一个图像是由与目标图像的源模型相同的生成模型生成的图像。</p>
+<h2 id="基于clip的少镜头多类分类">3.3基于CLIP的少镜头多类分类</h2>
+<p>​  我们还探讨了多源起源归因场景。例如，为了确定图像的起源是否可以归因于ProGAN
+[25]、 Stable Diffusion[46]或Vector Quantized
+Diffusion[19]，我们可以使用三个与这些模型相对应的单类分类器进行分类。给定一组训练过的K个单类分类器<span
+class="math inline">\(\{O C C_{1},O C C_{2},\cdot\cdot\cdot,O C
+C_{K}\}\)</span>对于K个类和一个阈值<span
+class="math inline">\(\theta\)</span>（例如0.5），对于一个输入样本<span
+class="math inline">\(X^v\)</span>，让<span
+class="math inline">\(s_{i}(X^{v})\)</span>表示第<span
+class="math inline">\(i\)</span>个分类器<span
+class="math inline">\(OCC_i\)</span>给出的<span
+class="math inline">\(X^v\)</span>分数。样本<span
+class="math inline">\(X^v\)</span>的预测类<span
+class="math inline">\(C(X^{v})\)</span>确定如下： <span
+class="math display">\[C(X^{v})=\left\{\begin{array}{l
+l}{\mathrm{arg~max}_{i}\epsilon(y,...,K)~s_{i}(X^{v})}&amp;{\mathrm{if~max}_{i\in\{1,...,N\}}\;s_{i}(X^{v})\gt
+\theta,}\\
+\mathrm{others}&amp;{mathrm{otherwise.}}\end{array}\right.\]</span>
+​  给定一个图像，如果第i类分类器提供的<span
+class="math inline">\(X^v\)</span>的最大分数超过阈值，则将<span
+class="math inline">\(X^v\)</span>归类为第<span
+class="math inline">\(i\)</span>类。否则，它被认为属于K个分类器定义的类别之外的类别。</p>
+<h1 id="实验">4实验</h1>
+<p>​  在本节中，我们首先描述实验设置，并介绍我们与基线方法的比较。我们还研究了我们的方法对各种因素的敏感性，如源模型对应的目标类、非目标类数据集、可用图像的数量和图像预处理。此外，我们还展示了我们的框架在多源起源归属场景和真实世界的商业生成API中的有效性。</p>
+<h2 id="实验设置">4.1实验设置</h2>
+<p>​  <strong>数据集。</strong><br/>​  基于微软公共对象（COCO，Microsoft
+Common Objects in
+Context）2014数据集[32]的验证集，五种不同的生成模型，即 Stable Diffusion
+Model[46]、Latent Diffusion Model[46]、GLIDE[40]、Vector Quantized
+Diffusion[19]和GALIP
+[60]，共生成202,520张图像。这些模型在四个不同的数据集上进行了预训练，即LAION-5B
+[52]、COCO [32]、LAION-400M [53]和过滤后的CC12M
+[5]。共生成了5个来自不同源模型的图像数据集，即SD、VQ-D、LDM、Glide、GALIP。为了平衡扩散模型生成的图像数据集的数量和GANs生成的图像数据集的数量，我们使用了[63]提供的已有数据集（即GauGAN
+[42]、ProGAN [25]和StyleGAN2
+[26]）。这些数据集共同作为一个鲁棒的基准，涵盖了两种主要的生成技术：
+GANs和扩散模型。</p>
+<p>​  <strong>模型。</strong><br/>​  OCC-CLIP利用了16个上下文向量。这个模型是建立在开源的CLIP框架之上的。该图像编码器使用ViT-B/16体系结构。除了提示学习者外，所有预先训练的参数都是固定的。初始上下文向量从一个正态分布中随机抽样，其特征是均值为0，标准差为0.02。</p>
+<p>​  <strong>训练设置。</strong><br/>​  所有生成的图像都被调整为<span
+class="math inline">\(224\times224\)</span>，然后根据每个模型的预先训练的数据集进行归一化。采用随机梯度下降作为优化策略，学习速率为0.0001，通过余弦退火进行调制。利用交叉熵损失作为损失函数。默认情况下，对于50次场景，训练过程最多限制在200个周期。测试数据集由从测试集中随机选择的1000张图像组成，以确保可靠的评估。为了抵消在训练的新生阶段爆发的爆炸性梯度，在第一个阶段，学习速率稳定地保持在<span
+class="math inline">\(1\times
+10^{-5}\)</span>。8个生成模型（即SD、VQ-D、LDM、Glide、GALIP、ProGAN、StyleGAN2、GauGAN）迭代视为目标类，而4个开源数据集（即COCO
+[32]、ImageNet [9]、Flickr [66]和CC12M
+[5]）迭代视为非目标类。但在默认设置下，只有一半的非目标图像被ADA增强，SD被指定为目标图像集，COCO被选择为非目标图像集。</p>
+<p>​  <strong>评价。</strong><br/>​  每个模型都通过接收者操作特征曲线下的面积（AUC）进行评估。接收者操作特征曲线（ROC）是一个图形表示方法，它在不同的阈值水平上绘制了真阳性率（TPR）和假阳性率（FPR）。<br/>​  AUC表示分类器对随机选择的正实例的排序高于随机选择的负实例的概率。为了减少随机性，每个模型每次都用不同的训练集进行10次训练。然后，在测试集上报告平均AUC和相应的标准偏差。AUC得分越高，表现越好。对于每个表，相应的标准差见补充表。更多的实验细节，如不同的测试任务和准确性分数，可以在补充中找到。</p>
+<h2 id="与基线的比较">4.2与基线的比较</h2>
+<p>​  <strong>基线</strong><br/>​  由于目前还没有完全适合我们的设置的方法，我们通过评估来自不同使用领域的12种基准方法，对OCC-CLIP进行了综合评估（见表1）。补充部分可以找到与其他基线[13,64]的比较。</p>
+<h1 id="结论">5结论</h1>
+<p>​  在这项工作中，我们在一个实际的环境中研究起源归属，其中只有少数由源模型生成的图像可用，而源模型不能被访问。所引入的问题首先被表述为一个几镜头的单分类任务。提出了一种简单而有效的基于clip的解决方案框架来解决该问题。我们在开源流行的生成模型和商业生成API上进行的实验表明了我们的框架的有效性。我们的OCC-CLIP框架也可以应用于解决其他领域的少量单一分类任务，我们将其留在未来的工作中。另一项未来的工作是评估我们的框架[7,8,17,18]的自然性和对抗性鲁棒性，并构建对抗性鲁棒性变体[23,65]。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/WMGTI/">https://zhaozw-szu.github.io/WMGTI/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/K-means-clustering-algorithms/" title="K-means_clustering_algorithms"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">K-means_clustering_algorithms</div></div></a></div><div class="next-post pull-right"><a href="/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/" title="Generalizable_Synthetic_Image_Detection_via_Language-guided_Contrastive_Learning"><img class="cover" src="/img/coverImage/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Generalizable_Synthetic_Image_Detection_via_Language-guided_Contrastive_Learning</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eclip%E7%9A%84%E5%88%86%E7%B1%BB%E8%83%8C%E6%99%AF"><span class="toc-text">3.1基于clip的分类背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eclip%E7%9A%84%E5%B0%91%E9%95%9C%E5%A4%B4%E5%8D%95%E7%B1%BB%E5%88%86%E7%B1%BB"><span class="toc-text">3.2基于clip的少镜头单类分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eclip%E7%9A%84%E5%B0%91%E9%95%9C%E5%A4%B4%E5%A4%9A%E7%B1%BB%E5%88%86%E7%B1%BB"><span class="toc-text">3.3基于CLIP的少镜头多类分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%9F%BA%E7%BA%BF%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.2与基线的比较</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_clustering_method_for_image_segmentation"/></a><div class="content"><a class="title" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation">Fuzzy_clustering_method_for_image_segmentation</a><time datetime="2024-12-29T14:13:57.000Z" title="发表于 2024-12-29 22:13:57">2024-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"/></a><div class="content"><a class="title" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</a><time datetime="2024-12-26T02:50:46.000Z" title="发表于 2024-12-26 10:50:46">2024-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"/></a><div class="content"><a class="title" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</a><time datetime="2024-12-23T08:43:50.000Z" title="发表于 2024-12-23 16:43:50">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_Machine_Learning"/></a><div class="content"><a class="title" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning">Fuzzy_Machine_Learning</a><time datetime="2024-12-23T03:20:44.000Z" title="发表于 2024-12-23 11:20:44">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_survey_on_deep_learning-based_image_forgery_detection"/></a><div class="content"><a class="title" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection">A_survey_on_deep_learning-based_image_forgery_detection</a><time datetime="2024-12-18T06:44:25.000Z" title="发表于 2024-12-18 14:44:25">2024-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

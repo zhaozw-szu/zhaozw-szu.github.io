@@ -1,0 +1,638 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Forgery-aware Adaptive Learning with Vision Transformer for Generalized Face Forgery Detection (发表于TCSVT，IEEE Transactions on Circuits and Systems for Video Technology， 1区B刊) 摘要 ​  随着生成模型的快速发展，目前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Forgery-aware Adaptive Learning with Vision Transformer for Generalized Face Forgery Detection (发表于TCSVT，IEEE Transactions on Circuits and Systems for Video Technology， 1区B刊) 摘要 ​  随着生成模型的快速发展，目前">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2024-12-26T02:50:46.000Z">
+<meta property="article:modified_time" content="2025-01-05T11:46:05.211Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-05 19:46:05'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-26T02:50:46.000Z" title="发表于 2024-12-26 10:50:46">2024-12-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-05T11:46:05.211Z" title="更新于 2025-01-05 19:46:05">2025-01-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Forgery-aware Adaptive Learning with Vision Transformer for
+Generalized Face Forgery Detection</p>
+<p>(发表于TCSVT，IEEE Transactions on Circuits and Systems for Video
+Technology， 1区B刊)</p>
+<h1 id="摘要">摘要</h1>
+<p>​  随着生成模型的快速发展，目前人脸伪造检测面临的挑战是如何有效地检测来自不同未知领域的真实操纵人脸。虽然以往的研究表明，经过预训练的基于视觉变换器（ViT）的模型在对深度伪数据集进行完全微调后，可以获得一些有希望的结果，但其泛化性能仍不令人满意。为此，我们提出了一种在自适应学习范式下的伪造感知自适应视觉Transformer网络（FAViT），其中预先训练的ViT网络中的参数保持不变，而设计的自适应模块进行优化以捕获伪造特征。<br/>​  具体来说，设计了一个全局自适应模块来模拟输入令牌之间的长期交互，利用自注意机制来挖掘全局伪造线索。为了进一步探索必要的局部伪造线索，提出了一种局部自适应模块，通过增强局部上下文关联来暴露局部不一致性。此外，我们还引入了一个细粒度的自适应学习模块，该模块强调通过细粒度对的关系学习对真实面孔的共同紧凑表示，驱动这些提出的自适应模块感知细粒度的伪造感知信息。<br/>​  大量的实验表明，我们的FA-ViT在交叉数据集评估中取得了最先进的结果，并增强了对看不见扰动的鲁棒性。特别是在FA-ViT的跨数据集评估中，Celeb-DF和DFDC数据集的AUC得分分别达到93.83%和78.32%。该代码和训练过的模型已经在：
+https://github.com/LoveSiameseCat/FAViT上发布了。</p>
+<p>索引术语-人脸伪造检测，视觉转换器，自适应学习，泛化性能。</p>
+<h1 id="i.介绍">I.介绍</h1>
+<p>​  随着深度学习技术的快速发展，人工智能生成内容（AIGC）技术在多种多媒体任务中取得了重大进展。然而，这一进步对人眼辨别这些数字内容提出了巨大的挑战。特别是，攻击者可以很容易地为各种恶意目的生成伪造的面部内容（又名Deepfakes），对社会构成金融欺诈、政治冲突和冒充的紧迫威胁。<br/>​  以往的大多数工作都使用卷积神经网络（CNN）来构建检测器，其中初始[1]或效率网络[2]由于其出色的深度伪检测性能而被广泛应用作基本主干。为了提高其普遍性，一些作品探索了隐藏在被操纵面孔中的常见的伪造线索，如噪声信息[3]-[5]、混合伪影[6]-[8]、频率特征[9]-[11]等。然而，cnn中有限的接受域限制了它们全面学习更广义的特征[12]的能力。作为回应，一些方法寻求使用视觉变压器（ViT）进行人脸伪造检测[13]-[16]。由于自注意机制，这些基于vit的方法可以模拟不同输入标记之间的长程关系。然而，ViT难以捕获局部特征细节，这在深度伪造检测[17]中尤为重要。为了解决这一限制，之前的工作将CNN本地先验纳入到ViT架构[18]，[19]中。<br/>​  与从头开始训练的模型[20]相比，预先训练的模型在下游任务中表现出更好的收敛性和泛化性，并且预先训练的ViT
+1在取证任务[21]中已被证明是有效的。因此，在以前的工作[13]，[17]-[19]中，通常使用公共可访问的预先训练的权重来初始化基于vit的检测器，然后在深度假数据集上更新这些参数。然而，最近的工作[22]，[23]指出，基于vit的模型对特定的下游任务进行完全微调会破坏预先训练的特征，并可能过度拟合特定的数据模式[21]，可能会阻碍它们在开放集环境中的泛化能力。另一方面，如图1所示，被篡改人脸上的伪造伪影会导致全局或局部的不一致，这表明需要从多个角度对关键表示进行建模。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226110804711.png"
+alt="image-20241226110804711" />
+<figcaption aria-hidden="true">image-20241226110804711</figcaption>
+</figure>
+<p>​  基于这些观察结果，我们提出了用于广义人脸伪造检测的伪造感知自适应视觉Transformer网络（FA-ViT），其中预先训练的权值是固定的，只有设计的自适应模块被优化，以从全局和局部的角度捕获丰富的伪造感知信息。<br/>​  FA-ViT的概述如图2所示。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226110937373.png"
+alt="image-20241226110937373" />
+<figcaption aria-hidden="true">image-20241226110937373</figcaption>
+</figure>
+<p>​  它主要由两个模块组成：全局自适应模块（GAM，Global Adaptive
+Module）和局部自适应模块（LAM， Local Adaptive
+Module），以用于捕获全局和局部伪造感知信息。具体来说，GAM设计来为接收ViT令牌，并与自注意层的原始查询、键和值输出进行交互。<br/>​  具体来说，GAM被设计为接收ViT令牌，并与自注意层的原始查询、键和值输出进行交互。考虑到全局伪影跨越了操纵面部的大区域，GAM利用自我注意机制来增强其从这些伪影中学习全局取证线索的能力。<br/>​  另一方面，LAM采用二次编码[24]来增强每个ViT标记与其相邻空间信息之间的局部关联，指导模型强调局部不一致性之间的异常情况。因此，全局和局部伪造感知信息共同适应固定的预训练特征，形成用于在各种场景中检测深度伪造的广义法医表示。<br/>​  此外，常用的交叉熵损失强调类别水平的差异，但难以捕获细粒度信息，揭示操纵和真实面孔之间的细微差别[10]，[25]，[26]的差异。为了解决这一问题，我们设计了细粒度自适应学习（FAL）。如图2所示，将具有相似视觉语义内容但属于不同类别的细粒度对作为输入对进行分组。FAL利用来自最后一个完全连接（FC）层的权重作为真实面孔的代理原型，并通过圆损失[27]来规范原型和每个细粒度对之间的关系。在FAL的指导下，将所提出的自适应模块挖掘更细粒度的伪造感知信息，在特征空间中压缩真实面，从而进一步提高模型的通用性。<br/>​  我们的主要贡献总结如下：</p>
+<ul>
+<li>我们观察到，当对深度假检测的任务进行完全微调时，基于vit的模型难以推广到看不见的数据集。为了解决这一问题，我们提出了一种新型的伪造感知自适应视觉Transformer网络（FAViT），用于自适应学习范式下的广义人脸伪造检测。</li>
+<li>我们提出了全局自适应模块（GAM）和局部自适应模块（LAM），它们有效地使全局和局部伪造感知信息适应于预先训练的ViT特征。此外，我们设计了一种新的线粒度自适应学习（FAL）来指导这些自适应模型在自适应学习过程中捕获细粒度信息。</li>
+<li>我们在多个数据集和传感器上进行了广泛的实验，结果表明，我们提出的FA-ViT在各种评估中优于最先进的方法。</li>
+</ul>
+<h1 id="ii.-相关工作">II. 相关工作</h1>
+<h3 id="a.面部伪造检测">A.面部伪造检测</h3>
+<h3 id="b.模型适应">B.模型适应</h3>
+<h3 id="c.-细粒度的信息学习">C. 细粒度的信息学习</h3>
+<h1 id="iii.-提出的方法">III. 提出的方法</h1>
+<p>​  在本节中，我们首先在第III-A节中概述了所提出的FA-ViT。三。然后，我们在章节III-B和III-C中描述了全局自适应模块（GAM）和局部自适应模块（LAM）。最后，在第III-D节中提出了细粒度自适应学习（FAL）。</p>
+<h2 id="a.-概述">A. 概述</h2>
+<p>​  我们提出的FA-ViT的框架如图2所示。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226145840044.png"
+alt="image-20241226145840044" />
+<figcaption aria-hidden="true">image-20241226145840044</figcaption>
+</figure>
+<p>​  它采用预先训练好的ViT为基本骨干，由12个ViT块组成。每个块由一个自我注意（SA）层和一个多层感知器（MLP）层组成。在训练过程中，这些块内的参数保持冻结。<br/>​  在FA-ViT中，输入的<span
+class="math inline">\(\mathbf{X}\in\mathbb{R}^{H\times
+W\times3}\)</span>被划分为L个图像补丁，并进一步处理成D维标记，记为<span
+class="math inline">\({\bf X}_{v i t}\ \in\ \mathbb{R}^{L\times
+D}\)</span>。在每个ViT块中，我们在SA层中插入一个GAM。当<span
+class="math inline">\({\bf X}_{v i
+t}\)</span>通过SA层时，GAM借助自我注意机制捕获全局伪造感知信息。另一方面，我们从<span
+class="math inline">\({\bf
+X}\)</span>中提取多尺度空间特征，其中每个尺度特征<span
+class="math inline">\({\bf X}_{c n
+n}\)</span>都是从一个由三个卷积层组成的CNN块中获得的。LAM为每个ViT标记聚合了来自<span
+class="math inline">\({\bf X}_{c n
+n}\)</span>的空间伪造感知信息，这有助于以自适应学习的方式捕获丰富的局部细节。除了常用的交叉熵（CE）损失外，我们还引入了FAL来指导GAMs和LAMs来捕获更细粒度的伪造感知信息。</p>
+<h2 id="b.-全局自适应模块gam">B. 全局自适应模块GAM</h2>
+<p>​  自注意层是ViT中的一个关键组件，它使每个输入令牌能够聚合来自所有其他令牌的信息。我们首先简要介绍了自注意层的计算过程。<br/>​  表示<span
+class="math inline">\(\mathbf{X}_{v i t}^{i n}\in\mathbb{R}^{L\times
+D}\)</span>是ViT块的输入，首先通过三个可学习矩阵<span
+class="math inline">\(W_{Q}\in\mathbb{R}^{D\times D}\)</span>，<span
+class="math inline">\(W_{K}\in\mathbb{R}^{D\times D}\)</span>和<span
+class="math inline">\(W_{V}\in\mathbb{R}^{D\times
+D}\)</span>，预测查询令牌<span class="math inline">\({\bf
+Q}\in\mathbb{R}^{L\times D}\)</span>，关键令牌<span
+class="math inline">\({\bf K}\in\mathbb{R}^{L\times
+D}\)</span>和值令牌<span class="math inline">\({\bf
+V}\in\mathbb{R}^{L\times D}\)</span>： <span class="math display">\[{\bf
+Q}={\bf X}_{v i t}^{i n}W_{Q},\ \ {\bf K}={\bf X}_{v i t}^{i n}W_{K},\ \
+{\bf V}={\bf X}_{v i t}^{i n}W_{V}.\]</span>
+​  然后将自注意层的计算表示为： <span class="math display">\[{\bf X}_{v i
+t}^{o u t}=\mathrm{Attention}({\bf Q},{\bf K},{\bf
+V})=\mathrm{softmax}(\mathbf{QK}^{\mathsf{T}}/{\sqrt{D}})\mathbf{V},..\]</span>
+​  其中，<span class="math inline">\({\bf X}_{v i t}^{o u
+t}\)</span>是输出。<br/>​  所提出的GAM建立在自注意层之上，利用自注意机制挖掘全局信息。先前的工作[18]，[61]，[62]已经证明了标记嵌入（即块表示）表现出比与遥远标记的邻近标记更强的相关性。因此，采用具有瓶颈结构的卷积层在GAM中建模这种局部空间关系，在全局自适应学习过程中引入与标记相关的局部先验。我们提出的GAM的细节如图3所示。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226152740847.png"
+alt="image-20241226152740847" />
+<figcaption aria-hidden="true">image-20241226152740847</figcaption>
+</figure>
+<p>​  具体来说，首先将<span class="math inline">\(\mathbf{X}_{v i t}^{i
+n}\)</span>根据其原始的空间位置重塑为<span
+class="math inline">\(\sqrt{L}\times\sqrt{L}\times
+D\)</span>的形状0。然后应用1×1卷积层来降维，然后使用3×3卷积层来捕获令牌级依赖。最后，GAM通过三种不同的1×1卷积生成Q、K和V的全局自适应信息。此过程的表述如下：
+<span class="math display">\[\triangle{\bf Q},\triangle{\bf
+K},\triangle{\bf
+V}=\mathrm{Conv}_{1\times1}^{Q,K,V}(\mathrm{Conv}_{3\times3}(\mathrm{Conv}_{1\times1}({\bf
+X}_{w i t}^{i n}))),\]</span></p>
+<p><span class="math display">\[{\bf X}_{v i t}^{o u
+t}=\mathrm{Atention}(\bf Q+\triangle Q,{\bf K}+\triangle\bf K,{\bf
+V}+\triangle{\bf V}),\]</span></p>
+<p>​  其中<span class="math inline">\(\triangle{\bf Q},\triangle{\bf
+K},\triangle{\bf
+V}\)</span>是原始Q、K和V的自适应信息。由于原始信息和自适应信息融合在一起，并随后通过自我注意操作进行处理，这确保了GAM与所有令牌交互，从而从全局的角度捕获伪造感知特征。值得注意的是，<span
+class="math inline">\(\mathrm{Conv}_{1\times1}^{Q,K,V}\)</span>中的参数被初始化为零，这有助于全局伪造感知知识的稳定学习。</p>
+<h2 id="c.-局部自适应模块lam">C. 局部自适应模块LAM</h2>
+<p>​  纯ViT处理通过堆叠的线性层的输入，这很难捕获对检测被操纵的面孔至关重要的局部细节。如图1所示，被操纵面中的伪影往往会引入局部不一致，说明每个查询令牌必须强调其与周围位置的关系，以检测局部伪造线索。以前的方法使用交叉注意模块[14]、[15]、[63]或加法操作[17]、[64]将局部空间信息注入到类似vit的架构中，但经常忽略了每个查询令牌的上下文重要性。为了缓解这一问题，我们提出的LAM旨在强调自适应学习过程中的上下文信息，从而有效地从局部不一致中捕获关键的局部伪造线索。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226160540754.png"
+alt="image-20241226160540754" />
+<figcaption aria-hidden="true">image-20241226160540754</figcaption>
+</figure>
+<p>​  图4提供了我们提出的LAM的细节。空间特征<span
+class="math inline">\({\bf X}_{c n n}\)</span>首先通过MLP层投射到<span
+class="math inline">\(\hat{\mathbf{X}}_{c n n}\)</span>上，其中<span
+class="math inline">\(\hat{\mathbf{X}}_{c n n}\)</span>和<span
+class="math inline">\({\bf X}_{v i t}\)</span>具有相同的形状。对于<span
+class="math inline">\({\bf X}_{v i t}\)</span>中的第a个令牌<span
+class="math inline">\(\mathbf{X}_{t o k e
+n}^{a}\)</span>，LAM通过同时考虑其全局注意<span
+class="math inline">\(\mathrm{A}_{g l o b a
+l}^{a}\)</span>和局部注意<span class="math inline">\(\mathrm{A}_{l o c a
+l}^{a}\)</span>，计算其在<span class="math inline">\(\hat{\mathbf{X}}_{c
+n n}\)</span>不同部分的注意得分： <span
+class="math display">\[\mathbf{A}_{f i n a
+l}^{a}=(1-\varphi(\sigma))\mathbf{A}_{g l o b a
+l}^{a}+\varphi(\sigma)\mathbf{A}_{l o c a l}^{a},\]</span> ​  其中<span
+class="math inline">\(\mathbf{A}_{f i n a l}^{a}\)</span>是<span
+class="math inline">\(\mathbf{X}_{t o k e
+n}^{a}\)</span>的最终注意图。<span
+class="math inline">\(\varphi(\cdot)\)</span>表示s型函数，<span
+class="math inline">\(\sigma\)</span>是一个初始化值为零的可学习参数。<span
+class="math inline">\(\mathrm{A}_{g l o b a
+l}^{a}\)</span>的计算类似于交叉注意，其表示如下： <span
+class="math display">\[{\bf A}_{g l o b a l}^{a}=s o f t m a x(({\bf
+X}_{t o k e n}^{a}W_{Q})({\bf\hat{X}_{c n n}}W_{K})^{T}).\]</span>
+​  利用二次编码[24]，引入<span class="math inline">\(\mathrm{A}_{l o c a
+l}^{a}\)</span>算法来强调<span class="math inline">\(\mathbf{X}_{t o k e
+n}^{a}\)</span>周围空间信息的局部性： <span class="math display">\[{\bf
+A}_{l o c a l}^{a}=s o f t m a x(\Phi\Psi^{T}),\]</span> ​  其中，<span
+class="math inline">\(\Phi \in
+\mathbb{R}^{\sqrt{L}\times{\sqrt{L}}\times3}\)</span>表示局部强度，<span
+class="math inline">\(\Psi\in \mathbb{R}^{1\times3}\)</span>是决定<span
+class="math inline">\(\mathbf{X}_{t o k e
+n}^{a}\)</span>注意方向的方向向量。注意，为了简化，我们在softmax操作之前省略了平坦操作。假设<span
+class="math inline">\(\mathbf{X}_{t o k e
+n}^{a}\)</span>的空间位置为<span
+class="math inline">\((i_a,j_a)\)</span>，同样，在<span
+class="math inline">\(\hat{\mathbf{X}}_{c n
+n}\)</span>中第b个标记的空间位置为<span
+class="math inline">\((i_b,j_b)\)</span>。<span
+class="math inline">\(\Phi\)</span>在位置<span
+class="math inline">\((a,b)\)</span>上的相对局域性强度<span
+class="math inline">\(\phi_{a,b}\in\mathbb{R}^{1\times3}\)</span>表示为：
+<span
+class="math display">\[\phi_{a,b}=(\|(i_{b}-i_{a},j_{b}-j_{a})\|_{2},i_{b}-i_{a},j_{b}-j_{a})\,.\]</span>
+​  另一方面，方向向量<span class="math inline">\(\Psi\)</span>表示为：
+<span
+class="math display">\[\Psi=(-1,2\psi_{1},2\psi_{2}),(\psi_{1},\psi_{2})\in\{-1,0,1\}\,.\]</span>
+​  在实践中，我们在不同的头部为<span
+class="math inline">\(\psi_{1}\)</span>和<span
+class="math inline">\(\psi_{2}\)</span>分配不同的值，以探索不同方向的局部信息，如图5所示。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226163304337.png"
+alt="image-20241226163304337" />
+<figcaption aria-hidden="true">image-20241226163304337</figcaption>
+</figure>
+<p>​  我们为每个查询标记收集最终的注意映射，以形成<span
+class="math inline">\(\mathbf{X}_{v i t}\)</span>的<span
+class="math inline">\(\mathbf{A}_{f\,i n a
+l}\)</span>，并使用它将局部空间信息注入到ViT特征中。此过程的表述如下：
+<span class="math display">\[\hat{\bf X}_{v i t}={\bf X}_{v i
+t}+\beta{\bf A}_{f i n a l}\hat{\bf X}_{c n n}W_{V},\]</span>
+​  其中β是一个初始化的可学习缩放因子，<span
+class="math inline">\(\hat{\bf X}_{v i
+t}\)</span>被传递到下一个vit块。根据经验，将多尺度空间信息分别注入第一、第四和第七个ViT块。</p>
+<h2 id="d.-细粒度的自适应学习fal">D. 细粒度的自适应学习FAL</h2>
+<p>​  细粒度信息对于提高泛化性能[17]、[47]、[48]非常重要。因此，我们引入了FAL来促进细粒度伪造感知信息的自适应学习。我们首先将最后一个FC层中与真实人脸对应的权重向量设置为真实人脸的代理原型，因为之前的工作[65]已经证明，分类器中的权重收敛到每个类的中心方向。在每个细粒度对中，FAL拉近了原型和真实人脸之间的相似性，同时通过修改后的circle损失将篡改过的人脸从原型中推开[27]：
+<span class="math display">\[L_{F A
+L}=\log\big[1+\sum\exp(\eta(\gamma_{n}(s_{n}-m_{n})-\gamma_{p}(s_{p}-m_{p})))\big],\]</span></p>
+<p><span class="math display">\[s_{p}=\mathrm{CosSim}(\mathrm{F}_{r e a
+l},\mathrm{F}_{p r o}),\ s_{n}=\mathrm{CosSim}(\mathrm{F}_{f a k
+e},\mathrm{F}_{p r o})\]</span></p>
+<p><span class="math display">\[\gamma_{p}=m a
+x(1+m-s_{p},0),\;\;\gamma_{n}=m a x(m+s_{n},0),\]</span></p>
+<p><span class="math display">\[m_{p}=1-m,\ m_{n}=m,\]</span></p>
+<p>​  其中CosSim表示余弦相似度，而<span
+class="math inline">\(F_{pro}\)</span>是真实面孔的原型。η是比例因子。M是控制细粒度对中的裕度和加权因子的超参数。<span
+class="math inline">\(F_{real}\)</span>和<span
+class="math inline">\(F_{fake}\)</span>是来自最后一个ViT块的细粒度对的编码特性。<br/>​  在优化过程中，通过<span
+class="math inline">\(\gamma_{n}(s_{n}-m_{n})-\gamma_{p}(s_{p}-m_{p})=0.\)</span>，实现了决策边界。通过使用方程式13和14，将决策边界转换为：
+<span class="math display">\[s_{n}^{2}+(1-s_{p})^{2}=2m^{2}\]</span>
+​  方程15表明FAL鼓励细粒度对向以sp = 1和sn = 0为中心、半径为<span
+class="math inline">\({\sqrt{2}}m\)</span>的圆收敛，如图6所示。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226171306453.png"
+alt="image-20241226171306453" />
+<figcaption aria-hidden="true">image-20241226171306453</figcaption>
+</figure>
+<p>​  这种优化使每个细粒度对能够提供更灵活的梯度来指导细粒度信息的学习。例如，在A点，当远远大于<span
+class="math inline">\(grad_r\)</span>时，该模型强调捕获细粒度的鉴别信息，以推开被篡改的人脸。相比之下，在B点，当<span
+class="math inline">\(grad_f\)</span>比<span
+class="math inline">\(grad_r\)</span>小得多时，该模型侧重于学习细粒度的一致性，以拉近真实的人脸。另一方面，FAL忽略了非细粒度对的梯度，如图图6中C点的例子。在这种情况下，差异涉及到背景或非必要的操作区域，这可能会导致模型过拟合到平凡的特征。<br/>​  显然，FAL通过探索细微差异区域的细粒度信息，在特征空间中紧凑真实的人脸特征。它没有明确地惩罚被操纵面孔的距离，因为我们希望在不同的伪造技术中保留操纵痕迹的多样性。与单中心损失（SCL，Single
+Center
+Loss）[10]使用不同类别之间的平均距离来压缩类内方差不同，FAL专注于学习每个细粒度对中的细粒度鉴别信息和一致信息，使挖掘关键信息的过程更加精确。</p>
+<h2 id="e.-总损失">E. 总损失</h2>
+<p>​  我们提出的FA-ViT是端到端训练的，并由预测结果<span
+class="math inline">\(\hat
+y\)</span>和地面真实标签y之间的交叉熵损失进行监督： <span
+class="math display">\[L_{c
+e}=-y\log\hat{y}-(1-y)\log\left(1-\hat{y}\right),\]</span>
+​  其中，标签y为0是为真实的面孔，否则y为1。总体目标函数由两个组成部分组成：
+<span class="math display">\[L_{t o t a l}=L_{c e}+\lambda L_{F A
+L},\]</span>
+​  其中，λ是一个加权参数。在第一个训练阶段，我们将λ设置为0，允许模型专注于学习分类信息。随后，我们将λ调整为1，从而促进了细粒度信息的学习。</p>
+<h1 id="iv.-实验">IV. 实验</h1>
+<h2 id="a.实验设置">A.实验设置</h2>
+<h3 id="数据集">1)数据集：</h3>
+<p>​  我们采用了8个广泛使用的公共数据集来评估我们的模型。<br/>​  1)FaceForensics++（FF++）[66]是一个广泛使用的数据集，由四种类型的人脸操作技术组成：DeepFakes
+(DF) [75], Face2Face (F2F)[76], FaceSwap (FS) [77], and NeuralTextures
+(NT)
+[78]。<br/>​  2)Celeb-DF-v2（CDF）[68]是一个高质量的深度假数据集，专门针对名人的人脸。<br/>​  3)WildDeepfake（WDF）[69]从互联网上收集深度伪造视频，其中包括各种场景和伪造方法。在WDF上的评价结果反映了检测器在现实世界场景中的性能。<br/>​  4)Deepfake
+Detection
+Challenge（DFDC）[71]提供了一个具有挑战性的数据集，包含来自不同场景的各种深度假视频，使用了不同的深度伪造、基于GAN和传统的人脸交换方法。<br/>​  5)Deepfake
+Detection Challenge
+Preview（DFDC-P）[70]提供了一个DFDC数据集的预览版本，并合并了两种面部修改算法。<br/>​  6)DeepFakeDetection（DFD）[72]是另一个全面的深度假数据集。这个数据集包括超过3000个被操纵的视频，包括28个演员和不同的场景。<br/>​  7)DeeperForenics-1.0（DFR）[67]是通过使用FF++的真实视频和创新的端到端面部交换框架。它也可以作为一个流行的数据集来衡量morel的鲁棒性。<br/>​  
+8)FFIW-10K (FFIW) [73]
+是一个最近的大规模数据集，它专注于多人的场景。对于DFD数据集，我们使用所有的视频来进行评估。对于其他的数据集，我们按照官方的策略来分割相应的数据集。关于一个全面的概述，请参见表一。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226212602830.png"
+alt="image-20241226212602830" />
+<figcaption aria-hidden="true">image-20241226212602830</figcaption>
+</figure>
+<h3 id="实施细节">2)实施细节：</h3>
+<p>​  我们使用MTCNN
+[79]裁剪面区域，并将其调整为224×224。我们从每个视频中只采样20帧来构建训练数据。在测试过程中，我们从每个视频中抽取50帧的样本进行评估。我们的方法是在一个NVIDIA
+GTX 3090上使用PyTorch库[80]实现的。我们采用在ImageNet-21K
+[81]上预训练的ViT-Base模型作为FA-ViT的主要骨干。为了进行优化，我们使用了Adam
+[82]优化器，其初始学习速率为3×10−5，权重衰减为1×10−5，批量大小为32。学习速率每5个时代衰减0.5个。FAL中m和η的超参数将在第2节中进行讨论。IV-F.CNN的详细结构如表二所示，参数使用随机初始化方法进行初始化。</p>
+<h3 id="评价指标">3)评价指标：</h3>
+<p>​  我们遵循[17]中的评价策略，以准确性（ACC）和受试者工作特征曲线下面积（AUC）作为我们的评价指标。为了进行公平的比较，我们对同一视频中的预测进行平均，得到视频级的预测，并给出了其他工作的结果。</p>
+<h2 id="b.-数据集内评估">B. 数据集内评估</h2>
+<p>​  我们在广泛使用的FF++数据集上进行了数据集内实验，包括高质量（C23）和低质量（C40）数据集。所有的模型都在同一个数据集上进行训练和测试，其中的性能显示了模型在伪造的人脸中捕获操作痕迹的能力。表3说明了数据集内的结果，其中我们分别加粗和下划线显示了最佳和第二优的分数。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226213115559.png"
+alt="image-20241226213115559" />
+<figcaption aria-hidden="true">image-20241226213115559</figcaption>
+</figure>
+<p>​  一般来说，在C40压缩数据中删除了许多操作痕迹，这使得它们很难被检测到。在这种具有挑战性的环境下，可以观察到，我们提出的FAViT比大多数以前的艺术有相当大的优势。例如，我们的方法在AUC方面比最近基于vit的模型F2Trans多出了2.53%。当对C23数据进行评估时，所有的SOTA方法都能够实现非常高的检测acc。FA-ViT仍然取得了97.86%的ACC评分和99.60%的AUC评分，证明了其对C23数据的有效性。此外，与ViT基线相比，FAViT在C40设置下将ACC从90.00%提高到92.17%，在C23设置下将96.00%提高到97.86%。<br/>​  虽然FA-ViT在数据集内评估中获得了令人满意的检测精度，但其性能仍低于CFM
+[39]和RECCE
+[37]。这一结果可能是由于CFM需要像素级标签来进行监督，而侦察采用了像素级重建任务，使得这些方法对数据集内模式更加敏感。我们将研究其他设计的可能性，以进一步提高数据集内设置的性能。</p>
+<h2 id="c.-跨数据集评估">C. 跨数据集评估</h2>
+<p>​  跨数据集评估是一个非常具有挑战性的设置，因为这些数据集中的场景和字符是复杂的，并且与训练数据不同。为了全面评估在不同的不可见数据集上的泛化性能，我们在7个基准数据集上进行了广泛的实验。具体来说，所有的模型都在FF++（C23）上进行训练，并在不可预见的数据集上进行评估：
+CDF、WDF、DFDC-P、DFDC、DFD、DFR和FFIW。</p>
+<p>​  表四说明了在AUC方面的交叉数据集比较结果。与其他基于ViT的CDF方法相比，包括UIA-ViT、F2Trans、TALL-ViT和ViT，我们提出的FA-ViT方法分别优于4.98%、6.37%、7.25%和10.05%。值得注意的是，CFM获得了最好的数据集内性能，但其泛化性能不如我们提出的FA-ViT。此外，与最近的方法LSDA和DSRL相比，我们的FA-ViT在AUC方面分别提高了4.88%和4.75%，突出了其检测看不见的深度假面孔的最先进的泛化能力。总的来说，FA-ViT在所有7个数据集上都表现出了出色的性能，这些发现验证了自适应学习范式对预训练的ViT的有效性。</p>
+<h3 id="d.-交叉操作评估">D. 交叉操作评估</h3>
+<h3 id="e.-对真实世界扰动的鲁棒性">E. 对真实世界扰动的鲁棒性</h3>
+<h3 id="f.-消融研究">F. 消融研究</h3>
+<p>​  为了分析我们提出的FA-ViT中不同成分的影响，我们通过在FF++（C23）上训练所有变体来进行消融实验。我们给出了FF++的数据集内结果和CDF和WDF数据集的跨数据集结果。为了确保公平的比较，所有的实验都使用相同的随机种子进行。</p>
+<p>1)对不同模型自适应的影响</p>
+<p>2)GAM的消融：</p>
+<p>3)LAM的影响</p>
+<p>4)对提出的FAL进行的实验</p>
+<p>5)不同参数对FAL的影响</p>
+<p>6)零初始化的影响</p>
+<p>7)不同的预训练初始化的影响</p>
+<p>8)不同的预训练初始化的影响</p>
+<h2 id="g.-显著性地图可视化">G. 显著性地图可视化</h2>
+<p>​  为了更好地阐明我们的FA-ViT的有效性，我们使用GradCAM++
+[92]将模型对深度假脸的注意力可视化，如图10所示。可以观察到，FA-ViT为不同的深度假脸生成了可区分的显著性图，并捕获了方法特有的伪影，如FS的前额区域和F2F的口腔区域。在跨数据集场景中，ViT难以在复杂环境中检测深度造假，如CDF中的大姿态人脸或DFDC中具有挑战性的照明条件。相比之下，FA-ViT在不同的未知数据集上持续地跟踪被操纵的区域，从而从决策的角度验证其有效性。</p>
+<h1 id="v.-结论">V. 结论</h1>
+<p>​  在本文中，我们从模型自适应的角度提出了一种新的伪造感知自适应自适应视觉变压器（FA-ViT），这在以往的研究中被忽略了。具体来说，在训练过程中设计了全局自适应模块（GAM）和局部自适应模块（LAM），将全局和局部伪造感知信息用于广义表示学习时，保留了预训练后的ViT的表达性。此外，我们还引入了细粒度自适应学习（FAL），以促进细粒度伪造感知信息的自适应学习。总之，我们提出的框架为人脸伪造检测的挑战提供了一个广义和稳健的解决方案。我们相信，我们提出的方法可以为研究界提供有价值的见解，并进一步推进人脸伪造检测系统的发展。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/">https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Fuzzy_clustering_method_for_image_segmentation</div></div></a></div><div class="next-post pull-right"><a href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><img class="cover" src="/img/coverImage/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#i.%E4%BB%8B%E7%BB%8D"><span class="toc-text">I.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ii.-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">II. 相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a.%E9%9D%A2%E9%83%A8%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B"><span class="toc-text">A.面部伪造检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b.%E6%A8%A1%E5%9E%8B%E9%80%82%E5%BA%94"><span class="toc-text">B.模型适应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c.-%E7%BB%86%E7%B2%92%E5%BA%A6%E7%9A%84%E4%BF%A1%E6%81%AF%E5%AD%A6%E4%B9%A0"><span class="toc-text">C. 细粒度的信息学习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iii.-%E6%8F%90%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">III. 提出的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-%E6%A6%82%E8%BF%B0"><span class="toc-text">A. 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E5%85%A8%E5%B1%80%E8%87%AA%E9%80%82%E5%BA%94%E6%A8%A1%E5%9D%97gam"><span class="toc-text">B. 全局自适应模块GAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E5%B1%80%E9%83%A8%E8%87%AA%E9%80%82%E5%BA%94%E6%A8%A1%E5%9D%97lam"><span class="toc-text">C. 局部自适应模块LAM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-%E7%BB%86%E7%B2%92%E5%BA%A6%E7%9A%84%E8%87%AA%E9%80%82%E5%BA%94%E5%AD%A6%E4%B9%A0fal"><span class="toc-text">D. 细粒度的自适应学习FAL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#e.-%E6%80%BB%E6%8D%9F%E5%A4%B1"><span class="toc-text">E. 总损失</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iv.-%E5%AE%9E%E9%AA%8C"><span class="toc-text">IV. 实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">A.实验设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">1)数据集：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD%E7%BB%86%E8%8A%82"><span class="toc-text">2)实施细节：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">3)评价指标：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%86%85%E8%AF%84%E4%BC%B0"><span class="toc-text">B. 数据集内评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E8%B7%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%84%E4%BC%B0"><span class="toc-text">C. 跨数据集评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#d.-%E4%BA%A4%E5%8F%89%E6%93%8D%E4%BD%9C%E8%AF%84%E4%BC%B0"><span class="toc-text">D. 交叉操作评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e.-%E5%AF%B9%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E6%89%B0%E5%8A%A8%E7%9A%84%E9%B2%81%E6%A3%92%E6%80%A7"><span class="toc-text">E. 对真实世界扰动的鲁棒性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#f.-%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">F. 消融研究</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#g.-%E6%98%BE%E8%91%97%E6%80%A7%E5%9C%B0%E5%9B%BE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">G. 显著性地图可视化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#v.-%E7%BB%93%E8%AE%BA"><span class="toc-text">V. 结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_clustering_method_for_image_segmentation"/></a><div class="content"><a class="title" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation">Fuzzy_clustering_method_for_image_segmentation</a><time datetime="2024-12-29T14:13:57.000Z" title="发表于 2024-12-29 22:13:57">2024-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"/></a><div class="content"><a class="title" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</a><time datetime="2024-12-26T02:50:46.000Z" title="发表于 2024-12-26 10:50:46">2024-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"/></a><div class="content"><a class="title" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</a><time datetime="2024-12-23T08:43:50.000Z" title="发表于 2024-12-23 16:43:50">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_Machine_Learning"/></a><div class="content"><a class="title" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning">Fuzzy_Machine_Learning</a><time datetime="2024-12-23T03:20:44.000Z" title="发表于 2024-12-23 11:20:44">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_survey_on_deep_learning-based_image_forgery_detection"/></a><div class="content"><a class="title" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection">A_survey_on_deep_learning-based_image_forgery_detection</a><time datetime="2024-12-18T06:44:25.000Z" title="发表于 2024-12-18 14:44:25">2024-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

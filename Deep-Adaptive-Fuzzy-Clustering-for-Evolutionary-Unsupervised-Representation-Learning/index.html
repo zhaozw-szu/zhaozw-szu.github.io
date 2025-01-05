@@ -1,0 +1,542 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Deep Adaptive Fuzzy Clustering for Evolutionary Unsupervised Representation Learning 摘要 ​  在模式识别和计算机视觉中，大型和复杂数据集的聚类分配是一项关键但具有挑战性的任务。在本研究中，我们探索了在深度神经网络框架中使用模糊聚类的可能性。因此，我们提出了一种新的具有迭代优化的进化无监督学习表示模型。它实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Deep Adaptive Fuzzy Clustering for Evolutionary Unsupervised Representation Learning 摘要 ​  在模式识别和计算机视觉中，大型和复杂数据集的聚类分配是一项关键但具有挑战性的任务。在本研究中，我们探索了在深度神经网络框架中使用模糊聚类的可能性。因此，我们提出了一种新的具有迭代优化的进化无监督学习表示模型。它实">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
+<meta property="article:published_time" content="2024-12-23T08:43:50.000Z">
+<meta property="article:modified_time" content="2024-12-23T14:40:20.545Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-23 22:40:20'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-23T08:43:50.000Z" title="发表于 2024-12-23 16:43:50">2024-12-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-23T14:40:20.545Z" title="更新于 2024-12-23 22:40:20">2024-12-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Deep Adaptive Fuzzy Clustering for Evolutionary Unsupervised
+Representation Learning</p>
+<h1 id="摘要">摘要</h1>
+<p>​  在模式识别和计算机视觉中，大型和复杂数据集的聚类分配是一项关键但具有挑战性的任务。在本研究中，我们探索了在深度神经网络框架中使用模糊聚类的可能性。因此，我们提出了一种新的具有迭代优化的进化无监督学习表示模型。它实现了深度自适应模糊聚类（DAFC）策略，从只给定的未标记数据样本中学习卷积神经网络分类器。DAFC由深度特征质量验证模型和模糊聚类模型组成，其中实现了深度特征表示学习损失函数和具有加权自适应熵的嵌入式模糊聚类。我们将模糊聚类联合到深度重建模型中，其中利用模糊隶属度来表示一个清晰的深度聚类分配结构，并联合优化深度表示学习和聚类。同时，该联合模型通过检查从估计的瓶颈空间重采样的数据是否具有一致的聚类特性来评估当前的聚类性能，从而逐步改进深度聚类模型。在不同数据集上的实验表明，与其他先进的深度聚类方法相比，该方法在重建和聚类质量方面都有更好的性能，大量实验的深入分析证明了这一点。</p>
+<h1 id="i.介绍">I.介绍</h1>
+<p>​  受深度特征学习框架、深度信念网络（DBN）[18]和稀疏自编码器层次结构[19]、[20]的成功启发，它们试图从输入数据中提取特征，如反进化网络，贪婪地以无监督的方式从图像向上构建层。在这些研究中，每一层都由具有聚类模型的编码器和解码器组成。此外，用于深度聚类的卷积神经网络（CNN）架构，其中变分自编码器（VAE）是用于深度生成学习的非常强大的无监督框架。在深度聚类中广泛使用的cnn是堆叠自动编码器（SAEs）[21]和结构化自动编码器（StructAE），它们结合了基于图的聚类来实现精确的深度表示。它们都采用了多阶段管道，用无监督学习方法对统一的深度网络模型进行预训练，并对大规模图像实现了传统的聚类方法作为后处理。然而，它们在聚类分配中进行深度聚类，且高度依赖于预先训练好的相似度矩阵，因此在大数据集上的聚类性能不够好。<br/>​  此外，Yang等人的[11]使用循环框架迭代地学习深度特征表示和聚类分配。该框架在聚类模型中的连续操作被表示为循环过程中的步骤，并堆叠在通过cnn输出的表示方式之上。他们的模型在小的复杂数据集上表现出了很好的性能，但可能对多凸网竞争所需的大量复杂图像具有挑战性。深度嵌入式聚类（DEC）[22]是一种著名的深度网络结构，它可以同时实现特征表示和聚类模型来训练复杂的数据集。该方法通过采用高度机密的样本作为监督，使每个聚类中样本的分布更密集、更清晰地分组。然而，在使用随机梯度下降（SGD）训练大而复杂的数据集时，并不能保证将样本拉到正确的聚类附近，这也不能保证快速收敛。<br/>​  虽然卷积网方法的联合聚类和特征学习在无监督学习中表现出了显著的性能，但在特征聚类和网络参数更新之间交替的训练计划导致特征表示[23]的学习不稳定。此外，它们也没有联合优化深度表示学习和聚类。具有自进化聚类[24]和大规模多目标决策聚类[25]的深度对流模型由于能够处理大规模数据集和复杂的表示而受到越来越多的关注。由于计算复杂度高，深度卷网络结构的应用通常需要一个具有强大计算能力的平台。一些聚类方法已经用深度共流网络进行了研究，但深度聚类的关键成分仍不清楚。例如，如何有效地将实例为巨大的复杂数据分组到集群中，并提供定义面向集群的损失函数的有效信息？如何在精度和效率之间实现良好的权衡，并提高深度卷网的聚类性能？哪些类型的神经网络结构适合用于聚类的特征表示学习？<br/>​  在本研究中，我们的目标是开发新的进化表示学习解决方案的深度无监督聚类问题。综上所述，本研究的主要贡献如下。</p>
+<ol type="1">
+<li>我们提出了DAFC来自动分组图像，得到的迭代优化问题可以通过小批量RMSprop和反向传播而不是SGD有效地解决，可以学习一个更聚类友好的瓶颈空间。<br/>2.
+我们仔细地制定了一个目标，以包含对高聚类性能至关重要的三个关键方面：有效的潜在表示空间、相似度度量和深度聚类的加权自适应熵，它们可以集成到深度学习架构中<br/>3.
+与单独优化这些目标的情况相比，这种深度进化无监督表示学习对网络损失和具有模糊聚类的重建损失提供了优越的性能。<br/>4.
+加权自适应熵的深度聚类，我们计算模糊会员和最优权重作为全局变量，可以共同优化深度表示学习，有效地组实例到集群为巨大的复杂数据和实现一个好的权衡精度和效率，以及进一步提高深度双convnet集群的性能。</li>
+</ol>
+<p>​  本研究的其余部分组织如下。我们首先回顾了在第二节中包含一些有效的深度聚类框架的相关工作。我们在第三节提出的深度自适应模糊聚类（DAFC）。在第四节中，我们讨论了最先进的深度聚类方法的结果和分布，并将它们与我们的方法进行了比较。本研究的结论和今后的工作见第五节。</p>
+<h1 id="ii.相关工作">II.相关工作</h1>
+<p>​  VAE的网络由编码器和解码器组成，其中潜在特征层后面是潜在特征层，如图1所示。</p>
+<figure>
+<img
+src="../postimages/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/image-20241223165218699.png"
+alt="image-20241223165218699" />
+<figcaption aria-hidden="true">image-20241223165218699</figcaption>
+</figure>
+<p>​  编码器将输入的样本映射到潜在的特征层。潜在特征层从编码器模型中学习输入数据的潜在特征，并将高维特征映射到低维子空间，然后利用聚类模型对所映射的数据进行划分。VAE的解码器恢复并重建特征，使特征数据能够重构为原始数据。期望VAE的输入和输出可以以一致的或无损的方式进行重构，且潜在特征向量的维数远小于输入样本的维数。使用学习到的潜在层来聚类分配和其他任务将更有效。该方法有利于学习更多重要的特征，而忽略了一些冗余的特征。但是，如果目标的大小与训练图像的背景有较大的差异，训练网络很容易忽略学习过程[34]中忽略目标特征。因此，当训练诸如ImageNet数据集等庞大而复杂的数据集时，VAE的精度并不高，甚至不能对其进行分区。<br/>​  虽然该方案利用SAE和VAE将输入数据映射到一个具有代表性的特征空间，然后进行聚类分析，但特征表示空间和聚类方法是两个独立的过程，其目标函数没有联合优化。在第三节中，我们将基于ConvNets结构建立更深层次的EF和重建模型，并结合模糊聚类模型。</p>
+<h1 id="iii.方法">III.方法</h1>
+<p>​  在本节中，我们将描述我们的深度进化无监督表示学习，并表明通过深度聚类框架可以获得有用的通用的巨大和复杂的特征。</p>
+<h2 id="a.网络架构">A.网络架构</h2>
+<p>​  基于统计学习和深度cnn的现代深度网络计算机视觉方法需要良好的图像特征化。在DAFC方法中，我们建立了一个更深入的FE模型和Rec模型，并通过潜在的表示瓶颈层将它们连接起来。瓶颈空间的有效潜在表示是深度进化无监督表示学习的一个关键方面，它可以更好地提取网络的每一层之间的特征。在联合聚类的瓶颈空间中构建了一个局部结构，以实现更好的聚类分配。与最先进的深度聚类相比，我们很容易假设这种优势是由于瓶颈空间可以通过最小化重构和聚类损失来保留输入数据的局部结构。我们设计了一种有效的基于凸面的模糊聚类模型分类器，以广泛地利用瓶颈空间，其中损失函数是重构损失和模糊聚类损失的和。<br/>​  DAFC的网络体系结构的目标是将多层数据点划分为完全没有任何标签的集群，并联合优化深度表示学习，进一步提高了对异常值的鲁棒性。对于同一样本，不同类型的层（深和浅）之间的相互信息应该最大化。为了提高深度聚类的准确性，我们增加了模型中网络的特征训练层的数量。受ResNet
+[35]和DenseNet学习[36]的启发，我们试图控制网络优化器，以便对SGD、Adam和RMSprop进行比较。在网络的梯度下降问题上，我们采用了一个较慢的学习速率来处理脊间的跳跃问题，这有助于获得更好的聚类性能。<br/>​  所提出的网络模块的关键因素是，在我们的深度ConvNets模型中，我们使用了具有步幅的卷积层和池化层，而不是接在池化层后的卷积层。它不同于VAE的模块。在这项工作中设计的模块导致了更高的转换能力。我们对卷积层、ReLU层、批归一化、池化和退出层进行多个组合，如图2所示。</p>
+<figure>
+<img
+src="../postimages/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/image-20241223165700880.png"
+alt="image-20241223165700880" />
+<figcaption aria-hidden="true">image-20241223165700880</figcaption>
+</figure>
+<p>​  此外，深度ConvNets模型通常通过池层缩小特征映射的大小。所设计模型的每个模块通过前馈方式将每一层连接到每一层，模块1为22层前馈神经网络，具有前2层，模块2为8层。该模型采用多个全连通层作为瓶颈空间的潜在表示。我们还可以根据输入数据的要求，灵活地深化网络模块的建设。当在足够复杂的数据上进行训练时，该方法在标准的竞争分类基准上不断取得最佳性能。<br/>​  在我们的网络模型中，我们使用多个全连接层，加深全连接层的数量，以提高模型的非线性表达式和特征学习能力。为了防止深化模型的学习能力过好，导致过拟合，我们添加了dropout层，然后是全连接层。dropout层只允许为每个反向传播调整部分网络参数。如图3所示，我们根据网络模块建立了DAFC的深度卷积神经网络模型。</p>
+<figure>
+<img
+src="../postimages/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/image-20241223170209837.png"
+alt="image-20241223170209837" />
+<figcaption aria-hidden="true">image-20241223170209837</figcaption>
+</figure>
+<p>​  在这些模块中，每个块都有不同的功能层。此外，模块1和模块2分别对应于所设计的网络模型的每个部分。<br/>​  在该网络体系结构中，模块1被设计为FE模型，模块2被设计为重构模型，如图2所示。FE模型提供了一个从输入到潜在表示瓶颈空间的自底向上的映射，而重构（Rec）模型将提取的特征映射回输入空间，希望能给出一个接近原始数据的重构。FE和重构模型，并通过卷积操作的潜在表示瓶颈层将它们连接起来。在联合模糊聚类的瓶颈空间中构建了一个局部结构，以实现更好的聚类分配。在Rec模型中，我们设计了一种有效的基于深度凸网的分类器，具有加权自适应熵模糊聚类模型，以广泛利用瓶颈空间。此外，我们还研究了一种联合策略，其中损失函数是最小化重建损失和模糊聚类损失的和，其中FE模型<span
+class="math inline">\(F = f_w (x)\)</span>和Rec模型<span
+class="math inline">\(G\equiv
+g_{\theta}(F)\)</span>的参数。<br/>​  为此，我们将FE模型的重构损失和模糊聚类损失同时结合为目标函数。深度卷积网络的FE模型保留了复杂数据生成分布的局部结构，避免了特征空间的破坏。然后，随着学习的进行，设计的深度卷积网络可以通过迭代训练来测量更准确的相似性，并且会逐渐选择更多的聚类任务来找到更精细的组。模糊聚类模型的目的是在大量和不同的数据点之间对相似或相同的模式进行分组。在这个深度聚类模型中，我们使用隶属度使聚类结果更具区分性，µ是数据点x属于第j个聚类的分配概率。</p>
+<h2 id="b.深度聚类策略">B.深度聚类策略</h2>
+<p>​  在我们的网络体系结构中，FE和Rec模型重叠了复杂多层次的所有特征，其中重叠的域，这是整个体系结构的层次组成。通过将l层的特征映射f
+(x)作为层l + 1的输入，可以很容易地堆叠形成层次，其中输入数据x到瓶颈空间Z
+(x)的初始非线性映射，如图4所示。</p>
+<figure>
+<img
+src="../postimages/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/image-20241223171332756.png"
+alt="image-20241223171332756" />
+<figcaption aria-hidden="true">image-20241223171332756</figcaption>
+</figure>
+<p>​  映射F和G通过FE模型和Rec模型实现，它们通过优化的瓶颈空间与卷积层和多个全连接层进行连接。改进了瓶颈空间表示，使具有属于同一集群的高概率的映射点对将被拉得更近在一起。因此，设计瓶颈空间将FE模型和Rec模型连接起来，这对联合模糊聚类更有意义。</p>
+<figure>
+<img
+src="../postimages/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/image-20241223170642966.png"
+alt="image-20241223170642966" />
+<figcaption aria-hidden="true">image-20241223170642966</figcaption>
+</figure>
+<p>​  f是训练过程中模糊隶属度为<span
+class="math inline">\(\mu\)</span>的瓶颈空间中输入数据的特征，如图5中的相似性结构所示，z为瓶颈空间表示。它们也代表了在网络超参数下由卷积网分类器进行的特征划分的结果。通过优化重构的损失函数，共同学习ConvNets分类器的参数θ和映射的参数w，公式如下：</p>
+<p><span
+class="math display">\[{L}_{\mathrm{Rec}}=\operatorname*{min}_{w,\theta}\sum_{i=1}^{M}\frac{1}{M}\ell\left[g_{\theta}\left(f_{w}\left(x_{i}\right)\right),z_{i}\right]\]</span></p>
+<p>​  首先，我们通过数据增强得到一批原始数据<span
+class="math inline">\(\{x\}\)</span>加上转换后的数据<span
+class="math inline">\(\{x^{\prime}\}\)</span>，然后得到输入数据：<span
+class="math inline">\(x_i = x + x^{\prime}\)</span>。<span
+class="math inline">\(x_i\)</span>表示第i张图像，M为图像数。在输入数据中，每个图像<span
+class="math inline">\(x_i\)</span>都与<span
+class="math inline">\(\{0,1\}^k\)</span>中的一个标签<span
+class="math inline">\(y_i\)</span>相关联。该网络将输入数据映射到紧凑的特征映射<span
+class="math inline">\(F=f_w(x_i)\)</span>中，并对FE模型的输出进行聚类，然后使用后续的聚类分配作为伪标签来优化(1)，并作为反馈信息反向传播到Rec模型中。下一步通过使用Rec模型的网络生成输入数据的特征标签，其中相似度矩阵从ConvNets的样本内存中读取该批数据的伪标签。图5是所提出的使用模糊聚类模型的深度进化无监督表示学习的示意图。我们在定义1中定义了相似矩阵，并对于潜在瓶颈空间表示<span
+class="math inline">\(z_{i}=f_{\mu}(y_{i},x_{i})\)</span>。利用相似度矩阵，利用最优优化器对深度网络进行更新，结合模糊聚类模型如下：</p>
+<p><span
+class="math display">\[{L}_{\mathrm{Rec}}=\operatorname*{min}_{w,\theta}\sum_{i=1}^{M}\frac{1}{M}\ell\left[g_{\theta}\left(f_{w}\left(x_{i}\right)\right),f_{\mu}\left(y_{i},x_{i}\right)\right]\]</span>
+​  其中<span
+class="math inline">\(f_{\mu}(\cdot)\)</span>为相似度矩阵每一列设置的模糊隶属度，这种表示应该更准确。基于(2)，我们进一步得到
+<span
+class="math display">\[f_{\mu}\left(y_{i},x_{i}\right)=C_{i,j}\left(x_{i}\right)\cdot
+y_{i}\]</span></p>
+<h3 id="定义1相似矩阵">定义1：相似矩阵。</h3>
+<p>​  我们假设C是生成特征标签的邻接矩阵，<span
+class="math inline">\(a_i\)</span>是C的第i列。标签的节点i与节点j的相似性为
+<span
+class="math display">\[C_{i,j}(\cdot)=\frac{a_{i}^{T}a_{j}}{\|a_{i}\|}\
+=\frac{a_{i}^{T}a_{j}}{\sqrt{d_{i}}\sqrt{d_{j}}}\]</span>
+​  我们将FE模型训练的特征转移到瓶颈空间，在目标中加入模糊聚类，并随着聚类损失进行优化。将模糊聚类模型的输出结果作为伪标签反向传播到ConvNets中，并对<span
+class="math inline">\(L_{Rec}\)</span>进行优化，并对网络参数进行优化。在经过逐层贪婪训练后，通过反向传输将FE模型和Rec模型的所有层连接起来，构建深度联合训练模型。然后对联合模型进行微调，设置一个高阈值和两个权衡参数，以最小化重构信息的损失。Rec模型保留了伪标签生成分布的局部结构，避免了瓶颈空间的破坏。该深度聚类模型可以迭代地学习输入数据的特征，并对其进行划分。<br/>​  此外，我们计算特征之间的相似性，并选择高置信度的生成的标签特征，通过联合框架反馈FE和Rec模型的训练。在Rec模型中，我们设置了一个高阈值来确定是否应该将一些图像伪标签合并到特征映射中。如果两个标签之间的相似性大于高阈值，并且我们将这种类型的标签分组属于同一个聚类。反馈的反向传播FE和Rec旨在学习基于卷积神经网络的深度映射函数g，该函数由θ参数化。通过模糊聚类模型最小化Rec的损失函数来更新联合框架的参数
+<span class="math display">\[L_{F_{-}\mathrm{clu}}&amp;=&amp;\ell\
+[||X_{i}-g_{\theta}(f_{\mu}(x_{j}))||_{2}^{2}]+H(W)\\&amp;=&amp;\operatorname*{min}_{\theta,\mu,m}\sum_{i=1}^{M}\sum_{j=1}^{k}\mu_{i
+j}^{m}\left\|X_{i}-g_{\theta}\bigl(f_{\mu}\bigl(x_{j}\bigr)\bigr)\right\|_{2}^{2}+H(W)\]</span>
+​  式中，M为数据集中的数据样本数，j为第j个簇，k为簇分配的数量。<br/>​  在模糊聚类的损失函数中，我们考虑了一个庞大而复杂的数据集的权值在瓶颈空间中被划分为聚类，它也代表了该数据特征映射在形成聚类中的贡献概率。我们进一步改进了加权自适应损失函数的模糊聚类，增加加权熵，刺激更多的特征有助于聚类识别。这样，DAFC模型即使使用加权自适应熵，也可以直接进行深度端到端训练，这种学习到的层次表示被证明对深度聚类任务是有效的。</p>
+<h3
+id="定义2深度聚类的加权自适应熵44">定义2：深度聚类的加权自适应熵[44]。</h3>
+<p>​  假设聚类的权值信息为H (w)，并同时设置最优模糊隶属度和<span
+class="math inline">\(w_{i j}\)</span>的最优权值。H (w)的计算方法如下：
+<span
+class="math display">\[H(w)=\lambda_{1}\Biggl(1-\sum_{j=1}^{k}\mu_{i
+j}\Biggr)+\lambda_{2}\sum_{i=1}^{M}\sum_{j=1}^{k}w_{i j}\log w_{i
+j}\]</span> ​  其中，<span
+class="math inline">\(\lambda_{1}\)</span>是一个权衡参数，控制分配给各种类型异常值的模糊鲁棒性，<span
+class="math inline">\(\lambda_{2}\)</span>也是一个权衡参数，控制模糊隶属度的簇分布。DAFC的目标函数是
+<span class="math display">\[\mathrm{min}\, L=L_{\mathrm{Rec}}+
+L_{F_{-}\mathrm{clu}}\]</span> ​  可改写如下： <span
+class="math display">\[\begin{array}{ll}\operatorname*{min}L&amp;=&amp;\operatorname*{min}_{w,\theta}\sum_{i=1}^{M}\frac{1}{M}\cdot\ell\left[g_{\theta}\left(f_{w}\left(x_{i}\right)\right),f_{\mu}\left(y_{i},x_{i}\right)\right]\\&amp;&amp;+\operatorname*{min}_{\theta,\mu,m}\sum_{i=1}^{M}\sum_{j=1}^{k}\mu_{i
+j}^{m}\cdot\ell\,\left\|X_{i}\,-\,g_{\theta}\big(f_{\mu}\big(x_{j}\big)\big)\right\|^{2}\\&amp;&amp;+H(W)\\&amp;{\mathrm{s.t.}}&amp;~\mu_{i
+j}\in\{0,1\}\\&amp;&amp;\sum_{j=1}^{k}\mu_{i j}=1,\quad
+i=1,\dots,M\end{array}\]</span> ​  考虑一组M图像<span
+class="math inline">\(\{x_{1},\cdot\cdot\cdot,x_{M}\}^{k}\)</span>聚类到瓶颈空间的k个聚类，每个图像<span
+class="math inline">\(x_i\)</span>与<span
+class="math inline">\(\{0,1\}^k\)</span>中的标签<span
+class="math inline">\(y_i\)</span>相关联。我们还使用模糊隶属度µ表示图像到k个可能的预定义簇之一的概率。输入数据x的瓶颈空间Z
+(x)离质心<span
+class="math inline">\(c_{j}=g_{\theta}(f_{\mu}(x_{j}))\)</span>越近，属于聚类j的x的模糊隶属度就越高。µ是模糊隶属度，m是拉格朗日乘子。然后从这个目标函数中推导出µ如下：
+<span class="math display">\[{\frac{\partial
+L}{\partial\mu}}=0\Rightarrow\mu=\left({\frac{\lambda_{1}}{m\cdot\eta}}\right)^{\frac{1}{m-1}}\]</span>
+​  其中<span
+class="math inline">\(\eta=\ell[\|X_{i}-g_{\theta}(f_{\mu}(x_{j}))\|_{2}^{2}]\)</span>。<br/>​  现在我们考虑函数L的导数与在新的步骤中的权重。给定度量µ和cj是固定的，L为(8)中的最优权重w最小化
+<span class="math display">\[w_{i
+j}=\exp\left[2\sum_{j=1}^{k}g_{\theta}{\big(}f_{\mu}(x_{j}){\big)}-1\right]\]</span>
+​  自适应熵的加入允许聚类用一个更快的迭代算法来解决分割问题。<br/>​  总之，我们引入了一个用于进化无监督表示学习的DAFC。在算法1中描述了DAFC的伪代码。在每次迭代过程中，深度模糊聚类通过固定的深度FE模型和Rec模型交替选择相似和不同的样本组，并根据所选的样本组对其进行训练。具体步骤见算法1。</p>
+<hr />
+<p>算法1：深度自适应模糊聚类（DAFC）</p>
+<hr />
+<p><strong>输入：</strong>数据集<span
+class="math inline">\(X=\{x_{i}\}_{i=1}^{k}\)</span>，平衡系数<span
+class="math inline">\(\lambda_{1}\)</span>、<span
+class="math inline">\(\lambda_{2}\)</span>，高阈值<span
+class="math inline">\(\epsilon_r\)</span><br/><strong>输出：</strong>深度聚类结果R和Test_Err<br/>1
+随机初始化θ；<br/>2 用pre_train FE模型和Rec模型初始化C、G和F；<br/>3
+<span class="math inline">\(\{A c c,A R I,N M I\}=R\)</span>；<br/>4
+重复；<br/>5 <strong>for</strong> <em>epoch</em> ∈ 0<em>,</em> 1<em>, .
+. . ,</em> <em>MaxEpochs</em> <strong>do</strong><br/>6 |
+生成深度ConvNets表示G；<br/>7 | <strong>for</strong> <em>iter</em> ∈
+0<em>,</em> 1<em>, . . . ,</em> <em>MaxIter</em>
+<strong>do</strong><br/>8 | | float Max <span
+class="math inline">\(\mu_{i j}\)</span> = 1；<br/>9 | | <span
+class="math inline">\(f_{\mu}(x)\neq n u l l\)</span>；<br/>10| |
+计算相似度矩阵<span
+class="math inline">\(C_{i,j}(\cdot)=\frac{a_{i}^{T}a_{j}}{\|a_{i}\|}\
+=\frac{a_{i}^{T}a_{j}}{\sqrt{d_{i}}\sqrt{d_{j}}}\)</span>；<br/> | |
+模糊隶属度=<span
+class="math inline">\(f_{\mu}\left(y_{i},x_{i}\right)=C_{i,j}\left(x_{i}\right)\cdot
+y_{i}\)</span><br/>11| | 计算<span
+class="math inline">\(L_{Rec}=\operatorname*{min}_{w,\theta}\sum_{i=1}^{M}\frac{1}{M}\ell\left[g_{\theta}\left(f_{w}\left(x_{i}\right)\right),f_{\mu}\left(y_{i},x_{i}\right)\right]\)</span><br/>
+| | 计算聚类的权值信息<span
+class="math inline">\(H(w)=\lambda_{1}\Biggl(1-\sum_{j=1}^{k}\mu_{i
+j}\Biggr)+\lambda_{2}\sum_{i=1}^{M}\sum_{j=1}^{k}w_{i j}\log w_{i
+j}\)</span><br/> | | 计算<span
+class="math inline">\(L_{F_{-}\mathrm{clu}}=\operatorname*{min}_{\theta,\mu,m}\sum_{i=1}^{M}\sum_{j=1}^{k}\mu_{i
+j}^{m}\left\|X_{i}-g_{\theta}\bigl(f_{\mu}\bigl(x_{j}\bigr)\bigr)\right\|_{2}^{2}+H(W)\)</span><br/>12|
+| 通过最小化(7)加上L Rec和L F_clu；<br/>13| | 通过最小化来更新<span
+class="math inline">\(\mu_{i j}\)</span>(9)；<br/>14| |
+<strong>while</strong> <em>not end of R</em> <strong>do</strong><br/>15|
+| | 计算设计的convnet的精度（1 - test_error）；<br/>16| |
+根据（10）的要求更新<span class="math inline">\(w_{i
+j}\)</span>；<br/>17| | 在DAFC中向FE和Rec进行反向传播；<br/>18| |
+直到<span class="math inline">\(\{A c c,A R I,N M
+I\}=MaxR\)</span>；<br/>19| | <strong>end</strong>;<br/>20|
+<strong>end</strong>;<br/>21 return *R**,* <em>T
+est</em>_<em>Err</em>;</p>
+<hr />
+<h1 id="iv.实验">IV.实验</h1>
+<h2 id="a.实验设置">A.实验设置</h2>
+<p>​  然后，我们与IV-d中最新的深度聚类模型和传统的聚类方法进行了全面的比较。这些实验都是在cudnn
+v7和RTX 2080 Ti
+GPU（NVIDIA）中实现的，以测量不同深度聚类方法的性能和效率。我们考虑相同的批处理大小和相同的时代数量，以及以毫秒为单位度量推理时间。当对街景房子号（SVHN）和STL-10数据集进行训练时，我们需要注意计算所需的内存量，如果训练要在所需的时间范围内完成，也需要仔细平衡内核大小和过滤器大小。对于所有的卷积层，我们设置了不同的通道数（64、128、256和512）和滤波器大小（2×2和3×3）、步幅=1和填充=1。对于池化层，我们在最大池中设置内核大小=2和步幅=2，在平均池中设置内核大小=4和步幅=4。每一层都经过了2000次迭代的预训练，退出率为50%。我们在几个基准测试上研究了这些算法。据我们所知，我们为每个轮次设置了最大的batch_size。<br/>​  本文采用了三种优化器作为优化算法。我们已经验证了当使用Adam和RMSprop优化器时的性能。与Adam和SGD相比，我们发现Adam患有通常的平衬里问题，因此给出了一个糟糕的解决方案。SGD被发现需要数千次迭代来收敛，并且也给出了一个很差的解决方案。RMSprop为在选定的复杂数据集上训练深度聚类框架提供了更精确的解决方案。此外，我们还设置了学习率（lr）=
+1×10−4。为了公平地比较和清楚地说明DAFC的有效性，每种比较方法的训练期数和学习率都保持在相同的数量。我们实现了我们的方法和比较方法，并给出平均结果，以防止随机情况。<br/>​  在相同的实验环境和设置下，我们还使用最优参数训练了深度自适应聚类（DAC）和深度综合相关挖掘（DCCM）。自适应参数λ被初始化为0，并在DAC中使用具有学习率lr
+= 0.009的RMSprop。DCCM采用带有lr = 1e-4的RMSprop优化器，设置α = 5和β =
+0.1，采用3个1×1卷积层的网络进行互信息估计鉴别器。</p>
+<h2 id="b.评价指标">B.评价指标</h2>
+<h2 id="c.-数据集">C. 数据集</h2>
+<h2 id="d.-baselines">D. Baselines</h2>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/">https://zhaozw-szu.github.io/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</div></div></a></div><div class="next-post pull-right"><a href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Fuzzy_Machine_Learning</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#i.%E4%BB%8B%E7%BB%8D"><span class="toc-text">I.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ii.%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">II.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iii.%E6%96%B9%E6%B3%95"><span class="toc-text">III.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">A.网络架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E6%B7%B1%E5%BA%A6%E8%81%9A%E7%B1%BB%E7%AD%96%E7%95%A5"><span class="toc-text">B.深度聚类策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891%E7%9B%B8%E4%BC%BC%E7%9F%A9%E9%98%B5"><span class="toc-text">定义1：相似矩阵。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%892%E6%B7%B1%E5%BA%A6%E8%81%9A%E7%B1%BB%E7%9A%84%E5%8A%A0%E6%9D%83%E8%87%AA%E9%80%82%E5%BA%94%E7%86%B544"><span class="toc-text">定义2：深度聚类的加权自适应熵[44]。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iv.%E5%AE%9E%E9%AA%8C"><span class="toc-text">IV.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">A.实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">B.评价指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">C. 数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-baselines"><span class="toc-text">D. Baselines</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_clustering_method_for_image_segmentation"/></a><div class="content"><a class="title" href="/Fuzzy-clustering-method-for-image-segmentation/" title="Fuzzy_clustering_method_for_image_segmentation">Fuzzy_clustering_method_for_image_segmentation</a><time datetime="2024-12-29T14:13:57.000Z" title="发表于 2024-12-29 22:13:57">2024-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection"/></a><div class="content"><a class="title" href="/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/" title="Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection">Forgery-aware_Adaptive_Learning_with_Vision_Transformer_for_Generalized_Face_Forgery_Detection</a><time datetime="2024-12-26T02:50:46.000Z" title="发表于 2024-12-26 10:50:46">2024-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"><img src="/img/coverImage/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning"/></a><div class="content"><a class="title" href="/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/" title="Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning">Deep_Adaptive_Fuzzy_Clustering_for_Evolutionary_Unsupervised_Representation_Learning</a><time datetime="2024-12-23T08:43:50.000Z" title="发表于 2024-12-23 16:43:50">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning"><img src="/img/coverImage/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Fuzzy_Machine_Learning"/></a><div class="content"><a class="title" href="/Fuzzy-Machine-Learning/" title="Fuzzy_Machine_Learning">Fuzzy_Machine_Learning</a><time datetime="2024-12-23T03:20:44.000Z" title="发表于 2024-12-23 11:20:44">2024-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection"><img src="/img/coverImage/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A_survey_on_deep_learning-based_image_forgery_detection"/></a><div class="content"><a class="title" href="/A-survey-on-deep-learning-based-image-forgery-detection/" title="A_survey_on_deep_learning-based_image_forgery_detection">A_survey_on_deep_learning-based_image_forgery_detection</a><time datetime="2024-12-18T06:44:25.000Z" title="发表于 2024-12-18 14:44:25">2024-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
