@@ -4921,7 +4921,7 @@ h3
   height: auto;
   border-radius: 8px;
 }
-#rank.wrapper .main-content .post-item .badge {
+#rank.wrapper .main-content .post-item .time {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
