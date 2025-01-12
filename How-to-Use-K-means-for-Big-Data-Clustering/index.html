@@ -1,0 +1,488 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>How_to_Use_K-means_for_Big_Data_Clustering | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于Pattern Recognition 2023， 设计了一个优化kmeans的算法BigMeans。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How_to_Use_K-means_for_Big_Data_Clustering">
+<meta property="og:url" content="https://zhaozw-szu.github.io/How-to-Use-K-means-for-Big-Data-Clustering/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于Pattern Recognition 2023， 设计了一个优化kmeans的算法BigMeans。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/How-to-Use-K-means-for-Big-Data-Clustering/image-20250109150522036.png">
+<meta property="article:published_time" content="2025-01-08T14:00:02.000Z">
+<meta property="article:modified_time" content="2025-01-09T08:49:12.268Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/How-to-Use-K-means-for-Big-Data-Clustering/image-20250109150522036.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/How-to-Use-K-means-for-Big-Data-Clustering/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'How_to_Use_K-means_for_Big_Data_Clustering',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-09 16:49:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/How-to-Use-K-means-for-Big-Data-Clustering/image-20250109150522036.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">How_to_Use_K-means_for_Big_Data_Clustering</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-08T14:00:02.000Z" title="发表于 2025-01-08 22:00:02">2025-01-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-09T08:49:12.268Z" title="更新于 2025-01-09 16:49:12">2025-01-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/K-means%E8%81%9A%E7%B1%BB/">K-means聚类</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="How_to_Use_K-means_for_Big_Data_Clustering"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>How to Use K-means for Big Data Clustering?</p>
+<p>Rustam Mussabayev<span class="math inline">\(^a\)</span> , Nenad
+Mladenovic<span class="math inline">\(^a\)</span> , Bassem Jarboui<span
+class="math inline">\(^c\)</span> , Ravil Mussabayev <span
+class="math inline">\(^{b,*}\)</span></p>
+<p>a
+信息与计算技术研究所，普希金出版社，信息与计算技术研究所，信息过程分析与建模实验室<br/>b
+华盛顿大学数学系，Padelford Hall C-138, Seattle, 98195-4350, WA,
+USA<br/>c 高等技术学院工业管理系，St # 19, Abu Dhabi, 25026, UAE</p>
+<h1 id="摘要">摘要</h1>
+<p>​  K-means在数据挖掘中起着至关重要的作用，是欧氏最小平方聚类模型（MSSC，Minimum
+Sum-of-Squares Clustering
+）下最简单、应用最广泛的算法。然而，当应用于大量数据时，它的性能会急剧下降。因此，通过使用尽可能少的以下计算资源将k均值扩展到大数据，改进k均值是至关重要的：数据、时间和算法成分。我们提出了一种新的并行方案，使用K-means
+和K-means
+++算法进行大数据聚类，该算法满足“真实大数据”算法的特性，并在解决方案质量和运行时方面优于经典和最近最先进的MSSC方法。新方法通过分解MSSC问题自然地实现了全局搜索，而不使用额外的元启发式。</p>
+<h1 id="介绍">1.介绍</h1>
+<p>​  聚类分析的目标是通过相似性将实体集合组织成子集，称为集群。聚类分析方法已被证明是一种强大的数据挖掘工具。这些方法解决了模式的无监督分类问题，在不同的领域有大量的应用，如模式识别[1]、模式分类[2]、图像检索和识别[3]、多模态学习[4]、数据挖掘和知识发现[5]、网络分析[6]、文档聚类和数据压缩[7]。聚类分析的应用假设在被分析的数据[8]中存在一个聚类结构。<br/>​  最小平方和聚类（MSSC，Minimum
+Sum-of-Squares Clustering
+）是聚类分析中的一个基本问题，是研究最广泛的[9]之一。给定一组m个数据点<span
+class="math inline">\(X=\{x_{1},\ldots,x_{m}\}\)</span>在欧几里得空间<span
+class="math inline">\(\mathbb{R}^{n}\)</span>n，它解决的问题找到k个集群中心（centroids）<span
+class="math inline">\(C=(c_{1},\dots,c_{l})\in\mathbb{R}^{n\times
+k}\)</span>最小化的平方距离<span
+class="math inline">\(x_i\)</span>到其最近的集群中心<span
+class="math inline">\(c_j\)</span>： <span
+class="math display">\[\operatorname*{min}_{c}f(C,X)=\sum_{i=1}^{m}\|x_{i}-c_{j}\|^{2}\]</span>
+​  其中，<span
+class="math inline">\(\|\cdot\|\)</span>代表欧几里得规范。式(1)是目标函数，称为距离的平方和。对于一般的k和m，MSSC被认为是一个np困难问题[9]。<br/>​  MSSC问题的突出困难在于目标函数(1)，它有许多局部极小化器。MSSC可以表示为一个全局优化问题，其目标是通过正确地将数据集划分为给定数量的簇[10]来最小化(1)。期望全局最小化器能为给定的数据集[11]提供更好的聚类结构。因此，许多可替代的局部[12]和全局[13]搜索算法被提出，以提供更好的解决方案。<br/>​  虽然大数据和文献中经常使用大数据和大数据的概念，但这些概念并没有明确和普遍接受的定义。实际上，在实践中，用平均计算机上的经典方法对可用数据量进行分析，会导致以下情况之一：处理没有差异；有一些技术困难，但处理仍然是可能的；由于计算资源短缺或不可接受的时间成本，处理不可能。根据这三种情况，可以对所有数据集进行以下明确的分类：小、大和巨大。因此，巨大数据是一个体积如此庞大的数据集，其处理会造成重大的技术困难，或者在使用传统方法和平均计算资源时是不可能的。<br/>​  在本文中，我们只考虑具有许多向量表示和相对较少的特征（向量分量）的大数据类型。这种选择主要是由于在MSSC问题中使用了欧氏距离，而这并不是测量高维向量[14]之间距离的最佳度量。<br/>​  MSSC问题已经在理论上得到了很好的研究。提出了大量的近似[16]算法和一些精确的[17]算法。然而，大多数这些算法对所需的计算成本与数据集的大小有线性或超线性的依赖关系。因此，大多数现有的方法只适用于相对较小的数据集。MSSC
+[9]的np硬度和实际数据集的大小解释了为什么大多数MSSC算法都是启发式的，旨在在合理的计算时间[11]内产生一个近似解。目前，这一领域的许多研究都是为了开发有效的方法，在大数据集[18]的实际实际条件下解决np硬MSSC问题的[9]，其中大多数经典方法都显示出缺乏效率。<br/>​  算法成分是一组典型的高级操作，它们构成了解决相关问题的各种搜索算法的共同组件。在构建高级启发式算法时，重要的是要保持它们的简单性，使用尽可能少的算法成分来提供可能的最好的结果[19]。通常，所开发的启发式算法的效率和未来的流行程度直接取决于它的简单性，因为这会导致计算成本和时间成本的减少。启发式算法的简单性对于大数据处理尤为重要。<br/>​  本文的其余部分的组织方式如下。第2节将回顾聚类分析领域中最关键的发展；第3节将介绍所提出的算法；第4节将对所提出的算法进行简要分析；第5节和第6节将分析实验结果，得出结论，并概述未来的研究方向。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  现有的MSSC聚类算法可以分为两大类：传统类和替代类。传统的算法包括被广泛研究的算法，由于其简单性和有效性，在文献中得到了广泛的认可。为了解决MSSC问题，K-means算法与基于它的其他算法一起被广泛接受：
+Forgy [20]、K-means++[21]、multi-start
+K-means[22]等。Ward[23]方法也可以归类为传统方法，其性能在所得解的质量方面与最近先进的启发式方法相当；然而，由于需要计算平方距离矩阵，它只适用于中小型的数据集。此外，文献中还积极提出了更复杂的替代算法，其主要目的是提高解决MSSC问题的质量和速度。以下方法是最先进和最新的替代算法之一：MDEClust
+[13], HG-means [11], LMBM-Clust [18], I-k-means-+ [24], BWKM [16], BDCSM
+[25], Coresets
+[26]。绝大多数的替代算法本质上是复杂的和混合的，也就是说，它们通常基于各种元思想，或者是其他几种更简单的算法的组合。通常，复杂的替代算法成为关于所获得的解的质量的最先进的算法，但可能在时间上损失到k均值高达几个数量级。与此同时，有一个深刻的信念，即在质量上获胜对聚类效度的影响很小；然而，这种观点在[11]中存在着积极的争议。更复杂的混合方法的广泛使用在某种程度上导致了质量更好的聚类解决方案；另一方面，这一趋势的不利影响包括同时增加了时间的复杂性和潜在用户理解的困难。替代算法的复杂性，没有其提高的速度的支持，由于潜在用户的代码实现不同，以及隐藏的未探索的特性，导致潜在用户的不信任，这可能在未来导致意想不到的问题。这些问题解释了为什么大多数替代算法在文献和潜在用户中没有得到广泛的接受。因此，一个重要的任务是开发新的更简单的算法，可以在所获得的解的质量和运行时间之间取得正确的平衡。目前，这种平衡只能通过使用Kmeans++种子初始化的K-means算法来实现。<br/>​  K-means算法（Lloyds算法[27]）是最简单的，同时也是最有效的聚类算法之一，因为它在相当短的时间内提供了一个相对高质量的解决方案。它可以被认为是MSSC问题[15]的一种基本求解方法。此外，K-means可以成功地用于加速其他聚类模型，如基于密度的聚类[29]和光谱聚类[30]。<br/>​  K-means是一种迭代改进算法，包括分配和更新两个步骤。该算法的输入数据是k个中心<span
+class="math inline">\(C=(c_{1},\dots,c_{k})\)</span>的初始集合和最大迭代次数。在分配步骤中，每个点<span
+class="math inline">\(x_i\)</span>根据欧几里得距离的平方被分配到最近的中心。接下来，在更新步骤中，通过找到结果分区的每个单元格<span
+class="math inline">\(X_j\)</span>中的点的均值来确定新的中心：<span
+class="math inline">\(c_{j}={\frac{1}{|X_{j}|}}\sum_{x_{i}\in
+X_{j}}x_{i}\)</span>。重复这两个步骤，直到对集群的点分配没有变化或达到最大迭代次数为止。<br/>​  初始中心集可以通过初始化方法来确定，如K-means++[21]，该方法从原始数据点采样一个初始解，其概率与从候选点到已经采样的中心集[31]之间的平方距离成正比。一种更简单但效率较低的初始化方法是Forgy
+[20]，它也从原始数据点中均匀随机地采样初始解。|
+​  虽然K-means++比Forgy慢，但K-means++种子化确保K-means执行的迭代次数要少得多以达到最佳状态。此外，通常K-means++在达到的最优值处比朴素随机初始化提供的目标函数值要小得多。Makarychev等人在[32]中表明，由K-means++得到的解的预期成本最多为最优解成本的5倍（logk+2）。实际上，Kmeans++是初始化Kmeans算法的最新方法。<br/>​  许多可替代的局部[12]和全局[13]搜索算法已经被提出，以提供更好的解决方案。然而，没有一种替代算法比K-means在文献中得到如此广泛的认可和传播。替代算法的不受欢迎可以解释为过度的计算量、高的时间成本以及它们对最终聚类有效性[11]的影响不显著。<br/>​  Kmeans和Kmeans++的结合是文献中解决聚类问题最标准的方法。然而，使用K-means和简单初始化方法的经典方案有两个显著的缺点。首先，最终的聚类结果在很大程度上取决于初始的质心。其次，所获得的解决方案的质量可能比可能的最大值要差得多，特别是随着数据维度和集群数量的增加。经典的K-means算法可以通过适当地选择初始簇中心或将其嵌入到一些全局优化算法中作为局部搜索方法[22]来进行改进。<br/>​  多启动初始化方法克服基于K-means经典方法的缺点。在其最直接的实现中，Kmeans在整个数据集上运行了几次，并最终选择产生最佳质量的结果。在我们提出的方案中，K-means++仅用于初始化第一次K-means运行。所有后续的启动都使用前面的启动中的最佳解决方案初始化，每次运行时只聚集一个随机样本，而不是整个数据集。这两种简化方法都显著地降低了多启动方法的计算复杂度。使用随机样本而不是整个数据集，会在中间解中引入适当数量的可变性，这是寻找全局最优解的必要组成部分。<br/>​  通常，K-means作为高级启发式算法中的局部搜索例程，遵循自定义多启动局部搜索[11,13,24,31]的原则。该算法也不例外。通过将K-means算法嵌入到高级启发式[13]中作为局部搜索例程，可以赋予K-means缺失的全局优化特性。这种方法将消除仅收敛到局部最优解的不必要的性质，这是朴素的k-means算法[11]的主要缺点。根据定制的多启动方法，采用更高级的逻辑初始化单独的局部搜索，关注之前启动的结果，对当前搜索进行更最优的初始化。各种元启发式或元思想通常被构建在多启动过程中，以获得最优的初始化。一些例子有遗传搜索[11,13]、变量邻域搜索（VNS，variable
+neighborhood search）[12,33]、贪婪随机自适应搜索过程（GRASP，Greedy
+Randomized Adaptive Search
+Procedure）[31]、模拟退火[34]、tabu搜索[35]等。因此，一个主题任务是建立这样的算法，允许在大数据条件下组织全局搜索过程，而不使用任何已知的元启发式或元思想。因此，在所提出的算法中，我们只使用K-means局部搜索的自然性质来组织MSSC问题的最优解的全局搜索。在我们的算法中，多启动方法不仅在使用更高级的初始化逻辑的层次上进行定制，而且在选择数据进行聚类的层次上进行定制。<br/>​  替代算法在质量上优于标准算法。LMBM-Clust算法可以被认为是所有替代算法中最先进的算法。目前，LMBM-Clust提供了最好的质量比和聚类速度。这一特性使得LMBM-Clust适合于大数据的聚类。虽然BDCSM算法[25]在技术上适用于大数据，因为它不需要一个完整的数据集，我们的实验[36]表明，与其他算法相比，BDCSM在聚类质量方面没有显著的优势。绝大多数其他经典和替代算法不适用于大数据，因为它们需要一些（Coresets）或许多（数百或数千）完整通过整个大数据。因此，例如，HG-means花费超过6个小时来集群由13,500个对象和5000个特征组成的k
+= 25
+[11]。LMBM-Clust算法在1小时内处理相同的数据集。同时，我们的算法在38秒内完成了该数据集的聚类，并在质量方面提供了最好的结果。如果我们放宽质量要求，我们的算法可以在一个数量级的时间内完成这个数据集的聚类，而只略微损失结果的质量。<br/>​  将聚类算法应用于大数据的必要属性之一是它对数据集[11]大小的可伸缩性。例如，聚类算法可以通过不使用数据集中的所有可用对象而产生结果来实现可伸缩性。可伸缩性也可以通过将数据集分解（或分区）分解为其后续并行处理[36]的部分来实现。假设一个聚类算法可以相对独立地处理每个所获得的数据部分。在这种情况下，它可以在一个分布式系统上实现，其中每个部分都在该分布式计算系统的一个单独的节点上进行处理。该算法可以结合上述所有方法进行缩放。<br/>​  我们的文献综述显示，先进的替代算法在大多数情况下并不适用于大数据。介绍替代算法的文章将这些算法应用于最多由几十万个对象组成的数据集，它们的聚类需要几个小时。即使文献提供了有条件地适用于大数据的替代算法，如coreset或BDCSM，这些替代算法也只能在聚类质量方面接近标准方法，但不能超过它们。同时，相对于标准方法的质量损失可高达20%的[26]。对于大多数标准算法和替代算法，大数据是一个需要解决的问题，而不是用来增强聚类结果的优势。因此，一个关键的重点是开发相对简单的聚类算法，该算法不仅可以对大数据处理有效，而且可以利用大数据作为提高聚类结果的优势。<br/>​  因此，计算机科学界迫切需要开发具有以下有用特性组合的新的“真正的大数据”聚类算法：</p>
+<ul>
+<li>与其他现有的最先进的算法相比，在算法的简单性、聚类结果的质量和收敛速度之间达到最佳平衡；</li>
+<li>在大数据条件下全局搜索最优解，而不使用任何已知的全局优化元启发式；</li>
+<li>可伸缩性，用以下特性表示：<br/> -
+能够配置在结果的质量和达到它的速度之间的权衡；<br/> -
+在小、大、巨大数据聚类方面的效果相同；<br/> -
+能够随着数据集中处理对象数量的增加来提高聚类质量；<br/> -
+从数据集中所有可用对象的不完全使用中获得可接受质量的结果的可能性；<br/>
+- 数据集具有并行处理和分布式处理的能力，可分为若干部分；<br/> -
+新输入数据部分的流处理能力。</li>
+</ul>
+<p>​  结合一种新开发的算法的上述有价值的特性，将使其在文献中获得广泛的认可，并在模式识别的从业者的需求。在本文中，我们试图创建一个新的简单的具有上述所有属性的算法。</p>
+<h1 id="提出的算法">3.提出的算法</h1>
+<h2 id="mssc问题的分解">3.1.MSSC问题的分解</h2>
+<p>​  大多数MSSC算法的性能在应用于大量数据时将受到影响，因为它们的迭代性质和较差的迭代时间局部性。利用MSSC问题分解，我们建立了一个新的启发式，以更快更准确的大数据聚类。这种启发式方法可以使用任何合适的MSSC算法作为本地搜索过程。为了为创建新的高效大数据MSSC算法奠定基础，我们引入了MSSC问题分解的新概念。<br/>​  分解是一种常见的问题解决技术。它将初始问题分解为一组子问题，这些子问题的总体差异不超过初始问题的难度。通过聚合从子问题中得到的解决方案，就可以为整个原始问题创建一个解决方案。<br/>​  MSSC问题的分解是一个由X的q个子集<span
+class="math inline">\(X_i\)</span>组成的集合<span
+class="math inline">\(\mathbb{D}\)</span>，每个子集都有相同的基数，是X的一个简单随机样本：
+<span class="math display">\[\mathbb{D}=\{X_{i},\ i\in\mathbb{N}_{q}:\
+X_{i}\subset X,\ |X_{i}|=S\}\]</span> ​  对于<span
+class="math inline">\(i\in\mathbb{N}_{q}\)</span>，在解决了Xi上定义的子问题，可以并行执行后，得到的局部解以某种方式聚合，形成定义在X上的原始问题解。这种方法是一个更一般的分治范式的实例。换句话说，解决一个优化任务有两个主要阶段：分解和聚合。将大数据集分解为相对较小的样本，并使用多个处理器进行并行处理是提高可伸缩性[36]的实用工具。</p>
+<h2 id="big-means算法">3.2.Big-means算法</h2>
+<p>​  该算法的思想非常简单：在每次迭代中，从给定的数据集中抽取一个新的均匀随机样本，并使用k-means进行聚类。使用K-means++算法对第一个样本进行初始化聚类。每个后续的样本都使用在之前的迭代中通过目标函数(1)对样本的最小化方法进行初始化。在中间迭代中，只有退化集群使用K-means++重新初始化。继续迭代，直到满足“停止条件”。对CPU时间的限制或待处理样本的最大数量可以用作“停止条件”。该算法的结果是在整个迭代过程中达到最佳目标函数值(1)的质心集。最终，所有的数据点都可以通过它们接近生成的质心而分布到集群中。</p>
+<hr />
+<p>算法1：Big Data 聚类</p>
+<hr />
+<p>1 function BigMeans (X, k, s);<br/> 输入：特征向量<span
+class="math inline">\(X=\{x_{1},\ldots,x_{m}\}\)</span>；<br/>
+所需的集群数量为k；<br/> 样本量s； <br/> 输出：质心<span
+class="math inline">\(C=\{c_{1},\ldots,c_{k}\}\)</span>；<br/>
+点到集群的分配<span
+class="math inline">\(A=\{a_{1},\ldots,a_{m}\}\)</span>；<br/>
+目标函数的值<span class="math inline">\(f(C,X)\)</span>。<br/>2 <span
+class="math inline">\(C\leftarrow\{\emptyset_{1},\dots,\emptyset_{k}\}\)</span>；//所有k个质心都未初始化（即∼退化）<br/>3
+<span class="math inline">\(f_{o p t}\leftarrow\infty\)</span>；<br/>4
+<strong>while</strong>不满足停止条件<strong>do</strong><br/>5 | <span
+class="math inline">\(P\leftarrow\)</span>从X中得到的s向量的均匀随机样本；<br/>6
+| <span class="math inline">\(C^{\prime}\leftarrow C\)</span>；<br/>7 |
+使用K-means++重新初始化<span
+class="math inline">\(C^{\prime}\)</span>中的所有退化质心；<br/>8 |
+<span class="math inline">\(C^{\prime\prime}\leftarrow
+K-means(P,C^{\prime})\)</span>//局部搜索<br/>9 | <strong>if</strong>
+<span class="math inline">\(f_{o p t}\gt
+f\left(C^{\prime\prime},P\right)\)</span><strong>then</strong><br/>10|
+<span class="math inline">\(C\leftarrow
+C^{\prime\prime}\)</span>；//取代了现有的解决方案<br/>11| <span
+class="math inline">\(f_{o p t}\,\leftarrow
+f(C^{\prime\prime},P)\)</span>；//及其目标<br/>12|
+<strong>end</strong><br/>13 <strong>end</strong><br/>14 <span
+class="math inline">\(A\leftarrow\)</span>将每个点xi∈X分配到其最近的质心cj∈C<br/>15
+<strong>return</strong> C, A, f(C, X)</p>
+<hr />
+<p>​  算法1显示了所提出的大均值启发式算法的一般版本。“Big-means”的源代码可以在https://github.com/R-Mussabayev/bigmeans/上找到。在每次迭代中，从数据集中均匀地随机地抽取一个新的样本。聚类过程由当前最好的质心集初始化，称为现有解。通常，选择的样本大小要比原始数据集的大小小得多。聚类过程由当前最好的质心集初始化，称为现有解。通常，选择的样本大小要比原始数据集的大小小得多。第一个现有解的所有簇中心都是退化的，即未初始化的。对每个后续数据样本的处理首先根据初始化启发式（K-means++）重新初始化现有解C中的退化簇，中间变量C存储此结果。然后，该算法利用局部搜索启发式（K-means）和C作为初始化方法，对样本P进行局部搜索。对样本P进行聚类后，如果得到的质心C导致的目标函数f（C，P）的值小于现有解C的目标函数f（C，P）的值，则声明它们为新的现有解。因此，这次更新将按照“保持最佳状态”的原则进行。在最后一步，每个点xi∈X被分配给其最近的质心cj∈C。<br/>​  我们使用了以下基本启发式的组合：
+K-means作为局部搜索，K-means++作为初始化例程。然而，大方法可以接受其他合适的快速和准确的MSSC启发式的组合。使用K-means作为局部搜索启发式是合理的，因为K-means是所有MSSC算法中最简单和最快的局部搜索启发式之一。K-means算法具有以下有益的特性：使用更好的初始质心（就目标函数(1)最小化而言）可以加快算法的收敛速度。因此，更好的每个后续样本的初始质心会导致更高的局部收敛速度和加速全局搜索。</p>
+<h2 id="退化解的初始化">3.3.退化解的初始化</h2>
+<p>​  各种方法可以初始化第一个示例[22]，包括一个随机初始化。此外，可以使用不同的策略来处理退化集群，用[37]代替K-means++。在提出的启发式中，使用K-means++获得初始质心并重新初始化退化簇。我们的算法检查当前的局部解C是否存在退化簇，并在必要时重新初始化它们。退化集群是空集群的等价项。通常，在K-means集群过程中，当其所有对象被重新分配到其他集群之间时，一个最初的非空集群就会退化。当使用Kmeans时，集群退化的影响似乎是它的缺点。一些退化簇意味着我们使用更少的簇来最小化目标函数。也就是说，我们能够更密集地将对象打包到更少的集群中。通过使用K-means++添加缺失的簇，我们几乎可以保证得到进一步的改进。</p>
+<h2 id="数据点到集群的最终分布">3.4.数据点到集群的最终分布</h2>
+<p>​  所得到的质心C可以被认为是MSSC问题的一个自给自足的解决方案，因为它们唯一地定义了跨集群的数据点的分布。该算法的最后一步是简单地在所获得的质心之间重新分配所有的数据点。假设K-means从初始质心c开始聚集整个数据集，而不是最后一步。由于K-means对整个数据集的计算成本很高，这种聚类对于实际的大数据可能不可行。然而，如果发生了这种情况，我们应该期望在最小化目标函数(1)方面，结果集群的质量会有更显著的改进。使用我们的算法的最后阶段可能没有一些实际应用。例如，有时，仅将有限的对象样本分配给它们最近的质心就足够了。如果我们省略了算法的最后一步，我们可以考虑将大均值作为在大数据条件下初始化k均值的一种新方法。</p>
+<h2 id="取样">3.5.取样</h2>
+<p>​  在Big-means中，有一种获取数据样本的方法是至关重要的。我们已经将统一抽样纳入了大均值法中。这种抽样不计算任何联合概率分布。它可以用O
+(1)的总复杂度来完成，假设样本大小是一个预定义的常数数。这种抽样方法是计算上最快的，从简单的角度来看是最优的。此外，在对数据集X结构的温和假设下，[38]的作者为应用于MSSC聚类的简单均匀抽样提供了可靠的概率保证。此外，也不需要在数据集中随机排列特征向量，因为均匀采样会自动打破存在的任何顺序。<br/>​  在Big-means的框架下，采样过程自然起着振动过程的作用。振动过程在每次迭代中修改现有的解，得到一个邻域解。这是大手段的下一个新奇事物。我们通过绘制一个小的、均匀的随机样本，从而在每次迭代中获得原始数据集的稀疏表示。如果我们在Rn中将整个数据集表示为点云，那么稀疏样本将在一定程度上近似该云的空间形式。因此，减少样本量增加了在样本上的聚类结果的可变性。样本量越小，对现有解的扰动越强；反之亦然，样本量越大，扰动就越弱。因此，通过微调样本量，人们应该在变异性的程度和原始数据形式的近似程度之间找到适当的权衡。对样本量的最优选择将导致算法所期望的最优行为。不同样本的聚类结果之间的可变性增加对全局搜索有积极的影响，因为每个后续样本都提供了一些变化的聚类配置，这在搜索过程中检查最优性。</p>
+<h2 id="并行处理">3.6.并行处理</h2>
+<p>​  由于MSSC问题是np困难的，并应用于大数据，因此开发有效利用现代高性能计算（HPC）技术的MSSC算法是至关重要的。HPC使用超级计算机和计算机集群来解决高级计算问题。由于HPC网络集群和网格使用多台处理器和计算机，因此可伸缩性是HPC算法的一个基本属性。可伸缩性的实现主要是由于使用许多可用的计算节点、计算机或处理器并行处理所分析的数据。该算法1的固有性质有助于其有效的并行化。该算法的并行化可以通过几种不同的方式来实现：</p>
+<ol type="1">
+<li>单独的数据样本被依次处理，但聚类过程在K均值和K均值++的实现级别上是并行化的。也就是说，大均值的主循环都是保持顺序的，而Kmeans和Kmeans++的所有内部循环都是并行化的；<br/>2.
+工作人员在每个可用的处理器上并行开始，每个工作人员使用K-means和K-means++的顺序版本独立于其他工作人员集群其数据样本。工人在每次迭代时只使用他们以前的最佳质心进行初始化。这种并行化模式被称为竞争，因为所有的工人都是独立的，并且相互竞争；<br/>3.
+工作人员在每个可用的处理器上并行开始，每个工人都被分配了一个单独的数据样本。在第一次迭代中，每个工作人员都独立地执行初始化集群过程。在所有后续的迭代中，每个工作者使用在之前的迭代中获得的所有工作者中的最佳质心集来初始化一个新的随机数据样本。这种并行化模式被称为集体模式，因为工人们共享关于最佳解决方案的信息。</li>
+</ol>
+<p>​  在实验中，我们使用了一个CPU数量相对较少的硬件配置。在此配置中，初步实验表明，第一种并行化方法比其他两种方法更有效，因为其主循环之前迭代的最佳结果由于它们的执行顺序而更有效地转移到后续迭代中。因此，在第5节中使用竞争算法的实验采用了第一种并行化方法。尽管第二种和第三种方法在工作人员之间重用最佳结果的效率方面不如第一种方法，但它们对大量处理器具有更好的可伸缩性。当使用巨大的数据集时，也可能会出现关于如何在计算系统的并行节点之间分配处理过的数据的问题。在我们的Bigmeans实现中，所有工作人员都可以访问公共数据集，每个工作人员为自己形成了一个聚类的随机数据样本。然而，其他方案也可以在节点之间部分地分配数据集。对各种大均值并行化和数据分布方案的有效性进行更详细的研究是未来研究的一个课题。</p>
+<h1 id="对该算法的分析">4.对该算法的分析</h1>
+<h2 id="主要特性">4.1.主要特性</h2>
+<h2 id="时间复杂度">4.2.时间复杂度</h2>
+<h1 id="实验分析">5.实验分析</h1>
+<h1 id="结论及未来的研究">6.结论及未来的研究</h1>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/How-to-Use-K-means-for-Big-Data-Clustering/">https://zhaozw-szu.github.io/How-to-Use-K-means-for-Big-Data-Clustering/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/How-to-Use-K-means-for-Big-Data-Clustering/image-20250109150522036.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/End-to-end-Differentiable-Clustering-with-Associative-Memories/" title="End-to-end Differentiable Clustering with Associative Memories"><img class="cover" src="/postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004113308304.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">End-to-end Differentiable Clustering with Associative Memories</div></div></a></div><div class="next-post pull-right"><a href="/PiCIE/" title="PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering"><img class="cover" src="/postimages/PiCIE/image-20250108110707600.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-text">3.提出的算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mssc%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-text">3.1.MSSC问题的分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#big-means%E7%AE%97%E6%B3%95"><span class="toc-text">3.2.Big-means算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%80%E5%8C%96%E8%A7%A3%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">3.3.退化解的初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%82%B9%E5%88%B0%E9%9B%86%E7%BE%A4%E7%9A%84%E6%9C%80%E7%BB%88%E5%88%86%E5%B8%83"><span class="toc-text">3.4.数据点到集群的最终分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E6%A0%B7"><span class="toc-text">3.5.取样</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-text">3.6.并行处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%A5%E7%AE%97%E6%B3%95%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-text">4.对该算法的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="toc-text">4.1.主要特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-text">4.2.时间复杂度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%88%86%E6%9E%90"><span class="toc-text">5.实验分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%E5%8F%8A%E6%9C%AA%E6%9D%A5%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="toc-text">6.结论及未来的研究</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/UGEE-Net/" title="UGEE-Net"><img src="/postimages/DH-GAN/image-20240824153543322.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UGEE-Net"/></a><div class="content"><a class="title" href="/UGEE-Net/" title="UGEE-Net">UGEE-Net</a><time datetime="2025-01-12T14:18:56.000Z" title="发表于 2025-01-12 22:18:56">2025-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/End-to-end-Differentiable-Clustering-with-Associative-Memories/" title="End-to-end Differentiable Clustering with Associative Memories"><img src="/postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004113308304.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="End-to-end Differentiable Clustering with Associative Memories"/></a><div class="content"><a class="title" href="/End-to-end-Differentiable-Clustering-with-Associative-Memories/" title="End-to-end Differentiable Clustering with Associative Memories">End-to-end Differentiable Clustering with Associative Memories</a><time datetime="2025-01-10T02:52:27.000Z" title="发表于 2025-01-10 10:52:27">2025-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/How-to-Use-K-means-for-Big-Data-Clustering/" title="How_to_Use_K-means_for_Big_Data_Clustering"><img src="/postimages/How-to-Use-K-means-for-Big-Data-Clustering/image-20250109150522036.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="How_to_Use_K-means_for_Big_Data_Clustering"/></a><div class="content"><a class="title" href="/How-to-Use-K-means-for-Big-Data-Clustering/" title="How_to_Use_K-means_for_Big_Data_Clustering">How_to_Use_K-means_for_Big_Data_Clustering</a><time datetime="2025-01-08T14:00:02.000Z" title="发表于 2025-01-08 22:00:02">2025-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/PiCIE/" title="PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering"><img src="/postimages/PiCIE/image-20250108110707600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering"/></a><div class="content"><a class="title" href="/PiCIE/" title="PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering">PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering</a><time datetime="2025-01-08T02:41:01.000Z" title="发表于 2025-01-08 10:41:01">2025-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A Survey on Deep Clustering:From the Prior Perspective"><img src="/postimages/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/image-20250107223309527.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="A Survey on Deep Clustering:From the Prior Perspective"/></a><div class="content"><a class="title" href="/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/" title="A Survey on Deep Clustering:From the Prior Perspective">A Survey on Deep Clustering:From the Prior Perspective</a><time datetime="2025-01-07T14:20:13.000Z" title="发表于 2025-01-07 22:20:13">2025-01-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
