@@ -1,0 +1,617 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>EditGuard | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于CVPR2024，将版权水印和图像篡改主动保护两个任务联合起来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EditGuard">
+<meta property="og:url" content="https://zhaozw-szu.github.io/EditGuard/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于CVPR2024，将版权水印和图像篡改主动保护两个任务联合起来。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/EditGuard/image-20250113232835654.png">
+<meta property="article:published_time" content="2025-01-13T14:40:47.000Z">
+<meta property="article:modified_time" content="2025-01-15T08:11:45.386Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/EditGuard/image-20250113232835654.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/EditGuard/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'EditGuard',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-15 16:11:45'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/EditGuard/image-20250113232835654.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">EditGuard</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-13T14:40:47.000Z" title="发表于 2025-01-13 22:40:47">2025-01-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-15T08:11:45.386Z" title="更新于 2025-01-15 16:11:45">2025-01-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B/">图像篡改检测</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="EditGuard"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>EditGuard: Versatile Image Watermarking for Tamper Localization and
+Copyright Protection</p>
+<p>Xuanyu Zhang<span class="math inline">\(^{1,2}\)</span>, Runyi
+Li<span class="math inline">\(^1\)</span> , Jiwen Yu1 , Youmin Xu<span
+class="math inline">\(^1\)</span> , Weiqi Li<span
+class="math inline">\(^1\)</span> , Jian Zhang<span
+class="math inline">\(^{1,2}\)</span></p>
+<p>1 School of Electronic and Computer Engineering, Peking University
+<br/>2 Peking University Shenzhen Graduate School-Rabbitpre AIGC Joint
+Research Laboratory</p>
+<h1 id="摘要">摘要</h1>
+<p>​  在人工智能生成内容（AIGC）的时代，恶意篡改对版权的完整性和信息安全构成了迫在眉睫的威胁。目前的深图像水印，虽然被广泛接受用于保护视觉内容，但只能保护版权和确保可追溯性。它们未能将日益现实的图像篡改本地化，这可能导致信任危机、侵犯隐私和法律纠纷。为了解决这一挑战，我们提出了一个创新的主动取证框架<strong>EditGuard</strong>，以统一版权保护和篡改不可知的定位，特别是对于基于AIGC的编辑方法。它可以提供一个细致的嵌入难以察觉的水印和精确解码篡改区域和版权信息。利用我们观察到的图像图像隐写的脆弱性和局部性，EditGuard的实现可以转换为一个统一的图像比特隐写问题，从而完全将训练过程与篡改类型解耦。大量的实验验证，我们的编辑guard平衡了篡改定位精度、版权恢复精度和各种基于AIGC的篡改方法的普遍性，特别是对于肉眼难以检测的图像伪造。</p>
+<h1 id="介绍">1.介绍</h1>
+<p>​  为了明确我们的任务范围，我们再次强调了双重取证任务的定义，如图1所示：</p>
+<figure>
+<img src="../postimages/EditGuard/image-20250113224604349.png"
+alt="image-20250113224604349" />
+<figcaption aria-hidden="true">image-20250113224604349</figcaption>
+</figure>
+<p>​  (1)版权保护：“这个图像属于谁？”我们渴望准确地检索一幅图像的原始版权，甚至遭受各种篡改和退化。<br/>​  (2)篡改定位：“这张照片是在哪里被操纵的？”我们的目标是精确定位被篡改的区域，不受特定篡改类型的限制。</p>
+<p>​  据我们所知，没有现有的方法同时完成这两项任务，同时保持高精度和广泛推广的平衡。<br/>​  为了满足这一迫切的需求，我们提出了一种新的主动取证框架，称为EditGuard，以保护版权和为基于AIGC的编辑方法本地化篡改区域。具体来说，灵感从我们观察到的图像到图像（I2I）的脆弱性和隐写术固有的鲁棒性，我们可以转换实现的联合图像比特隐写术问题，允许训练编辑完全解耦的篡改类型，从而赋予其特殊的泛化性和以零镜头的方式定位篡改。简而言之，我们的贡献如下：</p>
+<p>​  (1)我们首次尝试设计一个深度通用的主动取证框架EditGuard，用于通用篡改定位和版权保护。它将双隐形水印嵌入到原始图像中，并准确地解码被篡改的区域和版权信息。<br/>​  (2)我们观察了I2I隐写技术的脆弱性和局部性，创新地将该双取证任务的解决方案转换为训练一个统一的象位隐写网络（IBSN），并利用IBSN的核心组件构建EditGuard。<br/>​  (3)我们引入了一个基于提示的后验估计模块，以提高该框架的定位精度和退化鲁棒性。<br/>​  (4)我们的方法的有效性已经在我们构建的数据集和经典的基准测试上得到了验证。与其他竞争方法相比，我们的方法在定位精度、泛化能力和版权精度方面具有显著的优点，而不需要任何标记数据或对特定的篡改类型需要额外的训练。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="篡改定位">2.1.篡改定位</h2>
+<h2 id="图像水印">2.2.图像水印</h2>
+<h1 id="editguard总体框架">3.EditGuard总体框架</h1>
+<h2 id="动机">3.1.动机</h2>
+<p>​  <strong>现有方法的挑战：</strong><br/>​  (1)如何装备现有的水印方法，仅是为了版权保护，具有定位篡改的能力是编辑保护的关键。我们将通过第3.2节中的框架设计来解决它。<br/>​  (2)以往大多数篡改定位方法在网络训练中不可避免地引入特定的篡改数据，但在未知篡改类型中往往会引起泛化问题，这将在第3.3节中解决。</p>
+<figure>
+<img src="../postimages/EditGuard/image-20250113225639573.png"
+alt="image-20250113225639573" />
+<figcaption aria-hidden="true">image-20250113225639573</figcaption>
+</figure>
+<p>​  <strong>我们的观察：</strong><br/>​  幸运的是，我们观察到图像到图像（I2I）的隐写术表现出明显的脆弱性和定位性，具有解决这些问题的巨大潜力。具体地说，I2I隐写[3,28,42,46,64,69]的目标是将秘密图像<span
+class="math inline">\(\mathbf{X}_{sec}\)</span>隐藏到封面图像<span
+class="math inline">\(\mathbf{X}_{cov}\)</span>中，以生成容器图像<span
+class="math inline">\(\mathbf{X}_{con}\)</span>，并以最小失真准则从接收图像<span
+class="math inline">\(\mathbf{X}_{con}^{\prime}\)</span>中显示<span
+class="math inline">\(\mathbf{\hat X}_{sec}\)</span>和<span
+class="math inline">\(\mathbf{\hat X}_{cov}\)</span>。我们发现，当<span
+class="math inline">\(\mathbf{X}_{con}^{\prime}\)</span>比<span
+class="math inline">\(\mathbf{X}_{con}\)</span>发生显著变化时，<span
+class="math inline">\(\mathbf{\hat
+X}_{sec}\)</span>也会被损坏并产生伪影（图2的第一行），这被称为脆弱性。此外，我们注意到<span
+class="math inline">\(\mathbf{\hat
+X}_{sec}\)</span>中的伪影几乎是像素级对应的<span
+class="math inline">\(\mathbf{X}_{con}^{\prime}\)</span>相对于<span
+class="math inline">\(\mathbf{X}_{con}\)</span>的变化，这被称为定位性。为了证明这一定位性，我们在<span
+class="math inline">\(\mathbf{\hat
+X}_{sec}\)</span>选择了5个7×7点集，并计算了它们关于<span
+class="math inline">\(\mathbf{X}_{con}^{\prime}\)</span>的属性图。如图2的第二行所示，<span
+class="math inline">\(\mathbf{\hat X}_{sec}\)</span>只在<span
+class="math inline">\(\mathbf{X}_{con}^{\prime}\)</span>的相应位置及其附近表现出强烈的响应，几乎与其他像素无关。这些特性促使我们将<span
+class="math inline">\(\mathbf{X}_{sec}\)</span>视为一种特殊的定位水印，并将其嵌入到现有的水印框架中。</p>
+<h2 id="框架设计和取证过程">3.2.框架设计和取证过程</h2>
+<p>​  实现统一篡改定位和版权保护，EditGuard设想嵌入二维定位水印和一维版权可追溯水印以难以察觉的方式到原始图像，这允许解码结束获得图像的版权和二进制掩码反映篡改区域。然而，设计这样一个框架需要解决两种类型的水印的兼容性问题。</p>
+<p>​  <strong>(1)局部vs全局：</strong>定位水印需要隐藏在原始图像对应的像素位置上，而版权水印需要与空间位置无关，并冗余地嵌入到全局区域中。<br/>​  <strong>(2)半脆弱vs鲁棒：</strong>定位水印的期望属性是半脆弱的，这意味着它在网络传输过程中对篡改很脆弱，但对一些常见的退化（如高斯噪声、JPEG压缩和泊松噪声）具有鲁棒性。然而，版权应该几乎无损，无论篡改还是退化。</p>
+<p>​  为了解决这两个关键冲突，EditGuard采用了“顺序编码和并行解码”结构，其中包括双水印编码器、篡改定位器和版权提取器。</p>
+<p>​  如图3所示，双水印编码器将把用户提供的预定义的定位水印和全局版权水印<span
+class="math inline">\(\mathbf w_{cop}\)</span>依次添加到原始图像<span
+class="math inline">\(\mathbf I_{oir}\)</span>中，形成容器图像<span
+class="math inline">\(\mathbf
+I_{con}\)</span>。我们的实验已经证明并行编码不能有效地添加到图像（在补充材料<strong>(S.M.)</strong>）。相比之下，顺序嵌入通过隐藏这两个水印可以有效地防止交叉干扰。此外，我们对接收（篡改）图像<span
+class="math inline">\(\mathbf I_{rec}\)</span>从<span
+class="math inline">\(\mathbf
+I_{con}\)</span>转换为的网络传输过程建模为： <span
+class="math display">\[{\mathbf I}_{r e c}=\mathcal D({\mathbf I}_{c o
+n}\odot(\bf1-\bf M)+\mathcal T({\bf I}_{c o n}\odot{\bf M})\]</span>
+​  式中，<span class="math inline">\(\mathcal T (\cdot)\)</span>、<span
+class="math inline">\(\mathcal D (\cdot)\)</span>和<span
+class="math inline">\(\bf
+M\)</span>分别表示篡改功能、降级操作和回火掩模。此外，并行解码过程使我们能够在不同的鲁棒性水平下灵活地训练每个分支，并通过篡改定位器获得预测掩码<span
+class="math inline">\(\hat
+M\)</span>，通过版权提取器获得可追溯性水印<span
+class="math inline">\(\hat{\mathbf
+w}_{cop}\)</span>。我们可以将EditGuard的双重取证过程分为以下场景。</p>
+<p>​  <strong>场景1：</strong>如果<span class="math inline">\(\hat{\bf
+w}_{c o p}\not\approx\bf {w}_{c o p}\)</span>，那么置信度低的<span
+class="math inline">\(\mathbf
+I_{rec}\)</span>要么没有在我们的EditGuard中注册，要么经历了极其严重的全局篡改，使其成为不可靠的证据。<br/>​  <strong>场景2：</strong>如果<span
+class="math inline">\(\hat{\bf w}_{c o p}\approx\bf {w}_{c o
+p}\)</span>且<span class="math inline">\(\hat M \not\approx
+0\)</span>，那么置信度低的<span class="math inline">\(\mathbf
+I_{rec}\)</span>经历了篡改，取消将其作为有效证据的资格。用户可以根据<span
+class="math inline">\(\hat
+M\)</span>推断篡改者的意图，并决定是否启用图像的其他部分。<br/>​  <strong>场景3：</strong>如果<span
+class="math inline">\(\hat{\bf w}_{c o p}\approx\bf {w}_{c o
+p}\)</span>且<span class="math inline">\(\hat M \approx
+0\)</span>，那么<span class="math inline">\(\mathbf
+I_{rec}\)</span>在EditGuard的盾牌下保持不被篡改且值得信赖。</p>
+<h2 id="将双重取证转化为隐写术">3.3.将双重取证转化为隐写术</h2>
+<p>​  为了实现通用且篡改不可知的定位性能，我们利用了我们观察到的I2I隐写术的局部性和脆弱性。</p>
+<figure>
+<img src="../postimages/EditGuard/image-20250113232601473.png"
+alt="image-20250113232601473" />
+<figcaption aria-hidden="true">image-20250113232601473</figcaption>
+</figure>
+<p>​  如第3.1节所述，通过图像的隐写和揭示，可以有效地实现图3中的定位水印和篡改定位性能。同时，结合当前位对图像隐写技术的鲁棒性，通过位加密和恢复，实现了图3中的版权水印和提取器。因此，我们可以将双取证框架EditGuard的实现转换为一个统一的图像比特隐写术网络。<br/>​  我们的训练目标只是一种自我恢复机制，这意味着它只需要确保隐写术网络的输入和输出在不同的鲁棒性水平下保持高保真度，而不需要引入任何标记数据或篡改样本。<br/>​  在推理过程中，它可以通过简单的零镜头比较来自然地定位篡改，并准确地提取版权。</p>
+<h1 id="联合图像比特隐写术网络ibsn">4.联合图像比特隐写术网络IBSN</h1>
+<h2 id="网络架构">4.1.网络架构</h2>
+<figure>
+<img src="../postimages/EditGuard/image-20250113232835654.png"
+alt="image-20250113232835654" />
+<figcaption aria-hidden="true">image-20250113232835654</figcaption>
+</figure>
+<p>​  如图4所示，所提出的IBSN（Image-bit Steganography
+Network）包括图像隐写模块（IHM，image hiding
+module）、比特加密模块（BEM，bit encryption
+module）、比特恢复模块（BRM，bit recovery
+module）和图像显示模块（IRM，image revealing
+module）。首先，图像隐写模块IHM的目标是将一个定位水印<span
+class="math inline">\({\bf W}_{l o c}\in\mathbb{R}^{H\times
+W\times3}\)</span>隐藏到原始图像<span class="math inline">\({\bf
+I}_{ori}\in\mathbb{R}^{H\times
+W\times3}\)</span>中，从而得到一个中间输出<span
+class="math inline">\({\bf I}_{med}\in\mathbb{R}^{H\times
+W\times3}\)</span>。随后，将<span class="math inline">\({\bf
+I}_{med}\)</span>输入到比特加密模块BEM进行特征细化，同时将版权水印<span
+class="math inline">\(\mathbf
+w_{cop}\in\{0,1\}^{L}\)</span>输入到比特加密模块BEM，形成最终的容器图像<span
+class="math inline">\({\bf I}_{con}\in\mathbb{R}^{H\times
+W\times3}\)</span>。在网络传输后，比特恢复模块BRM将从接收到的容器图像<span
+class="math inline">\({\bf I}_{rec}\)</span>中如实地重建版权水印<span
+class="math inline">\(\hat{\bf w}_{c o p}\)</span>。同时，<span
+class="math inline">\({\bf
+I}_{rec}\)</span>通过基于提示的后验估计对缺失的信息<span
+class="math inline">\(\hat
+Z\)</span>进行预测，并将其作为可逆块的初始化，产生<span
+class="math inline">\({\bf \hat I}_{ori}\)</span>和半脆性水印<span
+class="math inline">\(\hat{\bf W}_{l o c}\)</span>。</p>
+<h2
+id="图像隐写模块ihm和图像显示模块irm中的可逆块">4.2.图像隐写模块IHM和图像显示模块IRM中的可逆块</h2>
+<p>​  考虑到基于流的模型具有精确恢复多媒体信息的固有能力，我们利用堆叠的可逆块来构造图像隐藏和揭示模块。原始图像<span
+class="math inline">\({\bf I}_{o r i}\in\mathbb{R}^{H\times
+W\times3}\)</span>和定位水印<span class="math inline">\({\bf W}_{l o
+c}\in\mathbb{R}^{H\times
+W\times3}\)</span>将经过离散小波变换（DWT），得到频率解耦的图像特征。然后，我们使用增强的加性仿射耦合层来投影原始图像及其相应的定位水印分支。这些转换参数将相互生成。增强的仿射耦合层由五层密集卷积块[46]和轻量级特征交互模块（LFIM）[4]组成。LFIM可以增强转换的非线性，并以低计算成本捕获长期依赖性。更多细节见S.M.。最后，通过反DWT将显示的特征转换到图像域。</p>
+<h2 id="基于提示的后验估计">4.3.基于提示的后验估计</h2>
+<p>​  为了提高图像隐藏和揭示模块的保真度和鲁棒性，我们引入了一个基于退化提示的后验估计模块（PPEM，
+posteriori estimation module）。由于编码网络倾向于将<span
+class="math inline">\([{\bf I}_{o r i};{\bf W}_{l o
+c}]\in\mathbb{R}^{H\times W\times3}\)</span>压缩到容器图像<span
+class="math inline">\({\bf I}_{c o n}\in\mathbb{R}^{H\times
+W\times3}\)</span>中，以前的方法[42,64]通常在解码端使用随机高斯初始化或全零映射来补偿丢失的高频信道。然而，我们的观察表明，被丢弃的信息隐藏在容器图像的边缘和纹理中。因此，部署专用网络被证明是用来预测消失的定位水印信息的后验均值<span
+class="math inline">\(\mathbf{\hat Z}=\mathbb{E}[Z|{\bf
+I}_{rec}]\)</span>的一种更有效的策略。</p>
+<figure>
+<img src="../postimages/EditGuard/image-20250114105632150.png"
+alt="image-20250114105632150" />
+<figcaption aria-hidden="true">image-20250114105632150</figcaption>
+</figure>
+<p>​  具体来说，如图5所示，我们堆叠M个残差<span
+class="math inline">\(\mathrm{Res}(\cdot)\)</span>[19]和M个通道级变压器块<span
+class="math inline">\(\mathrm{Trans}(\cdot)\)</span>[70]，以提取局部和非局部特征<span
+class="math inline">\(\mathbf{F}_c\)</span>。 <span
+class="math display">\[\mathbf{F}_{c}=\mathrm{Trans}(\mathrm{Res}(\mathrm{D}W\mathrm{T}(\mathbf{I}_{r
+e c})))+\mathrm{Res}(\mathrm{D}W\mathrm{T}(\mathbf{I}_{r e
+c})).\]</span>
+​  考虑到容器图像在网络传输过程中容易发生各种退化，我们将N个可学习的嵌入张量预先定义为退化提示<span
+class="math inline">\(\mathbf{P} =
+[\mathbf{P}_{1},\mathbf{P}_{2},\cdot\cdot\cdot,\mathbf{P}_{N}]\)</span>，其中N表示退化类型的数量，设置为3。这些学习到的提示<span
+class="math inline">\(\mathbf{P}\)</span>可以自适应地学习不同范围的退化表示，并与从<span
+class="math inline">\({\bf I}_{r e
+c}\)</span>中提取的内在特征集成，使所提出的IBSN能够使用一组参数处理多种类型的退化。为了更好地促进输入特征<span
+class="math inline">\(\mathbf{F}_{c}\)</span>和退化提示<span
+class="math inline">\(\mathbf{P}\)</span>之间的交互作用，将特征<span
+class="math inline">\(\mathbf{F}_{c}\)</span>传递到全局平均池化（GAP）层、1×1卷积和softmax算子，以产生一组动态权值系数。每个退化提示符<span
+class="math inline">\(\mathbf{P}_{i}\)</span>使用这些动态系数<span
+class="math inline">\(\mathbf{W}_{p\circledast
+i}\)</span>进行组合，然后通过上采样算子<span
+class="math inline">\(\uparrow\)</span>和3×3卷积进行积分，以获得增强的表示<span
+class="math inline">\(\mathbf{P}_{c}\)</span>。 <span
+class="math display">\[\mathbf{P}_{c}=\mathrm{Conv_{3x3}}\left(\left(\sum_{i-1}^{N}\mathbf{w}_{p\circledast  i}\mathrm{P}_{i}\right)_{\uparrow}\right),\]</span>
+​  其中<span class="math inline">\({\bf w}_{p}=\mathrm{Softmax}\left({\bf
+C o n v}_{1\times1}({\bf C}{\bf A P}\left({\bf
+F}_{c}{\bf\rangle}\right)\right)\)</span>。<br/>​  最后，我们利用3×3卷积来融合基于提取的特征<span
+class="math inline">\(\mathbf{F}_{c}\)</span>的学习退化表示，以丰富退化特定的上下文，获得<span
+class="math inline">\(\mathbf{\hat Z}\)</span>。此过程可表述为： <span
+class="math display">\[\hat{\mathbf{Z}}=\operatorname{Conv}_{3\times
+3}\left([\mathbf{P}_{c};\mathbf{F}_{c}]\right)\in\mathbb{R}^{\frac{H}{2}\times\frac{W}{2}\times12}.\]</span></p>
+<h2 id="比特加密和恢复模块">4.4.比特加密和恢复模块</h2>
+<figure>
+<img src="../postimages/EditGuard/image-20250113232835654.png"
+alt="image-20250113232835654" />
+<figcaption aria-hidden="true">image-20250113232835654</figcaption>
+</figure>
+<p>​  如图4所示，为了将版权水印的<span class="math inline">\({\bf
+w}_{cop}\)</span>编码到<span class="math inline">\({\bf
+I}_{med}\)</span>中，我们首先通过堆叠的MLPs扩<span
+class="math inline">\({\bf
+w}_{cop}\in\{0,1\}^L\)</span>，并将其重塑为几个L×L消息特征图。同时，将<span
+class="math inline">\({\bf
+I}_{med}\)</span>馈入u型特征增强网络，提取每个下采样和上采样层的特征。最后，通过融合机制[21,62]，将消息特征进行升级，并与多层次图像特征进行集成，实现双定时信息的调制。在解码端，<span
+class="math inline">\({\bf
+I}_{rec}\)</span>被馈入一个u形的子网络，并被降采样到L×L的大小。然后通过MLP提取恢复的版权水印<span
+class="math inline">\({\bf \hat w}_{cop}\)</span>。更多细节见S.M.。</p>
+<h2 id="通过ibsn构建editguard">4.5.通过IBSN构建EditGuard</h2>
+<p>​  为了稳定所提出的IBSN的优化，我们提出了一种双级优化策略。给定任意原始图像图像和水印<span
+class="math inline">\({\bf w}_{cop}\)</span>，首先通过<span
+class="math inline">\(\ell_2\)</span>损失训练比特加密和恢复模块。 <span
+class="math display">\[\ell_{c o p}=\|\mathbf{I}_{c o n}-\mathbf{I}_{m e
+d}\|_{2}^{2}+\lambda\,\|\hat{\mathbf{w}}_{c o p}-\mathbf{w}_{c o
+p}\|_{2}^{2}\]</span> ​  其中，<span
+class="math inline">\(\lambda\)</span>被设置为10。此外，我们冻结了比特加密模块BEM和比特恢复模块BRM的权值，并联合训练了图像隐写模块IHM和图像显示模块IRM。给定一个随机的原始图像<span
+class="math inline">\({\bf I}_{ori}\)</span>、定位水印<span
+class="math inline">\({\bf W}_{loc}\)</span>和版权水印<span
+class="math inline">\({\bf w}_{cop}\)</span>，其损失函数为： <span
+class="math display">\[\ell_{l o c}=\|{\bf  I}_{o r i}-\bf I_{o r
+i}\|_{1}+\alpha\|\bf I_{c o n}-I_{o r i}\|_{2}^{2}+\beta\|\bf\hat{W}_{l
+o c}-W_{l o c}\|_{1}\]</span> ​  其中，<span
+class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\beta\)</span>分别设置为100和1。在训练期间，我们只引入降级，没有暴露到任何篡改。在获得预先训练的IBSN后，我们可以通过IBSN的组件构建所提出的EditGuard。如图4所示，EditGuard的双水印编码器由图像隐写模块IHM和图像显示模块BEM组成，分别对应于图3中的定位水印和版权水印。版权提取器严格对应于比特恢复模块BRM。篡改定位器包括图像显示模块IRM和掩模提取器（ME）。注意，我们需要预先定义一个定位水印<span
+class="math inline">\({\bf
+W}_{loc}\)</span>，它在编码端和解码端之间共享。<span
+class="math inline">\({\bf
+W}_{loc}\)</span>的选择对于我们的方法来说是非常普遍的。它可以是任何自然图像，甚至是纯色图像。最后，通过比较预定义的水印<span
+class="math inline">\({\bf W}_{loc}\)</span>与解码的<span
+class="math inline">\(\hat{\bf
+W}_{loc}\)</span>，我们可以得到一个二进制掩码<span
+class="math inline">\({\bf M}\in\mathbb{R}^{H\times W}\)</span>： <span
+class="math display">\[\hat{\mathrm{M}}[i,j]=\theta_{\tau}(\mathrm{max}(|\hat{\mathrm{W}}_{l
+o c}[i,j,:]-\mathrm{W}_{l o c}[i,j,:]))\]</span></p>
+<h1 id="实验">5.实验</h1>
+<h2 id="实施细节">5.1.实施细节</h2>
+<p>​  我们通过COCO
+[38]的训练集来训练我们的EditGuard，而没有任何被篡改的数据。因此，对于篡改定位，我们的方法实际上是零次学习的。Adam
+[30]用于用<span class="math inline">\(\beta_1=0.9\)</span>和<span
+class="math inline">\(\beta_2=0.5\)</span>训练250K次迭代。学习速率初始化为1×10−4，每30K迭代减少一半，批处理大小设置为4。我们在原始图像中嵌入一个64位的版权水印和一个简单的定位水印，如纯蓝色图像（[R，G，B]
+=
+[0,0,255]）。随后，跟随[8,17,39]，使用F1-score、AUC、IoU和比特精度来评估定位和版权保护性能。由于之前的任何方法都不能同时实现这种双重取证，所以我们对篡改定位和图像水印方法进行了单独的比较。</p>
+<h2 id="与定位方法的比较">5.2.与定位方法的比较</h2>
+<p>​  为了与篡改定位方法进行公平的比较，我们对四个经典基准[9,16,20,58]进行了广泛的评估，如表一所示。</p>
+<figure>
+<img src="../postimages/EditGuard/image-20250115155756601.png"
+alt="image-20250115155756601" />
+<figcaption aria-hidden="true">image-20250115155756601</figcaption>
+</figure>
+<p>​  由于EditGuard是一种主动的方法，我们首先将水印嵌入到真实的图像中，然后将被篡改的区域粘贴到容器图像中。值得注意的是，即使是现有方法专门从事的篡改类型，EditGuard的定位精度在四个数据集上始终优于SOTA方法[17]，F1分数分别提升为0.102、0.116、0.441和0.065，这验证我们主动定位机制的优越性。</p>
+<figure>
+<img src="../postimages/EditGuard/image-20250115160442433.png"
+alt="image-20250115160442433" />
+<figcaption aria-hidden="true">image-20250115160442433</figcaption>
+</figure>
+<p>​  如图6所示，我们的EditGuard可以精确定位像素级的篡改区域，但其他方法只能产生一个粗略的轮廓或仅在某些情况下有效。同时，我们的比特精度保持在99.8%以上，而其他所有方法都无法实现有效的版权保护。</p>
+<h2 id="与水印方法的比较">5.3.与水印方法的比较</h2>
+<h2 id="扩展到基于aigc的编辑方法">5.4.扩展到基于AIGC的编辑方法</h2>
+<h2 id="鲁棒性分析">5.5.鲁棒性分析</h2>
+<h2 id="消融研究">5.6.消融研究</h2>
+<h1 id="结论">6.结论</h1>
+<p>​  我们首次尝试设计一种深多功能水印机构EditGuard。它通过嵌入难以察觉的定位和版权水印，解码准确的版权信息和篡改区域，提高图像的可信度，使其成为艺术创作和法律法医分析的可靠工具。在未来，我们将重点提高EditGuard的鲁棒性，不仅努力提供像素级的定位结果，而且努力提供语义级的结果。此外，我们计划进一步扩展EditGuard到更广泛的模式和应用程序，包括视频、音频和3D场景。我们在信息真实性方面的努力不仅服务于AIGC行业，也服务于我们对数字世界的信任，确保每个像素都能说出真相，每个人的权利都得到保障。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/EditGuard/">https://zhaozw-szu.github.io/EditGuard/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/EditGuard/image-20250113232835654.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/UGEE-Net/" title="UGEE-Net"><img class="cover" src="/postimages/DH-GAN/image-20240824153543322.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UGEE-Net</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AF%A1%E6%94%B9%E5%AE%9A%E4%BD%8D"><span class="toc-text">2.1.篡改定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E6%B0%B4%E5%8D%B0"><span class="toc-text">2.2.图像水印</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#editguard%E6%80%BB%E4%BD%93%E6%A1%86%E6%9E%B6"><span class="toc-text">3.EditGuard总体框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-text">3.1.动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%8F%96%E8%AF%81%E8%BF%87%E7%A8%8B"><span class="toc-text">3.2.框架设计和取证过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E5%8F%8C%E9%87%8D%E5%8F%96%E8%AF%81%E8%BD%AC%E5%8C%96%E4%B8%BA%E9%9A%90%E5%86%99%E6%9C%AF"><span class="toc-text">3.3.将双重取证转化为隐写术</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%81%94%E5%90%88%E5%9B%BE%E5%83%8F%E6%AF%94%E7%89%B9%E9%9A%90%E5%86%99%E6%9C%AF%E7%BD%91%E7%BB%9Cibsn"><span class="toc-text">4.联合图像比特隐写术网络IBSN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">4.1.网络架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E9%9A%90%E5%86%99%E6%A8%A1%E5%9D%97ihm%E5%92%8C%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%9D%97irm%E4%B8%AD%E7%9A%84%E5%8F%AF%E9%80%86%E5%9D%97"><span class="toc-text">4.2.图像隐写模块IHM和图像显示模块IRM中的可逆块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%8F%90%E7%A4%BA%E7%9A%84%E5%90%8E%E9%AA%8C%E4%BC%B0%E8%AE%A1"><span class="toc-text">4.3.基于提示的后验估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E7%89%B9%E5%8A%A0%E5%AF%86%E5%92%8C%E6%81%A2%E5%A4%8D%E6%A8%A1%E5%9D%97"><span class="toc-text">4.4.比特加密和恢复模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87ibsn%E6%9E%84%E5%BB%BAeditguard"><span class="toc-text">4.5.通过IBSN构建EditGuard</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">5.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD%E7%BB%86%E8%8A%82"><span class="toc-text">5.1.实施细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">5.2.与定位方法的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E6%B0%B4%E5%8D%B0%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">5.3.与水印方法的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%88%B0%E5%9F%BA%E4%BA%8Eaigc%E7%9A%84%E7%BC%96%E8%BE%91%E6%96%B9%E6%B3%95"><span class="toc-text">5.4.扩展到基于AIGC的编辑方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%B2%81%E6%A3%92%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-text">5.5.鲁棒性分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">5.6.消融研究</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">6.结论</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/EditGuard/" title="EditGuard"><img src="/postimages/EditGuard/image-20250113232835654.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="EditGuard"/></a><div class="content"><a class="title" href="/EditGuard/" title="EditGuard">EditGuard</a><time datetime="2025-01-13T14:40:47.000Z" title="发表于 2025-01-13 22:40:47">2025-01-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/UGEE-Net/" title="UGEE-Net"><img src="/postimages/DH-GAN/image-20240824153543322.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UGEE-Net"/></a><div class="content"><a class="title" href="/UGEE-Net/" title="UGEE-Net">UGEE-Net</a><time datetime="2025-01-12T14:18:56.000Z" title="发表于 2025-01-12 22:18:56">2025-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/End-to-end-Differentiable-Clustering-with-Associative-Memories/" title="End-to-end Differentiable Clustering with Associative Memories"><img src="/postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004113308304.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="End-to-end Differentiable Clustering with Associative Memories"/></a><div class="content"><a class="title" href="/End-to-end-Differentiable-Clustering-with-Associative-Memories/" title="End-to-end Differentiable Clustering with Associative Memories">End-to-end Differentiable Clustering with Associative Memories</a><time datetime="2025-01-10T02:52:27.000Z" title="发表于 2025-01-10 10:52:27">2025-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/How-to-Use-K-means-for-Big-Data-Clustering/" title="How_to_Use_K-means_for_Big_Data_Clustering"><img src="/postimages/How-to-Use-K-means-for-Big-Data-Clustering/image-20250109150522036.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="How_to_Use_K-means_for_Big_Data_Clustering"/></a><div class="content"><a class="title" href="/How-to-Use-K-means-for-Big-Data-Clustering/" title="How_to_Use_K-means_for_Big_Data_Clustering">How_to_Use_K-means_for_Big_Data_Clustering</a><time datetime="2025-01-08T14:00:02.000Z" title="发表于 2025-01-08 22:00:02">2025-01-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/PiCIE/" title="PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering"><img src="/postimages/PiCIE/image-20250108110707600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering"/></a><div class="content"><a class="title" href="/PiCIE/" title="PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering">PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering</a><time datetime="2025-01-08T02:41:01.000Z" title="发表于 2025-01-08 10:41:01">2025-01-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
