@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>DiffForensics | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DiffForensics: Leveraging Diffusion Prior to Image Forgery Detection and Localization Zeqin Yu \(^{∗,1}\) Jiangqun Ni\(^{\dagger,2,3}\) Yuzhen Lin\(^{∗,4}\) Haoyi Deng\(^4\) Bin Li\(^{\dagger,4}\)1中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DiffForensics">
+<meta property="og:url" content="https://zhaozw-szu.github.io/DiffForensics/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="DiffForensics: Leveraging Diffusion Prior to Image Forgery Detection and Localization Zeqin Yu \(^{∗,1}\) Jiangqun Ni\(^{\dagger,2,3}\) Yuzhen Lin\(^{∗,4}\) Haoyi Deng\(^4\) Bin Li\(^{\dagger,4}\)1中">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
+<meta property="article:published_time" content="2025-01-15T11:56:36.000Z">
+<meta property="article:modified_time" content="2025-01-16T02:28:02.397Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/DiffForensics/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DiffForensics',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-16 10:28:02'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">89</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">DiffForensics</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-15T11:56:36.000Z" title="发表于 2025-01-15 19:56:36">2025-01-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-16T02:28:02.397Z" title="更新于 2025-01-16 10:28:02">2025-01-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="DiffForensics"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>DiffForensics: Leveraging Diffusion Prior to Image Forgery Detection
+and Localization</p>
+<p>Zeqin Yu <span class="math inline">\(^{∗,1}\)</span> Jiangqun Ni<span
+class="math inline">\(^{\dagger,2,3}\)</span> Yuzhen Lin<span
+class="math inline">\(^{∗,4}\)</span> Haoyi Deng<span
+class="math inline">\(^4\)</span> Bin Li<span
+class="math inline">\(^{\dagger,4}\)</span><br/>1中山大学计算机科学与工程学院<br/>2中山大学网络科技学院<br/>3彭成实验室新网络系<br/>4广东深圳大学智能信息处理重点实验室</p>
+<h1 id="摘要">摘要</h1>
+<p>​  由于篡改图像可能会导致对视觉内容的误解，解决图像伪造检测和定位（IFDL）问题已经引起了公众的严重关注。在这项工作中，我们提出了一个简单的假设，即有效的法医方法应该关注图像的介观性质。在此基础上，提出了一种新的基于IFDL任务扩散模型的两阶段自监督框架，即扩散取证。扩散取证从自监督去噪扩散范式开始，通过冻结预先训练的编码器（例如ADE-20K）来继承一般图像特征的宏观特征，同时鼓励解码器学习图像的微观特征表示，强制整个模型聚焦介观表示。将预训练的模型作为先验，利用定制的边缘提示增强模块（ECEM，Edge
+Cue Enhancement
+Module）对IFDL任务进行进一步微调，该模块逐步突出被操纵区域内的边界特征，从而以更好的精度细化篡改区域定位。在几个具有挑战性的数据集上的大量实验表明，与其他先进的方法相比，提出的方法的有效性。所提出的差异取证可以显著提高模型的精确篡改检测和精确篡改定位的能力，同时提高其泛化和鲁棒性。</p>
+<h1 id="介绍">1.介绍</h1>
+<p>​  随着GAN
+[24,25]和扩散模型[2,36]等图像编辑工具的快速发展，处理图像已经变得越来越轻松。用户可以很容易地伪造那些不存在或不可能实现的动态图像。在政治、经济和个人隐私方面，这些伪造的图片所带来的风险是显而易见的。因此，识别图像伪造的对策已成为社会保障领域的一个紧迫课题。为了推动图像取证的前沿，在本研究中，我们研究了图像伪造检测和定位（IFDL）任务，特别是改变图像语义的部分修改。一般来说，IFDL任务在图像级（检测）和像素级（定位）上都涉及二进制分类（真实和伪造）。到目前为止，最先进的[8,16,17,22,30,31,42,45,46]通常建立在基于深度学习的语义分割元框架上，由编码器和解码器两个组件组成。编码器提取图像特征，然后由解码器进行处理，以预测分类结果和伪造掩码。尽管在该领域取得了相当大的进展，但目前的SOTA检测器的性能还不足以进行野外部署，这主要是由于它们在泛化、鲁棒性和检测性能方面的不足。<br/>​  受MesoNet
+[1]的启发，我们提出通过关注图像的介观特性来解决IFDL问题。事实上，基于伪影（例如，图像噪声）的微观分析不能应用于社交媒体洗钱的背景下，因为后处理将不可避免地削弱法医痕迹。同样地，在更高的语义层面（即宏观）上，人眼很难区分伪造的图像。这就是为什么我们建议采用一种中间的方法。<br/>​  为了实现这一目标，我们提出了一种新的两阶段自监督的IFDL任务的扩散取证方法。训练过程从自监督去噪扩散预训练阶段开始，然后是IFDL的多任务微调阶段。在第一阶段，我们冻结了经过分割任务（如ADE20K）[44]预训练的编码器，以保留提取宏观语义特征的能力，同时鼓励解码器使用自监督去噪扩散范式学习与伪造图像相关的微观特征。通过对上述分别关注宏观和微观特征的编码器和编码器的解码器进行集成，得到了能够学习介观特征表示的模型。在第二阶段，我们然后对预先训练好的模型（包括编码器和解码器）进行微调，并在第二阶段对伪造图像进行监督。我们提出了一个边缘提示增强模块（ECEM），并将其集成到多个尺度的解码器中，旨在突出从粗到细的篡改区域的痕迹。大量的实验表明，我们的方法在几个公共数据集上的泛化和鲁棒性性能方面优于几个最先进的竞争对手。<br/>​  本文的主要贡献总结如下：</p>
+<ul>
+<li>我们提出了一个结合宏观特征和微观特征的IFDL任务的两阶段学习框架，该框架包括自监督去噪扩散的训练前阶段和多任务微调阶段。据我们所知，这是第一个探索IFDL任务的去噪扩散范式的工作。</li>
+<li>我们提出了一种新的边缘提示增强模块，该模块集成在多个尺度的解码器中，以增强被篡改的边缘痕迹从粗到细。</li>
+<li>大量的实验结果表明，我们提出的方法在几个最近出现的数据集上，包括人工操作的图像和人工智能生成的图像上，取得了更好的性能。</li>
+</ul>
+<h1 id="相关工作">2.相关工作</h1>
+<figure>
+<img src="../postimages/DiffForensics/image-20250115210800672.png"
+alt="image-20250115210800672" />
+<figcaption aria-hidden="true">image-20250115210800672</figcaption>
+</figure>
+<p>​  从表1中可以看出，在随机初始化解码器权值的同时，在编码器中保留宏特征或微特征权值的训练策略，但是不能在IFDL任务中充分利用这两种特征。<br/>​  在本文中，我们提出了一种新的编解码器模型的训练方案。对于编码器，我们利用语义分割任务中预先训练的权值，并冻结它们来提取全面的宏观特征。对于解码器，我们引入了一个基于DDPM的范式来捕获复杂的微观特征。结合上述过程，使模型更加关注图像的介观特性。这样的集中有利于后续的微调阶段，使模型能够更精确地用于IFDL任务。</p>
+<h1 id="提出的方法">3.提出的方法</h1>
+<p>​  在本节中，我们首先介绍了DiffForensics的概述，如图2所示。</p>
+<figure>
+<img src="../postimages/DiffForensics/image-20250115211126117.png"
+alt="image-20250115211126117" />
+<figcaption aria-hidden="true">image-20250115211126117</figcaption>
+</figure>
+<p>​  在架构方面，我们的方法包括一个编码器<span
+class="math inline">\(E_{\phi}\)</span>和一个解码器<span
+class="math inline">\(D_{\theta}\)</span>，它们分别由两组权重<span
+class="math inline">\(\phi\)</span>和<span
+class="math inline">\(\theta\)</span>参数化。我们提出的框架的训练过程包括两个阶段：自监督去噪扩散预训练和多任务微调。后续的小节将提供每个阶段的细节。</p>
+<h2 id="自监督去噪扩散预训练">3.1.自监督去噪扩散预训练</h2>
+<p>​  <strong>流程线。</strong><br/>​  在这一阶段，我们的目标是使模型聚焦于图像的介观性质，这可以进一步有效地微调为IFDL任务。<br/>​  对于编码器，我们利用来自SegFormer[44]的transformer编码器块，并应用来自语义分割任务（如ADE20K）的预先训练的权重<span
+class="math inline">\(\phi^*\)</span>。我们冻结了权值，以保留提取宏观语义特征的能力。对于解码器，我们使用了Unet
+[37]中常用的解码器块。考虑到DDPM
+[19]由两个相反的过程，添加噪声和反向去噪，它可以有效地学习图像的微观噪声表示。在此基础上，我们提出了一种基于去噪扩散的范式作为自我监督的代理任务来优化<span
+class="math inline">\(\theta\)</span>，而不利用伪造监督。整体训练过程如图2左侧所示，详见算法1。<br/>​  具体来说，给定一个图像<span
+class="math inline">\(x_{0}\in\mathbb{R}^{3\times h\times
+w}\)</span>，以及时间步长t，我们通过扩散过程<span
+class="math inline">\(q(x_{t}|x_{t-1})\)</span>添加噪声<span
+class="math inline">\(\epsilon\)</span>来破坏<span
+class="math inline">\(x_0\)</span>，并执行逆过程<span
+class="math inline">\(P(\phi^{*},\theta)(x_{t-1}|x_{t})\)</span>，将噪声估计为<span
+class="math inline">\(\epsilon_{(\phi^{*},\theta)}(x_{t}|x_{0})=D_{\theta}(E_{\phi}(x_{0}),t)\)</span>，然后进行去噪。通过这种方式，我们训练整个自动编码器模型<span
+class="math inline">\(E_{\phi}^{\star}\circ
+L_{\theta}\)</span>（即冻结编码器和可训练解码器），使重构误差目标函数最小化如下：
+<span class="math display">\[\ell_{s}=\mathbb{E}_{t\in[1,T],x_{0}\sim
+q(x_{0}),\epsilon\sim
+S(\nu,N,\gamma)}[||\epsilon-\epsilon(\phi^{*},\theta)]|^{2}]\]</span>
+​  通过结合上述宏观和微观表示，我们引导整个自动编码器<span
+class="math inline">\(E_{\phi}^{\star}\circ
+L_{\theta}\)</span>集中研究图像的介观特征。</p>
+<p>​  <strong>单形噪声</strong>。<br/>​  与普通的DDPM
+[19]不同，我们通过在扩散过程中加入单形噪声[43]而不是高斯噪声来破坏<span
+class="math inline">\(x_0\)</span>。</p>
+<figure>
+<img src="../postimages/DiffForensics/image-20250115215528669.png"
+alt="image-20250115215528669" />
+<figcaption aria-hidden="true">image-20250115215528669</figcaption>
+</figure>
+<p>​  如图3所示，这种噪声对标准高斯扰动的潜在好处是直观的：图像的破坏更有结构化（例如，被篡改区域的边缘），去噪过程将能够“修复”它们，从而促进对这种结构化异常的学习。对于单形噪声<span
+class="math inline">\(\epsilon\sim
+S(\nu,N,\gamma)\)</span>的超参数，我们设置了起始频率<span
+class="math inline">\(\nu=2^{-6}\)</span>，跨度N = 6和衰减γ = 0.8。</p>
+<h2 id="多任务微调">3.2.多任务微调</h2>
+<p>​  <strong>流程线。</strong><br/>​  经过预训练后，我们在IFDL监督下（即伪造标签和掩码）对预训练的自动编码器（编码器和解码器）进行微调。根据我们的消融研究，多任务学习可以帮助学习更好的代表性特征和良好的性能。因此，我们在解码器的后一个部分中添加多任务头（即检测和定位头），如图2右侧所示。</p>
+<p>​  <strong>边缘提示增强模块ECEM。</strong><br/>​  为了进一步挖掘被篡改区域的细微痕迹，我们引入了一个边缘提示增强模块，以增强在水平和垂直方向上的三个尺度解码器块的输出特征上的边缘线索，如图4所示。</p>
+<figure>
+<img src="../postimages/DiffForensics/image-20250115215807419.png"
+alt="image-20250115215807419" />
+<figcaption aria-hidden="true">image-20250115215807419</figcaption>
+</figure>
+<p>​  具体来说，设<span
+class="math inline">\({\{dk\}}^3_{k=1}\)</span>是每个解码器块的输出特征映射。注意，<span
+class="math inline">\(d_k\in{\bf\mathbb{R}}^{b\times c\times h\times
+w}\)</span>是一个四维特征向量，我们只在<span
+class="math inline">\(\mathbf{d}_{k}\)</span>的最后二维（即高度和宽度）中进行以下过程。首先，我们计算<span
+class="math inline">\(\mathbf{d}_{k}\)</span>中相邻行之间的差值，然后取绝对值来保持一致的梯度方向。这个绝对差异被重新分配到当前行，增强了行方向上的边缘提示特征映射。随后，我们将相同的过程应用于增强特征的列，其中计算相邻列之间的差值，并取其绝对值，以确保梯度方向的一致性。这样，我们就得到了<span
+class="math inline">\(\mathbf{d}_{k}\)</span>的边缘增强特征，记为<span
+class="math inline">\(\mathbf{g}_{k}\)</span>。上述流程可表述为： <span
+class="math display">\[\mathbf{g}_{k}=|\mathbf{V}*|\mathbf{H}*\mathbf{d}_{k}||\]</span>
+​  其中，∗为卷积运算，|·|为abs运算。H = [1，−1]和V =
+[1，−1]⊤分别是水平方向和垂直方向上的边缘增强算符。<br/>​  之后，我们计算区别<span
+class="math inline">\(\mathbf{d}_{k}\)</span>和<span
+class="math inline">\(\mathbf{g}_{k}\)</span>和采用3×3卷积减少维度，最后使用sigmoid函数规范化线索特征映射0-1，最后样本相同大小的输入图像获得我们的边缘预测概率地图<span
+class="math inline">\(f_k^e\)</span>，可以标记为： <span
+class="math display">\[f_{k}^{e}=U\left(\sigma\left(F_{c o v}\left({\bf
+d}_{k}-{\bf g}_{k}\right)\right)\right).\]</span>
+​  其中Fcov是一个3×3卷积运算，σ是sigmoid归一化，U是一个上采样运算，得到的每个解码器的边缘预测概率映射<span
+class="math inline">\(f_k^e\)</span>和边缘标签<span
+class="math inline">\(y^e\)</span>用于损失迭代。我们在<span
+class="math inline">\(\mathbf{d}_{k}\)</span>的所有三个尺度上都使用了上述的边缘提示增强模块ECEM。</p>
+<p>​  <strong>损失函数</strong><br/>​  该方法有三种监督类型，即局部分割监督<span
+class="math inline">\(\mathcal{L}_{seg}\)</span>、检测分类监督<span
+class="math inline">\(\mathcal{L}_{clf}\)</span>和边缘线索监督<span
+class="math inline">\(\mathcal{L}_{edg}\)</span>。<br/>​  对于像素级定位分割监督，我们使用加权<span
+class="math inline">\(\ell_{w b c e}\)</span>和<span
+class="math inline">\(\ell_{dice}\)</span>[32]的组合。 <span
+class="math display">\[\mathcal{L}_{s e
+g}\left(x\right)=\lambda_{0}^{s}\ell_{w b c
+e}+\left(1-\lambda_{0}^{s}\right)\ell_{d i c e}.\]</span> ​  其中，<span
+class="math inline">\(\lambda_{0}^{s}\)</span>为分割平衡权值，加权分割<span
+class="math inline">\(\ell_{w b c e}\)</span>和<span
+class="math inline">\(\ell_{dice}\)</span>分别为： <span
+class="math display">\[\ell_{wbce} =&amp;
+-\frac{1}{N}\sum_{i,j}\left(\lambda_{1}^{s}\cdot y_{i,j}^{s}\cdot\log
+f^{s}\left(x_{i,j}\right)\right. \\ &amp;
++\lambda_{2}^{s}\cdot(1-y_{i,j}^{s})\cdot\log{(1-f^{s}(x_{i,j}))}).\]</span></p>
+<p><span class="math display">\[\ell_{dice}
+=1-\frac{2\sum_{i,j}f^s(x_{i,j})\cdot
+y_{i,j}^s}{\sum_{i,j}(f^s(x_{i,j}))^2+\sum_{i,j}(y_{i,j}^s)^2}.\]</span></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/DiffForensics/">https://zhaozw-szu.github.io/DiffForensics/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/SUMI-IFL/" title="SUMI-IFL"><img class="cover" src="/postimages/SUMI-IFL/image-20250115165309912.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SUMI-IFL</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">89</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">3.提出的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%9B%91%E7%9D%A3%E5%8E%BB%E5%99%AA%E6%89%A9%E6%95%A3%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">3.1.自监督去噪扩散预训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%BE%AE%E8%B0%83"><span class="toc-text">3.2.多任务微调</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -5890,9 +5890,10 @@ h1.page-title + .tag-cloud-list {
 }
 #page-header #post-info {
   position: absolute;
-  bottom: 30px;
+  bottom: 0px;
   padding: 0 8%;
   width: 100%;
+  background-color: rgba(120,129,138,0.9);
 }
 @media screen and (max-width: 768px) {
   #page-header #post-info {
