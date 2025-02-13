@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>DDPM</title>
+      <link href="/DDPM/"/>
+      <url>/DDPM/</url>
+      
+        <content type="html"><![CDATA[<p>Denoising Diffusion Probabilistic Models</p><p>Jonathan Ho<br/>UC Berkeley<br/>jonathanho@berkeley.edu</p><p>Ajay Jain<br/>UC Berkeley<br/>ajayj@berkeley.edu</p><p>Pieter Abbeel<br/>UC Berkeley<br/>pabbeel@cs.berkeley.edu</p><h1 id="摘要">摘要</h1><p>​  我们使用扩散概率模型提出了高质量的图像合成结果，这是一类潜在变量模型的考虑来自非平衡热力学。我们最好的结果是通过训练加权变分界设计根据新颖的连接扩散概率模型和去噪分数匹配朗之万动力学，和我们的模型自然承认一个渐进的有损减压方案，可以解释为自回归解码的泛化。在无条件的CIFAR10数据集上，我们获得了9.46分和最先进的FID得分为3.17分。在256x256LSUN上，我们获得了类似于进展性gan的样品质量。我们的实现可以在https://github.com/hojonathanho/diffusion上找到。</p><figure><img src="../postimages/DDPM/denoising-diffusion.png" alt="img" /><figcaption aria-hidden="true">img</figcaption></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>实验记录</title>
       <link href="/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/"/>
       <url>/%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</url>
@@ -26,7 +39,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -36,6 +49,10 @@
             <tag> UNet </tag>
             
             <tag> 两阶段 </tag>
+            
+            <tag> 扩散模型去噪预训练 </tag>
+            
+            <tag> 边缘增强 </tag>
             
         </tags>
       
@@ -53,7 +70,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -72,7 +89,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -91,12 +108,18 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
-          <category> 图像分割检测 </category>
+          <category> 图像拼接检测与定位 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 边缘增强 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -122,7 +145,7 @@
     
     
     <entry>
-      <title>How_to_Use_K-means_for_Big_Data_Clustering</title>
+      <title>How to Use K-means for Big Data Clustering?</title>
       <link href="/How-to-Use-K-means-for-Big-Data-Clustering/"/>
       <url>/How-to-Use-K-means-for-Big-Data-Clustering/</url>
       
@@ -286,7 +309,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -388,7 +411,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -407,7 +430,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -452,7 +475,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -634,16 +657,10 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 论文 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -672,7 +689,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -715,12 +732,6 @@
       </categories>
       
       
-        <tags>
-            
-            <tag> 论文 </tag>
-            
-        </tags>
-      
     </entry>
     
     
@@ -748,16 +759,10 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 论文 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -773,16 +778,10 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 论文 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -798,16 +797,10 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 论文 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -925,14 +918,20 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 论文 </tag>
+            <tag> 边缘增强 </tag>
+            
+            <tag> 多尺度 </tag>
+            
+            <tag> 区域建议网络RPN </tag>
+            
+            <tag> 双流（噪声图） </tag>
             
         </tags>
       
@@ -1097,7 +1096,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -1116,7 +1115,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -1161,7 +1160,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -1231,7 +1230,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -1250,16 +1249,10 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 论文 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -1294,7 +1287,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -1327,8 +1320,6 @@
       
         <tags>
             
-            <tag> 论文 </tag>
-            
             <tag> hrnet </tag>
             
         </tags>
@@ -1347,7 +1338,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
@@ -1385,14 +1376,12 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> 论文 </tag>
             
             <tag> BayarConv </tag>
             
@@ -1413,12 +1402,6 @@
       
       
       
-        <tags>
-            
-            <tag> 方法 </tag>
-            
-        </tags>
-      
     </entry>
     
     
@@ -1433,14 +1416,12 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> 论文 </tag>
             
             <tag> BayarConv </tag>
             
@@ -1494,12 +1475,6 @@
         <content type="html"><![CDATA[<h5 id="图片保存路径">图片保存路径：</h5><p>文件</p><ul><li>自动保存</li></ul><p>图像<br/><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">../../source/postimages/$&#123;filename&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
       
       
-      
-        <tags>
-            
-            <tag> 方法 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -1572,14 +1547,12 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> 论文 </tag>
             
             <tag> TruFor </tag>
             
@@ -1603,7 +1576,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> 图像篡改检测与定位 </category>
           
       </categories>
       
