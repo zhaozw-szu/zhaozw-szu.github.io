@@ -3362,6 +3362,7 @@ figure.highlight pre .javascript .function {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+  max-height: 100px;
 }
 .article-sort-item-info {
   -webkit-box-flex: 1;
