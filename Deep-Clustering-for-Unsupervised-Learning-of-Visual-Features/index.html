@@ -1,0 +1,490 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Deep Clustering for Unsupervised Learning of Visual Features | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于CVPR2020，其提出了在线深度聚类的方法，即设计并维护了两个动态内存模块，即用于存储样本标签和特征的样本内存，以及用于质心进化的质心内存，将突然的全局聚类分解为稳定的内存更新和批量标签重新分配。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Clustering for Unsupervised Learning of Visual Features">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于CVPR2020，其提出了在线深度聚类的方法，即设计并维护了两个动态内存模块，即用于存储样本标签和特征的样本内存，以及用于质心进化的质心内存，将突然的全局聚类分解为稳定的内存更新和批量标签重新分配。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217154520065.png">
+<meta property="article:published_time" content="2025-02-17T03:40:43.000Z">
+<meta property="article:modified_time" content="2025-02-18T14:57:46.913Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217154520065.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Deep Clustering for Unsupervised Learning of Visual Features',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-18 22:57:46'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">98</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217154520065.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Deep Clustering for Unsupervised Learning of Visual Features</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-02-17T03:40:43.000Z" title="创建于 2025-02-17 11:40:43">2025-02-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-18T14:57:46.913Z" title="更新于 2025-02-18 22:57:46">2025-02-18</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,CVPR,2020</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%97%A0%E7%9B%91%E7%9D%A3%E8%81%9A%E7%B1%BB/">无监督聚类</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Deep Clustering for Unsupervised Learning of Visual Features"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Deep Clustering for Unsupervised Learning of Visual Features</p>
+<p>Xiaohang Zhan∗ 1 , Jiahao Xie∗2 , Ziwei Liu1 , Yew Soon Ong2,3, Chen
+Change Loy2 1CUHK - SenseTime Joint Lab, The Chinese University of Hong
+Kong 2Nanyang Technological University 3AI3, A*STAR, Singapore</p>
+<p>1 {zx017, zwliu}<span class="citation"
+data-cites="ie.cuhk.edu.hk">@ie.cuhk.edu.hk</span> 2 {jiahao003,
+asysong, ccloy}<span class="citation"
+data-cites="ntu.edu.sg">@ntu.edu.sg</span></p>
+<h1 id="摘要">摘要</h1>
+<p>​  联合聚类和特征学习方法在无监督表示学习中表现出了显著的性能。然而，在特征聚类和网络参数更新之间交替的训练计划会导致视觉表示的学习不稳定。为了克服这一挑战，我们提出了在线深度聚类（ODC），它同时执行聚类和网络更新，而不是交替执行。我们的关键观点是，聚类质心应该稳定地进化，以保持分类器的稳定更新。具体来说，我们设计并维护了两个动态内存模块，即用于存储样本标签和特征的样本内存，以及用于质心进化的质心内存。我们将突然的全局聚类分解为稳定的内存更新和批量标签重新分配。该过程被集成到网络更新迭代中。通过这种方式，标签和网络并肩发展，而不是交替发展。大量实验表明，ODC稳定了训练过程，有效地提高了性能。</p>
+<h1 id="介绍">1.介绍</h1>
+<p>​  无监督表示学习[1,2,3,4,5,6,7,8,9]的目的是学习可转移的图像或视频表示，而无需手动注释。其中，基于聚类的表示学习方法[10,11,12,13,14]成为这一领域的一个很有前途的方向。与基于恢复的方法[2,3,4,8]不同，基于聚类的方法只需要很少的领域知识[13]，同时获得了令人鼓舞的性能。与仅捕获图像内不变性的对比性表示学习[15,16,17]相比，基于聚类的方法能够探索图像间的相似性。与传统的通常在固定特征[18,19]上执行的聚类不同，这些工作共同优化聚类和特征学习。<br/>​  虽然早期工作[11,12]的评估大多是在小数据集上进行的，但Caron等人提出的Deep
+Clustering[13]（DC）是首次尝试扩大基于聚类的表示学习。DC在深度特征聚类和CNN参数更新之间交替进行。特别是，在每个历元开始时，它对整个数据集执行离线聚类算法，以获得伪标签作为下一个历元的监督。离线聚类不可避免地会在不同的时代排列所分配的标签，即即使某些聚类没有变化，聚类后的索引也会随机排列。因此，分类器中的参数不能从上一个历元继承，它们必须在每个历元之前进行随机初始化。该机制引入了训练的不稳定性，并使表象暴露在表象腐败的高风险之中。如图1
+(a)所示，DC中的网络更新在每个时期都被特征提取和聚类中断。这与传统的监督分类不同，后者使用固定的标签，其迭代由网络的前向和向后传播组成。</p>
+<figure>
+<img
+src="../postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217152428929.png"
+alt="image-20250217152428929" />
+<figcaption aria-hidden="true">image-20250217152428929</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217152524157.png"
+alt="image-20250217152524157" />
+<figcaption aria-hidden="true">image-20250217152524157</figcaption>
+</figure>
+<p>​  在这项工作中，我们寻求设计一个联合聚类和高稳定性的特征学习范式。为了减少DC和监督学习之间的训练机制的差异，我们将聚类过程分解为小批量的标签更新，并将该更新过程集成到网络更新的迭代中。基于这种直觉，我们提出了在线深度聚类（ODC，Online
+Deep
+Clustering）的联合聚类和特征学习。具体来说，ODC迭代包括正向和向后传播、标签重新分配和质心更新。对于标签更新，ODC在前向传播中重用了这些特征，从而避免了额外的特征提取。为了方便在线标签重新分配和质心更新，我们设计并维护了两个动态内存模块，即样本存储以存储样本的标签和特征，质心内存用于质心进化。通过这种方式，ODC以一种类似于监督分类的不间断方式进行训练，而不需要手动注释。在训练过程中，标签和网络参数是肩并肩的，而不是交替的。由于标签在每次迭代中都不断即时更新，CNN中的分类器也更加稳定，从而产生更稳定的损失曲线，如图1
+(b)所示。</p>
+<figure>
+<img
+src="../postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217153059962.png"
+alt="image-20250217153059962" />
+<figcaption aria-hidden="true">image-20250217153059962</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217153117089.png"
+alt="image-20250217153117089" />
+<figcaption aria-hidden="true">image-20250217153117089</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217153130638.png"
+alt="image-20250217153130638" />
+<figcaption aria-hidden="true">image-20250217153130638</figcaption>
+</figure>
+<p>​  虽然ODC单独在各种基准测试上实现了引人注目的无监督表示学习性能，但它可以自然地用于对使用其他无监督学习方法训练过的模型进行微调。大量的实验表明，ODC的稳定性帮助它作为一个无监督的微调工具，执行优于DC。我们总结出了我们的贡献如下：</p>
+<ol type="1">
+<li>我们提出了ODC，以一种无监督的方式学习图像表示与高稳定性。<br/>2.
+ODC也作为一个统一的无监督微调方案，进一步改进了以前的自监督表示学习方法。<br/>3.
+在不同的基准上观察到良好的性能，表明联合聚类和特征学习的巨大潜力。</li>
+</ol>
+<h1 id="相关工作">2.相关工作</h1>
+<h1 id="方法论">3.方法论</h1>
+<p>​  在下面的小节中，我们首先在3.1节讨论在秒中提出的ODC与传统的DC
+[13]之间的区别。然后，在3.2节，我们推荐一些有用的策略在使用ODC时保持稳定的集群大小。最后，我们解释如何使用ODC进行无监督微调(在3.3节)和ODC的实现细节(在3.4节)。</p>
+<h2 id="在线深度聚类">3.1.在线深度聚类</h2>
+<p>​  我们首先讨论了DC[13]的基本思想，然后详细介绍了所提出的ODC。为了学习表示方法，DC在离线特征聚类和使用伪标签的网络反向传播之间交替进行。离线聚类过程需要对整个训练集进行深度特征提取，然后采用全局聚类算法，如K-Means聚类。全局聚类使伪标签的排列幅度较大，要求网络在随后的时代快速适应新的标签。</p>
+<h3 id="框架概述">3.1.1.框架概述</h3>
+<p>​  与DC不同，ODC不需要额外的特征提取过程。此外，标签也会随着网络参数的更新而平稳地演化。这是由于新引入的采样和质心记忆而实现的。</p>
+<figure>
+<img
+src="../postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217154520065.png"
+alt="image-20250217154520065" />
+<figcaption aria-hidden="true">image-20250217154520065</figcaption>
+</figure>
+<p>​  如图2所示，样本存储器存储了整个数据集的特征和伪标签，而质心存储器存储了类质心的特征，即一个类中所有样本的平均特征。这里的“类”表示在训练过程中不断发展的临时集群。在ODC的不间断迭代期间，标签和网络参数同时更新。引入了特定的技术，包括损失重新加权和处理小集群，以避免ODC陷入琐碎的解决方案。</p>
+<h3 id="odc迭代">3.1.2.ODC迭代</h3>
+<p>​  假设我们有一个随机初始化的网络<span
+class="math inline">\(f_{\theta}\left(*\right)\)</span>和一个线性分类器<span
+class="math inline">\(g_{w}\left(*\right)\)</span>，其目标是训练主干参数θ来产生高度判别的表示。为了准备ODC，样本和质心记忆通过一个全局聚类过程进行初始化，例如，K-Means。接下来，我们可以迭代地执行不间断的ODC。<br/>​  一个ODC迭代包含四个步骤。首先，给定一批输入图像{x}，网络将图像映射到紧凑的特征向量<span
+class="math inline">\(F=f_{\theta}(x)\)</span>中。其次，我们从样本内存中读取这批处理的伪标签。利用伪标签，我们用随机梯度下降法更新网络，以解决以下问题：
+<span
+class="math display">\[\operatorname*{min}_{\theta,w}\frac{1}{B}\sum_{n=1}^{B}l\left(g_{w}\left(f_{\theta}\left(x_{n}\right)\right),y_{n}\right),\]</span>
+​  其中yn是样本内存中的当前伪标签，B表示每个小批的大小。第三，重用L2归一化后的<span
+class="math inline">\(f_{\theta}(x)\)</span>来更新样本内存： <span
+class="math display">\[F_{m}\left(x\right)\leftarrow
+m\frac{f_{\theta}\left(x\right)}{\left|\left|f_{\theta}\left(x\right)\right|\right|_{2}}+\left(1-m\right)F_{m}\left(x\right),\]</span>
+​  其中Fm
+(x)为样本内存中x在存储器中的特征，m∈(0,1]为动量系数。同时，通过找到最近的质心，为每个涉及的样本分配一个新的标签：
+<span
+class="math display">\[\operatorname*{min}_{y\in\left\{1,..,C\right\}}\|F_{m}\left(x\right)-C_{y}\|_{2}^{2}\]</span>
+​  其中，Cy表示y类的质心特征。最后，记录所涉及的中心，包括新成员加入的中心和旧成员离开的中心。通过平均属于相应质心的所有样本的特征，每k次迭代都更新。</p>
+<h2 id="处理odc中的集群分布">3.2.处理ODC中的集群分布</h2>
+<h3 id="损失重新加权">3.2.1.损失重新加权</h3>
+<p>​  为了避免训练崩溃成几个巨大的簇，DC在每个纪元之前采用均匀采样。然而，对于ODC，集群上的样本数量在每次迭代中都会发生变化。使用统一采样需要在每次迭代中重新采样整个数据集，这一过程被认为是冗余的和昂贵的。我们提出了另一种方法，即根据每个类中的样本数量来重新加权损失。为了验证它们的等价性，我们实现了一个具有损失重新加权的直流模型，并通过经验发现，当权重遵循<span
+class="math inline">\(w_{c}\ \propto\
+{\frac{1}{\sqrt{N_{c}}}}\)</span>时，性能保持不变，其中Nc表示第c类中的样本数量。因此，我们对ODC采用相同的损失重加权公式。随着损失重加权，小簇中的样本对反向传播的贡献更大，从而推动决策边界进一步接受更多的潜在样本。</p>
+<h3 id="处理小集群">3.2.2.处理小集群</h3>
+<p>​  损失重新加权有助于防止巨大的簇的形成。然而，我们仍然面临着有一些小集群崩溃成空集群的风险。为了克服这个问题，我们建议在非常小的集群崩溃之前预先处理和消除它们。将正常簇表示大小大于阈值的Cn，小簇表示大小不大于的C，对于∈，我们首先将c中的样本分配给Cn中最近的质心，使c为空。接下来，我们用k-均值将最大的簇cmax∈Cn分成两个子簇，并随机选择其中一个子簇作为新的c。我们重复这个过程，直到所有的集群都属于Cn。尽管这个过程突然改变了一些集群，但这只影响参与这一过程的一小部分样品。</p>
+<h3 id="尺寸减少">3.2.3.尺寸减少</h3>
+<p>​  一些主干网络将图像映射到高维向量，例如，AlexNet产生4096维特征，ResNet-
+50产生2048维特征，导致后续聚类中较高的空间和时间复杂性。DC对整个数据集的特征进行了主成分分析，以减少维度。然而，对于ODC，不同样本的特征有不同的时间戳，导致样本之间的统计数据不兼容。因此，PCA已不再适用。在每次迭代中执行PCA的成本也很高。因此，我们添加了一个非线性的头层，以将高维特征减少到256维。它是在ODC迭代期间联合调优的。为下游任务删除头部层。</p>
+<h2 id="odc用于无监督的微调">3.3.ODC用于无监督的微调</h2>
+<p>​  与倾向于捕获图像内语义的自监督学习方法相比，基于聚类的方法更多地关注图像间的信息。因此，DC和ODC自然地是对以前的自我监督学习方法的补充。由于DC和ODC并不局限于一个专门设计的目标，如旋转角度或颜色预测，它们很容易作为一种无监督的微调方案来提高现有的自监督方法的性能。在本文中，我们研究了DC和ODC作为一个从不同的自监督学习方法中初始化的微调过程的有效性。</p>
+<h2 id="实施细节">3.4.实施细节</h2>
+<p>​  <strong>数据预处理。</strong><br/>​  我们使用ImageNet，它包含128万张没有标签的图像进行训练。图像首先被随机裁剪，使其分辨率为224x224，其增强功能包括随机翻转和旋转（±2◦）。DC对图像采用Sobel滤波器，避免利用颜色作为快捷方式。这样的预处理步骤要求下游任务也包括Sobel层，这可能会限制其应用程序。我们发现，强烈的颜色抖动显示出与Sobel过滤器相同的效果，而它允许正常的RGB图像作为输入。具体来说，我们采用PyTorch风格的颜色抖动变换，包括亮度因子（0.6、1.4）、对比度系数（0.6、1.4）、饱和度因子（0、2）和色调因子（−0.5、0.5）。此外，我们将图像随机转换为灰度，概率为0.2。应用于训练样本的随机颜色抖动和灰度随机化了以颜色测量的相似度。这阻碍了网络利用颜色中的琐碎信息。</p>
+<p>​  <strong>ODC的训练。</strong><br/>​  我们使用ResNet-50作为骨干。考虑到大多数早期的作品都使用了AlexNet，我们也在AlexNet上进行了实验以进行比较。在[13]之后，我们使用不需要本地响应规范化的AlexNet架构，并添加批处理规范化层。AlexNet和ResNet-50的ODC模型是从零开始训练的。批处理大小是512个，分配给8个gpu。400个时代，AlexNet的学习率一直为0.01，ResNet-50为0.03,80个时代的学习率衰减0.1。在DC之后，集群的数量设置为10000，是ImageNet注释的类数的10倍。动量系数m设为0.5。识别小集群的阈值设置为20。改变这个阈值不会显著影响结果，前提是它不超过集群中样本的平均数量。质心存储器每10次迭代更新一次。质心更新频率构成了学习效率和学习效率之间的权衡。在我们的实验中，我们观察到，只要频率被限制在一个合理的范围内，ODC的性能就对它不敏感。</p>
+<h1 id="实验">4.实验</h1>
+<h1 id="结论">5.结论</h1>
+<p>​  我们提出了一种有效的联合聚类和特征学习范式的无监督表示学习。该方法采用在线深度聚类（ODC），通过对特征聚类进行分解并将过程整合到网络更新迭代中，实现了有效稳定的深度神经网络无监督训练。ODC单独作为一种无监督的表示学习方案，表现得令人信服。它还可以用于微调和大大改进以前的自监督学习方法。</p>
+<h1 id="代码">6.代码</h1>
+<p>​  其代码整合在https://github.com/open-mmlab/mmselfsup/tree/main/configs/selfsup/odc。</p>
+<h1 id="配置代码">6.1.配置代码</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">_base_ = [</span><br><span class="line">    &#x27;../_base_/models/odc.py&#x27;,</span><br><span class="line">    &#x27;../_base_/datasets/imagenet_odc.py&#x27;,</span><br><span class="line">    &#x27;../_base_/schedules/sgd_steplr-200e_in1k.py&#x27;,</span><br><span class="line">    &#x27;../_base_/default_runtime.py&#x27;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># model settings</span><br><span class="line">model = dict(</span><br><span class="line">    head=dict(num_classes=&#123;&#123;_base_.num_classes&#125;&#125;),</span><br><span class="line">    memory_bank=dict(num_classes=&#123;&#123;_base_.num_classes&#125;&#125;),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># optimizer</span><br><span class="line">optimizer = dict(type=&#x27;SGD&#x27;, lr=0.06, weight_decay=1e-5, momentum=0.9)</span><br><span class="line">optim_wrapper = dict(</span><br><span class="line">    type=&#x27;OptimWrapper&#x27;,</span><br><span class="line">    optimizer=optimizer,</span><br><span class="line">    paramwise_cfg=dict(custom_keys=&#123;&#x27;head&#x27;: dict(momentum=0.)&#125;))</span><br><span class="line"></span><br><span class="line"># learning rate scheduler</span><br><span class="line">param_scheduler = [</span><br><span class="line">    dict(type=&#x27;MultiStepLR&#x27;, by_epoch=True, milestones=[400], gamma=0.4)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># runtime settings</span><br><span class="line">train_cfg = dict(max_epochs=440)</span><br><span class="line"># the max_keep_ckpts controls the max number of ckpt file in your work_dirs</span><br><span class="line"># if it is 3, when CheckpointHook (in mmcv) saves the 4th ckpt</span><br><span class="line"># it will remove the oldest one to keep the number of total ckpts as 3</span><br><span class="line">default_hooks = dict(</span><br><span class="line">    checkpoint=dict(type=&#x27;CheckpointHook&#x27;, interval=10, max_keep_ckpts=3))</span><br></pre></td></tr></table></figure>
+<h2 id="模型配置">6.2.模型配置</h2>
+<h3 id="总览">6.2.1.总览</h3>
+<p>odc.py如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># model settings</span><br><span class="line">model = dict(</span><br><span class="line">    type=&#x27;ODC&#x27;,</span><br><span class="line">    data_preprocessor=dict(</span><br><span class="line">        mean=(123.675, 116.28, 103.53),</span><br><span class="line">        std=(58.395, 57.12, 57.375),</span><br><span class="line">        bgr_to_rgb=True),</span><br><span class="line">    backbone=dict(</span><br><span class="line">        type=&#x27;ResNet&#x27;,</span><br><span class="line">        depth=50,</span><br><span class="line">        in_channels=3,</span><br><span class="line">        out_indices=[4],  # 0: conv-1, x: stage-x</span><br><span class="line">        norm_cfg=dict(type=&#x27;SyncBN&#x27;)),</span><br><span class="line">    neck=dict(</span><br><span class="line">        type=&#x27;ODCNeck&#x27;,</span><br><span class="line">        in_channels=2048,</span><br><span class="line">        hid_channels=512,</span><br><span class="line">        out_channels=256,</span><br><span class="line">        with_avg_pool=True),</span><br><span class="line">    head=dict(</span><br><span class="line">        type=&#x27;ClsHead&#x27;,</span><br><span class="line">        loss=dict(type=&#x27;mmcls.CrossEntropyLoss&#x27;),</span><br><span class="line">        with_avg_pool=False,</span><br><span class="line">        in_channels=256,</span><br><span class="line">        num_classes=10000),</span><br><span class="line">    memory_bank=dict(</span><br><span class="line">        type=&#x27;ODCMemory&#x27;,</span><br><span class="line">        length=1281167,</span><br><span class="line">        feat_dim=256,</span><br><span class="line">        momentum=0.5,</span><br><span class="line">        num_classes=10000,</span><br><span class="line">        min_cluster=20,</span><br><span class="line">        debug=False))</span><br></pre></td></tr></table></figure>
+<h3 id="backbone">6.2.2.backbone</h3>
+<p>​  模型的backbone为ResNet，其代码在https://github.com/open-mmlab/mmselfsup/blob/db861f30487c9a0b0cb3e35e176d6058887660bc/mmselfsup/models/backbones/resnet.py。</p>
+<p>​  模型的输入通道为3，输出通道为2048。</p>
+<h3 id="neck网络">6.2.2.neck网络</h3>
+<p>​  模型的backbone为odc_neck，其代码在https://github.com/open-mmlab/mmselfsup/blob/db861f30487c9a0b0cb3e35e176d6058887660bc/mmselfsup/models/necks/odc_neck.py</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@MODELS.register_module()</span><br><span class="line">class ODCNeck(BaseModule):</span><br><span class="line">    &quot;&quot;&quot;The non-linear neck of ODC: fc-bn-relu-dropout-fc-relu.</span><br><span class="line"></span><br><span class="line">    Args:</span><br><span class="line">        in_channels (int): Number of input channels.</span><br><span class="line">        hid_channels (int): Number of hidden channels.</span><br><span class="line">        out_channels (int): Number of output channels.</span><br><span class="line">        with_avg_pool (bool): Whether to apply the global</span><br><span class="line">            average pooling after backbone. Defaults to True.</span><br><span class="line">        norm_cfg (dict): Dictionary to construct and config norm layer.</span><br><span class="line">            Defaults to dict(type=&#x27;SyncBN&#x27;).</span><br><span class="line">        init_cfg (dict or list[dict], optional): Initialization config dict.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">    def __init__(</span><br><span class="line">        self,</span><br><span class="line">        in_channels: int,</span><br><span class="line">        hid_channels: int,</span><br><span class="line">        out_channels: int,</span><br><span class="line">        with_avg_pool: bool = True,</span><br><span class="line">        norm_cfg: dict = dict(type=&#x27;SyncBN&#x27;),</span><br><span class="line">        init_cfg: Optional[Union[dict, List[dict]]] = [</span><br><span class="line">            dict(type=&#x27;Constant&#x27;, val=1, layer=[&#x27;_BatchNorm&#x27;, &#x27;GroupNorm&#x27;])</span><br><span class="line">        ]</span><br><span class="line">    ) -&gt; None:</span><br><span class="line">        super().__init__(init_cfg)</span><br><span class="line">        self.with_avg_pool = with_avg_pool</span><br><span class="line">        if with_avg_pool:</span><br><span class="line">            self.avgpool = nn.AdaptiveAvgPool2d((1, 1))</span><br><span class="line">        self.fc0 = nn.Linear(in_channels, hid_channels)</span><br><span class="line">        self.bn0 = build_norm_layer(</span><br><span class="line">            dict(**norm_cfg, momentum=0.001, affine=False), hid_channels)[1]</span><br><span class="line">        self.fc1 = nn.Linear(hid_channels, out_channels)</span><br><span class="line">        self.relu = nn.ReLU(inplace=True)</span><br><span class="line">        self.dropout = nn.Dropout()</span><br><span class="line"></span><br><span class="line">    def forward(self, x: List[torch.Tensor]) -&gt; List[torch.Tensor]:</span><br><span class="line">        &quot;&quot;&quot;Forward function.</span><br><span class="line"></span><br><span class="line">        Args:</span><br><span class="line">            x (List[torch.Tensor]): The feature map of backbone.</span><br><span class="line"></span><br><span class="line">        Returns:</span><br><span class="line">            List[torch.Tensor]: The output features.</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        assert len(x) == 1</span><br><span class="line">        x = x[0]</span><br><span class="line">        if self.with_avg_pool:</span><br><span class="line">            x = self.avgpool(x)</span><br><span class="line">        x = x.view(x.size(0), -1)</span><br><span class="line">        x = self.fc0(x)</span><br><span class="line">        x = self.bn0(x)</span><br><span class="line">        x = self.relu(x)</span><br><span class="line">        x = self.dropout(x)</span><br><span class="line">        x = self.fc1(x)</span><br><span class="line">        x = self.relu(x)</span><br><span class="line">        return [x]</span><br></pre></td></tr></table></figure>
+<h3 id="head网络">6.3.3.head网络</h3>
+<p>​  使用的是ClsHead，CrossEntropyLoss损失</p>
+<h3 id="memory_bank网络">6.3.4.memory_bank网络</h3>
+<h2 id="运行时配置文件">6.3.运行时配置文件</h2>
+<p>default_runtime.py如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">default_scope = &#x27;mmselfsup&#x27;</span><br><span class="line"></span><br><span class="line">default_hooks = dict(</span><br><span class="line">    runtime_info=dict(type=&#x27;RuntimeInfoHook&#x27;),</span><br><span class="line">    timer=dict(type=&#x27;IterTimerHook&#x27;),</span><br><span class="line">    logger=dict(type=&#x27;LoggerHook&#x27;, interval=50),</span><br><span class="line">    param_scheduler=dict(type=&#x27;ParamSchedulerHook&#x27;),</span><br><span class="line">    checkpoint=dict(type=&#x27;CheckpointHook&#x27;, interval=10),</span><br><span class="line">    sampler_seed=dict(type=&#x27;DistSamplerSeedHook&#x27;),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">env_cfg = dict(</span><br><span class="line">    cudnn_benchmark=False,</span><br><span class="line">    mp_cfg=dict(mp_start_method=&#x27;fork&#x27;, opencv_num_threads=0),</span><br><span class="line">    dist_cfg=dict(backend=&#x27;nccl&#x27;),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">log_processor = dict(</span><br><span class="line">    window_size=10,</span><br><span class="line">    custom_cfg=[dict(data_src=&#x27;&#x27;, method=&#x27;mean&#x27;, window_size=&#x27;global&#x27;)])</span><br><span class="line"></span><br><span class="line">vis_backends = [dict(type=&#x27;LocalVisBackend&#x27;)]</span><br><span class="line">visualizer = dict(</span><br><span class="line">    type=&#x27;SelfSupVisualizer&#x27;, vis_backends=vis_backends, name=&#x27;visualizer&#x27;)</span><br><span class="line"># custom_hooks = [dict(type=&#x27;SelfSupVisualizationHook&#x27;, interval=1)]</span><br><span class="line"></span><br><span class="line">log_level = &#x27;INFO&#x27;</span><br><span class="line">load_from = None</span><br><span class="line">resume = False</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/">https://zhaozw-szu.github.io/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217154520065.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Contextrast/" title="Contextrast"><img class="cover" src="/postimages/Contextrast/image-20250217223017480.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Contextrast</div></div></a></div><div class="next-post pull-right"><a href="/DivClust/" title="DivClust"><img class="cover" src="/postimages/DivClust/image-20250217101153060.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">DivClust</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">98</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="toc-text">3.方法论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BF%E6%B7%B1%E5%BA%A6%E8%81%9A%E7%B1%BB"><span class="toc-text">3.1.在线深度聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0"><span class="toc-text">3.1.1.框架概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#odc%E8%BF%AD%E4%BB%A3"><span class="toc-text">3.1.2.ODC迭代</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86odc%E4%B8%AD%E7%9A%84%E9%9B%86%E7%BE%A4%E5%88%86%E5%B8%83"><span class="toc-text">3.2.处理ODC中的集群分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%9F%E5%A4%B1%E9%87%8D%E6%96%B0%E5%8A%A0%E6%9D%83"><span class="toc-text">3.2.1.损失重新加权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E5%B0%8F%E9%9B%86%E7%BE%A4"><span class="toc-text">3.2.2.处理小集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%BA%E5%AF%B8%E5%87%8F%E5%B0%91"><span class="toc-text">3.2.3.尺寸减少</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#odc%E7%94%A8%E4%BA%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E7%9A%84%E5%BE%AE%E8%B0%83"><span class="toc-text">3.3.ODC用于无监督的微调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD%E7%BB%86%E8%8A%82"><span class="toc-text">3.4.实施细节</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">6.代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81"><span class="toc-text">6.1.配置代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE"><span class="toc-text">6.2.模型配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-text">6.2.1.总览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#backbone"><span class="toc-text">6.2.2.backbone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#neck%E7%BD%91%E7%BB%9C"><span class="toc-text">6.2.2.neck网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head%E7%BD%91%E7%BB%9C"><span class="toc-text">6.3.3.head网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memory_bank%E7%BD%91%E7%BB%9C"><span class="toc-text">6.3.4.memory_bank网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">6.3.运行时配置文件</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Learnable Subspace Clustering | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Learnable Subspace Clustering 摘要 ​  本文研究了具有数百万个数据点的大规模子空间聚类（\(LS^2C\)）问题。许多流行的子空间聚类方法都不能直接处理\(LS^2C\)问题，尽管它们被认为是针对小规模数据点的最新方法。一个简单的原因是，这些方法经常选择所有的数据点作为一个大型的字典来构建巨大的编码模型，这导致了较高的时间和空间复杂度。在本文中，我们开发了一个可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learnable Subspace Clustering">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Learnable-Subspace-Clustering/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Learnable Subspace Clustering 摘要 ​  本文研究了具有数百万个数据点的大规模子空间聚类（\(LS^2C\)）问题。许多流行的子空间聚类方法都不能直接处理\(LS^2C\)问题，尽管它们被认为是针对小规模数据点的最新方法。一个简单的原因是，这些方法经常选择所有的数据点作为一个大型的字典来构建巨大的编码模型，这导致了较高的时间和空间复杂度。在本文中，我们开发了一个可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg">
+<meta property="article:published_time" content="2025-02-16T02:15:11.000Z">
+<meta property="article:modified_time" content="2025-02-18T15:01:43.391Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Learnable-Subspace-Clustering/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Learnable Subspace Clustering',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-18 23:01:43'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">98</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Learnable Subspace Clustering</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-02-16T02:15:11.000Z" title="创建于 2025-02-16 10:15:11">2025-02-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-18T15:01:43.391Z" title="更新于 2025-02-18 23:01:43">2025-02-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Learnable Subspace Clustering"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Learnable Subspace Clustering</p>
+<h1 id="摘要">摘要</h1>
+<p>​  本文研究了具有数百万个数据点的大规模子空间聚类（<span
+class="math inline">\(LS^2C\)</span>）问题。许多流行的子空间聚类方法都不能直接处理<span
+class="math inline">\(LS^2C\)</span>问题，尽管它们被认为是针对小规模数据点的最新方法。一个简单的原因是，这些方法经常选择所有的数据点作为一个大型的字典来构建巨大的编码模型，这导致了较高的时间和空间复杂度。在本文中，我们开发了一个可学习的子空间聚类范式来有效地解决LS2C问题。关键的概念是学习一个参数函数来将高维子空间划分为它们的底层低维子空间，而不是需要计算要求的经典编码模型。此外，我们提出了一个统一的、鲁棒的、预测编码机（RPCM，robust
+predictive coding
+machine）来学习参数函数，它可以通过交替最小化算法来求解。此外，我们还给出了参数函数的有界收缩分析。</p>
+<h1 id="介绍">1.介绍</h1>
+<p>​  高维大数据集越来越多无处不在，在计算机视觉和机器学习任务中越来越可用和流行。例如，[1]和YouTube上分别有数百万帧的图像和数十亿帧的视频。不幸的是，大数据的高维性通常会导致算法的高时间和空间复杂性，而大数据中的复杂错误（如噪声、异常值和损坏）严重损害了它们的性能[3]。然而，高维大数据通常是由低维子结构[4]组成的。因此，在大数据中寻找低维结构是降低时间和空间复杂度、减少复杂误差的影响、提高学习和分割任务性能的一种可能的解决方案。<br/>​  子空间聚类[5]是最常见的鲁棒地恢复高维数据低维表示的方法之一，因为它已经提供了理论保证[6]，[7]成功应用于众多研究领域，如图像分割[8]，[9]，人体运动分割[10]，图像处理[11]，[12]，顺序数据聚类[13]，医学成像[14]和生物信息学[15]。特别是光谱式方法（如稀疏子空间聚类（SSC）[16]、低秩表示（LRR）[17]、[18]和最小二乘回归（LSR）[19]）近年来由于在小规模数据集（如霍普金斯155[20]和扩展YaleB
+[21]）上的良好性能好而受到越来越多的关注。<br/>​  然而，经典的范式限制了子空间聚类方法来处理高维大数据（例如，数以百万计的图像[23]和视频[2]）。一个简单的原因是，SE属性导致了一个大的自我表达字典和巨大的简约编码模型。它们导致了计算瓶颈，因为它们通常通过迭代许多优化算子来解决，如收缩阈值算子[24]和奇异值分解（SVD）[25]。因此，它很自然地产生了一个具有数百万个数据点的具有挑战性的子空间聚类问题。<br/>​  为了解决这个问题，我们开发了一个可学习的子空间聚类（LeaSC）范式（见图1），以快速和稳健地从高维大数据中恢复低维结构。</p>
+<figure>
+<img
+src="../postimages/Learnable-Subspace-Clustering/image-20250216110434525.png"
+alt="image-20250216110434525" />
+<figcaption aria-hidden="true">image-20250216110434525</figcaption>
+</figure>
+<p>​  首先，给定一组大的高维数据点，通常来自高维子空间[16]，[17]，我们发现一些代表或样本，可以有效地描述绘制数据点[26]有效地减少大自我表达的字典的大小。其次，利用代表来学习从高维子空间到低维子空间的参数函数（例如，神经网络）。第三，其余的数据点通过学习到的参数函数而不是简约的编码模型快速映射到低维编码中。最后，我们采用基于地标的光谱聚类（LbSC）[27]对代码进行聚类。<br/>​  在已开发的LeaSC范式中，我们提出了一种新的模型，称为预测编码机（PCM）来学习参数函数。通过找到代表作为一个小的自我表达的字典，PCM的基本过程是优化理想回归，稀疏，低秩，或弹性网络代码通过使用一个平方的弗罗比尼乌斯范数，1规范，核范数或弹性网正则化，并共同训练参数函数近似理想的代码。此外，由于在现实应用[16]，[17]中由于测量/处理噪声经常被噪声（如高斯噪声、稀疏异常项和缺失项）破坏，我们通过考虑各种噪声污染的数据，将PCM扩展到鲁棒PCM（RPCM）。由于参数函数的非线性，RPCM是非凸的。我们提出了一种拟凸优化方法来解决它们，该方法替代了交替方向的乘子法（ADMM）[28]，[29]和梯度下降法（GD）算法[30]，[31]。通过选择适当数量的代表，给出了保证参数函数能够正确地将高维数据点压缩到代表的理想码的理论条件。这进一步验证了在代表上训练的PCM和RPCM可以有效地执行具有数百万个数据点的子空间聚类。总的来说，我们的主要贡献如下。</p>
+<ul>
+<li>我们开发了一个有效的范式，称为LeaSC，以一种高效的方式处理具有数百万个数据点的子空间聚类问题。我们的目标是学习参数函数，将高维子空间划分为它们的底层低维子空间，而不是经典编码（CCod）模型的昂贵代价。这个参数函数导致了LeaSC的线性复杂性。</li>
+<li>我们提出了一个PCM模型及其鲁棒扩展RPCM来学习LeaSC范式中的参数函数。由于RPCM是非凸的，我们提出了一种拟凸的优化方法，通过交替的ADMM和GD来求解它。</li>
+<li>我们提供了由PCM模型学习到的参数函数的有界收缩分析。结果表明，与原始子空间聚类模型相比，参数函数能很好地计算高维数据的收缩低维表示。</li>
+</ul>
+<p>​  本文是对我们之前几个会议作品[32]-[35]的重要扩展。与会议版本相比，有四个主要的区别。首先，我们开发了一个统一的LeaSC范式来集群数百万个数据点。其次，我们提出了一个具有弗罗比尼乌斯范数[32]、核范数[33]、1-范数或弹性网正则化的平方的一般RPCM。第三，我们给出了一个保证学习到的参数函数收缩的理论条件。第四，我们在百万尺度的数据集（即MNIST8M
+[23]和YouTube8M
+[2]）上添加了更多的实验，以证明LeaSC的有效性。<br/>​  本文的其余部分组织如下。我们在第二节中回顾了相关的子空间聚类工作。我们统一的LeaSC范式和RPCM在第三节中开发。我们在第四节中提出了一种针对RPCM的拟凸优化方法。我们在第五节中提供了一个收缩子空间恢复理论，第六节显示了实验结果。最后，在第七节中得出了结论。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  在本节中，我们主要回顾了CCod模型、大尺度光谱聚类（LsSPC）方法和可伸缩的编码方法，因为它们在小规模数据集上显示出了良好的性能。此外，我们还讨论了直接编码模型来应用我们的LeaSC范式。</p>
+<h2 id="a.-ccod模型">A. CCod模型</h2>
+<p>​  一般来说，CCod模型基于SE属性[16]，采用不同的编码模型来计算相似矩阵，并将（大规模）光谱聚类[22]，[36]-[38]应用于该相似矩阵。例如，SSC
+[16]、LRR [17]和LSR
+[19]分别使用1、核范数和2正则化的编码模型构建相似度矩阵。根据SE属性，这些编码模型及其变体[18]，[39]-[41]通常选择所有的数据点作为字典。当面对大数据集（例如，数百万张图像）时，字典中的自动（或基础）的数量非常大。在实践中，这个大型字典将导致用于谱聚类的高维（百万）相似矩阵，并进一步导致如果资源有限，编码模型无法在一台机器上运行。此外，由于采用迭代优化方式[42]、[43]进行求解，因此它们仍然存在较高的时间复杂度。因此，简约的编码模型需要高的计算时间和大量的内存来构建相似矩阵。此外，分布式LRR（DLRR）[44]和分散SSC（DSSC）[45]将一个大数据集划分为许多小数据集，并使用LRR或稀疏编码来计算LRR或稀疏表示。然而，它们仍然需要大量的计算机资源。幸运的是，我们探索了LeaSC范式来学习一个参数函数，以快速计算相似度矩阵的表示。</p>
+<h2 id="b.-lsspc">B. LsSPC</h2>
+<p>​  一般的谱聚类方法[22]需要计算由相似矩阵组成的归一化拉普拉斯矩阵的特征向量，并应用K-均值对特征向量进行聚类。不幸的是，计算特征向量是非常昂贵的[27]。因此，它导致了处理大规模数据集的难题。因此，将光谱聚类方法扩展到LsSpC中，通过以下两种方式对大数据进行聚类。首先，利用¨值方法逼近特征向量[46]，以降低计算代价，在许多子系统[47]中特征值计算是并行的。其次，选取少量样本作为地标点，构建K-means
+[48]、样本外[49]和随机选择[27]的稀疏相似矩阵。它们将导致较差的聚类结果，因为一个不可分割的相似度矩阵通常是由具有复杂结构的原始数据构建的。通过比较，我们可以通过在已开发的LeaSC范式中使用我们的RPCM模型来学习鲁棒表示。</p>
+<h2 id="c.-可扩展编码方法">C. 可扩展编码方法</h2>
+<p>​  在以下两种策略中，还提出了可扩展的编码方法来进行大数据的聚类。首先，可伸缩的SSC
+[50]，[51]是用一个小的子字典来解决一系列的子问题，以减少计算时间。其次，采样-聚类分类（S-C-C）[42]，[43]从大数据集中选择一个小的子数据集，使用SSC、LRR和LSR进行子空间聚类，并学习一个简单的线性分类器或基于协作表示的分类器（CRC）[52]，获得最终的聚类结果。不幸的是，可扩展SSC仍然需要更多的计算时间，例如，它花费1000秒处理10万个数据样本[50]，S-C-C将导致较差的聚类结果，因为简单的分类器在复杂样本[53]中不容易识别。通过比较，我们可以快速计算鲁棒表示来构造相似度矩阵，并执行LsSpC（如LbSC
+[27]）。</p>
+<h2 id="d.-直接编码模型">D. 直接编码模型</h2>
+<p>​  在我们的LeaSC范式中，我们提出了RPCM模型来学习参数函数，以直接编码数据点的表示，以降低计算复杂度。实际上，有一些直接编码模型，如自动编码器（AEs）[54]、稀疏自动编码器（SAEs）[55]、[56]、去噪自动编码器（DAEs）[57]、预测稀疏分解（PSD）[34]、[58]、鲁棒主成分分析编码器（RPCAec）[59]和潜在LRR（latLRR）[60]。AE和SAE都不是健壮的模型，需要干净的输入数据。虽然DAE和PSD可以学习健壮的代码，但它仍然需要干净的输入数据。不幸的是，真实的数据通常会有大量的噪声[16]，[17]。为了处理噪声，RPCAec
+[59]和latLRR [60]可以通过分离噪声快速计算出鲁棒的低秩码。然而，RPCAec
+[59]只处理一个单个低秩子空间，而latLRR
+[60]只学习一个线性预测器，这很难捕获复杂的数据结构[31]，[53]。相比之下，我们的RPCM不需要明确的数据，也不需要一个非线性预测器来计算鲁棒表示。更重要的是，我们还将把这些编码模型应用到LeaSC范式中来处理LS2C。</p>
+<h1 id="leasc">3. LEASC</h1>
+<p>​  在本节中，我们开发了一个有效的LeaSC范式来聚集大量的多子空间数据点。具体地说，我们首先介绍了一个用于子空间聚类的机器学习问题。为了解决这一问题，我们提出了一个统一的PCM方法，即从高维空间到低维空间学习一个参数函数。然后利用参数函数快速恢复数据点的子空间表示。最后，我们对子空间表示进行LbSC
+[27]，以获得最终的聚类结果。</p>
+<p>​  标记法：<span
+class="math inline">\(\mathcal{X}\)</span>记为高维空间。随机变量、普通向量、矩阵和矩阵块分别用大写、小写、大写和黑板粗体写，例如，X、x、<span
+class="math inline">\(\mathbf{X}\)</span>和<span
+class="math inline">\(\mathbb{X}=\binom{\mathbf X}{\mathbf
+Y}\)</span>。期望（离散情况，p为概率质量）用<span
+class="math inline">\(\operatorname{E}_{p(X)}({\mathcal{L}}(X))\ \ =\
+\sum_{\mathbf{x}}p(X\ \ =\
+\mathbf{x}){\mathcal{L}}({\mathbf{x}})\)</span>表示。给定数组<span
+class="math inline">\(\mathbf{A}=\,[a_{i\,j}\,]\,\in\,\mathbb{R}^{d\times
+n}\)</span>，我们的核范数用<span
+class="math inline">\(\|\mathbf{A}\|_{*}=\textstyle\sum_{i}\sigma_{i}(\mathbf{A})\)</span>（A的奇异值之和）表示，<span
+class="math inline">\(\ell_{2,1}\)</span>用<span
+class="math inline">\(||\mathbf{A}||_{2,1}=\sum_{j}||\mathbf{a}_{:j}||_{2}\)</span>表示，F范数用<span
+class="math inline">\(||\mathbf{A}||_{\mathrm}=(\sum_{i
+j}(a_{i j})^{2})^{1/2}\)</span>表示和f范数的平方用<span
+class="math inline">\(||\mathbf{A}||_{\mathrm{F}}^{2}=\sum_{i j}(a_{i
+j})^{2}\)</span>表示。一个包含m个元素的集合的n-组合数用<span
+class="math inline">\(\binom{m}{n}\)</span>表示。</p>
+<h2 id="a.问题陈述">A.问题陈述</h2>
+<p>​  在本节中，我们描述了一个用于子空间聚类的显式机器学习问题。具体地说，我们考虑一个d维高维空间<span
+class="math inline">\(\mathcal{X}\)</span>，它是s≥1个未知低维<span
+class="math inline">\(d_{i}=\dim(\mathcal{X}_{i})(0\lt d_{i}\lt
+d,i=1,\ldots,s)\)</span>的线性或仿射子空间<span
+class="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>的未知并集。形式上，我们假设<span
+class="math inline">\(X\in\mathcal{X}\)</span>是一个根据未知分布p
+(X)的随机变量，它可以分解为 <span
+class="math display">\[X=\mathbf{B}Z=[\mathbf{B}_{1}\quad\cdots\quad\mathbf{B}_{k}]{\left[\begin{array}{l}{Z_{1}}\\
+{\cdots}\\ {Z_{k}}\end{array}\right]}\]</span> ​  其中，<span
+class="math inline">\(\mathbf{B}_{i}\in\mathbb{R}^{d\times
+d_{i}}\)</span>是一个线性跨越第i个数据子空间的未知子空间基，<span
+class="math inline">\(Z_i\)</span>是一个<span
+class="math inline">\(d_i\)</span>维低维子空间表示变量。我们的子空间聚类问题的机器学习目标是寻找一个参数函数<span
+class="math inline">\(f(\bullet;\theta)\)</span>，它从X预测Z，以将空间X划分为子空间<span
+class="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>。<br/>​  为了实现这一目标，根据基础分布p
+(X)，将f的预期风险定义为 <span
+class="math display">\[\operatorname*{min}_{\theta}\
+E_{p(X)}[\mathcal{L}(Z,f(X;\theta))]\quad\mathrm{s.t.}\
+X=\mathrm{B}Z\]</span> ​  其中，<span
+class="math inline">\(\mathcal{L}(Z,f(X;\theta))\)</span>是Z和<span
+class="math inline">\(f(X;\theta)\)</span>之间的损失函数，例如，平方误差损失函数<span
+class="math inline">\((Z-f(X;\theta))^2\)</span>。由于p
+(X)未知，预期风险不能在(2)中直接测量。但是我们可以考虑一个由N个数据点<span
+class="math inline">\(\mathbf{X}=[\mathbf{x}_{i}]_{i=1}^{n}\in\mathbb{R}^{d\times
+n}\)</span>构成，且假设为p(x)分布的经验分布<span
+class="math inline">\(p^0(X)\)</span>。相应的在p0(X)上的经验风险1平均值可以描述为
+<span class="math display">\[\operatorname*{min}_{\theta}\
+E_{p^0(X)}[\mathcal{L}(Z,f(X;\theta))]\quad\mathrm{s.t.}\
+X=\mathrm{B}Z\]</span> ​  在学习参数函数<span
+class="math inline">\(f(\bullet;\theta)\)</span>后，将空间X快速映射到低维表示空间，很容易划分为子空间<span
+class="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>。我们将在第三节-b节中提出一个稳健和有效的模型，以更好地计算经验风险。<br/>​  备注1：我们的机器学习问题不同于传统的子空间聚类问题[5]。后者通常考虑通过使用昂贵的稀疏/低秩优化从空间X中得到的给定（训练）数据点X的分割。前者学习一个参数函数，将空间X划分为子空间<span
+class="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>。它的过程是从空间X中提取一个数据集，或从给定的X中选择一个小的数据集，并训练参数函数。这个过程有一个明显的好处，即参数函数可以快速地将新的（大的）数据点投影到低维表示中，并分组到它们的子空间中。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Learnable-Subspace-Clustering/">https://zhaozw-szu.github.io/Learnable-Subspace-Clustering/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/DivClust/" title="DivClust"><img class="cover" src="/postimages/DivClust/image-20250217101153060.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">DivClust</div></div></a></div><div class="next-post pull-right"><a href="/A-Lightweight-Clustering-Framework-for-Unsupervised-Semantic-Segmentation/" title="A_Lightweight_Clustering_Framework_for_Unsupervised_Semantic_Segmentation"><img class="cover" src="/postimages/A-Lightweight-Clustering-Framework-for-Unsupervised-Semantic-Segmentation/image-20250215220915193.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">A_Lightweight_Clustering_Framework_for_Unsupervised_Semantic_Segmentation</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">98</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-ccod%E6%A8%A1%E5%9E%8B"><span class="toc-text">A. CCod模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-lsspc"><span class="toc-text">B. LsSPC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E5%8F%AF%E6%89%A9%E5%B1%95%E7%BC%96%E7%A0%81%E6%96%B9%E6%B3%95"><span class="toc-text">C. 可扩展编码方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-%E7%9B%B4%E6%8E%A5%E7%BC%96%E7%A0%81%E6%A8%A1%E5%9E%8B"><span class="toc-text">D. 直接编码模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#leasc"><span class="toc-text">3. LEASC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E9%97%AE%E9%A2%98%E9%99%88%E8%BF%B0"><span class="toc-text">A.问题陈述</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
