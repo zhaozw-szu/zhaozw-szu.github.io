@@ -1,0 +1,536 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SparseViT | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Can We Get Rid of Handcrafted Feature Extractors?SparseViT: Nonsemantics-Centered, Parameter-Efficient Image Manipulation Localization through Spare-Coding Transformer \(\begin{array}{c}&lt;br&#x2F;&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SparseViT">
+<meta property="og:url" content="https://zhaozw-szu.github.io/SparseViT/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Can We Get Rid of Handcrafted Feature Extractors?SparseViT: Nonsemantics-Centered, Parameter-Efficient Image Manipulation Localization through Spare-Coding Transformer \(\begin{array}{c}&lt;br&#x2F;&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2025-02-19T08:29:05.000Z">
+<meta property="article:modified_time" content="2025-02-24T02:53:29.987Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/SparseViT/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SparseViT',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-24 10:53:29'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SparseViT</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-02-19T08:29:05.000Z" title="创建于 2025-02-19 16:29:05">2025-02-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-24T02:53:29.987Z" title="更新于 2025-02-24 10:53:29">2025-02-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SparseViT"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Can We Get Rid of Handcrafted Feature Extractors?<br/>SparseViT:
+Nonsemantics-Centered, Parameter-Efficient Image Manipulation
+Localization through Spare-Coding Transformer</p>
+<p><span
+class="math inline">\(\begin{array}{c}&lt;br/&gt;{\mathrm{Lei~Su^{1,2},~Xiaochen~Ma^{3},~Xuekang~Zhu^{1,2},~Chaoqun~Niu^{1,2,4},~Zeyu~Lei^{1,2,*}}}\\&lt;br/&gt;{\mathrm{^1~中国四川大学计算机科学学院}}\\
+&lt;br/&gt;{\mathrm{^2~中国教育部机器学习与产业诚信工程研究中心}}\\
+&lt;br/&gt;{\mathrm{^3~穆罕默德·本·扎耶德人工智能大学}}\\&lt;br/&gt;{\mathrm{^4~澳门大学计算机与信息科学系}}&lt;br/&gt;\end{array}&lt;br/&gt;\)</span></p>
+<h1 id="摘要">摘要</h1>
+<p>​  非语义特征或语义不可知特征与图像上下文无关，但对图像篡改敏感，被认为是图像篡改定位（IML）的证据。由于手工标签是不可能的，现有的工作依赖于手工制作的方法来提取非语义特征。手工制作的非语义特征危及了IML模型在看不见或复杂场景中的泛化能力。因此，对于IML，重要的是：<strong>如何自适应地提取非语义特征？</strong>非语义特征与上下文无关，且对篡改敏感。也就是说，在图像中，除非发生篡改，否则它们在各个补丁之间是一致的。这样，图像块之间的稀疏和离散交互足以提取非语义特征。然而，图像语义在不同块上差异很大，需要图像块之间密集和连续的交互来学习语义表示。因此，在本文中，我们提出了一个稀疏视觉Transformer（SparseViT），它将ViT中的密集、全局的自注意重新定义为稀疏、离散的方式。这种稀疏的自注意打破了图像的语义，迫使稀疏vit自适应地提取图像的非语义特征。此外，与现有的IML模型相比，稀疏自注意机制大大减少了模型的大小（最大值为80%），实现了惊人的参数效率和计算减少。大量的实验表明，在没有任何手工特征提取器的情况下，SparseViT在跨基准数据集的泛化和效率方面都具有优势。</p>
+<p>代码-https://github.com/scu-zjz/SparseViT</p>
+<h1 id="引言">1引言</h1>
+<p>​  随着图像编辑工具和图像生成技术的快速发展，图像处理已经变得非常方便。为了解决这一趋势，研究人员开发了图像篡改定位（IML）技术，以识别图像中特定的篡改区域。由于篡改后不可避免地留在图像上的伪影（篡改痕迹），这些伪影可以分为语义和非语义（语义无关）特征。语义不可知的特征是指突出低级伪影信息的特征，这些信息独立于图像的语义内容。这些特征显示了图像的篡改和未篡改区域之间的分布的显著差异。
+(Guillaro et al. 2023)现有的主干网络(Simonyan and Zisserman 2014) (Wang
+et al. 2020) (Dosovitskiy et
+al.2020)，主要用于语义相关任务设计，可以有效地提取篡改图像的语义特征。在提取非语义特征方面，大多数现有的方法依赖于手工制作的特征提取器
+(Zhou et al. 2018) (Bayar and Stamm 2018) (Cozzolino and Verdoliva
+2019)。如表1所示，几乎所有现有的IML模型都遵循了“语义分割骨干网络”和“手工制作的非语义特征提取”的设计。</p>
+<figure>
+<img src="../postimages/SparseViT/image-20250219164532886.png"
+alt="image-20250219164532886" />
+<figcaption aria-hidden="true">image-20250219164532886</figcaption>
+</figure>
+<p>​  然而，该方法需要针对不同的非语义特征进行自定义提取策略，但在提取这些特征时缺乏适应性。因此，该方法在提高模型适应未知场景的能力方面受到了限制。与传统的手工提取非语义特征的方法不同，我们提出了一种自适应机制来提取被篡改图像中的非语义特征。我们认识到，图像的语义特征表现出很强的连续性和显著的上下文相关性（Wang
+et al.
+2018），这意味着局部语义特征在表示图像的全局语义方面往往不足。因此，局部区域之间紧密而连续的交互是构建全局语义特征的必要条件。相比之下，图像的非语义特征，如频率和噪声，对篡改高度敏感，并在图像的不同区域表现出更大的独立性。这一特性允许我们使用稀疏编码来建立非语义特征的全局交互，利用它们的敏感性来检测篡改。<br/>​  在此基础上，我们介绍了一种新的稀疏视觉变换稀疏视觉Transformer。SparseViT采用稀疏自注意机制，重新设计了ViT中密集的全局自注意，以更好地适应非语义特征的统计特性。通过稀疏处理，自我注意机制选择性地抑制了语义信息的表达，专注于捕捉与图像篡改相关的非语义特征。使用分层策略，SparseViT在不同层次上应用不同程度的稀疏度来精细地提取非语义特征。我们还设计了一个多尺度融合模块（LFF）作为解码器，集成了不同稀疏度层次提取的特征图，丰富了模型对跨多尺度非语义内容的理解，增强了其鲁棒性。这种设计使SparseViT能够专注于学习对篡改敏感的非语义特征，而忽略语义特征，允许从图像中自适应地提取非语义特征。<br/>​  据我们所知，目前还没有明确设计用于自适应提取非语义特征的模型。SparseViT可以被认为是自适应非语义特征提取的开创性工作。我们所有的实验都是在相同的评价方案下进行的。所有模型都在CAT-Net（Kwon
+et al.
+2021）数据集上进行训练，并在多个基准数据集上进行测试。我们提出的方法在几个基准数据集上展示了出色的图像处理定位能力，与其他模型相比，我们的模型获得了最好的平均性能。综上所述，我们的贡献如下：</p>
+<ul>
+<li>我们发现，图像中的语义特征需要连续的局部交互来构造全局语义，而非语义特征由于其局部独立性，可以通过稀疏编码实现全局交互。</li>
+<li>基于语义特征和非语义特征的不同行为，我们提出了一种使用稀疏自注意机制来自适应地从图像中提取非语义特征。</li>
+<li>为了解决传统的多尺度融合方法的非可学习性问题，我们引入了一种可学习的多尺度监督机制。</li>
+<li>我们提出的SparseViT在不依赖特征提取器的情况下保持了参数效率，并在四个公共数据集上实现了最先进的（SoTA）性能和优秀的模型泛化能力。</li>
+</ul>
+<h1 id="相关工作">2相关工作</h1>
+<h2 id="伪影特征提取">2.1伪影特征提取</h2>
+<p>​  早期的图像篡改定位方法主要依赖于手工制作的卷积内核从图像中提取非语义特征。例如，BayarConv（Bayar和Stamm
+2018）设计了一个带有高通滤波器结构的卷积核来捕获图像中的噪声模式。RGB-N（Zhou
+et al.
+2018）引入了SRM滤波器来捕获噪声分布的差异，从而表示非语义特征。随着深度学习在各种计算机视觉和图像处理任务中的成功，许多最近的技术也采用了深度学习来解决图像处理定位问题（Zhou
+et al.
+2018）。然而，由于现有的用于语义相关任务的网络在表示非语义特征方面的局限性，目前几乎所有的篡改定位方法都依赖于语义分割骨干网络与手工制作的非语义特征提取相结合。<br/>​  例如，ManTra-Net
+(Wu, AbdAlmageed, and Natarajan 2019)和SPAN (Hu et al.
+2020)都将BayarConv和SRM作为其模型的第一层。ObjectFormer (Wang et al.
+2022)基于Transformer架构，另外采用手工制作的DCT模块来提取高频特征，从而更好地捕获图像中的非语义特征。TruFor
+(Guillaro et al. 2023)使用手工制作的Noiseprint (Cozzolino and Verdoliva
+2019)
+特征提取器，并通过对比学习，利用这些提取的特征来增强其篡改检测和定位能力。NCL(Zhou
+et al.
+2023)利用基于sobel的（Dong等人2022a）非语义特征提取器来增强其识别非语义特征的能力。各模型从操纵图像中提取非语义特征的方法如表1所示。例如，ManTra-Net（吴、阿卜杜拉·阿尔马吉德和纳塔拉扬，2019）和SPAN（Hu等人，2020）都将BayarConv和SRM作为其模型的第一层。前者（Wang
+et al.
+2022）基于变压器架构，另外采用手工制作的DCT模块来提取高频特征，从而更好地捕获图像中的非语义特征。TruFor（Guillaro等人，2023年）使用手工制作的噪声打印（科佐利诺和维多利瓦，2019年）特征提取器，并通过对比学习，利用这些提取的特征来增强其篡改检测和定位能力。NCL（Zhou等人2023）利用基于sobel的（Dong等人2022a）非语义特征提取器来增强其识别非语义特征的能力。各模型从操纵图像中提取非语义特征的方法如表1所示。</p>
+<h2
+id="视觉transformer中的稀疏自注意力">2.2视觉Transformer中的稀疏自注意力</h2>
+<p>​  该Transformer最初被提出用于处理自然语言处理（NLP）任务，并首次应用于序列数据。本文（Dosovitskiy等人，2020年）介绍了一种新的视觉Transformer（ViT）模型，为将Transformer应用于视觉领域提供了新的见解。<br/>​  自从Transformer引入视觉领域以来，对稀疏关注的研究从未停止。SwinTransformer（Liu
+et al.
+2021b）在一个分层结构中使用移动的窗口来聚集注意力。SparseTransformer（Child
+et al.
+2019）通过限制注意权值中的非零元素的数量来降低计算复杂度。ResMLP（Touvron
+et al. 2022）将局部连接纳入注意机制，而（Liu et al.
+2021a）则利用MLPs的非线性特性来取代传统的注意计算。ViViT（Arnab等人.
+2021）和CSWinTransformer（Dong等人.
+2022b）通过分解Transformer内的多头自注意，降低了计算成本，并提高了模型处理长序列的能力。ViViT将注意力分解为时间和空间计算，而CSWinTransformer将多头自注意力分成两个平行组，一个组处理水平条纹，另一个组处理垂直条纹，形成一个十字形窗口。焦点自我注意（Yang
+et al.
+2021）通过结合细粒度的局部和粗粒度的全局交互，使注意模式稀疏化。在IML领域，目前还没有提出利用稀疏注意自适应地从篡改图像中提取语义不可知信息的方法。我们的工作是在IML领域的开创性工作。</p>
+<h1 id="方法">3.方法</h1>
+<p>​  当前数据集中的篡改实例通常专注于移动、删除或复制整个对象等篡改。这使得现有的模型（Pun、Yuan和Bi
+2015）能够通过仅依赖语义特征来相对较好地识别被操纵的区域。然而，这种对语义特征的过度依赖忽略了非语义特征的重要性，限制了模型在不熟悉或复杂的篡改场景中的泛化能力。我们观察到，图像的语义信息表现出很强的连续性和上下文依赖性（Wang
+et al.
+2018），这需要全球注意机制来加强局部和全球区域之间的相互作用（Vaswani
+2017）。相比之下，非语义信息倾向于在局部特征和全局特征之间保持一致，并在图像的不同区域之间表现出更大的独立性（乌利亚诺夫、维达尔迪和兰皮茨基2018）。通过利用这种区别，我们可以设计一种机制，减少对语义信息的依赖，同时增强对非语义信息的捕获。<br/>​  为此，我们提出将全局注意机制分解为“稀疏注意”形式。稀疏注意，当表示图像的语义信息时，可以防止模型对其进行过拟合，允许模型更多地关注图像中的非语义信息。如图1所示，我们改进了Uniformer
+(Li et al.
+2023)中传统的注意计算，用稀疏自注意代替全局自注意，其稀疏性呈指数衰减。</p>
+<figure>
+<img src="../postimages/SparseViT/image-20250221114324242.png"
+alt="image-20250221114324242" />
+<figcaption aria-hidden="true">image-20250221114324242</figcaption>
+</figure>
+<h2 id="稀疏的自注意力">3.1稀疏的自注意力</h2>
+<p>​  传统的深度模型侧重于检测语义对象，旨在拟合这些语义对象。因此，传统的自注意采用全局交互模式，即图像中的每个块与所有其块一起参与token-to
+token的注意力计算 (Liu et al.2021b) (Yuan et al.
+2021)。然而，在图像篡改定位领域，这种全局交互引入了许多不相关的键值对。此外，该模型过分强调语义信息，意味着在全局交互过程中，它考虑了图像中所有斑块的特征，如颜色和形状，从而全面理解图像的整体内容。由于该模型主要关注全局交互过程中图像的整体语义结构，因此往往忽略了篡改后出现的非语义信息的局部不一致性。<br/>​  为了解决这个问题，我们建议使用稀疏注意力来代替原来的全局注意力。我们引入了一个新的架构超参数，称为“稀疏率”，缩写为“S”。给定一个输入特征图<span
+class="math inline">\(X\ \in\ \mathbb{R}^{H\times W\times
+C}\)</span>，我们不关注整个<span class="math inline">\(H\times
+W\)</span>特征图，而是将特征划分为形状为（<span
+class="math inline">\(S\times
+S,\frac{W}{S}\times\frac{W}{S},C\)</span>）的张量块。这意味着该特征映射被分解为大小为<span
+class="math inline">\({\frac{H}{S}}\times{\frac{H}{S}}\)</span>的<span
+class="math inline">\(S\times
+S\)</span>非重叠张量块，并分别在这些张量块内进行自注意力计算。</p>
+<figure>
+<img src="../postimages/SparseViT/image-20250221115130228.png"
+alt="image-20250221115130228" />
+<figcaption aria-hidden="true">image-20250221115130228</figcaption>
+</figure>
+<p>​  如图2所示，只有标记有相同颜色的张量块才能执行自注意力计算。该设计抑制了稀疏语义信息在注意块中的表达，使模型专注于提取非语义特征。此外，特征图中张量块的稀疏化消除了在篡改定位中涉及大量无关键值对的注意计算，从而减少了FLOPs。</p>
+<h2 id="多尺度特征">3.2多尺度特征</h2>
+<p>​  在图像篡改定位任务中，引入具有不同稀疏率的多尺度监督是至关重要的。稀疏度较小的特征映射具有丰富的语义信息，有助于模型理解图像的全局上下文和结构。相反，稀疏性较大率的特征图包含更多的非语义信息，有助于模型捕获图像细节和局部特征。多尺度监督的引入允许模型通过不同程度的抑制语义特征来自适应地提取各种非语义特征，从而提高其在不同视觉场景中的泛化能力。</p>
+<figure>
+<img src="../postimages/SparseViT/image-20250221114324242.png"
+alt="image-20250221114324242" />
+<figcaption aria-hidden="true">image-20250221114324242</figcaption>
+</figure>
+<p>​  如图1所示，我们在阶段3和阶段4的不同块中引入了不同的稀疏率。3和4阶段各块稀疏率计算方法如下：
+<span class="math display">\[S3_{S}^{b_{i}}=2^{(3-\frac{i}{5})},\quad
+i=0\dots\cdot19\]</span></p>
+<p><span
+class="math display">\[S4_{S}^{b_{i}}=2^{(1-\frac{i}{4})},\;\;\;\;i=0\dots6\]</span></p>
+<p>​  在这里，上标<span
+class="math inline">\(b_i\)</span>表示一个阶段内的不同层，其中每一层从0开始编号，下标S表示稀疏性。我们使用阶段3和阶段4中最后一个块在不同稀疏率下的输出作为我们的多尺度特征映射。此外，由于全局关注的稀疏性，我们可以很容易地获得多尺度信息。该方法不仅在不增加计算负担的情况下显著提高了模型的准确性和性能，而且使模型的效率和鲁棒性。</p>
+<h2 id="轻质和有效的预测头lff">3.3轻质和有效的预测头LFF</h2>
+<p>​  Layer scale (Touvron et al.
+2021)是Transformers中使用的一种技术，其中多层自注意和前馈网络通常堆叠，每一层引入一个可学习的缩放参数<span
+class="math inline">\(\gamma\)</span>。这个缩放参数可以学习不同的值，从而能够在整个网络中更有效地进行信息传输。目前，特征融合方法通常通过加法或连接等简单的操作来实现（Lin
+et al.
+2017），它只提供固定的特征映射的线性聚合，而不考虑这种组合对特定对象是否最优。对于模型的最终预测，我们的目标是设计一个简单而有效的预测头。受变压器架构中的层尺度机制的启发，我们为每个特征图引入了一个可学习的参数来控制尺度比例，允许更自适应的特征融合。<br/>​  所提出的LFF（可学习特征融合，Learnable
+Feature Fusion）预测头由五个主要部分组成，如图3所示。</p>
+<figure>
+<img src="../postimages/SparseViT/image-20250221115930665.png"
+alt="image-20250221115930665" />
+<figcaption aria-hidden="true">image-20250221115930665</figcaption>
+</figure>
+<p>​  首先，使用LFF层将特征映射F1到F4的通道统一到512维。特征图F5和F6被上采样到原始大小的十六分之一。然后，将每个特征映射乘以其相应的<span
+class="math inline">\(\gamma\)</span>缩放参数，其初始化为一个较小的类似于1e-6的值。然后，使用另一个LFF层对所有缩放后的特征图进行求和，并将求和结果的信道维数降为1。最后对结果进行上采样，以上采样H×W×1掩模作为最终预测结果。LFF过程可以形式化如下：
+<span class="math display">\[F_{i}=\mathrm{Linear}(C_{i},C)(F_{i}),\quad
+i=1\dots4\]</span></p>
+<p><span class="math display">\[F_{i}=\mathrm{U\!{p}s a m p l
+e}\left({\frac{H}{16}}\times{\frac{W}{16}}\right)(F_{i}),\quad
+i=5,6\]</span></p>
+<p><span class="math display">\[M_{p}=\mathrm{A d
+d}\left(F_{i}\times\gamma\right),\quad i=1\dots6\]</span></p>
+<p><span
+class="math display">\[M_{p}=\mathrm{Linear}(C,1)(M_{p})\]</span></p>
+<p><span class="math display">\[M_{p}=\mathrm{Upsample}\left(H\times
+W\right)\left(M_{p}\right)\]</span></p>
+<p>​  通过设置特征图的权值参数，该模型可以动态地调整每个特征图对融合结果的贡献，从而提高了特征融合的灵活性。通过这种简单的设计，该模型可以更好地平衡和集成多尺度特征，突出重要的特征，同时抑制不相关或冗余的特征。</p>
+<h1 id="结果">4.结果</h1>
+<h2 id="实验设置">4.1实验设置</h2>
+<p>​  为了确保公平比较与现有的最先进的图像操作定位方法，我们训练模型CAT-Net
+(Kwon et al.2021)介绍的数据集，然后测试CASIAv1 (Dong, Wang, and Tan
+2013), NIST16 (Guan et al. 2019), COVERAGE (Wen et al. 2016), Columbia
+(Hsu and Chang 2006), 和DEF-12k (Mahfoudi et al.
+2019)数据集。与之前的大多数工作类似，我们使用像素级F1分数和AUC（曲线下面积）来衡量模型的性能。除非另有说明，我们使用默认阈值0.5报告结果。有关实验设置和DEF-12k数据集的详细信息，请参见附录A。</p>
+<h2 id="消融研究">4.2消融研究</h2>
+<p>​  为了更好地评估每个组件的性能影响，我们采用了一种增量的方法，逐步添加组件，并将它们与包含所有组件的完整模型进行比较。这种方法允许我们彻底地测量和优化我们所提出的模型的架构。我们研究了使用稀疏注意和全局注意对模型参数和浮点运算（FLOPs，floating-point
+operations）的影响。此外，我们还比较了手工设计的特征提取器和稀疏注意机制在提取非语义特征方面的能力。为了探究LFF预测头的影响，我们将其性能与LFF（Xieetal.2021）在稀疏注意引入下的MLP预测头进行了比较。这种比较不仅帮助我们评估了预测头部设计的有效性，而且还揭示了不同头部对整体模型性能的具体影响。此外，我们还比较了传统的单尺度监督与我们提出的多尺度监督方法，以研究多尺度监督的优势及其对模型性能的贡献。所有这些评估的结果都是基于对CAT-Net提出的数据集进行的训练，并在CASIAv1,
+NIST16, COVERAGE,
+Columbia和DEF-12k上进行了测试。实验结果见表2和表3。</p>
+<h2
+id="稀疏注意可以有效地捕获非语义信息">4.3稀疏注意可以有效地捕获非语义信息。</h2>
+<p>​  <img src="../postimages/SparseViT/image-20250221154647153.png"
+alt="image-20250221154647153" /></p>
+<p>​  在表2中，我们比较了5个数据集的稀疏注意和全局注意的性能。此外，我们还报告了人工提取的非语义特征和稀疏注意在这5个数据集上的性能。结果一致证实了稀疏注意机制在从操纵图像中提取非语义特征方面的显著优势。我们观察到，某些手工制作的特征提取方法并没有显著提高数据集上的模型性能，在某些情况下，甚至还导致了性能下降。这提出了人工非语义特征提取有效性的问题，值得进一步研究。然而，很明显，稀疏注意机制显著提高了所有数据集的模型性能，在5个不同的数据集上实现了全面的增强。<br/>​  此外，稀疏注意的设计也显示了其在减少计算负担方面的优势。与全局注意相比，稀疏注意使模型的浮点操作减少了约15%，这在大规模图像处理任务中尤其有价值。综上所述，稀疏注意通过精确提取被操纵图像中的非语义信息，提高了模型对细微伪影的敏感性，从而显著提高了模型的泛化能力。</p>
+<figure>
+<img src="../postimages/SparseViT/image-20250221154928506.png"
+alt="image-20250221154928506" />
+<figcaption aria-hidden="true">image-20250221154928506</figcaption>
+</figure>
+<p>​  如图4所示，我们定性地证明了在稀疏化之后，该模型成功地抑制了需要密集编码和长期上下文依赖的语义特征，同时能够提取不需要密集编码的非语义特征。在附录C中，我们对稀疏注意力和手工制作的特征提取器进行了定性分析。</p>
+<h2 id="lff的影响">4.4LFF的影响</h2>
+<p>​  在表3中，我们报告了单尺度特征、LFF和MLP（Xie et al.
+2021）预测头在数据集上的性能。</p>
+<figure>
+<img src="../postimages/SparseViT/image-20250221170051189.png"
+alt="image-20250221170051189" />
+<figcaption aria-hidden="true">image-20250221170051189</figcaption>
+</figure>
+<p>​  实验结果表明，无论是使用单尺度或多尺度特征，还是采用不同的特征融合策略，CASIAv1数据集上的F1得分均具有较高的一致性。我们将这种现象归因于CASIAv1和CASIAv2来自同一个数据集，因此在CASIAv1数据集上的性能不足以反映模型的泛化能力（Ma
+et al.
+2023）。进一步的分析显示，与仅使用单尺度特征相比，LFF预测头和MLP预测头在5个数据集上的平均F1得分上均有显著改善。这表明，有效的特征融合策略可以显著提高模型的图像操作检测性能。具体来说，与MLP预测头相比，LFF在平均F1方面也取得了改进，验证了可学习的特征融合在性能方面优于简单的特征添加。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/SparseViT/">https://zhaozw-szu.github.io/SparseViT/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/%E5%8F%AF%E5%BE%AE%E6%B7%B1%E5%BA%A6%E8%81%9A%E7%B1%BB/" title="可微深度聚类"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">可微深度聚类</div></div></a></div><div class="next-post pull-right"><a href="/%E5%85%AC%E5%BC%8F%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95/" title="公式识别方法"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">公式识别方法</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">102</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E5%BD%B1%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">2.1伪影特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E8%A7%89transformer%E4%B8%AD%E7%9A%84%E7%A8%80%E7%96%8F%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">2.2视觉Transformer中的稀疏自注意力</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E7%9A%84%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-text">3.1稀疏的自注意力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E7%89%B9%E5%BE%81"><span class="toc-text">3.2多尺度特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%BB%E8%B4%A8%E5%92%8C%E6%9C%89%E6%95%88%E7%9A%84%E9%A2%84%E6%B5%8B%E5%A4%B4lff"><span class="toc-text">3.3轻质和有效的预测头LFF</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C"><span class="toc-text">4.结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.2消融研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E6%B3%A8%E6%84%8F%E5%8F%AF%E4%BB%A5%E6%9C%89%E6%95%88%E5%9C%B0%E6%8D%95%E8%8E%B7%E9%9D%9E%E8%AF%AD%E4%B9%89%E4%BF%A1%E6%81%AF"><span class="toc-text">4.3稀疏注意可以有效地捕获非语义信息。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lff%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">4.4LFF的影响</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
