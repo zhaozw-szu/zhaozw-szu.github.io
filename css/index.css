@@ -3412,6 +3412,142 @@ figure.highlight pre .javascript .function {
   margin: 6px 0;
   padding: 0.12em 0.4em 0.12em 1.4em;
 }
+.main-content {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0px;
+}
+#post-list {
+  overflow-x: auto;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  background: #fff;
+}
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  min-width: 600px /* 保持基础可读性 */;
+}
+th:nth-child(1),
+td:nth-child(1) {
+  width: 10% /* categories */;
+}
+th:nth-child(2),
+td:nth-child(2) {
+  width: 45% /* Title */;
+}
+th:nth-child(3),
+td:nth-child(3) {
+  width: 15% /* Method */;
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: 15% /* Conference */;
+}
+th:nth-child(4) .conference-item,
+td:nth-child(4) .conference-item {
+  display: block;
+  margin: 4px 0;
+  line-height: 1.4;
+  padding: 2px 0;
+}
+th:nth-child(4) .conference-item:not(:last-child),
+td:nth-child(4) .conference-item:not(:last-child) {
+  border-bottom: 1px solid #eaecef;
+}
+th:nth-child(5),
+td:nth-child(5) {
+  width: 15% /* Code */;
+}
+th:nth-child(5) .code-link,
+td:nth-child(5) .code-link {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+th:nth-child(5):hover,
+td:nth-child(5):hover {
+  background-color: #f6f8fa;
+  -webkit-transform: translateY(-1px);
+  -moz-transform: translateY(-1px);
+  -o-transform: translateY(-1px);
+  -ms-transform: translateY(-1px);
+  transform: translateY(-1px);
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+th:nth-child(5) .pytorch-logo,
+td:nth-child(5) .pytorch-logo {
+  vertical-align: middle;
+  filter: grayscale(30%);
+  -webkit-transition: filter 0.3s;
+  -moz-transition: filter 0.3s;
+  -o-transition: filter 0.3s;
+  -ms-transition: filter 0.3s;
+  transition: filter 0.3s;
+}
+th:nth-child(5) .code-link:hover .pytorch-logo,
+td:nth-child(5) .code-link:hover .pytorch-logo {
+  filter: grayscale(0%);
+}
+th:nth-child(5) .visually-hidden,
+td:nth-child(5) .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+th:nth-child(6),
+td:nth-child(6) {
+  width: 5% /* Available */;
+}
+thead {
+  background: #f6f8fa;
+  border-bottom: 2px solid #e1e4e8;
+  position: sticky;
+  top: -1px /* 粘性定位修正 */;
+}
+th {
+  padding: 16px 12px;
+  font-weight: 600;
+  text-align: left;
+  color: #24292e;
+}
+td {
+  padding: 12px;
+  border-top: 1px solid #eaecef;
+  vertical-align: top;
+  color: #444d56;
+}
+td:empty::before {
+  content: "-";
+  color: #959da5;
+}
+tr:hover td {
+  background-color: #f6f8fa !important;
+}
 #body-wrap {
   display: -webkit-box;
   display: -moz-box;

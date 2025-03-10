@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>IMDL-BenCo</title>
+      <title>IMDL-BenCo:A Comprehensive Benchmark and Codebase for Image Manipulation Detection &amp; Localization</title>
       <link href="/IMDL-BenCo/"/>
       <url>/IMDL-BenCo/</url>
       
@@ -13,7 +13,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -49,7 +49,7 @@
     
     
     <entry>
-      <title>Image_as_Set_of_Points</title>
+      <title>Image as Set of Points</title>
       <link href="/Image-as-Set-of-Points/"/>
       <url>/Image-as-Set-of-Points/</url>
       
@@ -58,9 +58,9 @@
       
       <categories>
           
-          <category> 无监督聚类 </category>
+          <category> 无监督 </category>
           
-          <category> 无监督语义分割 </category>
+          <category> 语义分割 </category>
           
       </categories>
       
@@ -109,7 +109,7 @@
     
     
     <entry>
-      <title>Contextrast</title>
+      <title>Contextrast:Contextual Contrastive Learning for Semantic Segmentation</title>
       <link href="/Contextrast/"/>
       <url>/Contextrast/</url>
       
@@ -139,7 +139,9 @@
       
       <categories>
           
-          <category> 无监督聚类 </category>
+          <category> 无监督 </category>
+          
+          <category> 在线深度聚类 </category>
           
       </categories>
       
@@ -149,7 +151,7 @@
     
     
     <entry>
-      <title>DivClust</title>
+      <title>DivClust:Controlling Diversity in Deep Clustering</title>
       <link href="/DivClust/"/>
       <url>/DivClust/</url>
       
@@ -158,7 +160,7 @@
       
       <categories>
           
-          <category> 无监督聚类 </category>
+          <category> 无监督 </category>
           
           <category> 共识聚类 </category>
           
@@ -183,7 +185,7 @@
     
     
     <entry>
-      <title>A_Lightweight_Clustering_Framework_for_Unsupervised_Semantic_Segmentation</title>
+      <title>A Lightweight Clustering Framework for Unsupervised Semantic Segmentation</title>
       <link href="/A-Lightweight-Clustering-Framework-for-Unsupervised-Semantic-Segmentation/"/>
       <url>/A-Lightweight-Clustering-Framework-for-Unsupervised-Semantic-Segmentation/</url>
       
@@ -194,7 +196,9 @@
           
           <category> 语义分割 </category>
           
-          <category> 无监督聚类 </category>
+          <category> 无监督 </category>
+          
+          <category> 多级聚类 </category>
           
       </categories>
       
@@ -256,7 +260,7 @@
     
     
     <entry>
-      <title>DiffForensics</title>
+      <title>DiffForensics:Leveraging Diffusion Prior to Image Forgery Detection and Localization</title>
       <link href="/DiffForensics/"/>
       <url>/DiffForensics/</url>
       
@@ -265,7 +269,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -287,7 +291,7 @@
     
     
     <entry>
-      <title>SUMI-IFL</title>
+      <title>SUMI-IFL:An Information-Theoretic Framework for Image Forgery Localization with Sufficiency and Minimality Constraints</title>
       <link href="/SUMI-IFL/"/>
       <url>/SUMI-IFL/</url>
       
@@ -296,7 +300,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -306,7 +310,7 @@
     
     
     <entry>
-      <title>EditGuard</title>
+      <title>EditGuard:Versatile Image Watermarking for Tamper Localization and Copyright Protection</title>
       <link href="/EditGuard/"/>
       <url>/EditGuard/</url>
       
@@ -315,7 +319,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -325,7 +329,7 @@
     
     
     <entry>
-      <title>UGEE-Net</title>
+      <title>UGEE-Net:Uncertainty-guided and edge-enhanced network for image splicing localization</title>
       <link href="/UGEE-Net/"/>
       <url>/UGEE-Net/</url>
       
@@ -334,7 +338,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
           <category> 图像拼接检测与定位 </category>
           
@@ -399,9 +403,9 @@
       
       <categories>
           
-          <category> K-means聚类 </category>
+          <category> 无监督 </category>
           
-          <category> 无监督语义分割 </category>
+          <category> 语义分割 </category>
           
       </categories>
       
@@ -439,7 +443,7 @@
       
       <categories>
           
-          <category> K-means聚类 </category>
+          <category> 模糊聚类 </category>
           
       </categories>
       
@@ -477,7 +481,9 @@
       
       <categories>
           
-          <category> K-means聚类 </category>
+          <category> 无监督 </category>
+          
+          <category> 模糊聚类 </category>
           
       </categories>
       
@@ -535,7 +541,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -554,7 +560,9 @@
       
       <categories>
           
-          <category> K-means聚类 </category>
+          <category> IML </category>
+          
+          <category> 模糊聚类 </category>
           
       </categories>
       
@@ -637,7 +645,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -647,7 +655,7 @@
     
     
     <entry>
-      <title>Image_Manipulation_Detection_With_Implicit_Neural_Representation_and_Limited_Supervision</title>
+      <title>Image Manipulation Detection With Implicit Neural Representation and Limited Supervision</title>
       <link href="/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/"/>
       <url>/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/</url>
       
@@ -656,7 +664,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -701,7 +709,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -765,9 +773,9 @@
       
       <categories>
           
-          <category> 无监督语义分割 </category>
+          <category> 无监督 </category>
           
-          <category> K-means聚类 </category>
+          <category> 语义分割 </category>
           
       </categories>
       
@@ -788,7 +796,9 @@
           
           <category> 可微聚类 </category>
           
-          <category> 无监督语义分割 </category>
+          <category> 无监督 </category>
+          
+          <category> 语义分割 </category>
           
       </categories>
       
@@ -802,7 +812,7 @@
       <link href="/Efficient-Deep-Embedded-Subspace-Clustering/"/>
       <url>/Efficient-Deep-Embedded-Subspace-Clustering/</url>
       
-        <content type="html"><![CDATA[<center>Efficient Deep Embedded Subspace Clustering</center><p><spanclass="math inline">\(\begin{gathered}&lt;br/&gt;\mathrm{Jinyu~Cai}^{1,3},\mathrm{~Jicong~Fan}^{2,3*},\mathrm{Wenzhong~Guo}^{1},\mathrm{~Shiping~Wang}^{1},\mathrm{~Yunhe~Zhang}^{1},\mathrm{~Zhao~Zhang}^{4}\\&lt;br/&gt;\text{College of Computer and Data Science, FuzhouUniversity, China} \\&lt;br/&gt;\text{2School of Data Science, TheChinese University of Hong Kong (Shenzhen), China}\\&lt;br/&gt;\text{&#39;Shenzhen Research Institute of Big Data, China}^4\text{Hefei University of Technology, China}\\&lt;br/&gt;\{jinyucai1995,cszzhang\}@gmail.com,fanjicong@cuhk.edu.cn\\&lt;br/&gt;\mathrm{guowenzhong@fzu.edu.cn,\{shipingwangphd,zhangyhannie\}@163.com}&lt;br/&gt;\end{gathered}\)</span></p><h1 id="摘要">摘要</h1><p>​  最近，深度学习方法在数据聚类任务方面取得了重大进展。深度聚类方法（包括基于距离的方法和基于子空间的方法）将聚类和特征学习集成到一个统一的框架中，在那里聚类和表示之间存在相互促进。然而，深度子空间聚类方法通常在自表达模型的框架内，具有二次时间和空间复杂性，阻碍了其在大规模聚类和实时聚类中的应用。在本文中，我们提出了一种新的深度聚类机制。我们的目标是以迭代细化的方式从深度表示中学习子空间基，而细化的子空间基则帮助学习深度神经网络的表示。该方法脱离了自表达框架，可以线性地扩展到样本大小，适用于任意大的数据集和在线聚类场景。更重要的是，该方法的聚类精度远远高于其竞争对手。在基准数据集上与最先进的聚类方法进行的广泛比较研究，证明了该方法的优越性。</p><h1 id="引言">1. 引言</h1><p>​  聚类是机器学习中的一个基本问题，它的目的是在没有标签信息的情况下，在高类内相似度和低类间相似度的要求下，将样本分离成类。许多经典的聚类算法如k-means[29]和谱聚类（SC）[30]在实际应用中取得了巨大的成功。然而，它们在处理具有复杂结构或/和高维性的数据时并不有效，这可以通过使用数据的细化特征来改进。事实上，[14,37,38,47]之前的一些工作利用了特征学习技术，如非负矩阵分解[2]、自动编码器（AE）[1]及其变体[24,31,36]来学习低维嵌入进行聚类，从而提高了聚类的精度。然而，由于这些方法是两阶段聚类，并且特征学习不是针对聚类的，因此不能保证学习到的表示适合于聚类。<br/>​  近年来，一些研究人员提出了端到端聚类方法，如深度嵌入式聚类（DEC）[40]、联合无监督学习（JULE）[41]、深度自适应聚类（DAC）[6]和深度综合相关挖掘（DCCM）[39]。在这些方法中，聚类目标与网络优化过程相结合，这提供了一种学习面向聚类的嵌入式表示的方法。然而，大多数深度聚类方法使用基于欧几里德距离的度量来识别聚类，而欧几里德距离对于不同类型的数据结构并不总是有效或合理的。<br/>​  子空间聚类假设数据位于不同的子空间[11]中。稀疏子空间聚类（SSC聚类）[11]和低秩表示（LRR）[27]主要基于光谱聚类[30]，优于k均值聚类和经典光谱聚类。最近，一些研究人员[8,21,25,44]表明，联合子空间聚类和深度学习在基准数据集上有很好的性能。然而，这些方法很难扩展到大规模的数据集，因为它们需要学习一个自我表达的矩阵，从而导致二次时间和空间的复杂度。因此，[12,48,49]的一些最新工作致力于提高子空间聚类的效率。<br/>​  在本文中，我们旨在提供一种高效和精确的深子空间聚类的方法。我们提出从深度自动编码器提取的潜在特征中学习一组子空间基，其中的基和网络参数被迭代细化。我们提出从深度自动编码器提取的潜在特征中学习一组子空间基，其中的基和网络参数被迭代细化。该方法的网络结构如图1所示。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004113308304.png"alt="image-20241004113308304" /><figcaption aria-hidden="true">image-20241004113308304</figcaption></figure><p>图1.提出方法的说明。利用自动编码器网络学习输入数据的嵌入式表示Z，然后Z与子空间D结合构造子空间相似度向量，得到归一化的子空间相似度<spanclass="math inline">\(S\)</span>。然后，从<spanclass="math inline">\(S\)</span>计算细化的子空间相似度<spanclass="math inline">\(\widetilde{S}\)</span>，提供自监督信息。注意，<spanclass="math inline">\(d\)</span>是子空间的维数，<spanclass="math inline">\(L_{Recon}\)</span>和<spanclass="math inline">\(L_{Sub}\)</span>表示重构损失和<spanclass="math inline">\(\widetilde{S}\)</span>与<spanclass="math inline">\(S\)</span>之间的差异，并通过联合优化它们来训练网络。</p><p>​  我们的贡献如下：</p><ul><li>我们提出了一种新的脱离传统的自我表达框架的深度子空间聚类方法</li><li>该方法具有线性的时间和空间复杂度，因此适用于大规模的子空间聚类。</li><li>我们将该方法推广到在线聚类，从而可以有效地处理任意大的数据集和流数据集。</li><li>分析了利用深度神经网络转换基于距离的聚类和子空间聚类的可行性。</li></ul><p>​  在许多基准数据集（如Fashion-MNIST、STL-10和REUTERS-10k）上的数值结果表明，我们的方法比其竞争对手更有效。</p><h1 id="相关工作及简要讨论">2. 相关工作及简要讨论</h1><h2 id="深度聚类">2.1 深度聚类</h2><p>​  早期的深度聚类方法旨在应用深度特征学习方法（如自动编码器[36]和变分自动编码器（VAE）[24]）从复杂的高维数据中提取特征进行聚类。然而，这些解决方案很难学习适合于聚类任务的表示。目前的深度聚类方法侧重于构建端到端模型。Xie等人提出了DEC[40]，设计了一个基于t-SNE[35]设计的聚类目标。它提供了一个实现聚类中心和嵌入式特征同步优化的聚类模型。Chang等人[5]提出了深度自我进化聚类（DSEC），这是一种基于自我进化的算法，用所选择的模式对交替训练网络。在[39]中，Wu等人提出了一种名为DCCM的方法，该方法使用伪标签进行自我监督，并使用互信息来捕获更多有区别的表示用于聚类。由Huang等人[20]提出的分区置信度最大化（PICA）使分区不确定性指数最小化，并学习了最有信心的聚类分配。请注意，这些深度聚类方法使用欧氏距离来分配聚类，当聚类不集中于平均值时，这可能没有用处。</p><h2 id="子空间聚类">2.2 子空间聚类</h2><p>​  经典的子空间聚类，如SSC [11]，LRR [27]，Kernel-SSC[32]，旨在学习光谱聚类的自表达相似度矩阵。Ji等人[21]提出了深度子空间聚类网络（DSC-Net），该网络包含了一个具有自编码器网络的自表达模块。与SSC和LRR相比，DSC-Net在多个图像数据集上都有了显著的改进。Zhou等人[52]提供了一种称为深度对抗性子空间聚类（DASC）的方法，该方法利用生成的对抗性网络[16]提供对抗性学习，提高了深度子空间聚类的性能。Zhou等人[51]提出了分布保留的子空间聚类（DPSC）来保留子空间中的潜在分布，以提高子空间聚类模型的特征学习能力。另一方面，一些研究者试图降低子空间聚类[7,12,13,33,49]的复杂性。例如，Zhang等[49]提出了k-子空间聚类网络（k-SCN），将子空间的更新整合到嵌入式空间的学习中，以解决学习相似度矩阵的缺点。Fan[12]提出了一种k-分解子空间聚类（k-FSC）方法，该方法具有线性的时间和空间复杂度，能够处理缺失数据和流数据。</p><h2 id="简短的讨论">2.3 简短的讨论</h2><p>​  我们分析了表1中经典子空间聚类、大规模子空间聚类和深度子空间聚类等几种（由于空间限制）方法的时空复杂性。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004115219866.png"alt="image-20241004115219866" /><figcaption aria-hidden="true">image-20241004115219866</figcaption></figure><p>表1.该方法与一些深度聚类和子空间聚类方法在聚类n个样本的维度为m中的时间复杂度和空间复杂度比较。为了节省空间，我们在补充材料中加入了对参数的解释。</p><p>​  我们可以看到，这些经典的子空间聚类方法和深度子空间聚类方法在样本数量上具有二次时间和空间的复杂性。相比之下，我们的方法具有线性的时间和空间复杂度，可与[12]的大规模子空间聚类方法相媲美。</p><h1 id="方法">3. 方法</h1><h2 id="提出的模-型">3.1 提出的模 型</h2><p>​  在本文中，我们主要针对基于深度学习的子空间聚类，并试图解决以下问题。</p><p><strong>问题1</strong></p><p>​  给定一个数据矩阵<spanclass="math inline">\(\mathbf{X}\in\mathbb{R}^{m\timesn}\)</span>，其中<span class="math inline">\(m\)</span>表示特征数，<spanclass="math inline">\(n\)</span>表示样本数。假设<spanclass="math inline">\(\mathrm{X=\bar{X}P}\)</span>，其中<spanclass="math inline">\(\bar{X}=[\bar{\mathbf{X}}^{(1)},\bar{\mathbf{X}}^{(2)},\ldots,\bar{\mathbf{X}}^{(k)}]\)</span>和<spanclass="math inline">\(\mathbf{P}\in\mathbb{R}^{n\timesn}\)</span>是一个未知排列的矩阵。对于<spanclass="math inline">\(j=1,\ldots,k\)</span>，假设<spanclass="math inline">\(\bar{\mathbf{X}}^{(j)}\in\mathbb{R}^{m\timesn_j}\)</span>的列是由以下得来： <spanclass="math display">\[\mathbf{x}=\mathbf{f}_j(\mathbf{v})+\varepsilon,\]</span>​  其中<spanclass="math inline">\(\mathbf{f}_j:\mathbb{R}^{r_k}\longrightarrow\mathbb{R}^m\)</span>是一个未知的非线性函数，<spanclass="math inline">\(r_{j}&lt;m\)</span>，<spanclass="math inline">\(\mathbf{v}\in\mathbb{R}^{r_{j}}\)</span>是一个随机变量，<spanclass="math inline">\(\varepsilon\in\mathbb{R}^{m}\)</span>表示随机高斯噪声。从<spanclass="math inline">\(\mathrm{X}\)</span>中找到排列矩阵<spanclass="math inline">\(\mathrm{P}\)</span>（或等价的<spanclass="math inline">\(\bar{X}\)</span>）。  这个问题正是一个聚类问题，为此我们需要将<spanclass="math inline">\(\mathrm{X}\)</span>的列分组成k个聚类，对应于k个不同的函数<spanclass="math inline">\(\mathbf{f}_{1},\ldots,\mathbf{f}_{k}\)</span>。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004121536128.png"alt="image-20241004121536128" /><figcaption aria-hidden="true">image-20241004121536128</figcaption></figure><p>​  图2显示了<span class="math inline">\(m=1\)</span>和<spanclass="math inline">\(r_{1}=\cdots=r_{5}=1\)</span>的一个简单例子。注意，当<spanclass="math inline">\(\mathbf{f}_{1},\ldots,\mathbf{f}_{k}\)</span>都是线性的，这个问题简化为经典的子空间聚类。<br/><strong>问题2</strong></p><p>​  在问题1中，对于<spanclass="math inline">\(j=1,\ldots,k\)</span>，假设<spanclass="math inline">\(\mathbf{f}_{j}(\mathbf{v})=\mathbf{g}(\mathbf{B}^{(j)}\mathbf{v})\)</span>，其中<spanclass="math inline">\(\mathbf{B}^{(j)}\in\mathbb{R}^{p\timesr_j}\)</span>和<spanclass="math inline">\(\mathbf{g}:\mathbb{R}^p\longrightarrow\mathbb{R}^m\)</span>。此外，<spanclass="math inline">\(\frac{\|\mathbf{B}^{(i)^{\top}}\mathbf{B}^{(j)}\|_{F}}{\|\mathbf{B}^{(i)}\|_{F}\|\mathbf{B}^{( j )}\|_{F}}(i\neq j)\)</span>足够小。从<spanclass="math inline">\(\mathrm{X}\)</span>中找到排列矩阵<spanclass="math inline">\(\mathrm{P}\)</span>（或等价的<spanclass="math inline">\(\bar{X}\)</span>）。</p><p>​  问题2比问题1更容易，因为当我们获得<spanclass="math inline">\(\{\mathbf{B}^{(1)},\ldots,\mathbf{B}^{(k)}\}\)</span>的良好估计时，就识别出正确的集群足够了。因此，在本文中，首先，我们提出通过用多层神经网络近似<spanclass="math inline">\(x\)</span>来估计<spanclass="math inline">\(B^{(j)}\)</span>，即： <spanclass="math display">\[\mathbf{x}_i\approxh_\mathcal{W}(\hat{\mathbf{B}}^{(j)}\hat{\mathbf{v}}_i),\mathbf{x}_i\in\mathbb{C}_j,\]</span> ​  其中，<spanclass="math inline">\(h_\mathcal{W}\)</span>为参数集为<spanclass="math inline">\(\mathcal{W}\)</span>的多层神经网络，<spanclass="math inline">\(\mathbb{C}_j\)</span>为第<spanclass="math inline">\(j\)</span>个聚类。很难直接获得<spanclass="math inline">\(\{\hat{\mathbf{B}}^{(1),}\ldots,\hat{\mathbf{B}}^{(k)}\}\)</span>。相反，我们估计了<spanclass="math inline">\(\mathbf{B}^{(j)}\mathbf{V}_i\)</span>，即<spanclass="math inline">\(\mathbf{z}_{i}:=\hat{\mathbf{B}}^{(j)}\hat{\mathbf{v}}_{i}\)</span>。因此，我们提出优化去解决：<spanclass="math display">\[\begin{aligned}\operatorname*{minimize}_{\mathcal{W},\{\mathbf{z}_{1},\ldots,\mathbf{z}_{n}\}}&amp;\frac{1}{2n}\sum_{i=1}^{n}\|\mathbf{x}_{i}-h_{\mathcal{W}}(\mathbf{z}_{i})\|^{2},\\\mathrm{subject~to~}&amp;\mathbf{z}_{i}\in\mathbb{S}_{i},i=1,\ldots,n,\end{aligned}\]</span> ​  其中，<spanclass="math inline">\(\mathbb{S}_{i}\)</span>表示真正的簇<spanclass="math inline">\(\mathbf{x}_{i}\)</span>应该属于的簇。然而，不可能直接解决(3)，因为<spanclass="math inline">\(\mathbb{S}_{i}\)</span>是未知的。现在我们引入了一个新的变量<spanclass="math inline">\(\mathbf{D}=[\mathbf{D}^{(1)},\mathbf{D}^{(2)},\ldots,\mathbf{D}^{(k)}]\)</span>。它包含<spanclass="math inline">\(k\)</span>个块和<spanclass="math inline">\(\mathbf{D}^{(j)}\in \mathbb{R}^{p\timesd}\)</span>，$ |_{u}<sup>{(j)}|=1<spanclass="math inline">\(，\)</span>u=1,,d<spanclass="math inline">\(，\)</span>j=1,,k<spanclass="math inline">\(。注意，对于所有的\)</span>j=1,,k<spanclass="math inline">\(，\)</span>dr_{j}<spanclass="math inline">\(。我们希望\)</span></sup>{(j)}<spanclass="math inline">\(与\)</span><sup>{(j)}<spanclass="math inline">\(，\)</span>j=1,,k<spanclass="math inline">\(有相同的列空间。然后根据我们在问题2中所做的假设，对于所有的\)</span>jl<spanclass="math inline">\(，\)</span>|</sup>{(j)<sup>}</sup>{(l)}|_F<spanclass="math inline">\(都足够小，即：\)</span><spanclass="math inline">\(\|\mathbf{D}^{(j)^\top}\mathbf{D}^{(l)}\|_F\leq\tau,j\neq l,\)</span>$ ​  其中，<spanclass="math inline">\(\tau\)</span>是一个很小的常数。<br/>​  表示<spanclass="math inline">\(\alpha_{i}=\mathrm{arg~max}_{j}\|\mathbf{z}_{i}^{\top}\mathbf{D}^{(j)}\|\)</span>。我们期待：<spanclass="math display">\[\|\mathbf{z}_i^\top\mathbf{D}^{(\alpha_i)}\|\gg\max_{j\neq\alpha_i}\|\mathbf{z}_i^\top\mathbf{D}^{(j)}\|,i=1,\ldots,n.\]</span> ​  换句话说，<spanclass="math inline">\(\mathbf{z}_{i}\)</span>只与<spanclass="math inline">\(\mathbf{D}\)</span>的一个块高度相关。现在我们使用一个参数集为<spanclass="math inline">\(\mathcal{W}^{\prime}\)</span>的编码器<spanclass="math inline">\(h_{\mathcal{W}^{\prime}}^{\prime}\)</span>来表示<spanclass="math inline">\(\mathbf{z}_{i}\)</span>，即： <spanclass="math display">\[\mathbf{z}_i=h&#39;_{\mathcal{W}&#39;}(\mathbf{x}_i),i=1,\ldots,n.\]</span> ​  为了方便起见，我们让： <spanclass="math display">\[\hat{\mathbf{x}}_i:=h_{\mathcal{W}}(\mathbf{z}_i),i=1,\ldots,n.\]</span> ​  和表示<spanclass="math inline">\(\hat{\mathbf{X}} =[\hat{\mathbf{x}}_{1},\ldots,\hat{\mathbf{x}}_{n}]\)</span>。现在，我们把(3)、(4)、(5)、(6)和(7)一起解决<spanclass="math display">\[\begin{alignat}{2}&amp;\operatorname*{minimize}_{\mathcal{W},\mathcal{W}^{\prime},\mathbf{D}}&amp; \quad &amp;\frac{1}{2n}\left\|\mathbf{X}-\hat{\mathbf{X}}\right\|_{F}^{2},\\&amp;\text{subject to} &amp; &amp; \|\mathbf{D}_{u}^{(j)}\|=1, \;u=1,\ldots,d, \; j=1,\ldots,k, \nonumber \\&amp; &amp; &amp;\|\mathbf{D}^{(j)} \mathbf{D}^{(l)}\|_{F}\leq\tau, \; j\neq l, \nonumber\\&amp; &amp; &amp;\|\mathbf{z}_{i}^{\top}\mathbf{D}^{(\alpha_{i})}\|\gg\max_{j\neq\alpha_{i}}\|\mathbf{z}_{i}^{\top}\mathbf{D}^{(j)}\|,\; i=1,\ldots,n. \nonumber\end{alignat}\]</span> ​  注意，在(8)中，<spanclass="math inline">\(\mathbf{z}_{i}\)</span>只是根据(6)中的中间变量，我们不需要显式地优化它们。在(8)中，第一个约束是控制<spanclass="math inline">\(\mathbf{D}\)</span>的列的大小，否则<spanclass="math inline">\(\left\|\mathbf{z}_i^\top\mathbf{D}^{(\alpha_i)}\right\|\)</span>可能变为零。第二个约束是为了符合问题1中不同子空间之间不相似的假设。最后一个约束起着子空间分配的作用。请注意，我们的方法(8)仍然适用于问题1，前提是神经网络能够学习一个<spanclass="math inline">\(\mathbf{g}(\mathbf{B}^{(j)}\mathbf{v})\)</span>来有效地近似问题1中的<spanclass="math inline">\(\mathbf{f}_j(\mathbf{v})\)</span>。</p><h2 id="实用的解决方案">3.2 实用的解决方案</h2><p>​  现在我们将展示如何近似地求解(8)。为了方便起见，我们让 <spanclass="math display">\[L_{Recon}=\frac{1}{2n}\sum_{i=1}^{n}\left\|\mathbf{x}_{i}-\mathbf{\hat{x}}_{i}\right\|_{F}^{2}.\]</span>​  我们通过最小化以下目标，在(8)中施加第一个约束 <spanclass="math display">\[D_{Cons1}:=\frac12\left\|\mathbf{D}^\top\mathbf{D}\odot\mathbf{I}-\mathbf{I}\right\|_F^2,\]</span>​  其中<span class="math inline">\(\odot\)</span>表示阿达玛积，<spanclass="math inline">\(\mathbf{I}\)</span>是大小为<spanclass="math inline">\(kd\)</span>的<spanclass="math inline">\(kd\)</span>的单位矩阵。<br/>​  对于(8)中的第二个约束，我们进行了定义<span class="math display">\[\begin{gathered}D_{Cons2}:=\begin{aligned}\frac{1}{2}\left\|\mathbf{D}^{(j)\top}\mathbf{D}^{(l)}\right\|_{F}^{2},j\neq l,\end{aligned} \\\text{=}\frac12\left\|\mathbf{D}^\top\mathbf{D}\odot\mathbf{O}\right\|_F^2.\end{gathered}\]</span> ​  这里的<spanclass="math inline">\(\mathbf{O}\)</span>是一个矩阵，其中所有<spanclass="math inline">\(d\)</span>大小的对角线块元素都是0，其他所有元素都是1。现在我们可以把（10）和（11）放在一起，得到<spanclass="math inline">\(\mathbf{D}\)</span>上的正则化项 <spanclass="math display">\[D_{Cons}=\xi(D_{Cons1}+D_{Cons2}),\]</span>​  其中，<spanclass="math inline">\(\xi\)</span>是一个在本工作中固定在<spanclass="math inline">\(10^{−3}\)</span>的调优参数。<br/>​  对于(8)中的最后一个约束，我们提出了一种新的子空间相似度矩阵<spanclass="math inline">\(S\)</span>来度量嵌入表示<spanclass="math inline">\(\mathbf{Z}\)</span>和子空间基代理<spanclass="math inline">\(\mathbf{D}\)</span>之间的关系 <spanclass="math display">\[s_{ij}=\frac{\left\|\mathbf{z}_i^\top\mathbf{D}^{(j)}\right\|_F^2+\etad}{\sum_j(\left\|\mathbf{z}_i^\top\mathbf{D}^{(j)}\right\|_F^2+\etad)},\]</span> ​  其中，<spanclass="math inline">\(\eta\)</span>是一个控制平滑度的参数。因此，<spanclass="math inline">\(s_{ij}\)</span>表示嵌入式表示<spanclass="math inline">\(\mathbf{z}_{i}\)</span>属于由<spanclass="math inline">\(\mathbf{D}^{(j)}\)</span>表示的第<spanclass="math inline">\(j\)</span>个子空间的概率。我们进一步引入了一个由定义的细化子空间相似度矩阵<spanclass="math inline">\(\widetilde{S}\)</span>： <spanclass="math display">\[\widetilde{s}_{ij}=\frac{s_{ij}^2/\sum_is_{ij}}{\sum_j(s_{ij}^2/\sum_is_{ij})}.\]</span>​  换句话说，<spanclass="math inline">\(\widetilde{S}\)</span>可以作为一种自监督信息，从而产生以下子空间聚类目标：<span class="math display">\[L_{Sub}=KL(\widetilde{S} ||S)=\sum_{i}\sum_{j}\widetilde{s}_{ij}\log\frac{\widetilde{s}_{ij}}{s_{ij}}.\]</span>​  现在我们将(8)的无约束松弛定义为 <spanclass="math display">\[L=L_{Recon}+D_{Cons}+\beta L_{Sub}.\]</span>​  在算法1中给出了该方法的训练流程。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004144035875.png"alt="image-20241004144035875" /><figcaption aria-hidden="true">image-20241004144035875</figcaption></figure><p>​  该方法实现了子空间聚类和嵌入式表示学习的联合优化。<spanclass="math inline">\(\mathbf{D}\)</span>的初始化由预训练模型的<spanclass="math inline">\(\mathbf{Z}\)</span>上的k-means生成的簇的列空间给出。当对网络的训练完成后，最终的聚类结果可以通过一下得到：<spanclass="math display">\[\mathcal{C}_i=\arg\max_js_{ij}.\]</span></p><h2 id="通用的近似和转换问题">3.3 通用的近似和转换问题</h2><p>​  有人可能会认为，神经网络具有普遍的逼近能力，因此可以将子空间聚类问题转换为基于距离的聚类问题，从而应用k-means和DEC[40]，或者可以将基于距离的聚类问题转换为子空间聚类问题。在这里，我们生成了两个合成数据集来显示转换的执行方式。第一个数据集是用于基于距离的聚类，并且<spanclass="math display">\[\mathbf{x}_{i}^{(j)}\sim\mathcal{N}(\mu_{j},\mathbf{I}),i=1,\ldots,1000,\\\mu_{j}\in\mathbb{R}^{m},\mu_{j}\sim\mathcal{U}(-1,1),\]</span> ​  然后是<spanclass="math inline">\(\mathbf{x}_i^{(j)}\longleftarrow\sin(\mathbf{x}_i^{(j)})\)</span>，其中<spanclass="math inline">\(m = 100\)</span>和<spanclass="math inline">\(j=1,\ldots,10\)</span>。第二个数据集是用于子空间聚类的，并且<spanclass="math display">\[\mathbf{x}_{i}^{(j)}=\sin(\mathbf{B}^{(j)}\mathbf{v}_{i}),\mathbf{v}_{i}\sim\mathcal{N}(\mathbf{0},\mathbf{I}),i=1,\ldots,1000,\\\mathbf{B}^{(j)}\in\mathbb{R}^{m\times p},\mathbf{B}^{(j)}\sim\mathcal{N}(\mathbf{0},\mathbf{I}),\]</span>​  其中，<span class="math inline">\(m = 100\)</span>，<spanclass="math inline">\(p = 2\)</span>，和<spanclass="math inline">\(j=1,\ldots,10\)</span>。我们还向数据集上添加了高斯噪声，即<spanclass="math inline">\(\mathrm{X}\leftarrow\mathrm{X}+\mathrm{N}\)</span>，其中噪声的标准误差是干净<spanclass="math inline">\(\mathrm{X}\)</span>的标准误差的0.2倍。<br/>​  DEC[40]、IDEC [18]和我们的方法的性能如图3所示。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004155005104.png"alt="image-20241004155005104" /><figcaption aria-hidden="true">image-20241004155005104</figcaption></figure><p>​  第一个图表明，将基于距离的聚类问题转换为子空间聚类问题相对容易，因为我们的方法的精度相当高。第二个图表明，DEC和IDEC失败，将子空间聚类问题转换为基于距离的聚类问题非常困难。一个可能的原因是，将欧几里德距离（例如<spanclass="math inline">\(\|\mathbf{u}_1-\mathbf{u}_2\|\)</span>）转换为子空间相似度（例如<spanclass="math inline">\(\mathbf{v}_{1}^\top\mathbf{v}_{2}\)</span>）更容易。例如，设<spanclass="math inline">\(\mathbf{v}_1=\phi(\mathbf{u}_1)\)</span>和<spanclass="math inline">\(\mathbf v_{2}=\phi(\mathbfu_{2})\)</span>，其中<spanclass="math inline">\(\phi\)</span>是径向基函数的特征图，例如高斯核。然后我们有<spanclass="math display">\[\mathbf{v}_1^\top\mathbf{v}_2=\exp(-\gamma\|\mathbf{u}_1-\mathbf{u}_2\|^2),\]</span>​  其中，<spanclass="math inline">\(\gamma&gt;0\)</span>是一个超参数。因此，神经网络只需要学习一个<spanclass="math inline">\(\phi\)</span>的近似值，这并不困难。如果我们交换u和v的角色，网络需要学习一个函数<spanclass="math inline">\(h\)</span>，这样<spanclass="math inline">\(\|h(\mathbf{v}_1)-h(\mathbf{v}_2)\|\)</span>是<spanclass="math inline">\(\|\mathbf{v}_1^\top\mathbf{v}_2\|\)</span>的单调（大致）变换，这是相当困难的。<br/>​  以上结果和分析验证表明，有必要提供一种有效、准确的深度子空间聚类方法来更普遍地处理问题2或问题1。</p><h1 id="实验">4. 实验</h1><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004155925751.png"alt="image-20241004155925751" /><figcaption aria-hidden="true">image-20241004155925751</figcaption></figure><p>#5. 代码部分具象图</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241006192123611.png"alt="image-20241006192123611" /><figcaption aria-hidden="true">image-20241006192123611</figcaption></figure><p>（未完不待续）</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="efficient-deep-embedded-subspace-clustering">Efficient DeepEmbedded Subspace Clustering</h1><p>Jinyu Cai 1,3, Jicong Fan 2,3*, Wenzhong Guo 1, Shiping Wang 1, YunheZhang 1, Zhao Zhang4<br/>1中国福州大学计算机与数据科学学院<br/>2中国香港中文大学（深圳）数据科学学院<br/>3中国深圳大数据研究所<br/>4中国合肥工业大学</p><h1 id="摘要">摘要</h1><p>​  最近，深度学习方法在数据聚类任务方面取得了重大进展。深度聚类方法（包括基于距离的方法和基于子空间的方法）将聚类和特征学习集成到一个统一的框架中，在那里聚类和表示之间存在相互促进。然而，深度子空间聚类方法通常在自表达模型的框架内，具有二次时间和空间复杂性，阻碍了其在大规模聚类和实时聚类中的应用。在本文中，我们提出了一种新的深度聚类机制。我们的目标是以迭代细化的方式从深度表示中学习子空间基，而细化的子空间基则帮助学习深度神经网络的表示。该方法脱离了自表达框架，可以线性地扩展到样本大小，适用于任意大的数据集和在线聚类场景。更重要的是，该方法的聚类精度远远高于其竞争对手。在基准数据集上与最先进的聚类方法进行的广泛比较研究，证明了该方法的优越性。</p><h1 id="引言">1. 引言</h1><p>​  聚类是机器学习中的一个基本问题，它的目的是在没有标签信息的情况下，在高类内相似度和低类间相似度的要求下，将样本分离成类。许多经典的聚类算法如k-means[29]和谱聚类（SC）[30]在实际应用中取得了巨大的成功。然而，它们在处理具有复杂结构或/和高维性的数据时并不有效，这可以通过使用数据的细化特征来改进。事实上，[14,37,38,47]之前的一些工作利用了特征学习技术，如非负矩阵分解[2]、自动编码器（AE）[1]及其变体[24,31,36]来学习低维嵌入进行聚类，从而提高了聚类的精度。然而，由于这些方法是两阶段聚类，并且特征学习不是针对聚类的，因此不能保证学习到的表示适合于聚类。<br/>​  近年来，一些研究人员提出了端到端聚类方法，如深度嵌入式聚类（DEC）[40]、联合无监督学习（JULE）[41]、深度自适应聚类（DAC）[6]和深度综合相关挖掘（DCCM）[39]。在这些方法中，聚类目标与网络优化过程相结合，这提供了一种学习面向聚类的嵌入式表示的方法。然而，大多数深度聚类方法使用基于欧几里德距离的度量来识别聚类，而欧几里德距离对于不同类型的数据结构并不总是有效或合理的。<br/>​  子空间聚类假设数据位于不同的子空间[11]中。稀疏子空间聚类（SSC聚类）[11]和低秩表示（LRR）[27]主要基于光谱聚类[30]，优于k均值聚类和经典光谱聚类。最近，一些研究人员[8,21,25,44]表明，联合子空间聚类和深度学习在基准数据集上有很好的性能。然而，这些方法很难扩展到大规模的数据集，因为它们需要学习一个自我表达的矩阵，从而导致二次时间和空间的复杂度。因此，[12,48,49]的一些最新工作致力于提高子空间聚类的效率。<br/>​  在本文中，我们旨在提供一种高效和精确的深子空间聚类的方法。我们提出从深度自动编码器提取的潜在特征中学习一组子空间基，其中的基和网络参数被迭代细化。我们提出从深度自动编码器提取的潜在特征中学习一组子空间基，其中的基和网络参数被迭代细化。该方法的网络结构如图1所示。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004113308304.png"alt="image-20241004113308304" /><figcaption aria-hidden="true">image-20241004113308304</figcaption></figure><p>图1.提出方法的说明。利用自动编码器网络学习输入数据的嵌入式表示Z，然后Z与子空间D结合构造子空间相似度向量，得到归一化的子空间相似度<spanclass="math inline">\(S\)</span>。然后，从<spanclass="math inline">\(S\)</span>计算细化的子空间相似度<spanclass="math inline">\(\widetilde{S}\)</span>，提供自监督信息。注意，<spanclass="math inline">\(d\)</span>是子空间的维数，<spanclass="math inline">\(L_{Recon}\)</span>和<spanclass="math inline">\(L_{Sub}\)</span>表示重构损失和<spanclass="math inline">\(\widetilde{S}\)</span>与<spanclass="math inline">\(S\)</span>之间的差异，并通过联合优化它们来训练网络。</p><p>​  我们的贡献如下：</p><ul><li>我们提出了一种新的脱离传统的自我表达框架的深度子空间聚类方法</li><li>该方法具有线性的时间和空间复杂度，因此适用于大规模的子空间聚类。</li><li>我们将该方法推广到在线聚类，从而可以有效地处理任意大的数据集和流数据集。</li><li>分析了利用深度神经网络转换基于距离的聚类和子空间聚类的可行性。</li></ul><p>​  在许多基准数据集（如Fashion-MNIST、STL-10和REUTERS-10k）上的数值结果表明，我们的方法比其竞争对手更有效。</p><h1 id="相关工作及简要讨论">2. 相关工作及简要讨论</h1><h2 id="深度聚类">2.1 深度聚类</h2><p>​  早期的深度聚类方法旨在应用深度特征学习方法（如自动编码器[36]和变分自动编码器（VAE）[24]）从复杂的高维数据中提取特征进行聚类。然而，这些解决方案很难学习适合于聚类任务的表示。目前的深度聚类方法侧重于构建端到端模型。Xie等人提出了DEC[40]，设计了一个基于t-SNE[35]设计的聚类目标。它提供了一个实现聚类中心和嵌入式特征同步优化的聚类模型。Chang等人[5]提出了深度自我进化聚类（DSEC），这是一种基于自我进化的算法，用所选择的模式对交替训练网络。在[39]中，Wu等人提出了一种名为DCCM的方法，该方法使用伪标签进行自我监督，并使用互信息来捕获更多有区别的表示用于聚类。由Huang等人[20]提出的分区置信度最大化（PICA）使分区不确定性指数最小化，并学习了最有信心的聚类分配。请注意，这些深度聚类方法使用欧氏距离来分配聚类，当聚类不集中于平均值时，这可能没有用处。</p><h2 id="子空间聚类">2.2 子空间聚类</h2><p>​  经典的子空间聚类，如SSC [11]，LRR [27]，Kernel-SSC[32]，旨在学习光谱聚类的自表达相似度矩阵。Ji等人[21]提出了深度子空间聚类网络（DSC-Net），该网络包含了一个具有自编码器网络的自表达模块。与SSC和LRR相比，DSC-Net在多个图像数据集上都有了显著的改进。Zhou等人[52]提供了一种称为深度对抗性子空间聚类（DASC）的方法，该方法利用生成的对抗性网络[16]提供对抗性学习，提高了深度子空间聚类的性能。Zhou等人[51]提出了分布保留的子空间聚类（DPSC）来保留子空间中的潜在分布，以提高子空间聚类模型的特征学习能力。另一方面，一些研究者试图降低子空间聚类[7,12,13,33,49]的复杂性。例如，Zhang等[49]提出了k-子空间聚类网络（k-SCN），将子空间的更新整合到嵌入式空间的学习中，以解决学习相似度矩阵的缺点。Fan[12]提出了一种k-分解子空间聚类（k-FSC）方法，该方法具有线性的时间和空间复杂度，能够处理缺失数据和流数据。</p><h2 id="简短的讨论">2.3 简短的讨论</h2><p>​  我们分析了表1中经典子空间聚类、大规模子空间聚类和深度子空间聚类等几种（由于空间限制）方法的时空复杂性。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004115219866.png"alt="image-20241004115219866" /><figcaption aria-hidden="true">image-20241004115219866</figcaption></figure><p>表1.该方法与一些深度聚类和子空间聚类方法在聚类n个样本的维度为m中的时间复杂度和空间复杂度比较。为了节省空间，我们在补充材料中加入了对参数的解释。</p><p>​  我们可以看到，这些经典的子空间聚类方法和深度子空间聚类方法在样本数量上具有二次时间和空间的复杂性。相比之下，我们的方法具有线性的时间和空间复杂度，可与[12]的大规模子空间聚类方法相媲美。</p><h1 id="方法">3. 方法</h1><h2 id="提出的模-型">3.1 提出的模 型</h2><p>​  在本文中，我们主要针对基于深度学习的子空间聚类，并试图解决以下问题。</p><p><strong>问题1</strong></p><p>​  给定一个数据矩阵<spanclass="math inline">\(\mathbf{X}\in\mathbb{R}^{m\timesn}\)</span>，其中<span class="math inline">\(m\)</span>表示特征数，<spanclass="math inline">\(n\)</span>表示样本数。假设<spanclass="math inline">\(\mathrm{X=\bar{X}P}\)</span>，其中<spanclass="math inline">\(\bar{X}=[\bar{\mathbf{X}}^{(1)},\bar{\mathbf{X}}^{(2)},\ldots,\bar{\mathbf{X}}^{(k)}]\)</span>和<spanclass="math inline">\(\mathbf{P}\in\mathbb{R}^{n\timesn}\)</span>是一个未知排列的矩阵。对于<spanclass="math inline">\(j=1,\ldots,k\)</span>，假设<spanclass="math inline">\(\bar{\mathbf{X}}^{(j)}\in\mathbb{R}^{m\timesn_j}\)</span>的列是由以下得来： <spanclass="math display">\[\mathbf{x}=\mathbf{f}_j(\mathbf{v})+\varepsilon,\]</span>​  其中<spanclass="math inline">\(\mathbf{f}_j:\mathbb{R}^{r_k}\longrightarrow\mathbb{R}^m\)</span>是一个未知的非线性函数，<spanclass="math inline">\(r_{j}&lt;m\)</span>，<spanclass="math inline">\(\mathbf{v}\in\mathbb{R}^{r_{j}}\)</span>是一个随机变量，<spanclass="math inline">\(\varepsilon\in\mathbb{R}^{m}\)</span>表示随机高斯噪声。从<spanclass="math inline">\(\mathrm{X}\)</span>中找到排列矩阵<spanclass="math inline">\(\mathrm{P}\)</span>（或等价的<spanclass="math inline">\(\bar{X}\)</span>）。  这个问题正是一个聚类问题，为此我们需要将<spanclass="math inline">\(\mathrm{X}\)</span>的列分组成k个聚类，对应于k个不同的函数<spanclass="math inline">\(\mathbf{f}_{1},\ldots,\mathbf{f}_{k}\)</span>。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004121536128.png"alt="image-20241004121536128" /><figcaption aria-hidden="true">image-20241004121536128</figcaption></figure><p>​  图2显示了<span class="math inline">\(m=1\)</span>和<spanclass="math inline">\(r_{1}=\cdots=r_{5}=1\)</span>的一个简单例子。注意，当<spanclass="math inline">\(\mathbf{f}_{1},\ldots,\mathbf{f}_{k}\)</span>都是线性的，这个问题简化为经典的子空间聚类。<br/><strong>问题2</strong></p><p>​  在问题1中，对于<spanclass="math inline">\(j=1,\ldots,k\)</span>，假设<spanclass="math inline">\(\mathbf{f}_{j}(\mathbf{v})=\mathbf{g}(\mathbf{B}^{(j)}\mathbf{v})\)</span>，其中<spanclass="math inline">\(\mathbf{B}^{(j)}\in\mathbb{R}^{p\timesr_j}\)</span>和<spanclass="math inline">\(\mathbf{g}:\mathbb{R}^p\longrightarrow\mathbb{R}^m\)</span>。此外，<spanclass="math inline">\(\frac{\|\mathbf{B}^{(i)^{\top}}\mathbf{B}^{(j)}\|_{F}}{\|\mathbf{B}^{(i)}\|_{F}\|\mathbf{B}^{( j )}\|_{F}}(i\neq j)\)</span>足够小。从<spanclass="math inline">\(\mathrm{X}\)</span>中找到排列矩阵<spanclass="math inline">\(\mathrm{P}\)</span>（或等价的<spanclass="math inline">\(\bar{X}\)</span>）。</p><p>​  问题2比问题1更容易，因为当我们获得<spanclass="math inline">\(\{\mathbf{B}^{(1)},\ldots,\mathbf{B}^{(k)}\}\)</span>的良好估计时，就识别出正确的集群足够了。因此，在本文中，首先，我们提出通过用多层神经网络近似<spanclass="math inline">\(x\)</span>来估计<spanclass="math inline">\(B^{(j)}\)</span>，即： <spanclass="math display">\[\mathbf{x}_i\approxh_\mathcal{W}(\hat{\mathbf{B}}^{(j)}\hat{\mathbf{v}}_i),\mathbf{x}_i\in\mathbb{C}_j,\]</span> ​  其中，<spanclass="math inline">\(h_\mathcal{W}\)</span>为参数集为<spanclass="math inline">\(\mathcal{W}\)</span>的多层神经网络，<spanclass="math inline">\(\mathbb{C}_j\)</span>为第<spanclass="math inline">\(j\)</span>个聚类。很难直接获得<spanclass="math inline">\(\{\hat{\mathbf{B}}^{(1),}\ldots,\hat{\mathbf{B}}^{(k)}\}\)</span>。相反，我们估计了<spanclass="math inline">\(\mathbf{B}^{(j)}\mathbf{V}_i\)</span>，即<spanclass="math inline">\(\mathbf{z}_{i}:=\hat{\mathbf{B}}^{(j)}\hat{\mathbf{v}}_{i}\)</span>。因此，我们提出优化去解决：<spanclass="math display">\[\begin{aligned}\operatorname*{minimize}_{\mathcal{W},\{\mathbf{z}_{1},\ldots,\mathbf{z}_{n}\}}&amp;\frac{1}{2n}\sum_{i=1}^{n}\|\mathbf{x}_{i}-h_{\mathcal{W}}(\mathbf{z}_{i})\|^{2},\\\mathrm{subject~to~}&amp;\mathbf{z}_{i}\in\mathbb{S}_{i},i=1,\ldots,n,\end{aligned}\]</span> ​  其中，<spanclass="math inline">\(\mathbb{S}_{i}\)</span>表示真正的簇<spanclass="math inline">\(\mathbf{x}_{i}\)</span>应该属于的簇。然而，不可能直接解决(3)，因为<spanclass="math inline">\(\mathbb{S}_{i}\)</span>是未知的。现在我们引入了一个新的变量<spanclass="math inline">\(\mathbf{D}=[\mathbf{D}^{(1)},\mathbf{D}^{(2)},\ldots,\mathbf{D}^{(k)}]\)</span>。它包含<spanclass="math inline">\(k\)</span>个块和<spanclass="math inline">\(\mathbf{D}^{(j)}\in \mathbb{R}^{p\timesd}\)</span>，$ |_{u}<sup>{(j)}|=1<spanclass="math inline">\(，\)</span>u=1,,d<spanclass="math inline">\(，\)</span>j=1,,k<spanclass="math inline">\(。注意，对于所有的\)</span>j=1,,k<spanclass="math inline">\(，\)</span>dr_{j}<spanclass="math inline">\(。我们希望\)</span></sup>{(j)}<spanclass="math inline">\(与\)</span><sup>{(j)}<spanclass="math inline">\(，\)</span>j=1,,k<spanclass="math inline">\(有相同的列空间。然后根据我们在问题2中所做的假设，对于所有的\)</span>jl<spanclass="math inline">\(，\)</span>|</sup>{(j)<sup>}</sup>{(l)}|_F<spanclass="math inline">\(都足够小，即：\)</span><spanclass="math inline">\(\|\mathbf{D}^{(j)^\top}\mathbf{D}^{(l)}\|_F\leq\tau,j\neq l,\)</span>$ ​  其中，<spanclass="math inline">\(\tau\)</span>是一个很小的常数。<br/>​  表示<spanclass="math inline">\(\alpha_{i}=\mathrm{arg~max}_{j}\|\mathbf{z}_{i}^{\top}\mathbf{D}^{(j)}\|\)</span>。我们期待：<spanclass="math display">\[\|\mathbf{z}_i^\top\mathbf{D}^{(\alpha_i)}\|\gg\max_{j\neq\alpha_i}\|\mathbf{z}_i^\top\mathbf{D}^{(j)}\|,i=1,\ldots,n.\]</span> ​  换句话说，<spanclass="math inline">\(\mathbf{z}_{i}\)</span>只与<spanclass="math inline">\(\mathbf{D}\)</span>的一个块高度相关。现在我们使用一个参数集为<spanclass="math inline">\(\mathcal{W}^{\prime}\)</span>的编码器<spanclass="math inline">\(h_{\mathcal{W}^{\prime}}^{\prime}\)</span>来表示<spanclass="math inline">\(\mathbf{z}_{i}\)</span>，即： <spanclass="math display">\[\mathbf{z}_i=h&#39;_{\mathcal{W}&#39;}(\mathbf{x}_i),i=1,\ldots,n.\]</span> ​  为了方便起见，我们让： <spanclass="math display">\[\hat{\mathbf{x}}_i:=h_{\mathcal{W}}(\mathbf{z}_i),i=1,\ldots,n.\]</span> ​  和表示<spanclass="math inline">\(\hat{\mathbf{X}} =[\hat{\mathbf{x}}_{1},\ldots,\hat{\mathbf{x}}_{n}]\)</span>。现在，我们把(3)、(4)、(5)、(6)和(7)一起解决<spanclass="math display">\[\begin{alignat}{2}&amp;\operatorname*{minimize}_{\mathcal{W},\mathcal{W}^{\prime},\mathbf{D}}&amp; \quad &amp;\frac{1}{2n}\left\|\mathbf{X}-\hat{\mathbf{X}}\right\|_{F}^{2},\\&amp;\text{subject to} &amp; &amp; \|\mathbf{D}_{u}^{(j)}\|=1, \;u=1,\ldots,d, \; j=1,\ldots,k, \nonumber \\&amp; &amp; &amp;\|\mathbf{D}^{(j)} \mathbf{D}^{(l)}\|_{F}\leq\tau, \; j\neq l, \nonumber\\&amp; &amp; &amp;\|\mathbf{z}_{i}^{\top}\mathbf{D}^{(\alpha_{i})}\|\gg\max_{j\neq\alpha_{i}}\|\mathbf{z}_{i}^{\top}\mathbf{D}^{(j)}\|,\; i=1,\ldots,n. \nonumber\end{alignat}\]</span> ​  注意，在(8)中，<spanclass="math inline">\(\mathbf{z}_{i}\)</span>只是根据(6)中的中间变量，我们不需要显式地优化它们。在(8)中，第一个约束是控制<spanclass="math inline">\(\mathbf{D}\)</span>的列的大小，否则<spanclass="math inline">\(\left\|\mathbf{z}_i^\top\mathbf{D}^{(\alpha_i)}\right\|\)</span>可能变为零。第二个约束是为了符合问题1中不同子空间之间不相似的假设。最后一个约束起着子空间分配的作用。请注意，我们的方法(8)仍然适用于问题1，前提是神经网络能够学习一个<spanclass="math inline">\(\mathbf{g}(\mathbf{B}^{(j)}\mathbf{v})\)</span>来有效地近似问题1中的<spanclass="math inline">\(\mathbf{f}_j(\mathbf{v})\)</span>。</p><h2 id="实用的解决方案">3.2 实用的解决方案</h2><p>​  现在我们将展示如何近似地求解(8)。为了方便起见，我们让 <spanclass="math display">\[L_{Recon}=\frac{1}{2n}\sum_{i=1}^{n}\left\|\mathbf{x}_{i}-\mathbf{\hat{x}}_{i}\right\|_{F}^{2}.\]</span>​  我们通过最小化以下目标，在(8)中施加第一个约束 <spanclass="math display">\[D_{Cons1}:=\frac12\left\|\mathbf{D}^\top\mathbf{D}\odot\mathbf{I}-\mathbf{I}\right\|_F^2,\]</span>​  其中<span class="math inline">\(\odot\)</span>表示阿达玛积，<spanclass="math inline">\(\mathbf{I}\)</span>是大小为<spanclass="math inline">\(kd\)</span>的<spanclass="math inline">\(kd\)</span>的单位矩阵。<br/>​  对于(8)中的第二个约束，我们进行了定义<span class="math display">\[\begin{gathered}D_{Cons2}:=\begin{aligned}\frac{1}{2}\left\|\mathbf{D}^{(j)\top}\mathbf{D}^{(l)}\right\|_{F}^{2},j\neq l,\end{aligned} \\\text{=}\frac12\left\|\mathbf{D}^\top\mathbf{D}\odot\mathbf{O}\right\|_F^2.\end{gathered}\]</span> ​  这里的<spanclass="math inline">\(\mathbf{O}\)</span>是一个矩阵，其中所有<spanclass="math inline">\(d\)</span>大小的对角线块元素都是0，其他所有元素都是1。现在我们可以把（10）和（11）放在一起，得到<spanclass="math inline">\(\mathbf{D}\)</span>上的正则化项 <spanclass="math display">\[D_{Cons}=\xi(D_{Cons1}+D_{Cons2}),\]</span>​  其中，<spanclass="math inline">\(\xi\)</span>是一个在本工作中固定在<spanclass="math inline">\(10^{−3}\)</span>的调优参数。<br/>​  对于(8)中的最后一个约束，我们提出了一种新的子空间相似度矩阵<spanclass="math inline">\(S\)</span>来度量嵌入表示<spanclass="math inline">\(\mathbf{Z}\)</span>和子空间基代理<spanclass="math inline">\(\mathbf{D}\)</span>之间的关系 <spanclass="math display">\[s_{ij}=\frac{\left\|\mathbf{z}_i^\top\mathbf{D}^{(j)}\right\|_F^2+\etad}{\sum_j(\left\|\mathbf{z}_i^\top\mathbf{D}^{(j)}\right\|_F^2+\etad)},\]</span> ​  其中，<spanclass="math inline">\(\eta\)</span>是一个控制平滑度的参数。因此，<spanclass="math inline">\(s_{ij}\)</span>表示嵌入式表示<spanclass="math inline">\(\mathbf{z}_{i}\)</span>属于由<spanclass="math inline">\(\mathbf{D}^{(j)}\)</span>表示的第<spanclass="math inline">\(j\)</span>个子空间的概率。我们进一步引入了一个由定义的细化子空间相似度矩阵<spanclass="math inline">\(\widetilde{S}\)</span>： <spanclass="math display">\[\widetilde{s}_{ij}=\frac{s_{ij}^2/\sum_is_{ij}}{\sum_j(s_{ij}^2/\sum_is_{ij})}.\]</span>​  换句话说，<spanclass="math inline">\(\widetilde{S}\)</span>可以作为一种自监督信息，从而产生以下子空间聚类目标：<span class="math display">\[L_{Sub}=KL(\widetilde{S} ||S)=\sum_{i}\sum_{j}\widetilde{s}_{ij}\log\frac{\widetilde{s}_{ij}}{s_{ij}}.\]</span>​  现在我们将(8)的无约束松弛定义为 <spanclass="math display">\[L=L_{Recon}+D_{Cons}+\beta L_{Sub}.\]</span>​  在算法1中给出了该方法的训练流程。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004144035875.png"alt="image-20241004144035875" /><figcaption aria-hidden="true">image-20241004144035875</figcaption></figure><p>​  该方法实现了子空间聚类和嵌入式表示学习的联合优化。<spanclass="math inline">\(\mathbf{D}\)</span>的初始化由预训练模型的<spanclass="math inline">\(\mathbf{Z}\)</span>上的k-means生成的簇的列空间给出。当对网络的训练完成后，最终的聚类结果可以通过一下得到：<spanclass="math display">\[\mathcal{C}_i=\arg\max_js_{ij}.\]</span></p><h2 id="通用的近似和转换问题">3.3 通用的近似和转换问题</h2><p>​  有人可能会认为，神经网络具有普遍的逼近能力，因此可以将子空间聚类问题转换为基于距离的聚类问题，从而应用k-means和DEC[40]，或者可以将基于距离的聚类问题转换为子空间聚类问题。在这里，我们生成了两个合成数据集来显示转换的执行方式。第一个数据集是用于基于距离的聚类，并且<spanclass="math display">\[\mathbf{x}_{i}^{(j)}\sim\mathcal{N}(\mu_{j},\mathbf{I}),i=1,\ldots,1000,\\\mu_{j}\in\mathbb{R}^{m},\mu_{j}\sim\mathcal{U}(-1,1),\]</span> ​  然后是<spanclass="math inline">\(\mathbf{x}_i^{(j)}\longleftarrow\sin(\mathbf{x}_i^{(j)})\)</span>，其中<spanclass="math inline">\(m = 100\)</span>和<spanclass="math inline">\(j=1,\ldots,10\)</span>。第二个数据集是用于子空间聚类的，并且<spanclass="math display">\[\mathbf{x}_{i}^{(j)}=\sin(\mathbf{B}^{(j)}\mathbf{v}_{i}),\mathbf{v}_{i}\sim\mathcal{N}(\mathbf{0},\mathbf{I}),i=1,\ldots,1000,\\\mathbf{B}^{(j)}\in\mathbb{R}^{m\times p},\mathbf{B}^{(j)}\sim\mathcal{N}(\mathbf{0},\mathbf{I}),\]</span>​  其中，<span class="math inline">\(m = 100\)</span>，<spanclass="math inline">\(p = 2\)</span>，和<spanclass="math inline">\(j=1,\ldots,10\)</span>。我们还向数据集上添加了高斯噪声，即<spanclass="math inline">\(\mathrm{X}\leftarrow\mathrm{X}+\mathrm{N}\)</span>，其中噪声的标准误差是干净<spanclass="math inline">\(\mathrm{X}\)</span>的标准误差的0.2倍。<br/>​  DEC[40]、IDEC [18]和我们的方法的性能如图3所示。</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004155005104.png"alt="image-20241004155005104" /><figcaption aria-hidden="true">image-20241004155005104</figcaption></figure><p>​  第一个图表明，将基于距离的聚类问题转换为子空间聚类问题相对容易，因为我们的方法的精度相当高。第二个图表明，DEC和IDEC失败，将子空间聚类问题转换为基于距离的聚类问题非常困难。一个可能的原因是，将欧几里德距离（例如<spanclass="math inline">\(\|\mathbf{u}_1-\mathbf{u}_2\|\)</span>）转换为子空间相似度（例如<spanclass="math inline">\(\mathbf{v}_{1}^\top\mathbf{v}_{2}\)</span>）更容易。例如，设<spanclass="math inline">\(\mathbf{v}_1=\phi(\mathbf{u}_1)\)</span>和<spanclass="math inline">\(\mathbf v_{2}=\phi(\mathbfu_{2})\)</span>，其中<spanclass="math inline">\(\phi\)</span>是径向基函数的特征图，例如高斯核。然后我们有<spanclass="math display">\[\mathbf{v}_1^\top\mathbf{v}_2=\exp(-\gamma\|\mathbf{u}_1-\mathbf{u}_2\|^2),\]</span>​  其中，<spanclass="math inline">\(\gamma&gt;0\)</span>是一个超参数。因此，神经网络只需要学习一个<spanclass="math inline">\(\phi\)</span>的近似值，这并不困难。如果我们交换u和v的角色，网络需要学习一个函数<spanclass="math inline">\(h\)</span>，这样<spanclass="math inline">\(\|h(\mathbf{v}_1)-h(\mathbf{v}_2)\|\)</span>是<spanclass="math inline">\(\|\mathbf{v}_1^\top\mathbf{v}_2\|\)</span>的单调（大致）变换，这是相当困难的。<br/>​  以上结果和分析验证表明，有必要提供一种有效、准确的深度子空间聚类方法来更普遍地处理问题2或问题1。</p><h1 id="实验">4. 实验</h1><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004155925751.png"alt="image-20241004155925751" /><figcaption aria-hidden="true">image-20241004155925751</figcaption></figure><p>#5. 代码部分具象图</p><figure><imgsrc="../postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241006192123611.png"alt="image-20241006192123611" /><figcaption aria-hidden="true">image-20241006192123611</figcaption></figure><p>（未完不待续）</p>]]></content>
       
       
       <categories>
@@ -883,7 +893,9 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
+          
+          <category> 对比学习 </category>
           
       </categories>
       
@@ -915,7 +927,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -985,7 +997,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1004,7 +1016,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1023,7 +1035,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1135,7 +1147,7 @@
     
     
     <entry>
-      <title>UnionFormer Unified-Learning Transformer with Multi-View Representation for Image Manipulation Detection and Localization</title>
+      <title>UnionFormer:Unified-Learning Transformer with Multi-View Representation for Image Manipulation Detection and Localization</title>
       <link href="/UnionFormer/"/>
       <url>/UnionFormer/</url>
       
@@ -1144,7 +1156,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1313,7 +1325,7 @@
     
     
     <entry>
-      <title>Uncertainty-Uncertainty_Learning_for_Improving_Image_Manipulation_Detection</title>
+      <title>Uncertainty-guided Learning for Improving Image Manipulation Detection</title>
       <link href="/Uncertainty-Uncertainty-Learning-for-Improving-Image-Manipulation-Detection/"/>
       <url>/Uncertainty-Uncertainty-Learning-for-Improving-Image-Manipulation-Detection/</url>
       
@@ -1322,7 +1334,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1332,7 +1344,7 @@
     
     
     <entry>
-      <title>Pre-training-free_Image_Manipulation_Localization_through_Non-Mutually_Exclusive_Contrastive_Learning</title>
+      <title>Pre-training-free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning</title>
       <link href="/Pre-training-free-Image-Manipulation-Localization-through-Non-Mutually-Exclusive-Contrastive-Learning/"/>
       <url>/Pre-training-free-Image-Manipulation-Localization-through-Non-Mutually-Exclusive-Contrastive-Learning/</url>
       
@@ -1341,7 +1353,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1386,7 +1398,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1456,7 +1468,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1475,7 +1487,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1513,7 +1525,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1564,7 +1576,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1602,7 +1614,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1642,7 +1654,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1773,7 +1785,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -1802,7 +1814,7 @@
       
       <categories>
           
-          <category> 图像篡改检测与定位 </category>
+          <category> IML </category>
           
       </categories>
       
