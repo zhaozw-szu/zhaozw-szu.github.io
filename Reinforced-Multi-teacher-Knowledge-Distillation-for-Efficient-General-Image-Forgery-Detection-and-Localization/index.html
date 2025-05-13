@@ -1,0 +1,765 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Reinforced_Multi-teacher_Knowledge_Distillation_for_Efficient_General_Image_Forgery_Detection_and_Localization | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Reinforced Multi-teacher Knowledge Distillation for Efficient General Image Forgery Detection and Localization Zeqin Yu1 , Jiangqun Ni2,3*, Jian Zhang1 , Haoyi Deng4 , Yuzhen Lin41中山大学计算机科学与工程学院2中山">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforced_Multi-teacher_Knowledge_Distillation_for_Efficient_General_Image_Forgery_Detection_and_Localization">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="Reinforced Multi-teacher Knowledge Distillation for Efficient General Image Forgery Detection and Localization Zeqin Yu1 , Jiangqun Ni2,3*, Jian Zhang1 , Haoyi Deng4 , Yuzhen Lin41中山大学计算机科学与工程学院2中山">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2025-05-12T12:26:22.000Z">
+<meta property="article:modified_time" content="2025-05-12T15:15:27.318Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Reinforced_Multi-teacher_Knowledge_Distillation_for_Efficient_General_Image_Forgery_Detection_and_Localization',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-05-12 23:15:27'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Reinforced_Multi-teacher_Knowledge_Distillation_for_Efficient_General_Image_Forgery_Detection_and_Localization</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-05-12T12:26:22.000Z" title="创建于 2025-05-12 20:26:22">2025-05-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-12T15:15:27.318Z" title="更新于 2025-05-12 23:15:27">2025-05-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Reinforced_Multi-teacher_Knowledge_Distillation_for_Efficient_General_Image_Forgery_Detection_and_Localization"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Reinforced Multi-teacher Knowledge Distillation for Efficient General
+Image Forgery Detection and Localization</p>
+<p>Zeqin Yu1 , Jiangqun Ni2,3*, Jian Zhang1 , Haoyi Deng4 , Yuzhen
+Lin4<br/>1中山大学计算机科学与工程学院<br/>2中山大学网络科学与技术学院<br/>3鹏程实验室新网络部<br/>4深圳大学广东智能信息处理重点实验室</p>
+<h1 id="摘要">摘要</h1>
+<p>​  图像伪造检测与定位（IFDL）至关重要，因为伪造的图像可能会传播虚假信息，对我们的日常生活构成潜在威胁。然而，以往的方法在处理现实场景中经过多种伪造操作的伪造图像时仍难以有效应对。在本文中，我们提出了一种针对IFDL任务的新型强化多教师知识蒸馏（Re-MTKD）框架，该框架围绕一个编码器-解码器ConvNeXt-UperNet以及边缘感知模块构建，该模块被命名为Cue-Net。首先，分别对三种主要类型的图像伪造进行Cue-Net模型的训练，即复制移动、拼接和修复，然后作为多教师模型，通过自我知识蒸馏，用Cue-Net训练目标学生模型。开发了一种强化动态教师选择（Re-DTS）策略，对涉及的教师模型进行动态分配权重，这有助于特定知识的转移，并使学生模型能够有效地学习不同篡改痕迹的共同和特殊性质。大量实验表明，与其它最先进方法相比，所提出的算法在最近出现的多种图像伪造数据集上具有优越的性能。</p>
+<h1 id="引言">1引言</h1>
+<p>​  近期在图像编辑和生成模型方面的进展（Karras、Laine和Aila
+2019；Rombach等2022）不仅提升了图像处理和合成的质量，还简化了其过程。然而，通过这些技术生成的篡改图像可能被滥用以传播虚假信息，对社会安全构成重大威胁。因此，迫切需要探索有效的图像取证方法，防止篡改图像的滥用。<br/>​  针对上述问题，图像伪造检测与定位（IFDL）任务旨在识别伪造图像并定位其被篡改区域。通常，图像伪造操作主要包括复制移动、拼接和修复。通常，开发特定的方法用于检测和定位特定的伪造图像，该方法利用了特定类型中图像篡改的伪造痕迹的特性，例如，（Wu，Abd-Almageed，and
+Natarajan 2018；Chen et al. 2020）用于复制移动，（Bi et al. 2019；Kwon
+et al. 2022）用于拼接和（Li and Huang 2019；Wu and Zhou
+2021）用于修复。由于训练数据仅限于特定的伪造行为，这些特定的伪造检测方法可能会过度拟合，导致泛化能力有限。这种局限性通常会导致性能不佳，尤其是在检测跨源数据时，如<del>图4</del><span
+style="color:red">图1</span>第一部分所示，当面对复制移动或拼接伪造时，修复检测器的性能显著下降。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512225837843.png"
+alt="image-20250512225837843" />
+<figcaption aria-hidden="true">image-20250512225837843</figcaption>
+</figure>
+<p>​  为了解决各种篡改操作，通用的伪造检测方法包括混合数据，其中包括多种类型的篡改。该策略旨在捕获各种伪造中的通用篡改特征，例如，噪声分析（Bappy等人，2019；Zhuo等人，2022；Guillaro等人，2023）、表示学习（Hu等人，2020；Yu等人，2024）、多尺度监督（Dong等人，2022；Ma等人，2023）和多视图特征融合（Liu等人，2022；Guo等人，2023）。然而，同时学习多个任务本身也带来了挑战，如<del>图4</del><span
+style="color:red">图1</span>第二部分所示。仅通过简单的联合训练来学习各种篡改痕迹的共同和特定性质是具有挑战性的，这通常会导致性能下降。此外，这些方法通常会增加复杂性、计算成本和额外参数，使得满足实际应用场景变得困难。因此，促进模型识别不同篡改痕迹的共同特征和具体差异的能力，提高其泛化性能，对于提升图像伪造检测和定位能力至关重要。<br/>​  在本文中，我们提出了一种新颖的强化多教师知识蒸馏（Re-MTKD）框架，用于IFDL任务。首先，我们提出了Cue-Net模型，该模型基于ConvNeXt-UperNet结构，并配备了新颖的边缘感知模块（EAM）。EAM的集成通过融合低级和高级特征，促进了伪造伪影检测。为了有效地训练Cue-Net，我们引入了一种新颖的知识蒸馏策略，该策略利用多个教师模型，并通过一种名为强化动态教师选择（Re-DTS）的强化学习策略在训练过程中激活它们。具体来说，我们首先在不同的数据集上训练多个教师模型，每个模型专注于一种特定类型的伪造。通过引入Re-DTS策略，这些训练良好的教师模型会根据篡改数据的类型动态选择，以进行知识蒸馏。这种方法允许将不同伪造类型预训练的教师模型的知识高效地转移到学生模型中，从而降低对任何特定类型伪造痕迹的过拟合风险。我们对此工作的贡献如下：</p>
+<ul>
+<li>我们提出了一种强化多教师知识蒸馏（Re-MTKD）框架，该框架由ConvNeXt-UPerNet结构和一种新颖的边缘感知模块（EAM）组成，该模块融合了低级和高级特征，显著增强了检测篡改痕迹的能力。</li>
+<li>我们提出了一种强化动态教师选择（Re-DTS）策略，通过动态选择在特定篡改取证任务中表现出色的教师模型进行专门的知识转移，使学生模型能够学习多个篡改痕迹的共性和细节，从而最大化学生模型的伪造检测和定位能力。</li>
+<li>综合实验表明，与其它最先进方法相比，该方法在多个近期的多类型篡改数据集上取得了优异的性能。</li>
+</ul>
+<h1 id="相关工作">2相关工作</h1>
+<h2 id="图像伪造检测与定位">2.1图像伪造检测与定位</h2>
+<p>​  IFDL任务有几种算法，包括针对复制移动、拼接、修复和通用伪造检测策略的特定伪造检测。</p>
+<h3 id="特定伪造检测">2.1.1特定伪造检测</h3>
+<p>​  特定的IFDL方法专注于识别特定类型的数据被篡改的具体痕迹。对于复制-移动检测，BusterNet（Wu，Abd-Almageed，和Natarajan
+2018）和CMSDSTRD（Chen等2020）分别设计用于并行和串行地定位复制-移动篡改图像中的源/目标区域。对于拼接检测，MFCN（Salloum、Ren和Kuo
+2018）侧重于突出篡改的边缘，RRU-Net（Bi等人2019）强调残余伪影，CAT-Net（Kwon等人2022）分析RGB和DCT域中的压缩伪影。对于修复检测，HP-FCN（Li和Huang
+2019）使用高通滤波器增强修复痕迹，IID-Net（Wu和Zhou
+2021）采用神经架构搜索进行自动特征提取，TLTF-LEFF（Li等2023）引入局部增强变换器架构。虽然这些方法在特定的伪造类型上取得了优异的性能，但它们经常在其他类型的篡改数据上挣扎，导致模型泛化的效率低下。</p>
+<h3 id="通用伪造检测">2.1.2通用伪造检测</h3>
+<p>​  随着大数据的增长，近期的通用IFDL方法旨在学习各种篡改任务的共性。H-LSTM
+(Bappy et al. 2019), SATL-Net (Zhuo et al. 2022), CFL-Net (Niloy,
+Bhaumik, and Woo 2023)以及 TruFor (Guillaro et al.
+2023)将空间域和噪声域整合起来，以检测多种操作。SPAN (Hu et al. 2020)和
+DiffForensics (Yu et al. 2024)利用自监督学习来识别细微篡改痕迹。
+MVSS-Net (Dong et al. 2022)和IML-Vit (Ma et al.
+2023)强调多尺度监督，而PSCC-Net (Liu et al. 2022) 和HiFi-Net (Guo et
+al.2023)则专注于多视角特征融合。尽管这些方法在各种伪造操作中取得了有希望的结果，但由于任务不兼容，它们在联合训练中经常遭受性能退化，并且通常引入额外的复杂性和计算成本。</p>
+<h2 id="知识蒸馏">2.2知识蒸馏</h2>
+<p>​  初始知识蒸馏（KD,knowledge distillation） (Hinton, Vinyals, and
+Dean
+2015)通过教师-学生架构将知识从一个大型教师模型转移到一个较小的学生模型。这一概念被（Zhang等人，2019）扩展到自蒸馏中，其中相同的网络同时作为教师和学生，允许学生从自身学习。对于IFDL任务，（Yu等人，2023）提出了一种固定权重的多教师自蒸馏策略来处理智能手机截图图像中的五种篡改操作，使学生模型能够学习多个篡改痕迹。然而，为每个教师模型分配固定权重可能不是最佳的，因为它阻止了对不同数据批次的动态适应，这些数据批次可能包含不同的篡改类型，从而可能限制学生模型的IFDL性能。</p>
+<h2 id="强化学习">2.3 强化学习</h2>
+<p>​  强化学习在自动驾驶（Sinha等人，2020）、智能游戏（Silver等人，2016）和推荐系统（Feng等人，2018；Yuan等人，2021）等领域已经取得了令人鼓舞的结果。它的核心思想是通过使代理能够从与环境的交互中学习，并根据奖励信号调整其行为，从而最大化长期回报。在本文中，我们介绍了一种新颖的Re-MTKD框架，该框架融合了这些原则。该框架的核心是Re-DTS策略，动态选择最合适的教师模型，将专业知识转移到学生模型。这一策略增强了学生模型处理各种篡改痕迹的能力，并提高了IFDL性能。</p>
+<h1 id="拟提出的re-mtkd框架">3拟提出的Re-MTKD框架</h1>
+<h2 id="cue-net主干">3.1Cue-Net主干</h2>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512210419473.png"
+alt="image-20250512210419473" />
+<figcaption aria-hidden="true">image-20250512210419473</figcaption>
+</figure>
+<p>​  <strong>流程</strong><br/>​  图2(b)展示了Cue-Net的架构，这是一个编码器-解码器结构。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512212140458.png"
+alt="image-20250512212140458" />
+<figcaption aria-hidden="true">image-20250512212140458</figcaption>
+</figure>
+<p>​  对于编码器，假设输入图像为<span
+class="math inline">\(x\in\mathbb{R}^{h\times w\times
+c}\)</span>，首先通过ConvNeXt
+v2（Woo等人，2023）进行特征提取，并从低到高层次获得特征图<span
+class="math inline">\(\{E_{j}\}_{i=1}^{4}\)</span>。此外，<span
+class="math inline">\(E_2\)</span>和<span
+class="math inline">\(E_4\)</span>用作本文提出的EAM的输入，将在下一小节中介绍。解码器采用UPerNet（Xiao等人，2018），包括两个组件：金字塔池化模块（PPM）（Zhao等人，2017）和特征金字塔网络（FPN）（Lin等人，2017）。FPN输出特征图<span
+class="math inline">\(\{D_{j}\}_{i=1}^{4}\)</span>，使用双线性插值将其调整为原始尺寸，然后合并以获得应用sigmoid激活函数后的定位分割结果。</p>
+<p>​  <strong>边缘感知模块</strong><br/>​  为了进一步增强细粒度的篡改痕迹提取，我们设计了一个简单而有效的边缘感知模块（EAM），该模块能够准确地提取篡改区域的边缘信息，以便于后续的引导和融合。篡改区域的边缘通常只由几个像素组成，这使得仅使用最低分辨率的高级特征图难以实现精确的边缘监督。相反，仅使用高分辨率的低级特征图很难感知到被篡改的区域。在EAM中，我们在多级特征上执行边缘监督，这是通过在编码器中融合低级特征E2和高级特征E4得到的，如下所示，
+<span class="math display">\[f^{\epsilon}=\sigma(C B R(C a t(D
+R(E_{2}),U p(D R(E_{4})))),\]</span> ​  其中，<span
+class="math inline">\(\sigma(\cdot)\)</span>是sigmoid归一化，CBR模块（卷积+
+BN +
+ReLU)实现了低级和高级特征的融合，Cat（·）表示拼接操作，DR代表使用CBR模块进行降维，U
+p表示上采样。随后，获得的边缘预测图f e和边缘标签y e被用于损失迭代。</p>
+<p>​  损失函数<br/>​  在以前的IFDL方法（Liu et al. 2022；Dong et al.
+2022；Guo et al.
+2023）的基础上，我们的方法包括三种类型的监督：定位分割（像素级）监督<span
+class="math inline">\(\mathcal{L}_{seg}\)</span>和检测分类（图像级）监督<span
+class="math inline">\(\mathcal{L}_{cls}\)</span>作为标准，以及边缘检测监督<span
+class="math inline">\(\mathcal{L}_{edg}\)</span>作为特殊设计。<br/>​  对于本地化分割监督<span
+class="math inline">\(\mathcal{L}_{seg}\)</span>，根据（Guillaro等人，2023），我们使用加权<span
+class="math inline">\(\ell_{w b c e}\)</span>和<span
+class="math inline">\(\ell_{d i c
+e}\)</span>（Milletari、Navab和Ahmadi，2016)的组合。 <span
+class="math display">\[\mathcal{L}_{s e g}=\lambda_{0}^{s}\ell_{w b c
+e}(f^{s},y^{s})+\left(1-\lambda_{0}^{s}\right)\ell_{d i c
+e}(f^{s},y^{s}),\]</span> ​  其中<span
+class="math inline">\(\lambda_{0}^{s}\)</span>是分割平衡权重，<span
+class="math inline">\(f^{s}\)</span>和<span
+class="math inline">\(y^{s}\)</span>分别是定位结果和定位标签。<br/>​  在ConvNeXt
+v2（Woo等人，2023）之后，我们使用标准<span class="math inline">\(\ell_{b
+c e}\)</span>设计了E4上的检测分类损失<span
+class="math inline">\(\mathcal{L}_{c l s}\)</span>， <span
+class="math display">\[\mathcal{L}_{c l s}=\ell_{b c
+e}(f^{c},y^{c}),\]</span> ​  其中<span
+class="math inline">\(f^{c}\)</span>和<span
+class="math inline">\(y^c\)</span>分别是检测分类结果和分类标签。<br/>​  对于边缘监督<span
+class="math inline">\(\mathcal{L}_{e d g}\)</span>与EAM，我们使用<span
+class="math inline">\(\ell_{d i c e}\)</span>更好地关注微小的边缘区域，
+<span class="math display">\[\mathcal{L}_{e d g}=\ell_{d i c
+e}(f^{e},y^{e}).\]</span> ​  对于最终的组合损失，也就是“硬”损失<span
+class="math inline">\(\mathcal{L}_{h a r
+d}\)</span>，从三个角度加权，得到我们最近的监督损失函数， <span
+class="math display">\[\mathcal{L}_{\mathrm{hard}}=\alpha\cdot\mathcal{L}_{s
+e g}+\beta\cdot(\mathcal{L}_{c l s}+\mathcal{L}_{e d g}),\]</span>
+​  其中α、β、∈、[0,1]。术语“硬”表示每个像素的二进制标签用于监督。</p>
+<h2 id="强化动态教师选拔策略">3.2强化动态教师选拔策略</h2>
+<p>​  在介绍Re-DTS策略之前，我们将首先构建单教师知识蒸馏KD。为了更好地提升学生模型的定位分割和检测分类性能，我们选择通过“软”损失<span
+class="math inline">\(\mathcal{L}_{s o f
+t}\)</span>进行专门知识的迁移，如下所示， <span
+class="math display">\[\mathcal{L}_{s o f t}=\mathcal{L}_{s e
+g}(f_{\bf{s}}^{s},f_{\bf{t}}^{s})+\mathcal{L}_{c l
+s}(f_{\bf{s}}^{c},f_{\bf{t}}^{c}),\]</span> ​  其中加粗<span
+class="math inline">\(\bf{t}\)</span>和<span
+class="math inline">\(\bf{s}\)</span>分别表示教师模型和学生模型。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512212239447.png"
+alt="image-20250512212239447" />
+<figcaption aria-hidden="true">image-20250512212239447</figcaption>
+</figure>
+<p>​  图2(a)展示了我们的Re-DTS策略概览。强化学习中的元素（即状态、动作和奖励）介绍如下。为了明确起见，由于所有教师模型共享相同的训练过程，我们仅介绍其中一个，三个教师模型分别表示为<span
+class="math inline">\(\{\Theta_{k}^{t}\}_{k=1}^{3}\)</span>。</p>
+<p>​  <strong>状态</strong><br/>​  我们的Re-DTS策略包含一系列环境状态s1、s2，...，这些状态总结了待检测的篡改图像特征、学生模型特征和候选教师模型特征，以便做出合理的决策。为了构建状态<span
+class="math inline">\(s_i\)</span>，我们设计了一个状态特征向量<span
+class="math inline">\(\mathbf{F}\left(S_{i}\right)\)</span>，其中包含了三个特征的组合。<br/>​  第一个特征是第i个批次图像xi的向量表示<span
+class="math inline">\(\mathcal{R}(x_{i})\in\mathbb{R}^{d}\)</span>，它可以由任何IFDL表示模型<span
+class="math inline">\(\Theta^{r}\)</span>生成。在本文中，我们通过将该批图像xi输入到Cue-Net中，获得解码器D4最后一层的输出作为特征<span
+class="math inline">\(\mathcal{R}(x_{i})\)</span>，而Cue-Net尚未在任何IFDL任务数据上进行训练。<br/>​  第二个特征<span
+class="math inline">\(\mathcal{S}(x_{i})\in\mathbb{R}^{d}\)</span>的获得方式类似，只是特征向量是从学生模型<span
+class="math inline">\(\Theta^{s}\)</span>输出的，该模型在IFDL任务数据上实时训练，旨在有效地表示篡改图像的内容。<br/>​  第三个特征<span
+class="math inline">\(\mathcal{T}_{k}(x_{i})\in\mathbb{R}^{1+1+1}\)</span>，分别由教师模型<span
+class="math inline">\(\Theta_{k}^{t}\)</span>的定位分割预测结果<span
+class="math inline">\(f_{\bf{t}k}^{s}\)</span>、检测分类预测结果<span
+class="math inline">\(f_{\bf{t}k}^{c}\)</span>和篡改边缘预测结果<span
+class="math inline">\(f_{\bf{t}k}^{e}\)</span>组成，旨在指导策略网络执行更优的动作。
+<span class="math display">\[{\mathcal T}_{k}(x_{i})=C a t(M a
+x(f_{\mathrm{tk}}^{s}),f_{\mathrm{tk}}^{c},M a
+x(f_{\mathrm{tk}}^{e})),\]</span>
+​  其中Max（·）是最大池化操作。<br/>​  因此，状态特征向量<span
+class="math inline">\({\bf
+F}\left(s_{i}\right)\in{\bf\mathbb{R}}^{2d+3}\)</span>可以表示如下：
+<span class="math display">\[\mathrm{\bf{F}}(s_{i})=C a
+t({\mathcal{R}}(x_{i}),{\mathcal{S}}(x_{i}),{\mathcal
+T}_{k}(x_{i})),\]</span> ​  其中，这种连接确保状态特征向量<span
+class="math inline">\(\mathrm{\bf{F}}(s_{i})\)</span>全面反映图像和模型特性，使策略网络能够做出更明智、更有效的决策。</p>
+<p>​  <strong>动作</strong><br/>​  每个教师模型<span
+class="math inline">\(\Theta^{t}\)</span>都与一个策略网络相关联，动作<span
+class="math inline">\(a_{i}\in\{0,1\}\)</span>定义为指示是否选择策略网络将第k个教师模型<span
+class="math inline">\(\Theta_{k}^{t}\)</span>的特殊知识转移到学生模型<span
+class="math inline">\(\Theta^{s}\)</span>。我们使用策略函数<span
+class="math inline">\(\pi_{\theta}(s_{i},a_{i})\)</span>对<span
+class="math inline">\(a_i\)</span>的值进行采样，其中θ是需要学习的参数。在本文中，我们采用以下逻辑函数作为策略函数：
+<span
+class="math display">\[\begin{array}{l}\pi_{\theta}(s_{i},a_{i})&amp;=P_{\theta}\
+(a_{i}\mid s_{i})\\&amp;=a_{i}\sigma({\bf W} * {\bf
+F}(s_{i})+b)+(1-a_{i})(1-\sigma(\mathbf{W}*\mathbf{F}(s_{i})+b))\end{array}\]</span>
+​  其中<span
+class="math inline">\(\mathbf{W}\in\mathbb{R}^{2d+3}\)</span>，<span
+class="math inline">\(b\in\mathbb{R}^{1}\)</span>为可训练参数。</p>
+<p>​  <strong>奖励</strong><br/>​  合理的奖励可以指导教师模型提炼出一个表现优异的学生模型。对于训练数据<span
+class="math inline">\(\mathcal D=\{\mathcal D_{1},\mathcal
+D_{2},...,\mathcal
+D_{M}\}\)</span>，其中M是每个周期的批次数，我们为每个教师模型<span
+class="math inline">\(\Theta_{k}^{t}\)</span>构建一个特征向量<span
+class="math inline">\(s_{i k}\)</span>，并根据策略函数<span
+class="math inline">\(\pi_{\theta}(s_{i k},a_{i
+k})\)</span>为第i个批次的数据<span class="math inline">\(\mathcal
+D_{i}\)</span>选择动作<span class="math inline">\(a_{i
+k}\)</span>，以确定该动作是否被选中。对于所有采样的教师模型，我们将所有教师模型的损失<span
+class="math inline">\(\mathcal{L}_{s o f t}\)</span>与损失<span
+class="math inline">\(\mathcal{L}_{h a r
+d}\)</span>集成，以更新学生模型参数<span
+class="math inline">\(\Theta^{s}\)</span>。<br/>​  我们提出了三种奖励计算方法。第一种是“硬”损失<span
+class="math inline">\(\mathcal{L}_{h a r
+d}\)</span>，包括定位分割损失<span
+class="math inline">\(\mathcal{L}_{seg}\)</span>、检测分类损失<span
+class="math inline">\(\mathcal{L}_{cls}\)</span>和篡改边缘检测损失<span
+class="math inline">\(\mathcal{L}_{edg}\)</span>。第二种奖励函数结合了“硬”损失<span
+class="math inline">\(\mathcal{L}_{h a r
+d}\)</span>以及教师模型的“软”损失<span
+class="math inline">\(\mathcal{L}_{s o f
+t}\)</span>。最后，为了提高学生模型在IFDL任务上的性能，我们在训练过程中使用学生模型的定位分割F1分数和检测分类准确率作为第三个奖励。总之，我们有
+<span class="math display">\[\begin{array}{l}r e w a r
+d_{1}=&amp;-\mathcal{L}_\mathrm{hard}\\r e w a r
+d_{2}=&amp;-(\mathcal{L}_\mathrm{hard}+\mathcal{L}_\mathrm{soft})\\r e w
+a r
+d_{3}=&amp;-\gamma(\mathcal{L}_{\mathrm{hard}}+\mathcal{L}_{\mathrm{soft}})+(1-\gamma)((F1_{s
+e g}+A c c_{c l s})o n D_{i}),\end{array}\]</span> ​  其中，<span
+class="math inline">\(\gamma\)</span>是一个超参数，用于平衡不同的奖励。我们最终选择第三个奖励作为默认选项。值得注意的是，根据强化学习（Williams
+1992）的方法，在每一步之后不会立即奖励更新，因此我们将更新推迟到训练了10B批次之后，其中B表示批量大小。</p>
+<p>​  <strong>最优化</strong><br/>​  根据策略梯度定理（Sutton等人，1999）和强化算法（Williams，1992），我们计算梯度以更新当前策略如下：
+<span
+class="math display">\[\theta\leftarrow\theta+\xi\sum_{i}r\sum_{k}\nabla_{\theta\pi_{\theta}(s_{i
+k},a_{i k})},\]</span> ​  其中r是等式10中定义的奖励函数，ξ是学习率。</p>
+<h2 id="模型的训练过程">3.3模型的训练过程</h2>
+<p>​  算法1概述了ReMTKD框架的训练过程。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512220854959.png"
+alt="image-20250512220854959" />
+<figcaption aria-hidden="true">image-20250512220854959</figcaption>
+</figure>
+<p>​  在开始联合训练之前，我们对模型进行预训练。教师模型<span
+class="math inline">\(\Theta_{k}^{t}\)</span>使用针对相应类型篡改数据<span
+class="math inline">\(\mathcal D ^
+k\)</span>的专门知识进行预训练。然后，在KD知识蒸馏过程中，通过选择所有教师模型的反馈来初始化策略网络<span
+class="math inline">\(\theta_{k}\)</span>。<br/>​  初始化后，执行Re-DTS策略，根据<span
+class="math inline">\(\mathcal{L}\)</span>优化学生模型，如算法2所示。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512221135983.png"
+alt="image-20250512221135983" />
+<figcaption aria-hidden="true">image-20250512221135983</figcaption>
+</figure>
+<p>​    在这个过程中，我们首先固定策略网络<span
+class="math inline">\(\theta_{k}\)</span>来训练学生模型<span
+class="math inline">\(\Theta^{s}\)</span>。在预定的迭代次数之后，我们固定<span
+class="math inline">\(\Theta^{s}\)</span>，计算返回内容，并优化教师选择策略网络<span
+class="math inline">\(\theta_{k}\)</span>。重复此过程，直到完成所有训练迭代。</p>
+<h1 id="实验">4实验</h1>
+<h2 id="实验设置">4.1实验设置</h2>
+<p>​  <strong>数据集</strong><br/>​  考虑到可用性和通用性，我们选择了十个具有挑战性的基准数据集来评估我们的方法，涵盖篡改类型：复制移动（Com）、拼接（Spl）、修复（Inp）和多篡改（Multi）。这些数据集的详细信息见附录。<br/>​  1）对于复制移动，我们使用CASIA
+v2（Dong、Wang和Tan 2013）和Tampered
+Coco（Liu等2022）进行训练，并使用CASIA v1+（Dong、Wang和Tan
+2013）、NIST16（Nimble
+2016）和Coverage（Wen等2016）进行测试。<br/>​  2）对于拼接，我们使用CASIA
+v2（Dong，Wang，and Tan 2013）和Fantastic-Reality（Kniaz，Knyaz，and
+Remondino 2019）进行训练，并使用CASIA v1+（Dong，Wang，and Tan
+2013）、NIST16（Nimble 2016）、Columbia（Hsu and Chang 2006）和DSO-1（De
+Carvalho et al. 2013）进行测试。<br/>​  3）对于修复，我们使用GC
+Dresden&amp;Places（Wu和Zhou 2021）进行训练，并使用NIST16（Nimble
+2016）、AutoSplicing（Jia等2023）和DiverseInp（Wu和Zhou
+2021）进行测试。<br/>​  4）对于多篡改，我们使用IFC（Challenge
+2013)、Korus（De
+Carvalho等人，2013）和IMD2020（Novozamsky、Mahdian和Saic，2020）进行测试，因为这些数据涉及上述单一篡改类型的复合操作。</p>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 46%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>篡改类型</th>
+<th>训练方法及来源</th>
+<th>测试方法及来源</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>复制移动</td>
+<td>CASIA v2 (Dong, Wang, and Tan 2013), <br />Tampered Coco (Liu et al.
+2022)</td>
+<td>CASIA v1+ (Dong, Wang, and Tan 2013), <br />NIST16 (Nimble 2016),
+<br />Coverage (Wen et al. 2016)</td>
+</tr>
+<tr class="even">
+<td>拼接</td>
+<td>CASIA v2 (Dong, Wang, and Tan 2013), <br />Fantastic-Reality (Kniaz,
+Knyaz, and Remondino 2019)</td>
+<td>CASIA v1+ (Dong, Wang, and Tan 2013), <br />NIST16 (Nimble 2016),
+<br />Columbia (Hsu and Chang 2006), <br />DSO-1 (De Carvalho et al.
+2013)</td>
+</tr>
+<tr class="odd">
+<td>修复</td>
+<td>GC Dresden &amp; Places (Wu and Zhou 2021)</td>
+<td>NIST16 (Nimble 2016), <br />AutoSplicing (Jia et al.
+2023),<br />DiverseInp (Wu and Zhou 2021)</td>
+</tr>
+<tr class="even">
+<td>多篡改</td>
+<td>——</td>
+<td>IFC (Challenge 2013), <br />Korus (De Carvalho et al. 2013),
+<br />IMD2020 (Novozamsky, Mahdian, and Saic 2020)</td>
+</tr>
+</tbody>
+</table>
+<p>​  对于Cue-Net学生模型<span
+class="math inline">\(\Theta^{s}\)</span>和其他SOTA方法，训练是在所有混合的单次篡改数据上进行的。相比之下，在强化多教师知识蒸馏过程中，每个教师模型<span
+class="math inline">\(\Theta^{t}\)</span>是在相应类型的篡改数据上进行训练的。</p>
+<p>​  <strong>实施细节</strong><br/>​  我们使用单个Nvidia Tesla A100 GPU
+(80
+GB内存）在PyTorch深度学习框架上进行实验，强化多教师知识蒸馏KD的参数配置如下：<br/>​  1）对于单教师模型预训练，我们将输入图像调整为512×512，并应用AdamW优化器。我们通过学习率设为1×10−4，批量大小设为24，训练轮数设为50来设置训练超参数。为了平衡伪造检测和定位的性能，我们将伪造定位Lseg的权重设为α
+= 1，λs
+0设为0.1。检测分类监督Lcls和边缘监督Ledg的权重β设为0.2。<br/>​  2)对于强化多教师知识蒸馏KD，我们使用与单教师模型预训练相同的参数设置，包括输入图像大小、优化器、学习率和批量大小，但在此训练阶段使用更多的训练数据和仅25个epoch。对于奖励3中的γ，我们将其设置为0.2。对于L，我们为整体教师损失Lsoft设置约束因子ω
+=
+0.05，该约束因子乘以选定教师的数量，以平衡教师模型知识迁移和学生模型自主学习的过程。<br/>​  3）对于策略网络，学习率设置为3×10−4，并使用Adam优化器通过CosineAnnealingLR进行调整。</p>
+<h2 id="与最新方法的比较">4.2与最新方法的比较</h2>
+<p>​  为了进行公平的比较，我们关注的是在与测试数据集不同的数据集上训练的有可用代码或预训练模型的方法。我们比较针对特定伪造类型和通用伪造检测的方法如下：<br/>​  DoaGan
+(Islam et al. 2020)、<br/>​  BusterNet (Wu, Abd-Almageed, and Natarajan
+2018)<br/>​  CMSDSTRD (Chen et al.
+2020)是为复制移动检测而设计的。<br/>​  MFCN (Salloum, Ren, and Kuo
+2018)、<br/>​  RRU-Net (Biet al. 2019)<br/>​  CAT-Net (Kwon et al.
+2022)是为剪接检测而设计的。<br/>​  HP-FCN (Li and Huang 2019),
+<br/>​  IIDNet (Wu and Zhou 2021) <br/>​  TLTF-LEFF (Li et al.
+2023)是为修复检测而设计的。<br/>​  H-LSTM (Bappy et al.2019), <br/>​  SPAN
+(Hu et al. 2020), <br/>​  MVSS-Net (Dong et al.2022), <br/>​  SATL-Net
+(Zhuo et al. 2022), <br/>​  PSCC-Net (Liu et al.2022), <br/>​  HiFi-Net
+(Guo et al.2023)<br/>​  IML-Vit (Ma et
+al.2023)是为通用伪造检测而设计的。</p>
+<h3 id="检测评估">4.2.1检测评估</h3>
+<p>​  表1展示了伪造检测性能。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512222216526.png"
+alt="image-20250512222216526" />
+<figcaption aria-hidden="true">image-20250512222216526</figcaption>
+</figure>
+<p>​  我们观察到许多方法表现非常差，其AUC接近0.5，即接近随机猜测，例如Buster-Net、H-LSTM、SPAN和HiFi-Net。得益于提出的Re-MTKD框架，该框架包括Cue-Net和Re-DTS策略，我们的方法在所有篡改类型的数据集上均达到了SOTA性能。特别是在多篡改数据集上，该数据集包含更复杂的篡改类型，所有比较方法的表现都很差，但我们的方法在AUC得分上比第二名高出8.7%。</p>
+<h3 id="定位评估">4.2.2定位评估</h3>
+<p>​  表2展示了伪造定位性能。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512222410647.png"
+alt="image-20250512222410647" />
+<figcaption aria-hidden="true">image-20250512222410647</figcaption>
+</figure>
+<p>​  值得注意的是，一些专门针对伪造的检测方法在相应数据上表现出竞争力，例如，Buster-Net在复制移动数据上达到了最佳的AUC分数，CAT-Net在拼接数据上取得了第二好的表现，而IID-Net在修复数据上也获得了具有竞争力的AUC分数。然而，这些方法在应用于其他类型的伪造或多篡改数据时常常表现不佳，导致性能显著下降。有趣的是，很少有通用的伪造检测方法能在特定和多篡改类型中始终表现出强大的效果，这突显了同时学习多个篡改痕迹的挑战。相比之下，我们的方法在所有数据集上都取得了优异的结果，并且平均而言明显优于其他方法，突显了其有效捕捉多种篡改竞赛的共性和特性的能力。</p>
+<h3 id="更多的评估补充资料">4.2.3更多的评估（补充资料）</h3>
+<p>​  <strong>定量结果</strong><br/>​  我们提供了主文中所使用SOTA方法性能的更全面概述。表5展示了使用这些SOTA方法的官方预训练模型获得的IFDL结果。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512230325004.png"
+alt="image-20250512230325004" />
+<figcaption aria-hidden="true">image-20250512230325004</figcaption>
+</figure>
+<p>​  可以观察到，特定的伪造检测方法在相应的篡改类型数据上表现出更好的性能。例如，DoaGan
+(Islam等人，2020年）和Buster-Net
+(Wu、Abd-Almageed和Natarajan，2018年）在复制移动数据上的定位表现尤为出色，而RRU-Net
+(Bi等人，2019年）和CAT-Net v1
+(Kwon等人，2021年）在拼接数据上的定位能力更胜一筹。此外，HP-FCN
+(Li和Huang，2019年）和TLTF-LEFF
+(Li等人，2023年）在修复数据上的检测和定位性能分别非常显著。然而，许多通用的伪造检测方法，如SPAN
+(Hu等人，2020年）、SATL-Net (Zhuo等人，2022年）、PSCC-Net
+(Liu等人，2022年）和Hi-Fi-Net
+(Guo等人，2023年），尽管是在大型数据集上训练的，但在多种篡改类型上的表现却较差。<br/>​  此外，我们还纳入了竞争比较方法，如ManTra-Net（Wu、AbdAlmageed和Natarajan
+2019）和TruFor（Guillaro等人2023），但这些方法未在主文中提及。这是因为这两种方法均未公开发布训练代码，仅提供测试代码。值得注意的是，TruFor是在更大规模的数据集上进行训练的(TruFor使用867k的数据集，而我们的方法使用60k的数据集），并且受到了数据泄露的影响(TruFor使用IMD2020（Novozamsky、Mahdian和Saic
+2020）进行训练，本文作为多篡改类型测试数据的一部分）。<br/>​  特别是在复制-移动和拼接数据上，TruFor展现了卓越的伪造定位性能。然而，其伪造检测性能欠佳，在修复数据上的表现也显著下降，突显了同时处理多种篡改数据类型的挑战。对于多次篡改的数据，我们的方法仍能与TruFor达到相当的性能，尽管TruFor的测试模型存在上述数据泄露问题。当排除IMD2020数据集时，该数据集存在数据泄露问题，我们的方法在平均AUC分数上比TruFor高出10.2%。总体而言，本文提出的Re-MTKD框架有效提升了模型在各种篡改数据类型上的性能，并实现了最优的平均AUC性能。</p>
+<p>​  <strong>定性结果</strong><br/>​  我们展示了特定和通用伪造检测方法在各种类型篡改数据上的定性评估，包括复制移动、拼接、修复和多次篡改数据，以及真实数据，如图8所示。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512230748573.png"
+alt="image-20250512230748573" />
+<figcaption aria-hidden="true">image-20250512230748573</figcaption>
+</figure>
+<p>​  可以看出，特定的伪造检测方法在相应数据上表现更佳，例如Buster-Net（吴、阿卜杜勒-马吉德和纳塔拉詹2018)在复制移动数据上，RRU-Net（毕等人2019)和CAT-Net（权等人2022)在拼接数据上，以及IID-Net（吴和周2021)在修复数据上。与通用的伪造检测方法相比，我们的方法最终在各种类型的篡改数据中实现了更准确的伪造定位结果。此外，我们提出的方法在应用于真实图像时表现出更低的误报率。</p>
+<p>​  <strong>鲁棒性</strong><br/>​  我们进一步评估了在社交媒体洗牌中面对常见图像扰动时定位结果的鲁棒性，即JPEG压缩、高斯模糊、高斯噪声和中值滤波。如图5所示，一些通用的IFDL方法，例如针对JPEG压缩的PSCCNet（刘等，2022)和针对高斯模糊的SATLNet（卓等，2022)，性能显著下降。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512230941967.png"
+alt="image-20250512230941967" />
+<figcaption aria-hidden="true">image-20250512230941967</figcaption>
+</figure>
+<p>​  相比之下，我们的方法在整个后处理攻击范围内展示了出色的鲁棒性。</p>
+<p>​  <strong>推理效率</strong><br/>​  如表6所示，我们选择了具有竞争力的SOTA方法在复制移动数据集上进行测试，其中我们的方法在五次运行中平均实现了最快的推理速度和具有竞争力的内存使用。我们的方法展示了卓越的推理效率，推理速度达到38.2毫秒/图像，显著优于其他方法，如MVSS-Net
+(129.37毫秒/图像）和TruFor (64.87毫秒/图像）。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512231028476.png"
+alt="image-20250512231028476" />
+<figcaption aria-hidden="true">image-20250512231028476</figcaption>
+</figure>
+<p>​  最终，它达到了最高的AUC值0.903，证实了我们的方法在推理效率和性能之间达到了最佳平衡，在检测和定位任务中均表现出色。</p>
+<h2 id="消融研究">4.3消融研究</h2>
+<p>​  本小节主要分析Re-MTKD框架关键组件的有效性。表3展示了Re-DTS策略的消融结果，以及分配教师权重的其他策略。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512222551477.png"
+alt="image-20250512222551477" />
+<figcaption aria-hidden="true">image-20250512222551477</figcaption>
+</figure>
+<p>​  关于消融实验的更多细节，请参见附录。</p>
+<h3 id="知识蒸馏中教师模型的有效性">4.3.1知识蒸馏中教师模型的有效性</h3>
+<p>​  比较设置#0至设置#3，可以观察到简单的Cue-Net学生模型难以应对广泛的篡改攻击。相比之下，专门针对伪造检测的教师模型能够提高学生模型在相应数据上的性能，例如，在修复数据上，Singe-Inp在伪造检测和伪造定位F1性能方面分别比设置#0提高了14%和19%。<br/>​  比较设置#0和设置#4，U-Ensemble在IFDL任务中提供了一些性能提升，但在某些操作类型如复制移动和多点篡改时表现下降。这表明，跨多个教师平均权重未能充分捕捉不同篡改操作的独特共性，可能不是最有效的策略。</p>
+<h3 id="re-dts策略的有效性">4.3.2Re-DTS策略的有效性</h3>
+<p>​  如最后五个设置所示，我们比较了本文提出的ReDTS中不同奖励和各种教师知识迁移策略Lsoft的效果。<br/>​  （i）奖励：通过比较设置#5、设置#6和设置#9，可以发现增加奖励作为从教师模型到学生模型的知识迁移监督，能够更好地提升学生模型的性能。对于设置#9，本文采用的最终奖励（奖励3），即教师模型Lsoft的“软”损失和“硬”损失Lhard的总奖励，以及学生模型在伪造定位F1和伪造检测Acc上的性能指标，都有效提升了学生的整体表现。<br/>​  （ii）Lsoft：通过比较设置#7、设置#8和设置#9可以看出，教师模型转移的专业知识在伪造检测和定位方面的结合，更高效地提高了学生模型的IFDL性能。我们的方法（设置#9)不仅在多个特定的伪造数据上取得了优异的结果，在更具挑战性的多篡改数据上也达到了同等高效的性能。<br/>​  此外，我们还展示了学习特征的嵌入空间以及不同KD策略的t-SNE（Van
+der Maaten和Hinton 2008）可视化图，如图3所示。</p>
+<figure>
+<img
+src="../postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512222846588.png"
+alt="image-20250512222846588" />
+<figcaption aria-hidden="true">image-20250512222846588</figcaption>
+</figure>
+<p>​  我们观察到，在我们提出的Re-MTKD框架中，Cue-Net在使用Re-DTS策略训练时，能够有效区分真实样本和篡改样本的特征分布，优于其他KD策略。这表明模型能够学习不同篡改类型之间的共同特征，从而能够准确地将所有篡改样本分类为篡改样本，无论具体的篡改技术如何。此外，模型还捕捉到了每种篡改类型的特定特征，使得每个类别的篡改样本分布更加集中且明显。</p>
+<h1 id="结论">5结论</h1>
+<p>​  在本文中，我们提出了一种新颖的强化多教师知识蒸馏（Re-MTKD）框架，专为图像伪造检测与定位（IFDL）设计。具体而言，我们开发了一种名为Cue-Net的新网络，该网络采用ConvNeXt-UPerNet结构，并配备了一个边缘感知模块，作为IFDL任务的有效骨干。我们进一步引入了一种强化动态教师选择（Re-DTS）策略，该策略根据不同类型的篡改数据动态选择专门的教师模型，引导学生模型有效学习各种篡改痕迹的共性和特异性。广泛的实验结果表明，与现有的最先进方法相比，我们提出的方法在多个IFDL任务中表现出色。</p>
+<h1 id="评价非作者主观评价">6评价（非作者、主观评价）</h1>
+<p>​  1.总体评价：这篇文章发表于AAAI2025，首先将强化学习的方案应用于图像篡改检测任务确实是一个创新的举动，但是其还有些许不足。<br/>​  2.数据集测试的改动：其没有按照主流方法，以数据集为界，进行测试，而是以篡改方法为界，数据集的篡改有简易有困难，类似于Splicing篡改，Columbia
+数据集属于比较容易的数据集，其分数一定程度上会拉升在此篡改任务上的分数，在不分享代码的情况下，使用新颖的数据测试方法，无法让其他研究者与其进行比较。</p>
+<p>​  3.格式性错误：第一段应该是图1，写成了图4</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/">https://zhaozw-szu.github.io/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/SAFIRE/" title="SAFIRE"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SAFIRE</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="toc-text">2.1图像伪造检测与定位</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%AE%9A%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B"><span class="toc-text">2.1.1特定伪造检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B"><span class="toc-text">2.1.2通用伪造检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F"><span class="toc-text">2.2知识蒸馏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-text">2.3 强化学习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%9F%E6%8F%90%E5%87%BA%E7%9A%84re-mtkd%E6%A1%86%E6%9E%B6"><span class="toc-text">3拟提出的Re-MTKD框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cue-net%E4%B8%BB%E5%B9%B2"><span class="toc-text">3.1Cue-Net主干</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E5%8A%A8%E6%80%81%E6%95%99%E5%B8%88%E9%80%89%E6%8B%94%E7%AD%96%E7%95%A5"><span class="toc-text">3.2强化动态教师选拔策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-text">3.3模型的训练过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E6%9C%80%E6%96%B0%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.2与最新方法的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E8%AF%84%E4%BC%B0"><span class="toc-text">4.2.1检测评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E8%AF%84%E4%BC%B0"><span class="toc-text">4.2.2定位评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E8%AF%84%E4%BC%B0%E8%A1%A5%E5%85%85%E8%B5%84%E6%96%99"><span class="toc-text">4.2.3更多的评估（补充资料）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.3消融研究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F%E4%B8%AD%E6%95%99%E5%B8%88%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">4.3.1知识蒸馏中教师模型的有效性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#re-dts%E7%AD%96%E7%95%A5%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">4.3.2Re-DTS策略的有效性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E4%BB%B7%E9%9D%9E%E4%BD%9C%E8%80%85%E4%B8%BB%E8%A7%82%E8%AF%84%E4%BB%B7"><span class="toc-text">6评价（非作者、主观评价）</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SAFIRE | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SAFIRE: Segment Any Forged Image Region Myung-Joon Kwon1* , Wonjun Lee1* , Seung-Hun Nam2 , Minji Son1 , Changick Kim1 1韩国科学技术院（KAIST）电气工程学院2NAVER WEBTOON AI，韩国Seongnam 摘要 ​  大多数技术将图像伪造定位问题视为二">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SAFIRE">
+<meta property="og:url" content="https://zhaozw-szu.github.io/SAFIRE/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="SAFIRE: Segment Any Forged Image Region Myung-Joon Kwon1* , Wonjun Lee1* , Seung-Hun Nam2 , Minji Son1 , Changick Kim1 1韩国科学技术院（KAIST）电气工程学院2NAVER WEBTOON AI，韩国Seongnam 摘要 ​  大多数技术将图像伪造定位问题视为二">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2025-05-06T02:36:17.000Z">
+<meta property="article:modified_time" content="2025-05-11T09:18:14.846Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/SAFIRE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SAFIRE',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-05-11 17:18:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SAFIRE</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-05-06T02:36:17.000Z" title="创建于 2025-05-06 10:36:17">2025-05-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-11T09:18:14.846Z" title="更新于 2025-05-11 17:18:14">2025-05-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SAFIRE"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="safire-segment-any-forged-image-region">SAFIRE: Segment Any
+Forged Image Region</h1>
+<p><strong>Myung-Joon Kwon</strong>1* <strong>, Wonjun Lee</strong>1*
+<strong>, Seung-Hun Nam</strong>2 <strong>, Minji Son</strong>1
+<strong>, Changick Kim</strong>1</p>
+<p>1韩国科学技术院（KAIST）电气工程学院<br/>2NAVER WEBTOON
+AI，韩国Seongnam</p>
+<h1 id="摘要">摘要</h1>
+<p>​  大多数技术将图像伪造定位问题视为二值分割任务，训练神经网络将原始区域标记为0，伪造区域标记为1。相比之下，我们从更基础的角度出发，根据图像的来源对其进行划分。为此，我们提出了“任意伪造图像区域分割”（SAFIRE），通过点提示解决伪造定位问题。图像上的每个点用于分割包含自身的源区域。这使得我们可以将图像划分为多个源区域，这是首次实现的功能。此外，SAFIRE不是记忆特定的伪造痕迹，而是自然地关注每个源区域内的一致特征。这种方法导致了更稳定和有效的学习，在新任务和传统的二值伪造定位中均表现出色。</p>
+<p>Code: https://github.com/mjkwon2021/SAFIRE</p>
+<h1 id="引言">1. 引言</h1>
+<p>​  在人工智能（AI）时代，图像编辑软件（Fu等人，2023；Yu等人，2023）和复杂的生成模型（Rombach等人，2022；Ho、Jain和Abbeel，2020）的普及使得图像伪造比以往任何时候都更容易被发现，同时也更加难以检测（Lin等人，2024）。图像操作的便捷性对视觉信息完整性至关重要的领域产生了重大影响，包括新闻业中假新闻的传播、执法部门使用伪造证据以及生物医学研究中虚假显微图像的存在（Verdoliva，2020；Sabir等人，2021）。因此，在图像中检测并精确定位伪造内容对于维护数字媒体的信任至关重要。<br/>​  目前，大多数图像取证方法通过二值分割来解决图像伪造定位（IFL）问题（Guillaro等，2023；Kwon等，2022；Liu等，2022；Dong等，2022；Hu等，2020；Wu等，2022；Zhou等，2023a；Ji等，2023a；Sun等，2023）。也就是说，在图像中，未被相机捕捉到的区域标记为0，而被篡改过的区域标记为1，以训练深度神经网络。<br/>​  相反，我们从一个更基本的角度来看待IFL，即根据图像的起源将其划分为不同的区域。在此背景下，我们将这些不同的区域定义为源区域，即独立捕获、AI生成或处理的图像的不同部分（图1）。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506113014879.png"
+alt="image-20250506113014879" />
+<figcaption aria-hidden="true">image-20250506113014879</figcaption>
+</figure>
+<p>图1：伪造图像由三个源区域组成。以往的方法仅限于二值预测——分割伪造区域。相比之下，我们的SAFIRE还能够进行多源预测——区分来自同一源图像的区域。</p>
+<p>​  从这个角度来看，我们提出了“任意伪造图像区域分割”（SAFIRE），一种基于点提示的新颖IFL方法，旨在根据图像的原始来源精确地将其分割成区域。SAFIRE采用点提示技术，其中图像上的每个点都会分割出与之共享同一来源的区域（图2）。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506113107272.png"
+alt="image-20250506113107272" />
+<figcaption aria-hidden="true">image-20250506113107272</figcaption>
+</figure>
+<p>​  为了实现这一目标，我们利用了“Segment Anything
+Model”（SAM）（Kirillov等人，2023年）的点提示功能，并对其进行了几处改进。首先，SAFIRE会分割包含给定点的源区域，而SAM则会分割该点周围的所有有意义的部分。其次，虽然SAM处理的是模糊的真实情况，但SAFIRE有明确的真实情况，即一个源区域内所有点的答案都相同。第三，SAFIRE内部生成并使用点提示，因此无需手动输入来指定点。<br/>​  SAFIRE框架由预训练、训练和推理三个阶段组成。在预训练阶段，基于源区域的对比学习被应用于增强图像编码器的特征提取能力。在训练阶段，模型被训练以分割与给定点提示相对应的源区域。尽管该模型可以使用仅包含二元标签的伪造数据集进行训练，但它能够进行多源预测。在推理阶段，点网格生成多个掩码，然后将这些掩码组合起来，产生最终的源分区结果。<br/>​  SAFIRE是首个能够区分图像被篡改两次或更多次时的每个来源的方法，从而产生三个或更多的来源。区分每个来源比仅仅定位篡改像素能更好地解释被操纵的图像。此外，它还促进了后续分析，例如来源过滤，这涉及从一组候选图像中检索每个源区域的原始图像（Pinto等，2017；Moreira等，2018；Verdoliva，2020）。因此，在现实场景中，当多次操作很常见时，多源分区对图像取证特别有益。<br/>​  此外，新颖的提示机制使SAFIRE能够通过考虑真实区域和篡改区域的可互换性来有效学习，这一特性在IFL中我们称之为标签不可知性。篡改区域通常缺乏共同的痕迹，与真实区域相比，它们只是图像中的不同来源（Huh等人，2018）。因此，试图记忆伪造痕迹会导致混淆，从而导致学习不稳定。相反，SAFIRE使用点作为参考来学习每个源区域的均匀特征，而不是记忆伪造痕迹。这种方法导致了稳定且有效的学习，在传统的二值IFL和新的源分区任务中均取得了高性能。<br/>​  作为第一篇通过多源分割解决IFL问题的论文，我们创建了一个由多源图像组成的SafireMS数据集，以促进该领域的进一步研究。我们计划公开发布。<br/>​  我们的主要贡献可以总结如下：</p>
+<ul>
+<li>我们引入了一种新的IFL任务，该任务将伪造的图像按每个来源进行划分。它有助于理解伪造图像的组成，并使进一步的分析更容易。</li>
+<li>我们提出了一种新的IFL方法SAFIRE，它使用内部的点提示。它是第一个能够进行多源分区的技术，但它可以使用传统的二进制数据集进行训练。</li>
+<li>大量的实验表明，SAFIRE在传统的二进制IFL和新任务中都表现出最佳性能。</li>
+<li>为了便于对新任务的研究，我们构建并发布了一个包含由多个来源组成的图像的伪造数据集。</li>
+</ul>
+<h1 id="相关工作">2. 相关工作</h1>
+<p><strong>图像伪造定位</strong></p>
+<p><strong>Segment Anything Model</strong></p>
+<p><strong>IFL中的SAM</strong></p>
+<p>​  最近，有人尝试在IFL技术中使用SAM。一种方法（Su、Tan和Huang
+2024）通过向SAM添加SRM滤波器（Zhou等2018）构建了IFL模型。这种方法完全去除了提示编码器，实际上将SAM用作现代分割主干。另一项研究（Karageorgiou、Kordopatis-Zilos和Papadopoulos
+2024）利用注意力机制融合各种信号，并为此使用预训练且冻结的SAM进行实例分割。</p>
+<p>​  总之，以往的研究主要将SAM用作骨架或仅用于获取分割掩模。这些方法忽视了SAM最重要的特性——其可提示能力，未能充分发挥其潜力。同时，我们开创性地将可提示的分割模型应用于图像的源区域划分。通过使用基于SAM的点提示，我们使每个点都能作为参考，分割包含该点的源区域。此外，受SAM自动掩模生成过程的启发，我们提出了一种推理技术，该技术涉及以网格模式在图像上放置点并汇总结果。这种方法首次实现了多源划分。</p>
+<h1 id="方法">3. 方法</h1>
+<h2 id="概观">3.1 概观</h2>
+<p>​  我们提出的核心方法，即SAFIRE框架，涵盖了IFL的预训练、训练和推理过程。该框架中使用的神经网络称为SAFIRE模型，无需特定结构，可以自由修改。本文中，我们采用了SAM的略微修改结构，在图像编码器中仅添加适配层，以增强模型通过利用低级信号提取取证特征的能力（详见图2及附录）。该模型由图像编码器E（·）、提示编码器F（·）和掩码解码器D（·，·）组成。模型以图像I和点提示P作为输入，输出包含该点的源区域的预测图X和置信度分数s。<br/>​  接下来的章节将深入详细解释SAFIRE框架。首先，为了有效进行源图像分割，通过区域到区域对比学习对图像编码器进行预训练。随后，在主要的训练阶段，模型使用点提示对源区域进行分割进行训练，在最终的推理阶段，以网格的形式将多个点输入到模型中，并将所有结果聚合以获得最终的预测热图。</p>
+<h2 id="预训练区域对区域对比学习">3.2 预训练：区域对区域对比学习</h2>
+<p>​  我们提出区域到区域对比学习，以预训练图像编码器，实现有效的源区域划分（图3）。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506113928257.png"
+alt="image-20250506113928257" />
+<figcaption aria-hidden="true">image-20250506113928257</figcaption>
+</figure>
+<p>​  该方法旨在使来自同一源区域的嵌入在特征空间中靠近，而不同源区域的嵌入则相距较远，当一张图像包含两个或多个源时。<br/>​  利用对比学习中InfoNCE损失的经验证明的有效性（Oord，Li和Vinyals
+2018），我们定义我们的损失函数如下。设<span
+class="math inline">\(I\in\mathbb{R}^{3\times H\times
+W}\)</span>是由r个源组成的输入图像，<span
+class="math inline">\(E(\cdot)\)</span>为图像编码器，<span
+class="math inline">\({\mathcal{E}}=E(I)\in\mathbb{R}^{V\times{\frac{H}{K}}\times{\frac{W}{K}}}\)</span>为图像嵌入，下采样比为K。我们稍微滥用一下符号，把<span
+class="math inline">\({\mathcal{E}}\)</span>看作是V维图像嵌入的集合。然后在<span
+class="math inline">\({\mathcal{E}}\)</span>中存在<span
+class="math inline">\(\frac{H}{K}\times{\frac{W}{K}}\)</span>个嵌入<span
+class="math inline">\(q\in\mathbb{R}^{V}\)</span>。我们还令<span
+class="math inline">\(\{\mathcal{E}_{i}\}_{i=1}^{r}\)</span>是<span
+class="math inline">\({\mathcal{E}}\)</span>的划分，其对应于I中的源区域。<br/>​  然后，我们定义区域到区域对比损失<span
+class="math inline">\(\mathcal{L}_{R2R}\)</span>为： <span
+class="math display">\[I n f o N C
+E(q,p,N)=-\log\left({\frac{\exp\left({\frac{q\cdot
+p}{\pi}}\right)}{\exp\left({\frac{q\cdot p}{\tau}}\right)+\sum_{n\in
+N}\exp\left({\frac{q\cdot n}{\tau}}\right)}}\right),\]</span></p>
+<p><span
+class="math display">\[\mathcal{L}_{R2R}=\frac{1}{|\varepsilon|}\sum_{i=1}^{r}\sum_{q\in\varepsilon_{i}}I
+n f o N C
+E\Big(q,\overline{\varepsilon_{i}\textbackslash\{q\}},\varepsilon\textbackslash\varepsilon_i\Big)\]</span></p>
+<p>​  其中，τ是一个称为温度的超参数，|·|返回元素的数量，<span
+class="math inline">\(\overline{\cdot}\)</span>返回所有元素的平均值。<br/>​  在图像通过图像编码器之前，各种模糊、噪声添加或对比度变化等全局后处理被概率性地应用到图像上。通过这样做，我们期望图像编码器对全局常见变化具有鲁棒性，并更多地关注细微的局部差异。<br/>​  考虑到图像编码器的体积较大，我们确定目前可用的公开伪造数据集在规模和噪声方面都不够充分。因此，我们生成并使用了一个大规模无噪声的数据集SafireMS-Auto。更多内容见附录。</p>
+<h2 id="训练使用点提示进行源区域分割">3.2
+训练：使用点提示进行源区域分割</h2>
+<p>​  完成图像编码器预训练后，SAFIRE模型将进行主要训练，以根据指定的点提示准确分割源区域（图4）。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506151012101.png"
+alt="image-20250506151012101" />
+<figcaption aria-hidden="true">image-20250506151012101</figcaption>
+</figure>
+<p>​  图像编码器和提示编码器均被冻结：图像编码器处于预训练状态，提示编码器则保持原始SAM状态。通过向掩码解码器输入图像嵌入和提示嵌入，训练适配组件和掩码解码器，确保输出与正确的掩码对齐。</p>
+<h3 id="创建点遮罩">3.2.1 创建点遮罩</h3>
+<p>​  在训练过程中，需要将图像级别的真实掩模转换为对应给定点的掩模，我们称之为点掩模。如果存在多源掩模，每个源区域分配不同的标签，则可以通过将包含该点的源区域赋值为1，其他区域赋值为0来简单创建点掩模。然而，目前几乎所有用于IFL任务的数据集都仅以二进制形式存在，将被篡改的部分标记为1，未改变的部分标记为0。<br/>​  我们介绍了一种方法，将这些图像级别的二值掩码转换为点掩码。如果一张处理过的图像仅使用两个来源，标记为0和1的区域各自代表一个单一的源区域。进一步地，我们还考虑了连通组件。包含给定点的连通区域被标记为1，而与该区域相邻的其他连通区域则被标记为0。不相邻的区域被赋予-1的忽略标签，在计算损失时忽略这些标签。这种转换使我们能够仅使用带有二值标签的数据集进行多源分区训练。<br/>​  具体来说，设<span
+class="math inline">\(Y\in\{0,1\}^{H\times
+W}\)</span>是图像I的真实掩码，其中包含c个连通分量，<span
+class="math inline">\(R=\{(i,j)\in\mathbb{Z}^{2}:0\leq i\lt H,0\leq j\lt
+W\}\)</span>是I的整数坐标集，<span
+class="math inline">\(\{R_{i}\}_{i=1}^{c}\)</span>是覆盖Y连通分量的R的划分，<span
+class="math inline">\(P\in R\)</span>是一个点提示，<span
+class="math inline">\(R^P\)</span>是包含P的区域，P属于<span
+class="math inline">\(\{R_{i}\}_{i=1}^{c}\)</span>。然后，点掩模<span
+class="math inline">\(Y_{P}\in\{-1,0,1\}^{H\times
+W}\)</span>可以计算为： <span
+class="math display">\[Y_{P}[i,j]=\begin{cases}\begin{aligned}1,\qquad&amp;
+\mathrm{if}\ (i,j)\in R^{P}\\0,\qquad&amp; \mathrm{if}\ (i,j)\in
+neighbors(R^{P})\\-1,\qquad&amp;
+\mathrm{otherwise}\end{aligned}\end{cases}\]</span>
+​  其中，neighbors（·）返回相邻区域的并集。</p>
+<h3 id="双区域配对点采样">3.2.2 双区域配对点采样</h3>
+<p>​  图像编码器独立于点提示计算图像嵌入。充分利用这一特性，可以通过同时处理单个图像的多个点提示来实现高效训练。此外，为了平衡源区域，根据图像级别的真实标注，始终从标记为0和1的区域中成对采样点。</p>
+<h3 id="区域自适应源分割损失">3.2.3 区域自适应源分割损失</h3>
+<p>​  对于每个点，我们可以定义一个损失函数，该函数最小化预测图与点掩模之间的差异（图4）。这里，并非所有点掩模内的像素都对损失有同等贡献，因为这样做会导致较小区域被忽略。传统的IFL技术通过赋予篡改类别更大的权重来解决大多数图像中篡改区域较小的问题（Kwon等，2022）。然而，在我们的点掩模中，没有区分篡改区域和原始区域；只有多个源区域存在。因此，我们采用一种策略，即无论这些区域中的正确标签是0还是1，都赋予每个点掩模内较小区域更大的权重。这与大多数语义分割任务中使用的特定类别权重不同，后者是在单个图像内计算权重（Wang等，2020）。<br/>​  设I为输入图像，P为点提示，<span
+class="math inline">\((X, s)=D(E(I),
+F(P))\)</span>为掩码解码器的输出，其中X是预测图，s是置信度分数，<span
+class="math inline">\(Y_P\)</span>为P的真实点掩码。我们仅在有效标签区域<span
+class="math inline">\(R^{Y_{P},\{0,1\}}\)</span>内计算损失，通过<span
+class="math inline">\(R^{A,B}=\left\{(i,j)\in R\;:\;A[i,j]\in
+B\right\}\)</span>来实现。然后区域自适应源分割损失<span
+class="math inline">\(\mathcal{L}_{AASS}\)</span>定义为： <span
+class="math display">\[\mathcal{L}_{A A S
+S}=-\operatorname*{\mathbb{E}}_{(i,j)}[w_{1}\cdot
+Y[i,\,j]\cdot\log(\sigma(X[i,\,j]))+\,w_{0}\cdot(1-Y[i,j])\cdot\log(1-\sigma(X[i,j]))]\\w_{1}=\operatorname*{min}\left(\frac{|R^{Y_P,\{0,1\}}|}{|R^{Y_P,\{1\}}|},C_{A
+A S
+S}\right){\mathrm{~,~and~}}w_{0}=\operatorname*{min}\left(\frac{|R^{Y_P,\{0,1\}}|}{|R^{Y_P,\{0\}}|},C_{A
+A S S}\right)\]</span> ​  其中期望是在<span
+class="math inline">\(R^{Y_P,\{0,1\}}\)</span>上计算的，σ（·）是一个S型函数，<span
+class="math inline">\(C_{AASS}\)</span>是一个限制权重的超参数。</p>
+<h3 id="置信度损失">3.2.3 置信度损失</h3>
+<p>​  用于推理时，掩码解码器还预测置信度分数。与SAM不同的是，SAM预测的是框级平均交并比（mIoU）分数，而我们的模型预测像素精度来衡量整体性能，而不是矩形mIoU。置信度分数损失<span
+class="math inline">\(\mathcal{L}_{c o n f}\)</span>定义为： <span
+class="math display">\[\mathcal{L}_{c o n
+f}=\operatorname*{MSE}_{R^{Y_{P},\{0,1\}}}(a c c\,(b i
+n(X),Y_{P}),s)\]</span>
+​  其中，bin（·）将输入阈值化为二进制映射，将大于0的值转换为1，小于或等于0的值转换为0，MSE（·，·）返回像素均方误差，acc（·）返回准确度。</p>
+<h3 id="总训练损失">3.2.4 总训练损失</h3>
+<p>​  最后，我们得到总训练损失Ltrain如下： <span
+class="math display">\[\mathcal{L}_{t r a i n}=\mathcal{L}_{A A S
+S}+\lambda_{c o n f}\cdot L_{c o n f},\]</span>
+​  其中λconf是一个平衡两种损失的超参数。</p>
+<h2 id="推理多点聚合">3.3 推理：多点聚合</h2>
+<p>​  推理使用多个点提示（图5）。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506154707985.png"
+alt="image-20250506154707985" />
+<figcaption aria-hidden="true">image-20250506154707985</figcaption>
+</figure>
+<p>​  除了要推断的图像外，还以网格格式（例如16×16）提供点作为模型的输入。输出掩码被聚合以获得最终预测，这可以是多源地图或二值地图。<br/>​  设I为输入图像，P1，···，PN为提示点。首先，我们计算图像嵌入E
+= E(I)和所有i的提示点嵌入Fi =
+F（Pi）。由于图像嵌入提取与提示点无关，因此每张图像只需执行一次。因此，即使使用多个提示点，总计算量也不会大幅增加。<br/>​  之后，图像嵌入和点嵌入通过掩码解码器，从而可以得到对应于每个点的预测。掩码解码器的输出D（·，·）可以表示为：
+<span
+class="math display">\[(\{X_{1},\cdot\cdot\cdot\,,X_{N}\},\{s_{1},\cdot\cdot\cdot\,,s_{N}\})=D({\mathcal{E}},\{\mathcal{F}_{1},\cdot\cdot\cdot\,,\mathcal{F}_{N}\}),\]</span>
+​  其中Xi是一个预测图，si是Xi的一个置信度分数。<br/>​  下一步是计算每个预测Xi的代表性特征，这是对应于预测区域的图像嵌入的平均值。我们定义一个函数<span
+class="math inline">\(g:\mathbb{R}^{H\times
+W}\rightarrow\mathbb{R}^{V}\)</span>，如下所示： <span
+class="math display">\[g(X)=\frac{1}{\left|\mathcal{R}^{b i
+n(x),\{1\}}\right|}\sum_{(i,j)\in\mathcal{R}^{b i
+n(x),\{1\}}}{\mathcal{E}}[i,j],\]</span> ​  其中，<span
+class="math inline">\({\mathcal{R}}\)</span>是<span
+class="math inline">\({\mathcal{E}}\)</span>的整数坐标集合，<span
+class="math inline">\({\mathcal{X}}\)</span>是X的下采样预测图，以匹配与<span
+class="math inline">\({\mathcal{R}}\)</span>相同的分辨率。这里，<span
+class="math inline">\(\mathcal{R}^{b i
+n(x),\{1\}}\)</span>表示由预测X分割区域在嵌入空间中的坐标集合。对于所有i，其代表性特征可以表示为<span
+class="math inline">\({\mathcal{G}}_{i}=g(X_{i})\)</span>。<br/>​  随后，我们对代表性特征进行聚类。聚类基于这样的假设：SAFIRE模型能够准确提取特征，从而将来自同一源区域的特征聚集在一起。我们将{G1，···，GN
+}聚类为M个簇C1，···，CM。可以应用任何聚类算法，M可以预先固定或由算法回归确定。对于一般的源区域划分，我们可以允许算法确定合适的M。在已知源数量的情况下，可以使用具有固定簇数的算法。<br/>​  之后，从每个聚类中选择置信度最高的掩模。每个聚类代表输入图像的一个源区域，而置信度最高的掩模对应于该区域的最佳预测。我们收集每个聚类的最大置信度分数的索引：
+<span
+class="math display">\[j^{*}=\arg\operatorname*{max}_{\mathcal{G}_{i}\in
+C_{j}}s_{i}.\]</span>
+​  最后，将这些掩码组合起来以获得最终预测。最简单的方法是采用softmax：
+<span
+class="math display">\[X^{*}=\operatorname{sofmax}\{X_{1^{*}},\cdot\cdot\cdot,X_{M^{*}}\}.\]</span>
+​  对于M =
+2的特殊情况，为了获得二进制预测图，两个预测值的简单平均产生一个有效输出：
+<span
+class="math display">\[X^{*}=\frac{1}{2}\{\sigma(X_{1^{*}})+(1-\sigma(X_{2^{*}}))\}.\]</span></p>
+<h1 id="二元ifl实验">4. 二元IFL实验</h1>
+<p>​  我们首先从传统的图像中定位伪造区域的任务开始。请注意，SAFIRE可以进行二进制预测和多源预测。</p>
+<h2 id="实验设置">4.1 实验设置</h2>
+<p>​  实施细节。<br/>​  我们的模型先进行预训练，再进行训练。等式(1)中的区域到区域对比学习温度τ设置为0.1。等式(4)中AASS损失的权重上限CAASS设置为10，而等式(6)中的λconf设置为0.1。在推理阶段，M固定为2以获得二进制形式的预测。我们使用16×16个点提示和k均值聚类。</p>
+<p>​  数据集。<br/>​  我们使用一个常见的设置（Guillaro等人，2023）来训练网络，该设置包含了四个数据集(Kniaz,
+Knyaz, and Remondino 2019; Novozamsky, Mahdian, and Saic 2020; Dong,
+Wang, and Tan 2013; Kwon et
+al.2022)，其由真实和虚假图像组成，也被称为CAT-Net（Kwon等人，2022）设置。我们使用五个与训练数据集没有重叠的公开数据集来测试性能：<br/>​  
+Columbia (Ng, Chang, and Sun 2004),<br/>​   COVERAGE (Wen et al. 2016),
+<br/>​   CocoGlide (Guillaro et al.2023), <br/>​   RealisticTampering
+(Korus and Huang 2016), <br/>​   NC16 (Guan et al. 2019)。<br/>​
+这些数据集包含多种伪造类型，包括拼接、复制移动、移除和使用生成模型添加对象。在测试过程中，图像以原始形式输入，但NC16数据集除外，由于某些比较方法的内存限制，图像被缩小了。</p>
+<p>​  比较方法。<br/>​  根据（Guillaro等，2023）的协议，我们通过选择具有公开可访问代码和预训练模型的最新技术来确保公平比较，这些模型是在测试集的不同数据集上训练的。具体包括<br/>​  
+ManTra-Net (Wu,AbdAlmageed, and Natarajan 2019), <br/>​   SPAN (Hu et
+al.2020), <br/>​   AdaCFA (Bammey, Gioi, and Morel 2020), <br/>​   CATNet
+v2 (Kwon et al. 2022), IF-OSN (Wu et al. 2022),<br/>​   MVSS-Net (Dong et
+al. 2022), PSCC-Net (Liu et al. 2022),<br/>​   TruFor (Guillaro et al.
+2023), <br/>​   NCL (Zhou et al.
+2023a)。<br/>​  此外，我们还使用了在同一数据集上训练的纯SAM（Kirillov等，2023）模型。</p>
+<p>​  度量。<br/>​  我们以与TruFor（Guillaro等人，2023）论文相同的方式评估定位性能。具体而言，性能报告采用置换F1分数（Huh等人，2018；Kwon等人，2022），使用固定0.5阈值(F1
+fixed）和每张图像的最佳阈值(F1 best）。</p>
+<h2 id="评价结果">4.2 评价结果</h2>
+<p>​  表1展示了二进制IFL性能的比较分析。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506164719887.png"
+alt="image-20250506164719887" />
+<figcaption aria-hidden="true">image-20250506164719887</figcaption>
+</figure>
+<p>​  连字符（‘-’)表示该数据集用于训练，因此被排除在外。值得注意的是，SAFIRE在F1固定和F1最佳两个指标上均表现出色，在五个数据集中有四个获得了第一名。此外，所有数据集的平均得分再次证实了SAFIRE的优越性，使其在整体性能上稳居首位。另外，在附录中可以看到，我们的方法在各种全局后处理条件下也优于其他技术，证明了其稳健性。</p>
+<p>​  图6显示了每个模型产生的IFL的定性结果。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506164829126.png"
+alt="image-20250506164829126" />
+<figcaption aria-hidden="true">image-20250506164829126</figcaption>
+</figure>
+<p>​  SAFIRE成功识别了其他技术未能检测到的复杂且具有挑战性的操作，并且假阳性检测较少。特别是，与其它技术相比，SAFIRE在复杂的人工智能生成的部分操作中实现了显著更准确的预测。</p>
+<h2 id="消融研究">4.3 消融研究</h2>
+<p>​  
+为了保证我们研究的完整性，我们对框架的关键组件进行了消融研究：区域到区域对比损失、区域自适应源分割损失中的区域自适应特征、点提示和置信度损失（表2）。</p>
+<figure>
+<img src="../postimages/SAFIRE/image-20250506164928497.png"
+alt="image-20250506164928497" />
+<figcaption aria-hidden="true">image-20250506164928497</figcaption>
+</figure>
+<p>​  我们用常规的对应物来代替每一个进行比较。<br/>​  结果表明，在没有任何一个组件的情况下，性能会比完整的SAFIRE框架差，后者集成了所有四个组件。此外，排除所有四个关键特征的基线模型表现出显著较差的结果，这突显了这四个组件在SAFIRE中不可或缺的作用。<br/>​  特别是，我们观察到基于提示的源区域划分优于二值分割。具有相同结构和预训练的模型在使用二值分割时，仅能达到28.0%的固定F1分数。然而，当采用提示进行源区域划分时，模型性能显著提升，达到62.6%。这证明了SAFIRE的提示方法在使网络理解同一源区域特征方面的有效性，从而实现稳定学习和卓越表现。</p>
+<h1 id="多源分区实验">5. 多源分区实验</h1>
+<h1 id="结论">6.结论</h1>
+<p>​  SAFIRE通过将图像划分为多个原始区域，解决了通过二进制分割查看IFL任务的传统方法的问题。通过区域间的对比预训练，我们引导编码器有效地嵌入源分区所需的微妙信号。我们利用基于点提示的分割来训练SAFIRE模型，使其能够准确预测每个点所在的源区域。在推理过程中，我们以网格格式提供点提示，并汇总输出以获得最终预测结果。经过全面评估，SAFIRE成功解决了IFL中的标签无关性问题，并超越了其他最先进方法。它还为图像分区中使用点提示开辟了可能性，并提出了将图像划分为多个源区域的新挑战。这有助于理解伪造图像的结构，促进进一步分析。我们希望我们的研究能为解决AI时代日益复杂的图像伪造问题做出贡献。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/SAFIRE/">https://zhaozw-szu.github.io/SAFIRE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/" title="Reinforced_Multi-teacher_Knowledge_Distillation_for_Efficient_General_Image_Forgery_Detection_and_Localization"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Reinforced_Multi-teacher_Knowledge_Distillation_for_Efficient_General_Image_Forgery_Detection_and_Localization</div></div></a></div><div class="next-post pull-right"><a href="/Rethinking-Image-Editing-Detection-in-the-Era-of-Generative-AI-Revolution/" title="Rethinking_Image_Editing_Detection_in_the_Era_of_Generative_AI_Revolution"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Rethinking_Image_Editing_Detection_in_the_Era_of_Generative_AI_Revolution</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">114</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#safire-segment-any-forged-image-region"><span class="toc-text">SAFIRE: Segment Any
+Forged Image Region</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1. 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2. 相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3. 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A7%82"><span class="toc-text">3.1 概观</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E5%8C%BA%E5%9F%9F%E5%AF%B9%E5%8C%BA%E5%9F%9F%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="toc-text">3.2 预训练：区域对区域对比学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E4%BD%BF%E7%94%A8%E7%82%B9%E6%8F%90%E7%A4%BA%E8%BF%9B%E8%A1%8C%E6%BA%90%E5%8C%BA%E5%9F%9F%E5%88%86%E5%89%B2"><span class="toc-text">3.2
+训练：使用点提示进行源区域分割</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%82%B9%E9%81%AE%E7%BD%A9"><span class="toc-text">3.2.1 创建点遮罩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E5%8C%BA%E5%9F%9F%E9%85%8D%E5%AF%B9%E7%82%B9%E9%87%87%E6%A0%B7"><span class="toc-text">3.2.2 双区域配对点采样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9F%9F%E8%87%AA%E9%80%82%E5%BA%94%E6%BA%90%E5%88%86%E5%89%B2%E6%8D%9F%E5%A4%B1"><span class="toc-text">3.2.3 区域自适应源分割损失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%AE%E4%BF%A1%E5%BA%A6%E6%8D%9F%E5%A4%B1"><span class="toc-text">3.2.3 置信度损失</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E8%AE%AD%E7%BB%83%E6%8D%9F%E5%A4%B1"><span class="toc-text">3.2.4 总训练损失</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E5%A4%9A%E7%82%B9%E8%81%9A%E5%90%88"><span class="toc-text">3.3 推理：多点聚合</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%85%83ifl%E5%AE%9E%E9%AA%8C"><span class="toc-text">4. 二元IFL实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1 实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E4%BB%B7%E7%BB%93%E6%9E%9C"><span class="toc-text">4.2 评价结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.3 消融研究</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E6%BA%90%E5%88%86%E5%8C%BA%E5%AE%9E%E9%AA%8C"><span class="toc-text">5. 多源分区实验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">6.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
