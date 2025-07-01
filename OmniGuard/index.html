@@ -1,0 +1,520 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于CVPR2025，将版权水印和图像篡改主动保护两个任务联合起来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking">
+<meta property="og:url" content="https://zhaozw-szu.github.io/OmniGuard/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于CVPR2025，将版权水印和图像篡改主动保护两个任务联合起来。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/OmniGuard/image-20250701111018844.png">
+<meta property="article:published_time" content="2025-07-01T02:36:10.000Z">
+<meta property="article:modified_time" content="2025-07-01T03:26:53.788Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/OmniGuard/image-20250701111018844.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/OmniGuard/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-01 11:26:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/OmniGuard/image-20250701111018844.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-07-01T02:36:10.000Z" title="创建于 2025-07-01 10:36:10">2025-07-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-01T03:26:53.788Z" title="更新于 2025-07-01 11:26:53">2025-07-01</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,CVPR,2025</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IML/">IML</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>OmniGuard: Hybrid Manipulation Localization via Augmented Versatile
+Deep Image Watermarking</p>
+<h1 id="摘要">摘要</h1>
+<p>​  随着生成式AI的迅速发展及其在图像编辑领域的广泛应用，数字内容的真实性与完整性面临新的风险。现有的多种水印技术在篡改定位的精确度与视觉效果之间存在权衡。由于早期框架灵活性有限，这些水印在所有图像中必须保持固定。在AIGC编辑下，他们的版权提取准确度也不令人满意。为了解决这些问题，我们提出了一种新的增强型多功能水印技术——OmniGuard。该技术结合了主动嵌入与被动、盲目的提取方法，旨在实现强大的版权保护和篡改定位。OmniGuard采用了一种混合的取证框架，不仅支持灵活选择水印位置，还引入了一个退化感知的篡改检测网络，确保在复杂条件下也能实现精准的定位。此外，设计了一个轻量级的AIGC编辑模拟层，以增强全球和本地编辑的稳健性。广泛的实验表明，OmniGuard在保真度、稳健性和灵活性方面表现优异。与最近的最先进方法EditGuard相比，我们的方法在容器图像的PSNR（峰值信噪比）上提高了4.25dB，在噪声条件下的F1分数提高了20.7%，平均比特准确率提高了14.8%。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  在海量数据集的支持和大规模模型技术的推动下，生成式AI已经赋能众多行业，开发了大量文本转图像模型[16,45,46]和图像编辑算法[7,
+32,40,
+65]。这种强大的生成和编辑能力是一把双刃剑，对信息的真实性和完整性构成了重大威胁。例如，非法侵权者可能会窃取他人生成的图像并声称拥有版权，这使得保护知识产权变得越来越困难。此外，欺诈者可能利用AI工具篡改在线图片，生成误导性内容，给法庭取证带来了新的挑战。<br/>​  作为一种经典且广泛采用的技术，水印技术因其在保护图像版权、检测未经授权的使用以及追踪篡改方面的重要作用而受到越来越多的关注。例如，强健的水印技术注重其韧性，旨在即使在显著的失真（如JPEG压缩[25]或屏幕截图[12]）后，也能保持嵌入的水印完整且可检测。相比之下，脆弱水印技术更注重敏感性，确保即使面对细微或特定的修改，嵌入的水印也能作出响应[27,34,35,44]。近年来，随着深度学习技术的发展，深度水印在容量[54]、鲁棒性[20]和保真度[26]方面展现出显著优势。它不仅能够抵御多种AI生成内容编辑方法，还能实现像素级别的篡改定位。值得注意的是，一些水印方法能够同时解决篡改定位和版权保护任务[23,27,49]。例如，AudioSeal
+[48]采用了零比特水印策略，实现了样本级音频篡改定位，并具备强大的位嵌入能力。SepMark
+[52]首次引入了用于稳健版权保护和深度伪造检测的深度可分离水印。EditGuard
+[66,68]利用图像嵌入图像隐写术的局部性，设计了一种串行编码和并行解码的水印框架。<br/>​  然而，现有的通用深度图像水印方法仍然面临一些挑战。<br/>​  1）准确度：<br/>​  多用途图像水印技术在篡改定位的准确性和水印图像的保真度之间面临不可避免的权衡。这是因为当前的方法，如[66,68,71]，依赖于预定义的定位水印与重建水印之间的残差来生成掩码。因此，为了确保定位的准确性，必须牺牲水印图像的保真度。<br/>​  2）灵活性：<br/>​  由于在解码阶段必须知道预定义的定位水印才能提取掩模，因此定位水印倾向于在所有图像中保持固定，这大大限制了信息嵌入的灵活性。<br/>​  3）鲁棒性：<br/>​  现有的多种水印技术在鲁棒性方面存在明显不足：局部水印恢复在严重退化条件下往往失效，而版权水印则可能被全局AIGC编辑算法清除。</p>
+<p>​  为解决上述问题，我们提出了一种全面增强的通用水印方法，称为OmniGuard。<br/>​  首先，我们提出了一种结合主动水印嵌入与被动网络盲提取的混合取证方法。该方法能够在没有预先添加水印的情况下，从重建的局部水印中输出篡改的掩码，实现了编码与解码的分离。同时，我们训练了这种掩码提取器，即使在重建不准确的情况下也能实现精确提取，从而使水印网络能够专注于提高水印图像的质量。<br/>​  此外，我们还研究了局部水印的选择模式，并设计了一种自适应的水印变换，使网络能够以内容感知的方式嵌入局部信息。<br/>​  最后，我们提出了一种轻量级的AIGC编辑模拟层，该层提高了网络在版权提取方面的准确性，确保了在全球性编辑（如Instructpix2pix[7]）和局部修复（如Stable
+Diffusion
+Inpaint[46]）等场景下的稳健性能。<br/>​  图1展示了我们在最先进的多功能水印技术[66]上的显著改进。</p>
+<figure>
+<img src="../postimages/OmniGuard/image-20250701104337419.png"
+alt="image-20250701104337419" />
+<figcaption aria-hidden="true">image-20250701104337419</figcaption>
+</figure>
+<p>​  简而言之，我们的贡献可以概括如下。</p>
+<ul>
+<li>我们提出了一种混合操作定位和鲁棒版权保护框架OmniGuard，它包括一个主动的双水印网络和一个被动的提取器，改进了现有的多功能水印。</li>
+<li>为了将主动水印与被动提取整合到一个统一的框架中，提出了一种深度退化感知的篡改提取器，该提取器融合了重建的局部水印与被篡改图像中的伪影，在严重退化条件下实现了更高的精度。</li>
+<li>为了增强主动双水印网络，设计了自适应水印变换和轻量级AIGC编辑模拟器，分别提高容器图像保真度和版权提取精度。</li>
+<li>实验验证，我们的OmniGuard在保真度、灵活性和鲁棒性方面均优于现有的多功能水印技术，并且在被动定位方法和鲁棒水印技术上也全面超越。</li>
+</ul>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="图像篡改检测与定位">2.1.图像篡改检测与定位</h2>
+<p>​  被动方法：<br/>​  被动图像篡改检测与定位网络主要关注识别异常区域，如伪影、噪声和分辨率不一致[21,24,28,29,47,51,53,55-58]。例如，MVSS-Net
+[11]通过多尺度监督和多视角特征学习来捕捉噪声和边界差异。TruFor
+[17]采用了一种对噪声敏感的指纹，并通过变压器驱动的融合机制结合了高级和低级痕迹提取。HiFi-Net
+[18]结合了多分支特征提取与专门的定位模块，有效检测来自CNN生成或编辑的图像的修改。同时，IMLViT
+[43]将Swin-ViT整合到其框架中，采用了FPN结构和边缘损失约束以提高准确性。受扩散模型启发，DiffForensics
+[64]采用了扩散去噪预训练，以提高对篡改图像中细微细节的检测能力。</p>
+<p>​  主动计划：<br/>​  主动篡改检测与定位[3,5,6,62,71]通过在图像原始状态中嵌入信息，这有助于网络检测篡改或进行归属。尽管传统的脆弱水印方法[10,23,27,34,35,44]能够实现块级篡改定位，但其精确度和灵活性仍有待提高。最近，MaLP
+[4]通过利用两分支架构估计的局部和全局特征来学习模板，并从恢复的模板中检测出被篡改的区域。Imuge
+[61,63]采用了自嵌入机制和高效的攻击层，实现了篡改定位和自我恢复。在RAW图像中嵌入[21]水印，以增强被动篡改定位网络对JPEG压缩、模糊和重新缩放等有损操作的抗性。EditGuard
+[66]和V 2AMark
+[68]利用可逆网络嵌入双重水印，实现了像素级定位和版权保护。虽然这些主动机制已经显示出了良好的结果，但在保真度、稳健性和定位精度之间实现平衡仍然是一个开放的挑战。</p>
+<h2 id="深度图像水印">2.2.深度图像水印</h2>
+<p>​  水印技术是一种被广泛认可的经典版权保护手段[30,39,59,67-69]。传统方法通常将秘密信息嵌入空间域或自适应域[9]，往往选择数据位于不太显眼的位[15]或区域，这限制了隐藏信息的容量。近期，深度图像水印技术备受关注。例如，HiDDeN
+[72]通过引入深度编码器-解码器网络，实现了位流数据的隐藏与检索功能。此外，基于流模型的[13,42]技术因其固有的信息隐藏能力而受到青睐，进一步提升了水印图像的保真度。JPEG和截图[2,12,38,52]已被开发以增强其稳健性。SSL
+[14]在自监督潜在空间中对图像进行水印处理，通过学习到的图像表示来提升安全性和韧性。TrustMark
+[8]提出了一种适用于任意分辨率图像的通用水印技术。然而，这些方法无法有效支持AIGC编辑。最近，Robust-wide
+[20]提出了一种部分指令驱动的去噪采样指导模块，以增强对指令驱动图像编辑的鲁棒水印效果。VINE
+[41]引入了SDXL-Turbo
+[50]和解码器，实现了极高的比特精度。然而，这些方法需要在网络训练中加入多步骤迭代扩散过程，这显著降低了训练速度。</p>
+<h1 id="方法">3.方法</h1>
+<h2 id="多功能深度图像水印技术综述">3.1.多功能深度图像水印技术综述</h2>
+<p>​  我们首先回顾了深度多功能水印[6,52,66,68,71]领域的现有方法。以EditGuard
+[66]为代表，当前的多功能水印采用串行编码与并行解码框架，使得局部和版权水印能够在同一图像中共存而不互相干扰。</p>
+<figure>
+<img src="../postimages/OmniGuard/image-20250701104815359.png"
+alt="image-20250701104815359" />
+<figcaption aria-hidden="true">image-20250701104815359</figcaption>
+</figure>
+<p>​  具体而言，如图2所示，给定二维局部水印<span
+class="math inline">\({\bf W}_{\mathrm{loc}}\in\mathbb{R}^{H\times
+W\times3}\)</span>和一维版权水印<span
+class="math inline">\(\mathbf{w}_{\mathrm{cop}}\in\{0,1\}^{L}\)</span>，原始图像<span
+class="math inline">\({\bf I}_{\mathrm{ori}}\in\mathbb{R}^{H\times
+W\times3}\)</span>输入到图像位联合嵌入网络中，生成容器图像<span
+class="math inline">\(\mathbf{I}_{\mathrm{con}}\)</span>。随后，若接收到的图像<span
+class="math inline">\(\mathbf{I}_{\mathrm{rec}}\)</span>已进行局部编辑或通道退化处理，可将其输入图像比特解码网络以恢复双重水印<span
+class="math inline">\(\mathbf{\hat{W}}_{\mathrm{loc}}\)</span>,<span
+class="math inline">\(\mathbf{\hat
+w}_{\mathrm{cop}}\)</span>。AIGC编辑与退化流程可建模如下。 <span
+class="math display">\[\mathrm{I_{rec}}={\cal
+D}_{\mathrm{deg}}(\mathbf{I}_{\mathrm{con}}\odot(1-\mathbf{M}_{\mathrm{gt}})+{\mathcal{E}}_{\mathrm{edit}}(\mathbf{I}_{\mathrm{con}})\odot\mathbf{M}_{\mathrm{gt}})\]</span>
+​  其中，<span
+class="math inline">\({\mathcal{E}}_{\mathrm{edit}}(\cdot)\)</span>、<span
+class="math inline">\({\cal D}_{\mathrm{deg}}(\cdot)\)</span>和<span
+class="math inline">\(\mathbf{M}_{\mathrm{gt}}\)</span>分别代表编辑函数、退化函数和篡改掩码。需要注意的是，这些多功能方法[66,68,71]仅考虑局部编辑，即<span
+class="math inline">\(\mathbf{M}_{\mathrm{st}}\neq0\)</span>。恢复的版权<span
+class="math inline">\(\mathbf{\hat w}_{\mathrm{cop}}\)</span>预期与<span
+class="math inline">\(\mathbf{w}_{\mathrm{cop}}\)</span>保持一致。最后，我们通过残差减法比较<span
+class="math inline">\(\mathbf{\hat{W}}_{\mathrm{loc}}\)</span>和<span
+class="math inline">\(\mathbf{W}_{\mathrm{loc}}\)</span>，以计算篡改区域<span
+class="math inline">\(\mathbf{\hat{W}}_{\mathrm{loc}}\in\mathbb{R}^{H\times
+W}\)</span>。 <span
+class="math display">\[\hat{\mathrm{M}}_{\mathrm{loc}}=\Theta_{\tau}(|\hat{\mathrm{W}}_{\mathrm{loc}}-\mathrm{W}_{\mathrm{loc}}|),\]</span>
+​  其中<span
+class="math inline">\(\Theta_{\tau}(z)=1(z\geq{\boldsymbol{\tau}})\)</span>。|·|表示绝对值运算。然而，我们总结指出，这种逐像素残差减法存在三大主要缺点。</p>
+<ul>
+<li><span
+class="math inline">\(\mathbf{\hat{W}}_{\mathrm{loc}}\)</span>的恢复与<span
+class="math inline">\(\mathbf{I}_{\mathrm{con}}\)</span>的生成存在相互制约关系。由于检测精度高度依赖于<span
+class="math inline">\(\mathbf{\hat{W}}_{\mathrm{loc}}\)</span>的恢复精度，因此<span
+class="math inline">\(\mathbf{I}_{\mathrm{con}}\)</span>的质量不得不大幅降低。</li>
+<li><span
+class="math inline">\(\mathbf{\hat{M}}_{\mathrm{loc}}\)</span>的提取需要了解<span
+class="math inline">\(\mathbf{W}_{\mathrm{loc}}\)</span>，因此它不是盲的。为了便于解码端和编码端之间的协作，一个简单的方法是选择一个固定的<span
+class="math inline">\(\mathbf{W}_{\mathrm{loc}}\)</span>。然而，固定的局部水印无法为所有图像提供最佳保真度。</li>
+<li>如果<span
+class="math inline">\(\mathbf{\hat{W}}_{\mathrm{loc}}\)</span>的未改变区域包含由于严重退化而产生的伪影，则这些区域也可能被错误地视为篡改，从而对检测的稳健性造成威胁。</li>
+</ul>
+<h2 id="omniguard总体框架">3.2.OmniGuard总体框架</h2>
+<p>​  为了解决上述问题，我们提出了一种混合取证框架OmniGuard，该框架结合了主动的双水印网络和被动的、深度的、退化感知的篡改提取器（图3）。</p>
+<figure>
+<img src="../postimages/OmniGuard/image-20250701111018844.png"
+alt="image-20250701111018844" />
+<figcaption aria-hidden="true">image-20250701111018844</figcaption>
+</figure>
+<p>​  该框架利用主动水印的强大泛化能力，克服了被动提取网络的准确性限制，同时通过被动网络进一步增强定位的鲁棒性。此外，OmniGuard通过精心设计的定位水印提高了容器图像的保真度，并通过在退化层中有效模拟AIGC的全局和局部编辑，增强了版权提取的鲁棒性。</p>
+<figure>
+<img src="../postimages/OmniGuard/image-20250701111151567.png"
+alt="image-20250701111151567" />
+<figcaption aria-hidden="true">image-20250701111151567</figcaption>
+</figure>
+<p>​  具体来说，如图3和图4(a)所示，我们首先采用自适应前向变换（第3.4节）将原始图像<span
+class="math inline">\(\mathbf{I}_{\mathrm{ori}}\)</span>嵌入到局部水印<span
+class="math inline">\(\mathbf{W}_{\mathrm{loc}}\)</span>中，使变换后的水印<span
+class="math inline">\(\mathbf{\tilde
+W}_{\mathrm{loc}}\)</span>获得一些内容感知性和合理的纹理，这已被证明有助于有效隐藏。随后，将定位标签<span
+class="math inline">\(\mathbf{\tilde
+W}_{\mathrm{loc}}\)</span>和版权水印wcop嵌入到<span
+class="math inline">\(\mathbf{I}_{\mathrm{ori}}\)</span>中，生成容器图像<span
+class="math inline">\(\mathbf{I}_{\mathrm{con}}\)</span>。同样地，我们从Irec中提取w<sup>cop，并通过本地化水印解码模块和逆变换（第3.4节）获得伪影图W</sup>loc。这里的本地化水印隐藏和解码网络采用了[66]中的可逆网络结构。版权水印隐藏和解码网络的结构则受到了[8]的启发。最后，伪影图W<sup>loc和被篡改的图像Irec被输入到深度篡改提取器中，生成篡改掩模M</sup>loc。<br/>​  OmniGuard的主要改进集中在两个关键点上。<br/>​  首先，我们介绍了一种深度篡改提取器，该提取器结合了Irec和ˆWloc数据来分析篡改痕迹。通过将ˆWloc的重建任务重新定义为分类任务，提取器只需区分篡改痕迹与其他区域，从而大大简化了训练过程。<br/>​  其次，我们扩展了EditGuard支持的降级范围。在版权解码方面，我们设计了一个轻量级的AIGC模拟层，使OmniGuard能够支持全局编辑和局部篡改。对于本地水印解码，我们的检测技术能够应对JPEG（Q=50）、色彩抖动和严重噪声等条件。我们已在表1中列出了与EditGuard的对比。</p>
+<figure>
+<img src="../postimages/OmniGuard/image-20250701111650324.png"
+alt="image-20250701111650324" />
+<figcaption aria-hidden="true">image-20250701111650324</figcaption>
+</figure>
+<h2
+id="被动降解-防篡改提取器的动机">3.3.被动降解-防篡改提取器的动机：</h2>
+<h2 id="自适应局部水印变换的动机">3.4.自适应局部水印变换的动机</h2>
+<h2 id="轻量级aigc编辑模拟器">3.5.轻量级AIGC编辑模拟器</h2>
+<h2 id="训练详情">3.6.训练详情</h2>
+<h1 id="实验结果">4.实验结果</h1>
+<h2 id="实验设置">4.1.实验设置</h2>
+<p>​  我们使用AdamW优化器，在MIRFlickR数据集[22]上训练版权水印网络，初始学习率为4×10−6，批量大小为32，采用余弦退火策略。随后，我们在DIV2K
+[1]数据集上优化整个主动双水印网络，使用Adam优化器，学习率为1×10−5，批量大小为8。基于窗口的transformer主干网络是ViTB，该网络通过MAE
+[19]在ImageNet-1k上进行了预训练。窗口大小和填充大小分别设置为14和1024。篡改提取器在20000个构建的配对{W^loc，Irec，Mgt}上进行了训练。训练过程中使用的篡改类型为稳定扩散修复，但我们的方法可以适应几乎任何类型的局部修改。所有实验均在NVIDIA
+GTX 3090Ti服务器上完成。</p>
+<h2 id="与定位方法的比较">4.2.与定位方法的比较</h2>
+<p>​  为了评估我们的OmniGuard在防篡改定位上的精度，我们将其与一些最先进的被动方法进行了对比，包括PSCC-Net
+[37]、MVSS-Net [11]、CATNet [29]、HiFi-Net [18]、IML-ViT
+[43]，以及主动方法EditGuard
+[66]。我们使用F1分数和AUC作为评估指标。在COCO
+[36]测试集的1000个样本上，我们比较了我们的方法与其他竞争方法。我们选择了三种独特的局部编辑方法，即稳定扩散修复、ControlNet修复和图像拼接，以实现等式1中的<span
+class="math inline">\({\mathcal{E}}_{\mathrm{edit}}(\cdot)\)</span>功能。退化函数<span
+class="math inline">\({\cal
+D}_{\mathrm{deg}}(\cdot)\)</span>从高斯噪声（σ=1-10）、JPEG（Q=70-85）、亮度、对比度和饱和度的色彩抖动，以及椒盐噪声中随机选取，以验证其鲁棒性。</p>
+<figure>
+<img src="../postimages/OmniGuard/image-20250701112139661.png"
+alt="image-20250701112139661" />
+<figcaption aria-hidden="true">image-20250701112139661</figcaption>
+</figure>
+<p>​  如表2所示，我们的方法在AIGC和简单篡改场景下均实现了最佳的定位性能，F1分数超过0.95，AUC接近1。尽管EditGuard在干净条件下与我们的表现类似，但我们观察到在嘈杂条件下EditGuard的定位精度显著下降，F1下降了约0.2。这是因为EditGuard依赖于像素级别的对比，这使得其定位结果高度依赖于水印恢复的性能。相比之下，OmniGuard在面对常见的退化情况时几乎不会影响性能。图5进一步展示了我们方法的优势。对于一些野外篡改样本，被动方法如PSCCNet和IML-ViT难以有效检测到篡改痕迹。主动方法如EditGuard会产生不准确的掩码，并且当篡改图像经历全局退化时，对阈值设置非常敏感。相比之下，我们的OmniGuard能够稳健且准确地识别篡改区域。需要注意的是，对于像Instructp2p这样的全局编辑，OmniGuard仍然能够稳健地恢复版权并检测到篡改；然而，它倾向于将整个图像视为篡改。这与我们的预期功能一致，因为我们的水印技术更侧重于解决像素级别的篡改问题，而不是语义上的修改。</p>
+<h2 id="与水印技术的比较">4.3.与水印技术的比较</h2>
+<h2 id="消融研究">4.4.消融研究</h2>
+<h1 id="结论">5.结论</h1>
+<p>​  OmniGuard提出了一种创新的混合取证框架，该框架结合了主动水印嵌入与被动提取技术。这一方法集成了深度退化感知的篡改检测器、自适应局部水印变换以及轻量级的AIGC编辑模拟器，使OmniGuard在保真度、灵活性和鲁棒性方面表现出色。实验结果表明，OmniGuard通过生成更高保真度的图像，减少伪影，并在严重退化和生成式AI编辑的情况下实现更准确的篡改定位和版权提取，超越了现有的最先进方法。作为对抗AIGC操纵的有效防御手段，OmniGuard对社区而言是一个重要的进步，为未来的版权保护和数字内容真实性发展做出了贡献。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/OmniGuard/">https://zhaozw-szu.github.io/OmniGuard/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/OmniGuard/image-20250701111018844.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/Operation-History-Estimation-and-Its-Application-to-Multi-Degraded-Image-Restoration/" title="Operation History Estimation and Its Application to Multi-Degraded Image Restoration"><img class="cover" src="/img/coverImage/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Operation History Estimation and Its Application to Multi-Degraded Image Restoration</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%AF%A1%E6%94%B9%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="toc-text">2.1.图像篡改检测与定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F%E6%B0%B4%E5%8D%B0"><span class="toc-text">2.2.深度图像水印</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%8A%9F%E8%83%BD%E6%B7%B1%E5%BA%A6%E5%9B%BE%E5%83%8F%E6%B0%B4%E5%8D%B0%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0"><span class="toc-text">3.1.多功能深度图像水印技术综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#omniguard%E6%80%BB%E4%BD%93%E6%A1%86%E6%9E%B6"><span class="toc-text">3.2.OmniGuard总体框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A2%AB%E5%8A%A8%E9%99%8D%E8%A7%A3-%E9%98%B2%E7%AF%A1%E6%94%B9%E6%8F%90%E5%8F%96%E5%99%A8%E7%9A%84%E5%8A%A8%E6%9C%BA"><span class="toc-text">3.3.被动降解-防篡改提取器的动机：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E5%B1%80%E9%83%A8%E6%B0%B4%E5%8D%B0%E5%8F%98%E6%8D%A2%E7%9A%84%E5%8A%A8%E6%9C%BA"><span class="toc-text">3.4.自适应局部水印变换的动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%BB%E9%87%8F%E7%BA%A7aigc%E7%BC%96%E8%BE%91%E6%A8%A1%E6%8B%9F%E5%99%A8"><span class="toc-text">3.5.轻量级AIGC编辑模拟器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%AF%A6%E6%83%85"><span class="toc-text">3.6.训练详情</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">4.实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1.实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.2.与定位方法的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E6%B0%B4%E5%8D%B0%E6%8A%80%E6%9C%AF%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.3.与水印技术的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.4.消融研究</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
