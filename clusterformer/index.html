@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ClusterFomer:Clustering As A Universal Visual Learner | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于NeurIPS2023，本文介绍了一种基于CLUSTERing范式与TransFORMER的通用视觉模型——CLUSTERFORMER。该模型包含两个创新设计：①循环交叉注意力聚类，重新定义了TransFORMER中的交叉注意力机制，通过递归更新聚类中心，促进强大的表示学习；②特征调度，利用更新后的聚类中心，通过基于相似性的度量重新分配图像特征，形成一个透明的处理流程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ClusterFomer:Clustering As A Universal Visual Learner">
+<meta property="og:url" content="https://zhaozw-szu.github.io/clusterformer/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于NeurIPS2023，本文介绍了一种基于CLUSTERing范式与TransFORMER的通用视觉模型——CLUSTERFORMER。该模型包含两个创新设计：①循环交叉注意力聚类，重新定义了TransFORMER中的交叉注意力机制，通过递归更新聚类中心，促进强大的表示学习；②特征调度，利用更新后的聚类中心，通过基于相似性的度量重新分配图像特征，形成一个透明的处理流程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/clusterformer/image-20250701155045781.png">
+<meta property="article:published_time" content="2025-07-01T07:35:18.000Z">
+<meta property="article:modified_time" content="2025-07-04T03:54:26.157Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/clusterformer/image-20250701155045781.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/clusterformer/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ClusterFomer:Clustering As A Universal Visual Learner',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-04 11:54:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/clusterformer/image-20250701155045781.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ClusterFomer:Clustering As A Universal Visual Learner</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-07-01T07:35:18.000Z" title="创建于 2025-07-01 15:35:18">2025-07-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-04T03:54:26.157Z" title="更新于 2025-07-04 11:54:26">2025-07-04</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,NeurIPS,2023</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8F%AF%E5%BE%AE%E8%81%9A%E7%B1%BB/">可微聚类</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ClusterFomer:Clustering As A Universal Visual Learner"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>ClusterFomer: Clustering As A Universal Visual Learner</p>
+<p><strong>James C. Liang</strong>（罗彻斯特理工学院）、<strong>Yiming
+Cui</strong>（ 佛罗里达大学）、<strong>Qifan Wang</strong>（Meta
+AI）、<strong>Tong Geng</strong>（美国罗彻斯特大学）、<strong>Wenguan
+Wang</strong>（ 浙江大学）、<strong>Dongfang
+Liu</strong>∗（罗彻斯特理工学院）</p>
+<h1 id="摘要">摘要</h1>
+<p>​  本文介绍了一种基于CLUSTERing范式与TransFORMER的通用视觉模型——CLUSTERFORMER。该模型包含两个创新设计：①循环交叉注意力聚类，重新定义了TransFORMER中的交叉注意力机制，通过递归更新聚类中心，促进强大的表示学习；②特征调度，利用更新后的聚类中心，通过基于相似性的度量重新分配图像特征，形成一个透明的处理流程。这种优雅的设计简化了可解释和可转移的工作流程，能够处理不同层次的聚类粒度（即图像、框和像素级别）的异构视觉任务（即图像分类、对象检测和图像分割）。实证结果表明，CLUSTERFORMER在图像分类任务中，对ImageNet-1K数据集的top-1准确率达到了83.41%；在对象检测和实例分割任务中，对MS
+COCO数据集的mAP分别达到了54.2%和47.0%；在语义分割任务中，对ADE20K数据集的mIoU达到了52.4%；在全景分割任务中，对COCO
+Panoptic数据集的PQ达到了55.8%。我们希望通过这项研究，能够推动计算机视觉领域通用模型的范式转变。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  计算机视觉领域已经出现了针对不同视觉任务的专门解决方案（例如，ResNet
+[34]用于图像分类，Faster RCNN [70]用于目标检测，Mask RCNN
+[33]用于实例分割），旨在实现更优的性能。然而，神经科学研究[73,65,82,5]指出，人类的感知系统在处理复杂视觉刺激时展现出卓越的解释能力，不受特定任务的限制。这一特点与当前计算机视觉技术[95,44,46]的设计大相径庭，后者通常采用多样化的架构设计。<br/>​  人类视觉具有独特的注意力机制，能够有选择性地聚焦于视觉场中的相关部分，同时忽略无关信息[81,40]。这可以类比为一种聚类方法[2,3,89]，其中单个像素点被分解并重组为相关概念，以应对各种任务。这实际上是一个层次化的过程，通过组合基本的视觉元素，如线条、形状和颜色，来构建更高级别的物体、场景和个人的抽象[79,59,66,27]。这项工作受到人类视觉系统卓越能力的启发，旨在开发一个能够复制这种无与伦比能力的通用视觉模型。<br/>​  为此，我们采用了一种基于聚类的策略，该策略在不同粒度级别上运行，以提高视觉理解。通过解决不同的视觉任务（如图像分类、目标检测和图像分割），我们考虑了视觉信息在图像、框和像素级别的具体分组方式。我们将这种方法命名为CLUSTERFORMER（第3.2节），因为它利用了集成在TransFORMER架构中的聚类机制，创建了一个通用网络。该方法首先将图像嵌入到离散的标记中，这些标记代表了被分组成不同集群的关键特征。然后，通过一个递归的聚类交叉注意力机制，考虑中心维度上的相关特征表示，递归地更新集群中心。一旦完成中心分配和更新，特征将根据更新后的集群中心进行重新分配，并将两者输入到目标任务的头部。</p>
+<figure>
+<img src="../postimages/clusterformer/image-20250701153931883.png"
+alt="image-20250701153931883" />
+<figcaption aria-hidden="true">image-20250701153931883</figcaption>
+</figure>
+<p>​  CLUSTERFORMER具有几个吸引人的特点。<br/>​  ❶灵活性：CLUSTERFORMER是一种基于聚类的方法，能够在一个框架下处理广泛的视觉任务，并展现出卓越的性能（见图1）。其核心理念是处理不同粒度级别的任务（如图像级分类、框级检测、像素级分割等），旨在实现一种通用的视觉解决方案。<br/>​  ❷可转移性：CLUSTERFORMER编码器生成的聚类中心直接作为任务头的初始查询，用于聚类，从而使整个架构能够将底层表示用于目标任务的预测（见表4）。这种设计巧妙地促进了从上游任务（即在ImageNet[72]上训练的编码器）学到的知识向下游任务（例如，在COCO[49]上训练的实例分割解码器）的迁移。<br/>​  ❸可解释性：无论目标任务如何，CLUSTERFORMER的决策过程都通过一个透明的管道，持续根据基于相似性的度量更新聚类中心。由于推理过程是自然可推导的，因此模型的推理行为可以即时解释（见第4.2节）。这使得CLUSTERFORMER与大多数现有统一模型[17,44,95]区别开来，后者往往无法精确解释其工作原理。</p>
+<p>​  为了有效评估我们的方法，我们在实验中展示了：在第4.1.1节中，针对图像分类任务，CLUSTERFORMER在从头训练时，与Swin
+Transformer[53]相比，在ImageNet
+[72]数据集上的前1名准确率提高了0.13∼0.39%，在第4.1.2节中，使用我们预训练的ImageNet模型时，该方法可以扩展到目标检测任务，并且在COCO
+[49]数据集上，与Dino [96]相比，Swin
+Transformer的性能显著提升（mAP提高了0.8∼1.1%）。此外，我们的方法还可以适应更通用的像素级任务，如语义分割（见第4.1.3节）、实例分割（见第4.1.4节）和全景分割（见第4.1.5节）。例如，我们在ADE20K
+[101]数据集上的语义分割mIoU提高了0.6∼1.3%，在MS COCO
+[49]数据集上的实例分割mAP提高了1.0∼1.4%，在COCO Panoptic
+[42]数据集上的全景分割PQ提高了1.5∼1.7%，与Mask2Former
+[17]相比。我们的算法经过了广泛的测试，核心组件的有效性也通过第4.2节中概述的一系列消融研究得到了验证，</p>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  通用视觉模型<br/>​  Transformers[81]在推动全球雄心方面发挥了关键作用，通过相同的架构能够应对不同具体任务的模型，体现了这些最新发展[23,17,16,95,96,4,80,30,57,86]在该领域的潜力。在视觉领域，主流研究主要集中在开发编码器[53,88]或解码器[44,94]上。编码器的核心在于开发基础模型[4,53,24,22]，这些模型经过大量数据训练，能够适应并微调以应对各种下游任务。例如，Swin
+Transformer
+[53]通过采用由移位窗口组成的分层结构，成为计算机视觉领域的通用骨干；ViT-22B
+[22]将架构参数化至220亿，并通过学习大规模数据，在多种视觉任务上表现出色。通过学习大规模数据，该方法在多种视觉任务中表现出色。相反，[23,17,16,95,94,44,96,87,50,20,52,19,21,51,93,76,37,99,25,48]的解码器研究旨在解决同质目标任务，通过使用查询来描绘视觉模式。例如，Mask2Former
+[17]将掩码信息融入Transformer架构，统一了各种分割任务（如语义分割、实例分割和全景分割）；Mask-DINO
+[44]通过直接利用查询嵌入进行目标任务预测，将解码过程从检测扩展到分割。概念上不同，我们简化了一个基于聚类的优雅的系统工作流，并在不同的聚类粒度下处理异构视觉任务（例如，图像分类、对象检测和图像分割）。</p>
+<p>​  视觉中的聚类<br/>​  传统视觉[39,28,29,55,91,1,10,61,6,58]中的聚类算法可分为分层模式和分割模式。分层方法[62,38]涉及像素层次结构的建模，并通过迭代分割和合并像素对形成聚类，直至达到饱和状态。这种方法避免了事先确定聚类数量的必要性，并解决了局部最优问题[98,12]。然而，它仅考虑每个阶段的相邻像素，无法利用关于聚类全局配置或维度的先验信息[69,64]。相比之下，部分聚类算法[78,36]直接生成具有预设数量的聚类结构，并将像素单独分配给一个聚类。这种设计展现出动态特性，使像素能够在簇[11,63]之间转换。通过采用适当的措施，这种方法能够有效地将复杂知识整合到簇中心。作为强大的系统，人类视觉融合了聚类模式[89,83,67]的优势。我们能够根据不同的尺度对相似的实体进行分组。同时，我们还能仅基于形状、颜色或纹理对物体进行有效分类，而无需依赖层次信息。基于上述见解，我们从聚类的角度重新设计了Transformer架构中的注意力机制（§3.2），以解析视觉复杂性的层次结构。</p>
+<h1 id="方法">3.方法</h1>
+<h2 id="前言">3.1前言</h2>
+<p>​  聚类<br/>​  聚类的目标是将一组数据点（记为X∈R
+n×d）根据它们的内在相似性划分为C个不同的簇，同时确保每个数据点仅属于一个簇。为了实现这一目标，需要优化数据点的分层，综合考虑其特征和位置信息，以形成连贯且有意义的分组。聚类方法通常采用高级相似性度量，如余弦相似性，来评估数据点与簇中心的距离。此外，这些方法还会考虑点的空间位置，以实现更精确的分组。</p>
+<p>​  通用聚类的交叉注意力机制<br/>​  从Transformer解码器架构[81]中获得灵感，现代端到端架构[17,9]采用了一种基于查询的方法，其中一组K个查询，<span
+class="math inline">\(C=\left[c_{1};\cdot\cdot\cdot;c_{K}\right]\in\mathbb{R}^{K\times
+D}\)</span>，通过一系列交叉注意力块进行学习和更新。在此背景下，我们重新定义了“C”这一术语，将其与每一层的聚类中心关联起来。具体而言，每层都使用交叉注意力机制来自适应地聚合图像特征，并随后更新查询：
+<span class="math display">\[C\leftarrow C+\mathrm{softmax}_{H
+W}(Q^{C}(K^{I})^{\top})V^{I},\]</span> ​  其中，<span
+class="math inline">\(Q^{C}{\in}\mathbb{R}^{K\times
+D},V^{I}{\in}\mathbb{R}^{H W\times D},K^{I}{\in}\mathbb{R}^{H W\times
+D}\)</span>分别表示查询、键和值的线性投影特征。上标“<span
+class="math inline">\(C\)</span>”和“<span
+class="math inline">\(I\)</span>”分别代表从中心和图像特征投影出的特征。受[95]的启发，我们重新解释了交叉注意力机制，将其视为聚类求解器，通过将查询视为聚类中心，并沿查询维度(K)而非图像分辨率（HW）应用softmax函数来实现：
+<span class="math display">\[C\leftarrow
+C+\mathrm{softmax}_{K}(Q^{C}(K^{I})^{\top})V^{I},\]</span></p>
+<h2 id="clusterformer">3.2 CLUSTERFORMER</h2>
+<p>​  在本小节中，我们介绍CLUSTERFORMER（见图2(a))。该模型通过一系列分层阶段，实现了多尺度表示学习，以适应各种场景。在每个阶段，图像块被转换为特征嵌入[81,53,24]，这些嵌入通过一个统一的流程——首先是循环交叉注意力聚类，然后是特征调度——被分组到不同的簇中。</p>
+<p><img src="../postimages/clusterformer/image-20250701155045781.png"
+alt="image-20250701155045781" /> <span
+class="math display">\[\begin{array}{rrl}E-step:&amp;\hat{M}^{(t)}&amp;=\mathrm{softmax}_{K}(Q^{C^{(t)}}(K^{I})^{\top}),\\M-step:&amp;C^{(t+1)}&amp;=M^{(t)}V^{I}\in\mathbb{R}^{K\times
+D},\end{array}\]</span></p>
+<h3 id="循环交叉注意力聚类">3.2.1 循环交叉注意力聚类</h3>
+<p>​  考虑到特征嵌入<span class="math inline">\(I~\in~\mathbb{R}^{H
+W\times D}\)</span>和初始中心<span
+class="math inline">\(C^{(0)}\)</span>，我们封装了迭代的期望最大化（EM，Expectation-Maximization）聚类过程，其中<span
+class="math inline">\(t\in\{1,\cdot\cdot\cdot,T\}\)</span>，<span
+class="math inline">\({\hat{M}}\in[0,1]^{K\times H
+W}\)</span>表示“软”聚类分配矩阵（即K个聚类的概率分布图）。根据第3.1节的定义，<span
+class="math inline">\(Q^{C}\in\mathbb{R}^{K\times
+D}\)</span>表示从中心C投影出的查询向量，而<span
+class="math inline">\(V^{I},K^{I}\ \in\ \mathbb{R}^{H W\times
+D}\)</span>则分别对应从图像特征<span
+class="math inline">\(I\)</span>投影出的值向量和键向量。循环交叉注意力方法通过迭代更新聚类成员<span
+class="math inline">\(\hat M\)</span>（即E-step）和中心<span
+class="math inline">\(C\)</span>（即M-step），这种动态更新策略体现了分区聚类的核心思想。该方法具有以下几个吸引人的特点：</p>
+<ul>
+<li><p>效率：虽然传统的自注意力机制的时间复杂度为<span
+class="math inline">\({\cal
+O}(H^{2}W^{2}D)\)</span>，但循环交叉注意力方法的下限为<span
+class="math inline">\({\cal
+O}(TKHWD)\)</span>。这主要是因为TK≪HW（例如，Swin
+[53]中的4165对比我们方法中的1200）。具体来说，在编码过程中，金字塔架构[88,53]的特性使得TK可以远小于HW，尤其是在早期阶段。值得注意的是，在每次迭代中，只有Q矩阵需要更新，而K和V矩阵只需进行一次计算。因此，整个模型具有系统效率（见表6c)。</p>
+<figure>
+<img src="../postimages/clusterformer/image-20250702151949092.png"
+alt="image-20250702151949092" />
+<figcaption aria-hidden="true">image-20250702151949092</figcaption>
+</figure></li>
+<li><p>透明：透明度的关键在于聚类中心在我们循环交叉注意力机制中所扮演的独特角色。通过聚类过程生成的聚类中心，作为特征的‘原型’。这些‘原型’作为每个聚类的代表性样本，反映了该聚类内数据点最显著或最具特征性的特点。此外，循环交叉注意力方法遵循了广泛认可的EM聚类算法，提供了一个清晰透明的框架。这种聚类中心分配在表示学习过程中以人类可理解的方式运作（见图3），促进了即时的可解释性，使人们能够更直观地理解潜在的关系。</p></li>
+<li><p>非参数化的优雅：循环交叉注意力机制通过在迭代过程中共享查询、键和值的投影权重，实现了递归特性。这种方法有效地确保了递归性，而无需引入额外的学习参数（见表6b)。</p>
+<figure>
+<img src="../postimages/clusterformer/image-20250702152007163.png"
+alt="image-20250702152007163" />
+<figcaption aria-hidden="true">image-20250702152007163</figcaption>
+</figure></li>
+</ul>
+<p>​  由于整体架构具有层次性，循环交叉注意力能够全面探索表示的粒度，这反映了层次聚类的过程：
+<span
+class="math display">\[C^{l}=\mathrm{RCA}^{l}(I^{l},C_{0}^{l}),\]</span>
+​  其中，RCA表示循环交叉注意力层。<span
+class="math inline">\(I^l\)</span>是通过标准池化操作在不同层上生成的图像特征图，分辨率为<span
+class="math inline">\(H/2^{l}\times W/2^{l}\)</span>。<span
+class="math inline">\(C^l\)</span>是第l层的聚类中心矩阵，而<span
+class="math inline">\(C_0^l\)</span>则是第l层的初始中心。不同层的循环交叉注意力参数<span
+class="math inline">\(\{\mathrm{RCA}^{l}\}_{l=1}^{L}\)</span>不共享。此外，我们从图像网格中初始化这些中心：
+<span class="math display">\[[c_{1}^{(0)};\cdot\cdot\cdot\cdot
+c_{K}^{(0)}]=\mathrm{FFN}(\mathrm{Adptive}_{-}\mathrm{Pooling}_{K}(I)),\]</span>
+​  其中，FFN代表位置前馈网络，这是Transformer架构的重要组成部分。它包含两个全连接层和一个用于隐藏层的激活函数。<span
+class="math inline">\(\mathrm{Adptive}_{-}\mathrm{Pooling}_{K}(I)\)</span>指的是从I个特征中心中选择K个特征中心，通过自适应采样计算出合适的窗口大小，以自适应地达到所需的输出大小，相比传统池化方法，这种方法提供了更高的灵活性和精度。</p>
+<h3 id="特征调度">3.2.2 特征调度</h3>
+<p>​  在完成聚类分配后，所提出的方法采用了一种自适应过程，根据相似性（见图2(c))来调度每个聚类内的补丁，从而对聚类内的整体结构和上下文形成更加连贯和全面的理解。对于每个补丁嵌入<span
+class="math inline">\(p_{i}\in I\)</span>，更新后的补丁嵌入<span
+class="math inline">\(p_{i}^{\prime}\)</span>计算如下： <span
+class="math display">\[p_{i}^{&#39;}=p_{i}+\mathrm{MLP}(\frac{1}{K}\sum_{k=0}^{K}s
+i m(C_{k},p_{i})* C_{k})\]</span>
+​  该方程通过考虑特征嵌入与聚类中心(C)之间的相似性，并根据这些相似性的权重进行加权，来实现特征嵌入的自适应调度。通过利用聚类中心提供的内在信息，该方法能够优化特征嵌入，从而更好地理解图像的底层结构和背景。所有特征表示都被用于解码过程中的目标任务处理。在第3.3节中，我们将详细讨论结束任务的具体实现。</p>
+<h1 id="实施细节">3.3实施细节</h1>
+<p>​  CLUSTERFORMER的实现细节和框架如图2a所示。我们采用了Swin Transformer
+[53]的架构和配置，相关代码可在此处获取（https://github.com/ClusterFormer/ClusterFormer）。</p>
+<ul>
+<li>编码器<br/> 编码过程旨在为给定图像生成表示层次结构，用<span
+class="math inline">\(\{I^l\}\)</span>表示，其中<span
+class="math inline">\(l=\{1,2,3,4\}\)</span>。这一过程从特征嵌入开始，将图像转换成独立的特征标记。接下来，通过多头计算[81,53]技术，将这些嵌入的特征分配到不同的头部。中心初始化（公式5）作为初始化聚类中心的起点，而递归交叉注意力聚类（公式3）则用于递归地更新这些中心。一旦中心更新完成，特征将根据与更新后的中心的关联（公式6）进行重新分配。进一步的解码过程利用了中心和特征，确保了全面的学习效果。</li>
+<li>图像分类适应<br/>
+分类头是一个单层多层感知机（MLP），它利用编码器的聚类中心进行预测。</li>
+<li>检测和分割适应<br/>
+下游任务头包含六个Transformer解码器层，其核心设计为循环交叉注意力聚类（公式4）。每个层均执行三次迭代。</li>
+</ul>
+<h1 id="实验">4实验</h1>
+<p>​  我们在四个基准上对我们的方法进行了五项视觉任务的评估，即图像分类、目标检测、语义分割、实例分割和全景分割。</p>
+<p>​  用于图像分类的ImageNet-1K数据集<br/>​  ImageNet-1K[72]包含涵盖不同类别（如动物、植物和车辆）的高分辨率图像。按照常规流程，该数据集被划分为训练集、验证集和测试集，分别包含120万、5万和10万张图像。</p>
+<p>​  用于目标检测和实例分割的MS COCO数据集<br/>​  COCO
+[49]数据集包含日常场景中80种常见物体的密集标注。按照[49]的标准做法，该数据集被划分为训练集（115,000张）、验证集（5,000张）和测试开发集（20,000张）。</p>
+<p>​  用于语义分割的ADE20K数据集<br/>​  ADE20K
+[101]数据集提供了一个包含像素级标注的图像集合，涵盖了150个不同物体类别，涵盖室内和室外场景。该数据集分为训练集、验证集和测试集，分别包含20,000张、2,000张和3,000张图像。</p>
+<p>​  用于全景分割的COCO
+Panoptic数据集<br/>​  COCO全景数据集[42]包含80个“物体”类别和53个“物品”类别的精心标注。按照[42]的标准做法，该数据集被划分为训练集、验证集和测试集，分别包含115,000张、5,000张和20,000张图像。</p>
+<p>​  接下来的部分首先介绍了每个任务的主要结果（第4.1节），随后是一系列消融研究（第4.2节），旨在验证每种调节设计的有效性。</p>
+<h2 id="主要结果">4.1主要结果</h2>
+<h3 id="图像分类实验">4.1.1图像分类实验</h3>
+<h3 id="目标检测实验">4.1.2目标检测实验</h3>
+<h3 id="语义分割实验">4.1.3语义分割实验</h3>
+<h3 id="实例分割实验">4.1.4实例分割实验</h3>
+<h3 id="全景分割实验">4.1.5全景分割实验</h3>
+<h2 id="消融研究">4.2消融研究</h2>
+<h1 id="结论">5结论</h1>
+<p>​  本研究采用了一种以聚类为基础的范式为视角的认识论方法，提出了一个名为CLUSTERFORMER的通用视觉框架。该框架旨在应对不同聚类粒度的多样化视觉任务。通过利用聚类的见解，我们为递归聚类定制了交叉注意力机制，并引入了一种新的特征调度方法。实证研究提供了大量证据，证明了这一系统方法的有效性。基于其有效性，我们推断，从聚类的角度来看，所提出的通用解决方案将对更广泛的视觉任务产生重大影响。这一问题仍是我们未来研究的重点。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/clusterformer/">https://zhaozw-szu.github.io/clusterformer/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/clusterformer/image-20250701155045781.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Stacking-Brick-by-Brick/" title="Stacking_Brick_by_Brick"><img class="cover" src="/postimages/Stacking-Brick-by-Brick/image-20250702160852295.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Stacking_Brick_by_Brick</div></div></a></div><div class="next-post pull-right"><a href="/OmniGuard/" title="OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking"><img class="cover" src="/postimages/OmniGuard/image-20250701111018844.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">3.1前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clusterformer"><span class="toc-text">3.2 CLUSTERFORMER</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BA%A4%E5%8F%89%E6%B3%A8%E6%84%8F%E5%8A%9B%E8%81%9A%E7%B1%BB"><span class="toc-text">3.2.1 循环交叉注意力聚类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E8%B0%83%E5%BA%A6"><span class="toc-text">3.2.2 特征调度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD%E7%BB%86%E8%8A%82"><span class="toc-text">3.3实施细节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%BB%93%E6%9E%9C"><span class="toc-text">4.1主要结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.1.1图像分类实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.1.2目标检测实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.1.3语义分割实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.1.4实例分割实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.1.5全景分割实验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.2消融研究</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

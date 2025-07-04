@@ -1,0 +1,507 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Stacking_Brick_by_Brick | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于CVPR2024，提出了一种新的无监督域适应方法，该方法采用聚类三元组损失函数，仅使用源域中的少量信息，从而提升目标域的性能。以源域中的重要节点的聚类中心为锚点，通过三元组损失，将目标域锚定到这些固定的聚类中心。源域的完美结构应该与目标域的完美结构相似，才能用作锚点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stacking_Brick_by_Brick">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Stacking-Brick-by-Brick/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于CVPR2024，提出了一种新的无监督域适应方法，该方法采用聚类三元组损失函数，仅使用源域中的少量信息，从而提升目标域的性能。以源域中的重要节点的聚类中心为锚点，通过三元组损失，将目标域锚定到这些固定的聚类中心。源域的完美结构应该与目标域的完美结构相似，才能用作锚点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/Stacking-Brick-by-Brick/image-20250702160852295.png">
+<meta property="article:published_time" content="2025-07-02T07:58:19.000Z">
+<meta property="article:modified_time" content="2025-07-02T15:18:09.241Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/Stacking-Brick-by-Brick/image-20250702160852295.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Stacking-Brick-by-Brick/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Stacking_Brick_by_Brick',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-02 23:18:09'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Stacking-Brick-by-Brick/image-20250702160852295.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Stacking_Brick_by_Brick</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-07-02T07:58:19.000Z" title="创建于 2025-07-02 15:58:19">2025-07-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-02T15:18:09.241Z" title="更新于 2025-07-02 23:18:09">2025-07-02</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,CVPR,2025</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%97%A0%E7%9B%91%E7%9D%A3%E8%81%9A%E7%B1%BB/">无监督聚类</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%97%A0%E7%9B%91%E7%9D%A3%E8%81%9A%E7%B1%BB/%E4%B8%89%E8%81%94%E4%BD%93%E6%8D%9F%E5%A4%B1/">三联体损失</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Stacking_Brick_by_Brick"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Stacking Brick by Brick: Aligned Feature Isolation for Incremental
+Face Forgery Detection</p>
+<p>Jikang Cheng1*, Zhiyuan Yan 2*, Ying Zhang3, Li Hao2, Jiaxin Ai1, Qin
+Zou1, Chen Li3, Zhongyuan Wang1†</p>
+<p>武汉大学计算机学院1<br/>北京大学深圳研究生院电子与计算机工程学院2<br/>微信视觉，腾讯公司3</p>
+<h1 id="摘要">摘要</h1>
+<p>​  随着面部伪造技术的快速发展，出现了越来越多种类的伪造。增量式面部伪造检测（Incremental
+face forgery
+Detection，IFFD）通过逐步添加新的伪造数据来微调已训练的模型，被引入作为应对不断演变的伪造方法的一种有前景的策略。然而，一个未经充分训练的IFFD模型在处理新的伪造品时容易出现灾难性遗忘。这是因为将所有伪造品都视为单一的“假”类别，导致不同类型的伪造品相互覆盖，从而导致早期任务中独特特征的遗忘，限制了模型在学习伪造品特异性和普遍性方面的有效性。在本文中，我们提出了一种方法，通过将先前任务和新任务的潜在特征分布逐块堆叠，实现特征的对齐隔离。这样做的目的是保留已学习到的伪造信息，并通过最小化分布重叠来积累新知识，从而减轻灾难性遗忘。为了达到这一目标，我们首先引入了稀疏均匀回放（SUR），以获取可以视为先前全局分布的均匀稀疏版本的代表性子集。接着，我们提出了一个潜在空间增量检测器（LID），该检测器利用SUR数据来隔离和对齐分布。为了评估我们的方法，我们构建了一个更先进、更全面的基准测试，专门针对IFFD。实验结果证明了我们方法的优越性。代码可在https://github.com/beautyremain/SUR-LID上获取。</p>
+<p><a
+target="_blank" rel="noopener" href="https://scisimple.com/en/articles/2025-05-19-incremental-face-forgery-detection-a-new-approach--a3ox7po">Incremental
+Face Forgery Detection: A New Approach - Simple Science</a></p>
+<h1 id="引言">1.引言</h1>
+<p>​  随着人脸伪造技术的兴起，社会面临重大威胁，这引起了研究者们的高度关注，他们特别关注这些技术在身份盗用、虚假信息传播和隐私侵犯方面的潜在风险。因此，开发有效的检测方法对于保护个人安全和维护公众对数字互动的信任至关重要。现有的方法主要集中在使用有限的训练数据来训练通用的面部伪造检测器。然而，随着现实世界中面部伪造技术的日益多样化，仅依赖有限的训练数据期望通用模型能够有效检测所有类型的伪造，这显得有些不切实际[4]。与此同时，每当出现新的伪造品时，使用所有可用数据训练新模型会导致计算费用、存储限制和隐私影响的重大问题。因此，考虑到伪造数据量的不断增加，采用增量学习研究范式进行人脸识别检测可以解决更广泛的应用场景。<br/>​  迄今为止，只有少数方法探索了增量面部伪造检测（IFFD）[19,30,39,41]领域。这些方法通过多种重放策略来保留先前任务中的代表性信息，例如选择中心样本和困难样本[30]、生成代表性的对抗性扰动[39]以及考虑混合原型[41]。然而，由于IFFD始终致力于学习同一简单的二分类任务，骨干提取器更容易随意用新生成的特征覆盖前一任务的全局特征分布。这种情况下，IFFD中的灾难性遗忘问题尤为突出。尽管目前的方法提出了多种重放和正则化策略，但这些方法主要集中在保留一些特定的代表性样本（例如DFIL[30]中的中心样本和困难样本），并保持这些样本的特征一致性。因此，这些方法难以维持和组织之前学习到的全局特征分布，从而难以缓解分布覆盖的问题。<br/>​  在本文中，我们提出了一种方法，通过在潜在空间中逐块堆叠先前任务和新任务的特征分布，实现特征的对齐隔离。如图1所示，我们用“砖块”来描述这些特征分布，因为它们被设计为相互独立，而不是相互覆盖。而“逐块”则意味着逐步将新任务的二元决策边界与所有先前任务的边界对齐。实施‘逐块堆叠’方法的优势体现在两个方面。首先，通过特征隔离，可以减少新旧领域之间的特征分布重叠，从而更好地保留从前任务中获得的知识。其次，逐个决策对齐确保了在增量学习过程中，能够有效利用累积的多样化伪造信息，进行最终的二进制面部伪造检测。<br/>​  为了实现特征的对齐隔离，我们提出了一种新的IFFD方法，称为SUR-LID。具体来说，为了对齐和隔离所有特征分布，一个先决条件是获取能够代表先前全局分布的重放子集。因此，我们首先提出了一个基于稳定性和分布密度选择重放样本的稀疏均匀重放（SUR）策略。SUR子集的分布可以视为原始全局分布的均匀稀疏版本。借助SUR算法保持的分布特性，我们提出了一种潜在空间增量检测器（LID），以实现特征的对齐隔离。该检测器通过隔离损失来隔离每个分布，并通过重新填充分布的方式进一步增强效果，从而基于SUR数据恢复并模拟之前的全局分布。随后，引入了增量决策对齐机制，确保新任务的决策边界与所有先前任务保持一致。此外，我们还设计了两种精心设计的增量协议，以提升IFFD性能的实验评估。初步结果证明了所提方法的优越性。我们的贡献可以概括为：</p>
+<ul>
+<li>我们提出在潜在空间中，将先前任务与新任务的特征分布逐层叠加，实现特征对齐隔离。这种方法既能缓解特征覆盖问题，又能有效整合学习到的多样化伪造信息，从而提升面部伪造检测性能。</li>
+<li>为了实现特征的对齐隔离，我们引入了SUR来存储之前的全局分布和LID，并利用SUR数据来实现特征的隔离和对齐。</li>
+<li>我们精心构建了一个新的综合评估IFFD的基准，包括多种最新的伪造方法和两种与实际应用相关的协议。</li>
+</ul>
+<h1 id="背景">2.背景</h1>
+<h2 id="iffd的初步情况">2.1 IFFD的初步情况</h2>
+<p>​  训练范式<br/>​  在增量学习中，新数据会依次引入，以微调已经基于先前任务训练好的模型，而完整的先前数据则无法访问[8]。与从头开始使用所有可用数据重新训练模型相比，这种范式能够逐步利用新数据，同时减少计算开销和存储需求。</p>
+<p>​  研究目的<br/>​  在[39]的基础上，我们旨在解决增量学习中的灾难性遗忘问题，即在增加新任务时，模型对先前学习任务的性能可能会显著下降，也就是遗忘已学知识。</p>
+<p>​  重放集<br/>​  重放集指的是从已学习的训练集中存储一小部分数据。它在几乎不增加额外存储开销的情况下，能够显著提升模型保留先前学习知识的能力，同时为增强增量学习提供了设计灵活性。</p>
+<h2 id="面部伪造检测器">2.2 面部伪造检测器</h2>
+<p>​  现有的方法主要集中在检测器的泛化上，以应对面部伪造带来的严重威胁。例如，鉴于检测器中观察到的模型偏差，已经提出了多种方法[5,23,44]来减轻伪造样本中存在的模型偏差。在潜在空间中，也有方法[4,46]研究特征组织和融合，以挖掘和多样化伪造信息，从而提高通用伪造检测器的泛化能力。这些方法[4-6,13,15,23,24,44,46]旨在从有限的已知数据中提取通用伪造信息，并在少量未知数据中展现出良好的性能。<br/>​  然而，考虑到面部伪造技术的快速发展，仅凭有限的可见数据来训练理想的通用检测器是不切实际的。因此，增量学习模式可能成为适应多样化和不断演变的伪造技术的更优选择。</p>
+<h2 id="增量式人脸伪造检测">2.3 增量式人脸伪造检测</h2>
+<p>​  增量学习方法被广泛研究，主要分为参数隔离[8]、参数正则化[1,20,22]和数据重放[26,31]。然而，专注于构建有效框架以实现增量面部伪造检测的方法却不多。CoReD
+[19]通过蒸馏损失来保留先前任务的知识，而DFIL
+[30]则通过使用中心样本和困难样本进行重放，进一步增强了这一功能。HDP
+[39]将通用对抗扰动（UAP [28]）作为重放机制，用于获取早期任务的知识。DMP
+[41]利用混合原型创建重放集，以封装先前的任务。<br/>​  尽管现有的方法能够重放并维护来自少数代表性数据（如中心样本和困难样本）的知识，但它们无法维持和组织先前任务与新任务的全局分布。因此，先前的全局分布经常被新任务的分布所覆盖，导致遗忘问题，以及对伪造特异性和普遍性的学习不足。</p>
+<h1 id="方法论">3.方法论</h1>
+<h2 id="对齐特征隔离的原理">3.1.对齐特征隔离的原理</h2>
+<p>​  在训练过程中，骨干提取器学会了将图像空间的输入映射到潜在空间中的代表性特征（即图像-特征映射）。因此，提取出的特征的全局分布能够反映出骨干提取器从训练任务中学到的知识。如果覆盖了之前的分布，可能会破坏之前学到的图像-特征映射，从而导致遗忘先前任务中的知识。此外，研究表明，潜在空间的组织对于模型的有效性至关重要[4,7,11]。现有的方法[19,30,39,41]虽然能够保留少数代表性数据点，但只能在这些特定点上保持性能，而无法维持全局分布。同时，在不保留全局分布的情况下，组织先前和新任务的潜在空间也是一项挑战。<br/>​  因此，我们提出了一种对齐特征隔离的方法，以通过三个步骤来改进IFFD：<br/>​  1)存储能够代表全局分布而非仅限于少数特定点的重放子集。<br/>​  2)隔离每个任务的全局分布，以减少覆盖，从而允许逐步积累更加多样化的伪造信息。<br/>​  3)利用通过决策对齐从隔离中获得的累积伪造信息，从而增强最终的二进制面部伪造检测。</p>
+<h2 id="总体框架">3.2.总体框架</h2>
+<p>​  本文提出了一种针对IFFD的对齐特征隔离方法，该方法包含两个核心组件：一种名为稀疏均匀重播（SUR，Sparse
+Uniform
+Replay）的重播策略，以及一个名为潜在空间增量检测器（LID，Latent-space
+Incremental
+Detector）的检测模型。在完成某一任务的训练后，我们使用SUR来存储数据。随后，将SUR数据与下一个训练集合并，以训练LID进行增量面部伪造检测。整个框架如图2所示。</p>
+<figure>
+<img
+src="../postimages/Stacking-Brick-by-Brick/image-20250702160852295.png"
+alt="image-20250702160852295" />
+<figcaption aria-hidden="true">image-20250702160852295</figcaption>
+</figure>
+<h2
+id="稀疏均匀重放sursparse-uniform-replay">3.3.稀疏均匀重放(SUR，Sparse
+Uniform Replay)</h2>
+<p>​  为了实现所提出的对齐特征隔离，一个关键的前提是在增加新的（t+1）任务时，需要参考前t个任务的全局特征分布。因此，如图3所示，我们提出了稀疏均匀重播（SUR）策略，该策略旨在从先前的训练集中选择具有高维均匀性的稳定表示。（稳定表示指的是当输入中的无关内容发生[35,48]变化时，所提取的特征保持一致。）</p>
+<figure>
+<img
+src="../postimages/Stacking-Brick-by-Brick/image-20250702211733301.png"
+alt="image-20250702211733301" />
+<figcaption aria-hidden="true">image-20250702211733301</figcaption>
+</figure>
+<p>​  具体来说，保持重播集的均匀性可以使其更接近全局分布，而不仅仅是原始分布中的局部区域。同时，通过采样这些稳定提取的特征，可以减少重播集中包含异常值的风险。<br/>​  考虑到一个任务通常包含真实和虚假的领域，为了简化符号表示，我们使用<span
+class="math inline">\(\mathbf{F}^{t}\in\mathbb{R}^{n\times
+d}\)</span>和<span
+class="math inline">\(\mathbf{X}^{t}\in\mathbb{R}^{n\times 3\times
+w\times
+h}\)</span>来表示特征的一个特定领域及其对应的图像，这些图像在第t个任务中可能是真实的或虚假的。其中，n表示样本数量，d表示特征的维度，w和h分别表示图像的宽度和高度。对于第t个任务<span
+class="math inline">\({\mathcal{E}}^{t}\)</span>的训练好的骨干提取器，<span
+class="math inline">\(\mathbf{F}^{t}\)</span>可以通过<span
+class="math inline">\(\mathbf{F}^{t}={\mathcal{E}}^{t}(\mathbf{X}^{t})\)</span>生成。首先，我们利用质心作为参考，均匀地从重放集中采样，计算方法为<span
+class="math inline">\(\mathbf{c}^{t}=avg(\mathbf{F}^{t})\in\mathbb{R}^{d}\)</span>。在高维特征空间中均匀采样时，需要同时考虑幅度和角度。具体来说，从<span
+class="math inline">\(\mathbf{c}^{t}\)</span>到<span
+class="math inline">\(\mathbf{F}^{t}\)</span>中每个特征的<strong>幅度</strong>可以表示为：
+<span class="math display">\[{\mathbf
+M}^{t}=\|\mathbf{F}^{t}-\mathbf{c}^{t}\|_{2},\]</span> ​  其中<span
+class="math inline">\(\|\ast\|_2\)</span>表示计算欧几里得范数。随后，高维<strong>角矩阵</strong><span
+class="math inline">\(\mathbf{A}^{t}\)</span>可按以下方式计算： <span
+class="math display">\[\mathbf{A}^{t}={\frac{(\mathbf{F}^{t}-\mathbf{c}^{t})}{||\mathbf{F}^{t}-\mathbf{c}^{t}||_{2}}}.\]</span>
+​  随后，我们利用无论是否打乱都存在的一致性[5,29,38]来量化学习到的表示的稳定性。也就是说，由于伪造信息主要是细粒度的，并且不受打乱的影响，因此无论是否打乱都存在，伪造特征应该是一致的[5,29,38]。因此，我们对<span
+class="math inline">\(\mathbf{X}^{t}\)</span>执行网格洗牌[2]操作生成<span
+class="math inline">\(\mathbf{\tilde
+X}^{t}\)</span>，从而获得洗牌数据的特征<span
+class="math inline">\(\mathbf{\tilde
+F}^{t}={\mathcal{E}}^{t}(\mathbf{\tilde
+X}^{t})\)</span>。因此，稳定性矩阵<span
+class="math inline">\(\mathbf{S}^{t}\)</span>中的第i个元素<span
+class="math inline">\((s_i^t)\)</span>是通过使用<span
+class="math inline">\(\mathbf{\tilde F}^{t}\)</span>和<span
+class="math inline">\(\mathbf{F}^{t}\)</span>的第i个特征（<span
+class="math inline">\(\tilde f_i^t\)</span>和<span
+class="math inline">\(f_i^t\)</span>）来计算得出的： <span
+class="math display">\[s_{i}^{t}={\frac{\tilde
+f_i^t\cdot(f_i^t)^{\mathrm{T}}}{\|\tilde
+f_i^t\|_{2}\cdot\|f_i^t\|_{2}}},\]</span>
+​  其中上标T表示转置矩阵。直观来说，为了获得统一且稳定的表示，这三个因素（即<span
+class="math inline">\(\mathbf{M}^{t}\in\mathbb{R}^{n}\)</span>、<span
+class="math inline">\(\mathbf{A}^{t}\in\mathbb{R}^{n\times
+d}\)</span>和<span
+class="math inline">\(\mathbf{S}^{t}\in\mathbb{R}^{n}\)</span>)应同时考虑以获得均匀和稳定的表示。然而，实现一个理想的策略需要高维线性规划，它乘法考虑所有三个矩阵来决定最佳的重放集，从而导致不可接受的复杂计算。在此，我们提出了一种近似算法，该算法能够识别每个矩阵段内的局部最优数据点，并将所有三个因素以加法方式综合考虑，从而显著降低计算量。具体来说，设每个域的重放集大小为<span
+class="math inline">\(n_r\)</span>，我们首先根据幅度距离<span
+class="math inline">\(\mathbf{M}^{t}\)</span>将<span
+class="math inline">\(\mathbf{F}^{t}\)</span>按升序排列。接着，我们将<span
+class="math inline">\(\mathbf{F}^{t}\)</span>分割成<span
+class="math inline">\(\frac{n_r}{2}\)</span>个等长的段，每个段的长度为<span
+class="math inline">\(\mathbf{F}^{t}=\{\mathbf{F}^{t}_{1:\frac{2n}{n_r}},...,\mathbf{F}^{t}_{(n-\frac{2n}{n_r}):n}\}\in\mathbb{R}^{\frac{n_r}{2}\times
+\frac{2n}{n_r}\times d}\)</span>。在每段内，我们根据<span
+class="math inline">\(\mathbf{S}^{t}\)</span>识别出最稳定的特征<span
+class="math inline">\(f_s^t\)</span>，并将其对应的图像<span
+class="math inline">\(x_s^t\)</span>纳入重放集。为了同时考虑角度的均匀性（即<span
+class="math inline">\(\mathbf{A}^{t}\)</span>
+)，我们在每个段中寻找与<span
+class="math inline">\(f_s^t\)</span>具有最低归一化余弦相似度的特征，称为<span
+class="math inline">\(f_a^t\)</span>。随后，我们可以从所有段中选择n个<span
+class="math inline">\(f_s^t\)</span>和<span
+class="math inline">\(f_a^t\)</span>。这些特征对应的图像被存储起来，构成一个领域（真实或假）的第t个重放集。补充材料中提供了SUR算法的简要总结。</p>
+<h2
+id="潜空间增量探测器lidlatent-space-incremental-detector">3.4.潜空间增量探测器（LID，Latent-space
+Incremental Detector）</h2>
+<p>​  我们提出了一种潜在空间增量检测器（LID），该检测器在潜在空间中逐块堆叠先前和新的任务。LID包含两个关键要素：特征隔离和增量决策对齐。</p>
+<h3 id="分配再填充下的特征隔离">3.4.1分配再填充下的特征隔离</h3>
+<p>​  在此，我们旨在分离每个真实/伪造和先前/新领域的分布，并减轻覆盖以保留知识并积累从新任务和先前任务中学习到的伪造信息。</p>
+<p>​  <strong>分配再填充(DR，Distribution
+Re-filling)</strong><br/>​  为了进一步促进不同分布的隔离，我们提出利用SUR集的稀疏均匀性，在重放数据点和质心之间重新填充潜在空间分布。具体来说，由于SUR可以被看作是先前全局分布的均匀稀疏子集，因此SUR特征与质心之间的空间也应属于相同的先前全局分布。因此，我们可以利用潜在空间混合来补充并进一步模拟之前的全局分布，从而增强特征隔离。所提出的分配再填充操作涉及来自同一重放集的两个随机特征（f₁和f₂）及其对应的质心(c)。该过程可表示为：
+<span
+class="math display">\[\mathbf{f}_{\mathrm{filled}}=\beta(\alpha\mathbf{f}_{1}+(1-\alpha)\mathbf{f}_{2})+(1-\beta)\mathbf{c},\]</span>
+​  其中<span class="math inline">\(\alpha,\beta\ \in\
+[0,1]\)</span>为随机混合比例。通过这种方式，我们能够有效填充由顶点f₁、f₂和c构成的三角区域，从而在新任务训练时进一步促进特征隔离。通过这样做，我们可以有效地重新填充由顶点f1、f2和c形成的三角形区域，从而在新任务的训练中进一步促进特征隔离。</p>
+<p>​  <strong>隔离损失</strong><br/>​  通过使用SUR和再填充数据，我们可以引入监督对比损失[18]来区分真实/虚假和先前/新分布的每个特征域。具体而言，隔离损失可表示为：
+<span class="math display">\[{\cal L}_{i s
+o}=-{\frac{1}{N}}\sum_{i=1}^{N}\log(\frac{\exp({\mathbf
+f_{i}\cdot{\mathbf f_{j}/\tau}})}{\sum_{k=1}^{N}{\Vert_{\{y_{i}\neq
+y_{k}\}}\exp({\mathbf f_{i}\cdot{\mathbf f_{k}/\tau}})}})\]</span>
+​  其中，fi和fj是来自同一领域的特征。yi表示fi的领域标签，并为每个真实/虚假和先前/新领域分配一个唯一的值。I[yi=yk]表示一个指示函数，当yi等于yk时，该函数值为1；否则为0。值得注意的是，如果这些特征来自新的任务，则它们可能是当前训练数据的特征；如果这些特征来自先前的任务，则它们可能是由SUR或重填充数据生成的。同时，为了促进对不同真实领域的学习，来自不同任务的真实数据也被分配了不同的唯一yi值。<br/>​  特征隔离机制通过阻止增量任务被先前任务覆盖，有效缓解了灾难性遗忘问题。同时，该机制促使骨干提取器能够区分各任务的不同领域，从而增强了其对各类伪造信息的敏感度。</p>
+<h3 id="增量决策一致性">3.4.2增量决策一致性</h3>
+<h2 id="训练和推理">3.5.训练和推理</h2>
+<h1 id="实验结果">4.实验结果</h1>
+<h1 id="结论">5.结论</h1>
+<p>​  在本文中，我们提出了一种新的对齐特征隔离技术，旨在提升增量面部伪造检测（Incremental
+Face Forgery
+Detection，IFFD）的性能。具体而言，我们将当前任务与之前任务的特征分布‘逐块’叠加，以减轻全局分布的覆盖效应，积累多样化的伪造信息，从而解决灾难性遗忘问题。随后，我们引入了一种新的稀疏均匀重播（Sparse
+Uniform Replay，SUR）策略和潜在空间增量检测器（Latentspace Incremental
+Detector，LID），以实现对齐特征隔离。通过在新的高级IFFD评估基准上的实验，我们显著证明了所提出方法的优越性。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Stacking-Brick-by-Brick/">https://zhaozw-szu.github.io/Stacking-Brick-by-Brick/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Stacking-Brick-by-Brick/image-20250702160852295.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/%E4%B8%89%E5%85%83%E7%BB%84%E6%8D%9F%E5%A4%B1/" title="三元组损失"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">三元组损失</div></div></a></div><div class="next-post pull-right"><a href="/clusterformer/" title="ClusterFomer:Clustering As A Universal Visual Learner"><img class="cover" src="/postimages/clusterformer/image-20250701155045781.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ClusterFomer:Clustering As A Universal Visual Learner</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">2.背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iffd%E7%9A%84%E5%88%9D%E6%AD%A5%E6%83%85%E5%86%B5"><span class="toc-text">2.1 IFFD的初步情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E9%83%A8%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B%E5%99%A8"><span class="toc-text">2.2 面部伪造检测器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%BC%8F%E4%BA%BA%E8%84%B8%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B"><span class="toc-text">2.3 增量式人脸伪造检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="toc-text">3.方法论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E9%BD%90%E7%89%B9%E5%BE%81%E9%9A%94%E7%A6%BB%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">3.1.对齐特征隔离的原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%A1%86%E6%9E%B6"><span class="toc-text">3.2.总体框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E5%9D%87%E5%8C%80%E9%87%8D%E6%94%BEsursparse-uniform-replay"><span class="toc-text">3.3.稀疏均匀重放(SUR，Sparse
+Uniform Replay)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BD%9C%E7%A9%BA%E9%97%B4%E5%A2%9E%E9%87%8F%E6%8E%A2%E6%B5%8B%E5%99%A8lidlatent-space-incremental-detector"><span class="toc-text">3.4.潜空间增量探测器（LID，Latent-space
+Incremental Detector）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%85%8D%E5%86%8D%E5%A1%AB%E5%85%85%E4%B8%8B%E7%9A%84%E7%89%B9%E5%BE%81%E9%9A%94%E7%A6%BB"><span class="toc-text">3.4.1分配再填充下的特征隔离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%86%B3%E7%AD%96%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">3.4.2增量决策一致性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E5%92%8C%E6%8E%A8%E7%90%86"><span class="toc-text">3.5.训练和推理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">4.实验结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
