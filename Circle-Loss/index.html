@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Circle Loss A Unified Perspective of Pair Similarity Optimization | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Circle Loss: A Unified Perspective of Pair Similarity Optimization 摘要 ​  本文提出了一种关于深度特征学习的对相似度优化的视点，旨在使类内相似度最大化，类间相似度最小。我们发现了大多数的损失函数，包括triplet损失和softmax交叉熵损失，将\(s_n\)和\(s_p\)嵌入到相似度对中，并寻求减少\((s_n−s_">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Circle Loss A Unified Perspective of Pair Similarity Optimization | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Circle Loss: A Unified Perspective of Pair Similarity Optimization 摘要 ​  本文提出了一种关于深度特征学习的对相似度优化的视点，旨在使类内相似度最大化，类间相似度最小。我们发现了大多数的损失函数，包括triplet损失和softmax交叉熵损失，将 $ s_n $ 和 $ s_p $ 嵌入到相似度对中，并寻求减少 $ (">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Circle Loss A Unified Perspective of Pair Similarity Optimization">
 <meta property="og:url" content="https://zhaozw-szu.github.io/Circle-Loss/index.html">
 <meta property="og:site_name" content="zhaozw后院">
-<meta property="og:description" content="Circle Loss: A Unified Perspective of Pair Similarity Optimization 摘要 ​  本文提出了一种关于深度特征学习的对相似度优化的视点，旨在使类内相似度最大化，类间相似度最小。我们发现了大多数的损失函数，包括triplet损失和softmax交叉熵损失，将\(s_n\)和\(s_p\)嵌入到相似度对中，并寻求减少\((s_n−s_">
+<meta property="og:description" content="Circle Loss: A Unified Perspective of Pair Similarity Optimization 摘要 ​  本文提出了一种关于深度特征学习的对相似度优化的视点，旨在使类内相似度最大化，类间相似度最小。我们发现了大多数的损失函数，包括triplet损失和softmax交叉熵损失，将 $ s_n $ 和 $ s_p $ 嵌入到相似度对中，并寻求减少 $ (">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zhaozw-szu.github.io/postimages/Circle-Loss/image-20241014230803132.png">
 <meta property="article:published_time" content="2024-10-14T14:09:50.000Z">
-<meta property="article:modified_time" content="2025-07-01T02:15:03.378Z">
+<meta property="article:modified_time" content="2025-07-12T13:24:25.150Z">
 <meta property="article:author" content="Zhaozw">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/Circle-Loss/image-20241014230803132.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Circle-Loss/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
@@ -55,7 +55,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-07-01 10:15:03'
+  postUpdate: '2025-07-12 21:24:25'
 }</script><script>(win=>{
       win.saveToLocal = {
         set: (key, value, ttl) => {
@@ -152,33 +152,27 @@
         }
       }
       detectApple()
-    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Circle-Loss/image-20241014230803132.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Circle Loss A Unified Perspective of Pair Similarity Optimization</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2024-10-14T14:09:50.000Z" title="创建于 2024-10-14 22:09:50">2024-10-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-01T02:15:03.378Z" title="更新于 2025-07-01 10:15:03">2025-07-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">损失函数</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Circle Loss A Unified Perspective of Pair Similarity Optimization"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Circle Loss: A Unified Perspective of Pair Similarity
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">124</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Circle-Loss/image-20241014230803132.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Circle Loss A Unified Perspective of Pair Similarity Optimization</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2024-10-14T14:09:50.000Z" title="创建于 2024-10-14 22:09:50">2024-10-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-12T13:24:25.150Z" title="更新于 2025-07-12 21:24:25">2025-07-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">损失函数</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Circle Loss A Unified Perspective of Pair Similarity Optimization"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Circle Loss: A Unified Perspective of Pair Similarity
 Optimization</p>
 <h1 id="摘要">摘要</h1>
-<p>​  本文提出了一种关于深度特征学习的对相似度优化的视点，旨在使类内相似度最大化，类间相似度最小。我们发现了大多数的损失函数，包括triplet损失和softmax交叉熵损失，将<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>嵌入到相似度对中，并寻求减少<span
-class="math inline">\((s_n−s_p)\)</span>。这种优化方式是不灵活的，因为每个相似度得分的惩罚强度被限制为相等。我们的直觉是，如果一个相似度得分远远偏离了最优值，就应该强调它。为此，我们简单地重新加权每个相似度，以突出较少优化的相似度分数。它造就了一个<strong>Circle损失</strong>，由于它的圆形决策边界而命名。<strong>Circle损失</strong>对于两种基本的深度特征学习范式有一个统一的范式，即使用类级标签和成对标签进行学习。在分析上，我们表明，与损失函数优化<span
-class="math inline">\((s_n−s_p)\)</span>相比，<strong>Circle损失</strong>提供了一种更灵活的对收敛目标更明确的优化方法。通过实验，我们证明了<strong>Circle损失</strong>在各种深度特征学习任务中的优越性。在人脸识别、人的再识别以及几个细粒度的图像检索数据集上，所取得的性能与现有的技术水平相当。</p>
+<p>​  本文提出了一种关于深度特征学习的对相似度优化的视点，旨在使类内相似度最大化，类间相似度最小。我们发现了大多数的损失函数，包括triplet损失和softmax交叉熵损失，将
+$ s_n $ 和 $ s_p $ 嵌入到相似度对中，并寻求减少 $ (s_n−s_p) $
+。这种优化方式是不灵活的，因为每个相似度得分的惩罚强度被限制为相等。我们的直觉是，如果一个相似度得分远远偏离了最优值，就应该强调它。为此，我们简单地重新加权每个相似度，以突出较少优化的相似度分数。它造就了一个<strong>Circle损失</strong>，由于它的圆形决策边界而命名。<strong>Circle损失</strong>对于两种基本的深度特征学习范式有一个统一的范式，即使用类级标签和成对标签进行学习。在分析上，我们表明，与损失函数优化
+$ (s_n−s_p) $
+相比，<strong>Circle损失</strong>提供了一种更灵活的对收敛目标更明确的优化方法。通过实验，我们证明了<strong>Circle损失</strong>在各种深度特征学习任务中的优越性。在人脸识别、人的再识别以及几个细粒度的图像检索数据集上，所取得的性能与现有的技术水平相当。</p>
 <h1 id="介绍">1.介绍</h1>
-<p>​  本文对两种基本的深度特征学习范式进行了相似性优化分析，即从具有类级标签的数据和具有成对标签的数据中进行学习。前者采用分类损失函数（例如，软最大交叉熵损失[25,16,36]）来优化样本和权向量之间的相似性。后者利用一个度量损失函数（例如，三联体损失[9,22]）来优化样本之间的相似性。在我们的解释中，这两种学习方法之间没有内在的区别。它们都寻求最小化类间相似度<span
-class="math inline">\(s_n\)</span>，也寻求最大化类内相似度<span
-class="math inline">\(s_p\)</span>。<br/>​  从这个角度来看，我们发现许多流行的损失函数（例如，triplet损失[9,22]，softmax交叉熵损失及其变体[25,16,36,29,32,2]）具有相似的优化模式。它们都将<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>嵌入到相似度对中，并寻求减少<span
-class="math inline">\((s_n−s_p)\)</span>。在<span
-class="math inline">\((s_n−s_p)\)</span>中，增加<span
-class="math inline">\(s_p\)</span>相当于减少<span
-class="math inline">\(s_n\)</span>。我们认为这种对称优化方式容易出现以下两个问题。</p>
+<p>​  本文对两种基本的深度特征学习范式进行了相似性优化分析，即从具有类级标签的数据和具有成对标签的数据中进行学习。前者采用分类损失函数（例如，软最大交叉熵损失[25,16,36]）来优化样本和权向量之间的相似性。后者利用一个度量损失函数（例如，三联体损失[9,22]）来优化样本之间的相似性。在我们的解释中，这两种学习方法之间没有内在的区别。它们都寻求最小化类间相似度
+$ s_n $ ，也寻求最大化类内相似度 $ s_p $
+。<br/>​  从这个角度来看，我们发现许多流行的损失函数（例如，triplet损失[9,22]，softmax交叉熵损失及其变体[25,16,36,29,32,2]）具有相似的优化模式。它们都将
+$ s_n $ 和 $ s_p $ 嵌入到相似度对中，并寻求减少 $ (s_n−s_p) $ 。在 $
+(s_n−s_p) $ 中，增加 $ s_p $ 相当于减少 $ s_n $
+。我们认为这种对称优化方式容易出现以下两个问题。</p>
 <ul>
-<li><strong>缺乏进行优化的灵活性。</strong>在<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>上的惩罚强度被限制为相等。给定指定的损失函数，关于<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>的梯度具有相同的振幅（详见第2节）。在某些角落的情况下，例如，<span
-class="math inline">\(s_p\)</span>很小，并且<span
-class="math inline">\(s_n\)</span>已经接近0（图1(a)中的“a”），它继续以较大的梯度惩罚<span
-class="math inline">\(s_n\)</span>。它是低效的和非理性的。</li>
+<li><strong>缺乏进行优化的灵活性。</strong>在 $ s_n $ 和 $ s_p $
+上的惩罚强度被限制为相等。给定指定的损失函数，关于 $ s_n $ 和 $ s_p $
+的梯度具有相同的振幅（详见第2节）。在某些角落的情况下，例如， $ s_p $
+很小，并且 $ s_n $ 已经接近0（图1(a)中的“a”），它继续以较大的梯度惩罚 $
+s_n $ 。它是低效的和非理性的。</li>
 </ul>
 <hr />
 <figure>
@@ -186,43 +180,32 @@ class="math inline">\(s_n\)</span>。它是低效的和非理性的。</li>
 alt="image-20241014230803132" />
 <figcaption aria-hidden="true">image-20241014230803132</figcaption>
 </figure>
-<p>图1：流行的还原优化方式<span
-class="math inline">\((s_n−s_p)\)</span>与所提出的还原优化方式<span
-class="math inline">\((\alpha_ns_n−\alpha_ps_p)\)</span>的比较。<br/>  (a)还原<span
-class="math inline">\((s_n−s_p)\)</span>容易进行不灵活的优化（A、B和C相对于<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>都有相等的梯度），以及模糊的收敛状态（在决策边界上的T和T0都是可以接受的）。<br/>  (b)
-在<span
-class="math inline">\((\alpha_ns_n−\alpha_ps_p)\)</span>下，<strong>Circle损失</strong>动态调整其对<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>的梯度，从而受益于一个灵活的优化过程。对于A，它强调增加<span
-class="math inline">\(s_p\)</span>；对于B，它强调减少<span
-class="math inline">\(s_n\)</span>。此外，它有利于圆形决策边界上的指定点T收敛，建立一个确定的收敛目标。</p>
+<p>图1：流行的还原优化方式 $ (s_n−s_p) $ 与所提出的还原优化方式 $
+(_ns_n−_ps_p) $ 的比较。<br/>  (a)还原 $ (s_n−s_p) $
+容易进行不灵活的优化（A、B和C相对于 $ s_n $ 和 $ s_p $
+都有相等的梯度），以及模糊的收敛状态（在决策边界上的T和T0都是可以接受的）。<br/>  (b)
+在 $ (_ns_n−_ps_p) $ 下，<strong>Circle损失</strong>动态调整其对 $ s_n $
+和 $ s_p $ 的梯度，从而受益于一个灵活的优化过程。对于A，它强调增加 $ s_p
+$ ；对于B，它强调减少 $ s_n $
+。此外，它有利于圆形决策边界上的指定点T收敛，建立一个确定的收敛目标。</p>
 <hr />
 <ul>
-<li><strong>模糊的收敛状态。</strong>优化<span
-class="math inline">\((s_n−s_p)\)</span>通常会导致<span
-class="math inline">\(s_n−s_p=m\)</span>（m为边际）的决策边界。这个决策边界允许模糊性（例如，图1(a)中的“<span
-class="math inline">\(T\)</span>”和“<span
-class="math inline">\(T^{\prime}\)</span>”）来收敛。例如，有<span
-class="math inline">\(\{s_{n},s_{p}\}=\{0.2,0.5\}\)</span>，而<span
-class="math inline">\(T^{\prime}\)</span>有<span
-class="math inline">\(\left\{s_{n}^{\prime},s_{p}^{\prime}\right\}=\{0.4,0.7\}\)</span>。它们都获得了边际m
-= 0.3。但是，通过相互比较，我们发现<span
-class="math inline">\(s_{n}^{\prime}\)</span>和<span
-class="math inline">\(s_{p}\)</span>之间的差距只有0.1。因此，模糊收敛影响了特征空间的可分性。</li>
+<li><strong>模糊的收敛状态。</strong>优化 $ (s_n−s_p) $ 通常会导致 $
+s_n−s_p=m $
+（m为边际）的决策边界。这个决策边界允许模糊性（例如，图1(a)中的“ $ T $
+”和“ $ T^{} $ ”）来收敛。例如，有 $ {s_{n},s_{p}}={0.2,0.5} $ ，而 $
+T^{} $ 有 $ {s_{n}<sup>{},s_{p}</sup>{}}={0.4,0.7} $ 。它们都获得了边际m
+= 0.3。但是，通过相互比较，我们发现 $ s_{n}^{} $ 和 $ s_{p} $
+之间的差距只有0.1。因此，模糊收敛影响了特征空间的可分性。</li>
 </ul>
-<p>​  有了这些见解，我们就有了一种直觉，即不同的相似性得分应该有不同的惩罚强度。如果一个相似度得分偏离最优值，它应该受到很强的惩罚。否则，如果一个相似度得分已经接近最优值，那么它就应该进行轻微的优化。为此，我们首先将<span
-class="math inline">\((s_n−s_p)\)</span>推广为<span
-class="math inline">\((\alpha_ns_n−\alpha_ps_p)\)</span>，其中<span
-class="math inline">\(\alpha_n\)</span>和<span
-class="math inline">\(\alpha_p\)</span>是独立的加权因子，允许<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>在不同的速度学习。相似度得分偏离最优值越远，加权因子就会越大。这样的优化结果是决策边界<span
-class="math inline">\(\alpha_ns_n−\alpha_ps_p=m\)</span>，在<span
-class="math inline">\((s_n,s_p)\)</span>空间中产生一个圆的形状，因此我们将所提出的损失函数命名为<strong>Circle损失</strong>。<br/>​  由于简单，<strong>Circle损失</strong>本质上从以下三个方面重塑了深度特征学习的特征：<br/>​  <strong>首先，这是一个统一的损失函数。</strong>从统一相似对优化的角度出发，我们提出了两种基本学习范式的类级标签和成对标签学习。<br/>​  <strong>第二，灵活的优化。</strong>在训练过程中，反向传播到<span
-class="math inline">\(s_n(s_p)\)</span>的梯度将被<span
-class="math inline">\(\alpha_n(\alpha_p)\)</span>放大。那些弱优化的相似性得分将有更大的权重因子，并因此得到更大的梯度。如图1
+<p>​  有了这些见解，我们就有了一种直觉，即不同的相似性得分应该有不同的惩罚强度。如果一个相似度得分偏离最优值，它应该受到很强的惩罚。否则，如果一个相似度得分已经接近最优值，那么它就应该进行轻微的优化。为此，我们首先将
+$ (s_n−s_p) $ 推广为 $ (_ns_n−_ps_p) $ ，其中 $ _n $ 和 $ _p $
+是独立的加权因子，允许 $ s_n $ 和 $ s_p $
+在不同的速度学习。相似度得分偏离最优值越远，加权因子就会越大。这样的优化结果是决策边界
+$ _ns_n−_ps_p=m $ ，在 $ (s_n,s_p) $
+空间中产生一个圆的形状，因此我们将所提出的损失函数命名为<strong>Circle损失</strong>。<br/>​  由于简单，<strong>Circle损失</strong>本质上从以下三个方面重塑了深度特征学习的特征：<br/>​  <strong>首先，这是一个统一的损失函数。</strong>从统一相似对优化的角度出发，我们提出了两种基本学习范式的类级标签和成对标签学习。<br/>​  <strong>第二，灵活的优化。</strong>在训练过程中，反向传播到
+$ s_n(s_p) $ 的梯度将被 $ _n(_p) $
+放大。那些弱优化的相似性得分将有更大的权重因子，并因此得到更大的梯度。如图1
 (b)所示，对A、B、C的优化是不同的。<br/>​  <strong>第三，有明确的收敛状态。</strong>在圆形决策边界上，<strong>Circle损失</strong>倾向于指定的收敛状态（图1(b)中的“T”），如第3.3节所示。相应地，它建立了一个明确的优化目标，有利于可分性。<br/>​  本文的主要贡献总结如下：</p>
 <ul>
 <li>我们提出了<strong>Circle损失</strong>，一个简单的损失函数的深度特征学习。通过在监督下对每个相似度得分进行重新加权，有利于优化灵活、确定收敛目标的深度特征学习。</li>
@@ -230,60 +213,51 @@ class="math inline">\(\alpha_n(\alpha_p)\)</span>放大。那些弱优化的相�
 <li>我们对各种深度特征学习任务进行了广泛的实验，如人脸识别、人的再识别、汽车图像检索等。在所有这些任务中，我们证明了<strong>Circle损失</strong>的优越性与性能与现有的技术相当。</li>
 </ul>
 <h1 id="统一的视角">2.统一的视角</h1>
-<p>​  深度特征学习的目的是最大化类内相似性<span
-class="math inline">\(s_p\)</span>，以及减少类间相似性<span
-class="math inline">\(s_n\)</span>。例如，在余弦相似度度量下，我们期望<span
-class="math inline">\(s_{p}\to1\)</span>和<span
-class="math inline">\(s_{n}\to0\)</span>。<br/>​  为此，使用<strong>类级标签学习</strong>和使用<strong>成对标签学习</strong>是两种基本范式。它们通常被认为是分开的，彼此之间的w.r.t与损失函数显著不同。给定类级标签，第一个基本上学习将每个训练样本分类为目标类，例如分类损失。L2-Softmax[21]，Large-margin
+<p>​  深度特征学习的目的是最大化类内相似性 $ s_p $ ，以及减少类间相似性 $
+s_n $ 。例如，在余弦相似度度量下，我们期望 $ s_{p} $ 和 $ s_{n} $
+。<br/>​  为此，使用<strong>类级标签学习</strong>和使用<strong>成对标签学习</strong>是两种基本范式。它们通常被认为是分开的，彼此之间的w.r.t与损失函数显著不同。给定类级标签，第一个基本上学习将每个训练样本分类为目标类，例如分类损失。L2-Softmax[21]，Large-margin
 Softmax[15]，Angular
-Softmax[16]，NormFace[30]，AMSoftmax[29]，CosFace[32]，ArcFace[2]。这些方法也被称为基于代理的学习，因为它们优化了样本和代表每个类的一组代理之间的相似性。相比之下，给定成对标签，第二个直接学习特征空间中的成对相似性（即样本之间的相似性），因此不需要代理，例如，约束损失[5,1]，三联体损失[9,22]，提升结构损失[19]，n对损失[24]，直方图损失[27]，角损失[33]，基于边际损失[38]，多相似性损失[34]等。<br/>​  本文从单一的角度来看待这两种学习方法，不偏好基于代理的相似性或基于成对的相似性。给定特征空间中的一个样本x，假设有K个类内相似度得分，L个类间相似度得分。我们将这些相似度得分分别表示为<span
-class="math inline">\(\{s_{p}^{i}\}\left(i=1,2,\cdot\cdot\cdot\
-,K\right)\)</span>和<span
-class="math inline">\(\{s_{n}^{j}\}\left(j=1,2,\cdot\cdot\cdot,L\right)\)</span>。<br/>​  为了最小化每个<span
-class="math inline">\(s_{n}^{j}\)</span>以及最大化<span
-class="math inline">\(s_{p}^{i}\)</span>，<span
-class="math inline">\(\left(\forall i\ \in\ \{1,2,\cdot\cdot\cdot\
-,\,K\},\forall j\ \in\ \{1,2,\cdot\cdot\cdot\
-,\,L\}\right)\)</span>，我们提出了一个统一的损失函数： <span
+Softmax[16]，NormFace[30]，AMSoftmax[29]，CosFace[32]，ArcFace[2]。这些方法也被称为基于代理的学习，因为它们优化了样本和代表每个类的一组代理之间的相似性。相比之下，给定成对标签，第二个直接学习特征空间中的成对相似性（即样本之间的相似性），因此不需要代理，例如，约束损失[5,1]，三联体损失[9,22]，提升结构损失[19]，n对损失[24]，直方图损失[27]，角损失[33]，基于边际损失[38]，多相似性损失[34]等。<br/>​  本文从单一的角度来看待这两种学习方法，不偏好基于代理的相似性或基于成对的相似性。给定特征空间中的一个样本x，假设有K个类内相似度得分，L个类间相似度得分。我们将这些相似度得分分别表示为
+$ {s_{p}^{i}}(i=1,2, ,K) $ 和 $ {s_{n}^{j}}(j=1,2,,L) $
+。<br/>​  为了最小化每个 $ s_{n}^{j} $ 以及最大化 $ s_{p}^{i} $ ， $
+(i  {1,2, ,,K},j  {1,2, ,,L}) $ ，我们提出了一个统一的损失函数： <span
 class="math display">\[\begin{aligned}{\mathcal{L}}_{u n i} &amp;=
 \log\left[1+\sum_{i=1}^{K}\sum_{j=1}^{L}\exp(\gamma(s_{n}^{j}-s_{p}^{i}+m))\right]\\
 &amp;=\mathrm{log}\left[1+\sum_{j=1}^{L}\exp(\gamma(s_{n}^{j}+m))\sum_{i=1}^{K}\exp(\gamma(-s_{p}^{i}))\right]\end{aligned}\]</span>
-​  其中<span class="math inline">\(\gamma\)</span>是一个尺度因子，<span
-class="math inline">\(m\)</span>是一个更好的相似性分离的边际。<br/>​  等式1是直观的。它遍历每一个相似度对来减少<span
-class="math inline">\((s_{n}^{j}\,-\,s_{p}^{i})\)</span>。我们注意到，通过轻微的修改，它可以退化为三联体损失或分类损失。</p>
-<p>​  <strong>给定类级标签，</strong>我们计算了分类层中<span
-class="math inline">\(x\)</span>和权重向量<span
-class="math inline">\(w_{i}\ (i=1,2,\cdot\cdot\cdot\ ,\
-N)\)</span>（N是训练类别数）之间的相似性得分。<br/>​  具体来说，我们通过：<span
-class="math inline">\(s_{n}^{j}\;\;=\;\;w_{j}^{\mathsf{T}}{x}/{\big(}||w_{j}|||x||{\big)}\)</span>（<span
-class="math inline">\(w_{j}\)</span>是第j个非目标权重向量）得到（N−1）类间相似性得分。此外，我们得到了一个单一的类内相似性评分（省略了上标）<span
-class="math inline">\(s_{p}\;=\;w_{y}^{\mathsf{T}}x/(||w_{y}|||x||)\)</span>。有了这些先决条件，等式1退化为AM-Softmax
+​  其中 $ $ 是一个尺度因子， $ m $
+是一个更好的相似性分离的边际。<br/>​  等式1是直观的。它遍历每一个相似度对来减少
+$ (s_{n}<sup>{j}-s_{p}</sup>{i}) $
+。我们注意到，通过轻微的修改，它可以退化为三联体损失或分类损失。</p>
+<p>​  <strong>给定类级标签，</strong>我们计算了分类层中 $ x $ 和权重向量
+$ w_{i} (i=1,2, , N) $
+（N是训练类别数）之间的相似性得分。<br/>​  具体来说，我们通过： $
+s_{n}<sup>{j}=w_{j}</sup>{}{x}/{(}||w_{j}|||x||{)} $ （ $ w_{j} $
+是第j个非目标权重向量）得到（N−1）类间相似性得分。此外，我们得到了一个单一的类内相似性评分（省略了上标）
+$ s_{p};=;w_{y}^{}x/(||w_{y}|||x||) $
+。有了这些先决条件，等式1退化为AM-Softmax
 [29,32]，这是Softmax损失的一个重要变体（即，Softmax交叉熵损失）： <span
 class="math display">\[\begin{aligned}{\mathcal{L}}_{a
 m}&amp;=\log\left[1+\sum_{j=1}^{N-1}\exp(\gamma(s_{n}^{j}+m))\exp(-\gamma
 s_{p})\right]\\&amp;=-\log\frac{\exp(\gamma(s_{p}-m))}{\exp(\gamma(s_{p}-m))+\sum_{j=1}^{N}\exp(\gamma
-s_{n}^{j})}\end{aligned}\]</span> ​  此外，当<span
-class="math inline">\(m=0\)</span>，等式2进一步退化为Normface[30]。如果将内积替换余弦相似度，并且设置<span
-class="math inline">\(\gamma=1\)</span>，它最终退化为Softmax损失。</p>
-<p>​  <strong>给定成对的标签，</strong>在小批量中，我们计算x和其他特征之间的相似性得分。具体来说，<span
-class="math inline">\(s_{n}^{j}=(x_{n}^{j})^{\mathsf{T}}x/(||x_{n}^{j}|||x||)\)</span>（<span
-class="math inline">\(x_{n}^{j}\)</span>是负样本集<span
-class="math inline">\({\mathcal{N}}\)</span>中的第j个样本）和<span
-class="math inline">\(s_{p}^{j}=(x_{p}^{j})^{\mathsf{T}}x/(||x_{p}^{j}|||x||)\)</span>（<span
-class="math inline">\(x_{p}^{j}\)</span>是正样本集<span
-class="math inline">\({\mathcal{P}}\)</span>中的第i个样本）。相应地，<span
-class="math inline">\(K=|P|,\,L=|{\mathcal{N}}|\)</span>。等式1与硬挖掘[22,8]退化为triplet损失：
-<span class="math display">\[\begin{aligned}{\mathcal{L}}_{t r
+s_{n}^{j})}\end{aligned}\]</span> ​  此外，当 $ m=0 $
+，等式2进一步退化为Normface[30]。如果将内积替换余弦相似度，并且设置 $ $
+，它最终退化为Softmax损失。</p>
+<p>​  <strong>给定成对的标签，</strong>在小批量中，我们计算x和其他特征之间的相似性得分。具体来说，
+$ s_{n}<sup>{j}=(x_{n}</sup>{j})<sup>{}x/(||x_{n}</sup>{j}|||x||) $ （ $
+x_{n}^{j} $ 是负样本集 $ {} $ 中的第j个样本）和 $
+s_{p}<sup>{j}=(x_{p}</sup>{j})<sup>{}x/(||x_{p}</sup>{j}|||x||) $ （ $
+x_{p}^{j} $ 是正样本集 $ {} $ 中的第i个样本）。相应地， $ K=|P|,,L=|{}|
+$ 。等式1与硬挖掘[22,8]退化为triplet损失： <span
+class="math display">\[\begin{aligned}{\mathcal{L}}_{t r
 i}&amp;=\operatorname*{lim}_{\gamma\to+\infty}{\frac{1}{\gamma}}{\mathcal{L}}_{u
 n
 i}\\&amp;=\operatorname*{lim}_{\gamma\to+\infty}\frac{1}{\gamma}\log\left[1+\sum_{i=1}^{K}\sum_{j=1}^{L}\exp(\gamma(s_{n}^{j}-s_{p}^{i}+m))\right]\\&amp;=\operatorname*{max}\left[s_{n}^{j}-s_{p}^{i}+m\right]_{+}\end{aligned}\]</span>
-​  具体来说，我们注意到在等式3中，“<span
-class="math inline">\(\sum\exp({\cdot})\)</span>”操作采用Lifted-Structure损失[19]，
-N-pair损失[24]，多相似性损失[34]等，在样品之间进行“软化”硬挖掘。<span
-class="math inline">\(\gamma\)</span>的扩大逐渐增强了挖掘强度，当<span
-class="math inline">\(\gamma\implies+\infty\)</span>时，导致了[22,8]的典型硬挖掘。</p>
-<p>​  <strong>梯度分析。</strong>等式2和等式3显示了triplet损失，Softmax损失及其几个变体可以被解释为等式1的特定情况。换句话说，它们都在优化<span
-class="math inline">\((s_n−s_p)\)</span>。</p>
+​  具体来说，我们注意到在等式3中，“ $ ({}) $
+”操作采用Lifted-Structure损失[19]，
+N-pair损失[24]，多相似性损失[34]等，在样品之间进行“软化”硬挖掘。 $ $
+的扩大逐渐增强了挖掘强度，当 $ +$ 时，导致了[22,8]的典型硬挖掘。</p>
+<p>​  <strong>梯度分析。</strong>等式2和等式3显示了triplet损失，Softmax损失及其几个变体可以被解释为等式1的特定情况。换句话说，它们都在优化
+$ (s_n−s_p) $ 。</p>
 <hr />
 <figure>
 <img src="../postimages/Circle-Loss/image-20241015154934450.png"
@@ -291,39 +265,33 @@ alt="image-20241015154934450" />
 <figcaption aria-hidden="true">image-20241015154934450</figcaption>
 </figure>
 <p>图2：损失函数的梯度。(a)triplet的损失。(b)
-AM-Softmax损失。(c)提出的Circle损失。triplet损失和AM-Softmax损失都缺乏优化的灵活性。<span
-class="math inline">\(s_p\)</span>（左）和<span
-class="math inline">\(s_n\)</span>（右）的梯度被限制为相等，并在收敛时突然下降(相似对B）。例如，在A处，类内相似度评分<span
-class="math inline">\(s_p\)</span>已经接近1，并且仍然有一个很大的梯度。此外，决策边界与<span
-class="math inline">\(s_p=s_n\)</span>平行，允许模糊收敛。相比之下，提出的Circle损失分配不同的梯度，取决于它们到最优的距离。对于A（<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>都很大），Circle损失的重点是优化<span
-class="math inline">\(s_n\)</span>。对于B，由于<span
-class="math inline">\(s_n\)</span>显著减少，Circle损失减少了它的梯度，从而加强了一个温和的惩罚。Circle损失具有一个圆形的决策边界，并促进了准确的收敛状态。</p>
+AM-Softmax损失。(c)提出的Circle损失。triplet损失和AM-Softmax损失都缺乏优化的灵活性。
+$ s_p $ （左）和 $ s_n $
+（右）的梯度被限制为相等，并在收敛时突然下降(相似对B）。例如，在A处，类内相似度评分
+$ s_p $ 已经接近1，并且仍然有一个很大的梯度。此外，决策边界与 $ s_p=s_n
+$
+平行，允许模糊收敛。相比之下，提出的Circle损失分配不同的梯度，取决于它们到最优的距离。对于A（
+$ s_n $ 和 $ s_p $ 都很大），Circle损失的重点是优化 $ s_n $
+。对于B，由于 $ s_n $
+显著减少，Circle损失减少了它的梯度，从而加强了一个温和的惩罚。Circle损失具有一个圆形的决策边界，并促进了准确的收敛状态。</p>
 <hr />
-<p>​  在只有一个<span class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>的小场景下，我们在图2
+<p>​  在只有一个 $ s_n $ 和 $ s_p $ 的小场景下，我们在图2
 (a)和(b)中可视化了中的triplet损失和AM-Softmax损失的梯度，从中我们得出以下观察结果：</p>
 <ul>
-<li>首先，在损失达到其决策边界之前（梯度消失之前），相对于<span
-class="math inline">\(s_p\)</span>和<span
-class="math inline">\(s_n\)</span>的梯度是相同的。状态A具有<span
-class="math inline">\(\{s_{n},s_{p}\}\ =\
-\{0.8,0.8\}\)</span>，表示良好的类内紧致性。然而，A相对于<span
-class="math inline">\(s_p\)</span>仍然有较大的梯度。它导致了在优化过程中缺乏灵活性。</li>
+<li>首先，在损失达到其决策边界之前（梯度消失之前），相对于 $ s_p $ 和 $
+s_n $ 的梯度是相同的。状态A具有 $ {s_{n},s_{p}} = {0.8,0.8} $
+，表示良好的类内紧致性。然而，A相对于 $ s_p $
+仍然有较大的梯度。它导致了在优化过程中缺乏灵活性。</li>
 <li>第二，梯度在收敛前保持（大致）不变，并在收敛时发生突然的下降。状态B更接近决策边界，并且比A优化得更好。然而，损失函数（triplet损失和AMSoftmax损失）对A和B施加近似相等的惩罚。这是缺乏灵活性的另一个证据。</li>
-<li>第三，决策边界（白色虚线）平行于<span
-class="math inline">\(s_{n}-s_{p}=m\)</span>。该边界上任意两点（如图1中的<span
-class="math inline">\({\boldsymbol{T}}\)</span>和<span
-class="math inline">\({\boldsymbol{T}}^{\prime}\)</span>）的相似间隙等于m，因此具有相同的困难。换句话说，损失函数最小化<span
-class="math inline">\((s_{n}-s_{p}+m)\)</span>在<span
-class="math inline">\({\boldsymbol{T}}\)</span>或<span
-class="math inline">\({\boldsymbol{T}}^{\prime}\)</span>的收敛性上不偏不倚，并且容易出现模糊收敛。关于这个问题的实验证据，请参见第4.6节。</li>
+<li>第三，决策边界（白色虚线）平行于 $ s_{n}-s_{p}=m $
+。该边界上任意两点（如图1中的 $ {} $ 和 $ {}^{} $
+）的相似间隙等于m，因此具有相同的困难。换句话说，损失函数最小化 $
+(s_{n}-s_{p}+m) $ 在 $ {} $ 或 $ {}^{} $
+的收敛性上不偏不倚，并且容易出现模糊收敛。关于这个问题的实验证据，请参见第4.6节。</li>
 </ul>
-<p>​  这些问题源于最小化<span
-class="math inline">\((s_{n}-s_{p})\)</span>的优化方式，其中减少<span
-class="math inline">\(s_n\)</span>相当于增加<span
-class="math inline">\(s_p\)</span>。在下面的第3节中，我们将把这种优化方式转换为更一般的优化方式，以促进更高的灵活性。</p>
+<p>​  这些问题源于最小化 $ (s_{n}-s_{p}) $ 的优化方式，其中减少 $ s_n $
+相当于增加 $ s_p $
+。在下面的第3节中，我们将把这种优化方式转换为更一般的优化方式，以促进更高的灵活性。</p>
 <h1 id="一个新的损失函数">3.一个新的损失函数</h1>
 <h2 id="自定速度的加权">3.1.自定速度的加权</h2>
 ​  我们考虑通过允许每个相似度评分根据当前优化状态以自己的速度学习来增强优化灵活性。我们首先忽略了等式1中的边际项m，并通过以下方式将统一损失函数转换为提出的Circle损失：
@@ -333,108 +301,90 @@ e}&amp;=\mathrm{log}\left[1+\sum_{i=1}^{K}\sum_{j=1}^{L}\exp{\left({\gamma(\alph
 
 \end{aligned}\]</span>
 <span class="math display">\[
-​&amp;emsp;&amp;emsp;其中$\alpha_{n}^{j}$和$\alpha_{p}^{i}$为非负加权因子。&lt;br/&gt;​&amp;emsp;&amp;emsp;等式4来源于等式1，通过将$(s_{n}^{j}-s_{p}^{i})$推广为$(\alpha_{n}^{j}s_{n}^{j}-\alpha_{p}^{i}s_{p}^{i})$。在训练过程中，当反向传播到${s}_{n}^{j}\,(s_{p}^{i})$时，相对于$(\alpha_{n}^{j}s_{n}^{j}-\alpha_{p}^{i}s_{p}^{i})$的梯度将与$\alpha_{n}^{j}(\alpha_{p}^{i})$相乘。当相似度得分偏离其最优值时（即，$s^j_n$时为$O_n$，$s^i_p$时为$O_p$），应得到一个较大的加权因子，以得到较大梯度的有效更新。为此，我们以一种自定速度的方式来定义$\alpha_{p}^{i}$和$\alpha_{n}^{j}$：
+​&amp;emsp;&amp;emsp;其中 $ \alpha_{n}^{j} $ 和 $ \alpha_{p}^{i} $
+为非负加权因子。&lt;br/&gt;​&amp;emsp;&amp;emsp;等式4来源于等式1，通过将
+$ (s_{n}^{j}-s_{p}^{i}) $ 推广为 $
+(\alpha_{n}^{j}s_{n}^{j}-\alpha_{p}^{i}s_{p}^{i}) $
+。在训练过程中，当反向传播到 $ {s}_{n}^{j}\,(s_{p}^{i}) $ 时，相对于 $
+(\alpha_{n}^{j}s_{n}^{j}-\alpha_{p}^{i}s_{p}^{i}) $ 的梯度将与 $
+\alpha_{n}^{j}(\alpha_{p}^{i}) $ 相乘。当相似度得分偏离其最优值时（即，
+$ s^j_n $ 时为 $ O_n $ ， $ s^i_p $ 时为 $ O_p $
+），应得到一个较大的加权因子，以得到较大梯度的有效更新。为此，我们以一种自定速度的方式来定义
+$ \alpha_{p}^{i} $ 和 $ \alpha_{n}^{j} $ ：
 \]</span>
 <span
 class="math display">\[\begin{cases}\alpha_{p}^{i}=[O_{p}-s_{p}^{i}]_{+},\\\alpha_{n}^{j}=[s_{n}^{j}-{O}_{n}]_{+}\\\end{cases}\]</span>
-<p>$$ ​  其中[·]+为“零截止”操作，以确保<span
-class="math inline">\(\alpha_{p}^{i}\)</span>和<span
-class="math inline">\(\alpha_{n}^{j}\)</span>为非负值。<br/>​  <strong>讨论。</strong>在监督下重新调整余弦相似度是现代分类损失[21,30,29,32,39,40]中常见的做法。传统上，所有的相似性得分都具有相同的尺度因子<span
-class="math inline">\(\gamma\)</span>。当我们将一个分类损失函数中的softmax值看作是一个样本属于某一类的概率时，等量的重新缩放是很自然的。相比之下，Circle损失在重新缩放之前用一个独立的加权因子乘以每个相似度分数。因此，它摆脱了平等的重新缩放的约束，并允许更灵活的优化。除了更好的优化的好处外，这种重新加权（或重新缩放）策略的另一个意义还涉及到潜在的解释。Circle损失放弃了将样本以大概率分类为目标类的解释。相反，它具有相似度对的优化视角，这与两种学习范式相兼容。</p>
+<p>$$ ​  其中[·]+为“零截止”操作，以确保 $ <em>{p}^{i} $ 和 $ </em>{n}^{j}
+$
+为非负值。<br/>​  <strong>讨论。</strong>在监督下重新调整余弦相似度是现代分类损失[21,30,29,32,39,40]中常见的做法。传统上，所有的相似性得分都具有相同的尺度因子
+$ $
+。当我们将一个分类损失函数中的softmax值看作是一个样本属于某一类的概率时，等量的重新缩放是很自然的。相比之下，Circle损失在重新缩放之前用一个独立的加权因子乘以每个相似度分数。因此，它摆脱了平等的重新缩放的约束，并允许更灵活的优化。除了更好的优化的好处外，这种重新加权（或重新缩放）策略的另一个意义还涉及到潜在的解释。Circle损失放弃了将样本以大概率分类为目标类的解释。相反，它具有相似度对的优化视角，这与两种学习范式相兼容。</p>
 <h2 id="类内和类间的边际">3.2.类内和类间的边际</h2>
-<p>​  在损失函数优化<span
-class="math inline">\((s_{n}-s_{p})\)</span>中，添加一个边际<span
-class="math inline">\(m\)</span>加强了优化[15,16,29,32]。由于<span
-class="math inline">\(s_{n}\)</span>和<span
-class="math inline">\(-s_{p}\)</span>处于对称位置，<span
-class="math inline">\(s_{n}\)</span>的正边际等于于<span
-class="math inline">\(s_{p}\)</span>的负边际。因此，它只需要一个单一的边际<span
-class="math inline">\(m\)</span>。在Circle损失中，<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>处于不对称位置。当然，它需要<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>各自的边际，其公式如下： <span
+<p>​  在损失函数优化 $ (s_{n}-s_{p}) $ 中，添加一个边际 $ m $
+加强了优化[15,16,29,32]。由于 $ s_{n} $ 和 $ -s_{p} $ 处于对称位置， $
+s_{n} $ 的正边际等于于 $ s_{p} $ 的负边际。因此，它只需要一个单一的边际
+$ m $ 。在Circle损失中， $ s_n $ 和 $ s_p $ 处于不对称位置。当然，它需要
+$ s_n $ 和 $ s_p $ 各自的边际，其公式如下： <span
 class="math display">\[\mathcal{L}_{c i r c l
 e}=\log\left[1+\sum_{i=1}^{L}\exp(\gamma\alpha_{n}^{j}(s_{n}^{j}-\Delta_{n}))\sum_{i=1}^{K}\exp(-\gamma\alpha_{p}^{i}(s_{p}^{i}-\Delta_{p}))\right]\]</span>
-​  其中<span class="math inline">\(\Delta_{n}\)</span>和<span
-class="math inline">\(\Delta_{p}\)</span>分别为类间和类内的边距。<br/>​  基本上，等式6中的Circle损失期望<span
-class="math inline">\({s}_{p}^{i}\gt\Delta_{p}\)</span>和<span
-class="math inline">\({s}_{n}^{j}\lt\Delta_{n}\)</span>。通过推导决策边界，进一步分析了<span
-class="math inline">\(\Delta_{n}\)</span>和<span
-class="math inline">\(\Delta_{p}\)</span>的设置。为简单起见，我们考虑了二值分类的情况，其中决策边界是通过<span
-class="math inline">\(\alpha_{n}(s_{n}-\Delta_{n})-\alpha_{p}(s_{p}-\Delta_{p})=0\)</span>得到的。并结合等式5、决策边界为：
-<span
+​  其中 $ <em>{n} $ 和 $ </em>{p} $
+分别为类间和类内的边距。<br/>​  基本上，等式6中的Circle损失期望 $
+{s}<em>{p}<sup>{i}<em>{p} $ 和 $ {s}</em>{n}</sup>{j}</em>{n} $
+。通过推导决策边界，进一步分析了 $ <em>{n} $ 和 $ </em>{p} $
+的设置。为简单起见，我们考虑了二值分类的情况，其中决策边界是通过 $
+<em>{n}(s</em>{n}-<em>{n})-</em>{p}(s_{p}-<em>{p})=0 $
+得到的。并结合等式5、决策边界为： <span
 class="math display">\[(s_{n}-\frac{O_{n}+\Delta_{n}}{2})^{2}+(s_{p}-\frac{O_{p}+\Delta_{p}}{2})^{2}=C\]</span>
-​  其中，<span
-class="math inline">\(C=((O_{n}-\Delta_{n})^{2}+(O_{p}-\Delta_{p})^{2})/4\)</span>。<br/>​  等式7显示了决策边界为圆形，如图1
-(b)。所示圆的中心在<span
-class="math inline">\(s_{n}\,=\,(O_{n}\,+\,\Delta_{n})/2,s_{p}\,=\,(O_{p}\,+\,\Delta_{p})/2\)</span>处，其半径等于<span
-class="math inline">\({\sqrt{C}}\)</span>。<br/>​  在等式中有五个超参数，即等式5的<span
-class="math inline">\(O_p\)</span>、<span
-class="math inline">\(O_n\)</span>和等式6的<span
-class="math inline">\(\gamma\)</span>，<span
-class="math inline">\(\Delta_{p}\)</span>和<span
-class="math inline">\(\Delta_{n}\)</span>。我们通过设置<span
-class="math inline">\({O}_{p}=1+m,{O}_{n}=-m,\Delta_{p}=1-m\)</span>和<span
-class="math inline">\(\Delta_{n}=m\)</span>来减少超参数。因此，在等式7中的决策边界减少为：
-<span
+​  其中， $ C=((O</em>{n}-<em>{n})^{2}+(O</em>{p}-<em>{p})^{2})/4 $
+。<br/>​  等式7显示了决策边界为圆形，如图1 (b)。所示圆的中心在 $
+s</em>{n},=,(O_{n},+,<em>{n})/2,s</em>{p},=,(O_{p},+,<em>{p})/2 $
+处，其半径等于 $ {} $ 。<br/>​  在等式中有五个超参数，即等式5的 $ O_p $
+、 $ O_n $ 和等式6的 $ $ ， $ </em>{p} $ 和 $ <em>{n} $ 。我们通过设置 $
+{O}</em>{p}=1+m,{O}<em>{n}=-m,</em>{p}=1-m $ 和 $ <em>{n}=m $
+来减少超参数。因此，在等式7中的决策边界减少为： <span
 class="math display">\[\left(s_{n}-0\right)^{2}+\left(s_{p}-1\right)^{2}=2m^{2}\]</span>
-​  有了等式8中定义的决策边界，我们对Circle损失有了另一个直观的解释。其目的是优化<span
-class="math inline">\({s}_{m}\rightarrow1\)</span>和<span
-class="math inline">\({s}_{n}\rightarrow0\)</span>。参数<span
-class="math inline">\(m\)</span>控制着决策边界的半径，可以看作一个松弛因子。换句话说，Circle损失期望<span
-class="math inline">\(s_{p}^{i}\gt 1-m\)</span>和<span
-class="math inline">\(s_{n}^{j}\lt
-m\)</span>。<br/>​  因此，只有两个超参数，即尺度因子<span
-class="math inline">\(\gamma\)</span>和松弛度<span
-class="math inline">\(m\)</span>。我们将在第4.5节中实验分析<span
-class="math inline">\(m\)</span>和<span
-class="math inline">\(\gamma\)</span>的影响。</p>
+​  有了等式8中定义的决策边界，我们对Circle损失有了另一个直观的解释。其目的是优化
+$ {s}</em>{m} $ 和 $ {s}<em>{n} $ 。参数 $ m $
+控制着决策边界的半径，可以看作一个松弛因子。换句话说，Circle损失期望 $
+s</em>{p}^{i}-m $ 和 $ s_{n}^{j}m $
+。<br/>​  因此，只有两个超参数，即尺度因子 $ $ 和松弛度 $ m $
+。我们将在第4.5节中实验分析 $ m $ 和 $ $ 的影响。</p>
 <h2 id="circle损失的优点">3.3.Circle损失的优点</h2>
-<p>​  Circle损失相对于<span
-class="math inline">\(s_{n}^{j}\)</span>和<span
-class="math inline">\(s_{p}^{i}\)</span>的梯度推导如下： <span
-class="math display">\[\frac{\partial\mathcal{L}_{c i r c l e}}{\partial
+<p>​  Circle损失相对于 $ s_{n}^{j} $ 和 $ s_{p}^{i} $ 的梯度推导如下：
+<span class="math display">\[\frac{\partial\mathcal{L}_{c i r c l
+e}}{\partial
 s_{n}^{j}}=Z\frac{\exp\left(\gamma((s_{n}^{j})^{2}-m^{2})\right)}{\sum_{l=1}^{L}\exp\left(\gamma((s_{n}^{l})^{2}-m^{2})\right)}\gamma(s_{n}^{j}+m),\]</span></p>
 <p>和</p>
 <p><span class="math display">\[\frac{\partial\mathcal{L}_{c i r c l
 e}}{\partial
 s_{p}^{i}}=Z\frac{\exp\left(\gamma((s_{p}^{i}-1)^{2}-m^{2})\right)}{\sum_{k=1}^{K}\exp\left(\gamma((s_{p}^{k}-1)^{2}-m^{2})\right)}\gamma(s_{p}^{i}-1-m),\]</span></p>
-<p>​  其中<span class="math inline">\(Z=1-\exp(-\mathcal{L}_{c i r c l
-e})\)</span>。<br/>​  在二值分类的小场景下（或只有一个<span
-class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>时），我们在图2 (c)中可视化了<span
-class="math inline">\(m\)</span>的不同设置下的梯度，从中我们得出以下三个观察结果：</p>
+<p>​  其中 $ Z=1-(-_{c i r c l e}) $
+。<br/>​  在二值分类的小场景下（或只有一个 $ s_n $ 和 $ s_p $
+时），我们在图2 (c)中可视化了 $ m $
+的不同设置下的梯度，从中我们得出以下三个观察结果：</p>
 <ul>
-<li><span class="math inline">\(s_n\)</span>和<span
-class="math inline">\(s_p\)</span>的平衡优化。我们曾提及过，损失函数最小化<span
-class="math inline">\((s_{n}-s_{p})\)</span>在<span
-class="math inline">\(s_p\)</span>和<span
-class="math inline">\(s_n\)</span>上总是具有相等的梯度，这是不灵活的。相比之下，Circle损失展现出动态的惩罚强度。在指定的相似对<span
-class="math inline">\(\{s_{n},s_{p}\}\)</span>中，如果<span
-class="math inline">\(s_p\)</span>比<span
-class="math inline">\(s_n\)</span>更好（如图2(c)中的<span
-class="math inline">\(A=\{0.8,0.8\}\)</span>），Circle损失赋予<span
-class="math inline">\(s_n\)</span>的梯度更大（反之亦然），从而更优先的降低<span
-class="math inline">\(s_n\)</span>。平衡优化的实验证据详见第4.6节。</li>
-<li>逐渐减弱的梯度。在训练开始时，相似性得分偏离最佳值很远，并获得较大的梯度（如图2（c）中的“A”）。随着训练逐渐接近收敛，相似度得分上的梯度相应衰减（如图2(c)中的“B”），进行了温和的优化。第4.5节的实验结果表明，学习效果对<span
-class="math inline">\(\gamma\)</span>的各种设置都是鲁棒性的(在等式6中)，我们将其归因于自动衰减的梯度。</li>
-<li>一个（更）明确的收敛目标。Circle损失具有循环决策边界，有利于<span
-class="math inline">\({\boldsymbol{T}}\)</span>的收敛而不是<span
-class="math inline">\({\boldsymbol{T}}^{\prime}\)</span>的收敛（图1）。这是因为<span
-class="math inline">\({\boldsymbol{T}}\)</span>与决策边界上的所有其他点相比，<span
-class="math inline">\(s_p\)</span>和<span
-class="math inline">\(s_n\)</span>之间的差距最小。换句话说，<span
-class="math inline">\({\boldsymbol{T}}^{\prime}\)</span>在<span
-class="math inline">\(s_p\)</span>和<span
-class="math inline">\(s_n\)</span>之间的差距较大，而且本身就更难维持。相比之下，最小化<span
-class="math inline">\((s_{n}-s_{p})\)</span>的损失具有一个齐次的决策边界，即决策边界上的每一个点到达决策边界都具有相同的困难。在实验中，我们观察到，Circle损失导致收敛后的相似度分布更为集中，详见章节4.6和图5。</li>
+<li>$ s_n $ 和 $ s_p $ 的平衡优化。我们曾提及过，损失函数最小化 $
+(s_{n}-s_{p}) $ 在 $ s_p $ 和 $ s_n $
+上总是具有相等的梯度，这是不灵活的。相比之下，Circle损失展现出动态的惩罚强度。在指定的相似对
+$ {s_{n},s_{p}} $ 中，如果 $ s_p $ 比 $ s_n $ 更好（如图2(c)中的 $
+A={0.8,0.8} $ ），Circle损失赋予 $ s_n $
+的梯度更大（反之亦然），从而更优先的降低 $ s_n $
+。平衡优化的实验证据详见第4.6节。</li>
+<li>逐渐减弱的梯度。在训练开始时，相似性得分偏离最佳值很远，并获得较大的梯度（如图2（c）中的“A”）。随着训练逐渐接近收敛，相似度得分上的梯度相应衰减（如图2(c)中的“B”），进行了温和的优化。第4.5节的实验结果表明，学习效果对
+$ $
+的各种设置都是鲁棒性的(在等式6中)，我们将其归因于自动衰减的梯度。</li>
+<li>一个（更）明确的收敛目标。Circle损失具有循环决策边界，有利于 $ {} $
+的收敛而不是 $ {}^{} $ 的收敛（图1）。这是因为 $ {} $
+与决策边界上的所有其他点相比， $ s_p $ 和 $ s_n $
+之间的差距最小。换句话说， $ {}^{} $ 在 $ s_p $ 和 $ s_n $
+之间的差距较大，而且本身就更难维持。相比之下，最小化 $ (s_{n}-s_{p}) $
+的损失具有一个齐次的决策边界，即决策边界上的每一个点到达决策边界都具有相同的困难。在实验中，我们观察到，Circle损失导致收敛后的相似度分布更为集中，详见章节4.6和图5。</li>
 </ul>
 <h1 id="实验">4.实验</h1>
-<p>​  我们综合评估了两种基本学习方法下的有效性：给定类级标签学习和给定成对的标签学习。对于前一种方法，我们在人脸识别（4.2节）和人的再识别（4.3节）任务上评估了我们的方法。对于后一种方法，我们使用细粒度的图像检索数据集（第4.4节），它们相对较小，鼓励使用成对标签进行学习。我们证明了Circle损失在这两种情况下都是有效的。第4.5节分析了这两个超参数的影响，即等式6中的尺度因子<span
-class="math inline">\(\gamma\)</span>和等式8中的松弛因子<span
-class="math inline">\(m\)</span>。我们证明了在合理的设置下，Circle损失是鲁棒的。最后，第4.6节通过实验证实了Circle损失的特性。</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Circle-Loss/">https://zhaozw-szu.github.io/Circle-Loss/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Circle-Loss/image-20241014230803132.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Unified-Frequency-Assisted-Transformer-Framework-for-Detecting-and-Grounding-Multi-modal-Manipulation/" title="Unified Frequency-Assisted Transformer Framework for Detecting and Grounding Multi-modal Manipulation"><img class="cover" src="/postimages/Unified-Frequency-Assisted-Transformer-Framework-for-Detecting-and-Grounding-Multi-modal-Manipulation/image-20250107113241178.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Unified Frequency-Assisted Transformer Framework for Detecting and Grounding Multi-modal Manipulation</div></div></a></div><div class="next-post pull-right"><a href="/%E5%85%AC%E5%BC%8F%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/" title="公式识别工具"><img class="cover" src="/img/coverImage/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">公式识别工具</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+<p>​  我们综合评估了两种基本学习方法下的有效性：给定类级标签学习和给定成对的标签学习。对于前一种方法，我们在人脸识别（4.2节）和人的再识别（4.3节）任务上评估了我们的方法。对于后一种方法，我们使用细粒度的图像检索数据集（第4.4节），它们相对较小，鼓励使用成对标签进行学习。我们证明了Circle损失在这两种情况下都是有效的。第4.5节分析了这两个超参数的影响，即等式6中的尺度因子
+$ $ 和等式8中的松弛因子 $ m $
+。我们证明了在合理的设置下，Circle损失是鲁棒的。最后，第4.6节通过实验证实了Circle损失的特性。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Circle-Loss/">https://zhaozw-szu.github.io/Circle-Loss/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Circle-Loss/image-20241014230803132.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Unified-Frequency-Assisted-Transformer-Framework-for-Detecting-and-Grounding-Multi-modal-Manipulation/" title="Unified Frequency-Assisted Transformer Framework for Detecting and Grounding Multi-modal Manipulation"><img class="cover" src="/postimages/Unified-Frequency-Assisted-Transformer-Framework-for-Detecting-and-Grounding-Multi-modal-Manipulation/image-20250107113241178.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Unified Frequency-Assisted Transformer Framework for Detecting and Grounding Multi-modal Manipulation</div></div></a></div><div class="next-post pull-right"><a href="/%E5%85%AC%E5%BC%8F%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7/" title="公式识别工具"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">公式识别工具</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
   if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
     return;
   }
