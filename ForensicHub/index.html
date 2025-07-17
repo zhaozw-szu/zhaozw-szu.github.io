@@ -1,0 +1,757 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ForensicHub:A Unified Benchmark &amp; Codebase for All-Domain Fake Image Detection and Localization | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于arxiv上的论文，非常棒的工作！其整合了深度伪造检测、图像篡改检测&#x2F;定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ForensicHub:A Unified Benchmark &amp; Codebase for All-Domain Fake Image Detection and Localization">
+<meta property="og:url" content="https://zhaozw-szu.github.io/ForensicHub/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于arxiv上的论文，非常棒的工作！其整合了深度伪造检测、图像篡改检测&#x2F;定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/ForensicHub/image-20250717231040099.png">
+<meta property="article:published_time" content="2025-07-17T14:34:41.000Z">
+<meta property="article:modified_time" content="2025-07-17T16:40:39.190Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/ForensicHub/image-20250717231040099.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/ForensicHub/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-18 00:40:39'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/ForensicHub/image-20250717231040099.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/dataset/"><i class="fa-fw fas fa-database"></i><span> 数据集</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ForensicHub:A Unified Benchmark &amp; Codebase for All-Domain Fake Image Detection and Localization</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-07-17T14:34:41.000Z" title="创建于 2025-07-17 22:34:41">2025-07-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-17T16:40:39.190Z" title="更新于 2025-07-18 00:40:39">2025-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">D类文章,arxiv,2025</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IML/">IML</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/scu-zjz/ForensicHub"><img src="https://img.shields.io/github/stars/scu-zjz/ForensicHub?style=flat" alt="GitHub Stars: scu-zjz/ForensicHub" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ForensicHub:A Unified Benchmark &amp; Codebase for All-Domain Fake Image Detection and Localization"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>ForensicHub: A Unified Benchmark &amp; Codebase for All-Domain Fake
+Image Detection and Localization</p>
+<p>Bo Du1†, Xuekang Zhu1,2†, Xiaochen Ma3,4†, Chenfan Qu5, 2†, Kaiwen
+Feng1†,Zhe Yang1, Chi-Man Pun6, Jian Liu2‡, Jizhe Zhou1‡</p>
+<p>1四川大学<br/>2蚂蚁集团<br/>3MBZUAI<br/>4北京大学<br/>5华南理工大学<br/>6澳门大学</p>
+<h1 id="摘要">摘要</h1>
+<p>​  伪造图像检测与定位（FIDL）领域目前仍处于高度碎片化的状态，主要涵盖四大方向：深度伪造检测（Deepfake）、图像篡改检测与定位（IMDL）、人工智能生成图像检测（AIGC）以及文档图像篡改定位（Doc）。尽管部分领域已形成独立的基准测试，但针对FIDL所有领域的统一标准至今仍未建立。由于缺乏统一基准测试标准，各领域形成了明显的数据孤岛现象——不同机构各自为政地构建数据集、模型和评估方案，缺乏跨平台兼容性。这种孤立状态不仅阻碍了跨领域对比研究，更严重制约了FIDL技术的全面发展。为打破这种数据壁垒，我们推出了ForensicHub，这是首个面向全领域伪造图像检测与定位的统一基准测试平台及代码库。考虑到所有领域中数据集、模型和评估配置的剧烈变化，以及开源基准模型的稀缺性和某些领域的缺乏单独的基准，ForensicHub：i)提出了一种模块化和配置驱动的架构，将取证管道分解为跨数据集、转换、模型和评估器的可互换组件，允许在所有领域灵活组合；ii)通过基于适配器的设计，全面实现10个基线模型（其中3个为从头复制），6个主干网络，2个AIGC和文档新基准，并整合了DeepfakeBench和IMDLBenCo两个现有基准；iii)建立图像取证融合协议评估机制，支持不同任务中各类取证模型的统一训练与测试；iv)基于取证中心开展深度分析，针对FIDL模型架构、数据集特征及评估标准提供8项关键可操作性建议。具体来说，ForensicHub包含4个取证任务、23个数据集、42个基准模型、6个骨干网络、11项GPU加速的像素级与图像级评估指标，并实现了16种跨领域评估。该平台在打破FIDL领域壁垒方面实现了重大突破，为未来创新提供了重要启示。相关代码可在以下地址获取：https://github.com/scu-zjz/ForensicHub。</p>
+<h1 id="概述">1 概述</h1>
+<p>"<em>The whole is more than the sum of its parts</em>" -
+<strong>Aristotle</strong></p>
+<p>​  近年来，随着各种数字图像编辑技术的快速发展，假图像变得越来越普遍。篡改图片的检测和定位（FIDL，Fake
+Image Detection and
+Localization）旨在区分部分篡改和完全生成的图像与真实图像。在FIDL中，术语“检测”指的是图像级别的分类，而“定位”则针对像素级别上更精细的篡改像素分割。<br/>​  然而，随着时间的推移，FIDL的研究工作逐渐分裂为四个相对独立的研究领域。</p>
+<p>​  1）深度伪造检测（Deepfake）[37,26,25,8,38,4,66,42,28,33,54,71,49,65,67]：检测诸如面部交换、表情编辑或特征替换等操作。<br/>​  2）图像篡改检测/定位（IMDL）[5,17,29,35,70,53]：检测和定位自然图像中的篡改。<br/>​  3）AI生成图像检测（AIGC）[40,18,63,59]：检测由Stable
+Diffusion
+[46]等深度生成模型完全生成的图像。<br/>​  4）文档图像处理定位（文档）[48,43,6,12,52]：定位各种形式的文档图像伪造，包括收据、证书和识别材料，特别关注检测打印文本的修改。</p>
+<p>​  尽管这四个领域因应用场景、操作类型和检测方法的差异而逐渐分化，但它们之间仍存在诸多共性与相似之处。作为视觉任务，这些领域普遍采用最先进检测或分割模型作为预训练骨干网络。此外，由于伪造图像制作者通常致力于保留语义合理且逼真的内容，所有领域都高度重视设计低级视觉特征提取器，以捕捉细微的非语义差异实现可靠检测。诸如对比学习等研究方法在这些领域中被广泛采用，用于挖掘判别性特征。我们在表1中总结了各领域中最先进的技术：骨干网络架构、伪影策略、输出类型及贡献度。虽然差异导致四个FIDL领域呈现碎片化特征，但共性要求我们通过统一视角来系统理解其内在联系。</p>
+<p>表1：四个法医学领域的代表性方法总结，详细说明模型设计、主干、人工制品策略、输出格式和核心贡献。</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 27%" />
+<col style="width: 18%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Model</th>
+<th>Backbone</th>
+<th>Artifact Strategy</th>
+<th>Output Type</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deepfake</td>
+<td>Capsule-Net [37] (ICASSP19)</td>
+<td>VGG [50]</td>
+<td>动态路由</td>
+<td>标签</td>
+<td>提出了一种具有动态路由和VGG19主干的胶囊网络</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>RECCE [4] (<em>CVPR22</em>)</td>
+<td>Xception [7]</td>
+<td>重构</td>
+<td>标签</td>
+<td>提出了一种基于图的框架，利用重建差异</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SPSL [28] (<em>CVPR21</em>)</td>
+<td>Xception [7]</td>
+<td>相位谱</td>
+<td>标签</td>
+<td>提出了一种利用Xception进行相位谱融合的面部伪造检测方法</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>UCF [66] (<em>ICCV23</em>)</td>
+<td>Xception [7]</td>
+<td>多任务解耦</td>
+<td>标签</td>
+<td>提出使用Xception进行深度伪造泛化的多任务解耦</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SBI [49] (<em>CVPR22</em>)</td>
+<td>EfficientNet [55]</td>
+<td>频率，混合边界</td>
+<td>标签</td>
+<td>提出自混合图像以提高深度造假检测的泛化能力</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>IMDL</td>
+<td>MVSS-Net [62] (<em>ICCV21</em>)</td>
+<td>Resnet [19]</td>
+<td>BayarConv,Sobel</td>
+<td>标签、掩膜</td>
+<td>利用多视图学习来检测篡改，以利用噪声和边界伪影</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>CAT-Net [22] (<em>IJCV22</em>)</td>
+<td>HRNet [56]</td>
+<td>DCT</td>
+<td>掩膜</td>
+<td>融合RGB和DCT流，以学习用于剪接定位的压缩伪影</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>PSCC-Net [29] (<em>TCSVT22</em>)</td>
+<td>HRNet [56]</td>
+<td>多分辨率卷积</td>
+<td>标签、掩膜</td>
+<td>通过空间通道相关性逐步细化掩模，以实现高分辨率定位</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Trufor [17] (<em>CVPR23</em>)</td>
+<td>Seformer [64]</td>
+<td>高分辨率、多尺度、边缘</td>
+<td>标签、掩膜</td>
+<td>融合RGB和学习到的噪声指纹，将篡改检测为异常</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>IML-ViT [35] (<em>Arxiv</em>)</td>
+<td>ViT [13]</td>
+<td>BayarConv,SRM 滤波器</td>
+<td>掩膜</td>
+<td>使用高分辨率、多尺度边缘感知设计的ViT进行篡改定位</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Mesorch [70] (<em>AAAI25</em>)</td>
+<td>Conv. [31],Segfor. [64]</td>
+<td>DCT</td>
+<td>掩膜</td>
+<td>融合微观和宏观线索，用于介观图像操作定位</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>AIGC</td>
+<td>Dire [59] (<em>ICCV23</em>)</td>
+<td>Resnet [19]</td>
+<td>扩散重建</td>
+<td>标签</td>
+<td>利用扩散的重建误差来检测扩散生成的图像</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>DualNet [63] (<em>APSIPA23</em>)</td>
+<td>CNN</td>
+<td>SRM，低频</td>
+<td>标签</td>
+<td>融合SRM残留和低频内容流用于AIGC检测</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>HiFiNet [18] (<em>CVPR23</em>)</td>
+<td>HRNet [56]</td>
+<td>多分支特征提取器</td>
+<td>标签、掩膜</td>
+<td>学习伪造属性的层次精细表征</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Synthbuster [2] (<em>OJSP23</em>)</td>
+<td>None</td>
+<td>傅里叶变换</td>
+<td>标签</td>
+<td>利用频域中的频谱伪影进行扩散检测</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>UnivFD [40] (<em>CVPR23</em>)</td>
+<td>CLIP-ViT [45]</td>
+<td>None</td>
+<td>标签</td>
+<td>使用预训练的视觉语言模型特征进行统一检测</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>文档</td>
+<td>CAFTB [52] (<em>TOMM24</em>)</td>
+<td>Resnet [19]</td>
+<td>SRM</td>
+<td>掩膜</td>
+<td>提出具有双分支和交叉注意力的CAFTB-Net</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>TIFDM [12] (<em>TCE24</em>)</td>
+<td>Resnet [19]</td>
+<td>None</td>
+<td>掩膜</td>
+<td>提出一个多尺度注意力的鲁棒网络</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>DTD [43] (<em>CVPR23</em>)</td>
+<td>Conv. [31], Swin.[30]</td>
+<td>频率</td>
+<td>掩膜</td>
+<td>提出一种带有频率头和多视图解码器的DTD</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>FFDN [6] (<em>ECCV24</em>)</td>
+<td>ConvNext [31]</td>
+<td>波形，频率</td>
+<td>掩膜</td>
+<td>提出了一种结合视觉增强和频率分解的FFDN方法</td>
+</tr>
+</tbody>
+</table>
+<p>​  尽管在深度伪造领域存在DeepfakeBench [67]、IMDL领域有IMDLBenCo
+[36]等独立基准测试，但FIDL框架下所有领域的统一基准测试仍是一片空白。这种缺乏统一标准的局面导致各领域形成明显的数据孤岛——每个领域都在独立构建自己的数据集、模型和评估协议，彼此之间缺乏互操作性。这种孤立状态不仅造成现有FIDL领域研究的重复与不均衡，更使得建立通用统一的FIDL方法论变得困难重重，严重阻碍了整个FIDL领域的创新发展。<br/>​  因此，为所有领域建立统一基准至关重要。但该基准面临两大挑战：首先，由于各领域数据集、模型和评估配置存在巨大差异，基准设计必须具备足够的扩展性和灵活性以覆盖所有领域；其次，既要确保与现有基准的兼容性以减少重复研究，又要解决开源基准模型稀缺以及某些领域缺乏独立基准的问题。<br/>​  为此，我们提出了ForensicHub：<br/>​  1)提出了一种模块化和配置驱动的架构，将取证管道分解为跨数据集、转换、模型和评估器的可互换组件，允许在所有领域灵活组合；<br/>​  2）通过适配器设计，完整实现10个基线模型（其中3个为从头复制），6个骨干网络，2个AIGC和文档新基准，并整合了DeepfakeBench和IMDLBenCo两个现有基准。<br/>​  通过以上工作，ForensicHub成为全领域假图像检测与定位的首个统一基准和代码库。基于ForensicHub平台，我们开发了图像取证融合协议（IFF协议）评估机制，支持跨任务的多样化取证模型统一训练与测试。针对研究者关注但尚未深入探讨的八大核心问题展开深度分析，为FIDL模型架构、数据集特征及评估标准提供全新视角。ForensicHub的推出实现了FIDL各领域的无缝衔接，打破领域壁垒，为未来技术突破注入新动能。</p>
+<h1 id="相关工作">2 相关工作</h1>
+<p>​  假图像检测与定位包含四个子任务，详见附录C。尽管取得了快速进展，但目前仍缺乏统一基准——每个任务都使用独立的流程，限制了跨任务比较。<br/>​  DeepfakeBench
+[67]是专为解决数据处理流程不统一问题而设计的深度伪造检测基准测试，该问题会导致检测模型的数据输入存在差异。IMDLBenCo
+[36]作为IMDL技术的基准测试平台和代码库，致力于通过统一的训练与评估协议对IMDL模型进行横向对比。AIGCDetectBenchmark
+[68]则是一个专门用于测试9种AI生成图像检测方法的实验资源库。<br/>​  这些基准测试在各自任务中提供了模型、数据集和评估指标，但其底层设计缺乏跨任务考量，导致难以在不同检测场景中实现整合。例如，DeepfakeBench与特定于Deepfake的数据预处理步骤（如面部特征点）存在紧密耦合，而IMDLBenCo要求数据集和模型都输出像素级掩码。AIGCDetectBenchmark在多GPU指标计算方面表现欠佳。此外，它们均未包含完整的图像级和像素级指标体系。这些局限性迫切需要一个全新、统一且灵活的跨任务基准测试。</p>
+<h1 id="forensichub">3 ForensicHub</h1>
+<p>​  在本节中，我们提出了我们的ForensicHub，它是一个统一的基准，用于所有域的假图像检测和定位，如图1所示，设计灵活和可扩展。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717231040099.png"
+alt="image-20250717231040099" />
+<figcaption aria-hidden="true">image-20250717231040099</figcaption>
+</figure>
+<p>​  <strong>模块结构</strong><br/>​  为满足不同法证任务需求，ForensicHub采用模块化架构设计，包含四大核心组件：数据集、转换器、模型和评估器。数据集负责数据加载流程，必须返回符合ForensicHub规范的字段。转换器承担数据预处理与增强功能，适配各类任务需求。模型通过与数据集精准匹配并统一输出格式，可集成多种前沿图像取证模型。评估器涵盖了不同任务中常用的图像和像素级指标，并通过GPU加速来提高训练和测试期间的评估效率。</p>
+<p>​  <strong>可配置工作流</strong><br/>​  ForensicHub采用无代码开发模式，用户仅需配置YAML文件即可直接构建训练或测试流程。基于模块化架构设计，用户可灵活选择不同评估器，在任意数据集上对模型进行训练和测试。该平台还提供代码自动生成工具，支持用户通过简单编程实现与基准测试的无缝对接。</p>
+<p>​  <strong>ForensicHub的构建</strong><br/>​  为实现跨平台互操作性并减少重复劳动，ForensicHub采用基于适配器的设计方案[14]，确保与深度伪造基准测试平台DeepfakeBench
+[67]和IMDL基准库[36]两大主流工具无缝对接。该机制让用户无需大幅修改即可复用现有模型和数据集，同时支持在ForensicHub统一协议框架下定义新模型和基准测试。这种标准化架构简化了跨任务基准测试流程，保障结果可复现性，并实现不同领域评估的一致性。|
+​  具体而言，ForensicHub支持IMDLBenCo提供的全部10个模型进行多领域和跨领域评估。在DeepfakeBench中，34个图像级检测器中有27个兼容，包括5个通用主干网络和9个不适用于跨任务评估的领域专用模型。剩余13个模型支持跨不同法医领域的训练或推理，因此DeepfakeBench共包含22个模型。ForensicHub完整实现了AIGC的5个基准模型和文档的5个基准模型，详见第4节。此外，ForensicHub还包含6个常用主干网络。总体而言，ForensicHub覆盖4项任务、23个数据集、42个模型、6个主干网络，并实现了11种常用的图像级和像素级评估指标。</p>
+<p>​  <strong>数据集</strong><br/>​  本文使用的数据集包括：<br/>​    用于深度伪造的工具包括：Faceforencs++
+[47]、Celeb-DF [27]、DFD [9]、FaceShifter [23]和UADFV
+[26]；<br/>​    用于IMDL的工具有：CASIA [11]、COVERAGE
+[60]、Columbia[20]、IMD2020 [39]、NIST16 [16]、CocoGlide
+[17]和Autosplice [21]；<br/>​    用于AIGC的工具包含：DiffusionForensics
+[59]和GenImage [69]；<br/>​    用于文档处理的工具则有：Doctamper
+[43]、T-SROIE [58]、OSTF [44]、TPIC-13 [57]和RTM
+[32]。<br/>​  各数据集的简要总结见表2，更多详细信息见附录D.1。</p>
+<p>​  <strong>模型</strong><br/>​  本文使用的模型为：<br/>​    深度伪造检测的有Capsule-Net
+[37]、RECCE [4]、SPSL [28]、UCF [66]和SBI
+[49]；<br/>​    图像处理与定位领域的有MVSS-Net [5]、CAT-Net
+[22]、PSCC-Net [29]、Trufor [17]、IML-ViT [35]和Mesorch
+[70]；<br/>​    生成式人工智能检测领域的有Dire [59]、DualNet
+[63]、HiFiNet [18]、Synthbuster [2]和UnivFD
+[40]；<br/>​    文档检测方面的有DTD [43]、FFDN [6]、CAFTB [52]和TIFDM
+[12]。<br/>​  这些方法均来自官方资源库及我们的重新实现版本。此外，ForensicHub还精选了视觉任务中常用的6种骨干网络：Resnet
+[19]、Xception [7]、EfficientNet [55]、Segformer [64]、Swin Transformer
+[30]以及ConvNext [31]。具体模型参数详见附录D.2。</p>
+<p>​  <strong>指标</strong><br/>​  本文使用的指标为：AP、MCC、TNR、TPR、AUC、ACC、F1和IOU等指标，其像素级和图像级实现方式如图1所示。各指标的具体说明详见附录D.3。在评估过程中，所有指标的阈值（若适用）均设为0.5，以确保比较的公平性。</p>
+<h1 id="基准">4 基准</h1>
+<p>​  除了与现有基准测试DeepfakeBench [67]和IMDLBenCo
+[36]完全兼容外，ForensicHub还通过引入针对AIGC和文档领域的统一评估协议，进一步推动了标准化进程——这两个领域此前一直缺乏广泛认可的基准测试和代码库。我们为这两个领域提出了两种评估协议，用于衡量模型的泛化能力。</p>
+<h2 id="ai生成图像检测基准">4.1 AI生成图像检测基准</h2>
+<p>​  <strong>数据集</strong><br/>​  在AIGC检测领域，数据集构建的难点通常不在于获取足够数量的样本——因为现有模型已能轻松生成这些样本，而在于确保对各类生成模型的全面覆盖。为此，我们仅选取两个常用公开数据集：DiffusionForensics[59]和GenImage[69]。前者仅包含基于扩散生成的图像，后者则涵盖由八种顶尖生成模型构建的百万级数据集。模型在扩散取证数据集上进行训练，并通过基因图像中的不同生成模型进行评估以检验泛化能力，因为检测方法通常已在同源生成模型的样本上取得良好表现[69]。具体数据划分详见表D.1.3。</p>
+<p>​  <strong>模型</strong><br/>​  ForensicHub在AIGC检测中实现了五种最先进方法：Dire
+[59]、DualNet [63]、HiFiNet [18]、Synthbuster [2]和UnivFD
+[40]。其中Synthbuster没有官方开源代码，我们对其进行了完全重实现。更多关于模型和训练设置的详细信息，请参见附录E.1。</p>
+<p>​  <strong>结果</strong><br/>​  表3中的绿色背景部分展示了AIGC基准测试中图像级分类的AUC分数，具体分为扩散取证[59]测试集的域内结果、不同生成模型的跨域结果以及GenImage
+[69]总数据集的结果。结果显示，AIGC的顶尖模型在与训练集同源的扩散取证测试集中表现优异，同时在由基于扩散生成的图像（如ADM、VQDM和GLIDE）构成的数据集上也表现出色。然而，这些模型对Midjourney和Wukong等生成模型的泛化能力相对较弱，这不仅指出了改进方向，也为未来模型开发提供了重要参考。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717231959957.png"
+alt="image-20250717231959957" />
+<figcaption aria-hidden="true">image-20250717231959957</figcaption>
+</figure>
+<h2 id="文档图像处理定位基准">4.2文档图像处理定位基准</h2>
+<p>​  <strong>数据集</strong><br/>​  目前用于文档图像操作定位的现有数据集主要分为两大类：一类是高保真非切片数据集，包括T-SROIE
+[58]、OSTF [44]、TPIC-13 [57]和RTM
+[32]；另一类则是切片数据集，以Doctamper
+[43]为代表。两者的根本区别在于是否对图像进行了分块切片预处理。<br/>​  为确保后续评估的一致性，我们采用了Doctamper的切片策略，并将其应用于四个未切片的数据集，从而形成统一格式。每个数据集均保留原有的训练集与测试集划分。值得注意的是，Doctamper提供了一个训练集和三个不同的测试集——Doctamper-Test、Doctamper-FCD和Doctamper-SCD，分别针对不同操作场景设计。具体数据分布详见表D.1.4。</p>
+<p>​  <strong>模型</strong><br/>​  我们采用了两个开源模型，DTD [43]和FFDN
+[6]，并复现了两个闭源模型，CATFB [52]和TIFDM
+[12]。所有细节见附录D.2.4和E.2。</p>
+<p>​  <strong>结果</strong><br/>​  根据原始协议[43,6]，每个检测器都在指定的训练集上进行训练，并在对应的测试集上进行评估。如表4所示，有三种模型始终保持着最佳性能：专为文档取证设计的FFDN和DTD，以及基于IMDL架构的Cat-Net模型。值得注意的是，这三种方法都采用了JPEG特有的先验特征，例如离散余弦变换系数和量化表，这凸显了压缩伪影在定位文档图像篡改时的鉴别价值。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717232315889.png"
+alt="image-20250717232315889" />
+<figcaption aria-hidden="true">image-20250717232315889</figcaption>
+</figure>
+<p>​  然而，这种评估设置存在一个关键缺陷：所有模型均在相同数据分布下进行训练和测试，这限制了跨域泛化能力的评估。为解决这一问题，我们专门设计了文档协议（Doc
+Protocol），让模型在Doctamper数据集上训练，并在另外四个文档级测试集上进行评估。如表5所示，PSCC-Net展现出更优的泛化性能，充分证明了渐进式空间建模在文档操作定位中的优势。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717232431850.png"
+alt="image-20250717232431850" />
+<figcaption aria-hidden="true">image-20250717232431850</figcaption>
+</figure>
+<h1 id="图像取证融合协议">5图像取证融合协议</h1>
+<p>​  <strong>协议</strong><br/>​  为统一不同模型在法证协议下的性能评估，我们基于CAT-Net的训练数据构建策略，开发了图像取证融合协议（IFF-协议,<em>mage
+forensic fusion
+protoco</em>）。该协议将训练集定义为Deepfake、IMDL、AIGC和文档数据的组合，每个训练周期从各领域随机抽取等量样本。在训练过程中，我们选择了来自Deepfake任务的FaceForensics++
+[47]，来自IMDL任务的CASIAv2 [11]，来自AIGC任务的GenImage
+[69]以及来自文档任务的OSTF
+[44]、RealTextManipulation、T-SROIE和Tampered-IC13数据集。我们采用最小数据集CASIAv2（包含12,641个样本），作为每个训练周期的采样量。在测试阶段，我们直接在不同领域的数据集上评估模型性能，无需进行微调。</p>
+<p>​  <strong>实施细节</strong><br/>​  我们将图像尺寸统一调整为256×256（UnivFD、DTD和FFDN模型除外，具体参数详见附录F），仅采用基础数据增强手段：包括图像翻转、亮度与对比度调节、压缩处理以及高斯模糊。所有模型均采用余弦衰减学习率策略进行20轮训练，初始值设为1e−4，训练过程中逐步递减至1e−5。针对输出掩码的模型（IMDL和Doc），我们在最后一层特征图上应用最大池化操作以获取预测标签，并仅基于该标签计算损失函数。</p>
+<p>​  
+<strong>模型效率</strong><br/>​  我们在表6中测试了各领域模型主干网络和超大规模架构的参数设置与浮点运算量。可以发现，模型效率往往与其应用场景密切相关。例如，深度伪造模型通常采用轻量化设计以支持实时视频检测，而专注于像素级分类的IMDL模型则常采用更复杂且体积更大的架构。这些效率偏好会对IFF协议下的实验结果产生显著影响。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717233135309.png"
+alt="image-20250717233135309" />
+<figcaption aria-hidden="true">image-20250717233135309</figcaption>
+</figure>
+<p>​  <strong>基准结果</strong><br/>​  表7展示了基于IFF协议下四个领域数据集的主干网络与领域特定SoTA方法的AUC分数，其中DFD代表DeepFakeDetection
+[15]，DF指DiffusionForensics [59]，RTM则对应RealTextManipulation
+[32]。详细结果详见附录F。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717233248267.png"
+alt="image-20250717233248267" />
+<figcaption aria-hidden="true">image-20250717233248267</figcaption>
+</figure>
+<p>​  研究结果表明，令人惊讶的是，诸如ConvNeXt [31]和Swin Transformer
+[30]等视觉主干网络的表现几乎超越了所有领域特定的最先进方法，这说明当在更统一的伪造图像数据上训练时，主干网络展现出更大的潜力。与此同时，领域特定的最先进方法并不总能在其任务中保持优势。例如，基于CLIP微调的AIGC检测模型UnivFD
+[40]，在IMDL提供的IMD2020
+[39]数据集上表现出色，揭示了跨任务方法可迁移性的宝贵见解。</p>
+<p>​  从任务层面来看，尽管IMDL的目标分类已从像素级提升至图像级，但由于不同数据集在规模和操作类型上存在显著差异，该任务仍具挑战性。相比之下，AIGC得益于基于多样化生成模型的充足训练数据，从而实现了更高的检测精度。这一现象提醒我们：不仅要确保训练数据涵盖丰富的操作类型，更要着力提升模型的泛化能力。</p>
+<h1 id="实验">6实验</h1>
+<p>​  基于ForensicHub，我们进行了交叉任务实验，这在以前的研究中很少被探索。不同任务检测方法的异同性引出了以下问题：1）低级特征提取器是否在所有任务中都有效？2）一个任务的检测方法在转移到另一个任务时是否仍然有效？我们通过大量实验回答了上述问题。</p>
+<h2 id="低级特征提取器的有效性">6.1低级特征提取器的有效性</h2>
+<p>​  鉴于各领域已提出特定特征提取器，为统一评估其在特定领域的有效性，我们在上述IFF协议框架下，采用6种骨干网络与4种不同浅层提取器进行实验。具体包括：用于噪声伪影的BayarConv
+[3]、处理边缘伪影的Sobel [5]、消除频率伪影的DCT [1]以及滤波伪影的FPH
+[43]。各提取器的具体参数详见附录G.1。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717233639185.png"
+alt="image-20250717233639185" />
+<figcaption aria-hidden="true">image-20250717233639185</figcaption>
+</figure>
+<p>​  表8展示了各任务测试数据集上，使用四种不同特征提取器与未使用特征提取器的各主干网络版本之间的AUC差异平均值。除EfficientNet
+[55]外，其他主干网络在使用特征提取器后均出现性能下降，这表明在IFF协议框架下（训练数据包含充足的操控类型和图像数量），模型无需依赖特征提取器提供的额外信息。不过由于EfficientNet本身轻量级的优势，仍能从特征提取器中获益。研究结果表明，特征提取器可能仅对小规模数据集、有限操控类型或轻量级模型的检测任务有益。各领域测试数据集的AUC分数详情可参见附录G.2。</p>
+<h2 id="任务专用检测器的可转移性">6.2任务专用检测器的可转移性</h2>
+<h3 id="imdl与文档基准之间的交叉评估">6.2.1
+IMDL与文档基准之间的交叉评估</h3>
+<p>​  当前文档级检测器的输入输出格式与图像处理检测定位模型完全兼容。基于这种一致性，我们进行了双向评估：将IMDL检测器应用于文档基准测试，同时将文档检测器用于IMDL基准测试。这种交叉测试不仅扩大了各基准的有效模型库规模，还使我们能够突破检测器原有任务范围，深入探究其通用性。</p>
+<p>​  <strong>IMDL→
+Document</strong><br/>​  表4展示了原始文档基准划分下域内评估结果，而表5则呈现了我们新引入的泛化协议在跨域测试中的表现。在这两种场景中，IMDL检测器在文档取证场景中均展现出强劲竞争力。在常规划分中，Cat-Net
+[22,43,6]家族以最佳平均F1值脱颖而出，印证了其分层“CatNet”架构的优势。在更具挑战性的跨域评估中，PSCC-Net
+[29]展现出显著更强的泛化能力，表明渐进式空间建模能有效捕捉文档篡改定位线索。我们期待未来研究能进一步揭示PSCC-Net背后的潜在机制。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717232315889.png"
+alt="image-20250717232315889" />
+<figcaption aria-hidden="true">image-20250717232315889</figcaption>
+</figure>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717232431850.png"
+alt="image-20250717232431850" />
+<figcaption aria-hidden="true">image-20250717232431850</figcaption>
+</figure>
+<p>​  <strong>Document →
+IMDL</strong><br/>​  根据MVSS训练协议[36]，所有文档导向模型均在CASIAv2数据集[11]上进行训练，并在五个标准IMDL测试集上进行评估。如表9所示，CAFTB
+[52]的双分支架构在迁移至IMDL任务时，于文档模型中展现出最佳整体性能——这一结果与当前最先进模型Mesorch
+[70]的设计理念相契合，该模型同样强调双分支学习。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717234116217.png"
+alt="image-20250717234116217" />
+<figcaption aria-hidden="true">image-20250717234116217</figcaption>
+</figure>
+<h3
+id="将imdl检测器扩展到aigc和deepfake基准">6.2.2将IMDL检测器扩展到AIGC和Deepfake基准</h3>
+<p>​  IMDL模型旨在生成像素级掩码和图像级标签，其架构大多同时包含分类头和分割分支。这种双输出设计使其能够直接应用于AIGC和Deepfake检测等任务。对于未配备标签头的模型，图像级评分是通过在预测掩码上进行最大池化操作获得的。</p>
+<p>​  <strong>IMDL→
+AIGC</strong><br/>​  我们在AIGC基准测试的训练数据集上对代表性IMDL检测器进行微调，并在表3中报告了跨生成器性能。训练设置及其他配置与前述AIGC基准测试设置保持一致。结果显示，IMDL技术中的噪声特征（TruFor）和多尺度分析（IML-ViT）等方法，在AIGC检测中依然有效。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717231959957.png"
+alt="image-20250717231959957" />
+<figcaption aria-hidden="true">image-20250717231959957</figcaption>
+</figure>
+<p>​  <strong>IMDL →
+Deepfake</strong><br/>​  我们在FF++-c23训练集上训练每个IMDL检测器，并在所有剩余的深度伪造测试集上进行评估，具体分数详见表10。与deepfakebench
+[67]中的所有基线模型相比，Cat-Net在域内设置中表现最佳，而Mesorch则在跨域评估中取得最高平均准确率，在两个场景下均创下新的最佳成绩。</p>
+<figure>
+<img src="../postimages/ForensicHub/image-20250717234428051.png"
+alt="image-20250717234428051" />
+<figcaption aria-hidden="true">image-20250717234428051</figcaption>
+</figure>
+<h1 id="结论">7.结论</h1>
+<p>​  本文提出ForensicHub，这是首个面向全领域假图像检测与定位的统一基准测试平台及代码库。该平台不仅对现有基准测试进行了优化，还拓展至其他领域。通过大量跨领域实验，我们总结出8项对未来研究具有指导意义的关键洞见：</p>
+<p>​  1)在文档领域，PSCC-Net表现出强大的泛化能力，而Cat-Net能有效适应人工合成操作，为文档模型设计提供了有价值的参考。<br/>​  2)在IMDL中，CAFTB和Mesorch等并行架构模型取得了领先性能，表明多分支建模的有效性。<br/>​  3)像Cat-Net和Mesorch这样的频率策略模型始终表现良好，突出了频率特征在FIDL中的潜力。<br/>​  4)在IFF协议下，像ConvNeXt和Swin
+Transformer这样的较少被探索的主干网络的表现优于几乎所有领域的SoTA。<br/>​  5)当数据集较大且包含多种操作类型时，浅层特征提取器的串联往往会降低性能，而像EfficientNet这样的轻量级模型可以从这种做法中受益。<br/>​  6）当前AIGC和文档评估往往忽视泛化能力，导致性能被高估。我们建议将本文提出的AIGC和文档协议用于后续工作，该协议明确鼓励设计具有泛化意识的模型。<br/>​  7）现有的AIGC和Deepfake数据集往往过于简单，缺乏多样性，限制了有意义的比较，未来的基准应该以更高的复杂性和真实性为目标。<br/>​  8）对于全域场景，我们推荐使用我们的IFF协议来实现更全面的评估。</p>
+<p>​  总之，ForensicHub是打破四个领域领域孤岛的重要一步，为FIDL模型架构、数据集特征和评估标准的未来研究提供了新的见解。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/ForensicHub/">https://zhaozw-szu.github.io/ForensicHub/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/ForensicHub/image-20250717231040099.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/TruFor/" title="TruFor:Leveraging all-round clues for trustworthy image forgery detection and localization"><img class="cover" src="/postimages/TruFor/image-20250715225930456.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">TruFor:Leveraging all-round clues for trustworthy image forgery detection and localization</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">129</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">可以用表情包和匿名评论了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">1 概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2 相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#forensichub"><span class="toc-text">3 ForensicHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E5%87%86"><span class="toc-text">4 基准</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ai%E7%94%9F%E6%88%90%E5%9B%BE%E5%83%8F%E6%A3%80%E6%B5%8B%E5%9F%BA%E5%87%86"><span class="toc-text">4.1 AI生成图像检测基准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%AE%9A%E4%BD%8D%E5%9F%BA%E5%87%86"><span class="toc-text">4.2文档图像处理定位基准</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%8F%96%E8%AF%81%E8%9E%8D%E5%90%88%E5%8D%8F%E8%AE%AE"><span class="toc-text">5图像取证融合协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">6实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E7%BA%A7%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E5%99%A8%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">6.1低级特征提取器的有效性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%B8%93%E7%94%A8%E6%A3%80%E6%B5%8B%E5%99%A8%E7%9A%84%E5%8F%AF%E8%BD%AC%E7%A7%BB%E6%80%A7"><span class="toc-text">6.2任务专用检测器的可转移性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#imdl%E4%B8%8E%E6%96%87%E6%A1%A3%E5%9F%BA%E5%87%86%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BA%A4%E5%8F%89%E8%AF%84%E4%BC%B0"><span class="toc-text">6.2.1
+IMDL与文档基准之间的交叉评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86imdl%E6%A3%80%E6%B5%8B%E5%99%A8%E6%89%A9%E5%B1%95%E5%88%B0aigc%E5%92%8Cdeepfake%E5%9F%BA%E5%87%86"><span class="toc-text">6.2.2将IMDL检测器扩展到AIGC和Deepfake基准</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">7.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
