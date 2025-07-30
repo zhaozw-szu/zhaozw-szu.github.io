@@ -4,7 +4,33 @@
   
     
     <entry>
-      <title>Neural_Clustering_based_Visual_Representation_Learning</title>
+      <title>essay</title>
+      <link href="/essay/"/>
+      <url>/essay/</url>
+      
+        <content type="html"><![CDATA[<p>面向图像篡改检测任务的可微特征聚类方法</p><p>摘要</p><p>​  近年来，基于直接对特征进行对比学习的方法在图像篡改领域取得了不错的成效，但是其在推理阶段使用离线kmeans方法作为聚类方法，从而使得整个流程无法成为端到端的方法，本研究研究了可微特征聚类在图像篡改领域中的应用。本研究基于特征本身的空间关系在时间复杂度O（N2）的情况下实现了可微的特征聚类方法，实现了图像篡改的端到端的训练。在多个数据集上的实验结果表明，其是有用的。</p><p>1 引言</p><p>​  现有的图像篡改网络一般都是基于特征提取器+分类头/定位头的方式使用交叉熵等进行训练，但随着发展，对特征进行约束成为了一种辅助手段，例如网络A等使用infoNCE损失辅助监督网络、网络B等使用三元组损失辅助监督网络或者作为网络的预训练模块。<br/>​  FOCAL提出只使用infoNCE损失来监督网络，这中弱监督却取得了比交叉熵等强监督更好的效果。但这也有些不足，其在推理阶段使用kmeans方法对特征进行聚类得到低分辨率的结果，然后插值得到最后预测mask，在这个过程中，应该kmeans不可微，所以无法使用端到端的训练方法优化网络。<br/>​  基于以上问题，本文提出了一种基于区域自定义池化的可微聚类方法，来代替kmeans方法来实现网络的端到端训练。<br/>​  综上所述，本文的贡献如下：</p><p>2 方法</p><p>2.1 基于区域自定义池化的可微聚类方法</p><p>3 实验</p><p>3.1 设置</p><p>3.2 结果</p><p>3.3 消融研究</p><p>4 结论</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Loupe:A Generalizable and Adaptive Framework for Image Forgery Detection</title>
+      <link href="/Loupe/"/>
+      <url>/Loupe/</url>
+      
+        <content type="html"><![CDATA[<p>Loupe: A Generalizable and Adaptive Framework for Image ForgeryDetection</p><p>Yuchu Jiang1,2∗， Jiaming Chu2,3∗， Jian Zhao2,5∗， Xin Zhang2,4，XuYang1†， Lei Jin3， Chi Zhang2， Xuelong Li2†</p><p>1 东南大学<br/>2 EVOL Lab, TeleAI of China Telecom<br/>3北京邮电大学<br/>4 兰州大学<br/>5 西北工业大学</p><h1 id="摘要">摘要</h1><p>​  生成模型的迅猛发展引发了人们对视觉内容伪造的严重担忧。现有的深度伪造检测方法主要针对图像级分类或像素级定位。虽然部分方法能达到高精度，但往往存在泛化能力不足的问题，或是依赖复杂的架构设计。本文提出名为<strong>Loupe</strong>的轻量级框架，该框架能有效实现深度伪造的联合检测与定位。Loupe通过整合补丁感知分类器与带条件查询的分割模块，实现了全局真实性分类与细粒度掩码预测的同步处理。为增强对测试集分布偏移的鲁棒性，该模型创新性地采用伪标签引导的测试时自适应机制，利用补丁级预测结果对分割头进行监督学习。基于DDL数据集的大量实验表明，Loupe模型在IJCAI2025深度伪造检测与定位挑战赛中以0.846的综合得分稳居榜首。我们的研究结果验证了提出的补丁级融合与条件查询设计方案，在不同伪造模式下均能有效提升分类准确率和空间定位精度。相关代码可在https://github.com/Kamichanw/Loupe获取。</p><h1 id="引言">1 引言</h1><p>​  生成式人工智能领域的最新突破[Croitoru <em>et al.</em>, 2023;Shuai<em>et al.</em>, 2024; Zhan <em>et al.</em>,2023]显著提升了生成逼真高质量图像的能力，使得创作高度还原现实世界的数字内容成为可能。然而这些技术进步也引发了重大隐忧——特别是针对制造欺骗性内容的恶意应用风险，这类内容往往旨在误导公众或篡改历史叙事。针对这些风险，计算机视觉领域正积极研发先进的深度伪造检测技术。现有方法[Lin<em>et al.</em>, 2024a; Yan <em>et al.</em>,2023]主要侧重于评估整幅图像的真实性（即真实或伪造），同时也有新兴研究方向专注于定位篡改区域[Guo<em>et al.</em>, 2023;Li <em>et al.</em>,2024]。<br/>​  具体而言，早期方法主要依赖视觉网络（如卷积神经网络CNN和视觉变换器ViT）[Pei<em>et al.</em>, 2024; Guo <em>et al.</em>, 2023;Li <em>et al.</em>,2024]或频域分析[Pei <em>et al.</em>,2024; Kwon <em>et al.</em>, 2022;Tan <em>et al.</em>,2024]来提取生成对抗网络或扩散模型生成图像的特征，以实现伪造检测与定位。然而，这些方法通常架构复杂且领域特定，对不同生成技术产生的图像普遍性较差[Pei<em>et al.</em>, 2024; Lin <em>et al.</em>,2024b]。另一方面，近期研究采用视觉-语言模型（VLMs）[Huang <em>etal.</em>, 2024; Kang <em>et al.</em>,2025]，这类模型在提供可解释性的同时实现了伪造检测与定位，并展现出优异性能。但VLMs所需的庞大计算资源限制了其实际应用。因此，开发一种计算效率高、结构简洁且能跨多种伪造技术泛化的解决方案至关重要。<br/>​  本文提出了一种名为Loupe的创新框架，用于图像伪造检测和伪造区域定位，旨在同时进行真实性分类和精确的篡改区域定位。Loupe集成了图像编码器、分类器和分割器，共同建模了真实性验证和伪造区域定位任务。在测试阶段引入监督信号以实现动态自适应，是我们研究的核心目标。需要指出的是，图像级分类通常比像素级分割复杂度更低，这意味着分类网络往往能取得更优性能。值得庆幸的是，随着大规模视觉预训练技术的突破，当前最先进的视觉骨干网络已可直接应用于密集预测任务，无需构建复杂的分割网络架构[Bolya<em>et al.</em>, 2025;Tschannen <em>et al.</em>, 2025; Oquab <em>etal.</em>, 2023; Kerssies <em>etal.</em>,2025]。因此，在我们的分类器中，除了传统的全图像预测外，我们还结合了分块预测，从而得到低分辨率的掩膜预测。这种掩码预测结果在测试时可作为伪标签使用，起到监督信号的作用来指导分割器。此外，将分块级预测结果与传统的全图预测结果相结合，即可得到最终结果。这种融合策略增强了图像级预测的鲁棒性和可靠性。<br/>​  我们在DDL数据集[Organizers]上评估了Loupe的有效性。在验证集上，分类AUC达到0.946，而分割IoU和F1分数分别达到0.880和0.886。在测试集上，分类AUC达到0.963，分割IoU和F1分数分别为0.756和0.819。值得注意的是，测试集存在轻微的分布偏移，包含训练集中未出现的伪造技术。尽管如此，Loupe仍展现出稳健的性能表现，这证实了所提出的框架本身及测试时自适应方法的有效性。</p><h1 id="方法">2 方法</h1><p>​  图1展示了Loupe的整体架构，包含三大核心组件：图像编码器、分类器和分割器（由条件像素解码器与掩码解码器构成）。</p><figure><img src="../postimages/Loupe/image-20250726223355057.png"alt="image-20250726223355057" /><figcaption aria-hidden="true">image-20250726223355057</figcaption></figure><p>​  训练过程分为两个阶段：第一阶段冻结图像编码器，训练分类头；第二阶段则在保持编码器冻结的情况下训练分割头。各阶段的具体方法详见第2.1节和第2.2节。第2.3节将详细说明如何运用Loupe实现测试时的自适应调整。</p><h2 id="第一阶段分类">2.1 第一阶段：分类</h2><p>​  在第一阶段，我们训练分类头来判断输入图像是否真实或伪造。给定一张图像<spanclass="math inline">\(I\in{\mathbb R}^{3\times H\timesW}\)</span>（其中H和W分别表示图像的高度和宽度），首先通过图像编码器处理生成特征表征<spanclass="math inline">\(F_{16}\in{\mathbb R}^{H/16\times W/16\timesD}\)</span>（其中D表示图像编码器的输出维度，假设其块尺寸为16）。随后将生成的特征图F传递给块感知分类器进行分析。</p><figure><img src="../postimages/Loupe/image-20250726223724034.png"alt="image-20250726223724034" /><figcaption aria-hidden="true">image-20250726223724034</figcaption></figure><p>​  如图2a所示，该补丁感知分类器的架构设计包含三个核心模块：首先通过池化层提取全图像全局特征，随后将这些特征输入多层感知机（MLP）进行全局预测；接着独立运行的MLP模块对每个图像像素进行局部特征分析，生成局部预测结果；最终通过简单的线性层融合全局与局部预测信息，输出最终分类结果<spanclass="math inline">\(\haty\)</span>。<br/>​  在图像真实性分类任务中，伪造样本的数量通常远少于真实样本。为缓解类别不平衡问题（即多数类可能主导学习过程），我们采用多焦点损失函数${L}_{patch}<span class="math inline">\([Leng *etal.*,2022]作为样本预测的监督目标：\)</span><spanclass="math inline">\({\mathcal{L}}_{\mathrm{patch}}={\frac{1}{N}}\sum_{i=1}^{N}\left[-\alpha(1-p_{i})^{\gamma}\log(p_{i})+\epsilon(1-p_{i})^{\gamma+1}\right].\)</span>$​  其中，N = H/16×W/16表示总补丁数量，<spanclass="math inline">\(p_i\)</span>代表第i个补丁中伪造类别的预测概率，α和γ是focal损失系数，而ϵ则是多项式项的缩放因子。这种公式设计能促使模型更关注难样本或代表性不足的样本。<br/>​  此外，全局预测采用标准二元交叉熵损失<spanclass="math inline">\({\mathcal{L}}_{\mathrm{global}}\)</span>进行监督。最终分类损失由补丁级损失与全局损失之和构成：<spanclass="math display">\[{\mathcal{L}}_{\mathrm{cls}}={\mathcal{L}}_{\mathrm{patsh}}+{\mathcal{L}}_{\mathrm{global}}.\]</span></p><h2 id="第二阶段分割">2.2 第二阶段：分割</h2><p>​  在第二阶段，我们训练分割头生成像素级掩码。参照DetVit[Li <em>etal.</em>, 2022]的方法，我们在图像编码器输出的<spanclass="math inline">\(F_{16}\)</span>特征图上应用轻量级特征金字塔网络（FPN），提取1/4、1/8、1/16和1/32分辨率的多尺度特征，最终得到{F4，F8，F16，F32}四个层级的特征流<spanclass="math inline">\(F_i\in{\mathbb R}^{D\times H_i\timesW_i}\)</span>。在分割预测环节，我们采用Mask2Former[Cheng <em>etal.</em>,2022]架构。作为第一步，为增强特征信息，我们引入了改进版的条件像素解码器。在第i层中，特征图<spanclass="math inline">\(F_{i}\ \in\\{F_{4},F_{8},F_{16},F_{32}\}\)</span>通过多尺度可变形注意力机制（MSDA，multi-scaledeformable attention）进行优化，输出处理后的特征流<spanclass="math inline">\(\tildeF_i\)</span>。该过程实现了跨空间分辨率的信息自适应聚合，同时保持计算效率。<br/>​  为支持第2.3节提出的伪标签引导式测试时自适应机制，MSDA生成的特征通过交叉注意力层进行深度处理。</p><figure><img src="../postimages/Loupe/image-20250726223724034.png"alt="image-20250726223724034" /><figcaption aria-hidden="true">image-20250726223724034</figcaption></figure><p>​  如图2b所示，这些特征在与条件查询交互的过程中，不仅实现了空间聚合的精准控制，还整合了高层次语义信息，使后续掩码解码器能够生成兼具语义深度与空间精度的掩码。在此过程中，多尺度特征被转化为既保持分辨率一致性又富含语义内涵的表征形式。<br/>​  掩码解码器的结构和训练流程与Mask2Former保持一致。与第2.1节所述的补丁分类方法类似，我们采用多焦点损失函数替代标准二元交叉熵进行监督分割分类。为有效缓解模型过度预测真实区域（如漏检）的问题，我们引入Tversky损失函数<spanclass="math inline">\({\mathcal L}_{tversky}\)</span> [Salehi <em>etal.</em>, 2017]作为辅助目标函数： <spanclass="math display">\[{\mathcal{L}}_{\mathrm{twrsky}}=1-{\frac{\mathbf{TP}}{\mathrm{TP}+\alpha\cdot\mathbf{FP}+\beta\cdot\mathbf{FN}}},\]</span>​  其中TP、FP和FN分别表示真阳性、假阳性和假阴性的数量。系数α和β用于调节假阳性和假阴性的惩罚值，从而在精确度与召回率之间进行权衡。在实验中，我们设定α= 0.3和β =0.7，以优先保证召回率并减少对伪造区域的漏检。<br/>​  总损失函数的表达式为：<spanclass="math display">\[\mathcal{L}_{\mathrm{seg}}=\lambda_{1}{\mathcalL}_{\mathrm{mask}}+\lambda_{2}{\mathcalL}_{\mathrm{twesky}}+\lambda_{3}{\mathcal L}_{\mathrm{box}},\]</span>​  其中，<span class="math inline">\({\mathcalL}_{\mathrm{mask}}\)</span>是使用多焦点损失来处理类别不平衡的分类损失函数，该函数会赋予少数类（伪造区域）更高的权重。<spanclass="math inline">\({\mathcalL}_{\mathrm{box}}\)</span>是边界框损失函数，其中使用匈牙利匹配将预测的边界框最优地分配到真实伪造区域，确保预测伪造区域的空间一致性。</p><h2 id="伪标签引导的自适应">2.3 伪标签引导的自适应</h2><p>​  如第1节所述，传统伪造检测方法普遍存在泛化能力不足的问题，导致在面对分布外（OOD，out-of-distribution）数据的真实场景中难以有效应用。因此，在测试阶段如何有效利用已训练模型成为关键挑战。针对这一难题，我们提出了一种创新方案——通过在测试阶段向分割框架注入监督信号，为模型训练提供持续优化的反馈机制。<br/>​  为实现这一目标，在第二阶段训练过程中，我们定义了两个可学习的嵌入向量来表征“真实”与“伪造”两种语义类别。根据真实标签，系统会选取对应的嵌入向量与条件像素解码器中的图像特征Fi进行交互。测试时，我们将分类器的最终输出作为伪标签，通过在两个语义嵌入向量之间进行插值处理，为像素解码器提供额外约束条件。将补丁级别的预测结果视为低分辨率掩膜，随后将其输入掩膜解码器进行监督学习。</p><h1 id="实验">3 实验</h1><h2 id="设置">3.1 设置</h2><h2 id="结果">3.2 结果</h2><h2 id="消融研究">3.3 消融研究</h2><h1 id="结论">4 结论</h1><p>​  在本工作中，我们引入了Loupe，这是一个统一和高效的框架，用于深度伪造检测和伪造区域定位。通过将补丁感知分类器与条件像素解码器相结合，Loupe在保持架构复杂度极低的同时，实现了全局与局部预测的鲁棒性。此外，我们提出了一种伪标签引导的测试时自适应机制，有效提升了模型在分布偏移下的泛化能力。在DDL数据集上的大量实验表明，Loupe取得了业界领先的表现，在IJCAI2025深度伪造检测与定位挑战赛中超越了所有竞争对手。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Neural Clustering based Visual Representation Learning</title>
       <link href="/Neural-Clustering-based-Visual-Representation-Learning/"/>
       <url>/Neural-Clustering-based-Visual-Representation-Learning/</url>
       
@@ -18,6 +44,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -30,6 +62,12 @@
         <content type="html"><![CDATA[<p>Mind marginal non-crack regions: Clustering-inspired representationlearning for crack segmentation</p><p>Zhuangzhuang Chen, Zhuonan Lai, Jie Chen, Jianqiang Li *</p><p>中国深圳，深圳大学</p><h1 id="摘要">摘要</h1><p>​  裂缝分割数据集在获取真实裂缝或非裂缝标签时，始终致力于实现最大程度的清晰度。然而观察发现，在处理边缘非裂缝区域时，由于对比度不足和纹理异质性，模糊性问题依然难以避免。为解决这一难题，我们提出了一种基于聚类启发的表征学习框架，该框架包含自动裂缝分割的双阶段策略。第一阶段通过预处理步骤实现边缘非裂缝区域的精确定位。为此，我们提出了一种模糊感知分割损失（AsegLoss，<em>ambiguity-aware segmentationloss</em>），通过学习分割方差来捕捉上述区域的模糊特征，从而帮助裂纹分割模型更精准地定位这些区域。在第二阶段，为学习这些区域的判别性特征，我们设计了聚类启发式损失（CILoss，<em>clustering-inspiredloss</em>），将监督学习模式转变为无监督聚类方式。我们证明了所提出的方法可以在各种数据集和我们构建的CrackSeg5k数据集上超越现有的裂纹分割模型。</p><h1 id="引言">1.引言</h1><p>​  混凝土结构健康监测在工业场景中具有关键作用[24,29,32,45]，其中裂缝分段检测是最后也是不可或缺的环节。随着混凝土结构老化，维护需求日益增加，若处理不当将导致结构健康状况恶化或出现缺陷[20,22]。因此我们认为，在严重劣化发生前及时修复裂缝至关重要，这能有效减轻人工维护负担[5]。然而，由于对比度低、纹理异质性以及没有领域知识的分割区域的不确定性，边缘非裂纹区域的模糊性仍然是不可避免的。考虑到这一点，裂缝的像素级分割仍然是一个挑战[3,7,63]。<br/>​  当前，深度学习技术的突飞猛进也推动了裂缝分割任务的研究[8,32,41]。例如，DeepCrack[67]提出了一种基于多阶段融合的裂缝分割方法，该方法源自常用的编码器-解码器架构（SegNet[2]）。受ViT [51]启发，Crackformer[32]开发出裂缝transformer网络，通过捕捉长程交互来实现细粒度裂缝分割。JTFN[8]则巧妙利用边界信息，将裂缝边界作为额外监督项应用于裂缝分割任务。然而，这些方法有一个关键的限制：由于边缘非裂纹区域的模糊性，无法提取出区分特征。也就是说，与自然图像中的物体不同，由于裂纹与非裂纹区域之间的对比度较低，可能不存在明显的结构边界。因此，当遇到边缘非裂纹区域的模糊标签时，裂纹分割模型很难提取出判别性特征。为验证这一结论，图1(b)直观展示了裂纹区域与边缘非裂纹区域的像素特征。可以观察到，在特征空间中投影的各类像素分布范围较广，且裂纹/非裂纹特征相互交织并靠近类别边界。因此，与以往仅关注裂纹边界学习的方法不同，我们认为通过解决边缘非裂纹区域的模糊性问题，仍有提升裂纹分割性能的空间。<br/>​  本文提出了一种基于聚类的表征学习框架（CIRL），采用两阶段方法解决上述问题。具体而言，第一阶段首先在预处理中定位边缘非裂纹区域。随后，为捕捉这些区域的模糊性特征，我们创新性地提出了基于Wasserstein距离[1]的Aseg损失函数，用于学习分割方差。借助这种方差信息，我们能够更精准地识别出存在模糊性的区域。直观来看，这些模糊区域往往带有模糊标签，这使得裂缝分割模型难以学习到区分性特征。为此，在第二阶段我们提出了新思路：将现有监督学习方法转变为无监督聚类方式，并借鉴共识理论——特征空间中的局部邻近点更可能属于同一簇，其预测结果应比其他特征[10,59]更具相似性。基于上述研究，我们提出了一种受聚类启发的损失函数——CI损失函数，其核心目标是让邻近特征产生相似预测结果，而远距离特征则呈现差异性预测。值得注意的是，该方法可便捷地集成到大多数裂纹分割模型中。此外，通过整合Aseg和CI损失函数，该方法的灵活性显著提升了裂纹分割模型对裂纹区域的精准分割能力。综上所述，本研究的主要贡献包括：</p><ul><li>据我们所知，这是首个针对边缘非裂纹区域模糊性问题的研究。为此，本文提出了一种受两阶段聚类启发的表征学习（CIRL）框架，旨在摆脱这些模糊标签带来的干扰。</li><li>本文提出了一种模糊感知分割损失（AsegLoss），通过学习分割方差，使裂缝分割模型能够捕捉边缘非裂缝区域的模糊性。</li><li>一种聚类启发式损失函数（CILoss）通过将现有监督学习转换为模糊区域的无监督聚类方式，实现了CIRL的目标。</li><li>大量实验验证了所提出的方法在公共数据集和我们构建的CrackSeg5k数据集上的优越性。</li></ul><h1 id="相关工作">2.相关工作</h1><h2 id="裂缝分割">2.1裂缝分割</h2><h2 id="裂缝分割损失">2.2.裂缝分割损失</h2><h2 id="深度聚类学习">2.3.深度聚类学习</h2><p>​  鉴于我们的方法旨在对模糊区域进行无监督聚类学习，我们在此简要回顾相关研究进展。当前深度聚类方法大致可分为两类：一类是交替或同步学习特征表示与聚类分配。第一类方法中，DAC[4]和DCCM[56]可作为典型范例，它们交替更新聚类分配与样本间相似度。第二类方法则致力于最大化样本与其增强数据之间的互信息[10]。受对比学习启发，许多无监督聚类方法[9,62]通过结合信息非对称编码（InfoNCE）[42]来构建更优的特征空间。值得注意的是，NNCLR[13]提出了一种创新方案——在对比学习中利用潜在空间中的最近邻作为正样本。但该方法存在一个缺陷：负样本可能包含同类别样本。此外，由于其增强处理仅在图像层面进行，因此难以直接应用于像素级裂缝分割任务。<br/>​  我们提出的CIRL方法与先前专注于裂纹分割模糊性的方法具有相同的研究目标。但本研究在三个方面独具特色：<br/>​  (1)本文聚焦于边缘非裂纹区域而非裂纹边界，因此在处理标注错误时，相比基于边缘或边界关键点的方法，我们的方法对误差的敏感度更低；<br/>​  (2)创新设计的Aseg损失函数能帮助网络学习边缘非裂纹区域的分割差异，从而更精准地定位模糊区域；<br/>​  (3)CI损失函数专门针对像素级裂纹分割任务中的模糊区域问题，通过构建两组特征集进行无监督聚类学习，突破了现有对比聚类学习中仅使用正负样本的传统框架。</p><h1 id="方法">3.方法</h1><p>​  本节将介绍我们提出的两阶段CIRL方法，该方法包含两个连续阶段。具体而言，我们首先在第3.1节阐述CIRL的动机。接下来的第一阶段专注于学习边缘非裂纹区域的模糊性特征，从而准确定位这些模糊区域（第3.2节）。随后第二阶段将监督学习转变为无监督聚类学习来处理模糊区域（第3.3节）。图3展示了我们方法的整体框架。</p><figure><imgsrc="../postimages/Mind-marginal-non-crack-regions/image-20250721225401970.png"alt="image-20250721225401970" /><figcaption aria-hidden="true">image-20250721225401970</figcaption></figure><p>(1)我们的网络首先在模糊感知分割损失（LAseg）的监督下，引入一个标准头来估计标准差并进行分割。随后，学习到的方差图帮助我们在边缘非裂纹区域精确定位模糊区域。(2)我们进一步将现有监督学习问题中这些模糊区域的处理方式转变为无监督聚类模式。随后，我们提出了一种基于聚类启发的损失函数（LCI），帮助网络摆脱模糊标签的干扰并学习判别性特征。移除了标准头模块后，仅需主干网络和分割头即可完成预测任务。因此，我们的框架在推理阶段不会引入额外的计算量和内存占用。</p><h2 id="动机">3.1.动机</h2><p>​  CIRL从一个直观的想法开始：由于裂缝和非裂缝区域之间的对比度较低，因此在边缘的非裂缝区域中存在歧义。因此，这些区域的标签很可能不明确，使得现有的裂缝分割模型很难学习判别性特征。<br/>​  为验证这一直觉，我们在CrackSeg5k数据集上开展实验。具体而言，我们首先在二元交叉熵（BCE）损失函数[11]的监督下训练Crackformer[32]模型，并从随机选取的训练样本中提取裂缝区域及边缘非裂缝区域的像素特征。在预处理阶段，基于真实裂缝分割图<spanclass="math inline">\(y^{gt}\)</span>，通过OpenCV中的膨胀操作生成边缘非裂缝区域图M，具体流程如下：<span class="math display">\[M=d i l a t e(y^{g t})-y^{g t},\]</span>​  其中，dilate（·）表示使用5×5核大小的膨胀操作。随后，我们采用t-SNE[50]算法对图1(b)中裂纹像素与非裂纹像素的特征进行可视化处理，并用不同颜色区分显示。可以观察到，在特征空间中部分裂纹像素与非裂纹像素存在纠缠现象。究其原因，部分处于边缘非裂纹区域的像素具有与裂纹像素相似的外观特征。因此，在训练裂纹分割模型时，直接利用这些区域的标签信息是不明智的做法。<br/>​  在上述讨论的基础上，我们通过额外实验验证了裂缝分割任务中边缘非裂纹区域需要精心设计的解决方案。首先，我们将CrackSeg5k的训练集随机划分为四个子训练集。然后，我们利用上述子训练集以两种方式在BCE损失的监督下训练Crackformer：1）利用边缘非裂纹区域的标签进行训练。2）通过等式1，将边缘非裂纹区域排除在训练之外。这种现象的根源在于：某些模糊区域若直接用于裂缝分割模型训练，可能会产生负面影响；而其他区域则能通过提供像素级的更多训练样本来提升模型性能。为更直观理解这一现象，我们局部模糊区域的可视化结果可参考图2。从直观判断来看，边缘非裂缝区域中的模糊区域需要进一步精确定位，并与其他区域进行区分处理。</p><h2id="第一阶段学习边缘非裂纹区域的模糊性">3.2.第一阶段：学习边缘非裂纹区域的模糊性</h2><p>​  根据前文讨论，在第一阶段，我们的目标是同时估计分割置信度和分割结果，从而捕捉边缘非裂纹区域的模糊性。为此，对于输入图像中位置（i，j）处的像素，我们的网络会预测一个概率分布<spanclass="math inline">\(P_{i,j}^{\Theta}(y)\)</span>，而非单一标签。在此我们假设每个像素级别的预测标签（即单变量）服从独立高斯分布。由此可得以下公式：<spanclass="math display">\[P_{i,j}^{\Theta}(y)=\frac{1}{\sqrt{2\pi\hat{\sigma}_{i,j}^{2}}}e^{-\frac{\left(y-y_{i,j}^{p}\right)^{2}}{2\hat{\sigma}_{i,j}^{2}}}\]</span>​  其中<spanclass="math inline">\(\Theta\)</span>是包含主干、seg头和std头的可学习参数集合，如图3所示。其中，<spanclass="math inline">\(y_{i,j}^{p}\)</span>和<spanclass="math inline">\({\hat{\sigma}}_{i,j}\)</span>分别表示输入图像中位置（i，j）处的预测标签和估计标准差。当<spanclass="math inline">\({\hat{\sigma}}_{i,j}\)</span>非常接近0时，表明我们的网络对当前预测标签具有高度置信度。需要说明的是，如图3所示，我们的标准头是通过在主干网络上添加一个全连接层来实现的。因此，相应的真值标签<spanclass="math inline">\(y_{i,j}^{gt}\)</span>也可以被表述为高斯分布<spanclass="math inline">\({\mathcalN}(y_{i,j}^{gt},\sigma_{i,j}^{2})\)</span>，其标准差为<spanclass="math inline">\(\sigma_{i,j}^{2}\rightarrow0\)</span>。然后，这个高斯分布可以看作：<spanclass="math inline">\(P_{i,j}^{g t}(y)\;=\;\delta\,\left(y-y_{i,j}^{gt}\right)\)</span>，其中δ（·）表示Diracdelta函数。然后，所提出的Aseg损失可表述如下： <spanclass="math display">\[\begin{aligned}\mathcal{L}_{\mathrm{Aseg}}&amp;=\sum_{i=1}^{H}\sum_{j=1}^{W}\frac{D_{W}\left(P_{i,j}^{\Theta}(y)||P_{i,j}^{gt}(y)\right)}{\lambda+\hat{\sigma}_{i,j}^{2}}\\&amp;=\sum_{i=1}^{H}\sum_{j=1}^{W}\frac{\|y_{i,j}^{p}-y_{i,j}^{gt}\|_{2}^{2}+\hat{\sigma}_{i,j}^{2}}{\lambda+\hat{\sigma}_{i,j}^{2}}\end{aligned}\]</span>​  其中H和W分别表示输入图像的高度和宽度。超参数λ的作用将在后文详细说明。本文采用Wasserstein距离作为距离度量<spanclass="math inline">\(D_W(\cdot)\)</span>，通过最小化<spanclass="math inline">\(P_{i,j}^{\Theta}(y)\)</span>与<spanclass="math inline">\(P_{i,j}^{gt}(y)\)</span>之间的距离来实现优化。同时，<spanclass="math inline">\(D_{W}\left(P_{i,j}^{\Theta}(y)||P_{i,j}^{gt}(y)\right)\)</span>可以通过以下假设展开：</p><p>​  <strong>假设1</strong><br/>​  如前所述，由于将<spanclass="math inline">\(P_{i,j}^{g t}(y)\)</span>视是<em>Diracdelta</em>函数，其表达式为： <spanclass="math display">\[\delta\left(y-y_{i,j}^{gt}\right)=\operatorname*{lim}_{\mu\to y_{i,j}^{gt},\Sigma\to0}\mathcal{N}(\mu,\Sigma),\]</span> ​  因此<spanclass="math inline">\(D_{W}\left(P_{i,j}^{\Theta}(y)||P_{i,j}^{gt}(y)\right)\)</span>可推导为以下方程式： <spanclass="math display">\[D_{W}\left(P_{i,j}^{\Theta}(y)||P_{i,j}^{gt}(y)\right)=\|y_{i,j}^{p}-y_{i,j}^{gt}\|_{2}^{2}+\hat{\sigma}_{i,j}^{2}.\]</span>​  <strong>证明1</strong><br/>​  假设我们在<spanclass="math inline">\(\mathcal R^n\)</span>空间中有两个多元高斯分布<spanclass="math inline">\({\mathcal{N}}_{1}(\mu_{1},\Sigma_{1})\)</span>和<spanclass="math inline">\({\mathcal{N}}_{2}(\mu_{2},\Sigma_{2})\)</span>，那么这两个分布之间的<em>Wasserstein</em>距离可以推导如下：<spanclass="math display">\[W_{2}^{2}({\mathcal{N}}_{1}(\mu_{1},\Sigma_{1}),{\mathcal{N}}_{2}(\mu_{2},\Sigma_{2}))=\|\mu_{1}-\mu_{2}\|^{2}+\left(\Sigma_{1}+\Sigma_{2}-2\left(\sqrt{\Sigma_{1}}\Sigma_{2}\sqrt{\Sigma_{1}}\right)^{\frac{1}{2}}\right)\]</span>​  现在，通过将上述方程式中的变量<spanclass="math inline">\(\delta\left(y-y_{i,j}^{g t}\right)\)</span>和<spanclass="math inline">\({\mathcalN}(y_{i,j}^{gt},\sigma_{i,j}^{2})\)</span>代入，我们可以得到假设1。</p><p>​  值得注意的是，之所以采用Wasserstein距离而非KL散度[17]，是因为后者严重依赖于两个分布[1]之间不可或缺的交集。此外，当<spanclass="math inline">\(y_{i,j}^{p}\)</span>被准确预测时，即，当<spanclass="math inline">\(\|y_{i,j}^{p}-y_{i,j}^{gt}\|_{2}^{2}\rightarrow0\)</span>时，我们的网络预计会产生更小的方差。基于这一考量，我们在公式等式3中新增了项<spanclass="math inline">\(\lambda+\hat{\sigma}_{i,j}^{2}\)</span>，其作用机制如下：由于边缘非裂纹区域存在模糊性，当预测标签与真实标签不一致时（即<spanclass="math inline">\(\|y_{i,j}^{p}-y_{i,j}^{gt}\|_{2}^{2}&gt;\lambda\)</span>时），<spanclass="math inline">\({\mathcal{L}}_{\mathrm{Aseg}}\)</span>的最小化过程将促使网络生成更大的方差参数<spanclass="math inline">\(\hat{\sigma}_{i,j}^{2}\)</span>。为确保数值稳定性，我们实际采用对数方差参数<spanclass="math inline">\(\hat{s}=\log\hat{\sigma}_{i,j}^{2}\)</span>进行预测，并据此重新构建公式等式3如下：<spanclass="math display">\[\begin{aligned}\mathcal{L}_{\mathrm{Aseg}}&amp;=&amp;\sum_{i=1}^{H}\sum_{j=1}^{W}\frac{D_{W}\left(P_{i,j}^{\Theta}(y)||P_{i,j}^{gt}(y)\right)}{\lambda+\exp({\hat{s}})}\\&amp;=&amp;\sum_{i=1}^{H}\sum_{j=1}^{W}\frac{\|y_{i,j}^{p}-y_{i,j}^{gt}\|_{2}^{2}+\exp({\hat{s}})}{\lambda+\exp({\hat{s}})}\end{aligned}\]</span>​  现在，由于已学习的方差<spanclass="math inline">\(\sigma_{i,j}^{2}=\exp(\hat{s})\)</span>，位于（i，j）位置的输入像素将通过以下公式判断是否归类为模糊区域：<span class="math display">\[A_{i,j}=\left\{\begin{array}{ll}{1,}&amp;{\mathrm{case}\:\hat{\sigma}_{i,j}^{2}\gt\gamma\;\;\mathrm{and}\;\;M_{i,j}==1}\\{0,}&amp;{\mathrm{case}\:\hat{\sigma}_{i,j}^{2}\leq\gamma\;\;\mathrm{or}\;\;M_{i,j}==0}\end{array}\right.,\]</span>​  其中<spanclass="math inline">\(\gamma\)</span>是一个超参数，用作阈值。根据公式等式1，<spanclass="math inline">\(M_{i,j}=1\)</span>表示当前像素属于边缘非裂纹区域。</p><h2id="第二阶段从监督学习到模糊区域的无监督学习">3.3.第二阶段：从监督学习到模糊区域的无监督学习</h2><p>​  借助前一阶段的辅助，我们能够定位那些标签存在模糊性的区域。若直接在训练过程中使用这些标签，将会产生不可控的影响。为此，在第二阶段我们提出了聚类启发式损失函数（CILoss），其采用无监督特征聚类的方式，其核心思想在于：在特征空间中位置相近/相距较远的特征，其预测结果应呈现一致性/差异性。<br/>​  给定输入图像<spanclass="math inline">\(\mathcal I\)</span>，设<spanclass="math inline">\(S_{\mathcalI}\)</span>表示通过等式8算法确定的模糊区域所有像素的特征集合。<spanclass="math inline">\({\mathcal F}_m\)</span>和<spanclass="math inline">\({\mathcal F}_n\)</span>分别代表<spanclass="math inline">\(S_{\mathcalI}\)</span>表中两个像素的特征值，并对应着预测概率<spanclass="math inline">\(p_m\)</span>和<spanclass="math inline">\(p_n\)</span>。受文献[14,59]启发，我们定义<spanclass="math inline">\(p_{m,n}\)</span>为<spanclass="math inline">\({\mathcal F}_m\)</span>和<spanclass="math inline">\({\mathcal F}_n\)</span>具有相同预测结果的概率：<spanclass="math display">\[p_{m,n}=\frac{e^{p_{m}^{T}p_{n}}}{\sum_{\mathcal{F}_{q}\inS_{\overline{r}}}e^{p_{m}^{T}p_{q}}}.\]</span> ​  对于<spanclass="math inline">\(S_{\mathcal I}\)</span>中的每个特征<spanclass="math inline">\({\mathcalF}_m\)</span>，我们定义了两个集合：邻近特征集<spanclass="math inline">\({\mathcal C}_m\)</span>和远端特征集<spanclass="math inline">\({\mathcalO}_m\)</span>。前者通过余弦相似度作为距离度量，从<spanclass="math inline">\(S_{\mathcal I}\)</span>中选取<spanclass="math inline">\({\mathcalF}_m\)</span>的K个最近邻；后者则是通过排除<spanclass="math inline">\({\mathcal C}_m\)</span>和<spanclass="math inline">\({\mathcal F}_m\)</span>后剩余的<spanclass="math inline">\(S_{\mathcalI}\)</span>特征构建而成。回到研究初衷，对于每个特征<spanclass="math inline">\({\mathcal F}_m\)</span>而言，其在<spanclass="math inline">\({\mathcal O}_m\)</span>中的预测结果应比在<spanclass="math inline">\({\mathcalC}_m\)</span>中更显著地表现出不一致性。基于此，我们定义了<spanclass="math inline">\({\mathcal F}_m\)</span>与<spanclass="math inline">\({\mathcal C}_m\)</span>之间的似然函数： <spanclass="math display">\[P\left({\mathcalC}_m\mid{\mathcal{F}}_{m},\theta_{\mathcal{B}},\theta_{\mathcal{S}}\right)=\prod_{\mathcal{F}_{n}\in{\mathcal C}_{m}}p_{m,n}=\prod_{\mathcal{F}_{n}\in {\mathcalC}_{m}}{\frac{e^{p_{m}^{T}p_{n}}}{\sum_{\mathcal{F}_{q}\in {S}_{\mathcalI}}e^{p_{m}^{T}p_{q}}}},\]</span> ​  其中<spanclass="math inline">\(\theta_{\mathcal{B}}\)</span>和<spanclass="math inline">\(\theta_{\mathcal{S}}\)</span>分别表示网络中主干和seg头部的参数。类似地，<spanclass="math inline">\({\mathcal{F}}_{m}\)</span>与<spanclass="math inline">\({\mathcal{O}}_{m}\)</span>之间的似然函数可定义如下：<span class="math display">\[P\left({\mathcalO}_m\mid{\mathcal{F}}_{m},\theta_{\mathcal{B}},\theta_{\mathcal{S}}\right)=\prod_{\mathcal{F}_{n}\in{\mathcal O}_{m}}p_{m,n}=\prod_{\mathcal{F}_{n}\in {\mathcalO}_{m}}{\frac{e^{p_{m}^{T}p_{n}}}{\sum_{\mathcal{F}_{q}\in {S}_{\mathcalI}}e^{p_{m}^{T}p_{q}}}},\]</span>​  现在，我们可以通过最小化以下负对数似然函数来实现我们的聚类启发式损失的目标：<span class="math display">\[\psi({\mathcal C}_m,{\mathcal O}_m)=-l og{\frac{P\left({\mathcalC}_m\mid{\mathcal{F}}_{m},\theta_{\mathcal{B}},\theta_{\mathcal{S}}\right)}{P\left({\mathcalO}_m\mid{\mathcal{F}}_{m},\theta_{\mathcal{B}},\theta_{\mathcal{S}}\right)}}.\]</span>​  注意到当<span class="math inline">\(S_{\mathcalI}\)</span>非常大时，计算上述方程是低效的甚至是不现实的，考虑到这一点，我们通过以下命题推导出一个上界作为替代方案。</p><p>​  <strong>假设2</strong><br/>​  假设<spanclass="math inline">\(|{\mathcal O}_m|\)</span>显著大于<spanclass="math inline">\(|{\mathcal C}_m|\)</span>，那么我们得到一个由<spanclass="math inline">\(\psi({\mathcal C}_m,{\mathcalO}_m)\)</span>给出的上界。 <span class="math display">\[\begin{aligned}&amp;\psi(\mathcal{C}_{m},\mathcal{O}_{m})=-log\frac{P\left(\mathcal{C}_{m}\mid\mathcal{F}_{m},\theta_{\mathcal{B}},\theta_{\mathcal{S}}\right)}{P\left(\mathcal{O}_{m}\mid\mathcal{F}_{m},\theta_{\mathcal{B}},\theta_{\mathcal{S}}\right)}\\ &amp;\leq-\sum_{\mathcal{F}_{n}\in\mathcal{C}_{m}}p_{m}^{T}p_{n}+\frac{|\mathcal{C}_{m}|}{|\mathcal{O}_{m}|}\sum_{\mathcal{F}_{k}\in\mathcal{O}_{m}}p_{m}^{T}p_{k}+(|\mathcal{C}_{m}|-|\mathcal{O}_{m}|)\log|S_{\mathcal{I}}|\\ &amp;=\overline{\psi}(\mathcal{C}_{m},\mathcal{O}_{m})\end{aligned}\]</span>​  <strong>证明2</strong><br/>​  根据等式10-12，我们有<spanclass="math inline">\(\psi({\mathcal C}_m,{\mathcal O}_m)\)</span>：<span class="math display">\[\begin{aligned} &amp; \psi({\mathcalC}_m,{\mathcal O}_m)\\ &amp;=-\sum_{\mathcal{F}_{n}\in\mathcal{C}_{m}}p_{m}^{T}p_{n}+\sum_{\mathcal{F}_{k}\in\mathcal{O}_{m}}p_{m}^{T}p_{k}+(|\mathcal{C}_{m}|-|\mathcal{O}_{m}|)\log\left(\sum_{\mathcal{F}_{q}\inS_{\mathcal{I}}}e^{p_{m}^{T}p_{q}}\right) \\ &amp;\leq\sum_{\mathcal{F}_{n}\in\mathcal{C}_{m}}p_{m}^{T}p_{n}+\sum_{\mathcal{F}_{k}\in\mathcal{O}_{m}}p_{m}^{T}p_{k}+(|\mathcal{C}_{m}|-|\mathcal{O}_{m}|)\left(\sum_{\mathcal{F}_{q}\inS_{\mathcal{I}}}\frac{p_{m}^{T}p_{q}}{|S_{\mathcal{I}}|}+\log|S_{\mathcal{I}}|\right)\\ &amp;\approx\sum_{\mathcal{F}_{n}\in\mathcal{C}_{m}}p_{m}^{T}p_{n}+\sum_{\mathcal{F}_{k}\in\mathcal{O}_{m}}p_{m}^{T}p_{k}+(|\mathcal{C}_{m}|-|\mathcal{O}_{m}|)\left(\sum_{\mathcal{F}_{q}\in\mathcal{O}_{m}}\frac{p_{m}^{T}p_{q}}{|\mathcal{O}_{m}|}+\log|S_{\mathcal{I}}|\right)\\ &amp;=\sum_{\mathcal{F}_{n}\in\mathcal{C}_{m}}p_{m}^{T}p_{n}+\frac{|\mathcal{C}_{m}|}{|\mathcal{O}_{m}|}\sum_{\mathcal{F}_{k}\in\mathcal{O}_{m}}p_{m}^{T}p_{k}+(|\mathcal{C}_{m}|-|\mathcal{O}_{m}|)\log|S_{\mathcal{I}}|\\ &amp;=\overline{\psi}(\mathcal{C}_{m},\mathcal{O}_{m}),\end{aligned}\]</span>​  其中第一个不等式通过满足Jensen不等式成立，因为对数函数log（·）是凹函数。<br/>​  由于我们有<spanclass="math inline">\(S_{\mathcal{I}}\approx \mathcal{C}_{m}\cup\mathcal{O}_{m}\)</span>且<span class="math inline">\(|{\mathcalO}_{m}|\gg|\mathcal C_{m}|\)</span>，因此在假设<spanclass="math inline">\(S_{\mathcal{I}}\)</span>可近似为<spanclass="math inline">\({\mathcalO}_{m}\)</span>的情况下，我们得到了第三个方程。最后，考虑到整个特征集<spanclass="math inline">\(S_{\mathcal{I}}\)</span>，我们定义了如下基于聚类的损失函数：<spanclass="math display">\[{\mathcal{L}}_{\mathrm{CI}}={\frac{1}{|S_{\mathcal{I}}|}}\sum_{\mathcal{L}_{m}\inS_{\mathcal{I}}}\overline\psi({\mathcal C}_m,{\mathcal O}_m).\]</span>​  借助<spanclass="math inline">\({\mathcal{L}}_{\mathrm{CI}}\)</span>，我们能够对模糊区域进行无监督聚类学习。同时，对于剩余区域，我们采用常用的BCE损失函数进行监督训练。通过这种方式，裂缝分割模型能够摆脱模糊标签的干扰，学习到具有区分性的特征。最终，我们的整体损失函数可表示为：<spanclass="math display">\[\mathcal{L}_{\mathrm{total}}=\mathcal{L}_{\mathrm{BCE}}+\beta\mathcal{L}_{\mathrm{Cl}},\]</span>​  其中标量β用于平衡两个损失函数。</p><h1 id="实验">4.实验</h1><p>​  核心实验方案详见第4.1节。为确定CIRL模型中λ、γ和β参数的最佳取值，我们在第4.2节通过多组实验进行验证。为验证方法有效性，我们不仅在第4.3节与现有裂纹分割模型展开对比，还在第4.4节与其他前沿分割损失函数展开横向比较。特别值得关注的是，第4.5节的消融实验首先验证了我们提出的模糊感知分割损失相较于现有不确定性方法的优势，随后通过实证表明，这种受聚类启发的损失函数在裂纹分割任务中显著优于现有的无监督聚类学习方法。</p><h2 id="实验设置">4.1.实验设置</h2><p>​  在本文中，我们基于我们的CrackSeg5k数据集、两个公共的裂缝分割数据集、一个血管分割数据集以及相应的实现细节进行了广泛的实验。</p><p>​  <strong>实施细节</strong><br/>​  我们在PyTorch2框架下使用单块NVIDIARTX3090显卡进行实验。参照前人研究[8]，我们采用水平翻转、随机裁剪和随机旋转（90◦、180◦、270◦）作为数据增强策略。同时，我们沿用了[8]的训练设置——所有样本在训练阶段均被裁剪为256×256尺寸。优化器选用Adam[21]，初始学习率设为10−3，权重衰减系数为5×10−4，小批量大小为2。针对这四个数据集，模型总训练周期为2000个epoch。此外，在训练初期，若标准头未正确学习，所学方差信息量不足。因此，前1000个epoch作为第一阶段，之后模型采用LBCE与LCI联合监督机制（参考等式16)。</p><p>​  <strong>评估指标</strong><br/>​  为评估裂纹分割的像素级准确率，我们参照现有研究[8,19,47]采用F1分数、精确率和召回率作为评估指标。需要特别说明的是，精确率和召回率是通过逐像素比对预测掩膜与真实掩膜来计算得出的。F1分数的计算公式为：<spanclass="math inline">\(F_{1}=2\frac{P r e c t s i o n\times R e c a ll}{P r e c t s i o n+R e c a l l}\)</span>。</p><h2 id="超参数灵敏度研究">4.2.超参数灵敏度研究</h2><p>​  本文引入了四个超参数：λ用于帮助模型捕捉模糊区域，γ用于在第一阶段定位模糊区域，K用于定义邻近区域集合的大小，β则用于在第二阶段平衡BCE损失和CI损失。图4展示了基于JTFN[8]作为基础分割模型，在CrackSeg5k数据集上的超参数敏感性研究结果。</p><figure><imgsrc="../postimages/Mind-marginal-non-crack-regions/image-20250722112013085.png"alt="image-20250722112013085" /><figcaption aria-hidden="true">image-20250722112013085</figcaption></figure><p>​  可以观察到，四个超参数λ、γ、K和β在较大范围内仅分别比最高值降低了1.5%、0.8%、2.0%和1.8%的F1分数，这表明我们提出的方法在实际应用中具有潜力。根据这些观察结果，我们在后续实验中设定λ= 0.3、γ = 0.4、K=4×5和β = 0.2。</p><h2 id="裂缝分割模型的比较">4.3.裂缝分割模型的比较</h2><h2 id="分割损失比较">4.4.分割损失比较</h2><h2 id="消融研究">4.5.消融研究</h2><h1 id="结论">5.结论</h1><p>​  综上所述，边缘非裂纹区域的模糊性会制约当前最先进的裂纹分割模型性能。本文提出了一种基于两阶段聚类启发式表征学习（CIRL）框架，旨在实现更精准的像素级裂纹分割。该框架包含模糊感知分割损失（AsegLoss），促使网络学习预测每个像素的分割方差，从而进一步精确定位模糊区域。随后引入聚类启发式损失（CILoss），用于学习上述区域的判别特征。实验结果表明，我们的方法在裂纹分割任务中超越了现有最优方案和传统损失函数。鉴于先前研究在频域学习判别特征方面表现优异[39,57]，我们计划进一步探索基于特征的数据增强技术[6]和神经元脉冲网络架构[27,28]在裂纹分割中的应用潜力。</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -84,9 +122,7 @@
       
       <categories>
           
-          <category> 无监督 </category>
-          
-          <category> 语义分割 </category>
+          <category> 无监督语义分割 </category>
           
       </categories>
       
@@ -153,12 +189,18 @@
     
     
     <entry>
-      <title>M2SFormer</title>
+      <title>M2SFormer:Multi-Spectral and Multi-Scale Attention with Edge-Aware Difficulty Guidance for Image Forgery Localization</title>
       <link href="/M2SFormer/"/>
       <url>/M2SFormer/</url>
       
-        <content type="html"><![CDATA[<p>M2SFormer: Multi-Spectral and Multi-Scale Attention with Edge-AwareDifficulty Guidance for Image Forgery Localization</p><p>Ju-Hyeon Nam1 ，Dong-Hyun Moon1 ，Sang-ChulLee1,2<br/>1仁荷大学电子与计算机工程系<br/>2DeepCardio</p><h1 id="摘要">摘要</h1><p>​  图像处理技术发展迅猛，既催生了创新应用场景，也催生了数字图像的恶意篡改。基于深度学习的方法在像素级伪造定位方面已取得高精度，但在计算开销和表征能力方面仍存在局限，尤其在应对细微或复杂的篡改时表现欠佳。本文提出M2SFormer，这是一种基于Transformer编码器的创新框架，旨在攻克现有技术难题。与传统方法分别处理空间和频率线索不同，M2SFormer通过在跳跃连接中统一多频段和多尺度注意力机制，借助全局上下文信息，能更精准捕捉各类伪造特征。此外，我们的框架通过采用全局先验图（一种反映伪造检测难度的曲率度量指标）来解决上采样过程中细节丢失的问题。该指标能引导难度导向注意力模块更有效地保留细微操作痕迹。在多个基准数据集上的大量实验表明，M2SFormer模型不仅超越了现有最先进模型，在跨领域检测和定位伪造行为时展现出更强的泛化能力。</p><figure><img src="../postimages/M2SFormer/image-20250715212113564.png"alt="image-20250715212113564" /><figcaption aria-hidden="true">image-20250715212113564</figcaption></figure><h1 id="引言">1.引言</h1><p>​  我们能相信媒体上的信息吗？<br/>​  随着图像编辑技术的飞速发展，数字图像处理能力日益精进，既催生了创意应用，也滋生了恶意篡改[32,36,40,70]。这种现象引发重大社会关切——伪造图像可能导致虚假信息传播、法律纠纷频发、公众信任危机加剧，进而助长社会不稳定[2,49,63]。因此，图像伪造检测技术备受瞩目。早期方法主要采用基于基础手工特征的传统手段，例如JPEG压缩痕迹[54,71]、传感器模式噪声（SPN）[10,35]以及色彩滤光阵列（CFA）插值模式[12,16]。然而这些方法主要聚焦于图像级检测（二元分类），对新型伪造类型存在泛化能力不足的问题[28,67]。<br/>​  随着深度学习时代的到来，像素级伪造检测（二值分割）技术已取得显著进展，曼陀罗网络[67]和SPAN[28]等模型在自动提取伪造痕迹方面表现优异。然而，尽管这些方法成效显著，但其计算成本高昂且表征能力不足，导致对新型伪造类型难以有效泛化[8,77]。近年来，注意力机制的引入[11,27,66]缓解了部分挑战，提升了基于UNet架构编码器-解码器模型的伪造检测效率与性能[23,43,77]。不过，当伪造内容较为隐蔽或与原图高度相似时，现有方法仍存在鉴别困难的问题，导致实际应用场景中的检测效果有所下降[18,41,69]。<br/>​  近年来，频域方法在图像分类[9,38,56,75]、语义分割[4,37,72]和目标检测[39,78]等多个领域得到广泛应用，旨在提升模型对未知领域的泛化能力和抗干扰能力。值得注意的是，相较于依赖空间域线索进行伪造定位的方案，频域信号分析往往能更有效地揭示细微的篡改痕迹[18,21,42,47,55,69]。然而现有研究因效率考量，通常将空间域与频域割裂处理，未能构建统一框架。这导致目前缺乏能同时整合空间与频率信息的统一式注意力机制，主要源于对计算效率的顾虑。由此引出一个关键研究问题：“如何在高效整合空间与频率注意力的同时，有效捕捉细微的伪造特征？”<br/>​  为解决上述问题，我们提出了一种新颖的频率-空间统一注意力机制——在跳跃连接中引入多光谱-多空间（M2S，<em>SpectralandMulti-Spatial</em>）注意力模块，用于伪造检测定位。我们研发的M2S注意力模块包含两大核心机制：频率域与空间域。在频率域方面，我们采用二维离散余弦变换（2DDCT）[1]的基图像生成通道级注意力图。通过选择性地加权相关频率分量，该方法既能精准提取关键频谱信息，又能从多光谱视角完整保留空间上下文特征。在空间域处理方面，我们采用受SIFT启发的特征金字塔结构，精准捕捉剪切粘贴操作产生的细微异常边界线索。通过逐层应用空间注意力机制，有效突显这些伪造特征。同时，我们对每个输入样本进行量化评估，并开发出融合难度引导注意力（DGA）与Transformer模块的解码器——该解码器将难度等级转化为文本表征，并结合通道级注意力机制，显著提升模型应对复杂样本的能力。通过将M2S注意力模块与基于边缘感知DGA的Transformer解码器相结合，我们提出了一种名为M2SFormer的Transformer架构——这是一种新型伪造检测模型，能够充分利用全局依赖关系，并能稳定捕捉不同操作类型、形状和尺寸下的伪造掩码。在多个公开基准数据集上的大量实验表明，M2SFormer不仅超越了现有模型，在跨领域伪造检测中显著提升了泛化性能，还具有更强的适应性。此外，我们在附录（第8节）中详细阐述了M2SFormer在人工智能领域的应用价值。本文的贡献可归纳如下：</p><ul><li>我们提出了一种基于Transformer的新型伪造定位框架M2SFormer，该框架将M2S注意力模块与边缘感知的DGAbasedTransformer解码器高效集成，相比现有方法显著提升了伪造定位性能。</li><li>通过在跳跃连接中整合多光谱与多尺度注意力机制，能更精准捕捉伪造痕迹。此外，全局先验图可量化伪造定位难度，在上采样后引导难度导向注意力模块，从而在复杂区域保留细节特征。</li><li>在多个基准数据集上的大量实验表明，M2SFormer优于现有模型，在跨未见领域的伪造定位中显著提高了泛化性能。</li></ul><p>（实验比较一般，不值得一看）</p>]]></content>
+        <content type="html"><![CDATA[<p>M2SFormer: Multi-Spectral and Multi-Scale Attention with Edge-AwareDifficulty Guidance for Image Forgery Localization</p><p>Ju-Hyeon Nam1 ，Dong-Hyun Moon1 ，Sang-ChulLee1,2<br/>1仁荷大学电子与计算机工程系<br/>2DeepCardio</p><h1 id="摘要">摘要</h1><p>​  图像处理技术发展迅猛，既催生了创新应用场景，也催生了数字图像的恶意篡改。基于深度学习的方法在像素级伪造定位方面已取得高精度，但在计算开销和表征能力方面仍存在局限，尤其在应对细微或复杂的篡改时表现欠佳。本文提出M2SFormer，这是一种基于Transformer编码器的创新框架，旨在攻克现有技术难题。与传统方法分别处理空间和频率线索不同，M2SFormer通过在跳跃连接中统一多频段和多尺度注意力机制，借助全局上下文信息，能更精准捕捉各类伪造特征。此外，我们的框架通过采用全局先验图（一种反映伪造检测难度的曲率度量指标）来解决上采样过程中细节丢失的问题。该指标能引导难度导向注意力模块更有效地保留细微操作痕迹。在多个基准数据集上的大量实验表明，M2SFormer模型不仅超越了现有最先进模型，在跨领域检测和定位伪造行为时展现出更强的泛化能力。</p><figure><img src="../postimages/M2SFormer/image-20250715212113564.png"alt="image-20250715212113564" /><figcaption aria-hidden="true">image-20250715212113564</figcaption></figure><h1 id="引言">引言</h1><p>​  我们能相信媒体上的信息吗？<br/>​  随着图像编辑技术的飞速发展，数字图像处理能力日益精进，既催生了创意应用，也滋生了恶意篡改[32,36,40,70]。这种现象引发重大社会关切——伪造图像可能导致虚假信息传播、法律纠纷频发、公众信任危机加剧，进而助长社会不稳定[2,49,63]。因此，图像伪造检测技术备受瞩目。早期方法主要采用基于基础手工特征的传统手段，例如JPEG压缩痕迹[54,71]、传感器模式噪声（SPN）[10,35]以及色彩滤光阵列（CFA）插值模式[12,16]。然而这些方法主要聚焦于图像级检测（二元分类），对新型伪造类型存在泛化能力不足的问题[28,67]。<br/>​  随着深度学习时代的到来，像素级伪造检测（二值分割）技术已取得显著进展，曼陀罗网络[67]和SPAN[28]等模型在自动提取伪造痕迹方面表现优异。然而，尽管这些方法成效显著，但其计算成本高昂且表征能力不足，导致对新型伪造类型难以有效泛化[8,77]。近年来，注意力机制的引入[11,27,66]缓解了部分挑战，提升了基于UNet架构编码器-解码器模型的伪造检测效率与性能[23,43,77]。不过，当伪造内容较为隐蔽或与原图高度相似时，现有方法仍存在鉴别困难的问题，导致实际应用场景中的检测效果有所下降[18,41,69]。<br/>​  近年来，频域方法在图像分类[9,38,56,75]、语义分割[4,37,72]和目标检测[39,78]等多个领域得到广泛应用，旨在提升模型对未知领域的泛化能力和抗干扰能力。值得注意的是，相较于依赖空间域线索进行伪造定位的方案，频域信号分析往往能更有效地揭示细微的篡改痕迹[18,21,42,47,55,69]。然而现有研究因效率考量，通常将空间域与频域割裂处理，未能构建统一框架。这导致目前缺乏能同时整合空间与频率信息的统一式注意力机制，主要源于对计算效率的顾虑。由此引出一个关键研究问题：“如何在高效整合空间与频率注意力的同时，有效捕捉细微的伪造特征？”<br/>​  为解决上述问题，我们提出了一种新颖的频率-空间统一注意力机制——在跳跃连接中引入多光谱-多空间（M2S，<em>SpectralandMulti-Spatial</em>）注意力模块，用于伪造检测定位。我们研发的M2S注意力模块包含两大核心机制：频率域与空间域。在频率域方面，我们采用二维离散余弦变换（2DDCT）[1]的基图像生成通道级注意力图。通过选择性地加权相关频率分量，该方法既能精准提取关键频谱信息，又能从多光谱视角完整保留空间上下文特征。在空间域处理方面，我们采用受SIFT启发的特征金字塔结构，精准捕捉剪切粘贴操作产生的细微异常边界线索。通过逐层应用空间注意力机制，有效突显这些伪造特征。同时，我们对每个输入样本进行量化评估，并开发出融合难度引导注意力（DGA）与Transformer模块的解码器——该解码器将难度等级转化为文本表征，并结合通道级注意力机制，显著提升模型应对复杂样本的能力。通过将M2S注意力模块与基于边缘感知DGA的Transformer解码器相结合，我们提出了一种名为M2SFormer的Transformer架构——这是一种新型伪造检测模型，能够充分利用全局依赖关系，并能稳定捕捉不同操作类型、形状和尺寸下的伪造掩码。在多个公开基准数据集上的大量实验表明，M2SFormer不仅超越了现有模型，在跨领域伪造检测中显著提升了泛化性能，还具有更强的适应性。此外，我们在附录（第8节）中详细阐述了M2SFormer在人工智能领域的应用价值。本文的贡献可归纳如下：</p><ul><li>我们提出了一种基于Transformer的新型伪造定位框架M2SFormer，该框架将M2S注意力模块与边缘感知的DGAbasedTransformer解码器高效集成，相比现有方法显著提升了伪造定位性能。</li><li>通过在跳跃连接中整合多光谱与多尺度注意力机制，能更精准捕捉伪造痕迹。此外，全局先验图可量化伪造定位难度，在上采样后引导难度导向注意力模块，从而在复杂区域保留细节特征。</li><li>在多个基准数据集上的大量实验表明，M2SFormer优于现有模型，在跨未见领域的伪造定位中显著提高了泛化性能。</li></ul><p>​  为评估各模型性能，我们选取了图像分割领域常用的三个指标：Dice分数系数（DSC）[48]和平均交并比（mIoU）。</p><figure><img src="../postimages/M2SFormer/image-20250726215243569.png"alt="image-20250726215243569" /><figcaption aria-hidden="true">image-20250726215243569</figcaption></figure><figure><img src="../postimages/M2SFormer/image-20250726215303108.png"alt="image-20250726215303108" /><figcaption aria-hidden="true">image-20250726215303108</figcaption></figure><p>​  </p>]]></content>
       
+      
+      <categories>
+          
+          <category> IML </category>
+          
+      </categories>
       
       
     </entry>
@@ -224,6 +266,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -298,6 +346,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -406,13 +460,25 @@
     
     
     <entry>
-      <title>Rethinking_Image_Editing_Detection_in_the_Era_of_Generative_AI_Revolution</title>
+      <title>Rethinking Image Editing Detection in the Era of Generative AI Revolution</title>
       <link href="/Rethinking-Image-Editing-Detection-in-the-Era-of-Generative-AI-Revolution/"/>
       <url>/Rethinking-Image-Editing-Detection-in-the-Era-of-Generative-AI-Revolution/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>Rethinking Image Editing Detection in the Era of Generative AIRevolution</p><p>Zhihao Sun，Haipeng Fang，Juan Cao，Xinying Zhao，Danding Wang∗</p><p>1中国科学院计算技术研究所、中国科学院大学<br/>2中国科学院计算技术研究所</p><h1 id="摘要">摘要</h1><p>​  图像编辑与处理技术对图像内容的真实性、安全性带来严重威胁，因此图像区域篡改检测研究一直是图像处理领域的重要课题。生成式AI的快速发展显著提升了区域生成编辑方法的可行性和有效性，正逐步取代传统图像编辑工具或算法。然而当前研究仍主要聚焦于传统图像篡改领域，目前缺乏包含大量生成式区域编辑方法处理图像的综合性数据集。<br/>​  我们致力于通过构建GRE数据集来填补这一空白，该数据集是一个大规模生成性区域编辑检测数据集，具有以下优势：<br/>​  1）整合了逻辑化与模拟化的编辑流程，利用多种模态下的大型模型；<br/>​  2）包含具有不同特征的各类编辑方法；<br/>​  3）为相关领域提供最先进方法的全面基准测试与评估；<br/>​  4）从必要性、合理性及多样性等多个维度对GRE数据集进行分析。<br/>​  大量实验和深入分析表明，这个更大更全面的数据集将显著提升生成性编辑检测方法的发展水平。相关数据仓库地址为https://github.com/ICTMCG/GRE。</p><h1 id="引言">1 引言</h1><p>​  尽管图像编辑与处理技术丰富了视觉内容，但同时也对各类媒体中的图像真实性与安全性构成重大威胁。因此，图像区域操控检测研究始终是关键课题。近年来，扩散模型在计算机视觉领域掀起AI生成革命，在可控编辑[29,30,46,47]等任务场景中展现出卓越性能。生成式技术的进步降低了编辑成本并提升了效果，正逐步用生成式编辑方法取代传统工具。然而当前检测研究仍聚焦于传统编辑方式，在新型生成式区域操控检测方面仍存在研究空白。<br/>​  与全图生成技术需要精准控制的高难度操作不同，局部编辑方法展现出更强的灵活性，能够对原始图像中的特定内容进行修改[29,42,48]，从而改变其传达的信息。相较于使用PhotoShop等工具的传统手动处理方式，生成式区域编辑不仅对非专业人士更友好便捷，还能实现高质量的编辑效果。</p><figure><imgsrc="../postimages/Rethinking-Image-Editing-Detection-in-the-Era-of-Generative-AI-Revolution/image-20250726220712108.png"alt="image-20250726220712108" /><figcaption aria-hidden="true">image-20250726220712108</figcaption></figure><p>​  图1(a)展示了多种代表性生成式区域编辑方法的性能表现，直观呈现了区分真实图像与编辑图像的难度。如今我们确实可以断言“眼见未必为实”。[21]因此，生成式区域编辑的检测能力值得我们重点关注。<br/>​  本文构建了一个名为生成区域编辑（GRE，GenerativeRegionalEditing）的新型大规模数据集，专注于检测生成性区域编辑任务。基于该数据集，我们建立了跨领域评估现有检测方法的基准体系，并从必要性、合理性及多样性等多个维度对数据集进行分析。大量实验和深入研究证明，这个规模更大、内容更全面的数据集将显著推动生成编辑检测方法的发展。具体而言，GRE数据集相较于现有相关数据集具有以下显著优势：<br/>​  (1)逻辑与模拟编辑流程。过去，小规模区域编辑数据集通过人工操作确保逻辑连贯性（例如避免天空中出现狗的视觉冲突），而大规模数据集则难以通过简单的自动化编辑流程维持逻辑一致性。为确保编辑过程中的逻辑连贯性、增强编辑语义丰富度、适应数据规模扩展及提升系统可扩展性，我们整合了多种超大模型在不同模态下的应用，构建了一个包含感知、创意和实现三大模块的完整图像编辑流程。<br/>​  (2)多元编辑方法研究。在实际应用场景中，我们无法预知编辑工具或方法的具体形式，因此评估检测模型对不同甚至未知编辑方式的泛化能力至关重要。为此，我们选取了多种代表性编辑方法进行深入探究。这些方法在架构设计上存在差异，包括基于生成对抗网络（GAN）、扩散网络以及黑盒方法等类型，其编辑控制机制也各具特色。<br/>​  (3)全面基准测试。除了区分处理图像与真实图像的二分类任务外，通过解答图像被编辑的具体位置和方式，我们还致力于提升图像篡改检测任务在现实媒体取证场景中的可解释性。我们在数据集中提供了多层级标注，并提出了三项核心任务：1）编辑图像分类，判断图像是否经过编辑；2）编辑方法归因，识别图像中使用的编辑手段；3）编辑区域定位，精确定位图像中的篡改区域。通过评估前沿方法在这三项任务上的表现，实验表明虽然像素级定位任务更具挑战性，但在视觉效果丰富的编辑图像中发现篡改元素仍具有重要价值。<br/>​  (4)深入分析。我们通过大量实验对GRE数据集作为基准需要具备的关键特性进行分析，包括其必要性、合理性、多样性等。通过现有数据集的跨数据集实验，我们验证了GRE数据集在解决新型生成性区域编辑检测研究空白方面的必要性。TCAV分析和用户研究证实，该数据集不存在实体偏见，且人工难以区分编辑操作。交叉编辑方法实验突显了生成式编辑方法多样性的价值。这些多维度验证共同表明，GRE是一个高质量的数据集。</p><h1 id="相关工作">2 相关工作</h1><h2 id="数据集的生成与处理">2.1 数据集的生成与处理</h2><p>​  <strong>图像生成</strong><br/>​  近年来，生成图像检测领域备受关注，催生了DeepArt[38]、IEEE VIPCup[36]、DE-FAKE [41]和CiFAKE[2]等众多基准测试，以及GenImage[50]提供的百万级数据集。然而这些数据集中的生成图像主要适用于图像级生成检测任务，难以完全满足编辑区域定位任务的需求。专门构建用于生成区域编辑检测的数据集不仅成本高昂，其像素级自动化编辑流程也比图像级生成任务更为复杂。</p><p>​  <strong>区域图像编辑</strong><br/>​  检测图像中被篡改或编辑的区域始终是长期存在的技术难题。表1汇总了现有数据集的规模、图像来源及编辑方法，这些数据集已被广泛使用并获得业界认可。</p><figure><imgsrc="../postimages/Rethinking-Image-Editing-Detection-in-the-Era-of-Generative-AI-Revolution/image-20250726221155694.png"alt="image-20250726221155694" /><figcaption aria-hidden="true">image-20250726221155694</figcaption></figure><p>​  其中，Columbia[31]、CASIA [5]、Coverage [39]、NIST16 [7]和IMD20[23]主要包含早期非生成式编辑形式（如简单剪切和复制移动）。唯有DEFACTO[22]收录了相对完整的生成式编辑图像数据集。但DEFACTO的自动化编辑流程仍存在明显痕迹。CocoGlide[8]包含512张基于COCO数据集通过GLIDE扩散模型生成的图像。AutoSplice[11]则利用DALL-E2在文本提示引导下进行自动编辑，并辅以人工校验。然而，这些数据集所采用的生成式编辑方法存在局限性，导致其无法为检测模型提供全面分析或泛化能力。</p><h2 id="生成式区域编辑方法">2.2 生成式区域编辑方法</h2><p>​  <strong>基于扩散的方法</strong><br/>​  扩散模型的出现真正推动了生成式编辑方法在便捷性和有效性方面超越了依赖人工干预的操作序列。StableDiffusion[29]代表了一种先进的文本到图像扩散模型。在推理过程中引入简单的掩码替换操作，可实现精准的区域编辑。ControlNet[48]创新性地引入模块化设计，通过调用预训练的大规模扩散模型来适应不同输入条件。PaintbyExample[42]则采用范例引导式图像编辑技术，突破传统语言引导模式，使编辑过程达到更高精度控制。</p><p>​  <strong>基于GAN的方法</strong><br/>​  然而，我们也必须承认近年来基于生成对抗网络（GAN）的图像编辑方法在性能上取得了显著提升。MAT[15]通过定制化设计了一个以修复为主的transformer模块，其中注意力模块仅从部分有效的标记中提取非局部信息，动态掩码则对此进行有效调控。该方法在应对大规模图像修复挑战时展现出卓越效果。LaMa[33]通过在推理过程中最小化多尺度一致性损失，优化了网络的中间特征图。这种策略巧妙解决了高分辨率图像细节缺失的问题，从而显著提升了视觉效果质量。</p><h1 id="gre结构">3 GRE结构</h1><p>​  现有大多数图像生成数据集仅包含完整生成样本，未考虑图像内部区域编辑的常见场景。以往多数区域编辑数据集仅包含人工操作样本，缺乏生成模型参与，且创作过程缺乏逻辑合理性与语义多样性的考量。相比之下，我们提出的GRE数据集提供了多种生成式区域编辑方法，并定义了三个核心任务（即编辑图像检测、编辑区域定位及编辑方法溯源），共计包含22.8万张图像。我们设计了一套由多模态大型模型辅助的自动化编辑流程，能够执行逻辑一致的编辑操作。如表1所示，我们将GRE与其他公开区域编辑数据集进行对比。从表中列出的各项指标来看，我们的数据集在规模和多样性方面均优于其他同类数据集。</p>]]></content>
       
       
+      <categories>
+          
+          <category> IML </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> dataset </tag>
+            
+        </tags>
       
     </entry>
     
@@ -569,9 +635,7 @@
       
       <categories>
           
-          <category> 无监督 </category>
-          
-          <category> 语义分割 </category>
+          <category> 无监督语义分割 </category>
           
       </categories>
       
@@ -603,7 +667,7 @@
       
       <categories>
           
-          <category> 图像篡改检测 </category>
+          <category> IML </category>
           
       </categories>
       
@@ -656,12 +720,18 @@
       
       <categories>
           
-          <category> 无监督 </category>
+          <category> 无监督语义分割 </category>
           
           <category> 在线深度聚类 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -677,12 +747,18 @@
       
       <categories>
           
-          <category> 无监督 </category>
+          <category> 无监督聚类 </category>
           
           <category> 共识聚类 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -696,6 +772,12 @@
         <content type="html"><![CDATA[<p>Learnable Subspace Clustering</p><h1 id="摘要">摘要</h1><p>​  本文研究了具有数百万个数据点的大规模子空间聚类（<spanclass="math inline">\(LS^2C\)</span>）问题。许多流行的子空间聚类方法都不能直接处理<spanclass="math inline">\(LS^2C\)</span>问题，尽管它们被认为是针对小规模数据点的最新方法。一个简单的原因是，这些方法经常选择所有的数据点作为一个大型的字典来构建巨大的编码模型，这导致了较高的时间和空间复杂度。在本文中，我们开发了一个可学习的子空间聚类范式来有效地解决LS2C问题。关键的概念是学习一个参数函数来将高维子空间划分为它们的底层低维子空间，而不是需要计算要求的经典编码模型。此外，我们提出了一个统一的、鲁棒的、预测编码机（RPCM，robustpredictive codingmachine）来学习参数函数，它可以通过交替最小化算法来求解。此外，我们还给出了参数函数的有界收缩分析。</p><h1 id="介绍">1.介绍</h1><p>​  高维大数据集越来越多无处不在，在计算机视觉和机器学习任务中越来越可用和流行。例如，[1]和YouTube上分别有数百万帧的图像和数十亿帧的视频。不幸的是，大数据的高维性通常会导致算法的高时间和空间复杂性，而大数据中的复杂错误（如噪声、异常值和损坏）严重损害了它们的性能[3]。然而，高维大数据通常是由低维子结构[4]组成的。因此，在大数据中寻找低维结构是降低时间和空间复杂度、减少复杂误差的影响、提高学习和分割任务性能的一种可能的解决方案。<br/>​  子空间聚类[5]是最常见的鲁棒地恢复高维数据低维表示的方法之一，因为它已经提供了理论保证[6]，[7]成功应用于众多研究领域，如图像分割[8]，[9]，人体运动分割[10]，图像处理[11]，[12]，顺序数据聚类[13]，医学成像[14]和生物信息学[15]。特别是光谱式方法（如稀疏子空间聚类（SSC）[16]、低秩表示（LRR）[17]、[18]和最小二乘回归（LSR）[19]）近年来由于在小规模数据集（如霍普金斯155[20]和扩展YaleB[21]）上的良好性能好而受到越来越多的关注。<br/>​  然而，经典的范式限制了子空间聚类方法来处理高维大数据（例如，数以百万计的图像[23]和视频[2]）。一个简单的原因是，SE属性导致了一个大的自我表达字典和巨大的简约编码模型。它们导致了计算瓶颈，因为它们通常通过迭代许多优化算子来解决，如收缩阈值算子[24]和奇异值分解（SVD）[25]。因此，它很自然地产生了一个具有数百万个数据点的具有挑战性的子空间聚类问题。<br/>​  为了解决这个问题，我们开发了一个可学习的子空间聚类（LeaSC）范式（见图1），以快速和稳健地从高维大数据中恢复低维结构。</p><figure><imgsrc="../postimages/Learnable-Subspace-Clustering/image-20250216110434525.png"alt="image-20250216110434525" /><figcaption aria-hidden="true">image-20250216110434525</figcaption></figure><p>​  首先，给定一组大的高维数据点，通常来自高维子空间[16]，[17]，我们发现一些代表或样本，可以有效地描述绘制数据点[26]有效地减少大自我表达的字典的大小。其次，利用代表来学习从高维子空间到低维子空间的参数函数（例如，神经网络）。第三，其余的数据点通过学习到的参数函数而不是简约的编码模型快速映射到低维编码中。最后，我们采用基于地标的光谱聚类（LbSC）[27]对代码进行聚类。<br/>​  在已开发的LeaSC范式中，我们提出了一种新的模型，称为预测编码机（PCM）来学习参数函数。通过找到代表作为一个小的自我表达的字典，PCM的基本过程是优化理想回归，稀疏，低秩，或弹性网络代码通过使用一个平方的弗罗比尼乌斯范数，1规范，核范数或弹性网正则化，并共同训练参数函数近似理想的代码。此外，由于在现实应用[16]，[17]中由于测量/处理噪声经常被噪声（如高斯噪声、稀疏异常项和缺失项）破坏，我们通过考虑各种噪声污染的数据，将PCM扩展到鲁棒PCM（RPCM）。由于参数函数的非线性，RPCM是非凸的。我们提出了一种拟凸优化方法来解决它们，该方法替代了交替方向的乘子法（ADMM）[28]，[29]和梯度下降法（GD）算法[30]，[31]。通过选择适当数量的代表，给出了保证参数函数能够正确地将高维数据点压缩到代表的理想码的理论条件。这进一步验证了在代表上训练的PCM和RPCM可以有效地执行具有数百万个数据点的子空间聚类。总的来说，我们的主要贡献如下。</p><ul><li>我们开发了一个有效的范式，称为LeaSC，以一种高效的方式处理具有数百万个数据点的子空间聚类问题。我们的目标是学习参数函数，将高维子空间划分为它们的底层低维子空间，而不是经典编码（CCod）模型的昂贵代价。这个参数函数导致了LeaSC的线性复杂性。</li><li>我们提出了一个PCM模型及其鲁棒扩展RPCM来学习LeaSC范式中的参数函数。由于RPCM是非凸的，我们提出了一种拟凸的优化方法，通过交替的ADMM和GD来求解它。</li><li>我们提供了由PCM模型学习到的参数函数的有界收缩分析。结果表明，与原始子空间聚类模型相比，参数函数能很好地计算高维数据的收缩低维表示。</li></ul><p>​  本文是对我们之前几个会议作品[32]-[35]的重要扩展。与会议版本相比，有四个主要的区别。首先，我们开发了一个统一的LeaSC范式来集群数百万个数据点。其次，我们提出了一个具有弗罗比尼乌斯范数[32]、核范数[33]、1-范数或弹性网正则化的平方的一般RPCM。第三，我们给出了一个保证学习到的参数函数收缩的理论条件。第四，我们在百万尺度的数据集（即MNIST8M[23]和YouTube8M[2]）上添加了更多的实验，以证明LeaSC的有效性。<br/>​  本文的其余部分组织如下。我们在第二节中回顾了相关的子空间聚类工作。我们统一的LeaSC范式和RPCM在第三节中开发。我们在第四节中提出了一种针对RPCM的拟凸优化方法。我们在第五节中提供了一个收缩子空间恢复理论，第六节显示了实验结果。最后，在第七节中得出了结论。</p><h1 id="相关工作">2.相关工作</h1><p>​  在本节中，我们主要回顾了CCod模型、大尺度光谱聚类（LsSPC）方法和可伸缩的编码方法，因为它们在小规模数据集上显示出了良好的性能。此外，我们还讨论了直接编码模型来应用我们的LeaSC范式。</p><h2 id="a.-ccod模型">A. CCod模型</h2><p>​  一般来说，CCod模型基于SE属性[16]，采用不同的编码模型来计算相似矩阵，并将（大规模）光谱聚类[22]，[36]-[38]应用于该相似矩阵。例如，SSC[16]、LRR [17]和LSR[19]分别使用1、核范数和2正则化的编码模型构建相似度矩阵。根据SE属性，这些编码模型及其变体[18]，[39]-[41]通常选择所有的数据点作为字典。当面对大数据集（例如，数百万张图像）时，字典中的自动（或基础）的数量非常大。在实践中，这个大型字典将导致用于谱聚类的高维（百万）相似矩阵，并进一步导致如果资源有限，编码模型无法在一台机器上运行。此外，由于采用迭代优化方式[42]、[43]进行求解，因此它们仍然存在较高的时间复杂度。因此，简约的编码模型需要高的计算时间和大量的内存来构建相似矩阵。此外，分布式LRR（DLRR）[44]和分散SSC（DSSC）[45]将一个大数据集划分为许多小数据集，并使用LRR或稀疏编码来计算LRR或稀疏表示。然而，它们仍然需要大量的计算机资源。幸运的是，我们探索了LeaSC范式来学习一个参数函数，以快速计算相似度矩阵的表示。</p><h2 id="b.-lsspc">B. LsSPC</h2><p>​  一般的谱聚类方法[22]需要计算由相似矩阵组成的归一化拉普拉斯矩阵的特征向量，并应用K-均值对特征向量进行聚类。不幸的是，计算特征向量是非常昂贵的[27]。因此，它导致了处理大规模数据集的难题。因此，将光谱聚类方法扩展到LsSpC中，通过以下两种方式对大数据进行聚类。首先，利用¨值方法逼近特征向量[46]，以降低计算代价，在许多子系统[47]中特征值计算是并行的。其次，选取少量样本作为地标点，构建K-means[48]、样本外[49]和随机选择[27]的稀疏相似矩阵。它们将导致较差的聚类结果，因为一个不可分割的相似度矩阵通常是由具有复杂结构的原始数据构建的。通过比较，我们可以通过在已开发的LeaSC范式中使用我们的RPCM模型来学习鲁棒表示。</p><h2 id="c.-可扩展编码方法">C. 可扩展编码方法</h2><p>​  在以下两种策略中，还提出了可扩展的编码方法来进行大数据的聚类。首先，可伸缩的SSC[50]，[51]是用一个小的子字典来解决一系列的子问题，以减少计算时间。其次，采样-聚类分类（S-C-C）[42]，[43]从大数据集中选择一个小的子数据集，使用SSC、LRR和LSR进行子空间聚类，并学习一个简单的线性分类器或基于协作表示的分类器（CRC）[52]，获得最终的聚类结果。不幸的是，可扩展SSC仍然需要更多的计算时间，例如，它花费1000秒处理10万个数据样本[50]，S-C-C将导致较差的聚类结果，因为简单的分类器在复杂样本[53]中不容易识别。通过比较，我们可以快速计算鲁棒表示来构造相似度矩阵，并执行LsSpC（如LbSC[27]）。</p><h2 id="d.-直接编码模型">D. 直接编码模型</h2><p>​  在我们的LeaSC范式中，我们提出了RPCM模型来学习参数函数，以直接编码数据点的表示，以降低计算复杂度。实际上，有一些直接编码模型，如自动编码器（AEs）[54]、稀疏自动编码器（SAEs）[55]、[56]、去噪自动编码器（DAEs）[57]、预测稀疏分解（PSD）[34]、[58]、鲁棒主成分分析编码器（RPCAec）[59]和潜在LRR（latLRR）[60]。AE和SAE都不是健壮的模型，需要干净的输入数据。虽然DAE和PSD可以学习健壮的代码，但它仍然需要干净的输入数据。不幸的是，真实的数据通常会有大量的噪声[16]，[17]。为了处理噪声，RPCAec[59]和latLRR [60]可以通过分离噪声快速计算出鲁棒的低秩码。然而，RPCAec[59]只处理一个单个低秩子空间，而latLRR[60]只学习一个线性预测器，这很难捕获复杂的数据结构[31]，[53]。相比之下，我们的RPCM不需要明确的数据，也不需要一个非线性预测器来计算鲁棒表示。更重要的是，我们还将把这些编码模型应用到LeaSC范式中来处理LS2C。</p><h1 id="leasc">3. LEASC</h1><p>​  在本节中，我们开发了一个有效的LeaSC范式来聚集大量的多子空间数据点。具体地说，我们首先介绍了一个用于子空间聚类的机器学习问题。为了解决这一问题，我们提出了一个统一的PCM方法，即从高维空间到低维空间学习一个参数函数。然后利用参数函数快速恢复数据点的子空间表示。最后，我们对子空间表示进行LbSC[27]，以获得最终的聚类结果。</p><p>​  标记法：<spanclass="math inline">\(\mathcal{X}\)</span>记为高维空间。随机变量、普通向量、矩阵和矩阵块分别用大写、小写、大写和黑板粗体写，例如，X、x、<spanclass="math inline">\(\mathbf{X}\)</span>和<spanclass="math inline">\(\mathbb{X}=\binom{\mathbf X}{\mathbfY}\)</span>。期望（离散情况，p为概率质量）用<spanclass="math inline">\(\operatorname{E}_{p(X)}({\mathcal{L}}(X))\ \ =\\sum_{\mathbf{x}}p(X\ \ =\\mathbf{x}){\mathcal{L}}({\mathbf{x}})\)</span>表示。给定数组<spanclass="math inline">\(\mathbf{A}=\,[a_{i\,j}\,]\,\in\,\mathbb{R}^{d\timesn}\)</span>，我们的核范数用<spanclass="math inline">\(\|\mathbf{A}\|_{*}=\textstyle\sum_{i}\sigma_{i}(\mathbf{A})\)</span>（A的奇异值之和）表示，<spanclass="math inline">\(\ell_{2,1}\)</span>用<spanclass="math inline">\(||\mathbf{A}||_{2,1}=\sum_{j}||\mathbf{a}_{:j}||_{2}\)</span>表示，F范数用<spanclass="math inline">\(||\mathbf{A}||_{\mathrm}=(\sum_{ij}(a_{i j})^{2})^{1/2}\)</span>表示和f范数的平方用<spanclass="math inline">\(||\mathbf{A}||_{\mathrm{F}}^{2}=\sum_{i j}(a_{ij})^{2}\)</span>表示。一个包含m个元素的集合的n-组合数用<spanclass="math inline">\(\binom{m}{n}\)</span>表示。</p><h2 id="a.问题陈述">A.问题陈述</h2><p>​  在本节中，我们描述了一个用于子空间聚类的显式机器学习问题。具体地说，我们考虑一个d维高维空间<spanclass="math inline">\(\mathcal{X}\)</span>，它是s≥1个未知低维<spanclass="math inline">\(d_{i}=\dim(\mathcal{X}_{i})(0\lt d_{i}\ltd,i=1,\ldots,s)\)</span>的线性或仿射子空间<spanclass="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>的未知并集。形式上，我们假设<spanclass="math inline">\(X\in\mathcal{X}\)</span>是一个根据未知分布p(X)的随机变量，它可以分解为 <spanclass="math display">\[X=\mathbf{B}Z=[\mathbf{B}_{1}\quad\cdots\quad\mathbf{B}_{k}]{\left[\begin{array}{l}{Z_{1}}\\{\cdots}\\ {Z_{k}}\end{array}\right]}\]</span> ​  其中，<spanclass="math inline">\(\mathbf{B}_{i}\in\mathbb{R}^{d\timesd_{i}}\)</span>是一个线性跨越第i个数据子空间的未知子空间基，<spanclass="math inline">\(Z_i\)</span>是一个<spanclass="math inline">\(d_i\)</span>维低维子空间表示变量。我们的子空间聚类问题的机器学习目标是寻找一个参数函数<spanclass="math inline">\(f(\bullet;\theta)\)</span>，它从X预测Z，以将空间X划分为子空间<spanclass="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>。<br/>​  为了实现这一目标，根据基础分布p(X)，将f的预期风险定义为 <spanclass="math display">\[\operatorname*{min}_{\theta}\E_{p(X)}[\mathcal{L}(Z,f(X;\theta))]\quad\mathrm{s.t.}\X=\mathrm{B}Z\]</span> ​  其中，<spanclass="math inline">\(\mathcal{L}(Z,f(X;\theta))\)</span>是Z和<spanclass="math inline">\(f(X;\theta)\)</span>之间的损失函数，例如，平方误差损失函数<spanclass="math inline">\((Z-f(X;\theta))^2\)</span>。由于p(X)未知，预期风险不能在(2)中直接测量。但是我们可以考虑一个由N个数据点<spanclass="math inline">\(\mathbf{X}=[\mathbf{x}_{i}]_{i=1}^{n}\in\mathbb{R}^{d\timesn}\)</span>构成，且假设为p(x)分布的经验分布<spanclass="math inline">\(p^0(X)\)</span>。相应的在p0(X)上的经验风险1平均值可以描述为<span class="math display">\[\operatorname*{min}_{\theta}\E_{p^0(X)}[\mathcal{L}(Z,f(X;\theta))]\quad\mathrm{s.t.}\X=\mathrm{B}Z\]</span> ​  在学习参数函数<spanclass="math inline">\(f(\bullet;\theta)\)</span>后，将空间X快速映射到低维表示空间，很容易划分为子空间<spanclass="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>。我们将在第三节-b节中提出一个稳健和有效的模型，以更好地计算经验风险。<br/>​  备注1：我们的机器学习问题不同于传统的子空间聚类问题[5]。后者通常考虑通过使用昂贵的稀疏/低秩优化从空间X中得到的给定（训练）数据点X的分割。前者学习一个参数函数，将空间X划分为子空间<spanclass="math inline">\(\{\mathcal{X}_{i}\}_{i=1}^{s}\)</span>。它的过程是从空间X中提取一个数据集，或从给定的X中选择一个小的数据集，并训练参数函数。这个过程有一个明显的好处，即参数函数可以快速地将新的（大的）数据点投影到低维表示中，并分组到它们的子空间中。</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -711,18 +793,14 @@
       
       <categories>
           
-          <category> 语义分割 </category>
-          
-          <category> 无监督 </category>
+          <category> 无监督语义分割 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 无监督 </tag>
-            
-            <tag> 聚类 </tag>
+            <tag> Clustering </tag>
             
         </tags>
       
@@ -863,8 +941,6 @@
           
           <category> IML </category>
           
-          <category> 图像拼接检测与定位 </category>
-          
       </categories>
       
       
@@ -893,6 +969,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -912,6 +994,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -926,12 +1014,16 @@
       
       <categories>
           
-          <category> 无监督 </category>
-          
-          <category> 语义分割 </category>
+          <category> 无监督语义分割 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -971,6 +1063,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -1004,12 +1102,18 @@
       
       <categories>
           
-          <category> 无监督 </category>
+          <category> 无监督语义分割 </category>
           
           <category> 模糊聚类 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1096,6 +1200,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -1115,6 +1225,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -1133,6 +1249,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1197,6 +1319,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1302,9 +1430,7 @@
       
       <categories>
           
-          <category> 无监督 </category>
-          
-          <category> 语义分割 </category>
+          <category> 无监督语义分割 </category>
           
       </categories>
       
@@ -1323,20 +1449,14 @@
       
       <categories>
           
-          <category> 语义分割 </category>
-          
-          <category> 无监督 </category>
+          <category> 无监督语义分割 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 聚类 </tag>
-            
-            <tag> 特征聚类 </tag>
-            
-            <tag> 可微聚类 </tag>
+            <tag> Clustering </tag>
             
         </tags>
       
@@ -1358,6 +1478,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1876,6 +2002,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Clustering </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -2298,7 +2430,7 @@
       <link href="/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/"/>
       <url>/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/</url>
       
-        <content type="html"><![CDATA[<p>A New Benchmark and Model for Challenging Image ManipulationDetection</p><p><spanclass="math inline">\(ZhenfeiZhang^1,MingyangLi^2,Ming-ChingChang^1\)</span></p><p>美国纽约州立大学奥尔巴尼大学计算机科学系</p><p><a href="https://ojs.aaai.org/index.php/AAAI/article/view/28571"><imgsrc="https://img.shields.io/badge/AAAI-2024-orange" alt="AAAI" /></a> <ahref="https://arxiv.org/abs/2311.14218"><imgsrc="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv" /></a><a href="https://github.com/ZhenfeiZ/CIMD"><imgsrc="https://img.shields.io/github/stars/ZhenfeiZ/CIMD?style=flat"alt="GitHub" /></a></p><h1 id="摘要">摘要</h1><p>  <strong>所有现有的IMD技术在从大图像中检测小的篡改区域时都遇到了挑战。此外，基于压缩的IMD方法在相同质量因子的双重压缩的情况下面临困难。</strong><br/><br/>  为了研究在这些具有挑战性的条件下最先进的（SoTA）IMD方法，我们引入了一个新的具有挑战性的图像操作检测（CIMD）基准数据集，它由两个子集组成，分别用于评估基于编辑和基于压缩的IMD方法。数据集的图像是手工拍摄和篡改高质量的注释。<br/><br/>  此外，我们提出了一种新的基于HRNet的双分支网络模型，该模型可以在这些具有挑战性的条件下更好地检测图像编辑和压缩伪影。在CIMD基准上的大量实验表明，我们的模型在CIMD上显著优于SoTAIMD方法。<br/><br/>本文的贡献包括：</p><ul><li>我们提出了一种新的双分支架构，结合了RGB和频率特征，以实现具有挑战性的图像操纵检测。据我们所知，我们的模型是第一个专注于检测小的被篡改区域的方法。</li><li>我们引入了开创性的压缩伪影学习模型，能够检测双压缩伪影，无论量化因子（QFs）是不同的还是相同的。</li><li>我们引入了一个新的高质量的CIMD基准来评估SoTAIMD方法在具有挑战性的操作中的性能。我们将在书面接受后公开CIMD。</li><li>在CIMD上的大量实验表明，该方法在具有挑战性的图像操作检测方面显著优于SoTA。</li></ul><h1 id="数据集">数据集</h1><p>The Challenging Image Manipulation Detection Dataset(CIMD)</p><p>  在这项工作中，我们的目标是建立一个全面的验证数据集（CIMD），专门用于在压缩和未压缩场景下的小区域伪造（平均小于1.5%）。我们的数据集在数据集大小、图像质量、图像多样性和伪造策略方面都具有优势。<br/><br/>  引入了两个独立的子集来分别评估基于图像编辑和基于压缩的方法。收集我们使用佳能RP相机捕获原始图像，包括未压缩的TIFF和压缩的JPG伪造-原始图像对。这些捕捉是在高度多样的多季节拍摄的，特点是复杂和复杂的照明条件。我们的目的是在现实生活中提供一个公正和全面的模型评估。<br/><br/>  两个CIMD数据集。我们提供了两个子集：</p><blockquote><p>CIMD-Raw子集由成对的原始未压缩的TIFF图像组成，用于评估基于图像编辑的方法。<br/>&gt;CIMD-压缩子集包括拼接伪图像及其对应的原始JPEG图像，其统一量化因子（QFs）范围在50到100之间。这个子集评估了基于压缩的模型在相同的QF条件下检测伪造的能力。</p></blockquote><h3 id="cimd-raw子集cimd-r">CIMD-Raw子集(CIMD-R)</h3><p>  CIMD-R旨在提供一个对基于图像编辑的模型在检测未压缩图像上的小篡改复制移动、对象删除和拼接伪造方面的性能的全面评估。未压缩图像的使用消除了伪造区域上不希望的压缩伪影，否则可以被神经网络感知，使对检测的更真实的性能评估。CIMD-R由600张TIFF图像组成，分辨率为2048×1365。还提供了ground-truth标签。此外，CIMD-R采用了一种面向未来的方法，提供16bit的图像对，可以提供多达<spanclass="math inline">\(2^{48}\)</span>种（以万亿）颜色。<br/><br/>  对于复制-移动操作，将图像的一部分复制和粘贴到同一图像中，然后是五种后处理方法，即缩放、旋转、水平/曲线增加、光照变化和颜色再分配。<br/><br/>  对于删除伪造操作，通过ps中的内容感知填充来从图像中删除选定的区域。内容感知填充被广泛应用于多个数据集（Parketal.2018b；Dong，Wang，和Tan2013b），代表了PS根据周围区域绘制物体的最佳猜测。<br/><br/>  对于拼接伪造操作，将一个图像的区域复制粘贴到另一个图片。然后，采用复制-移动操作中相同的后处理方法，使锻造区域与周围环境相协调。</p><h3 id="cimd-compressed子集cimd-c">CIMD-Compressed子集(CIMD-C)</h3><p>  CIMD-C旨在评估基于压缩的模型在主压缩和二次压缩具有相同的QFs时检测双JEPG压缩伪影的能力。该数据集包含200张JPEG图像，分辨率为2048×1365，其中QF均匀分布为50≤QF&lt;100。<br/><br/>  伪造图像的生成类似于CIMD-R的拼接样本，区别在于伪造图像使用JPEG压缩算法保存，使用与原始图像相同的QF。原始图像由RAW文件生成，确保原始图像第一次被压缩，增强了数据集的可信度。在伪造的图像中，背景是双压缩的，而被篡改的区域是单压缩的。此外，该数据集还包括用于压缩的二进制掩码和QF值，从而增强了其对进一步研究不同QFs的影响的效用。</p><h1 id="提出的imd方法">提出的IMD方法</h1><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326151650512.png"alt="image-20240326151650512" /><figcaption aria-hidden="true">image-20240326151650512</figcaption></figure><p>  我们提出的双分支架构能够检测异常特征和压缩伪影，其灵感来自于（Kwonet al.2022）。此外，我们的模型可以有效地检测小的操作区域和识别双压缩轨迹，应用相同的量化矩阵（Q-矩阵）。为了实现我们的研究目标，我们采用HR-Net（Wanget al.2020）作为我们模型的支柱，基于其提供三倍收益的能力。首先，HR-Net中没有池化层，这确保了这些特性在整个过程中保持高分辨率。其次，该模型在处理不同尺度的特征的同时，也要处理有效的信息交换，这对于获取不同尺度的信息至关重要。最后，HR-Net的输入大小非常适合于DCT特性。由于经过8个速率的扩展卷积处理后，DCT特征的大小减小到输入大小的1/8，这相当于HR-Net的第二阶段分辨率。<br/><br/>  为了更精确地定位微小的篡改区域，我们应用面积空间金字塔池（ASPP）（Chen等2017；Yang等2021）和注意机制（Vaswani等2017；胡，沈，和孙2018）仔细设计了模型。<br/><br/>  对于RGB流，输入的图像被输入到一个完整的HR-Net，它从视觉内容中学习图像编辑跟踪。<br/><br/>  对于DCT流，我们向主干提供量化的DCT系数、q矩阵和新的多次重压缩残差DCT系数，以检测双压缩伪影。这种设计工作，不考虑QF是否相同。为了提高所提出的双分支模型的性能，我们在最后引入了一种自适应加权热图聚合设计，使用软选择来融合由两个分支生成的热图。<br/><br/>  其次，该模型在处理不同尺度的特征的同时，还能处理有效的信息交换，这对于获取不同尺度的信息至关重要。<br/><br/>  最后，HR-Net的输入大小非常适合于DCT特性。由于经过8个速率的扩展卷积处理后，DCT特征的大小减小到输入大小的1/8，这相当于HR-Net的第二阶段分辨率。我们对RGB流应用完整的HR-Net，而对于频率流，我们使用三分辨率的变体HR-Net，用图5中所示的压缩伪影学习模型代替第一阶段。</p><h2id="压缩伪影学习模型compression-artifacts-learning-model">压缩伪影学习模型CompressionArtifacts Learning Model</h2><p>  当使用相同的QF创建拼接图像时，被操纵的区域被单独压缩，而背景区域被双重压缩。因此，当图像被反复压缩时，不稳定的量化DCT系数逐渐集中在被篡改的区域上，而真实的区域则保持相对稳定。在此基础上，我们引入了一种新的残差DCT图来指导DCT特征，以更好地关注IMD的不稳定区域。</p><p>YCbCr 是一种用于压缩彩色图像的色彩空间，其中：</p><ul><li><strong>Y 通道</strong>表示亮度（Luminance），也即图像的灰度级信息。</li><li><strong>Cb 和 Cr 通道</strong>分别表示蓝色差异和红色差异（Chrominance），即色彩信息。</li></ul><p>  我们的方法只关注于y通道DCT图，因为它对人眼更敏感。给定一个JPEG图像，很容易从JPEG文件报头中得到y通道量化的DCT系数<spanclass="math inline">\(Q_0\)</span>及其相应的<spanclass="math inline">\(Q\)</span>矩阵。<br/>首先重复<spanclass="math inline">\(Q\)</span>矩阵具有与<spanclass="math inline">\(Q_0\)</span>相同的大小，我们将重复的<spanclass="math inline">\(Q\)</span>矩阵设为<spanclass="math inline">\(q\)</span>。</p><p>  然后，我们使用以下方程依次计算(k+1)次再压缩量化JPEG系数<spanclass="math inline">\(Q_{k+1}\)</span>：</p><p><spanclass="math display">\[\begin{cases}\begin{array}{l}D_k=Q_k\odotq\\B_k=IDCT(D_k)\\I_{k+1}=RT(B_k)\\Q_{k+1}=[DCT(I_{k+1})\oslashq]\end{array}\end{cases}\]</span>   其中<spanclass="math inline">\(\oslash\)</span>表示元素级划分，D、B、I、Q分别表示去量化的DCT系数、使用逆DCT进行反变换块的DCT系数、使用图像块进行反变换块的DCT系数和使用量化JPEG系数进行反变换块的DCT系数。上述方程中变量的下标表示重压缩的次数，我们实验设置了<spanclass="math inline">\(k=7\)</span>。<spanclass="math inline">\(RT(.)\)</span>是四舍五入和截断操作。<spanclass="math inline">\([.]\)</span>表示该舍入操作。</p><p>  然后，将k次重压缩后的残余去量化DCT系数R定义为：</p><p><spanclass="math display">\[R=\frac{1}{k}\sum_{i=1}^{k}(Q_i-Q_{i-1})\]</span>  对于原始的通道系数<spanclass="math inline">\(Q_0\)</span>​，在把它们转换成一个二进制卷之后，我们使用一个阈值<spanclass="math inline">\(T\)</span>​来执行一个剪切操作，将此二进制值转换表示为：</p><p><span class="math display">\[f:Q_o^{H\times W}\rightarrow\{0,1\}^{(T+1)\times H\times W}\]</span>   DCT系数<spanclass="math inline">\(Q_0\)</span>​被转换为二进制：</p><p><span class="math display">\[f(Q_0(i,j))=\begin{cases}1, &amp;if|clip(Q_0(i,j))|=t,t\in [0,T]\\\\0, &amp;otherwise\end{cases}\]</span></p><p>  利用<span class="math inline">\(clip(.)\)</span>提取<spanclass="math inline">\([−T,T]\)</span>中的直方图特征，这对GPU内存约束是必不可少的。我们实验中将T设为20。此外，我们应用绝对值运算作为DCT直方图显示的对称性。<br/><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326170313123.png"alt="image-20240326170313123" /></p><p>  在频率流中，首先将图像输入到图5所示的<strong>压缩伪影学习模型</strong>中，提取各种DCT特征。随后，DCT特性被输入到HR-Net的一个变体中，该变体在三种不同的分辨率（1/8、1/16和1/32）下运行。</p><h2 id="注意力空间金字塔池aspp">注意力空间金字塔池ASPP</h2><p>  为了精确地定位小的篡改区域，我们使用图6(a)所示的注意力空间金字塔池（ASPP）仔细设计了我们的模型。ASPP通过不同的接受域捕获远程距离信息，并处理尺度变化。它由三个具有不同速率的扩张卷积层和一个全局平均池化（GAP）组成。得到的特征被连接并传递到1×1卷积。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329095235566.png" alt="image-20240329095235566 " style="zoom:50%;" /></p><h2 id="注意力交互机制">注意力交互机制</h2><p>其中</p><ul><li>左边输入为四个分辨率的分支</li><li>CA：通道注意力ChannelAttention</li><li>UP：双线性上采样BilinearUp-sampling</li><li>SA：空间注意力SpatialAttention</li></ul><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329100333958.png" alt="image-20240329100333958 " style="zoom:45%;" /></p><p>接下来，我们将描述注意力如何在RGB流中交互式地工作，其中的过程实际上与频率流相同，具有不同数量的输出分辨率分支。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329141519802.png" alt="image-20240329141519802 " style="zoom:50%;" /></p><h3 id="通道注意力channelattention">通道注意力ChannelAttention</h3><p>左侧输入为HRnet不同分辨率下的输入：</p><p><span class="math display">\[I\in R^{H \times W \times3}\rightarrow\begin{cases}\begin{aligned}F_1 \in R^{H/4 \times W/4\times C_1} &amp;  &amp; ,C_1=48\\F_2 \in R^{H/8 \times W/8 \times C_2}&amp;  &amp; ,C_2=96\\F_3 \in R^{H/16 \times W/16 \times C_3}&amp;  &amp; ,C_3=192\\F_4 \in R^{H/32 \times W/32 \times C_4}&amp;  &amp; ,C_4=384\\\end{aligned}\end{cases}\]</span>自下而上的通道注意特征的计算使用如下： <span class="math display">\[F_n= C(F_{n+1})\odot F_n, n = 1,2,3\]</span> 其中，<spanclass="math inline">\(C(.)\)</span>表示通道注意块，如下图所示，<spanclass="math inline">\(\odot\)</span>表示元素级乘法。由于<spanclass="math inline">\(F_4\)</span>包含了最高级别的语义信息，因此它在通道级别上保持不变。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329095324781.png" alt="image-20240329095324781 " style="zoom:50%;" /><span class="math display">\[C(F)=\sigma(E(GAP(Conv_{1\times1}(F))))\]</span></p><p>  其中1×1卷积，以减少信道，GAP（·）为全局平均池，激励过程 <spanclass="math inline">\(E(.)=C^{&#39;}\rightarrow C^{&#39;}/r \rightarrowC^{&#39;}，r=4\)</span>，<span class="math inline">\(\sigma(.)\)</span>为Sigmoid激活函数。</p><h3id="双线性上采样bilinearup-sampling">双线性上采样BilinearUp-sampling</h3><p>在应用自底而上的信道注意后，使用双线性上采样方法对特征图<spanclass="math inline">\(F_2\)</span>、<spanclass="math inline">\(F_3\)</span>和<spanclass="math inline">\(F_4\)</span>进行上采样，以匹配<spanclass="math inline">\(F_1\)</span>的分辨率。</p><h2 id="空间注意力spatialattention">空间注意力SpatialAttention</h2><p>应用自上而下路径的空间注意机制，由： <spanclass="math display">\[F_m=S(F_{m-1})\otimes F_m,m = 2, 3, 4,\]</span>其中，S(.)为空间注意力，如下图所示。由于<spanclass="math inline">\(F_1\)</span>包含了丰富的空间信息，因此在空间层面上保持不变。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329142515201.png" alt="image-20240329142515201 " style="zoom:50%;" /></p><h2 id="热图聚合heatmapaggregation">热图聚合HeatmapAggregation</h2><p>  每个分支的特征图在经过上采样和交互注意后，具有相同的分辨率。然后将这些特征连接在一起，形成最终特征，用于推理阶段的自适应加权热图聚合。</p><p>  我们的模型生成了两个最终的热图，它们通过软选择进行聚合。具体来说，我们采用双线性特征上采样来升级频率流的热图，以匹配RGB流热图的分辨率。然后，我们将Softmax激活函数应用于热图，然后使用全局最大池化（GMP），记为GMP（·），来选择主热图及其相应的权重。这种选择是基于更高的值，这表明与其他热图相比，它具有更强的定位响应。</p><p>  我们使用<span class="math inline">\(h_m\)</span>和<spanclass="math inline">\(h_s\)</span>​​定义主热图和次热图。因此，加权聚合热图h可以表示为：</p><p><span class="math display">\[h = GMP(h_m)\cdot h_m+(1-GMP(h_m))\cdoth_s\]</span></p><p>  最后，我们在预测的二值掩模上应用一个不可训练的GMP来执行图像级检测，因为图像级检测与像素级预测高度相关。</p><h1 id="实验">实验</h1><h2 id="实验设置">实验设置</h2><p><strong>数据集。</strong>本研究中使用的训练数据集大多采用了（Kwonetal.2022），其中包括CASIAv2、FantasticReality、IMD2020，以及专门为使用不同QFs检测压缩伪影而设计的数据集。测试阶段需要使用CIMD-R和CIMD-C来分别评估基于图像编辑和基于压缩的方法的有效性。补充材料中提供了有关所使用的数据集的进一步细节，以及与选定的公开可访问的数据集进行的评价指标的比较分析。</p><p><strong>实施细节。</strong>我们的模型是使用PyTorch（Paszke等人，2019年）实现的，并在8个RTX2080GPUs，上进行训练，批处理大小为4。我们将初始学习率设置为0.001，并呈指数衰减。为了减轻不平衡数据集对模型训练的影响，我们从每批的每个数据集中随机选择相同数量的样本。训练过程总共250批。该模型被设计为接受各种图像格式，包括JPEG和非JPEG格式。对于非jpeg图像，该模型采用全1的Q矩阵对样本进行压缩，这相当于使用100的QF进行无损压缩。RGB流的主干使用ImageNet进行预训练（(Krizhevsky,Sutskever,andHinton2017），而DCT流使用（Parketal.2018a）引入的双压缩图像进行预训练的方法。为了提高模型检测小篡改区域的灵敏度，设计了训练目标来<strong>最小化像素级的二值交叉熵损失</strong>。</p><p><strong>比较网络的选择。</strong>为了保证公平的比较和评估之前使用新引入的CIMD的模型，我们选择了使用这两个标准的最先进的方法：(1)预训练模型是公开的，(2)我们使用的评估数据集不在它们的训练集中。根据这些标准，我们选择了RRU-Net、MantraNet、CR-CNN、SPAN、PSCC-Net、MVSS-Net、IF-OSN、CAT-Net、DJPEG和对照品。其中，DJPEG和Comprint被设计用于压缩伪影检测，而CATNet可以联合检测异常特征和压缩伪影。上述所有的研究均在相关的工作部分中被适当地引用。我们使用CIMD-R来评估基于图像编辑的方法，用CIMD-C来评估基于压缩的方法。</p><h2 id="在cimd-r上的评估结果">在CIMD-R上的评估结果</h2><p>  使用CIMD-R子集进行评估。表1报告了使用CIMD-R的基于图像编辑的方法的结果，其中所有图像样本都未压缩。</p><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240327213659139.png"alt="image-20240327213659139" /><figcaption aria-hidden="true">image-20240327213659139</figcaption></figure><p>表1报告了使用CIMD-R的基于图像编辑的方法的结果，其中所有图像样本都未压缩。像素级f1评分使用每张图像的最佳f1阈值，并使用固定的f1阈值0.5。最佳分数用粗体突出显示。我们的方法在图像级和像素级的检测任务中都取得了最好的性能。值得注意的是，我们的方法在图像级和像素级评估方面都优于现有的SOTA方法，这表明了它在检测小篡改区域方面的优越性。</p><h2id="在cimd-c上评价基于压缩的方法的评估结果">在CIMD-C上评价基于压缩的方法的评估结果</h2><p>  表2比较了基于压缩的IMD方法的性能，其中所有图像样本都使用相同的QF进行双压缩，评估设置与表1中使用的设置一致。</p><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240327213738541.png"alt="image-20240327213738541" /><figcaption aria-hidden="true">image-20240327213738541</figcaption></figure><p>表2比较了基于压缩的IMD方法的性能，其中所有图像样本都使用相同的QF进行双压缩，评估设置与表1中使用的设置一致。我们的方法在整体性能方面仍然是表现最好的，突出了我们的方法对于具有相同QF的双压缩图像的有效性。</p><h2 id="消融研究">消融研究</h2><p>  我们提供了一个如表3所示的简单的消融研究。请注意，我们的RGB流在压缩的数据和未压缩的数据中都是有效的。</p><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240327214430772.png"alt="image-20240327214430772" /><figcaption aria-hidden="true">image-20240327214430772</figcaption></figure><p>  值得注意的是，由于没有压缩伪影，频率流在CIMD-R中不能产生令人满意的结果。然而，当这两个分支协同工作时，模型的性能在定位和检测评估方面都有所提高。在补充材料中提供了额外的烧蚀研究和实验结果。</p><h1 id="结论">结论</h1><p>  本研究提出了一种新的具有挑战性的图像处理检测（CIMD）数据集，它包括两个子集，分别用于评估基于图像编辑和基于压缩的方法。这些数据集被手动获取和篡改，并提供了高质量的注释。此外，我们提出了一种双分支的方法，在使用CIMD数据集检测图像操作方面优于最先进的模型。我们已经发布了我们的数据集，以促进未来的研究。</p>]]></content>
+        <content type="html"><![CDATA[<p>A New Benchmark and Model for Challenging Image ManipulationDetection</p><p><spanclass="math inline">\(ZhenfeiZhang^1,MingyangLi^2,Ming-ChingChang^1\)</span></p><p>美国纽约州立大学奥尔巴尼大学计算机科学系</p><p><a href="https://ojs.aaai.org/index.php/AAAI/article/view/28571"><imgsrc="https://img.shields.io/badge/AAAI-2024-orange" alt="AAAI" /></a> <ahref="https://arxiv.org/abs/2311.14218"><imgsrc="https://img.shields.io/badge/arXiv-b31b1b.svg" alt="arXiv" /></a><a href="https://github.com/ZhenfeiZ/CIMD"><imgsrc="https://img.shields.io/github/stars/ZhenfeiZ/CIMD?style=flat"alt="GitHub" /></a></p><h1 id="摘要">摘要</h1><p>  <strong>所有现有的IMD技术在从大图像中检测小的篡改区域时都遇到了挑战。此外，基于压缩的IMD方法在相同质量因子的双重压缩的情况下面临困难。</strong><br/>  为了研究在这些具有挑战性的条件下最先进的（SoTA）IMD方法，我们引入了一个新的具有挑战性的图像操作检测（CIMD）基准数据集，它由两个子集组成，分别用于评估基于编辑和基于压缩的IMD方法。数据集的图像是手工拍摄和篡改高质量的注释。<br/>  此外，我们提出了一种新的基于HRNet的双分支网络模型，该模型可以在这些具有挑战性的条件下更好地检测图像编辑和压缩伪影。在CIMD基准上的大量实验表明，我们的模型在CIMD上显著优于SoTAIMD方法。<br/>本文的贡献包括：</p><ul><li>我们提出了一种新的双分支架构，结合了RGB和频率特征，以实现具有挑战性的图像操纵检测。据我们所知，我们的模型是第一个专注于检测小的被篡改区域的方法。</li><li>我们引入了开创性的压缩伪影学习模型，能够检测双压缩伪影，无论量化因子（QFs）是不同的还是相同的。</li><li>我们引入了一个新的高质量的CIMD基准来评估SoTAIMD方法在具有挑战性的操作中的性能。我们将在书面接受后公开CIMD。</li><li>在CIMD上的大量实验表明，该方法在具有挑战性的图像操作检测方面显著优于SoTA。</li></ul><h1 id="数据集">数据集</h1><p>The Challenging Image Manipulation Detection Dataset(CIMD)</p><p>  在这项工作中，我们的目标是建立一个全面的验证数据集（CIMD），专门用于在压缩和未压缩场景下的小区域伪造（平均小于1.5%）。我们的数据集在数据集大小、图像质量、图像多样性和伪造策略方面都具有优势。<br/>  引入了两个独立的子集来分别评估基于图像编辑和基于压缩的方法。收集我们使用佳能RP相机捕获原始图像，包括未压缩的TIFF和压缩的JPG伪造-原始图像对。这些捕捉是在高度多样的多季节拍摄的，特点是复杂和复杂的照明条件。我们的目的是在现实生活中提供一个公正和全面的模型评估。<br/>  两个CIMD数据集。我们提供了两个子集：</p><blockquote><p>CIMD-Raw子集由成对的原始未压缩的TIFF图像组成，用于评估基于图像编辑的方法。<br/>&gt;CIMD-压缩子集包括拼接伪图像及其对应的原始JPEG图像，其统一量化因子（QFs）范围在50到100之间。这个子集评估了基于压缩的模型在相同的QF条件下检测伪造的能力。</p></blockquote><h3 id="cimd-raw子集cimd-r">CIMD-Raw子集(CIMD-R)</h3><p>  CIMD-R旨在提供一个对基于图像编辑的模型在检测未压缩图像上的小篡改复制移动、对象删除和拼接伪造方面的性能的全面评估。未压缩图像的使用消除了伪造区域上不希望的压缩伪影，否则可以被神经网络感知，使对检测的更真实的性能评估。CIMD-R由600张TIFF图像组成，分辨率为2048×1365。还提供了ground-truth标签。此外，CIMD-R采用了一种面向未来的方法，提供16bit的图像对，可以提供多达<spanclass="math inline">\(2^{48}\)</span>种（以万亿）颜色。<br/>  对于复制-移动操作，将图像的一部分复制和粘贴到同一图像中，然后是五种后处理方法，即缩放、旋转、水平/曲线增加、光照变化和颜色再分配。<br/>  对于删除伪造操作，通过ps中的内容感知填充来从图像中删除选定的区域。内容感知填充被广泛应用于多个数据集（Parketal.2018b；Dong，Wang，和Tan2013b），代表了PS根据周围区域绘制物体的最佳猜测。<br/>  对于拼接伪造操作，将一个图像的区域复制粘贴到另一个图片。然后，采用复制-移动操作中相同的后处理方法，使锻造区域与周围环境相协调。</p><h3 id="cimd-compressed子集cimd-c">CIMD-Compressed子集(CIMD-C)</h3><p>  CIMD-C旨在评估基于压缩的模型在主压缩和二次压缩具有相同的QFs时检测双JEPG压缩伪影的能力。该数据集包含200张JPEG图像，分辨率为2048×1365，其中QF均匀分布为50≤QF&lt;100。<br/>  伪造图像的生成类似于CIMD-R的拼接样本，区别在于伪造图像使用JPEG压缩算法保存，使用与原始图像相同的QF。原始图像由RAW文件生成，确保原始图像第一次被压缩，增强了数据集的可信度。在伪造的图像中，背景是双压缩的，而被篡改的区域是单压缩的。此外，该数据集还包括用于压缩的二进制掩码和QF值，从而增强了其对进一步研究不同QFs的影响的效用。</p><h1 id="提出的imd方法">提出的IMD方法</h1><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326151650512.png"alt="image-20240326151650512" /><figcaption aria-hidden="true">image-20240326151650512</figcaption></figure><p>  我们提出的双分支架构能够检测异常特征和压缩伪影，其灵感来自于（Kwonet al.2022）。此外，我们的模型可以有效地检测小的操作区域和识别双压缩轨迹，应用相同的量化矩阵（Q-矩阵）。为了实现我们的研究目标，我们采用HR-Net（Wanget al.2020）作为我们模型的支柱，基于其提供三倍收益的能力。首先，HR-Net中没有池化层，这确保了这些特性在整个过程中保持高分辨率。其次，该模型在处理不同尺度的特征的同时，也要处理有效的信息交换，这对于获取不同尺度的信息至关重要。最后，HR-Net的输入大小非常适合于DCT特性。由于经过8个速率的扩展卷积处理后，DCT特征的大小减小到输入大小的1/8，这相当于HR-Net的第二阶段分辨率。<br/>  为了更精确地定位微小的篡改区域，我们应用面积空间金字塔池（ASPP）（Chen等2017；Yang等2021）和注意机制（Vaswani等2017；胡，沈，和孙2018）仔细设计了模型。<br/>  对于RGB流，输入的图像被输入到一个完整的HR-Net，它从视觉内容中学习图像编辑跟踪。<br/>  对于DCT流，我们向主干提供量化的DCT系数、q矩阵和新的多次重压缩残差DCT系数，以检测双压缩伪影。这种设计工作，不考虑QF是否相同。为了提高所提出的双分支模型的性能，我们在最后引入了一种自适应加权热图聚合设计，使用软选择来融合由两个分支生成的热图。<br/>  其次，该模型在处理不同尺度的特征的同时，还能处理有效的信息交换，这对于获取不同尺度的信息至关重要。<br/>  最后，HR-Net的输入大小非常适合于DCT特性。由于经过8个速率的扩展卷积处理后，DCT特征的大小减小到输入大小的1/8，这相当于HR-Net的第二阶段分辨率。我们对RGB流应用完整的HR-Net，而对于频率流，我们使用三分辨率的变体HR-Net，用图5中所示的压缩伪影学习模型代替第一阶段。</p><h2id="压缩伪影学习模型compression-artifacts-learning-model">压缩伪影学习模型CompressionArtifacts Learning Model</h2><p>  当使用相同的QF创建拼接图像时，被操纵的区域被单独压缩，而背景区域被双重压缩。因此，当图像被反复压缩时，不稳定的量化DCT系数逐渐集中在被篡改的区域上，而真实的区域则保持相对稳定。在此基础上，我们引入了一种新的残差DCT图来指导DCT特征，以更好地关注IMD的不稳定区域。</p><p>YCbCr 是一种用于压缩彩色图像的色彩空间，其中：</p><ul><li><strong>Y 通道</strong>表示亮度（Luminance），也即图像的灰度级信息。</li><li><strong>Cb 和 Cr 通道</strong>分别表示蓝色差异和红色差异（Chrominance），即色彩信息。</li></ul><p>  我们的方法只关注于y通道DCT图，因为它对人眼更敏感。给定一个JPEG图像，很容易从JPEG文件报头中得到y通道量化的DCT系数<spanclass="math inline">\(Q_0\)</span>及其相应的<spanclass="math inline">\(Q\)</span>矩阵。<br/>首先重复<spanclass="math inline">\(Q\)</span>矩阵具有与<spanclass="math inline">\(Q_0\)</span>相同的大小，我们将重复的<spanclass="math inline">\(Q\)</span>矩阵设为<spanclass="math inline">\(q\)</span>。</p><p>  然后，我们使用以下方程依次计算(k+1)次再压缩量化JPEG系数<spanclass="math inline">\(Q_{k+1}\)</span>：</p><p><spanclass="math display">\[\begin{cases}\begin{array}{l}D_k=Q_k\odotq\\B_k=IDCT(D_k)\\I_{k+1}=RT(B_k)\\Q_{k+1}=[DCT(I_{k+1})\oslashq]\end{array}\end{cases}\]</span>   其中<spanclass="math inline">\(\oslash\)</span>表示元素级划分，D、B、I、Q分别表示去量化的DCT系数、使用逆DCT进行反变换块的DCT系数、使用图像块进行反变换块的DCT系数和使用量化JPEG系数进行反变换块的DCT系数。上述方程中变量的下标表示重压缩的次数，我们实验设置了<spanclass="math inline">\(k=7\)</span>。<spanclass="math inline">\(RT(.)\)</span>是四舍五入和截断操作。<spanclass="math inline">\([.]\)</span>表示该舍入操作。</p><p>  然后，将k次重压缩后的残余去量化DCT系数R定义为：</p><p><spanclass="math display">\[R=\frac{1}{k}\sum_{i=1}^{k}(Q_i-Q_{i-1})\]</span>  对于原始的通道系数<spanclass="math inline">\(Q_0\)</span>​，在把它们转换成一个二进制卷之后，我们使用一个阈值<spanclass="math inline">\(T\)</span>​来执行一个剪切操作，将此二进制值转换表示为：</p><p><span class="math display">\[f:Q_o^{H\times W}\rightarrow\{0,1\}^{(T+1)\times H\times W}\]</span>   DCT系数<spanclass="math inline">\(Q_0\)</span>​被转换为二进制：</p><p><span class="math display">\[f(Q_0(i,j))=\begin{cases}1, &amp;if|clip(Q_0(i,j))|=t,t\in [0,T]\\\\0, &amp;otherwise\end{cases}\]</span></p><p>  利用<span class="math inline">\(clip(.)\)</span>提取<spanclass="math inline">\([−T,T]\)</span>中的直方图特征，这对GPU内存约束是必不可少的。我们实验中将T设为20。此外，我们应用绝对值运算作为DCT直方图显示的对称性。<br/><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326170313123.png"alt="image-20240326170313123" /></p><p>  在频率流中，首先将图像输入到图5所示的<strong>压缩伪影学习模型</strong>中，提取各种DCT特征。随后，DCT特性被输入到HR-Net的一个变体中，该变体在三种不同的分辨率（1/8、1/16和1/32）下运行。</p><h2 id="注意力空间金字塔池aspp">注意力空间金字塔池ASPP</h2><p>  为了精确地定位小的篡改区域，我们使用图6(a)所示的注意力空间金字塔池（ASPP）仔细设计了我们的模型。ASPP通过不同的接受域捕获远程距离信息，并处理尺度变化。它由三个具有不同速率的扩张卷积层和一个全局平均池化（GAP）组成。得到的特征被连接并传递到1×1卷积。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329095235566.png" alt="image-20240329095235566 " style="zoom:50%;" /></p><h2 id="注意力交互机制">注意力交互机制</h2><p>其中</p><ul><li>左边输入为四个分辨率的分支</li><li>CA：通道注意力ChannelAttention</li><li>UP：双线性上采样BilinearUp-sampling</li><li>SA：空间注意力SpatialAttention</li></ul><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329100333958.png" alt="image-20240329100333958 " style="zoom:45%;" /></p><p>接下来，我们将描述注意力如何在RGB流中交互式地工作，其中的过程实际上与频率流相同，具有不同数量的输出分辨率分支。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329141519802.png" alt="image-20240329141519802 " style="zoom:50%;" /></p><h3 id="通道注意力channelattention">通道注意力ChannelAttention</h3><p>左侧输入为HRnet不同分辨率下的输入：</p><p><span class="math display">\[I\in R^{H \times W \times3}\rightarrow\begin{cases}\begin{aligned}F_1 \in R^{H/4 \times W/4\times C_1} &amp;  &amp; ,C_1=48\\F_2 \in R^{H/8 \times W/8 \times C_2}&amp;  &amp; ,C_2=96\\F_3 \in R^{H/16 \times W/16 \times C_3}&amp;  &amp; ,C_3=192\\F_4 \in R^{H/32 \times W/32 \times C_4}&amp;  &amp; ,C_4=384\\\end{aligned}\end{cases}\]</span>自下而上的通道注意特征的计算使用如下： <span class="math display">\[F_n= C(F_{n+1})\odot F_n, n = 1,2,3\]</span> 其中，<spanclass="math inline">\(C(.)\)</span>表示通道注意块，如下图所示，<spanclass="math inline">\(\odot\)</span>表示元素级乘法。由于<spanclass="math inline">\(F_4\)</span>包含了最高级别的语义信息，因此它在通道级别上保持不变。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329095324781.png" alt="image-20240329095324781 " style="zoom:50%;" /><span class="math display">\[C(F)=\sigma(E(GAP(Conv_{1\times1}(F))))\]</span></p><p>  其中1×1卷积，以减少信道，GAP（·）为全局平均池，激励过程 <spanclass="math inline">\(E(.)=C^{&#39;}\rightarrow C^{&#39;}/r \rightarrowC^{&#39;}，r=4\)</span>，<span class="math inline">\(\sigma(.)\)</span>为Sigmoid激活函数。</p><h3id="双线性上采样bilinearup-sampling">双线性上采样BilinearUp-sampling</h3><p>在应用自底而上的信道注意后，使用双线性上采样方法对特征图<spanclass="math inline">\(F_2\)</span>、<spanclass="math inline">\(F_3\)</span>和<spanclass="math inline">\(F_4\)</span>进行上采样，以匹配<spanclass="math inline">\(F_1\)</span>的分辨率。</p><h2 id="空间注意力spatialattention">空间注意力SpatialAttention</h2><p>应用自上而下路径的空间注意机制，由： <spanclass="math display">\[F_m=S(F_{m-1})\otimes F_m,m = 2, 3, 4,\]</span>其中，S(.)为空间注意力，如下图所示。由于<spanclass="math inline">\(F_1\)</span>包含了丰富的空间信息，因此在空间层面上保持不变。</p><p><img src="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240329142515201.png" alt="image-20240329142515201 " style="zoom:50%;" /></p><h2 id="热图聚合heatmapaggregation">热图聚合HeatmapAggregation</h2><p>  每个分支的特征图在经过上采样和交互注意后，具有相同的分辨率。然后将这些特征连接在一起，形成最终特征，用于推理阶段的自适应加权热图聚合。</p><p>  我们的模型生成了两个最终的热图，它们通过软选择进行聚合。具体来说，我们采用双线性特征上采样来升级频率流的热图，以匹配RGB流热图的分辨率。然后，我们将Softmax激活函数应用于热图，然后使用全局最大池化（GMP），记为GMP（·），来选择主热图及其相应的权重。这种选择是基于更高的值，这表明与其他热图相比，它具有更强的定位响应。</p><p>  我们使用<span class="math inline">\(h_m\)</span>和<spanclass="math inline">\(h_s\)</span>​​定义主热图和次热图。因此，加权聚合热图h可以表示为：</p><p><span class="math display">\[h = GMP(h_m)\cdot h_m+(1-GMP(h_m))\cdoth_s\]</span></p><p>  最后，我们在预测的二值掩模上应用一个不可训练的GMP来执行图像级检测，因为图像级检测与像素级预测高度相关。</p><h1 id="实验">实验</h1><h2 id="实验设置">实验设置</h2><p><strong>数据集。</strong>本研究中使用的训练数据集大多采用了（Kwonetal.2022），其中包括CASIAv2、FantasticReality、IMD2020，以及专门为使用不同QFs检测压缩伪影而设计的数据集。测试阶段需要使用CIMD-R和CIMD-C来分别评估基于图像编辑和基于压缩的方法的有效性。补充材料中提供了有关所使用的数据集的进一步细节，以及与选定的公开可访问的数据集进行的评价指标的比较分析。</p><p><strong>实施细节。</strong>我们的模型是使用PyTorch（Paszke等人，2019年）实现的，并在8个RTX2080GPUs，上进行训练，批处理大小为4。我们将初始学习率设置为0.001，并呈指数衰减。为了减轻不平衡数据集对模型训练的影响，我们从每批的每个数据集中随机选择相同数量的样本。训练过程总共250批。该模型被设计为接受各种图像格式，包括JPEG和非JPEG格式。对于非jpeg图像，该模型采用全1的Q矩阵对样本进行压缩，这相当于使用100的QF进行无损压缩。RGB流的主干使用ImageNet进行预训练（(Krizhevsky,Sutskever,andHinton2017），而DCT流使用（Parketal.2018a）引入的双压缩图像进行预训练的方法。为了提高模型检测小篡改区域的灵敏度，设计了训练目标来<strong>最小化像素级的二值交叉熵损失</strong>。</p><p><strong>比较网络的选择。</strong>为了保证公平的比较和评估之前使用新引入的CIMD的模型，我们选择了使用这两个标准的最先进的方法：(1)预训练模型是公开的，(2)我们使用的评估数据集不在它们的训练集中。根据这些标准，我们选择了RRU-Net、MantraNet、CR-CNN、SPAN、PSCC-Net、MVSS-Net、IF-OSN、CAT-Net、DJPEG和对照品。其中，DJPEG和Comprint被设计用于压缩伪影检测，而CATNet可以联合检测异常特征和压缩伪影。上述所有的研究均在相关的工作部分中被适当地引用。我们使用CIMD-R来评估基于图像编辑的方法，用CIMD-C来评估基于压缩的方法。</p><h2 id="在cimd-r上的评估结果">在CIMD-R上的评估结果</h2><p>  使用CIMD-R子集进行评估。表1报告了使用CIMD-R的基于图像编辑的方法的结果，其中所有图像样本都未压缩。</p><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240327213659139.png"alt="image-20240327213659139" /><figcaption aria-hidden="true">image-20240327213659139</figcaption></figure><p>表1报告了使用CIMD-R的基于图像编辑的方法的结果，其中所有图像样本都未压缩。像素级f1评分使用每张图像的最佳f1阈值，并使用固定的f1阈值0.5。最佳分数用粗体突出显示。我们的方法在图像级和像素级的检测任务中都取得了最好的性能。值得注意的是，我们的方法在图像级和像素级评估方面都优于现有的SOTA方法，这表明了它在检测小篡改区域方面的优越性。</p><h2id="在cimd-c上评价基于压缩的方法的评估结果">在CIMD-C上评价基于压缩的方法的评估结果</h2><p>  表2比较了基于压缩的IMD方法的性能，其中所有图像样本都使用相同的QF进行双压缩，评估设置与表1中使用的设置一致。</p><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240327213738541.png"alt="image-20240327213738541" /><figcaption aria-hidden="true">image-20240327213738541</figcaption></figure><p>表2比较了基于压缩的IMD方法的性能，其中所有图像样本都使用相同的QF进行双压缩，评估设置与表1中使用的设置一致。我们的方法在整体性能方面仍然是表现最好的，突出了我们的方法对于具有相同QF的双压缩图像的有效性。</p><h2 id="消融研究">消融研究</h2><p>  我们提供了一个如表3所示的简单的消融研究。请注意，我们的RGB流在压缩的数据和未压缩的数据中都是有效的。</p><figure><imgsrc="../postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240327214430772.png"alt="image-20240327214430772" /><figcaption aria-hidden="true">image-20240327214430772</figcaption></figure><p>  值得注意的是，由于没有压缩伪影，频率流在CIMD-R中不能产生令人满意的结果。然而，当这两个分支协同工作时，模型的性能在定位和检测评估方面都有所提高。在补充材料中提供了额外的烧蚀研究和实验结果。</p><h1 id="结论">结论</h1><p>  本研究提出了一种新的具有挑战性的图像处理检测（CIMD）数据集，它包括两个子集，分别用于评估基于图像编辑和基于压缩的方法。这些数据集被手动获取和篡改，并提供了高质量的注释。此外，我们提出了一种双分支的方法，在使用CIMD数据集检测图像操作方面优于最先进的模型。我们已经发布了我们的数据集，以促进未来的研究。</p>]]></content>
       
       
       <categories>
@@ -2312,9 +2444,11 @@
             
             <tag> RGB </tag>
             
-            <tag> SRM卷积 </tag>
+            <tag> HRnet </tag>
             
             <tag> BayarConv </tag>
+            
+            <tag> dataset </tag>
             
         </tags>
       
