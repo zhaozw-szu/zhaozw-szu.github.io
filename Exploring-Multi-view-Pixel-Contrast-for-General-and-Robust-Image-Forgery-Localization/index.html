@@ -1,0 +1,586 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization | zhaozw后院</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于TIFS 2025，两阶段训练，第一阶段在图像内部、跨尺度和跨模态三个维度使用对比损失进行训练，第二阶段使用交叉熵训练定位头。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/index.html">
+<meta property="og:site_name" content="zhaozw后院">
+<meta property="og:description" content="发表于TIFS 2025，两阶段训练，第一阶段在图像内部、跨尺度和跨模态三个维度使用对比损失进行训练，第二阶段使用交叉熵训练定位头。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801155942589.png">
+<meta property="article:published_time" content="2025-08-01T07:50:48.000Z">
+<meta property="article:modified_time" content="2025-08-01T08:51:09.883Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801155942589.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-01 16:51:09'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">139</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801155942589.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zhaozw后院"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">zhaozw后院</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-08-01T07:50:48.000Z" title="创建于 2025-08-01 15:50:48">2025-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-01T08:51:09.883Z" title="更新于 2025-08-01 16:51:09">2025-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类期刊,TIFS,2025</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IML/">IML</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IML/%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0/">对比学习</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/multimediaFor/MPC"><img src="https://img.shields.io/github/stars/multimediaFor/MPC?style=flat" alt="GitHub Stars: multimediaFor/MPC" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Exploring Multi-view Pixel Contrast for General and Robust Image
+Forgery Localization</p>
+<p>Zijie Lou1,2， Gang Cao1,2,∗，Kun Guo1,2，Haochen Zhu1,2， Lifang
+Yu3</p>
+<p>1中国传媒大学媒体融合与传播国家重点实验室<br/>2中国传媒大学计算机与网络科学学院<br/>3北京平面设计学院信息工程系</p>
+<h1 id="摘要">摘要</h1>
+<p>​  图像伪造定位作为数字取证领域的基础性任务，其核心目标在于识别图像中的篡改区域。尽管现有深度学习方法已取得显著成果，但这些方法仅通过像素到标签的直接映射关系进行学习，未能充分挖掘特征空间中像素间的内在关联。针对这一缺陷，我们提出多视角像素对比算法（MPC）用于图像伪造检测。具体而言，我们首先采用监督对比损失对主干网络进行预训练，从图像内部、跨尺度和跨模态三个维度构建像素间关系模型，旨在提升同类图像的紧凑性并增强不同类图像的可区分性。随后，我们通过交叉熵损失对定位头进行微调，从而获得更精准的像素定位器。为与现有图像伪造定位算法进行全面公平的对比，我们使用三种不同规模的训练数据集对MPC进行训练。在小、中、大规模训练数据集上开展的大量实验表明，相较于现有最先进方法，本文提出的MPC不仅具有更强的泛化性能，还展现出更出色的抗后处理能力。相关代码将在https://github.com/multimediaFor/MPC平台开放获取。</p>
+<h1 id="引言">1 引言</h1>
+<p>​  得益于图像处理技术与工具的迅猛发展，数字图像已变得极易被篡改。诸如假新闻、学术造假和犯罪活动等恶意图像篡改行为，对社会可能造成严重负面影响。更棘手的是，由于篡改痕迹难以察觉，这些被篡改区域往往肉眼难辨。因此，开发可靠的图像篡改取证技术显得尤为重要。<br/>​  早期方法主要采用人工设计的特征来区分原始区域和篡改区域，例如颜色滤波器阵列[12]和局部噪声特征[38]。然而，由于依赖于先验统计模型，这些人工特征在面对未见过的篡改类型时难以有效泛化。近年来，基于深度学习（DL）的方法[2,3,8,14,16-18,21,25,27-30,32-35,43,46,47,51,54,57,59-61,63-67]在图像伪造定位领域取得了显著成果。凭借丰富的训练样本和强大的特征表示能力，这类深度学习方法在定位性能上明显优于传统方法。典型的图像伪造定位模型通常由深度特征提取器和像素级softmax/sigmoid分类器组成，并采用像素级交叉熵（CE）损失函数进行训练。为了有效区分篡改区域与真实区域，部分取证方法采用了专门的网络设计，例如多层特征融合[8,14,16,21,25,29,34,35,47]和注意力机制[8,16-18,21,25,28,34,35,51,67]。这些伪造定位模型的核心原理是利用深度网络将图像像素映射到高度非线性的特征空间。然而，它们通常直接在标签空间中学习像素到标签的映射关系，却忽视了特征空间中像素间的关联性。理想情况下，有效的伪造定位特征空间不仅需要1）考虑单个像素嵌入的分类能力，还需2）具备良好的组织结构，既能保证同类像素间的紧凑性，又能实现不同类别的可分离性。<br/>​  为解决这一问题，我们提出了一种多视角像素级对比算法以实现更高效的图像伪造定位。具体而言，我们首先通过三种视角（图像内部、跨尺度和跨模态）的监督对比损失对主干网络进行预训练，从而构建像素特征空间。随后使用CE损失对定位头进行微调，以解决类别间判别问题。该方法通过对比损失机制，促使同一类别的像素特征（原始与原始、未篡改与篡改）相互靠近，而不同类别的像素特征（原始与篡改）彼此远离，从而增强类别内紧凑性和类别间可分离性。这种机制自然促进了微调阶段中定位预测的准确性提升。<br/>​  近期如[41,60]等研究也采用对比学习方法进行图像伪造定位任务。但这些研究仅聚焦于图像内部像素对比度，同时使用对比损失和CE损失进行训练，并在有限测试数据集上验证其方案。与这些研究相比，我们通过对比损失从三个维度探索标注像素嵌入的结构信息：图像内部、跨尺度和跨模态。此外，我们采用两阶段训练策略，并在多个测试数据集上验证了所提方法的有效性。总体而言，我们的贡献包括：</p>
+<ul>
+<li>我们提出了一种多视角像素级对比算法（MPC）用于图像伪造定位。该方法采用两阶段训练策略，不仅能在标签空间中建模像素关系，还能在特征空间中进行建模。</li>
+<li>对比损失用于从三个维度塑造像素特征空间：图像内部、跨尺度和跨模态。通过多视角像素对比，可以获得结构良好的像素特征空间，从而提升定位性能。</li>
+<li>我们对现有的图像伪造定位方法进行了全面而公平的比较。广泛的实验表明，与最先进的方法相比，我们提出的MPC具有显著的性能优势。</li>
+</ul>
+<h1 id="相关工作">2 相关工作</h1>
+<h2 id="图像伪造定位">2.1 图像伪造定位</h2>
+<h2 id="对比学习">2.2 对比学习</h2>
+<h1 id="方法">3 方法</h1>
+<h2 id="网络结构">3.1 网络结构</h2>
+<p>​  我们的算法包含两个主要组件，包括主干网络和定位头，如图1所示。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801155942589.png"
+alt="image-20250801155942589" />
+<figcaption aria-hidden="true">image-20250801155942589</figcaption>
+</figure>
+<p>​  该模型将输入图像𝑋映射为密集嵌入<span
+class="math inline">\(\{X_i，\hat
+X_i\}=𝑓_{BAC}(X)\)</span>。我们首次在取证任务中采用HRFormer，因其能在整个过程中保持高分辨率表征。这种高分辨率表征能够保留细粒度的取证线索，这对准确识别伪造行为至关重要。此外，我们的跨尺度与跨模态对比损失函数的设计依赖于HRFormer的架构设计。定位头<span
+class="math inline">\(f_{LOC}\)</span>通过1×1卷积层与ReLU激活函数实现，将拼接后的<span
+class="math inline">\(\{X_i\}\)</span>投影为评分图<span
+class="math inline">\(Y=f_{L O C}(C o n c a
+t(X_{1},X_{2},X_{3},X_{4}))\)</span>。<br/>​  需要说明的是，我们采用了两阶段训练策略。具体来说，首先使用对比损失（公式4）对主干网络进行训练，随后冻结主干网络的权重。接着，我们使用CE损失（公式5）对定位头进行微调。</p>
+<h2 id="用于取证的多视图像素对比">3.2 用于取证的多视图像素对比</h2>
+<p>​  在本研究中，我们开发了一种多视角像素级对比学习算法，以增强伪造像素检测的表征学习效果。我们将图像伪造定位任务转化为像素级二分类问题，即图像X的每个像素x必须被归类到类别y∈{0,1}中，其中“0”表示“原始”，“1”表示“篡改”。具体而言，给定伪造图像<span
+class="math inline">\(X\in\mathbb{R}^{H\times
+W\times3}\)</span>时，主干网络会生成一系列多尺度特征<span
+class="math inline">\(\{X_{1},X_{2},X_{3},X_{4}\}\)</span>和<span
+class="math inline">\(\{\hat X_{1},\hat X_{2},\hat X_{3},\hat
+X_{4}\}\)</span>。由于主干网络存在<em>dropout</em>机制，<span
+class="math inline">\(X_i\)</span>与<span class="math inline">\(\hat
+X_i\)</span>存在差异。因此可以推导出x的像素嵌入向量<span
+class="math inline">\(x\in\mathbb{R}^{C}\)</span>。</p>
+<p>​  <strong>图像内损失</strong><br/>​  我们首先探究图像中像素之间的结构关系。对于具有真实标签“1”的像素嵌入<span
+class="math inline">\(x\in X_1\)</span>，正样本<span
+class="math inline">\(x^+\)</span>是该嵌入在<span
+class="math inline">\(X_1\)</span>中其他标记为“1”的像素嵌入，而负样本<span
+class="math inline">\(x^-\)</span>则是标记为“0”的像素嵌入。图像内对比损失函数定义如下：
+<span
+class="math display">\[{\mathcal{L}}_{x}^{1}=-\log{\frac{\frac{1}{|{\mathcal{P}}_{x}|}\sum_{x^{+}\in{\mathcal{P}}_{x}\in
+X_{1}}\exp(x\cdot x^{+}/\tau)}{\sum_{x^{-}\in{\mathcal{N}}_{x}\in
+X_{1}}\exp(x\cdot x^{-}/\tau)}}\]</span> ​  其中<span
+class="math inline">\({\mathcal{P}}_{x}\)</span>和<span
+class="math inline">\({\mathcal{N}}_{x}\)</span>分别表示从<span
+class="math inline">\(X_1\)</span>中随机采样的正负像素嵌入集合。‘·’表示内积，其中温度超参数为正数。这种图像内对比损失旨在学习判别性特征表示，有助于区分图像中的原始像素与伪造像素。通过将同一类像素嵌入拉近并推动不同类别的像素嵌入分开，可以提高类内紧凑性和类间可分离性[41,52,62]。</p>
+<p>​  <strong>跨尺度损失</strong><br/>​  由于篡改区域通常具有不同尺寸特征，因此在不同尺度上融合特征对于增强定位算法的鲁棒性至关重要。与直接将低级特征整合到高级特征的[16,25]方法不同，我们的跨尺度对比损失是通过计算不同尺度特征之间的差异来实现的。具体而言，对于像素嵌入<span
+class="math inline">\(x\in X_1\)</span>，正负样本像素嵌入集合<span
+class="math inline">\({\mathcal{P}}_{x}\)</span>和<span
+class="math inline">\({\mathcal{N}}_{x}\)</span>分别从图像的三个部分（即图像块、区域块和像素块）中采样获得。
+<span
+class="math display">\[{\mathcal{L}}_{x}^{2}=-\log{\frac{\frac{1}{|{\mathcal{P}}_{x}|}\sum_{x^{+}\in{\mathcal{P}}_{x}\in
+X_{2}\cup X_{3}\cup X_{4}}\exp(x\cdot
+x^{+}/\tau)}{\sum_{x^{-}\in{\mathcal{N}}_{x}\in X_{2}\cup X_{3}\cup
+X_{4}}\exp(x\cdot x^{-}/\tau)}}\]</span>
+​  因此，不同尺度之间的密集连接能够有效地交换信息，这对于提取抗尺度变化的稳健的特征很有帮助。</p>
+<p>​  <strong>跨模态损失</strong><br/>​  受自然语言处理领域自监督学习的启发，本研究进一步整合跨模态对比学习以增强法医鉴别能力。具体而言，图像𝑋被依次输入主干网络两次，生成两个特征图版本<span
+class="math inline">\(X_i\)</span>和<span class="math inline">\(\hat
+X_i\)</span>。由于随机<em>dropout</em>机制的作用，这两个特征图具有相似性但不完全相同。这种双重编码方式在不增加网络复杂度的前提下，通过扩展可训练样本数量，形成了两种不同模态的训练样本。对于像素嵌入<span
+class="math inline">\(x\in X_1\)</span>，正负像素嵌入集合<span
+class="math inline">\({\mathcal{P}}_{x}\)</span>，<span
+class="math inline">\({\mathcal{N}}_{x}\)</span>从数据集<span
+class="math inline">\(\hat
+X_i\)</span>中采样获得。然后采用跨模态对比损失函数 <span
+class="math display">\[{\mathcal{L}}_{x}^{3}=-\log{\frac{\frac{1}{|{\mathcal{P}}_{x}|}\sum_{x^{+}\in{\mathcal{P}}_{x}\in
+\hat X_{1}}\exp(x\cdot x^{+}/\tau)}{\sum_{x^{-}\in{\mathcal{N}}_{x}\in
+\hat  X_{1}}\exp(x\cdot x^{-}/\tau)}}\]</span>
+​  考虑到计算复杂度，我们采用分辨率最高的特征<span
+class="math inline">\(X_1\)</span>来计算<span
+class="math inline">\({\mathcal{L}}_{x}^{1}\)</span>和<span
+class="math inline">\({\mathcal{L}}_{x}^{3}\)</span>。总体而言，在训练主干网络时使用的总多视角对比损失函数<span
+class="math inline">\({\mathcal{L}}_{x}^{Contra}\)</span>定义为 <span
+class="math display">\[{\mathcal{L}}_{x}^{Contra}={\mathcal{L}}_{x}^{1}+{\mathcal{L}}_{x}^{2}+{\mathcal{L}}_{x}^{3}\]</span></p>
+<h2 id="监督式像素级伪造检测">3.3 监督式像素级伪造检测</h2>
+<p>​  完成训练后，将冻结主干网络的权重。随后对定位头进行微调，将投影<span
+class="math inline">\(\{X_{1},X_{2},X_{3},X_{4}\}\)</span>转换为评分图<span
+class="math inline">\(Y\)</span>。设𝑦为像素𝑥的评分向量（通过sigmoid激活），即.，<span
+class="math inline">\(𝑦\in Y\)</span>.。给定像素𝑥相对于其真实标签<span
+class="math inline">\(\hat
+𝑦\in\{0,1\}\)</span>，的𝑦值，优化改进后的交叉熵损失函数[31]。 <span
+class="math display">\[\begin{aligned}\mathcal{L}_{x}^{\mathrm{CE}}(\hat{y},y)=&amp;-\alpha\,(1-y)^{\gamma}\times\hat{y}\log\left(y\right)\\
+&amp;-(1-\alpha)y^{Y}\times(1-\hat{y})\log\left(1-y\right)\end{aligned}\]</span>
+​  其中𝛼和𝛾是超参数，通常经验性地设置为0.5和2。虽然对比学习会促使图像中的像素根据其标签聚类，但基于CE损失的微调会重新排列这些聚类，使其落在决策边界正确的那一侧。</p>
+<h1 id="实验">4 实验</h1>
+<h2 id="实验设置">4.1 实验设置</h2>
+<p>​  <strong>数据集</strong><br/>​  为了与现有算法进行全面、公平的比较，我们在不同规模的训练数据集上进行了三组实验，如表1所示。各实验的配置如下：</p>
+<ul>
+<li>实验一<br/>
+基于前期研究[8,25]，我们的模型在包含5123张篡改图像的CASIAv2数据集[9]上进行训练。随后我们使用另外10个数据集对模型进行测试，包括CASIAv1
+[9]、NIST [15]、Columbia[20]、IFC [1]、IMD [42]、Coverage [53]、DSO
+[4]、DEF-test [39]、Wild [22]和Korus
+[26]。在实验1中，所有模型均仅在CASIAv2数据集上进行训练。</li>
+<li>实验二<br/>
+在完成[17,28,34,59,61,65]阶段后，我们还从CAT-Net数据集[27]中随机选取了60,000张篡改图像进行模型预训练。在后续微调MPC时，我们沿用了与NIST、Coverage和CASIA实验相同的训练-测试比例配置。最后，我们在四个数据集（即CASIAv1
+[9]、NIST [15]、IMD [42]和Coverage
+[53])上进行测试。实验2中所有模型均在等比例缩放的数据集上进行训练，以确保公平比较。</li>
+<li>实验三<br/> 我们的模型使用与CAT-Net
+[27]和TruFor[16]相同的训练数据集进行训练，并在其他10个公开数据集上进行测试，包括CASIAv1
+[9]、NIST [15]、Columbia[20]、Coverage [53]、DSO [4]、Wild [22]、Korus
+[26]、MISD [23]、CoCoGlide [16]和FF++
+[45]。由于计算资源的限制，我们仅将我们的方法与在相同数据集上训练的CAT-Net和TruFor进行对比。</li>
+</ul>
+<p>​  <strong>指标</strong><br/>​  与先前研究[16,25,54]类似，我们通过F1值和交并比（IoU）来评估像素级伪造检测的准确度。采用固定阈值0.5对定位概率图进行二值化处理。各测试数据集的平均F1值和IoU值被用作伪造检测算法的统计性能指标。考虑到不同数据集间图像样本数量存在明显不平衡，所有测试数据集的平均F1值和IoU值均按以下方式计算：
+<span
+class="math display">\[\mathrm{Average}={\frac{\sum_{i=1}^{i=N}{\mathrm
+{Metric}}_{D_i}\times\mathrm{Num}_{D_{i}}}{\sum_{i=1}^{i=N}\mathrm{Num}_{D_{i}}}}\]</span>
+​  其中<span class="math inline">\({\mathrm
+{Metric}}_{D_i}\)</span>表示第i个数据集的平均指标（F1或IoU），<span
+class="math inline">\({\mathrm
+{Num}}_{D_i}\)</span>表示该数据集包含的图像数量。这种指标本质上是样本级别的平均值，而非简单的数据集级算术平均值。等式6中的计算方法适用于现有文献中仅提供各数据集指标<span
+class="math inline">\({\mathrm
+{Metric}}_{D_i}\)</span>的场景，用于重新计算样本级别的平均值。</p>
+<p>​  <strong>具体实施细节</strong><br/>​  所提出的MPC算法由PyTorch实现。我们在单个A800
+GPU上分两个阶段训练网络：第一阶段学习率从1e-4开始，采用“平台期降速策略”逐步降低；第二阶段学习率同样从1e-4起始，但改用“余弦退火策略”进行调整。优化器选用Adam，批量大小设为4，所有训练图像均调整为512×512像素尺寸。作为数据增强手段，我们采用了包括翻转、模糊、压缩、加噪和缩放在内的常见处理方式。</p>
+<h2 id="与state-of-the-arts的比较">4.2
+与<strong>State-of-the-Arts</strong>的比较</h2>
+<p>​  <strong>实验一</strong><br/>​  我们将MPC的性能与16种现有的图像伪造定位或语义分割算法进行比较，所有这些算法都是在CASIAv2数据集上训练的。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801163131701.png"
+alt="image-20250801163131701" />
+<figcaption aria-hidden="true">image-20250801163131701</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801163202176.png"
+alt="image-20250801163202176" />
+<figcaption aria-hidden="true">image-20250801163202176</figcaption>
+</figure>
+<p>​  表2和表3展示了不同方法在像素级定位性能上的评估结果。总体而言，我们的方法取得了最高的平均定位精度，在F1值和交并比（IoU）方面分别领先第二名PIM[25]3.7%和2.9%。此外，我们的方法在6个数据集上获得了最佳的F1值，在7个数据集上则在交并比（IoU）方面表现最优。尽管这10个测试数据集的分布形态各异，但我们的MPC方法在定位性能上仍超越了所有先前研究。这些亮眼的成绩充分展现了该方法在各类伪造图像中展现出的高精度定位能力和强大的泛化能力。这些优势对于推动法医定位技术向现实应用领域发展具有重要意义。<br/>​  此外，我们发现仅在小规模CASIAv2数据集上训练时，基于Swin-ViT
+[36]构建的简单语义分割网络定位性能，已超越大多数专门设计的取证算法[8,21,27,33,34,55]。这些结果表明，当训练数据集规模不足时，现有多数取证算法可能无法有效学习其依赖的篡改痕迹特征。相比之下，我们的多视角对比学习（MPC）方法不依赖特定取证线索，而是通过多视图对比学习构建结构化特征空间，从而实现原始像素与篡改像素的有效区分。</p>
+<p>​  <strong>实验二</strong><br/>​  如文献[8,17,18,21,28,29,32,34,35,47,51,57,59-61,63-65,67]所述，这类实验通常采用中等规模数据集（样本量6万∼10万）进行预训练，随后在测试集子集上进行微调。由于缺乏额外的测试数据集，此类实验无法准确反映模型的泛化能力。不过为确保公平比较，我们仍沿用现有19种图像伪造定位方法的实验设置。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801163414873.png"
+alt="image-20250801163414873" />
+<figcaption aria-hidden="true">image-20250801163414873</figcaption>
+</figure>
+<p>​  表5为实验2中微调模型的对比结果，标记为“-”的未获得结果的情况是由于文献中未公开源代码或未给出测试结果。相较于现有方法，我们的MPC模型在平均F1分数上表现最佳，并且比排名第二的TBFormer
+[35]高出3.8%。需要特别说明的是，TBFormer未在IMD数据集上进行测试——这对评估伪造检测算法的泛化能力至关重要。与同样采用对比学习的PCL
+[60]相比，MPC模型的改进幅度可超过24.5%。总体而言，我们的MPC模型能够适应不同分布的数据集，并展现出具有竞争力的定位性能。</p>
+<p>​  <strong>实验三</strong><br/>​  在本系列实验中，我们将方法与CAT-Net
+[27]和TruFor
+[16]进行对比。所有模型均使用包含80万余张篡改图像的CAT-Net数据集[27]进行训练。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801163558907.png"
+alt="image-20250801163558907" />
+<figcaption aria-hidden="true">image-20250801163558907</figcaption>
+</figure>
+<p>​  表4展示了不同方法在10个测试数据集上的F1值和交并比表现。我们的MPC方法在哥伦比亚、CASIAv1、Coverage、MISD和CoCoGlide数据集上超越TruFor，但在其余数据集上稍逊一筹。平均而言，我们的方法在F1值和交并比上分别比当前最佳的TruFor高出1.4%和0.9%。总体而言，我们的MPC方法在伪造定位性能上与TruFor旗鼓相当，并且在所有数据集上均优于CAT-Net。此外，我们的方法具有参数更少的优势。虽然CAT-Net（1.143亿参数）和TruFor（6870万参数）分别采用基于HRNet
+[50]和SegFormer
+[56]的双分支架构，但我们的MPC（4180万参数）仅采用单分支HRFormer架构。我们的方案避免了额外模块的设计，以更低的计算成本实现了相当甚至更优的定位性能。</p>
+<h2 id="鲁棒性评估">4.3 鲁棒性评估</h2>
+<p>​  我们首先评估图像伪造定位方法对社交网络（OSNs）复杂后处理操作的鲁棒性。参照先前研究[54]，我们测试了通过Facebook、Weibo、Wechat和Whatsapp平台传输的四个伪造数据集。表6显示，我们的方法在各社交网络平台的四个数据集中均保持最高准确率。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801163704753.png"
+alt="image-20250801163704753" />
+<figcaption aria-hidden="true">image-20250801163704753</figcaption>
+</figure>
+<p>​  在对比方法中，MPC因OSNs的影响而产生的性能损失最小。值得注意的是，CAT-Net由于专门学习JPEG压缩伪影，在处理Columbia数据集时表现更优。但该方法在其他数据集上明显性能下降——例如在Facebook版Columbia数据集上F1=91.8%，而在Wechat版CASIAv1数据集上F1=13.9%。相比之下，我们的MPC在所有社交网络传输中始终保持高定位准确率。这些结果验证了MPC对社交网络处理的鲁棒性。<br/>​  在先前研究[8,34]的基础上，我们还在Columbia数据集上评估了模型对JPEG压缩、高斯模糊、高斯噪声和图像缩放等后处理的鲁棒性。如图2所示结果验证了我们的MPC模型对这些后处理具有高度鲁棒性。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801163858679.png"
+alt="image-20250801163858679" />
+<figcaption aria-hidden="true">image-20250801163858679</figcaption>
+</figure>
+<p>​  MPC在所有测试场景中均表现最佳。特别值得注意的是，模糊处理和噪声干扰会显著降低CAT-Net和TruFor的性能，但对我们的方法影响微乎其微。以噪声干扰为例，虽然CAT-Net和TruFor的F1值分别从0.8骤降至0和0.5，但MPC在不同噪声强度下的表现始终稳定在0.9以上。<br/>​  我们进一步验证了MPC算法在组合后处理操作中的鲁棒性。具体而言，在OSN传输完成后，我们在Columbia数据集上应用了额外的JPEG压缩、高斯模糊、高斯噪声和图像缩放处理。为模拟真实世界的后处理流程，所有操作顺序均采用随机化处理。表7展示了相应的统计测试结果，图3则呈现了示例测试图像的定性评估结果。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801164022849.png"
+alt="image-20250801164022849" />
+<figcaption aria-hidden="true">image-20250801164022849</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801164043501.png"
+alt="image-20250801164043501" />
+<figcaption aria-hidden="true">image-20250801164043501</figcaption>
+</figure>
+<p>​  可以观察到，CAT-Net算法无法抵御任何组合后的处理方式。TruFor的定位性能也严重受损，几乎无法使用。相比之下，我们的MPC展现出显著更强的鲁棒性，以明显优势超越CAT-Net和TruFor。这种结果归因于CAT-Net和TruFor依赖特定篡改痕迹（如JPEG伪影和噪声不一致性）。我们的方法致力于通过对比学习增强原始像素与篡改像素之间的类内紧凑性和类间可分离性。此外，训练过程中采用的数据增强策略也能进一步提升我们MPC的鲁棒性。</p>
+<h2 id="消融研究">4.4 消融研究</h2>
+<p>​  我们进行了大量消融实验来验证所提出的MPC的有效性。相关子实验的总结如表8所示。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801164142032.png"
+alt="image-20250801164142032" />
+<figcaption aria-hidden="true">image-20250801164142032</figcaption>
+</figure>
+<p>​  <strong>多视图像素对比度的有效性</strong><br/>​  我们移除三种对比损失中的其中一种，并通过评估定位性能的下降幅度来验证每种损失带来的性能提升。在MPC框架中，图像内损失<span
+class="math inline">\({\mathcal{L}}_{x}^{1}\)</span>最为关键，其缺失会导致定位性能出现灾难性崩溃。这是因为通过图像内对比损失来提升类间紧凑性和类内可分离性，正是我们研究的核心目标。此外，跨模态损失<span
+class="math inline">\({\mathcal{L}}_{x}^{3}\)</span>带来的性能提升效果优于跨尺度损失<span
+class="math inline">\({\mathcal{L}}_{x}^{2}\)</span>。这一结果归因于所采用的<em>dropout</em>机制：该机制引入具有挑战性的样本，从而增强了模型识别被篡改像素区域的能力。</p>
+<p>​  <strong>主干网络的影响</strong><br/>​  我们还研究了网络规模对性能的影响。尽管HRFormer-base（41.8M）相比HRFormer-small（8.2M）的网络复杂度有所增加，但性能表现仍显著提升。这种改进归因于参数更丰富的大型模型可能具备更强的表征学习能力。不过与CAT-Net（114.3M）和TruFor（68.7M）相比，我们的MPC（41.8M）依然保持了轻量化优势。</p>
+<h2 id="定性结果">4.5 定性结果</h2>
+<p>​  我们还对不同方法的定位性能进行了定性对比。从测试数据集中选取了涵盖三种常见篡改类型（即拼接、复制移动和删除）的样本进行分析。图4展示了各方法在示例图像上的像素级伪造定位结果。</p>
+<figure>
+<img
+src="../postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801164444941.png"
+alt="image-20250801164444941" />
+<figcaption aria-hidden="true">image-20250801164444941</figcaption>
+</figure>
+<p>​  可以看出，我们的方法对各类伪造图像都能生成更精准的定位结果。在大多数情况下，其他定位方法只能检测到篡改区域的部分特征，且存在不同程度的误报。<br/>​  除了传统图像伪造案例，我们还对定位算法在新型伪造图像上的表现进行了定性对比。具体而言，我们分别从FF++
+[45]和CoCoGlide
+[16]数据集中选取了深度伪造图像和本地AI生成图像进行测试。FF++中的合成人脸图像是通过Face2Face
+[49]等面部交换算法生成的，而CoCoGlide中的本地AI生成图像则由GLIDE扩散模型[40]生成。如图5所示，尽管训练过程中未包含此类图像类型，我们的方法仍能精准识别出被篡改区域。相比之下，TruFor算法容易产生更多误判和漏检，而CAT-Net几乎完全失效。这些结果充分证明了我们提出的多视图像素级对比学习方法具有强大的泛化能力。</p>
+<h1 id="结论">5 结论</h1>
+<p>​  本文提出了一种名为MPC的新型可信图像伪造定位方案。首先通过像素级监督对比损失训练主干网络，从图像内部、跨尺度和跨模态三个维度建模特征空间中的像素关系。随后利用CE损失对定位头进行微调，从而获得更精准的像素定位器。我们通过三组主流实验与现有图像伪造定位方法进行全面公平的对比验证。大量实验表明，相较于现有技术，我们的方法展现出更强的泛化能力和鲁棒性。MPC在应对在线社交网络的复杂后处理及操作链路时表现出优异的抗干扰能力。未来研究将致力于开发更强大的取证算法，以应对低光环境图像和新型AI生成图像等极具挑战性的伪造场景。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/">https://zhaozw-szu.github.io/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">zhaozw后院</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801155942589.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/GIM-A-Million-scale-Benchmark-for-Generative-Image-Manipulation-Detection-and-Localization/" title="GIM:A Million-scale Benchmark for Generative Image Manipulation Detection and Localization"><img class="cover" src="/postimages/GIM-A-Million-scale-Benchmark-for-Generative-Image-Manipulation-Detection-and-Localization/image-20250801151443340.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GIM:A Million-scale Benchmark for Generative Image Manipulation Detection and Localization</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">139</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2 相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E4%BC%AA%E9%80%A0%E5%AE%9A%E4%BD%8D"><span class="toc-text">2.1 图像伪造定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="toc-text">2.2 对比学习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="toc-text">3.1 网络结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%8F%96%E8%AF%81%E7%9A%84%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%83%8F%E7%B4%A0%E5%AF%B9%E6%AF%94"><span class="toc-text">3.2 用于取证的多视图像素对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E7%9D%A3%E5%BC%8F%E5%83%8F%E7%B4%A0%E7%BA%A7%E4%BC%AA%E9%80%A0%E6%A3%80%E6%B5%8B"><span class="toc-text">3.3 监督式像素级伪造检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4 实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1 实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8Estate-of-the-arts%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.2
+与State-of-the-Arts的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%B2%81%E6%A3%92%E6%80%A7%E8%AF%84%E4%BC%B0"><span class="toc-text">4.3 鲁棒性评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.4 消融研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%80%A7%E7%BB%93%E6%9E%9C"><span class="toc-text">4.5 定性结果</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5 结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
