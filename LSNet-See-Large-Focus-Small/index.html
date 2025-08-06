@@ -1,0 +1,517 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LSNet:See Large, Focus Small | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LSNet: See Large, Focus Small Ao Wang1 Hui Chen2* Zijia Lin1 Jungong Han3 Guiguang Ding1 1清华大学软件学院2清华大学BNRist3清华大学自动化系 摘要 ​  视觉网络设计，包括卷积神经网络和视觉变换器，显著推动了计算机视觉领域的发展。然而，其复杂的计算过程给实际应用带来了挑战，特别是在实时场景中。为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LSNet:See Large, Focus Small">
+<meta property="og:url" content="https://zhaozw-szu.github.io/LSNet-See-Large-Focus-Small/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="LSNet: See Large, Focus Small Ao Wang1 Hui Chen2* Zijia Lin1 Jungong Han3 Guiguang Ding1 1清华大学软件学院2清华大学BNRist3清华大学自动化系 摘要 ​  视觉网络设计，包括卷积神经网络和视觉变换器，显著推动了计算机视觉领域的发展。然而，其复杂的计算过程给实际应用带来了挑战，特别是在实时场景中。为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
+<meta property="article:published_time" content="2025-08-06T02:46:14.000Z">
+<meta property="article:modified_time" content="2025-08-06T06:53:33.272Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/LSNet-See-Large-Focus-Small/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LSNet:See Large, Focus Small',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-06 14:53:33'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">139</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 即刻短文</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LSNet:See Large, Focus Small</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-08-06T02:46:14.000Z" title="创建于 2025-08-06 10:46:14">2025-08-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-06T06:53:33.272Z" title="更新于 2025-08-06 14:53:33">2025-08-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LSNet:See Large, Focus Small"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>LSNet: See Large, Focus Small</p>
+<p>Ao Wang1 Hui Chen2* Zijia Lin1 Jungong Han3 Guiguang Ding1</p>
+<p>1清华大学软件学院<br/>2清华大学BNRist<br/>3清华大学自动化系</p>
+<h1 id="摘要">摘要</h1>
+<p>​  视觉网络设计，包括卷积神经网络和视觉变换器，显著推动了计算机视觉领域的发展。然而，其复杂的计算过程给实际应用带来了挑战，特别是在实时场景中。为解决这一问题，研究人员探索了多种轻量级高效网络架构。但现有轻量模型主要依赖自注意力机制和卷积操作进行特征融合，这种过度依赖导致轻量网络在感知与聚合过程中效率受限，在计算资源有限的情况下难以实现性能与效率的平衡。本文从高效人类视觉系统中固有的动态异尺度视觉能力中获得启发，提出一种“广域感知+局部聚焦”的轻量级视觉网络设计策略。我们创新性地引入LS(Large-Small)卷积结构，该结构融合了大核感知与小核聚合特性。这种设计能高效捕捉多维度感知信息，并对动态复杂视觉表征实现精准特征聚合，从而实现视觉信息的高效处理。基于LS卷积架构，我们提出了LSNet这一全新轻量级模型家族。大量实验表明，LSNet在多种视觉任务中展现出比现有轻量级网络更优的性能和效率。相关代码和模型可在https:
+//github.com/jameslahm/lsnet获取。</p>
+<h1 id="引言">1. 引言</h1>
+<p>​  视觉网络设计始终是计算机视觉领域的研究热点[17,22,24,50,51,96]。其中，卷积神经网络（CNN）[24,29,38,39,51]和视觉变换器（ViTs）[17,50,63,74,88,93]两大主流架构，在各类计算机视觉任务中不断突破边界[3,4,23,70,82,84,92]。然而，这两种架构在传统计算上都存在显著瓶颈，给实际应用带来巨大挑战——特别是在实时场景中，其性能表现尤为突出[44,49]。<br/>​  近期，科研人员正致力于探索视觉网络的轻量化与高效化设计[7,34,55,57,60,76]以满足实际应用需求。尽管这些轻量级模型效果显著，但其底层架构仍需依赖自注意力机制[17,77,86]和卷积层[38,39]等基础模块来实现特征融合技术。这种对基础模块的过度依赖，往往会影响网络感知与聚合过程的效率与效果，导致架构表达能力受限或推理速度下降。<br/>​  本质上，上下文感知与特征聚合是实现标记混合的核心机制[19,73,91]，能够有效促进空间信息融合。感知模型通过分析标记间的上下文关联，而聚合机制则基于这些关联整合特征。在现有的轻量级模型中，两种主流的标记混合方法——自注意力机制和卷积网络——分别采用不同的感知与聚合方式。具体而言，自注意力机制通过全局特征交互实现整体感知，并借助特征加权求和完成特征聚合。卷积方法通过感知标记之间的相对位置关系，并使用静态核权重聚合特征。然而，如图1(a)和(b)所示，这两种方法都存在局限性。</p>
+<figure>
+<img
+src="../postimages/LSNet-See-Large-Focus-Small/image-20250806114142065.png"
+alt="image-20250806114142065" />
+<figcaption aria-hidden="true">image-20250806114142065</figcaption>
+</figure>
+<p>​  (1)自注意力机制容易对缺乏显著连接的区域过度关注，导致关键信息的聚合效果降低，例如在信息量较少的背景[46,65]中。此外，其感知与聚合过程共享相同的混合范围。自注意力机制及其变体在扩展上下文时，[19,33,49]会显著增加计算复杂度。这种特性使得轻量级模型难以在有限的计算资源下实现高表征能力。</p>
+<p>​  (2)在卷积神经网络中，感知模型所建模的标记间关系（即聚合权重）由固定核权重决定。因此，尽管卷积网络效率高，但对上下文邻域的变化缺乏敏感性。这给轻量级模型的表达能力带来了限制，特别是考虑到这类网络本身存在固有局限性。在此背景下，探索一种能在有限计算成本下实现更高效感知与聚合处理的轻量级模型特征融合方案显得尤为重要。</p>
+<p>​  为此，我们首先对感知和聚合过程背后的直觉进行了彻底的检验。我们发现，它们与高效人类视觉系统中的动态异尺度视觉能力现象高度吻合。</p>
+<figure>
+<img
+src="../postimages/LSNet-See-Large-Focus-Small/image-20250806114559985.png"
+alt="image-20250806114559985" />
+<figcaption aria-hidden="true">image-20250806114559985</figcaption>
+</figure>
+<p>​  具体来说，如图1(c)所示，人类视觉系统遵循双阶段机制：<br/>​  (1)首先通过周边视觉的大视野感知[62,69]捕捉场景的宏观概览，即“看大”；<br/>​  (2)随后将注意力转向场景中的特定元素，借助中央视觉的小视野聚合能力[59,69]实现细节理解，即“聚焦小”。<br/>​  这种视觉特性源于视网膜[36,62]中两种感光细胞——杆状细胞和锥状细胞——独特的空间分布与视觉能力，如图1(d)所示。杆状细胞广泛分布于视网膜边缘区域[59]，生成的图像相对模糊且空间细节有限[78]。不过它们能对可见光谱产生广泛响应，与视网膜边缘的锥状细胞协同工作，共同实现大视野周边视觉能力[72]，从而让人“看清楚全局”。而锥状细胞则主要集中在中央凹区域，这个小范围负责中央视觉功能[87]。黄斑区密集分布着视锥细胞，这些细胞构成了捕捉精细细节和复杂特征的最敏锐区域[35,75,78]，从而实现“聚焦微小”。在周边感光细胞高效的大视野感知引导下，黄斑区能够通过小范围集中聚焦，精准捕捉细微特征的影像[62]。这种“放眼全局，聚焦细节”的方法使人类视觉系统能够快速有效地处理视觉信息[78]，从而促进准确和高效的视觉理解。</p>
+<p>​  这些研究需求促使我们设计出既能感知大范围视觉场景又能整合局部细节的高效视觉网络。为此，我们首创了“大-小”（LS，<strong>L</strong>arge-<strong>S</strong>mall）卷积运算机制，该机制模拟人类视觉系统中“广角捕捉+微距聚焦”的核心策略，从而有效提取具有区分度的视觉特征模式。LS卷积通常采用大核静态卷积实现大视野感知，小核动态卷积用于小视野聚合。该方法并非简单叠加两种卷积方式，而是通过大核深度卷积捕捉广泛上下文信息来建模空间关系。随后，基于这些参数构建具有群组机制的小核动态卷积操作，从而在高度相关的视觉域内实现特征融合。通过这种方式，大核静态卷积能有效捕捉扩展的邻域信息，从而提升关系建模能力，类似于周边视觉系统。此外，得益于这一特性，小核动态卷积可自适应地整合微小环境中的复杂视觉特征，实现精细的视觉理解，如同中心视觉系统般精准。与此同时，我们巧妙地结合深度卷积与分组机制，对LS卷积进行了高效设计。聚合范围被限制在一个小区域内。这种设计有效确保了感知和聚合过程的低复杂度。因此，我们的LS卷积在性能和效率之间取得平衡，使得轻量级模型能够在低计算成本下充分发挥表征能力。<br/>​  我们将LS卷积视为标记混合的核心运算单元，并将其与其他主流架构设计相结合，构建出LS模块。在此基础上，我们提出了一类新型轻量级模型——LSNet。大量实验表明，在多种视觉任务中，LSNet相比现有最先进轻量级模型展现出更优的性能和效率[11,47,99]。我们期待LSNet能成为强有力的基准模型，为轻量化高效模型领域的发展注入新动力。</p>
+<h1 id="相关工作">2. 相关工作</h1>
+<p>​  <strong>Efficient
+CNNs.</strong><br/>​  过去十年间，卷积神经网络（CNN）已成为各类视觉任务的基础架构[2,15,16,52,66,79]。为提升实际应用效果，研究者们投入大量精力设计轻量级高效网络[12,13,30,31,53,71,81]。例如，MobileNet
+[31]和Xception [8]采用深度可分离卷积架构。MobileNetV2
+[67]通过引入带线性瓶颈的反向残差块来提升效率。ShuffleNet
+[98]和ShuffleNetV2
+[53]则结合通道混洗与通道分割操作以增强组信息交互。针对硬件特性，研究者还探索了硬件感知神经架构搜索（NAS）以获得紧凑型视觉网络[30,71]。同时，考虑到有限的感受野范围，部分研究致力于增强轻量CNN对长程依赖关系的建模能力[34,61,95]。例如，ParC-Net
+[95]引入位置感知循环卷积以实现全局感受野，AFFNet
+[34]则通过循环填充实现全局卷积的自适应频率滤波。</p>
+<p>​  <strong>Efficient
+ViTs.</strong><br/>​  自VisionTransformer[17]问世以来，基于Transformer架构在计算机视觉领域迅速崛起。ViTs
+已成功应用于多种视觉任务，并展现出卓越性能[18,97]。与此同时，研究者们不断优化其效率，开发出适用于实际部署的轻量级ViTs模型[44,58,76,80]。例如，MobileViT
+[57]通过融合MobileNet模块与MHSA模块，构建出混合架构；EdgeViT
+[60]创新性地将自注意力机制与卷积运算相结合，实现了成本效益型信息交互；为缓解推理瓶颈，EfficientFormer
+[44]提出维度一致性设计范式，有效平衡了延迟与性能的权衡关系；而FastViT
+[76]则通过结构化参数重配置和大核卷积技术，进一步提升了混合ViTs的性能表现。</p>
+<p>​  <strong>Efficient Token
+Mixing.</strong><br/>​  CNN和ViT分别采用不同的特征混合方式，即卷积与自注意力机制，并结合独特的感知与聚合过程。基于这些方法，为开发轻量级视觉网络，研究者探索了多种高效的空间信息交互特征混合方式。例如：卷积层方面，反卷积[41]通过多层感知机（MLP）获取单像素条件下的聚合权重；CondConv
+[90]提出基于全局上下文的逐例路由策略，实现多卷积核的线性组合；自注意力机制中，EdgeNeXt
+[55]创新性地采用分层深度转置注意力（SDTA）混合多尺度特征；PVTv2
+[85]通过线性空间归一化注意力（LSRA，linear spatial reduction
+attention）实现注意力层的线性计算复杂度；而EfficientViT
+[49]则设计了级联群注意力机制，显著提升网络性能。</p>
+<h1 id="方法">3. 方法</h1>
+<h1 id="重新审视自注意力和卷积">3.1.重新审视自注意力和卷积</h1>
+<p>​  自注意力机制与卷积操作是现有轻量级网络中用于建模视觉特征的两种主流标记混合方法[93]。对于输入图像，其特征图<span
+class="math inline">\(X\in{\mathbb R}^{H\times W\times
+C}\)</span>（其中H×W表示空间分辨率，C为通道数），标记混合通过以下方式，基于上下文区域<span
+class="math inline">\(\mathcal N(x_i)\)</span>，为每个标记<span
+class="math inline">\(x_i\in{\mathbb R}^C\)</span>生成特征表示<span
+class="math inline">\(y_i\in{\mathbb R}^C\)</span>： <span
+class="math display">\[y_i={\mathcal A}({\mathcal P}(x_i,{\mathcal
+N}(x_i)),{\mathcal N}(x_i))\]</span> ​  其中，<span
+class="math inline">\({\mathcal
+P}\)</span>表示感知，涉及提取上下文信息并捕捉标记之间的关系；<span
+class="math inline">\({\mathcal
+A}\)</span>表示聚合，基于感知结果整合特征，并允许整合来自其他标记的信息。</p>
+<figure>
+<img
+src="../postimages/LSNet-See-Large-Focus-Small/image-20250806115739709.png"
+alt="image-20250806115739709" />
+<figcaption aria-hidden="true">image-20250806115739709</figcaption>
+</figure>
+<p>​  在<strong>自注意力机制</strong>中，感知层<span
+class="math inline">\({\mathcal
+P}_{attn}\)</span>通过softmax归一化后的成对相关性计算<span
+class="math inline">\(x_i\)</span>与X之间的注意力分数。聚合层<span
+class="math inline">\({\mathcal
+A}_{attn}\)</span>则根据这些注意力分数对X的特征进行加权处理，最终得到<span
+class="math inline">\(y_i\)</span>。如图2(a)所示，整个过程可概括为：
+<span class="math display">\[y_{i}=\mathcal{A}_{a t t n}(\mathcal{P}_{a
+t t n}(x_{i},X),X)=\mathcal{P}_{a t t n}(x_{i},X)(X W_{v});\]</span></p>
+<p><span class="math display">\[\mathcal{P}_{a t t
+n}(x_{i},X)=\mathrm{sofmax}((x_{i}W_{q})(X W_{k})^{T}),\]</span></p>
+<p>​  其中Wq、Wk和Wv是投影矩阵。可以观察到，<span
+class="math inline">\(\mathcal{P}_{a t t n}\)</span>和<span
+class="math inline">\(\mathcal{A}_{a t t
+n}\)</span>在信息量较少的区域[46,65]中存在冗余注意力机制和过度聚合现象，这限制了轻量级模型的效能。此外，它们对xi采用相同的上下文尺度进行操作。这种同尺度特性会导致当混合范围<span
+class="math inline">\(\mathcal
+N(x_i)\)</span>增加时计算复杂度显著上升，在低计算预算下扩展感知上下文面临挑战。因此，现有轻量级模型中的自注意力机制及其变体[19,49]难以在有限计算成本[34]下实现表征能力与效率之间的最佳平衡。</p>
+<p>​  对于<strong>卷积</strong>核大小为K的情况，上下文区域是围绕xi的K×K邻域，记作<span
+class="math inline">\(\mathcal N_K(x_i)\)</span>。感知器<span
+class="math inline">\(\mathcal{P}_{c o n v}\)</span>通过计算<span
+class="math inline">\(x_i\)</span>与<span class="math inline">\(\mathcal
+N_K(x_i)\)</span>之间的相对位置关系，来确定聚合权重。对于每个<span
+class="math inline">\(x_j\in\mathcal
+N_K(x_i)\)</span>，其聚合权重是固定卷积核权重<span
+class="math inline">\(W_{conv}\)</span>中对应相对位置的数值。聚合层<span
+class="math inline">\({\mathcal A}_{conv}\)</span>随后利用权重对<span
+class="math inline">\(\mathcal
+N_K(x_i)\)</span>中的特征进行卷积。如图2(b)所示，整个过程可表述为：
+<span class="math display">\[\begin{aligned}y_{i}&amp;=\mathcal{A}_{c o
+n v}(\mathcal{D}_{c o n
+v}(x_{i},\mathcal{N}_{K}(x_{i})),\mathcal{N}_{K}(x_{i}))
+\\&amp;=\mathcal{P}_{c o n
+v}(\mathcal{x}_{i},\mathcal{N}_{K}(\mathcal{x}_{i}))\circledast\mathcal{N}_{K}(\mathcal{x}_{i})\\\end{aligned}\]</span></p>
+<p><span class="math display">\[\mathcal{P}_{c o n
+v}(\mathcal{x}_{i},\mathcal{N}_{K}(\mathcal{x}_{i}))=W_{c o n
+v},\]</span></p>
+<p>​  其中<span
+class="math inline">\(\circledast\)</span>表示卷积运算。可以观察到，卷积中token的混合范围由核尺寸K决定——对于轻量级模型而言，核尺寸通常较小，这导致感知范围受限。此外，感知<span
+class="math inline">\(\mathcal{P}_{c o n
+v}\)</span>建模的词元间关系（即聚合权重）仅取决于相对位置，因此所有词元共享且固定不变。这种机制阻碍了token对相关上下文的自适应能力，限制了表达潜力。考虑到轻量级网络本身建模能力有限，这种局限性显得尤为突出。</p>
+<h2 id="ls-large-small卷积">3.2.<strong>LS
+(Large-Small)</strong>卷积</h2>
+<p>​  受人类视觉系统[59,62,72]展现的动态异尺度视觉能力启发，我们提出了一种名为“大视域聚焦小细节”的创新策略，用于感知与聚合过程，旨在实现轻量级模型中高效且有效的标记混合（如图2(c)所示）。该方法通过大范围感知有效收集全面的上下文信息并建立关系模型，同时借助小范围聚合在高度相关环境中实现精细视觉表征。具体而言，对于标记<span
+class="math inline">\(x_i\)</span>，其感知上下文区域<span
+class="math inline">\(\mathcal{N}_{P}(\mathcal{x}_{i})\)</span>与聚合上下文区域<span
+class="math inline">\(\mathcal{N}_{A}(\mathcal{x}_{i})\)</span>的范围存在差异——<span
+class="math inline">\(\mathcal{N}_{P}(\mathcal{x}_{i})\)</span>的空间覆盖范围比<span
+class="math inline">\(\mathcal{N}_{A}(\mathcal{x}_{i})\)</span>更广，整个过程可表述为：
+<span
+class="math display">\[y_{i}=\mathcal{A}(\mathcal{P}(x_{i},\mathcal{N}_{P}(\mathcal{x}_{i})),\mathcal{N}_{A}(\mathcal{x}_{i}));\]</span>
+​  可以观察到：(1)感知模块<span
+class="math inline">\(\mathcal{P}\)</span>与聚合模块<span
+class="math inline">\(\mathcal{A}\)</span>分别对应不同的上下文范围（即<span
+class="math inline">\(\mathcal{N}_{P}(\mathcal{x}_{i})\)</span>和<span
+class="math inline">\(\mathcal{N}_{A}(\mathcal{x}_{i})\)</span>，这种设计既支持异尺度上下文信息的利用，又能同时捕捉整体环境特征与细节特征。(2)对于空间覆盖范围较大的感知模块，可采用大核深度卷积等成本效益高的操作，从而以最小开销实现感知上下文的扩展。(3)针对邻域较小的聚合模块，我们可采用自适应加权特征求和方法。由于聚合范围有限，该方案既能保证计算效率，又可有效降低运算成本，还能缓解自注意力机制中权重不足的问题。<br/>​  基于这些研究，我们提出了一种新型的LS
+(Large-Small)卷积结构。</p>
+<figure>
+<img
+src="../postimages/LSNet-See-Large-Focus-Small/image-20250806144434890.png"
+alt="image-20250806144434890" />
+<figcaption aria-hidden="true">image-20250806144434890</figcaption>
+</figure>
+<p>​  如图3(a)所示，针对每个标记，该结构引入了两个步骤：<br/>​  (1)大核感知模型通过大核静态卷积，以扩展的感受野来建模邻域关系。(2)小核聚合模型则通过小核动态卷积，自适应地整合周围特征。<br/>​  大核感知（LKP，<strong>Large-Kernel
+Perception</strong>）<br/>​  大核感知采用了大核瓶颈块的设计方案。给定视觉特征图X∈R
+H×W×C，我们首先通过逐点卷积（PW）将特征向量投影到较低的通道维度（默认为<span
+class="math inline">\(\frac C
+2\)</span>），以此降低计算成本，使模型尽可能轻量化。对于xi，我们采用核尺寸为KL×KL的大核深度卷积（DW），以高效捕捉<span
+class="math inline">\(\mathcal{N}_{K_L}(\mathcal{x}_{i})\)</span>的广域空间上下文信息，其中<span
+class="math inline">\(\mathcal{N}_{K_L}(\mathcal{x}_{i})\)</span>表示以xi为中心、尺寸为KL×KL的邻域区域。这种大核深度卷积能有效扩展感受野，同时以最小成本提升上下文感知能力。随后我们利用逐点卷积（PW）来建模标记间的空间关系，即生成用于聚合步骤的上下文自适应权重W∈R
+H×W×D。整个过程可表述为： <span
+class="math display">\[\begin{aligned}w_{i}&amp;={\mathcal P}_{l
+s}(x_{i},\mathcal{N}_{K_L}(\mathcal{x}_{i}))\\&amp;={\mathrm
+PW}({\mathrm DW}_{K_L\times K_L}({\mathrm
+PW}(\mathcal{N}_{K_L}(\mathcal{x}_{i}))))\end{aligned}\]</span>
+​  其中wi∈RD表示为xi生成的权重。</p>
+<p>​  小核聚合（SKA，<strong>Small-Kernel
+Aggregation</strong>）<br/>​  小核聚合采用分组动态卷积的设计方案。对于视觉特征图X∈R_H×W×C，我们将其通道划分为G个组，每个组包含<span
+class="math inline">\(\frac C
+G\)</span>个通道，组内通道共享聚合权重，从而降低轻量级模型的内存开销和计算成本。对于每个xi，我们将其对应的权重wi∈R_D（由大核感知生成）重塑为<span
+class="math inline">\(w_i^∗\in{\mathbb R}^{G\times K_S\times
+K_S}\)</span>，其中KS_×KS表示小核尺寸。随后利用wi∗聚合其高度相关的上下文NKS（xi），其中NKS（xi）表示以xi为中心、尺寸为KS_×KS的邻域。具体而言，我们将xi的第c个通道记作xic，该通道属于第g组。通过NKS（xic）与wig∈R_KS×KS的卷积运算，我们获得其聚合特征表示yic。这种方式能有效表征自适应细粒度特征，使模型对多样化上下文中的动态复杂变化保持敏感。整个过程可表述为：</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/LSNet-See-Large-Focus-Small/">https://zhaozw-szu.github.io/LSNet-See-Large-Focus-Small/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/" title="Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization"><img class="cover" src="/postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801155942589.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">139</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1. 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2. 相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3. 方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E5%92%8C%E5%8D%B7%E7%A7%AF"><span class="toc-text">3.1.重新审视自注意力和卷积</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ls-large-small%E5%8D%B7%E7%A7%AF"><span class="toc-text">3.2.LS
+(Large-Small)卷积</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
