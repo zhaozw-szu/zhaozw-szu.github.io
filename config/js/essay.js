@@ -2,12 +2,12 @@ function whenDOMReady() {
     if (location.pathname == '/essay/'){
         setTimeout(
             () => { 
-                console.log("DOMContentLoaded了！2222");
+                // console.log("DOMContentLoaded了！2222");
                 btf.loadLightbox(document.querySelectorAll('#icat-bber img'));
                 window.lazyLoadInstance && window.lazyLoadInstance.update();
                 setTimeout(
                     () => { 
-                        console.log("DOMContentLoaded了！3333");
+                        // console.log("DOMContentLoaded了！3333");
                         reflashWaterFall();
                         changeTime();
                     }
