@@ -47,21 +47,21 @@ function changeTime() {
     const daysDiff = timeDiff(timeObj, currentDate);
 
     let timeString;
-    if (daysDiff === 0) {
-        timeString = `最近`;
-    } else if (daysDiff === 1) {
-        timeString = `昨天`;
-    } else if (daysDiff === 2) {
-        timeString = `前天`;
-    } else if (daysDiff <= 7) {
-        timeString = `${daysDiff}天前`;
+    // if (daysDiff === 0) {
+    //     timeString = `最近`;
+    // } else if (daysDiff === 1) {
+    //     timeString = `昨天`;
+    // } else if (daysDiff === 2) {
+    //     timeString = `前天`;
+    // } else if (daysDiff <= 7) {
+    //     timeString = `${daysDiff}天前`;
+    // } else {
+    if (timeObj.getFullYear() !== currentDate.getFullYear()) {
+    timeString = `${timeObj.getFullYear()}/${timeObj.getMonth() + 1}/${timeObj.getDate()}`;
     } else {
-        if (timeObj.getFullYear() !== currentDate.getFullYear()) {
-        timeString = `${timeObj.getFullYear()}/${timeObj.getMonth() + 1}/${timeObj.getDate()}`;
-        } else {
-        timeString = `${timeObj.getMonth() + 1}/${timeObj.getDate()}`;
-        }
+    timeString = `${timeObj.getMonth() + 1}/${timeObj.getDate()}`;
     }
+    // }
     timeElement.textContent = timeString;
     });
 }
