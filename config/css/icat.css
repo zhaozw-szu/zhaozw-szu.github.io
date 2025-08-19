@@ -704,3 +704,45 @@ figcaption {
     transform: translate(-50%, -48px);
 }
 
+
+
+#icat-bber .icat-page #waterfall .icat-bber-item .icat-bber-comments {
+  margin-top: 8px;
+  margin-left: 12px;
+  position: relative;
+}
+
+
+#icat-bber .icat-page #waterfall .icat-bber-item .icat-bber-comment-item {
+  display: flex;
+  margin: 6px 0;
+}
+
+#icat-bber .icat-page #waterfall .icat-bber-item .icat-bber-comment-marker {
+  width: 4px;
+  min-height: 40px;
+  background-color: var(--icat-blue, #007acc); /* 竖线颜色 */
+  border-radius: 2px;
+  margin-right: 10px;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+#icat-bber .icat-page #waterfall .icat-bber-item .icat-bber-comment-body {
+  flex: 1;
+  font-size: 0.95em;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* 可选：在最外层加一个“评论提示”文字 */
+#icat-bber .icat-page #waterfall .icat-bber-item .icat-bber-comment-item::before {
+  content: "💬";
+  font-size: 0.8em;
+  color: #888;
+  margin-bottom: 4px;
+  display: block;
+}
+
+
+
