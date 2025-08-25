@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>DETR | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="End-to-End Object Detection with Transformers Nicolas Carion1,2(B) , Francisco Massa2 , Gabriel Synnaeve2 ,Nicolas Usunier2 , Alexander Kirillov2 , and Sergey Zagoruyko2 1Paris Dauphine University,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DETR">
+<meta property="og:url" content="https://zhaozw-szu.github.io/DETR/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="End-to-End Object Detection with Transformers Nicolas Carion1,2(B) , Francisco Massa2 , Gabriel Synnaeve2 ,Nicolas Usunier2 , Alexander Kirillov2 , and Sergey Zagoruyko2 1Paris Dauphine University,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg">
+<meta property="article:published_time" content="2025-08-22T08:46:12.000Z">
+<meta property="article:modified_time" content="2025-08-22T13:06:25.830Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/DETR/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DETR',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-22 21:06:25'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">150</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">DETR</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-08-22T08:46:12.000Z" title="创建于 2025-08-22 16:46:12">2025-08-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-22T13:06:25.830Z" title="更新于 2025-08-22 21:06:25">2025-08-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="DETR"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>End-to-End Object Detection with Transformers</p>
+<p>Nicolas Carion1,2(B) , Francisco Massa2 , Gabriel Synnaeve2 ,Nicolas
+Usunier2 , Alexander Kirillov2 , and Sergey Zagoruyko2</p>
+<p>1Paris Dauphine University, Paris, France<br/>2Facebook AI, Menlo
+Park, USA</p>
+<h1 id="摘要">摘要</h1>
+<p>​  我们提出了一种将目标检测视为直接集合预测问题的新方法。该方案简化了检测流程，有效去除了许多需要人工设计的组件，例如非极大值抑制过程或显式编码任务先验知识的锚点生成。新框架的核心要素被称为detection
+Transformer（简称DETR），其特点包括：基于集合的全局损失函数通过二分匹配强制唯一预测，以及采用TRansformer编码器-解码器架构。通过固定少量学习到的目标查询集，DETR通过分析目标间的关系与全局图像上下文，直接并行输出最终的预测集合。这款名为DEDetection
+Transformer（简称DETR）的新框架，其核心组件包含两大模块：基于集合的全局损失函数通过二分匹配确保预测结果唯一性，以及采用TRansformer编码器-解码器架构。该模型仅需预设少量已训练好的目标查询集，就能通过解析物体间关系与全局图像上下文，直接并行输出最终预测结果。相较于其他现代检测器，DETR在概念设计上更为简洁，无需依赖专业库支持。在高难度的COCO目标检测数据集上，DETR展现出与业界标杆Faster
+R-CNN基线相当的准确率和运行效率，充分证明了其优越性能。此外，DETR可以很容易地进行泛化，以统一的方式生成全景分割。我们证明它显著优于竞争性基线方法。训练代码和预训练模型可在https://
+github.com/facebookresearch/detr。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  目标检测的核心目标是为每个目标对象预测一组边界框和类别标签。现代检测器通过间接方式解决这一集合预测任务，即在大量候选框[5,36]、锚点[22]或窗口中心[45,52]上定义代理回归和分类问题。其性能显著受后处理步骤的影响——这些步骤用于消除近似重复的预测结果；同时受锚点集设计及目标框分配启发式算法的制约[51]。为了简化这些流程，我们提出了一种直接的集合预测方法来绕过代理任务。这种端到端的思维方式在机器翻译、语音识别等复杂结构预测任务中取得了重大突破，但在目标检测领域却始终未能实现突破：此前的研究[4,15,38,42]要么引入其他形式的先验知识，要么在严苛的基准测试中无法与强基线模型相抗衡。本文旨在填补这一技术空白。<br/>​  我们通过将目标检测视为直接的集合预测问题，优化了训练流程。采用基于Transformer[46]的编码器-解码器架构——这种序列预测领域的经典架构，其自注意力机制能显式建模序列中所有元素间的成对交互关系，使得该架构特别适合解决集合预测中的特定约束条件，例如消除重复预测结果。</p>
+<figure>
+<img src="../postimages/DETR/image-20250822165440650.png"
+alt="image-20250822165440650" />
+<figcaption aria-hidden="true">image-20250822165440650</figcaption>
+</figure>
+<blockquote>
+<p>图1.
+DETR通过将通用卷积神经网络与transformer架构相结合，直接并行预测最终的检测结果。在训练过程中，二分匹配技术会将预测结果与真实框进行唯一对应。当没有匹配项时，系统应输出“无目标”（∅）类别的预测结果。</p>
+</blockquote>
+<p>​  我们的DEtection
+TRansformer(DETR，见图1）能够一次性预测所有目标，并采用端到端训练方法，通过一组损失函数实现预测目标与真实目标之间的二分匹配。DETR通过省去多个依赖先验知识的手工设计组件（如空间锚点或非极大值抑制），简化了检测流程。与大多数现有检测方法不同，DETR无需任何定制化层，因此可以轻松集成到包含标准ResNet
+[14]和Transformer
+[46]类的任何框架中。<br/>​  相较于以往大多数直接集合预测的研究，DETR的主要创新点在于将二分匹配损失函数与Transformer模型相结合，并采用（非自回归的）并行解码方式[7,9,11,28]。相比之下，现有研究主要聚焦于基于循环神经网络的自回归解码方法[29,35,40-42]。我们的匹配损失函数能够为预测结果与真实对象建立唯一对应关系，且对预测对象的排列顺序具有不变性，因此可以实现并行输出。<br/>​  我们在最主流的目标检测数据集COCO
+[23]上，将DETR模型与极具竞争力的Faster
+R-CNN基线模型[36]进行对比测试。Faster
+R-CNN经过多次设计迭代，自首次发布以来性能已大幅提升。实验表明，我们的新模型表现相当。具体而言，DETR在大尺寸目标检测上展现出显著优势，这可能得益于transformer的非局部计算特性。不过该模型在小尺寸目标上的表现稍逊一筹。我们相信未来研究会像FPN
+[21]改进Faster
+R-CNN那样，在此方面取得突破性进展。<br/>​  DETR的训练设置与标准目标检测器存在多方面差异。新模型需要更长的训练周期，并通过transformer中的辅助解码损失获得优势。我们深入探究了哪些组件对展示的性能表现至关重要。<br/>​  DETR的设计理念可以轻松扩展到更复杂的任务。在我们的实验中，我们展示了基于预训练DETR模型训练的简单分割头，在全景分割[18]这一具有挑战性的像素级识别任务中，其性能优于竞争性基线方法——该任务近年来已获得广泛关注。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  我们的工作建立在以下几个领域的先前工作之上：集合预测的二分匹配损失、基于transformer的编码器-解码器架构、并行解码和目标检测方法。</p>
+<h2 id="集合预测">2.1.集合预测</h2>
+<p>​  目前尚无标准的深度学习模型可以直接预测集合。基础的集合预测任务属于多标签分类（参见计算机视觉领域的相关研究，如文献[32,39]），其中基线方法“一对一”并不适用于检测等存在元素间潜在结构（即几乎相同的框）的问题。这类任务的首要难点在于避免近似重复。当前大多数检测器采用非极大值抑制等后处理技术来解决此问题，而直接集合预测则无需依赖后处理。这类方法需要全局推理方案来建模所有预测元素间的交互关系以消除冗余。对于固定规模的集合预测，全连接网络[8]虽能胜任但成本较高。通用方法是采用自回归序列模型，如循环神经网络[47]。所有情况下，损失函数都应保持对预测结果排列的不变性。常规解决方案是基于匈牙利算法[19]设计损失函数，通过寻找真实值与预测值之间的二分匹配来实现排列不变性，并确保每个目标元素都有唯一对应关系。我们采用二分匹配损失法。然而与大多数先前研究不同，我们摒弃了自回归模型，转而使用具有并行解码功能的Transformer模型，具体将在下文详述。</p>
+<h2 id="变压器和并行解码">2.2.变压器和并行解码</h2>
+<p>​  Vaswani <em>et al.</em>
+[46]首次提出Transformer作为机器翻译领域基于注意力机制的新型构建模块。注意力机制[2]是一种能够整合整个输入序列信息的神经网络层。Transformer引入了自注意力层，其工作原理与非局部神经网络[48]类似——通过逐元素扫描序列，并整合整个序列的信息来实现动态更新。基于注意力机制的模型具有全局计算能力和完美记忆特性，这使得它们在处理长序列任务时比循环神经网络（RNN）更具优势。如今，在自然语言处理、语音处理和计算机视觉等多个领域，变换器正逐步取代RNN[7,26,30,33,44]。<br/>​  Transformer模型最初应用于自回归模型，其原理与早期的序列到序列模型[43]类似，采用逐个生成输出标记的方式。然而，高昂的推理成本（与输出长度成正比且难以批量处理）促使了并行序列生成技术的发展，该技术已广泛应用于音频[28]、机器翻译[9,11]、词向量表示学习[7]以及最近的语音识别[6]等领域。我们还将Transformer与并行解码技术相结合，充分利用二者在计算成本与全局预测所需运算能力之间的优势平衡。</p>
+<h2 id="目标检测">2.3.目标检测</h2>
+<p>​  当前主流的目标检测方法大多基于初始猜测进行预测。双阶段检测器[5,36]通过候选框进行预测，而单阶段方法则采用锚点[22]或可能物体中心的网格[45,52]进行预测。最新研究[51]表明，这些系统的最终性能高度依赖于初始猜测的具体设定方式。我们的模型成功省去了这种人工设计环节，通过直接基于输入图像进行绝对框预测来实现检测结果的精准输出，从而显著简化了检测流程。</p>
+<p>​  <strong>基于集合的损失</strong><br/>​  多个目标检测器[8,24,34]曾采用二分匹配损失函数。不过在早期的深度学习模型中，不同预测结果之间的关联仅通过卷积层或全连接层进行建模，而采用人工设计的NMS后处理技术能有效提升性能。近年来的检测器[22,36,52]则结合了真实数据与预测结果间的非唯一性分配规则，并同步应用NMS技术。<br/>​  可学习的NMS方法[4,15]和关系网络[16]通过注意力机制显式建模不同预测结果间的关联。这些方法采用直接集合损失函数，无需任何后处理步骤。但它们依赖于诸如提案框坐标等人工设计的上下文特征来高效建模检测结果间的关联，而我们的研究目标在于寻找能有效降低模型中预设知识编码的解决方案。</p>
+<p>​  <strong>循环检测器</strong><br/>​  与我们的方法最为接近的是端到端的物体检测[42]和实例分割[29,35,40,41]的集合预测技术。这些方法与我们类似，都采用基于CNN激活的编码器-解码器架构，通过二分匹配损失直接生成边界框集合。不过这些方法仅在小型数据集上进行评估，且未与现代基准模型对比。特别需要指出的是，它们基于自回归模型（更准确地说是循环神经网络），因此未能充分利用具有并行解码功能的最新Transformer模型。</p>
+<h1 id="detr模型">3.DETR模型</h1>
+<p>​  在检测中，直接设置预测需要两个基本要素：(1)一种集合预测损失，它可以强制预测框和真实框之间唯一匹配；(2)一种能够预测（在单次遍历中）一组对象并建模它们之间关系的架构。我们在图2中详细描述了我们的架构。</p>
+<h2 id="目标检测集合预测损失">3.1目标检测集合预测损失</h2>
+<p>​  DETR通过单次解码过程推断出固定规模的N个预测结果，其中N值被设定为远大于图像中典型物体数量。训练过程的主要难点在于如何根据真实标注对预测对象（类别、位置、尺寸）进行评分。我们的损失函数首先在预测对象与真实标注对象之间生成最优二分匹配，随后针对每个对象的边界框进行损失优化。<br/>​  我们用y表示图像中物体的真实集合，<span
+class="math inline">\(\hat y = \{\hat
+y_i\}_{i=1}^N\)</span>表示包含N个预测值的集合。假设N大于图像中的物体数量，我们将y视为由N个元素组成的补全集，其中填充∅（即无物体）。为在两个集合间建立二分匹配关系，我们需要寻找一个将N个元素<span
+class="math inline">\(\sigma\in\Theta_{N}\)</span>的排列方式，其代价最小：
+<span
+class="math display">\[\hat{\sigma}=\arg\operatorname*{min}_{\sigma\in\Theta_{N}}\sum_{i}^{N}\mathcal{L}_{\operatorname*{match}}(y_{i},\hat{y}_{\sigma(i)}),\]</span>
+​  其中<span
+class="math inline">\(\mathcal{L}_{\operatorname*{match}}(y_{i},\hat{y}_{\sigma(i)})\)</span>表示真实值yi与索引σ(i)的预测值之间的成对匹配成本。这种最优分配通过匈牙利算法高效计算得出，该方法沿用了先前研究（如[42])的成果。<br/>​  匹配成本同时考虑了类别预测和预测框与真实框的相似度。每个真实数据集元素i可表示为<span
+class="math inline">\(y_i
+=(c_i，b_i)\)</span>，其中ci是目标类别标签（可能为∅），<span
+class="math inline">\(b_i\in[0,1]^4\)</span>
+表示定义真实框中心坐标及其相对于图像尺寸的高度和宽度的向量。对于索引为σ(i)的预测结果，我们定义类别ci的概率为<span
+class="math inline">\({\hat
+p}_{\sigma(i)}(c_i)\)</span>，并将预测框定义为<span
+class="math inline">\({\hat
+b}_{\sigma(i)}\)</span>。通过这些符号，我们定义<span
+class="math inline">\(\mathcal{L}_{\mathrm{match}}(y_{i},{\hat{y}}_{\sigma(i)})\)</span>为<span
+class="math inline">\(-\mathbb{1}_{\{c_i\neq\varnothing\}}\hat{p}_{\sigma(i)}(c_i)+\mathbb{1}_{\{c_i\neq\varnothing\}}\mathcal{L}_{\mathrm{box}}(b_i,\hat{b}_{\sigma(i)})\)</span>。<br/>​  这种匹配过程的作用与现代检测器中用于将提案[36]或锚点[21]与真实目标匹配的启发式分配规则相同。主要区别在于，我们需要为直接集合预测找到一对一的无重复匹配。<br/>​  第二步是计算损失函数，即对前一步骤中匹配的所有配对应用匈牙利损失。我们定义的损失函数与常见目标检测器的损失函数类似：它由类别预测的负对数似然与后文定义的框损失Lbox（·，·）的线性组合构成。
+<span
+class="math display">\[{\mathcal{L}}_{\mathrm{Humgarian}}(y,{\hat{y}})=\sum_{i=1}^{N}\left[-\log{\hat{p}}_{\delta(i)}(c_{i})+\mathbb{1}_{\{c_{i}\neq\emptyset\}}{\mathcal{L}}_{\mathrm{box}}(b_{i},{\hat{b}}_{\delta}(i))\right]\,,\]</span>
+​  其中ˆσ是在第一步(1)中计算出的最优分配。在实际操作中，当ci
+=∅时，我们将对对数概率项进行10倍的降权处理，以应对类别不平衡的问题。这类似于Faster
+R-CNN训练过程通过子采样平衡正负样本建议的方式[36]。需要注意的是，物体与∅之间的匹配成本不依赖于预测结果，这意味着在这种情况下该成本是常数。在匹配成本中，我们使用概率<span
+class="math inline">\({\hat
+p}_{\hat\sigma(i)}(c_i)\)</span>而非对数概率。这种处理方式使得类别预测项与Lbox（·，·）具有可比性，我们在实验中观察到更好的实证性能。</p>
+<p>​  <strong>边界框损失</strong><br/>​  匹配成本与匈牙利损失的第二部分是用于评估边界框的Lbox（·）。与许多检测器通过Δ进行初始猜测来预测边界框不同，我们直接进行边界框预测。虽然这种方法简化了实现过程，但会导致损失函数的相对比例失调。即使小框和大框的相对误差相近，最常用的1损失函数也会对它们采用不同的比例。为解决这个问题，我们采用了1损失与广义交并比损失[37]Liou（·，·）的线性组合，这种组合具有比例不变性。总体而言，我们的边界框损失函数定义为<span
+class="math inline">\({\mathcal{L}}_{\mathrm{box}}(b_{i},{\hat{b}}_{\sigma(i)})\)</span>，其计算公式为<span
+class="math inline">\(\lambda_{\mathrm{iou}}{\mathcal
+L}_{\mathrm{iou}}(b_{i},\hat{b}_{\sigma(i)})+\lambda_{\mathrm{L}1}||b_{i}-\hat{b}_{\sigma(i)}||_{1}\)</span>，其中λiou、λL1∈R是超参数。这两个损失函数均通过批量中目标数量进行归一化处理。</p>
+<h2 id="detr-架构">3.2 DETR 架构</h2>
+<p>​  DETR的整体架构设计出人意料地简洁，如图2所示。</p>
+<figure>
+<img src="../postimages/DETR/image-20250822171741006.png"
+alt="image-20250822171741006" />
+<figcaption aria-hidden="true">image-20250822171741006</figcaption>
+</figure>
+<blockquote>
+<p>图2.
+DETR采用传统CNN主干网络学习输入图像的二维表征。模型将图像展平后，通过位置编码进行增强处理，再输入到transformer编码器中。transformer解码器接收少量固定数量的学习位置嵌入（称为对象查询），并额外关注编码器输出。我们将解码器的每个输出嵌入传递至共享前馈网络（FFN），该网络可预测检测结果（类别与边界框）或“无目标”类别。</p>
+</blockquote>
+<p>​  该架构包含三大核心组件：用于提取紧凑特征表示的CNN主干网络、编码器-解码器架构的transformer模块，以及生成最终检测预测结果的简单前馈网络（FFN）。<br/>​  与众多现代检测器不同，DETR只需采用通用CNN主干网络和transformer架构实现，就能在任何深度学习框架中完成部署，代码量仅需数百行。在PyTorch框架下，DETR的推理代码实现更是精简至不足50行[31]。我们期待这种简洁的设计能吸引更多科研人员加入检测领域。</p>
+<p>​  <strong>主干网络</strong><br/>​  从初始图像<span
+class="math inline">\(x_{img}\in{\mathbb
+R}^{3×H_0×W_0}\)</span>（具有3个颜色通道1）开始，传统的CNN主干网络生成较低分辨率的激活图<span
+class="math inline">\(f\in\mathbb{R}^{C\times H\times
+W}\)</span>。我们通常使用的参数值为C = 2048，<span
+class="math inline">\(H,W={\frac{H_{0}}{32}},{\frac{W_{0}}{32}}.\)</span>。</p>
+<p>​  <strong>Transformer编码器</strong><br/>​  首先，通过1x1卷积将高级激活图f的通道维度从C降为较小维度d，生成新的特征图<span
+class="math inline">\(z_{0}\in\mathbb{R}^{d\times H\times
+W}\)</span>。由于编码器需要处理序列输入，我们将z0的空间维度压缩为一维，得到d×HW特征图。每个编码器层均采用标准架构，包含多头自注意力模块和前馈网络（FFN）。鉴于transformer架构具有置换不变性，我们在其基础上补充了固定位置编码[3,30]，这些编码被添加到每个注意力层的输入端。具体架构定义详见补充材料，其设计遵循文献[46]所述方案。</p>
+<p>​  <strong>Transformer解码器</strong><br/>​  该解码器遵循标准的transformer架构，通过多头自注意力和编码器-解码器注意力机制对N个维度为d的嵌入向量进行转换。与原始transformer模型不同的是，我们的模型在每个解码层中并行解码N个对象，而Vaswani等人[46]采用的自回归模型则是逐元素预测输出序列。对于不熟悉相关概念的读者，建议参考补充材料。由于解码器还具有置换不变性，必须使用不同的N个输入嵌入向量才能产生不同结果。这些输入嵌入是学习得到的位置编码，我们称之为对象查询，并与编码器类似，将其添加到每个注意力层的输入中。N个对象查询经解码器转换为输出嵌入后，通过前馈网络（详见下一小节）分别解码为框坐标和类别标签，最终生成N个预测结果。利用这些嵌入向量上的自注意力和编码器-解码器注意力机制，模型能够基于对象间的成对关系进行全局推理，同时还能将整张图像作为上下文使用。</p>
+<p>​  <strong>预测前馈网络（FFN，Feed-Forward
+Networks）</strong><br/>​  最终预测结果由包含ReLU激活函数和隐藏层维度d的三层感知器，以及线性投影层共同计算得出。全连接神经网络（FFN）负责预测图像中框的归一化中心坐标、高度和宽度，而线性层则通过softmax函数预测类别标签。由于我们预测的是固定尺寸的N个边界框集合（其中N通常远大于图像中实际目标数量），因此特别引入了一个特殊类别标签∅，用于表示检测框内未发现任何目标。该类别在功能上类似于传统目标检测方法中的“背景”类别。</p>
+<p>​  <strong>辅助解码损失</strong><br/>​  我们在训练过程中发现，在解码器中使用辅助损失[1]非常有效，特别是有助于模型输出每个类别中正确的物体数量。每个解码器层的输出首先通过共享层归一化，然后输入到共享预测头（分类和边界框预测）中。随后我们按照常规方法应用匈牙利损失进行监督训练。</p>
+<h1 id="实验">4.实验</h1>
+<p>​  我们在COCO数据集的定量评估中发现，DETR模型在性能上与Faster RCNN
+[36]和RetinaNet
+[22]不相上下。随后我们通过架构消融实验和损失函数优化研究，深入解析了模型的性能特征并提供了定性分析结果。最后，为验证DETR的通用性，我们在全景分割任务中展示了仅需在固定DETR模型上进行小规模扩展训练即可获得的性能表现。</p>
+<h1 id="结论">5.结论</h1>
+<p>​  我们提出DETR——一种基于Transformer和二分匹配损失的新型目标检测系统设计，用于直接进行集合预测。该方法在具有挑战性的COCO数据集上取得了与优化版Faster
+R-CNN基线相当的性能。DETR实现过程简单直观，其灵活的架构设计可轻松扩展至全景分割任务，并展现出优异的扩展性。此外，该方法在处理大型目标时性能显著提升，这可能得益于自注意力机制对全局信息的高效处理。<br/>​  这种新型探测器的设计也带来了新的挑战，特别是在训练、优化和小物体性能方面。当前的探测器需要数年改进才能应对类似问题，我们预计未来的工作将成功解决这些问题，为DETR提供支持。</p>
+<h1 id="补充材料">6.补充材料</h1>
+<p>​  <strong>详细体系结构</strong><br/>​  图1展示了DETR中使用的transformer详细结构，其每个注意力层均采用位置编码。</p>
+<figure>
+<img src="../postimages/DETR/image-20250822210452643.png"
+alt="image-20250822210452643" />
+<figcaption aria-hidden="true">image-20250822210452643</figcaption>
+</figure>
+<p>​  具体实现流程如下：首先将CNN主干网络提取的图像特征输入transformer编码器，同时在多头自注意力层中，将空间位置编码与查询键和键值进行叠加处理。解码器接收初始置零的查询信号、输出的位置编码（对应目标查询）以及编码器记忆库，通过多次多头自注意力机制和解码器-编码器注意力交互，最终生成预测的类别标签和边界框。需要特别说明的是，首个解码器层中的第一个自注意力层可被省略。</p>
+<p>​  计算复杂度<br/>​  编码器中的每个自注意力计算复杂度为O（d²HW+d（HW）²）：其中O（d⁰d）表示单次查询/键/值嵌入的计算成本（且M=d⁰），而O（d⁰（HW）²）则是单个头计算注意力权重的成本。其他计算量均可忽略不计。在解码器中，每个自注意力计算复杂度为O（d²N+dN²），而编码器与解码器之间的交叉注意力计算复杂度为O（d²（N
++ HW）+ dNHW），由于实际应用中NHW，该数值远低于编码器的复杂度。</p>
+<p>​  浮点运算<br/>​  由于Faster
+R-CNN的运算量取决于图像中的候选框数量，我们报告了COCO
+2017验证集前100张图像的平均运算量。计算时采用Detectron2框架[9]中的运算量统计工具，该工具在Detectron2模型中直接使用，而针对DETR模型则扩展了对批量矩阵乘法（bmm）的计算支持。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/DETR/">https://zhaozw-szu.github.io/DETR/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/text1/" title="text1"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">text1</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">150</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E9%A2%84%E6%B5%8B"><span class="toc-text">2.1.集合预测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E5%8E%8B%E5%99%A8%E5%92%8C%E5%B9%B6%E8%A1%8C%E8%A7%A3%E7%A0%81"><span class="toc-text">2.2.变压器和并行解码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><span class="toc-text">2.3.目标检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#detr%E6%A8%A1%E5%9E%8B"><span class="toc-text">3.DETR模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E9%9B%86%E5%90%88%E9%A2%84%E6%B5%8B%E6%8D%9F%E5%A4%B1"><span class="toc-text">3.1目标检测集合预测损失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#detr-%E6%9E%B6%E6%9E%84"><span class="toc-text">3.2 DETR 架构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E6%9D%90%E6%96%99"><span class="toc-text">6.补充材料</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

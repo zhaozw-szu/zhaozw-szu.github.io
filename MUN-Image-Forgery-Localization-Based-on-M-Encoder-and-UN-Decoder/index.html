@@ -1,0 +1,617 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MUN:Image Forgery Localization Based on M3 Encoder and UN Decoder | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于AAAI 2025，其使用了Noiseprint++作为低级特征提取器，使用双流结构，其使用池化操作之后的结构作为查询向量，进行融合是最大的创新点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MUN:Image Forgery Localization Based on M3 Encoder and UN Decoder">
+<meta property="og:url" content="https://zhaozw-szu.github.io/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="发表于AAAI 2025，其使用了Noiseprint++作为低级特征提取器，使用双流结构，其使用池化操作之后的结构作为查询向量，进行融合是最大的创新点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821160058549.png">
+<meta property="article:published_time" content="2025-08-21T07:45:31.000Z">
+<meta property="article:modified_time" content="2025-08-25T09:03:16.995Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821160058549.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MUN:Image Forgery Localization Based on M3 Encoder and UN Decoder',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-25 17:03:16'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">150</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821160058549.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MUN:Image Forgery Localization Based on M3 Encoder and UN Decoder</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-08-21T07:45:31.000Z" title="创建于 2025-08-21 15:45:31">2025-08-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-25T09:03:16.995Z" title="更新于 2025-08-25 17:03:16">2025-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,AAAI,2025</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IML/">IML</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/MrHuan3/MUN"><img src="https://img.shields.io/github/stars/MrHuan3/MUN?style=flat" alt="GitHub Stars: MrHuan3/MUN" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MUN:Image Forgery Localization Based on M3 Encoder and UN Decoder"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">发表于AAAI 2025，其使用了Noiseprint++作为低级特征提取器，使用双流结构，其使用池化操作之后的结构作为查询向量，进行融合是最大的创新点。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>MUN: Image Forgery Localization Based on M3 Encoder and UN
+Decoder</p>
+<p>Yaqi Liu1<em>, Shuhuan Chen2,3</em>, Haichao Shi2, Xiao-Yu Zhang2†,
+Song Xiao1, Qiang Cai4</p>
+<p>1北京电子科技研究所<br/>2中国科学院信息工程研究所<br/>3中国科学院大学网络安全学院<br/>4北京工商大学食品安全大数据技术重点实验室</p>
+<h1 id="摘要">摘要</h1>
+<p>​  图像伪造技术能够彻底改变图像的语义信息，常被用于不法用途。本文提出了一种名为MUN的新型图像伪造定位网络，该网络由M3编码器和UN解码器组成。首先，M3编码器基于多尺度最大池化查询模块构建，用于提取多线索伪造特征。采用Noiseprint++辅助RGB线索，并讨论了其部署方法。同时提出多尺度最大池化查询（MMQ）模块，实现RGB特征与噪声特征的融合。其次，我们提出了一种创新的UN解码器架构，通过自上而下与自下而上的双向采样提取层次化特征，实现高阶与低阶特征的同步重建。第三，我们构建了基于交并比（IoU）的动态交叉熵损失函数（IoUDCE），该模型能根据IoU值动态调整伪造区域权重，从而实现真实与伪造区域影响的自适应平衡。最后但同样重要的是，我们开发了偏差噪声增强（DNA）数据增强方法，通过获取RGB分布的先验知识来提升模型泛化能力。在公开数据集上的大量实验表明，MUN模型的表现显著优于现有最先进方法。</p>
+<p><strong>Code</strong> — https://github.com/MrHuan3/MUN</p>
+<h1 id="引言">1.引言</h1>
+<p>​  在数码相机普及和图像编辑工具高度发达的今天，非专业用户也能轻松制作逼真的伪造图像，这些伪造品可能被用于危害公共安全的恶意行为。针对不同类型的图像伪造（如拼接、复制移动、删除等），存在多种对应的取证解决方案。在拼接检测领域，研究重点在于分析篡改操作在RGB色彩域或光谱域中留下的统计学异常特征(Yang
+et al. 2024; Xu et al.
+2023)。在复制副本伪造检测中，以手工方式提取和匹配视觉相似特征(Wang et
+al. 2023; Li and Zhou 2019)或端到端深度学习方法(Liu et al. 2022b; Weng
+et al.
+2024)。在图像拼接检测与定位任务中，有些研究尝试通过视觉相似特征来检测拼接痕迹(Liu
+et al. 2019; Tan et al.
+2023)。在消除图像伪造方面，修复检测技术已得到广泛研究，特别是基于深度学习的修复技术的出现(Li
+et al. 2024; Wu and Zhou
+2022)。然而，面对疑似伪造的图像时，我们无法确定其被何种类型的伪造手段篡改，且上述方法仅在特定情况下有效。近年来，旨在检测多种类型伪造的图像伪造定位任务已引起越来越多的关注(Liu
+et al. 2023; Zhang et al.
+2024)。<br/>​  为提升多类型伪造检测的识别精度与泛化能力，学界已探索了多种特征提取器和架构方案。部分研究聚焦于利用卷积神经网络（CNN）定位伪造区域(Zhuo
+et al. 2022; Niloy,Kumar Bhaumik, and Woo
+2023)。近期，Transformer模型(Vaswani et al.
+2017)在下游计算机视觉任务中展现出优异性能(Jain et al. 2023; Li et
+al.2023)。研究者还将其变体应用于伪造检测(Shi, Chen, and Zhang 2023; Wang
+et
+al.2022)。然而，考虑到性能与复杂度的平衡，究竟哪种架构更适合图像伪造定位，至今仍是悬而未决的难题。<br/>​  此外，研究人员试图调查多个线索，例如，通过DCT(Bianchi,
+De Rosa, and Piva 2011), SRM (Zhou et al. 2018)和高斯的拉普拉斯矩阵(Guo
+et al. 2023)以提供附加信息并协助RGB功能。在(Guillaro et al.
+2023)，研究者提出了另一种视角，通过学习一种名为Noiseprint的“相机模型指纹”来提取低层次伪影。这种指纹记录了相机内部处理步骤的痕迹，并通过孪生网络技术实现获取。Noiseprint++是Noiseprint的升级版本，能够应对更具挑战性的场景。不过在图像伪造定位任务中，当处理不同分辨率的图像时，Noiseprint++的具体部署方式仍是一个未解决的问题。<br/>​  本文提出了一种新型的图像伪造定位网络——MUN（Image
+forgery
+LocalizationNetwork），该网络由M3编码器和UN解码器组成，如图1所示。在研究过程中，我们首先需要解决的核心问题是：哪种网络架构更适合图像伪造定位任务。为此，我们选取了三个前沿网络模型进行对比测试，包括基于卷积神经网络的ResNet(He
+et al. 2016)、基于卷积神经网络的ConvNeXt V2(Woo et al.
+2023)，以及基于Transformer架构的Swin网络(Liu et al.
+2021)。实验结果表明，在参数量级相近的情况下，ConvNeXt
+V2不仅准确率更高，还能有效降低计算成本。基于相同的骨干网络架构（即ConvNeXt
+V2），我们探讨了Noiseprint++在三种应用场景下的部署效果：“原始尺寸调整”、“调整尺寸后应用Noiseprint++”以及“先调整尺寸再应用Noiseprint++”。实验结果表明，“先调整尺寸后应用Noiseprint++”方案表现最优。通过充分对比不同骨干网络与Noiseprint++的性能差异，我们构建了双流特征提取器，并提出多尺度最大池化查询模块（MMQ，Multi-scale
+Max-pooling
+Qurey），该模块能有效增强RGB特征与Noiseprint++特征之间的强关联性。得益于Multiclue多尺度最大池化的特性，我们的特征提取器被命名为<span
+class="math inline">\({\mathnormal
+M}^3\)</span>编码器。为了获得充足的层次特征，我们从M3编码器中选择层次输出，并将其输入到一个精心设计的双分支解码器中，即UN解码器。在UN解码器中，分层特征图被划分为U分支和N分支。在U分支中，我们通过轻量级的连续卷积层结合残差和拼接操作，从低层级特征图中提取富含空间信息的低阶特征，并将这些特征逐级传递以融合其他高层级特征。类似地，我们通过相同的连续卷积层从高层级特征图中提取高阶特征，并将其传递至下游与其他特征融合。随后，我们将U分支和N分支的特征拼接以重建预测掩膜。此外，我们设计了动态损失函数——即IoU重校准动态交叉熵（IoUDCE）损失，通过批量调整正负样本的类别权重，引导MUN自适应地聚焦难以处理的操控区域。最后，我们提出了一种名为偏差噪声增强（DNA）的新数据增强方法，通过调整训练图像的RGB分布来增强MUN的泛化能力。我们的贡献可总结如下：</p>
+<ul>
+<li>提出了一种基于M3编码器和UN解码器的新型图像伪造定位网络，即MUN。</li>
+<li>我们提出了一种M3编码器，该编码器配备了双流ConvNeXt
+V2特征提取器，用于从RGB和Noiseprint++域中提取特征。同时，我们提出了MMQ模块来整合双域特征。我们验证了Noiseprint++的部署方法。</li>
+<li>提出了一种从并行的U和N分支中提取低阶和高阶信息的UN解码器，从而能够提取更微妙的伪造特征。</li>
+<li>IoUDCE损失的提出是为了根据预测掩膜的IoU动态平衡权重，并专注于难以处理的伪造区域。</li>
+<li>DNA通过缩小合成训练图像与通用图像之间的差距来增强泛化能力。</li>
+<li>实验表明，MUN不仅适用于人工篡改的数据集，也适用于人工智能生成的数据集。</li>
+</ul>
+<figure>
+<img
+src="../postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821160058549.png"
+alt="image-20250821160058549" />
+<figcaption aria-hidden="true">image-20250821160058549</figcaption>
+</figure>
+<blockquote>
+<p>图1：MUN框架。(a)
+M3编码器包含RGB分支和噪声分支。两个分支的特征图均由ConvNeXt
+V2提取，多线索特征通过MMQ模块进行整合。(b)
+UN解码器具有并行的U和N分支，可整合来自MMQ的层级化特征图。整合后的特征图通过拼接重建预测掩膜。(c)
+IoUDCE损失函数对伪造区域的权重进行动态校准。(d)
+DNA模块通过将训练图像与通用图像间的RGB均值差异相乘，生成均匀噪声并加以叠加。</p>
+</blockquote>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  传统的图像伪造定位方法主要分为高级方法和低级方法两大类。在高级方法中，通常会分析高层次语义信息。例如，原始图像与伪造图像可能呈现不同的光影效果（Peng
+et al. 2016），透视和几何特性可判断物体是否接触（Peng et al.
+2017），而模糊类型的不一致性也可能为伪造定位提供线索（Bahrami et al.
+2015）。低级方法则通过人工设计的特征分析像素级统计差异，常见的低级特征包括：PRNU（照片响应非均匀性）反映图像传感器响应电压不均的现象（Korus
+and Huang
+2017），CFA（彩色滤光阵列）由微小彩色滤光片组成的马赛克结构用于捕捉色彩信息（Popescu和Farid，2005），SRM（空间丰富模型）利用相邻噪声残差样本的统计特征来捕捉依赖关系变化（Zhou等人，2018）。近年来，随着深度学习技术的蓬勃发展，基于深度学习的图像伪造定位已成为主流方法。<br/>​  研究人员提出了多种基于卷积神经网络（CNN）的图像伪造检测方法。（Liu
+et al.
+2018）提出基于CNN的多尺度篡改检测器，通过生成一系列互补的篡改可能性图来实现检测。（Niu
+et al.
+2021）采用主量化矩阵的局部估计技术区分伪造区域，并对图像块进行聚类处理以优化预测结果。（Zhang
+et al.
+2024)）提出的CSR-Net模型则通过参数化方法，从回归分析的角度出发，自适应地拟合目标分割区域，从而有效完成图像伪造定位任务。<br/>​  Transformer技术持续推动图像伪造定位领域的突破。ObjectFormer通过融合Transformer层的高频特征与RGB特征，有效捕捉图像块层面的一致性特征（Wang
+et al.
+2022)。TBFormer运用视觉Transformer从RGB域和贝叶斯噪声域双重维度提取篡改痕迹（Liu
+et al.
+2023)。TANet则采用堆叠式多尺度Transformer分支，在多个层级检测输入图像的结构化异常特征（Shi,
+Chen, and Zhang 2023)。</p>
+<h1 id="方法">3.方法</h1>
+<p>​  我们的MUN系统由M3编码器和UN解码器构成。该系统在DNA数据增强后的合成伪造图像上，采用IoUDCE损失函数进行训练。首先介绍我们提出的MMQ架构作为M3编码器的核心模块，随后详细阐述UN解码器的设计原理。在完整呈现主架构后，我们将重点解析IoUDCE损失函数的特性及其与DNA方法论的关联性。</p>
+<h2 id="m3编码器">3.1. <span
+class="math inline">\(M^3\)</span>编码器</h2>
+<p>​  M3编码器通过RGB域和Noiseprint++（NPP）域获取特征线索。RGB域可提供对比度差异和真实区域与伪造区域之间不自然边界等线索，而Noiseprint++则能获取相机型号、图像编辑历史等底层特征。在我们的机器视觉网络（MUN）中，RGB图像与Noiseprint++地图分别输入到两个并行的ConvNeXt
+V2（Woo等人，2023）特征提取器。来自这两个域的中间层级特征由MMQ模块整合，该模块利用RGB域特征对噪声特征进行多尺度最大池化查询。<br/>​  为探索Noiseprint++的正确使用方法，我们设计了三种操作版本：“调整尺寸”、“调整尺寸后使用Noiseprint++”和“调整尺寸前使用Noiseprint++”。其中“调整尺寸后使用Noiseprint++”表现最佳。具体流程如下：将RGB图像<span
+class="math inline">\({\mathbf I}_{RGB}\in{\mathbb R}^{H_o\times
+W_o\times 3}\)</span>输入Noiseprint++模块，生成噪声图<span
+class="math inline">\({\mathbf I}_{NPP}\in{\mathbb R}^{H_o\times
+W_o}\)</span>，其中Ho和Wo分别表示图像的原始高度和宽度。接着沿通道维度复制<span
+class="math inline">\({\mathbf I}_{NPP}\)</span>，得到<span
+class="math inline">\({\dot{\mathbf I} }_{NPP}\in{\mathbb R}^{H_o\times
+W_o\times 3}\)</span>。随后对<span class="math inline">\({\mathbf
+I}_{RGB}\)</span>和<span class="math inline">\({\dot{\mathbf I}
+}_{NPP}\)</span>进行尺寸调整，最终获得调整后的RGB图像<span
+class="math inline">\({\mathbf {\bar I}}_{RGB}\in{\mathbb R}^{H\times
+W\times 3}\)</span>和Noiseprint++图<span class="math inline">\({\mathbf
+{\bar I}}_{NPP}\in{\mathbb R}^{H\times W\times
+3}\)</span>，H和W分别代表输入图像的高度和宽度。<br/>​  在构建ConvNeXt
+V2网络时，我们同时从RGB域和Noiseprint++域获取特征。两个ConvNeXt
+V2分支采用相同架构但权重不共享，从而能更专注于各自的特征提取任务。我们分别选取两个分支的第3、6、33和36层输出作为中间特征图。其中C
+= {C(0)，C(1)，C(2)，C(3)}表示RGB域的层级特征，N =
+{N(0)，N(1)，N(2)，N(3)}表示噪声域的层级特征。</p>
+<figure>
+<img
+src="../postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250825161018784.png"
+alt="image-20250825161018784" />
+<figcaption aria-hidden="true">image-20250825161018784</figcaption>
+</figure>
+<p>​  为探究RGB域与噪声域之间的关联性并整合二者特征，我们构建了如图2所示的多尺度最大池化查询（MMQ）模块。以C(0)和N(0)为例，对RGB特征图C(0)执行四个不同核尺寸的最大池化操作后接1×1卷积运算，最终得到Q(0)={Q(0)k×k}。该过程可表述为：
+<span class="math display">\[{\bf Q}_{k\times k}^{(0)}=C o n
+v_{1\times1}(M a x P o o l i n g_{k\times k}({\bf C}^{(0)}))\]</span>
+​  其中k×k表示最大池化核的尺寸，k∈{1,5,11,15}，Conv1×1表示1×1卷积，<span
+class="math inline">\(MaxPooling_{k\times  k}\)</span>表示使用k×k核的最大池化。<span
+class="math inline">\({\bf Q}_{k\times
+k}^{(0)}\)</span>包含k×k尺度上的最显著局部特征。我们通过计算<span
+class="math inline">\({\bf Q}_{k\times
+k}^{(0)}\)</span>与Noiseprint++特征图N(0)的矩阵乘积来执行多尺度查询操作：
+<span class="math display">\[\dot{\mathbf Q}_{k\times k}^{(0)}={\mathbf
+Q}_{k\times k}^{(0)}\otimes\mathbf{N}^{(0)}\]</span>
+​  其中⊗表示矩阵乘法。之后，我们构建一个1×1的卷积来降低<span
+class="math inline">\(\dot{\mathbf Q}_{k\times
+k}^{(0)}\)</span>的维度，得到<span class="math inline">\(\ddot{\mathbf
+Q}_{k\times k}^{(0)}\)</span>。<span class="math inline">\(\dot{\mathbf
+Q}_{k\times k}^{(0)}\)</span>的通道维度是<span
+class="math inline">\(\ddot{\mathbf Q}_{k\times
+k}^{(0)}\)</span>的4倍。最后，我们将<span
+class="math inline">\(C^{(0)}\)</span>与四个<span
+class="math inline">\(\ddot{\mathbf Q}_{k\times
+k}^{(0)}\)</span>拼接起来，得到多尺度特征图。 <span
+class="math display">\[\hat{\mathbf
+Q}_{\mathrm{exp}}^{(0)}=Concat(C^{(0)},\ddot{\mathbf Q}_{1\times
+1}^{(0)},\ddot{\mathbf Q}_{5\times 5}^{(0)},\ddot{\mathbf Q}_{11\times
+11}^{(0)},\ddot{\mathbf Q}_{15\times 15}^{(0)})\]</span>
+​  其中Concat表示沿通道维度进行拼接。对C(1)、C(2)、C(3)和N(1)、N(2)、N(3)进行相同的MMQ模块处理，从而获得Qˆ(1)、Qˆ(2)、Qˆ(3)。通过多尺度最大池化查询，我们能够构建RGB域与NPP域之间的复杂关系。从M3编码器提取的特征图可表示为Qˆ={Qˆ(0)，Qˆ(1)，Qˆ(2)，Qˆ(3)}。</p>
+<h2 id="un-解码器">3.2. UN 解码器</h2>
+<p>​  我们设计了一种UN解码器，该解码器从两个相反方向提取层次特征。UN解码器包含U分支和N分支两个子结构，每个分支都拥有特征图的克隆副本Qˆ。我们对这两个分支执行相似但相反的操作：对于U分支，低层通道Qˆ(0)通过轻量级连续卷积层生成BU(0)。具体操作中，首先通过1×1卷积模块将Qˆ(0)的通道维度翻倍，然后将其拆分为通道维度相同的X0和X1张量。这种拆分操作旨在降低计算成本并提升表征能力。接着，我们将X1依次通过两个模块<span
+class="math inline">\(f_{3\times3}^{C o n
+v}\)</span>处理，最终得到X‘。卷积模块<span
+class="math inline">\(f_{3\times3}^{C o n
+v}\)</span>由3×3卷积层、批量归一化层和SiLU激活层组成。然后，我们对X0、X1和X′进行积分，得到BU(0)：
+<span class="math display">\[\mathbf{BU}^{(0)}=f_{1\times1}^{c o n v}(C
+o n c a t({\bf X}_{0},{\bf X}_{1},f_{3\times3}^{C o n v}(f_{3\times3}^{C
+o n v}(\bf X_{1}))+\bf X_{1}))\]</span> ​  其中<span
+class="math inline">\(f_{1\times1}^{c o n
+v}\)</span>表示带有批量归一化和SiLU激活函数的1×1卷积模块。接着我们对U分支中的特征进行自底向上更新与融合：
+<span class="math display">\[\mathbf{BU}^{(i+1)}=\mathbf{\hat
+Q}^{(i+1)}+f_{3\times3}^{C o n v\downarrow}(\mathbf{BU}^{(i)})\]</span>
+​  其中i表示第i个特征图，i∈{0,1,2}，<span
+class="math inline">\(f_{3\times3}^{C o n
+v\downarrow}\)</span>表示一个下采样卷积模块，包含批量归一化层和SiLU层。因此，我们得到U分支的特征图BU
+=
+{BU(0)，BU(1)，BU(2)，BU(3)}。<br/>​  与U分支的处理流程类似，我们通过提取高层特征Q(3)构建了另一个连续卷积层来获得TD(3)。首先将Q(3)的通道维度翻倍，然后将其拆分为两个通道维度相同的张量Y0和Y1。经过<span
+class="math inline">\(f_{3\times3}^{C o n
+v}\)</span>卷积模块处理后，从Y1中得到Y‘。将Y’与Y1相加后，再与Y0、Y1进行拼接，并通过1×1卷积模块处理以获得TD(3)。接着我们采用自上而下的方式更新并融合N分支的特征，即<span
+class="math inline">\({\bf T D}^{(i-1)}\ =\hat{\bf Q}^{(i-1)}+R e s i z
+e({\bf T D}^{(i)}),i\in\{1,2,3\}.\)</span>，最终生成TD =
+{TD(0)，TD(1)，TD(2)，TD(3)}。在此过程中，我们通过双线性插值操作在Resize阶段扩展了特征尺寸。值得注意的是，U分支和N分支中的两个连续卷积层并不共享相同权重——U分支注重细节特征，而N分支则聚焦全局抽象特征。<br/>​  在完成所有这些操作后，我们将同一层级的BU和TD进行拼接，以获得联合层级特征UN
+= {UN(0)，UN(1)，UN(2)，UN(3)}，具体如下： <span
+class="math display">\[\mathbf{UN}^{(i)}=Resize(f_{1\times1}^{c o n
+v}(Concat(\mathbf{BU}^{(i)},\mathbf{TD}^{(i)})))\]</span>
+​  当四个UN(i)的尺寸与UN(0)相同，我们将UN拼接后输入一个3×3卷积模块、一个1×1卷积层和一个尺寸调整操作，从而获得预测掩膜M∈R（Ho×Wo）：
+<span class="math display">\[\mathbf{M}=Resize(C o n
+v_{1\times1}(f_{3\times3}^{C o n v}(Concat(\mathbf{UN})))\]</span></p>
+<h2 id="ioudce-损失">3.3. IoUDCE 损失</h2>
+<p>​  我们提出一种经过IoU校准的动态交叉熵损失函数（IoUDCE），该函数可在训练过程中动态调整正负样本预测的类别权重。设GT∈R
+Ho×Wo表示伪造图像的真实标签，其中GT中伪造部分为1，原始部分为0。我们将GT和M进行尺寸调整，分别得到GTb∈R
+H×W和Mb∈R
+H×W，并通过将Mb中大于0.5的部分设为1、小于0.5的部分设为0的方式对Mb进行二值化处理。IoUDCE损失函数的计算公式如下：
+<span class="math display">\[\beta_{I o U}=\sum_{i}^{B}\frac{\mathbf{G
+T}_{b}(i)\cap\mathbf{M}_{b}(i)}{\mathbf{G
+T}_{b}(i)\cup\mathbf{M}_{b}(i)}\]</span></p>
+<p><span class="math display">\[\mathcal{L}_{I o
+U}=-\frac{1}{B}\frac{1}{H W}\sum_{i=1}^{B}\sum_{i=1}^{H
+W}(\alpha_{0}(1-y(i,j))\times\;\log(1-p(i,j))+\alpha_{1}\times\;e^{\lambda(1-\beta_{I
+o v})}y(i,j)\log p(i,j))\]</span></p>
+<p>​  其中B表示批量大小，∩和∪分别表示交集和并集，y（i，j）表示批量中第i张图像的第j个真实标签，p（i，j）表示批量中第i张图像在伪造时的第j个预测分数。α0、α1和λ是超参数。<br/>​  当预测掩膜与真实掩膜差异较大时，1−βIoU值往往会增大，这会导致正类区域的权重增加，并引导MUN模型更加关注这些区域。随着训练过程的进行，预测掩膜与真实掩膜之间的差异逐渐缩小，导致1−βIoU趋近于0，正类权重也趋于α1。当然，当我们遇到βIoU较小的“差批”图像时，可以适当提高正类区域的权重。</p>
+<h2 id="偏差噪声增强">3.4. 偏差噪声增强</h2>
+<p>​  我们提出偏差噪声增强（Deviation Noise
+Augmentation，DNA）技术，其核心假设是：模型在数据集分布与训练集更接近时更容易获得更好效果。DNA的核心思想在于缩小通用图像与训练图像之间的分布差异。我们选择RGB通道的均值作为可区分的分布基准。首先计算训练数据集各RGB通道的均值mt
+= {mt R，mt G，mt B}，以及ImageNet（Deng等人，2009）的均值mu = {mu R，mu
+G，mu
+B}——因为我们认为ImageNet能够代表现实世界中的通用图像。接着从mu中减去mt，得到差异项d
+= {dk}，其中dk=mu k−mt
+k，k∈{R，G，B}。我们假设处理图像中的原始部分和伪造部分都遵循通用图像的分布规律，因此生成两个均匀分布的噪声向量Np∈R
+H×W×3和Nf∈R H×W×3。将GTb沿通道维度复制得到GTˆb∈R
+H×W×3，并在对应通道上分别用特定的dk值乘以Np和Nf，最终得到Nˆp∈R
+H×W×3和Nˆf∈R H×W×3： <span class="math display">\[\mathbf{\hat{N}}_{p}=C
+o n c a t(d_{R}{\mathbf N}_{p}(0),d_{G}{\mathbf N}_{p}(1),d_{B}{\mathbf
+N}_{p}(2))\]</span></p>
+<p><span class="math display">\[\mathbf{\hat{N}}_{f}=C o n c a
+t(d_{R}{\mathbf N}_{f}(0),d_{G}{\mathbf N}_{f}(1),d_{B}{\mathbf
+N}_{f}(2))\]</span></p>
+<p>​  其中Np(i)和Nf
+(i)分别表示Np和Nf的第i维。然后我们在ˆGTb和ˆNp的原始部分以及GTˆb和Nˆf的伪造部分上执行交集操作，以获得IDNA∈R
+H×W×3如下所示： <span class="math display">\[\mathbf{I}_{D N
+A}={\bar{\mathbf{I}}}_{R G B}+(\hat{\bf
+N}_{p}\circ(\hat{\mathbf{G}}\mathbf{T}_{b}=0))+(\hat{\bf
+N}_{f}\circ(\hat{\mathbf{G}}\mathbf{T}_{b}=1))\]</span>
+​  其中◦表示Hadamard乘积</p>
+<h1 id="实验">4.实验</h1>
+<h2 id="实施和评估细节">4.1 实施和评估细节</h2>
+<p>​  <strong>实施细节</strong><br/>​  MUN基于MMSegmentation构建。我们使用Noiseprint++生成原始尺寸图像的噪声图，随后将图像和噪声图均调整为512×512的块作为输入。优化器采用随机梯度下降（SGD），其学习策略可按以下方式计算：
+<span class="math display">\[lr_c=\begin{cases}l r_{s}+(l r_{0}-l
+r_{s})\times{\frac{i t e r_{c}}{i t e r_{w}}},&amp;i t e r_{c}\lt i t e
+r_{w}\\l r_{0}\times(1-\frac{1}{i t e r_{t}-i t e r_{c}+1}),&amp;i t e
+r_{c}\gg i t e r_{w}\end{cases}\]</span>
+​  其中lrc表示当前学习率。初始学习率设定为lrs=10−6，初始学习率为lr0 =
+0.01，iterc代表当前迭代次数，iterw =
+1500表示预热迭代次数，itert则代表总迭代次数。在公式(9)中，参数α0和α1均设为1.0，而λ设为1.5。批量大小为7，训练周期为4。我们的训练和推理实验均在单块NVIDIA
+GeForce RTX 4090显卡上完成。</p>
+<p>​  <strong>实验数据集</strong><br/>​  我们在合成数据集(Liu et al.
+2023)上训练模型，并采用五个数据集进行评估：NIST16(Guan et al.
+2019)、CASIA v1.0(Dong, Wang, and Tan 2013)、IMD2020(Novozamsky,
+Mahdian, and Saic 2020)、CocoGlide(Guillaro et al. 2023)和Wild(Huh et
+al.2018)。合成数据集基于CASIA v2.0(Wei et al. 2022)和ADE20k(Zhou et
+al.2019)构建，包含剪切、复制移动和移除篡改图像。该合成数据集共有156,006张合成图像（训练集140,432张，验证集7,787张，测试集7,787张）。NIST16和IMD2020包含剪切、复制移动和移除图像，CASIA
+v1.0仅包含剪切和复制移动图像，而Wild仅包含剪切图像。CocoGlide是基于GLIDE扩散模型（Nichol等人，2022）生成的AI数据集。</p>
+<p>​  <strong>实验性指标</strong><br/>​  我们采用F1分数、交并比（IoU）、准确率和曲线下面积（AUC）作为评估指标，这些指标在图像伪造检测领域具有广泛应用(Guillaro
+et al.
+2023)。在对预测掩膜进行二值化处理时，我们固定采用0.5作为阈值。</p>
+<h2 id="与最先进方法的比较">4.2 与最先进方法的比较</h2>
+<p>​  我们将MUN与最近的SOTA工作进行比较，包括RGB-N (Zhou et al. 2018),
+ManTra-Net (Wu, AbdAlmageed, and Natarajan 2019), SPAN (Hu et al.
+2020),MVSS-Net (Chen et al. 2021), PSCC-Net (Liu et al.
+2022a),ObjectFormer (Wang et al. 2022), TANet (Shi, Chen, and Zhang
+2023), TBFormer (Liu et al. 2023), HiFi (Guo et al. 2023), TruFor
+(Guillaro et al. 2023), CSR-Net (Zhang et al. 2024), NRL-Net (Zhu et al.
+2024) and MGQFormer (Zeng et al. 2024)</p>
+<figure>
+<img
+src="../postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821160214184.png"
+alt="image-20250821160214184" />
+<figcaption aria-hidden="true">image-20250821160214184</figcaption>
+</figure>
+<p>​  表6展示了上述模型在NIST16、CAISA
+v1.0、IMD2020、CocoGlide和Wild数据集上的测试结果，评分数据均引自各研究论文。从表6可以看出，MUN模型在多数数据集上表现更优。由于Noiseprint++在处理NIST16超高清图像时需要占用大量GPU内存，我们首先将图像分割为九个区块进行单独处理，这种操作可能导致其在NIST16上的评分有所下降。CocoGlide采用GLIDE扩散模型生成，其优异表现表明MUN模型具备处理AI生成的篡改图像的能力。</p>
+<figure>
+<img
+src="../postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821161117490.png"
+alt="image-20250821161117490" />
+<figcaption aria-hidden="true">image-20250821161117490</figcaption>
+</figure>
+<p>​  图4中展示了视觉比较结果，第一列和第四列中，部分被比较的方法无法检测到被操作的区域，MUN可以准确地定位这些区域。在第2、3列中，比较的方法不能检测到准确的边界或漏掉一些伪造区域，MUN具有更高的定位精度，可以更精确地提取这些篡改区域的边界。<br/>​  此外，我们还评估了使用DNA数据训练的MUN版本（即MUN*）。如表6底部所示，MUN*在大多数数据集上都能取得更优表现。其在CASIA
+v1.0数据集上的性能下降原因在于：该数据集的分布特征与我们的训练数据集高度相似，而DNA技术有效拉大了两者之间的差异。总体而言，DNA技术不仅能提升MUN的性能表现，还能增强其泛化能力，且无需针对每个测试集进行单独微调即可实现。</p>
+<h1 id="结论">5.结论</h1>
+<p>​  我们提出名为MUN的图像伪造定位网络。在M3编码器中，两个ConvNeXt
+V2分支作为多线索提取器，从RGB和Noiseprint++两个维度提取伪造痕迹；MMQ模块则构建显著局部RGB特征与噪声域之间的关联。UN解码器能够学习自上而下和自下而上的层次化特征，并重建预测掩膜。IoUDCE损失函数通过交并比动态调整类别权重，引导网络聚焦难以处理的篡改区域。DNA算法缩小了训练图像RGB分布与通用图像之间的差距，显著提升了MUN的泛化能力。实验结果表明，MUN性能优于现有最优方法。未来可通过整合更多线索增强MUN，进一步探索如何识别最能涵盖各类图像分布的噪声类型，并研究其与频域信息的关联性。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/">https://zhaozw-szu.github.io/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821160058549.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/text1/" title="text1"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">text1</div></div></a></div><div class="next-post pull-right"><a href="/Discriminative-fuzzy-means-clustering-withlocalstructure-preservation-for-high-dimensional-data/" title="Discriminative fuzzy 𝐾-meansclustering withlocalstructure preservation for high-dimensional data"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Discriminative fuzzy 𝐾-meansclustering withlocalstructure preservation for high-dimensional data</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">150</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#m3%E7%BC%96%E7%A0%81%E5%99%A8"><span class="toc-text">3.1. \(M^3\)编码器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#un-%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-text">3.2. UN 解码器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ioudce-%E6%8D%9F%E5%A4%B1"><span class="toc-text">3.3. IoUDCE 损失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%8F%E5%B7%AE%E5%99%AA%E5%A3%B0%E5%A2%9E%E5%BC%BA"><span class="toc-text">3.4. 偏差噪声增强</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD%E5%92%8C%E8%AF%84%E4%BC%B0%E7%BB%86%E8%8A%82"><span class="toc-text">4.1 实施和评估细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E6%9C%80%E5%85%88%E8%BF%9B%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.2 与最先进方法的比较</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
