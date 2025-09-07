@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Region-aware_Contrastive_Learning_for_Semantic_Segmentation | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Region-aware_Contrastive_Learning_for_Semantic_Segmentation Hanzhe Hu1,2, Jinshi Cui1*, Liwei Wang1*1北京大学电子工程与计算机科学学院,国家机器感知重点实验室2浙江实验室 摘要 ​  近期研究通过在单张图像中局部或全局地利用上下文信息，并采用像素级交叉熵损失监督模型，已在语义分割领域取得显著">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Region-aware_Contrastive_Learning_for_Semantic_Segmentation">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Region-aware-Contrastive-Learning-for-Semantic-Segmentation/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="Region-aware_Contrastive_Learning_for_Semantic_Segmentation Hanzhe Hu1,2, Jinshi Cui1*, Liwei Wang1*1北京大学电子工程与计算机科学学院,国家机器感知重点实验室2浙江实验室 摘要 ​  近期研究通过在单张图像中局部或全局地利用上下文信息，并采用像素级交叉熵损失监督模型，已在语义分割领域取得显著">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg">
+<meta property="article:published_time" content="2025-09-04T14:09:29.000Z">
+<meta property="article:modified_time" content="2025-09-04T14:36:52.906Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Region-aware-Contrastive-Learning-for-Semantic-Segmentation/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Region-aware_Contrastive_Learning_for_Semantic_Segmentation',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-04 22:36:52'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">154</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Region-aware_Contrastive_Learning_for_Semantic_Segmentation</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-09-04T14:09:29.000Z" title="创建于 2025-09-04 22:09:29">2025-09-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-04T14:36:52.906Z" title="更新于 2025-09-04 22:36:52">2025-09-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Region-aware_Contrastive_Learning_for_Semantic_Segmentation"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Region-aware_Contrastive_Learning_for_Semantic_Segmentation</p>
+<p>Hanzhe Hu1,2, Jinshi Cui1*, Liwei
+Wang1*<br/>1北京大学电子工程与计算机科学学院,国家机器感知重点实验室<br/>2浙江实验室</p>
+<h1 id="摘要">摘要</h1>
+<p>​  近期研究通过在单张图像中局部或全局地利用上下文信息，并采用像素级交叉熵损失监督模型，已在语义分割领域取得显著成果。然而从整个数据集的整体视角来看，语义关联不仅存在于单个图像内部，更普遍存在于整个训练数据中，这使得单纯考虑图像内部相关性已不足以满足需求。受无监督对比学习最新进展的启发，我们提出了一种区域感知对比学习方法（RegionContrast），为监督式语义分割提供创新解决方案。为提升语义相似像素的相似度并保持与其他像素的区分度，我们采用对比学习方法实现这一目标。借助记忆库技术，我们将探索将所有代表性特征存储到记忆库中。在不损失泛化能力的前提下，为高效整合训练数据至记忆库同时避免消耗过多计算资源，我们提出通过构建区域中心来表征每张图像中不同类别的特征。因此，我们提出的区域感知对比学习方法在训练阶段对所有数据均采用区域级处理，相比探索像素级关联的方法，这种设计能显著节省内存资源。该方法在训练过程中计算成本极低，测试时也无需额外开销。大量实验表明，我们的方法在Cityscapes、ADE20K和COCO
+Stuff三个基准数据集上均取得了业界领先的表现。</p>
+<h1 id="引言">引言</h1>
+<p>​  语义分割是计算机视觉领域一个基础且具有挑战性的问题，其目标是对图像中的每个像素分配一个类别标签。该技术已广泛应用于自动驾驶、场景理解、图像编辑等多个领域。近年来，得益于ImageNet
+[11]和Cityscapes
+[10]等大规模数据集的普及，语义分割领域取得了显著进展。特别是基于全卷积网络（FCN）[30]，涌现出许多前沿方法，这些方法专注于利用上下文信息。DeepLabV3
+[5]提出了ASPP模块，该模块通过不同膨胀率对空间规律采样的像素进行聚合；而PSPNet
+[52]则提出了金字塔池化模块，在池化前将特征图划分为多个区域。非局部网络[40]采用自注意力机制，使每个像素都能接收来自所有其他像素的信息，从而获得更完整的像素级表征。<br/>​  尽管上述方法在多数情况下能获得令人满意的分割效果，但仍存在明显缺陷。具体而言，当前主流方法大多侧重于从图像内部多维度挖掘上下文信息，却忽视了其他图像中潜在的关联信息。如图1所示，类间关系同样值得深入探索。对于图像中的某个区域而言，仅通过膨胀卷积或自注意力机制只能获取周边同类特征的部分信息，而现实中这类区域本应能接触到更多样化的特征信息。因此，单纯探索图像内部关系仍不够全面，这就催生了从整体数据集视角进行特征学习的需求。<br/>​  近年来，无监督对比学习在预训练图像分类或目标检测等下游任务的强特征提取器方面备受关注。简而言之，大多数研究采用图像级对比学习：将数据集中所有其他图像视为负样本，而经过随机增强处理的原始图像则作为正样本。得益于记忆库的利用，大量负样本可被引入辅助对比学习，从而获得更优质的特征表征。值得注意的是，多数无监督对比学习方法聚焦于分类问题，而语义分割则需要比分类多得多的语义信息。直观来说，为适应分割任务，我们可以将图像级对比学习调整为像素级对比——即对原始图像内外的像素进行对比，如文献[41]所示。然而这种处理方式存在严重缺陷：不同图像的像素可能属于同一类别，这会削弱后续特征学习效果。因此，我们不再局限于无监督设置，而是探索完全监督下的对比学习方法，以获取丰富的类别信息。<br/>​  在本研究中，我们提出了一种全新的全监督式对比学习范式，专门针对语义分割问题。通过将像素类别作为先验知识引入，对比学习得以实现更高效的执行。首先说明最直接的方法：当模型预测确定每个像素的类别时，会为每个类别构建对应的内存库来存储不同类别的像素嵌入数据。对于图像中的每个像素，其对应的正负样本均可从内存库中提取，从而完成对比学习过程。虽然这种方法简单有效，但由于整个数据集包含的像素数量庞大，会导致内存占用过高，进而显著拖慢训练速度。<br/>​  为解决上述问题并恢复足够的嵌入特征，我们提出了区域感知对比学习（RegionContrast）。具体而言，由于图像中某一类别的区域特征由该类别所有像素特征构成，因此我们可以构建同一图像内不同类别的区域中心。通过这种方式，我们无需将所有像素嵌入推入记忆库，而是仅从不同类别中选取若干区域中心进行存储。虽然一张图像可能包含多个同类区域，但其嵌入空间中的特征具有相似性。因此为简化处理流程，我们为单张图像的每个类别生成一个区域中心。为促进难以分类像素的特征学习，我们在生成区域中心时提出动态采样方法，以增强对困难样本的关注度。在构建好不同类别的记忆库后，即可实施区域感知对比学习。具体而言，对于图像中的某个区域中心，其对应的正样本来自同类记忆库中的嵌入向量，而负样本则取自其他记忆库的嵌入向量。在获得正负样本后，即可执行对比学习流程。<br/>​  我们的区域对比方法（RegionContrast）整体框架如图2所示。传统交叉熵损失作为像素级监督机制，而区域对比方法则专注于图像间关系学习。最关键的是，该方法可轻松适配各类分割模型，在训练时仅需少量计算资源，测试时也无需额外开销。<br/>​  总之，我们的贡献总结如下：</p>
+<ul>
+<li>我们提出了一种全新的全监督式对比学习框架，专门针对特定的语义分割问题。</li>
+<li>为了以内存高效的方式适应分割场景，我们设计了一种有效的区域感知对比学习（RegionContrast），从整个数据集的整体视角探索语义关系。</li>
+<li>我们在多个公开数据集上进行了大量实验，并在Cityscapes、ADE20K和COCO
+Stuff等三个语义分割基准上取得了最先进的性能。</li>
+</ul>
+<h1 id="方法">方法</h1>
+<figure>
+<img
+src="../postimages/Region-aware-Contrastive-Learning-for-Semantic-Segmentation/image-20250904221906967.png"
+alt="image-20250904221906967" />
+<figcaption aria-hidden="true">image-20250904221906967</figcaption>
+</figure>
+<blockquote>
+<p>图2.我们提出的区域感知对比学习框架（RegionContrast）的整体架构。所有类别的记忆库均包含当前迭代前从图像生成的区域中心。对于当前迭代的输入图像，我们首先将其输入特征提取器（骨干+
+ASPP模块）以获取其深度特征。通过所提出的动态采样方法，我们从图像中构建区域中心，并根据对应类别将其推入记忆库。在记忆库内执行区域感知对比学习时，红色箭头表示推送力，绿色箭头表示拉力（不同颜色的圆点代表不同类别的区域中心）。该模型采用交叉熵损失与所提出的RegionContrast进行联合监督。</p>
+</blockquote>
+<h2 id="区域感知对比学习">1.区域感知对比学习</h2>
+<p>​  在本研究中，我们以监督学习的方式探索对比学习。得益于现有标注数据的优势，与以往方法不同，本研究将对比学习应用于类别层面而非实例层面，从而更有效地提升特征表示能力。</p>
+<h3 id="整体框架">1.1.整体框架</h3>
+<p>​  如图2所示，我们展示了所提出的区域对比度（RegionContrast）的整体框架。我们选用DeepLabV3
+[5]作为基础分割网络，并以在ImageNet数据集上预训练的ResNet作为主干网络。通过替换最后两个下采样操作，并在后续卷积层中引入膨胀卷积，有效提升了特征图的分辨率和感受野，使输出步幅从16倍优化至8倍。该模型采用常规像素级交叉熵损失与我们提出的区域感知对比度损失相结合的监督机制。<br/>​  具体而言，要实现区域级别的对比学习，首先需要提取区域特征。给定输入图像I∈R
+C×H×W，我们将其通过主干网络和ASPP模块处理以获得特征图F∈R
+C×H×W。在神经网络预测的引导下，我们从特征图F中进一步提取区域特征——这通过在特征图上添加分割头来实现。为简化处理，我们选择用一个区域中心来表征图像中的每个类别，该中心编码了该类别的核心信息。实践中，生成的区域中心是类别i的向量Ri∈R
+C。随后，同类别的区域中心作为正样本，而不同类别的则作为负样本。本文提出的监督式区域感知对比学习的核心在于：在保持不同类别间区分能力的同时，将同一类别的区域特征进行整合。</p>
+<h3 id="区域中心">1.2.区域中心</h3>
+<p>​  直观来说，类别i的区域中心可以定义为单个图像中所有属于该类别的像素特征的平均值。具体而言，给定特征图F∈R
+C×H×W（其中C、H和W分别表示特征图的维度、高度和宽度），类别i的区域中心的直接定义可表述为：
+<span class="math display">\[R_{i}=\frac{\sum_{x,y}F_{(x,y)}{\mathbb
+1}[L_{(x,y)}=i]}{\sum_{x,y}{\mathbb 1}[L_{(x,y)}=i]},\]</span>
+​  其中<span
+class="math inline">\(L_{(x,y)}\)</span>是基础分割网络预测的像素标签，<span
+class="math inline">\({\mathbb
+1}(\cdot)\)</span>是表示该像素属于类别i的二元指示器。<br/>​  然而，由于网络预测中存在误判，上述构建方法中的区域中心会覆盖像素的模糊特征，这将误导区域中心的学习过程。为了更关注难以分类的像素，我们进一步提出一种<strong>动态采样</strong>方法来构建区域中心。<br/>​  除了特征图<span
+class="math inline">\(F\in\mathbb{R}^{C\times H\times
+W}\)</span>和预测图<span class="math inline">\(P\in\mathbb{R}^{N\times
+H\times W}\)</span>外，我们还引入了真实值图<span
+class="math inline">\(G\in\mathbb{R}^{H\times
+W}\)</span>来挖掘困难像素（其中C表示特征维度，N为类别数）。在真实值的引导下，可以有效过滤困难负样本并获取困难正样本。为了更关注困难样本，我们在生成区域中心时应对不同像素特征赋予差异化权重——困难样本的像素需要比简单正样本获得更高权重。为此，我们利用预测的置信度图来为容易的正样本分配权重，其中每个位置的置信度图值<span
+class="math inline">\(c_{i,j}\in[0,1]\)</span>。因此，简单正像素<span
+class="math inline">\((i,j)\)</span>的权重为<span
+class="math inline">\(1-c_{i,j}\)</span>，而困难正像素的权重为1。从形式上讲，类别i的简单正样本可表示为<span
+class="math inline">\(E P_{i}=\sum_{x,y}{\mathbb
+1}[L_{(x,y)}=i]\cap{\mathbb
+1}[G_{(x,y)}=i]\)</span>，而困难正样本可表示为<span
+class="math inline">\(H P_{i}=\sum_{x,y} {\mathbb 1}[G_{(x,y)}=i] -
+{\mathbb 1}[L_{(x,y)}=i]\cap{\mathbb
+1}[G_{(x,y)}=i]\)</span>。类别i区域中心的最终定义可定义为， <span
+class="math display">\[R_{i}=\frac{\sum_{x,y}F_{(x,y)}((1-c_{(x,y)})\cdot
+E P_{i}+H P_{i})}{\sum_{x,y}\,{\mathbb 1}[G_{(x,y)}=i]},\]</span></p>
+<h3 id="区域对比">1.3.区域对比</h3>
+<p>​  在为每张图像构建所有类别的区域中心后，来自类别i的区域中心的区域感知对比损失可直接定义为，
+<span class="math display">\[L_{i}^{N C
+E}=\frac{1}{|M_{i}|}\sum_{k_{+}\in M_{i}}-\log\frac{\exp(q\cdot
+k_{+}/\tau)}{\exp(q\cdot k_{+}/\tau)+\sum_{k_{-}}\exp(q\cdot
+k_{-}/\tau)},\]</span>
+​  其中Mi表示从整个训练集的类别i中收集区域中心的记忆库，而k−来自其他类别的记忆库。<br/>​  包含负样本的记忆库对学习优质特征表征至关重要。先前在语义分割中应用对比学习的方法[41,54,39]需要维护大量像素级嵌入存储的内存库，这不仅导致对大容量内存库的迫切需求，还因内存负担过重而造成训练速度缓慢。相比之下，我们的方法通过引入区域中心点的优势，在训练过程中所需的内存资源显著减少。具体来说，对于包含N个类别中D张图像的训练集，我们会构建N个记忆库，每个记忆库的容量为D×C（其中C表示嵌入特征的维度，这些嵌入也被称为区域中心）。在训练过程中，我们会将这N个记忆库作为不同的队列进行维护。针对每个小批量数据，系统会生成不同类别的区域中心，并将其放入对应的队列中，在下一个训练周期内完成更新。<br/>​  综上所述，语义分割的最终监督机制可概括为以下内容。我们采用了提出的区域感知对比损失函数，并结合传统像素级交叉熵损失与辅助损失，这与现有前沿研究[52,47,20]的做法一致。具体而言，将主干网络ResNet第三阶段的输出结果输入辅助层，通过同样采用交叉熵损失的辅助损失进行监督预测。简言之，该损失函数可表示为：
+<span class="math display">\[L=L_{C E}+\alpha L_{A U X}+\beta L_{R
+C},\]</span>
+​  其中α和β用于平衡主分割损失LCE、辅助损失LAUX以及区域感知对比损失LRC。</p>
+<h1 id="结论">结论</h1>
+<p>​  在本文中，我们提出了区域感知对比学习（RegionContrast），将对比学习引入语义分割问题。与以往的无监督对比学习方法不同，我们提出了一种全新的全监督式对比学习框架，专门针对图像分割任务。通过利用标签数据，我们能够深入挖掘更丰富的语义关联。此外，我们创新性地提出了不同类别区域中心的概念——这些区域中心被存储在内存中，并参与后续的对比学习过程。采用区域级嵌入而非像素级嵌入来存储整体训练集的信息，使得对比学习能够以内存高效的方式实现。消融实验验证了RegionContrast各组件的有效性。我们的RegionContrast模型在Cityscapes、ADE20K和COCO
+Stuff三个基准数据集上取得了业界领先的表现。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Region-aware-Contrastive-Learning-for-Semantic-Segmentation/">https://zhaozw-szu.github.io/Region-aware-Contrastive-Learning-for-Semantic-Segmentation/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/PRCL/" title="PRCL:Probabilistic Representation Contrastive Learning for Semi-Supervised Semantic Segmentation"><img class="cover" src="/postimages/PRCL/image-20250905113253704.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PRCL:Probabilistic Representation Contrastive Learning for Semi-Supervised Semantic Segmentation</div></div></a></div><div class="next-post pull-right"><a href="/SegFormer/" title="SegFormer"><img class="cover" src="/img/coverImage/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SegFormer</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">154</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E5%9F%9F%E6%84%9F%E7%9F%A5%E5%AF%B9%E6%AF%94%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.区域感知对比学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6"><span class="toc-text">1.1.整体框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9F%9F%E4%B8%AD%E5%BF%83"><span class="toc-text">1.2.区域中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9F%9F%E5%AF%B9%E6%AF%94"><span class="toc-text">1.3.区域对比</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
