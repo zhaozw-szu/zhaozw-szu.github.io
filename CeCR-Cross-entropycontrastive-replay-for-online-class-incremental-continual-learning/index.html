@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CeCR:Cross-entropycontrastive replay for online class-incremental continual learning | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CeCR:Cross-entropycontrastive replay for online class-incremental continual learning Guanglu Sun∗, Baolun Ji, Lili Liang, Minghui Chen哈尔滨工业大学计算机科学与技术学院，中国哈尔滨 摘要 ​  在实现持续从在线数据流中学习的目标下，基于重放的方法展现出显著">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CeCR:Cross-entropycontrastive replay for online class-incremental continual learning">
+<meta property="og:url" content="https://zhaozw-szu.github.io/CeCR-Cross-entropycontrastive-replay-for-online-class-incremental-continual-learning/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="CeCR:Cross-entropycontrastive replay for online class-incremental continual learning Guanglu Sun∗, Baolun Ji, Lili Liang, Minghui Chen哈尔滨工业大学计算机科学与技术学院，中国哈尔滨 摘要 ​  在实现持续从在线数据流中学习的目标下，基于重放的方法展现出显著">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg">
+<meta property="article:published_time" content="2025-10-17T03:16:36.000Z">
+<meta property="article:modified_time" content="2025-10-17T07:54:53.571Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/CeCR-Cross-entropycontrastive-replay-for-online-class-incremental-continual-learning/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CeCR:Cross-entropycontrastive replay for online class-incremental continual learning',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-10-17 15:54:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover4.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CeCR:Cross-entropycontrastive replay for online class-incremental continual learning</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-10-17T03:16:36.000Z" title="创建于 2025-10-17 11:16:36">2025-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-17T07:54:53.571Z" title="更新于 2025-10-17 15:54:53">2025-10-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CeCR:Cross-entropycontrastive replay for online class-incremental continual learning"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>CeCR:Cross-entropycontrastive replay for online class-incremental
+continual learning</p>
+<p>Guanglu Sun∗, Baolun Ji, Lili Liang, Minghui
+Chen<br/>哈尔滨工业大学计算机科学与技术学院，中国哈尔滨</p>
+<h1 id="摘要">摘要</h1>
+<p>​  在实现持续从在线数据流中学习的目标下，基于重放的方法展现出显著优势。这类方法的核心挑战在于如何选择具有代表性的样本进行存储和重放。本文针对在线类增量场景，提出交叉熵对比重放（CeCR）方法。首先，我们开发了类聚焦记忆检索机制，实现无重放的类级采样；其次，提出类均值近似记忆更新策略，通过用当前输入批次样本替换误分类训练样本；同时引入交叉熵对比损失函数，通过获取更扎实的知识来实现有效学习。实验表明，CeCR方法在两个基准数据集上的表现与当前最优方法相当甚至更优。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  在本研究的在线增量学习场景中，模型需要持续从实时数据流中进行学习。由于数据以在线方式流入，即每个样本仅被观察一次，这导致无法对全部训练数据进行多轮训练。OCL模型采用单头评估架构部署，即所有类别必须共享同一个分类器，因为模型无法获取任务标识信息。这种设置对于自动驾驶汽车和机器人等现实应用场景而言，更具挑战性且更符合实际需求。</p>
+<p>​  现有的CL方法主要分为三大类：基于重放的方法、参数隔离方法和正则化方法。其核心差异体现在存储信息类型与输入干扰抑制方式上。基于重放的方法通过存储先验样本或生成模型，通过重放已存储或生成的样本来避免遗忘效应。参数隔离方法通过存储模型组件信息，为不同任务分配不同参数。正则化方法为每个参数存储“重要性值”，并约束某些参数的更新。</p>
+<p>  本研究聚焦于基于回放的方法，因其在知识保留方面表现更优，优于其他方法。回放缓冲区作为存储训练样本的缓冲区，通过让已存储样本反复参与后续训练，帮助模型巩固已学知识。因此，回放缓冲区的操作机制成为基于回放方法研究的热点领域。该机制包含两大核心组件：记忆检索（MemoryRetrieval）和记忆更新（MemoryUpdate）。记忆检索负责缓冲区回放，通过从回放缓冲区中选取样本参与回放训练，使模型能够持续记忆已学知识。记忆更新则负责缓冲区管理，通过从训练样本中筛选具有代表性的新类别样本构建回放缓冲区，并通过剔除代表性较弱的样本来缩减已知类别的回放缓冲区。因此，基于回放方法的关键问题在于：记忆检索需要检索哪些样本，记忆更新又需要存储哪些样本。</p>
+<p>​  随机采样已成为近期多项记忆检索研究中最常用的方法(De Lange &amp;
+Tuytelaars, 2021; Rolnick, Ahuja, Schwarz, Lillicrap, &amp; Wayne,
+2019)。为优化学习行为并减少干扰，MIR方法（阿尔琼迪、贝利洛夫斯基等，2019）根据新数据虚拟更新导致的损失增加来选择重放缓冲样本。ASER方法（辛姆等，2021）提出对抗性沙Adversarial
+Shapley（AS）值评分机制，既能防止遗忘又能最大限度干扰输入批次，从而确保学习过程的可塑性。现有记忆检索方法存在类别分布不平衡的问题，导致某些类别的样本可能被反复重放缓冲。</p>
+<p>​  为解决数据不平衡问题，我们提出了一种基于类别的记忆检索方法，通过采用无放回的类别级采样策略。该方法首先通过无放回的类别级采样确定需要检索的类别，再选择特定样本进行重放训练。已检索过的类别将不再重复采样，从而确保所有已见类别都能被有效覆盖，并通过选择具有代表性的样本加入重放训练。</p>
+<p>​  CoPE（德朗格与图伊特拉尔斯，2021）和ER（罗尔尼克等人，2019）在MemoryUpdate中采用了储层采样技术（维特，1985），以实现对持续数据流的高效处理。然而，分布中概率质量较小的次要模式可能无法在重放缓冲区中完整呈现。为此，GSS（阿尔琼迪、林、古贾德与本吉奥，2019）将GEM（洛佩兹-帕兹与兰扎托，2017）的约束优化框架拓展至实例级层面。当前MemoryUpdate面临的挑战在于如何筛选出最佳存储样本（高、阿斯科利与赵，2021；伊塞勒与科斯贡，2018）。</p>
+<p>​  为筛选最具代表性的样本纳入重放缓冲区，我们提出基于类别均值近似的记忆更新方法。在重放缓冲区中，模型正确分类的训练样本在潜在空间中能更精准地反映类别边界特征。相较于错误分类样本，这些正确分类样本更接近原型——即训练样本的类别均值，该原型在训练过程中会持续更新。通过重放缓冲区中正确分类样本的持续引入，模型在学习新类别时能更好地保留已掌握的类别核心知识。该方法通过区分正确分类样本与错误分类样本，对输入样本进行迭代评估，并选择性替换错误分类样本，从而提升重放缓冲区对整体训练样本的近似效果。</p>
+<p>​  鉴于在线增量学习场景更适用于现实世界系统，我们提出了一种名为交叉熵对比式回放（Cross-entropy
+Contrastive
+Replay，CeCR）的新型在线持续学习方法。该方法融合了类均值近似记忆更新和类聚焦记忆检索两大核心机制。损失函数对模型参数的最优学习起着关键作用。现有研究多采用交叉熵损失函数仅评估真实类别的预测置信度，这种做法在在线增量学习场景中难以有效保留已学知识。LUCIR(Hou,
+Pan, Loy, Wang, &amp; Lin,
+2019)在损失函数中引入了额外项以防止灾难性遗忘，但这种方法计算复杂度较高。为此，我们提出交叉熵对比损失（CeCL），该方法通过评估真实类别与非真实类别的置信度，有效引导样本在潜在空间中向对应真实标签靠拢，同时远离其他标签。通过在对比学习领域常用的两个基准数据集上进行大量实验，我们证明CeCR相较于当前最先进的持续学习方法具有竞争力甚至优势，尤其在内存缓冲区容量较小时表现更为突出。</p>
+<p>​  本文的主要贡献如下。</p>
+<ol type="1">
+<li>我们提出了一种新的记忆检索方法，该方法利用类级别的无放回采样来确定要检索的类别。该方法可以有效地覆盖所有已见过的类别，并选择具有代表性的样本加入回放训练。<br/>2.
+我们提出了一种新的记忆更新方法，可以正确区分错误分类的训练样本。错误分类的样本被选择性地替换为输入样本，因此重放集可以更好地近似整体训练样本。<br/>3.
+我们提出交叉熵对比损失函数，通过引导样本向真实标签靠拢、远离其他标签，帮助模型在单次训练中掌握更扎实的知识，从而有效避免遗忘。</li>
+</ol>
+<p>​  本文结构安排如下：第二部分重点探讨相关研究，特别是基于回放方法的里程碑成果；第三部分通过详细阐述三个核心组件，提出在线持续学习方法；第四部分通过实验结果验证所提方法的优越性；最后在第五部分对全文进行总结。</p>
+<h2 id="相关工作">2.相关工作</h2>
+<p>​  持续学习系统能通过有限资源从具有严重分布偏移的无限数据流中进行学习（Mai等人，2022）。当前持续学习方法可分为三大类：重放方法、正则化方法和参数隔离方法。</p>
+<p>​  基于正则化的方法<br/>​  基于正则化的方法通过约束网络中某些关键参数的更新，有效缓解了灾难性遗忘问题(Aljundi,
+Babiloni, Elhoseiny, Rohrbach, &amp; Tuytelaars, 2018; Chaudhry,
+Ranzato, Rohrbach, &amp; Elhoseiny, 2018; Fini, Lathuiliere, Sangineto,
+Nabi, &amp; Ricci, 2020; Yang et al., 2022;Zenke et al., 2017)。</p>
+<p>​  参数隔离方法<br/>​  参数隔离方法通过调整网络架构（采用固定或动态方式），利用不同参数组合来应对各类任务需求(Mallya
+et al., 2018; Mallya &amp; Lazebnik, 2018; Rajasegaran, Hayat, Khan,
+Khan, &amp; Shao, 2019; Rajasegaran, Khan, Hayat, Khan, &amp; Shah,
+2020)。</p>
+<p>​  基于回放的方法<br/>​  基于回放的方法会部署一个固定内存缓冲区，用于存储少量先前任务的数据子集，并在训练新任务时回放这些存储数据(Atkinson,
+McCane, Szymanski, &amp; Robins, 2021; Isele &amp; Cosgun, 2018; Wu et
+al.,
+2018)。在过去的几年中，有一些伟大的和经典的基于重放的模型。iCaRL(Rebuffi
+et al.,
+2017)采用优先队列机制存储重放缓冲样本，这些样本能最优地表征潜在空间中的特征分布。该算法通过迭代方式选择样本放入重放缓冲集，并计算原型样本与重放缓冲集类别均值之间的距离。当超过设定阈值时，iCaRL会舍弃队列末尾的多个样本。类似的优先级构建方法也被应用于Herding(Welling,
+2009)中，用于从分布中生成具有代表性的样本集。DGR(Shin, Lee, Kim, &amp;
+Kim,
+2017)则采用双模型架构，由深度生成模型和任务求解器组成。其中深度生成模型能够编码先前任务的信息，并生成高质量样本。</p>
+<p>​  近期研究聚焦于在线持续学习（OCL）这一更贴近实际应用场景的框架。在OCL框架下，基于回放的方法在克服灾难性遗忘方面表现更优。值得注意的是，当前针对回放式OCL方法的研究主要集中在两大核心流程：记忆检索与记忆更新(Gao
+et al., 2021)。</p>
+<p>​  在MemoryRetrieval领域，ER方法（Rolnick等人，2019）采用随机抽样策略选择待重放样本。CoPE方法（De
+Lange与Tuytelaars，2021）通过从缓冲区随机检索来模拟独立同分布重放批次的抽样过程，其缓冲区总容量按观测类别数均分。这种随机抽样虽然效率高，但无法确保有效样本的选取。为解决这一问题，MIR方法（Aljundi、Belilovsky等人，2019）提出了一种基于损失函数的先进储层检索方案。该方法通过随机抽样生成记忆子集，再根据输入批次更新虚拟模型时损失值的增加程度对子集样本进行评分。然而，损失值显著增加的样本在潜在空间中往往具有相似性，导致检索结果出现冗余。ASER方法（Shim等人，2021）则提出对抗性Shapley（AS）记忆检索策略，该方法在重放集中选取两类样本：第一类是与输入样本邻近但标签不同的样本，这类样本有助于模型学习当前类别与已知类别的差异；第二类是能代表记忆中样本特征的样本，这类样本帮助模型在潜在空间中保留已知类别的决策边界。</p>
+<p>​  在MemoryUpdate领域，ER采用水库采样技术将样本存储到回放集中。样本存储时遵循相同概率𝑀/𝑁分配规则，其中𝑀代表回放集容量，𝑁为候选样本数量。CoPE通过将回放集总容量均分给已见类别数量，确保所有类别回放集容量均衡。每个类别专属回放集随机捕获其父类分布的子集，并在潜在空间中近似其中心点。虽然随机存储样本效率高，但无法将代表性样本纳入回放集。Aljundi、Kelchtermans和Tuytelaars（2019）提出了一种无任务在线持续学习方法，通过构建包含困难样本的回放集来实现学习目标。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/CeCR-Cross-entropycontrastive-replay-for-online-class-incremental-continual-learning/">https://zhaozw-szu.github.io/CeCR-Cross-entropycontrastive-replay-for-online-class-incremental-continual-learning/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/Learning-double-compression-video-fingerprints-left-from-social-media-platforms/" title="Learning double-compression video fingerprints left from social-media platforms"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Learning double-compression video fingerprints left from social-media platforms</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">164</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
