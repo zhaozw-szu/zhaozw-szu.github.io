@@ -1,0 +1,546 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于CVPR2024，其为每个像素设置代理模型以超越常规像素级一致性，还通过建模代理间关系实现等级感知的关联一致性，从而充分释放代理潜力。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation">
+<meta property="og:url" content="https://zhaozw-szu.github.io/RankMatch/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="发表于CVPR2024，其为每个像素设置代理模型以超越常规像素级一致性，还通过建模代理间关系实现等级感知的关联一致性，从而充分释放代理潜力。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/RankMatch/image-20251104164701873.png">
+<meta property="article:published_time" content="2025-11-04T08:14:20.000Z">
+<meta property="article:modified_time" content="2025-11-07T06:27:55.742Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/RankMatch/image-20251104164701873.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/RankMatch/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-07 14:27:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">166</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/RankMatch/image-20251104164701873.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-11-04T08:14:20.000Z" title="创建于 2025-11-04 16:14:20">2025-11-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-07T06:27:55.742Z" title="更新于 2025-11-07 14:27:55">2025-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,CVPR,2024</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8D%8A%E7%9B%91%E7%9D%A3%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">半监督语义分割</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/mai556/RankMatch"><img src="https://img.shields.io/github/stars/mai556/RankMatch?style=flat" alt="GitHub Stars: mai556/RankMatch" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">发表于CVPR2024，其为每个像素设置代理模型以超越常规像素级一致性，还通过建模代理间关系实现等级感知的关联一致性，从而充分释放代理潜力。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>RankMatch: Exploring the Better Consistency Regularization for
+Semi-supervised Semantic Segmentation</p>
+<p>Huayu Mai1<em>∗</em> ，Rui Sun1* ，Tianzhu Zhang1<em>,</em>2† ，Feng
+Wu1</p>
+<p>1中国科学技术大学<br/>2深空探测实验室</p>
+<h1 id="摘要">摘要</h1>
+<p>​  半监督语义分割的核心挑战在于如何充分挖掘海量未标注数据，通过构建有效的监督信号来提升模型的泛化能力。多数方法倾向于直接采用对比学习来获取额外监督信息，以补充独立的像素级一致性正则化。然而这些方法往往因设计复杂、内存占用大且容易产生确认偏误而难以被广泛采用。本文针对对比学习方法中存在的瓶颈问题展开研究，提出基于像素间关联的新视角来构建更安全有效的监督信号，这与语义分割的本质特征相契合。为此，我们开发了连贯的RankMatch网络，通过构建代表性代理模型来超越常规像素级一致性，进一步挖掘代理间的关联潜力，最终实现基于排序感知的关联一致性。大量实验结果表明，RankMatch在包括线粒体分割在内的多个基准测试中表现优异，优于现有最先进方法。特别是在低数据条件下，RankMatch实现了显著提升。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  语义分割作为计算机视觉的基础任务，致力于在像素级别解析视觉语义，近年来得益于深度神经网络[28]的突破性进展，已在视觉理解[11]、自动驾驶[12]等领域取得显著成果。然而，其数据驱动的特性使得收集大量像素级标注作为训练数据既费时又费力。为缓解数据饥渴问题，已有大量研究[19,44,57]将注意力转向半监督语义分割任务。然而，由于可获取的标注数据有限，如何通过构建有效的监督信号来充分利用大量未标注数据，从而提升模型的泛化性能，这确实是一个极具挑战性的难题。</p>
+<p>​  在先前的研究文献中，伪标注[1,22]和一致性正则化[2,21]已成为利用无标签数据进行半监督语义分割的主流范式。近年来，这两种范式通常被整合到教师-学生架构中[46]（其中教师与学生可为同一实体）。具体而言，教师网络通过弱增强扰动视图生成对应的伪标签，指导学生网络在强增强扰动视图存在时进行训练，该方法采用像素级一致性正则化形式（参见图1(a)）。</p>
+<figure>
+<img src="../postimages/RankMatch/image-20251104161857633.png"
+alt="image-20251104161857633" />
+<figcaption aria-hidden="true">image-20251104161857633</figcaption>
+</figure>
+<blockquote>
+<p>图1.动机说明示意图。<br/>&gt;
+(a)对比了独立像素一致性正则化与相关一致性正则化的差异。显然，充分考虑像素间的丰富相关性能带来更丰富的额外监督。<br/>&gt;
+(b)展示了相关一致性正则化的直接实现方式，即对每个代理进行独立处理。<br/>&gt;
+(c)呈现了我们的核心思路——基于代理排名的相关一致性。<br/>&gt;
+我们通过考虑所有可能的代理排名排列概率，充分利用代理间的关联关系。</p>
+</blockquote>
+<p>​  通过对师生方案的深入分析，我们认为在半监督语义分割中构建来自大量未标注样本的额外监督至关重要——这从任务定义本身就能直观理解：即通过增强常规一致性正则化来适应密集像素级预测，而非受制于单个像素层面有限容量的监督信号（图1(a)）。受近期表征学习[8,18]的流行趋势启发，我们自然想到直接将对比学习[33,48,50,52]应用于半监督语义分割，从而在表征空间中构建丰富的正/负样本集，旨在通过补充独立像素级一致性正则化来获取更多监督信息。<br/>​  尽管这些方法取得了令人鼓舞的成果，但由于需要处理大量临时生成的正负样本，导致模型设计复杂且内存占用过高，这不仅削弱了其实际应用能力，还破坏了教师-学生架构的固有简洁性。更棘手的是，在无标注数据中缺乏真实标签的情况下，模型对正负样本的判定完全依赖于带有偏差的预测结果（即错误的伪标签），从而引发确认偏误[14]。雪上加霜的是，半监督语义分割任务本身存在数据量不足的固有局限，这种误差累积效应在此类场景下会被进一步放大，严重制约了模型的泛化能力。<br/>​  本文针对基于对比学习方法在提升像素级一致性正则化时存在的瓶颈问题展开分析，并提出一种创新视角——通过探索像素间相关性特征，构建更安全有效的监督信号，从而实现鲁棒的半监督语义分割。直观来看，现有方法往往忽视了密集像素预测任务蕴含的丰富像素间信息，这些信息超越了基础的单像素一致性范畴。这揭示了像素间相关性与一致性正则化（即图1(a)右侧所示的相关一致性正则化）之间存在更紧密的协同关系，为全面挖掘未标注数据提供了新思路。核心思路是：通过一组代表性的参考点（即代理节点）来建立<strong>代理层面的相关一致性</strong>，以此模拟像素间的关联性（参见图1(b)）。对于弱增强视图或对应强增强视图中的每个像素，我们可通过将其与一组代理进行比对，从而获得代理层面的相关性（即似然向量）。本质上，代理级相关性反映了具有更广感受野的代表性代理之间的共识，因此它编码了高阶一致性正则化，以适应密集像素级预测。然而，在没有监督信号的情况下训练出合适的代理并非易事。直观来看，这些代理需要与原始像素中多样化的语义线索产生积极共鸣，这些线索应涵盖广泛语义对比描述。为此，我们设计了一种正交选择策略，从特征图中筛选最具代表性的代理，尽可能保留原始像素中的关键信息。通过这种方式，借助代理层面相关性对数据分布的丰富描述，我们能够更有效地利用未标注数据。<br/>​  基于上述讨论，很自然地将生成的代理层面相关性整合到师生方案中，并通过KL散度等方法施加一致性约束（图1(b)）。然而，这种直接的约束方式将每个代理视为独立个体，且过度依赖独立同分布的强假设，这限制了模型的进一步优化空间。实际上，代理之间存在特定关联关系，这些关系也应当纳入代理层面相关一致性正则化考量。例如，如图1所示，代理a和代理b是位于同一辆车内的两个像素，而代理c则位于道路之外。因此，代理a应当与代理b建立比代理c更紧密的合作关系。为更有效地利用代理间关系建模结构信息生成监督信号，我们摒弃了单独处理各代理的传统方法，转而精心设计了<strong>基于排名感知的相关一致性</strong>机制。通过确保教师网络与学生网络（即弱增强视图与强增强视图，见图1(c)）在代理层面的相关性保持一致，这种机制旨在进一步释放代理的潜力。核心思想是将代理排序视为随机事件而非确定性排列。例如，不同代理与给定像素<span
+class="math inline">\(p^w\)</span>之间的相关性会变化，这可视为排序中的概率。代理a的排名概率为0.3，代理b的排名概率为0.5。从这个角度看，排名排列反映了代理在像素点上的相对位置关系。因此，针对每个像素点，我们会考虑所有可能的代理排名组合（如abc、cba等），并将代理间的关联性转化为代理排名的概率分布。通过约束教师网络与学生网络之间代理排序概率分布的一致性，模型可获得更有效的监督信号引导。最终，我们将最终模型命名为RankMatch。</p>
+<p>​  本研究的主要贡献可归纳如下：<br/>​  (1)我们深入剖析了对比学习方法在像素级一致性正则化改进中存在的瓶颈问题，并创新性地提出像素间关联分析视角，从而构建出更安全有效的监督信号，这与语义分割的本质特征完美契合。<br/>​  (2)我们构建了一个连贯的RankMatch网络，通过创建代表性代理来模拟超越常规像素间一致性的跨像素关联，并通过建模代理间关系来实现等级感知的关联一致性，从而充分释放代理的潜力。<br/>​  (3)我们在三个具有挑战性的基准测试（包括线粒体分割）上进行了大量实验，结果表明我们的RankMatch算法在性能上超越了当前最先进的半监督语义分割方法。特别是在低数据量的情况下，RankMatch能带来显著的性能提升。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  半监督学习<br/>​  半监督学习[13,37,62]（SSL）是研究较为深入的领域，当前研究主要集中在两大方向：伪标注与一致性正则化。伪标注方法[1,5,22,59]通过使用最新优化模型生成的伪标签对未标注样本进行训练。而基于一致性正则化的方法[21,46,47,55]则利用平滑性假设[32]，促使模型在面对不同扰动下的同一样本时保持一致性。值得注意的是，近期的SSL方法[3,4,15,40,56]已展现出一致性正则化与伪标注的协同效应。典型代表是FixMatch[40]，该方法通过弱增强未标注图像生成伪标签，用于生成强增强版本的图像。这种简洁而强大的方法已在近期的SSL研究中得到广泛应用。</p>
+<p>​  半监督语义分割<br/>​  基于伪标注与一致性正则化技术的成熟结合，深度神经网络[30,35,41,42,45,51,53,54]和各类半监督语义分割（SSSS）算法[25,27,36,44,60,61]的突破性进展已催生诸多创新成果。其中，充分考虑语义分割任务特性的UniMatch[57]通过在FixMatch框架中引入数据增强技术，成功构建出简洁高效的SSSS基准模型。在此基础之上，受表征学习启发，多项研究[33,48,50,52]将对比学习引入SSSS领域，使其完美适配密集预测任务的特性。本文提出创新视角，通过分析像素间关联性，为构建更安全有效的监督信号，助力实现鲁棒的半监督语义分割。</p>
+<h1 id="方法论">3.方法论</h1>
+<p>​  本节首先将半监督语义分割问题作为预备工作进行建模，随后从相关性视角阐述了RankMatch的核心设计理念。随后，我们详细阐述了如何构建代理级相关性，以便在未标注数据中挖掘更可靠的信息。最后，我们设计了基于排名的相关一致性正则化方法，通过利用代理间的相互关系来生成更有效的监督信号。在算法1中，我们展示了RankMatch的伪算法，以便清晰地总结该方法。</p>
+<h2 id="准备工作">3.1.准备工作</h2>
+<p>​  给定一个标注数据集<span class="math inline">\({\mathcal
+D}^{l}=\{(x_{i}^{l},y_{i}^{l})\}_{i=1}^{N^{l}}\)</span>和一个未标注数据集<span
+class="math inline">\(D^{u}=\{x_{i}^{u}\}_{i=1}^{N^u}\)</span>（其中<span
+class="math inline">\(N^{u}\gg
+N^{l}\)</span>），半监督语义分割的目标是利用有限的标注数据和海量的未标注数据训练分割模型。如图2所示，经典的教师-学生框架包含教师网络fT和学生网络fS。</p>
+<figure>
+<img src="../postimages/RankMatch/image-20251104164701873.png"
+alt="image-20251104164701873" />
+<figcaption aria-hidden="true">image-20251104164701873</figcaption>
+</figure>
+<blockquote>
+<p>图2.RankMatch框架示意图。<br/>&gt;
+学生网络的训练基于双重监督源：既包含标注数据的真实标签，也包含教师网络为未标注数据生成的伪标签。传统一致性正则化方法通常在像素层面施加约束，而我们的研究聚焦像素间的丰富关联性，转而在关联层面实施一致性约束。<br/>&gt;
+此外，我们创新性地设计了基于排序感知的相关一致性机制，从而获得更有效的监督信号。</p>
+</blockquote>
+<p>​  学生网络的训练由两方面监督信息引导：标注数据的真实标签和教师网络为未标注数据生成的伪标签。教师网络可以与学生网络完全相同，也可以是学生网络的指数移动平均（EMA）版本。具体来说，对于标注数据，监督损失函数<span
+class="math inline">\({\mathcal L}_{sup}\)</span>可表示为： <span
+class="math display">\[\mathcal{L}_{s u
+p}=\frac{1}{N^{l}}\sum_{i=1}^{N^{l}}\frac{1}{H W}\sum_{j=1}^{H W}\ell_{c
+e}\left(y_{i j}^{l},f_{S}(x_{i}^{l})_{j}\right),\]</span>
+​  其中H和W分别表示输入图像的高度和宽度，<span
+class="math inline">\(\ell_{c
+e}\)</span>表示标准像素级交叉熵损失。对于未标注数据，教师网络以弱增强视图<span
+class="math inline">\(aug(x_i^u)\)</span>作为输入，为学生网络生成伪标签<span
+class="math inline">\({\hat{y}}_{i}^{u}\)</span>，具体计算方式如下：
+<span class="math display">\[\hat{y}_{i j}^{u}=\left\{\begin{array}{l
+l}{\mathrm{arg\,max}\,f_{T}(a u g(x_{i}^{u}))_{j},}&amp;{c_{i j}^{u}\gt
+\gamma}\\
+{\mathrm{ignore\_index},}&amp;{\mathrm{otherwise}}\end{array}\right.\]</span>
+​  其中<span class="math inline">\(c_{i j}^{u}=\operatorname*{max}f_{T}(a
+u
+g(\alpha_{i}^{u}))_{j}\)</span>表示教师模型对第j个像素的预测置信度，<span
+class="math inline">\(\gamma\)</span>为排除不可靠伪标签的置信度阈值。由此，我们可得到一致性正则化损失<span
+class="math inline">\({\mathcal L}_{reg}\)</span>的表达式： <span
+class="math display">\[{\mathcal{L}}_{r e
+g}={\frac{1}{N^{u}}}\sum_{i=1}^{N^{u}}{\frac{1}{H W}}\sum_{j=1}^{H
+W}\ell_{c e}\left(\hat{y}_{i j}^{u},f_{S}(x u
+g(x_{i}^{u}))_{j}\right),\]</span>
+​  其中Aug（·）表示强增强。通过引入一致性正则化，模型能够从无标签数据中获取可靠信息。常用教师-学生方案的总体损失函数为<span
+class="math inline">\(\mathcal{L}=\mathcal{L}_{s u p}+\mathcal{L}_{r e
+g}\)</span>。<br/>​  需要指出的是，上述一致性正则化仍停留在分类任务的思维定式，仅在像素层面进行操作。我们认为图像本身必然存在显著的像素间相关性，这些相关性应当纳入一致性正则化的考量范围。接下来，我们将详细阐述像素间相关性的建模过程。</p>
+<h2 id="代理级相关性">3.2.代理级相关性</h2>
+<p>​  为了从未标注数据中挖掘更可靠的信息，我们自然而然地想到：可以在相关性层面施加一致性正则化，这比像素层面的处理要丰富得多。但直接要求教师模型和学生模型之间的所有像素相关性（即自相关矩阵）保持一致并不理想。自相关矩阵中的大量噪声会干扰模型优化过程，导致结果不尽如人意。<br/>​  为更精准地模拟像素间关联以实现一致性正则化，我们通过将每个像素与一组代表性的参考点（即代理）进行比对，构建代理级别的相关性。直观来说，这些代理应当能有效响应原始像素中各类语义线索，这些线索包含丰富多样的语义对比描述。为此，我们设计了一种正交选择策略，用于从图像中挑选最具代表性的代理。具体而言，我们通过分割模型的特征提取器，从未标注图像<span
+class="math inline">\(x^u\)</span>中提取出特征图<span
+class="math inline">\(F~\in~\mathbb{R}^{C\times h\times
+w}\)</span>。随后，我们从F中逐步构建一个由N个代理（$ {A}={
+{f}<em>{i}^{a}}</em>{i=1}<sup>{N}</sup>{CN} <span
+class="math inline">\(）组成的集合，确保新代理与已选代理最大程度正交（即余弦相似度最小），初始时随机选取一个像素特征，其中N表示代理数量。这种贪婪策略具有动态特性，它通过分析当前图像的特征来选择代理，从而尽可能保留原始像素中的关键信息。&lt;br/&gt;​&amp;emsp;&amp;emsp;通过这种方式，我们可以得到代理层面的相关系数\)</span>c^{1N}<span
+class="math inline">\(（为方便起见省略下标\)</span>i,j<span
+class="math inline">\(），即给定像素特征f时的像素代理层面相关系数为：\)</span><span
+class="math inline">\(c=s o f t m a x(f A^{\mathsf{T}}),\)</span>$
+​  其中T表示矩阵转置运算。我们可直接采用KL散度作为一致性正则化项，将教师网络的代理级相关系数<span
+class="math inline">\(c^w\)</span>与学生网络的<span
+class="math inline">\(c^s\)</span>进行关联： <span
+class="math display">\[\mathcal{L}_{c o r
+r}=\frac{1}{N^{u}}\sum_{i=1}^{N^{u}}\frac{1}{H W}\sum_{j=1}^{H W}\ell_{k
+l}\left(c_{i j}^{w},c_{i j}^{s}\right).\]</span>
+​  然而，这种简单的约束条件会将每个代理视为独立个体，从而限制了模型的进一步优化。接下来，我们将引入基于排名的相关一致性正则化方法，以建模代理之间的特定关系。</p>
+<h2 id="基于排名感知相关一致性">3.3.基于排名感知相关一致性</h2>
+<p>​  为有效利用代理间的协作关系生成更优质的监管信号，我们精心设计了基于排名的一致性正则化机制。核心理念在于将代理排序视为随机事件，而非确定性排列。也就是说，所有可能的排列组合都以一定概率存在，而不仅仅是从大到小的排列。给定c时，排列<span
+class="math inline">\(\pi\in{\mathcal{P}}(|{\mathcal{P}}|)=N!)\)</span>的概率可推导为：
+<span
+class="math display">\[P(\pi|c)=\prod_{n=1}^{N}{\frac{c_{\pi(n)}}{\sum_{n^{\prime}=n}^{N}c_{\pi(n^{\prime})}}},\]</span>
+​  其中<span
+class="math inline">\(\pi(n)\)</span>表示该排列的第n个代理索引。例如，假设我们有三个代理：a、b和c。这三个代理的一个排列是<span
+class="math inline">\(\pi=(a，b，c)\)</span>。根据代理层面的相关性c，我们可以推导出排列<span
+class="math inline">\(\pi\)</span>的概率： <span
+class="math display">\[P(\pi|c)={\frac{c(a)}{c(a)+c(b)+c(c)}}\cdot{\frac{c(b)}{c(b)+c(c)}}\cdot{\frac{c(c)}{c(c)}}.\]</span>
+​  从这个角度看，排序排列反映了代理之间的关系。通过计算所有<span
+class="math inline">\(|{\mathcal{P}}|\)</span>种排列的概率，我们将代理层面的相关性c转换为代理排序概率分布<span
+class="math inline">\(P({\mathcal{P}}|_{C})\in\mathbb{R}^{1\times|{\mathcal{P}}|}\)</span>，该分布成功建模了代理间的关联关系。实际上，若要计算所有N个代理的完整排列，其计算开销将难以承受。为提升计算效率，我们专注于每个像素的前四名代理的排列组合。根据观察发现，在所有代理层面的相关性分析中，前四名代理几乎占据了全部权重。因此，可通过以下方式获得基于排名的相关一致性正则化：
+<span class="math display">\[{\mathcal{L}}_{r a n
+k}={\frac{1}{N^{u}}}\sum_{i=1}^{N^{u}}{\frac{1}{H W}}\sum_{j=1}^{H
+W}\ell_{k l}\left(P(\mathcal{P}|c_{i j}^{w}),P(\mathcal{P}|c_{i
+j}^{s})\right).\]</span> ​  最终，我们RankMatch的整体损失函数可表示为：
+<span class="math display">\[\mathcal{L}=\mathcal{L}_{s u
+p}+\mathcal{L}_{r e g}+\lambda\mathcal{L}_{r a n k},\]</span>
+​  其中λ为权衡系数。</p>
+<h1 id="实验">4.实验</h1>
+<h2 id="实验设置">4.1.实验设置</h2>
+<p>​  <strong>数据集：</strong><br/>​  (1)pascal VOC
+2012[11]是一个以物体为中心的语义分割数据集，包含前景中的20个物体类别和一个背景类别，其中训练集包含1,464张精细标注图像，验证集包含1,449张精细标注图像。许多研究[9,19]通过在原始训练集（即经典数据集）中添加SBD[16]中的9,118张粗略标注图像，构建了blender训练集。<br/>​  (2)Cityscapes[10]是一个城市场景理解数据集，包含2,975张训练图像和500张验证图像。该数据集的初始30个语义类别在语义分割任务中被重新映射为19个类别。</p>
+<p>​  <strong>实施细节：</strong><br/>​  为确保公平性，我们采用在ImageNet[20]上预训练的ResNet-50/101[17]作为主干网络，并使用DeepLabv3+[7]作为解码器。Pascal数据集的图像裁剪尺寸设为513×513，Cityscapes数据集则为801×801。训练过程中采用随机梯度下降（SGD）优化器，Pascal数据集初始学习率为0.001，Cityscapes数据集为0.005。整个训练周期均采用多项式衰减学习率策略。增强策略中，强增强Aug（·）包含随机颜色抖动、灰度转换和高斯模糊，弱增强aug（·）则包含随机裁剪、尺寸调整和水平翻转。用于构建相关一致性特征的提取来自ASPP模块[6]的输出，通道数为256。所有实验均设置代理数量N=128和权衡权重λ=0.1。模型在Pascal数据集上训练80个周期，在Cityscapes数据集上训练240个周期，批量大小为8，使用8块8×3090显卡（每块显存24G）。</p>
+<h2 id="与最新方法的比较sota">4.2.与最新方法的比较（sota）</h2>
+<p>​  在参数效率方面，我们采用广受欢迎的一致性正则化框架UniMatch[57]作为基准模型，即教师网络与学生网络完全相同。我们在Pascal（经典版和Blender）及Cityscapes数据集上，分别使用ResNet-50和ResNet-101骨干网络，通过多种划分协议对方法进行评估，并与当前最先进方法[23-25,33,36,40,44,48-50,52,58,60,61]展开全面对比。所有数据集上不同骨干网络在各类划分协议下始终保持的优异表现，充分证明了我们提出的RankMatch方法的有效性。</p>
+<figure>
+<img src="../postimages/RankMatch/image-20251104172213791.png"
+alt="image-20251104172213791" />
+<figcaption aria-hidden="true">image-20251104172213791</figcaption>
+</figure>
+<figure>
+<img src="../postimages/RankMatch/image-20251104172236221.png"
+alt="image-20251104172236221" />
+<figcaption aria-hidden="true">image-20251104172236221</figcaption>
+</figure>
+<p>​  <strong>在PASCAL数据集上的结果：</strong><br/>​  表1和表2展示了我们的方法与SOTA方法在pascal的经典集和blender集上的对比。与仅监督学习（Sup.-only）模型相比，我们的方法性能显著提升，这表明我们的方法有效利用了未标注数据中的信息。此外，与基准方法UniMatch相比，我们的方法始终展现出显著的性能提升。具体而言，在经典数据集上使用ResNet-50和ResNet-101骨干网络时，我们的方法在1/16（92）分区下的准确率分别达到71.6%和75.5%，较基准方法分别提升了4.2%和2.0%。这些结果充分证明，RankMatch在极度稀缺的标注数据环境下仍具备强大的信息挖掘能力。</p>
+<p>。。。</p>
+<h1 id="结论">5.结论</h1>
+<p>​  本文提出一种创新视角，通过分析像素间关联性来构建更安全有效的监督信号。为此，我们开发了相干RankMatch网络，该网络不仅构建代表代理模型以超越常规像素级一致性，还通过建模代理间关系实现等级感知的关联一致性，从而充分释放代理潜力。在具有挑战性的基准测试中，大量实验结果验证了该方法的有效性。</p>
+<h1 id="代码结构">6.代码结构</h1>
+<h2 id="排名感知的概率计算的代码">6.1.排名感知的概率计算的代码</h2>
+<figure>
+<img src="../postimages/RankMatch/image-20251105165923066.png"
+alt="image-20251105165923066" />
+<figcaption aria-hidden="true">image-20251105165923066</figcaption>
+</figure>
+<p>​  可以观察到，这样的计算方式可以捕获顺序概率，上面是具体的流程，下面则展示了在[0,0,0]位置前两个排列最后rank得分的计算过程。</p>
+<p>​  基于此，我们可以认为每一种代理可以视为每一种语义对象，类似于草地、天空、人等等对象，每个位置的最高的四种代理可以视为该像素点最有可能的四种对象，然后其排序概率，则说明每个代理在此像素点上的相对概率，这种设计保留了每种概率之间的相对关系。然后使用KL散度损失来纠正教师模型和学生模型的差距。</p>
+<h2 id="rankmatch的相关疑问和回答">6.2.RankMatch的相关疑问和回答</h2>
+<h4 id="q1-rankmatch-损失是如何计算的">Q1: RankMatch
+损失是如何计算的？</h4>
+<p><strong>A</strong>: RankMatch 通过四个步骤计算损失：</p>
+<ol type="1">
+<li>从特征图中提取64个正交参考点<br/>2.
+计算每个像素与参考点的匹配概率（softmax 归一化）<br/>3.
+将匹配概率转换为24种排名概率分布（4! = 24）<br/>4. 使用 KL
+散度损失比较学生网络和教师网络的排名概率分布</li>
+</ol>
+<h4 id="q2-p2r_w_rank-的数值代表什么">Q2: p2r_w_rank
+的数值代表什么？</h4>
+<p><strong>A</strong>: p2r_w_rank
+的每个值代表在特定位置上，所有24种排名顺序的概率分布。例如
+<code>[0.6962, 0.0063, 0.2931, ...]</code> 表示： - 排列 [0,1,2,3] 概率
+69.62%（道路中心 &gt; 道路边缘 &gt; 路边树木 &gt; 人行道） - 排列
+[0,1,3,2] 概率 0.63%（道路中心 &gt; 道路边缘 &gt; 人行道 &gt; 路边树木）
+- 排列 [0,2,1,3] 概率 29.31%（道路中心 &gt; 路边树木 &gt; 道路边缘 &gt;
+人行道）</p>
+<h4
+id="q3-为什么-rankmatch-不只保留最好的排列而要计算所有排列的概率">Q3:
+为什么 RankMatch 不只保留最好的排列，而要计算所有排列的概率？</h4>
+<p><strong>A</strong>: 只保留最好的排列会丢失关键语义信息： -
+语义合理的排列（如 [0,1,3,2]）应给低损失 - 语义错误的排列（如
+[1,0,2,3]）应给高损失<br/>仅用最好的排列无法区分这两种情况，而计算所有排列的概率分布能精确捕捉语义关系。</p>
+<h4 id="q4-为什么-rankmatch-没有计算参考点之间的余弦距离">Q4: 为什么
+RankMatch 没有计算参考点之间的余弦距离？</h4>
+<p><strong>A</strong>: 因为参考点是正交提取的（通过
+PCA/SVD），它们在特征空间中天然正交，参考点间的余弦距离恒为0。计算这个距离是冗余且无意义的，RankMatch
+的核心是像素-参考点匹配，不需要参考点间关系。</p>
+<h4 id="q5-为什么使用-kl-散度损失">Q5: 为什么使用 KL 散度损失？</h4>
+<p><strong>A</strong>: KL 散度是专门为概率分布比较设计的损失函数： -
+RankMatch 的输出是概率分布（24种排名的概率） - MSE
+等其他损失只能看到单个点的匹配，无法区分语义浮动 - KL
+散度能精确区分"小语义浮动"（如 [0,1,3,2]）和"大语义错误"（如
+[1,0,2,3]）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/RankMatch/">https://zhaozw-szu.github.io/RankMatch/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/RankMatch/image-20251104164701873.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/Contrastive-learning-semantic-segmentation/" title="Contrastive_learning_semantic_segmentation"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Contrastive_learning_semantic_segmentation</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">166</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="toc-text">3.方法论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">3.1.准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E7%BA%A7%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-text">3.2.代理级相关性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%8E%92%E5%90%8D%E6%84%9F%E7%9F%A5%E7%9B%B8%E5%85%B3%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">3.3.基于排名感知相关一致性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1.实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E6%9C%80%E6%96%B0%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83sota"><span class="toc-text">4.2.与最新方法的比较（sota）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="toc-text">6.代码结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%90%8D%E6%84%9F%E7%9F%A5%E7%9A%84%E6%A6%82%E7%8E%87%E8%AE%A1%E7%AE%97%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">6.1.排名感知的概率计算的代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rankmatch%E7%9A%84%E7%9B%B8%E5%85%B3%E7%96%91%E9%97%AE%E5%92%8C%E5%9B%9E%E7%AD%94"><span class="toc-text">6.2.RankMatch的相关疑问和回答</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#q1-rankmatch-%E6%8D%9F%E5%A4%B1%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84"><span class="toc-text">Q1: RankMatch
+损失是如何计算的？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#q2-p2r_w_rank-%E7%9A%84%E6%95%B0%E5%80%BC%E4%BB%A3%E8%A1%A8%E4%BB%80%E4%B9%88"><span class="toc-text">Q2: p2r_w_rank
+的数值代表什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#q3-%E4%B8%BA%E4%BB%80%E4%B9%88-rankmatch-%E4%B8%8D%E5%8F%AA%E4%BF%9D%E7%95%99%E6%9C%80%E5%A5%BD%E7%9A%84%E6%8E%92%E5%88%97%E8%80%8C%E8%A6%81%E8%AE%A1%E7%AE%97%E6%89%80%E6%9C%89%E6%8E%92%E5%88%97%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">Q3:
+为什么 RankMatch 不只保留最好的排列，而要计算所有排列的概率？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#q4-%E4%B8%BA%E4%BB%80%E4%B9%88-rankmatch-%E6%B2%A1%E6%9C%89%E8%AE%A1%E7%AE%97%E5%8F%82%E8%80%83%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BD%99%E5%BC%A6%E8%B7%9D%E7%A6%BB"><span class="toc-text">Q4: 为什么
+RankMatch 没有计算参考点之间的余弦距离？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#q5-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-kl-%E6%95%A3%E5%BA%A6%E6%8D%9F%E5%A4%B1"><span class="toc-text">Q5: 为什么使用 KL 散度损失？</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
