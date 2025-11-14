@@ -1,0 +1,547 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Rethinking Out-of-distribution (OOD) Detection:Masked Image Modeling is All You Need | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于CVPR 2023，采用基于重构的方法实现 OOD 检测，认为掩码图像建模任务可以顺利学习到图像自身的分布，实验结果达到了sota。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rethinking Out-of-distribution (OOD) Detection:Masked Image Modeling is All You Need">
+<meta property="og:url" content="https://zhaozw-szu.github.io/MOOD/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="发表于CVPR 2023，采用基于重构的方法实现 OOD 检测，认为掩码图像建模任务可以顺利学习到图像自身的分布，实验结果达到了sota。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/MOOD/framework.png">
+<meta property="article:published_time" content="2025-11-11T13:08:22.000Z">
+<meta property="article:modified_time" content="2025-11-12T15:12:08.124Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/MOOD/framework.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/MOOD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Rethinking Out-of-distribution (OOD) Detection:Masked Image Modeling is All You Need',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-12 23:12:08'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/MOOD/framework.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Rethinking Out-of-distribution (OOD) Detection:Masked Image Modeling is All You Need</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-11-11T13:08:22.000Z" title="创建于 2025-11-11 21:08:22">2025-11-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T15:12:08.124Z" title="更新于 2025-11-12 23:12:08">2025-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,CVPR,2023</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/OOD%E6%A3%80%E6%B5%8B/">OOD检测</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/dvlab-research/MOOD"><img src="https://img.shields.io/github/stars/dvlab-research/MOOD?style=flat" alt="GitHub Stars: dvlab-research/MOOD" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Rethinking Out-of-distribution (OOD) Detection:Masked Image Modeling is All You Need"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">发表于CVPR 2023，采用基于重构的方法实现 OOD 检测，认为掩码图像建模任务可以顺利学习到图像自身的分布，实验结果达到了sota。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>Rethinking Out-of-distribution (OOD) Detection:Masked Image Modeling
+is All You Need</p>
+<p>Jingyao Li1 ，Pengguang Chen2 ，Zexin He1 ，Shaozuo Yu1 ，Shu
+Liu2，Jiaya Jia1<em>,</em>2<br/>1 香港中文大学<br/>2 SmartMore</p>
+<figure>
+<img src="../postimages/MOOD/framework.png" alt="framework" />
+<figcaption aria-hidden="true">framework</figcaption>
+</figure>
+<h1 id="摘要">摘要</h1>
+<p>​  分布外（OOD）检测的核心在于学习分布内（ID）数据的表征特征，使其与
+OOD
+样本形成有效区分。现有研究多采用基于识别的方法来学习ID特征，但这类方法往往容易陷入学习捷径而非构建全面表征的困境。本研究发现，令人惊讶的是，单纯采用基于重构的方法就能显著提升
+OOD 检测性能。通过深入分析 OOD
+检测的关键驱动因素，我们发现基于重构的预训练任务具有提供通用且高效的先验知识的潜力，这有助于模型更好地学习ID数据集的内在数据分布。具体而言，我们将掩码图像建模作为
+OOD 检测框架（MOOD）的预训练任务。不加任何花哨功能，MOOD在单类 OOD
+检测（SOTA）上比前代产品高出5.7%，在多类 OOD 检测上高出3.0%，在近似分布
+OOD 检测上高出2.1%。它甚至超越了每类10次样本的异常暴露 OOD
+检测，尽管我们并未在检测中使用任何 OOD 样本。相关代码可在
+https://github.com/lijingyao20010602/MOOD 获取。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  一个可靠的视觉识别系统不仅要对已知上下文（即分布内数据）做出准确预测，还需能检测未知的分布外（OOD）样本，并将其拒收（或转移）至人工干预以确保安全处理。这促使人们在将输入数据输入下游网络前应用异常检测器——这正是
+OOD 检测的核心任务，该任务也被称为新奇性检测或异常检测。 OOD
+检测旨在判断测试样本是否偏离分布内数据（ID）范围。作为医疗诊断[5]、欺诈检测[45]、自动驾驶[14]等安全关键领域的基石技术，该检测能力在众多安全攸关的应用场景中发挥着关键作用。<br/>​  许多早期的
+OOD 检测方法依赖于异常暴露[15,53]来提升检测性能，这使得 OOD
+检测变成了一个简单的二元分类问题。我们认为， OOD
+检测的核心在于学习有效的ID表示，从而在没有已知异常暴露的情况下发现 OOD
+样本。<br/>​  本文首次揭示了一个令人惊讶的发现：仅采用基于重构的方法，就能显著提升各类
+OOD
+检测任务的性能。我们在此领域的开创性研究甚至超越了先前的少样本异常检测
+OOD 方法，尽管我们并未包含任何 OOD
+样本。<br/>​  现有方法通过对比学习[53,58]或在大规模数据集上进行预训练分类[15]来检测
+OOD
+样本。前者根据伪标签对图像进行分类，后者则基于真实标签进行分类，其核心任务都是实现分类目标。然而，针对后门攻击的研究[50,51]表明，当学习过程被表征为数据分类时，网络往往会走捷径进行图像分类。<br/>​  在典型的后门攻击场景[51]中，攻击者会在原始训练图像上添加带有明显正确标签的秘密触发器。测试过程中，受害模型会将这些带有秘密触发器的图像错误分类。研究表明，网络之所以能识别不同类别的特定可区分模式，是因为这能快速满足分类需求。<br/>​  然而，单纯学习这些特征模式对
+OOD
+检测效果有限，因为网络无法理解身份证图像的固有数据分布规律。因此，通过分类身份证数据来学习特征表示进行
+OOD 检测可能效果欠佳。例如，当 OOD
+样本中出现与某些身份证类别相似的特征模式时，网络很容易将这些 OOD
+样本误判为身份证数据，并错误归类到对应的身份证类别中。<br/>​  为解决这一问题，我们提出了基于重构的预训练任务。与现有
+OOD
+检测方法[53,58]中的对比学习不同，我们的方法通过强制网络实现图像重构的训练目标，从而使其学习像素级数据分布。<br/>​  具体而言，我们采用掩码图像建模（MIM，masked
+image
+modeling）[2,11,20]作为自监督预训练任务。该方法在自然语言处理[11]和计算机视觉[2,20]领域均展现出巨大潜力。在MIM任务中，我们将图像分割为图像块，并随机遮蔽部分图像块后输入视觉变换器进行训练。随后使用离散
+VAE
+[47]生成的标记作为训练标签。通过这种机制，网络能够从剩余图像块中学习信息，推测被遮蔽区域并还原原始图像标记。这种重建过程使模型能够基于图像固有数据分布进行先验学习，而不仅仅是通过分类过程掌握不同类别间的模式差异。<br/>​  我们的实验结果表明，掩码图像建模（MOOD）在
+OOD 检测的四个任务中均优于当前的 SOTA 方法，包括单类 OOD 检测、多类 OOD
+检测、近似分布 OOD 检测，甚至在少样本异常暴露 OOD
+检测中也表现更优，如图1所示。</p>
+<figure>
+<img src="../postimages/MOOD/image-20251111223701586.png"
+alt="image-20251111223701586" />
+<figcaption aria-hidden="true">image-20251111223701586</figcaption>
+</figure>
+<blockquote>
+<p>图1 展示了MOOD算法在四项 OOD 检测任务中的性能表现，与当前主流 SOTA
+方法（用‘*’标记）对比：(a)单类 OOD
+检测；(b)多类检测；(c)近似分布检测；(d)少样本异常暴露 OOD 检测。</p>
+</blockquote>
+<p>具体统计结果如下。</p>
+<ol type="1">
+<li>在单类 OOD
+检测（表6）中，MOOD将当前信道状态信息（CSI）[58]的平均绝对误差（AUROC）提升了5.7%，达到94.9%。<br/>2.
+在多类 OOD 检测任务中（表7），MOOD模型的性能比当前SSD+ SOTA
+方法[53]提升了3.0个百分点，最终达到97.6%的准确率。<br/>3. 在近似分布的
+OOD 检测任务中（表2），MOOD的 AUROC 值达到98.3%，比当前R50+ViT模型的
+SOTA 值高出2.1个百分点[15]。<br/>4. 在少样本异常检测 OOD
+任务（表9）中，MOOD模型以99.41%的准确率意外超越当前采用R50+ViT架构的
+SOTA 模型[15]（其准确率为99.29%），该模型每类样本需使用10个 OOD
+样本。值得注意的是，MOOD模型本身并未包含任何 OOD 样本。</li>
+</ol>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="out-of-distribution-检测">2.1.Out-of-distribution 检测</h2>
+<p>​  一种直接的分布外（OOD，out-of-distribution）方法是估计分布内（ID，in-distribution）密度[10,63,67,72]，并剔除偏离该分布的测试样本。其他方法则基于图像重建[1,17,33]、学习分布内外数据的决策边界[27,37,68]、计算训练与测试特征间的距离[40,53,56,58,59]等。<br/>​  相比之下，我们的研究聚焦于基于距离的方法，同时将基于重构的方法作为预训练任务纳入考量。这类距离方法的核心思路在于：
+OOD
+样本在特征空间中应与分布内数据（ID）的中心点保持较远距离[65]。典型方法包括K近邻算法[59]、原型方法[40,56]等。我们将在本文后续部分详细阐述本研究与现有
+OOD 检测方法的差异。</p>
+<h2 id="vision-transformer">2.2.Vision Transformer</h2>
+<p>​  Transformer在计算机视觉[2,20]和自然语言处理[11]领域展现出卓越性能。现有
+OOD
+检测研究[15]采用在ImageNet-21k[49]上进行分类预训练的视觉Transformer（ViT[13]）模型。该研究主要探讨不同结构对
+OOD 检测任务的影响，而我们的研究则从四个维度深入分析 OOD
+检测效果：包括各类预训练任务、架构设计、微调过程以及 OOD
+检测指标。<br/>​  值得注意的是，先前多种方法[15,53]通过使用额外的 OOD
+样本来进一步提升检测性能。但我们认为，这种做法违背了 OOD
+检测的初衷。实际上，只要预训练任务足够充分，就能取得相当甚至更优的检测效果。因此，本研究重点探索无需使用
+OOD 样本的合适预训练任务，以实现 OOD 检测的优化。</p>
+<h2 id="自监督预文本任务">2.3.自监督预文本任务</h2>
+<p>​  在计算机视觉领域，人们长期采用多种自监督方法对视觉网络进行预训练，包括生成学习[2,11,46,60]、对比学习[6,7,21,29]和对抗学习[18,39,69]。其中代表性生成方法包括自回归[46,60]、基于流的[12,30]、自编码[2,11]以及混合生成方法[55,66]。<br/>​  在我们的研究框架中，自监督预训练任务采用的是掩码图像建模（Masked
+Image
+Modeling，MIM）技术。该方法本质上属于自编码生成式方法，最初由自然语言处理领域提出[2]。其语言建模任务通过随机掩码文本中不同比例的标记，并从剩余文本的编码结果中还原被掩码的标记。后续研究[11,20]将自然语言处理领域的相似思路引入计算机视觉领域，通过遮蔽图像块的不同比例来恢复结果。<br/>​  现有多种方法通过自监督任务指导
+OOD
+检测的表征学习。最新研究[53,58]提出对比学习模型作为特征提取器。然而，基于对比学习对转换图像进行分类的现有方法存在相似局限——模型容易学习类别特定模式，这种模式虽有利于分类，却无助于理解ID图像的内在数据分布。<br/>​  文献[15]的研究也提到了这个问题。但根据我们的观察，由于预训练任务仍停留在分类层面，因此引入的大规模预训练Transformer模型[15]可能无法跳出循环。在本研究中，我们通过为
+OOD 检测任务执行掩码图像建模任务来解决这一问题。</p>
+<h1 id="方法">3.方法</h1>
+<p>​  本节首先阐述辅助 OOD
+检测的关键要素，最终提出实现该目标的框架方案。<br/>​  我们首先明确相关符号定义。对于给定数据集
+<span class="math inline">\(X_{\mathrm{ID}}\)</span>
+，分布外检测（OOD，out-of-distribution）的目标是构建一个检测器，用于判断输入图像x是否属于
+<span class="math inline">\(X_{\mathrm{ID}}\)</span>（即<span
+class="math inline">\(x\in X_{\mathrm{OOD}}\)</span>）。现有大多数 OOD
+检测方法通过定义 OOD
+评分函数s(x)来实现，该函数的异常高或低值表明图像x属于分布外。</p>
+<h2 id="选择预文本任务">3.1.选择预文本任务</h2>
+<p>​  本节选择预文本任务，为 OOD 检测任务提供内在先验知识。现有大多数 OOD
+方法通过分类[15,23]或对比学习[53,58]在ID样本上学习ID表征，这些方法利用真实标签或伪标签来监督分类网络。<br/>​  另一方面，文献[50,51]的研究表明，分类网络之所以仅能识别训练类别间的差异模式，是因为这为分类任务提供了捷径。研究表明，该网络实际上并未真正理解ID图像数据的内在分布规律。<br/>​  相比之下，基于重构的预训练任务要求网络在训练过程中学习ID图像的真实数据分布，而非仅学习分类模式。得益于这些先验知识，网络能学习到ID数据集更具代表性的特征，从而显著扩大
+OOD
+与ID样本之间的差异。<br/>​  在本方法中，我们使用掩码图像建模（MIM）预训练数据集[11]对模型进行预训练，并在ID数据集上进行微调。表1对比了MIM与对比学习预训练任务MoCov3[8]的性能表现。结果显示，MIM的性能显著提升13.3%，达到98.66%。</p>
+<figure>
+<img src="../postimages/MOOD/image-20251111230232004.png"
+alt="image-20251111230232004" />
+<figcaption aria-hidden="true">image-20251111230232004</figcaption>
+</figure>
+<h2 id="探索架构">3.2.探索架构</h2>
+<p>​  为探索有效架构[15]，我们评估了 OOD 检测在BiT(Big Transfer [31])和
+MLP -Mixer上的性能，并与ViT进行对比。我们采用 CIFAR -100和 CIFAR
+-10[32]作为ID- OOD
+配对，由于二者语义相似且结构相近，分布相近。结果详见表2。</p>
+<figure>
+<img src="../postimages/MOOD/image-20251111230519285.png"
+alt="image-20251111230519285" />
+<figcaption aria-hidden="true">image-20251111230519285</figcaption>
+</figure>
+<p>​  R50 + ViT [13,22] 是当前在近似分布 OOD 检测任务中表现最佳的 SOTA
+[15]，虽然模型规模和测试时间翻倍，但检测准确率仍达到 96.23%（比 ViT 高出
+0.70%）。然而，单个ViT上的MIM显著提升了其 AUROC
+值至98.30%（提高了2.07%），且无需任何额外的源假设。这表明，高效的预文本本身足以生成可区分的表征——在此方面，无需使用更大的模型或多个模型的组合。</p>
+<h2 id="关于微调">3.3.关于微调</h2>
+<p>​  <strong>单类微调</strong><br/>​  在进行单类 OOD
+检测时，我们按照BEiT[2]的建议，先在ImageNet-21k[49]上对MIM模型进行预训练，再进行微调。特别需要注意的是，当在ImageNet-30上执行单类
+OOD 检测时，由于训练过程中未包含 OOD
+标签，因此仅在ImageNet-21k上进行预训练而无需中间微调。为此，我们采用标签平滑[57]技术，帮助模型从ID数据集上的单类微调任务中学习：
+<span class="math display">\[y_{c}^{L
+S}=y_{c}(1-\alpha)+\alpha/N_{c},\qquad
+c=1,2,\cdot\cdot\cdot,N_{c}\]</span> ​  其中c为类别索引，Nc为类别数量， α
+为决定平滑程度的超参数。当 α =0时，得到原始独热编码yc；当 α
+=1时，得到均匀分布。<br/>​  为解决常规微调过程中出现的过拟合和过度自信问题，我们采用了标签平滑技术。但研究发现，该技术同样适用于单类别微调。表3展示了模型在单类别微调前后的性能对比。（其中MIM-pt是指pre-train
+the MIM model；inter-ft是指finely tune it on ImageNet-21k）</p>
+<figure>
+<img src="../postimages/MOOD/image-20251111231321693.png"
+alt="image-20251111231321693" />
+<figcaption aria-hidden="true">image-20251111231321693</figcaption>
+</figure>
+<p>​  显然，该模型实际上是从单类微调操作中学习信息的。这可能违反直觉，因为标签是相同的。这是因为标签平滑效应导致损失值大于0，促使模型更新参数，即使准确率已达到1。</p>
+<p>​  <strong>多类微调</strong><br/>​  针对多类别 OOD
+检测任务，我们首先对MIM模型进行预训练，随后在ImageNet-21k数据集[49]上进行中间阶段的微调，最后在ID数据集上完成最终微调。通过表5的实验结果验证各阶段的有效性，证明所有阶段都显著提升了
+OOD 检测的性能。</p>
+<figure>
+<img src="../postimages/MOOD/image-20251111231610791.png"
+alt="image-20251111231610791" />
+<figcaption aria-hidden="true">image-20251111231610791</figcaption>
+</figure>
+<h2 id="ood-检测指标很重要">3.4. OOD 检测指标很重要</h2>
+<p>​  本研究对比了多种常用 OOD
+检测指标的性能，包括Softmax[23]、熵[23]、能量[38]、GradNorm[26]和马氏距离[34]。我们采用MIM预训练任务对各指标进行
+OOD
+检测，结果详见表5。实验表明，Mahalanobis距离是衡量MOOD任务的更优指标。</p>
+<h2 id="mood的最终算法">3.5. MOOD的最终算法</h2>
+<p>​  综上所述，本节系统分析了 OOD
+检测的多种影响因素，涵盖预训练任务、模型架构、微调策略及评估指标等维度。研究发现，采用Mahalanobis距离优化的微调MOOD模型在视觉Transformer（ViT）架构上表现最佳。该模型的卓越性能表明，仅需一个高效的预训练任务即可生成具有区分性的表征特征，无需依赖更大规模的模型或多模型组合。<br/>​  在第4节中，我们将证明现有多种
+OOD
+检测方法[15,53]中采用的少样本异常暴露方法也是不必要的。MOOD算法如附录所示，主要包括以下几个阶段。</p>
+<ol type="1">
+<li>在ImageNet-21k数据集上对掩码图像建模视觉Transformer（ViT）进行预训练。<br/>2.
+在ImageNet-21k数据集上应用ViT的中等微调。<br/>3.
+在ID数据集上对预训练的ViT进行微调。<br/>4.
+从训练好的视觉Transformer（ViT）中提取特征，并计算Mahalanobis距离指标用于
+OOD 检测。</li>
+</ol>
+<h1 id="试验">4.试验</h1>
+<p>​  本节将掩码图像建模（Masked Image Modeling，MOOD）与当前的 SOTA
+方法进行对比，涵盖单类 OOD 检测（第4.1节）、多类 OOD
+检测（第4.2节）、近似分布 OOD 检测（第4.3节）以及少样本异常暴露 OOD
+检测（第4.4节）。实验结果表明，MOOD在所有四个 OOD
+检测任务中均显著优于现有方法。</p>
+<p>​  实验配置<br/>​  我们采用常用的ROC特征曲线下的面积（AUROC）作为无阈值评估指标，用于检测
+OOD 评分。我们在以下数据集上进行实验：(i) CIFAR -10
+[32]，包含50,000张训练图像和10,000张测试图像，共10个图像类别；（ii）CIFAR
+-100 [32]和 CIFAR
+-100（超类）[32]，分别包含50,000张训练图像和10,000张测试图像，对应100个和20个（超类）图像类别；（iii）ImageNet-30
+[49]，包含39,000张训练图像和3,000张测试图像，共30个图像类别；（iv）ImageNet-1k
+[49]，包含约120,000张训练图像和50,000张测试图像，共1,000个图像类别。更多训练设置细节详见附录。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/MOOD/">https://zhaozw-szu.github.io/MOOD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/MOOD/framework.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Segment-Every-Out-of-Distribution-Object/" title="Segment Every Out-of-Distribution Object"><img class="cover" src="/postimages/Segment-Every-Out-of-Distribution-Object/image-20251112154258108.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Segment Every Out-of-Distribution Object</div></div></a></div><div class="next-post pull-right"><a href="/Towards-Generalizable-Detector-for-Generated-Image/" title="Towards Generalizable Detector for Generated Image"><img class="cover" src="/postimages/Towards-Generalizable-Detector-for-Generated-Image/image-20251110170346642.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Towards Generalizable Detector for Generated Image</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#out-of-distribution-%E6%A3%80%E6%B5%8B"><span class="toc-text">2.1.Out-of-distribution 检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vision-transformer"><span class="toc-text">2.2.Vision Transformer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E6%96%87%E6%9C%AC%E4%BB%BB%E5%8A%A1"><span class="toc-text">2.3.自监督预文本任务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%84%E6%96%87%E6%9C%AC%E4%BB%BB%E5%8A%A1"><span class="toc-text">3.1.选择预文本任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A2%E7%B4%A2%E6%9E%B6%E6%9E%84"><span class="toc-text">3.2.探索架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%BE%AE%E8%B0%83"><span class="toc-text">3.3.关于微调</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ood-%E6%A3%80%E6%B5%8B%E6%8C%87%E6%A0%87%E5%BE%88%E9%87%8D%E8%A6%81"><span class="toc-text">3.4. OOD 检测指标很重要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mood%E7%9A%84%E6%9C%80%E7%BB%88%E7%AE%97%E6%B3%95"><span class="toc-text">3.5. MOOD的最终算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%95%E9%AA%8C"><span class="toc-text">4.试验</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

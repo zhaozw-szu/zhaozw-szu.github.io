@@ -1,0 +1,542 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ForgeLens:Data-Efficient Forgery Focus for Generalizable Forgery Image Detection | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于ICCV 2025。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ForgeLens:Data-Efficient Forgery Focus for Generalizable Forgery Image Detection">
+<meta property="og:url" content="https://zhaozw-szu.github.io/ForgeLens/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="发表于ICCV 2025。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/ForgeLens/image-20251110110219713.png">
+<meta property="article:published_time" content="2025-11-10T02:06:23.000Z">
+<meta property="article:modified_time" content="2025-11-14T02:25:02.822Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/ForgeLens/image-20251110110219713.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/ForgeLens/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ForgeLens:Data-Efficient Forgery Focus for Generalizable Forgery Image Detection',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-14 10:25:02'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/ForgeLens/image-20251110110219713.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ForgeLens:Data-Efficient Forgery Focus for Generalizable Forgery Image Detection</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-11-10T02:06:23.000Z" title="创建于 2025-11-10 10:06:23">2025-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-14T02:25:02.822Z" title="更新于 2025-11-14 10:25:02">2025-11-14</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,ICCV,2025</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AIGC%E5%9B%BE%E5%83%8F%E6%A3%80%E6%B5%8B/">AIGC图像检测</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/Yingjian-Chen/ForgeLens"><img src="https://img.shields.io/github/stars/Yingjian-Chen/ForgeLens?style=flat" alt="GitHub Stars: Yingjian-Chen/ForgeLens" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ForgeLens:Data-Efficient Forgery Focus for Generalizable Forgery Image Detection"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">发表于ICCV 2025。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>ForgeLens: Data-Efficient Forgery Focus for Generalizable Forgery
+Image Detection</p>
+<p>Yingjian Chen, Lei Zhang, Yakun
+Niu*<br/>河南大学大数据分析与处理重点实验室</p>
+<h1 id="摘要">摘要</h1>
+<p>​  生成式模型的兴起引发了人们对网络图像真实性的担忧，凸显了对检测器的迫切需求：（1）既要具备高度泛化能力，能应对新型伪造技术，（2）又要实现数据高效利用（用最少训练数据达到最佳效果），从而有效应对新出现的伪造手段。为实现这一目标，我们提出ForgeLens框架，一种数据高效、特征导向的解决方案，通过融合两种轻量级设计，使冻结网络能专注于伪造特征。<br/>​  
+首先，我们引入权重共享引导模块（WSGM，Weight Shared Guidance
+Module），在训练过程中指导提取伪造特征。<br/>​  
+其次，采用伪造感知特征整合器FAFormer，可有效整合多阶段特征中的伪造信息。<br/>​  ForgeLens突破了传统冻结网络方法的关键局限——从大规模数据中提取的通用特征往往包含大量与伪造无关的冗余信息。因此，该方法不仅具备强大的泛化能力，还能在最小训练数据量下达到最优性能。<br/>​  实验结果显示，包含生成对抗网络（GAN）和扩散模型在内的19个生成模型，相较于基准模型，平均准确率提升了13.61%，平均精度（AP）提升了8.69%。<br/>​  值得注意的是，ForgeLens在仅使用1%的训练数据时，其伪造检测性能就超越了现有方法，达到了最先进的水平。我们的代码可在https://
+github.com/Yingjian-Chen/ForgeLens 上获取。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  近期，人工智能生成内容（AIGC）的迅猛发展引发了广泛关注。特别是在图像合成领域，技术的突飞猛进正给社会带来前所未有的挑战。生成对抗网络（GANs）[18]和扩散模型[45]等尖端技术的广泛应用，让制作高度逼真的合成图像变得轻而易举。这种技术突破模糊了真实与合成图像的界限，宣告了“眼见为实”时代的终结。如今仅凭肉眼已难以分辨这些逼真程度令人瞠目的合成图像，对社会安全构成重大威胁。因此，如何有效识别这类合成图像已成为当务之急。<br/>​  与依赖人工特征提取和算法的传统方法[17,36,37]不同，这些方法常因检测性能有限而受限，当前研究已转向深度学习技术，在合成图像检测领域取得显著成效。现有专用检测方法[14,24,49,54]通过设计深度学习网络，可在合成图像的空间域或频域检测伪影（图1左）。</p>
+<figure>
+<img src="../postimages/ForgeLens/image-20251110101738780.png"
+alt="image-20251110101738780" />
+<figcaption aria-hidden="true">image-20251110101738780</figcaption>
+</figure>
+<blockquote>
+<p>图1。伪造图像检测方法的比较。现有专门检测方法在已知数据集上表现优异，但在未知数据上的效果却大打折扣。基于网络的冻结方法虽然具有较高的泛化能力，但其检测精度却有所欠缺。相比之下，我们的ForgeLens在保持卓越检测精度的同时，实现了高度泛化能力。绿色圆点代表真实图像，红色圆点代表伪造图像，其中1（训练集）、2和3分别展示不同模型生成的伪造图像。</p>
+</blockquote>
+<p>​  这些方法在检测已见生成模型生成的图像时能实现高精度。然而，由于不同生成模型生成的图像存在独特伪影[11,39]，这些从零开始训练的专用检测模型容易对训练集过拟合。因此，当处理未见过的合成图像时，其性能会显著下降，暴露出泛化能力不足的问题。此外，这类方法通常需要大量训练数据才能达到最佳效果。<br/>​  为解决这一问题，基于冻结网络的方法[29,39]采用预训练网络提取通用图像特征，这些特征适用于多种下游任务。训练过程中网络保持冻结状态，仅对线性分类器进行训练（图1中间部分）。这种设计既能防止过拟合，又能确保模型具有高泛化能力。然而，通用图像特征往往包含大量与伪造无关的冗余信息，导致分类器难以区分真实图像与伪造图像，最终造成检测准确率受限。<br/>​  为验证前述结论，我们展示了经典ResNet50模型（作为全量训练的专用方法代表）与冻结CLIP-ViT提取的图像特征对比（如图2所示）。</p>
+<figure>
+<img src="../postimages/ForgeLens/image-20251110101243993.png"
+alt="image-20251110101243993" />
+<figcaption aria-hidden="true">image-20251110101243993</figcaption>
+</figure>
+<blockquote>
+<p>图2。基于t-SNE [52]技术，实现了生成对抗网络（ProGAN [25]、StyleGAN
+[26]）与扩散模型（Guided [15]、 LDM [45]、glide
+[38]）的特征空间可视化。<br/>&gt;
+我们对比了三个模型：从零开始训练的经典ResNet50[20]、基础模型CLIP-ViT[43]以及我们的ForgeLens方法，所有模型均基于四分类ProGAN数据集训练。每个数据集包含1000张真实图像和1000张伪造图像的随机样本。紫色圆圈代表对应图像类别的聚类，例如ProGAN中的四个类别（汽车、猫、椅子、马）。</p>
+</blockquote>
+<p>​  ResNet50提取的特征（第一行）在ProGAN数据集上，真实图像与伪造图像呈现出明显的聚类特征。然而，对于未见过的数据，提取的特征辨别能力会显著下降。如前所述，冻结版CLIP-ViT提取的特征（第二行）属于通用型特征，未针对伪造检测进行优化。这一点在ProGAN和StyleGAN数据的聚类结果中尤为明显——特征是按图像类别而非真实与伪造图像进行分组。这充分说明CLIP-ViT在区分真实图像与伪造图像方面存在明显局限。<br/>​  基于上述分析，我们致力于为现实场景设计一款伪造图像检测器，该检测器应具备以下功能：<br/>​  （1）具有强大的泛化能力，能有效识别各类模型生成的图像，包括从未见过的模型生成的图像，同时保持高检测精度；<br/>​  （2）对训练数据要求极低，能快速适应新型伪造技术。<br/>​  因此，我们的核心目标是：(1)引导预训练冻结网络聚焦伪造特征，既保证高泛化能力又提升检测精度；(2)尽可能减少可训练参数，使检测器在最少训练数据下即可达到最佳性能。<br/>​  为实现这一目标，我们提出名为ForgeLens（图1右）的特征引导框架。该框架采用轻量级可训练的权重共享引导模块（WSGM），指导预训练的CLIP-ViT模型聚焦伪造特征。此外，FAFormer作为伪造感知特征集成器，通过整合多阶段特征来优化伪造信息，使模型既能保持大规模预训练权重的高泛化能力，又能有效聚焦伪造检测任务。通过这种方法，我们的方法能够抑制原始CLIP-ViT提取的通用图像特征中与伪造无关的信息，从而获得具有高度区分性的特征表征（图2第三行）。实验表明，仅使用ProGAN生成图像训练的方法，在包含GAN和扩散模型等多种生成模型的UniversalFakeDetect数据集[39]上展现出强大的泛化能力。该方法在该数据集上的平均检测准确率达到94.99%，充分证明其在跨模型伪造检测中的有效性。值得注意的是，即使仅使用1%的训练数据，模型性能波动极小，充分展现了其在少量训练数据下仍能保持竞争力的特性。<br/>​  综上所述，我们的贡献包括：</p>
+<ul>
+<li>新型特征引导CLIP-ViT伪造图像检测方法。我们提出ForgeLens，这是一个基于特征引导的CLIP-ViT框架，用于伪造图像检测，确保强泛化能力的同时保持高检测精度。</li>
+<li>有效的伪造线索。我们提出轻量级的权重共享引导模块（WSGM）和FAFormer，使冻结的预训练CLIPViT在训练时能专注于伪造特征。这有效解决了CLIP-ViT提取的通用图像特征的局限性，这些特征包含过多与伪造无关的信息。</li>
+<li>高效且数据高效。我们验证了ForgeLens的有效性，其在通用伪造检测数据集上的表现优于
+SOTA
+方法。值得注意的是，即使在训练数据极其有限的情况下，ForgeLens仍能保持优异性能，充分展现了其强大的数据效率。</li>
+</ul>
+<h1 id="相关工作和背景">2.相关工作和背景</h1>
+<h2 id="专业伪造图像检测方法">2.1.专业伪造图像检测方法</h2>
+<p>​  近期伪造图像检测方法[5,33,35,42,46]采用Xception[10]和ResNet[20]等神经网络，并结合专用模块，通过分析图像的频域和空域特征来识别伪造痕迹。具体而言，
+GLFF
+[24]通过双分支网络融合多尺度全局特征与局部细节特征。Tan等人[49]提出的FreqNet将频域学习融入CNN分类器，显著提升了捕捉频率特征的能力。
+NAFID
+[14]则通过专用模块提取图像的非局部特征。虽然这些方法在检测训练过程中看到的生成模型的伪造图像方面很有效，但它们在检测未见过的模型的伪造图像方面很困难，表现出有限的泛化能力。此外，它们需要从零开始训练，并需要大量数据才能表现良好。相比之下，我们的工作即使在训练数据非常有限的情况下，也能对未见过的模型实现高度泛化。</p>
+<h2 id="基于预处理的检测方法">2.2.基于预处理的检测方法</h2>
+<p>​  为应对模型泛化到未见过数据的挑战，现有方法主要转向数据增强技术，或通过图像预处理将原始图像转化为新表征。例如CNN-Spot[54]采用多样化数据增强技术来提升对未见测试数据的泛化能力。刘等人[31]发现真实图像中存在一种独特的“学习噪声模式”，其具有更强的区分能力。FreGAN[23]通过整合频率级扰动图谱，有效缓解生成图像中独特伪影导致的过拟合问题，从而在多样化测试场景中提升检测精度。BiHPF[22]则运用双边高通滤波器，放大生成模型合成图像中常见的频率级伪影影响。LGrad
+[47]
+通过变换模型将RGB图像转化为梯度特征，并将这些梯度作为图像特征表示。NPR
+[50]
+则着重突出了伪造图像中上采样留下的痕迹。然而，尽管这些方法在一定程度上提升了泛化能力，但它们不可避免地会丢失原始RGB图像的信息，这可能会影响检测精度。此外，这些方法通常需要额外的处理步骤，使得检测流程更加复杂。相比之下，我们的端到端框架直接以原始图像作为输入，能够更有效地实现更好的泛化能力。</p>
+<h2 id="基于冻结预训练模型的方法">2.3. 基于冻结预训练模型的方法</h2>
+<p>​  另一项研究[27,29,39]采用冻结预训练图像编码器（如CLIP-ViT[16,43]）提取通用图像特征，再通过线性分类器进行伪造检测。该方法能有效避免模型过度拟合训练集中的特定伪造特征[11,39]，同时提升对未见过生成模型生成图像的泛化能力。具体而言，FatFormer[32]提出伪造感知适配器，通过聚合频率特征并借鉴CLIP中图像与文本提示的对比学习策略。C2PCLIP[48]则通过类别通用提示向图像编码器注入类别相关概念，显著提升检测性能。不过由于训练过程中冻结网络权重，图像编码器提取的特征具有通用性，适用于多种下游任务。这些特征包含大量与伪造无关的信息，这限制了检测性能。与现有方法不同，我们的方案采用纯图像编码器架构，使冻结的编码器能专注于伪造特征（如面部轮廓、发丝），同时抑制通用图像特征中无关信息的干扰，从而显著提升泛化能力和检测精度。</p>
+<h1 id="方法">3.方法</h1>
+<p>​  本节将介绍我们研发的ForgeLens框架，该框架专为实现高效泛化伪造图像检测而设计。其核心机制包含三个关键步骤：<br/>​  (1)通过权重共享引导模块（WSGM，weight-sharing
+guidance
+model）引导预训练图像编码器CLIP-ViT在特征提取过程中聚焦伪造特征；<br/>​  (2)伪造感知特征整合器（FAFormer，forgery
+aware feature
+integrator）对多层级特征进行伪造相关信息的精炼处理；<br/>​  (3)将优化后的伪造检测图像表征输入线性分类器完成最终预测。</p>
+<figure>
+<img src="../postimages/ForgeLens/image-20251110110219713.png"
+alt="image-20251110110219713" />
+<figcaption aria-hidden="true">image-20251110110219713</figcaption>
+</figure>
+<blockquote>
+<p>图3。ForgeLens框架的示意图。可训练的 WSGM
+模块用于引导冻结的ViT网络聚焦伪造特征；从ViT各阶段提取的 CLS
+标记（黄色方框）与聚焦 CLS
+标记拼接后，被输入到FAFormer（红色矩形）中。FAFormer由标准ViT模块构成，用于跨多阶段聚焦伪造特征；最终生成的聚焦
+CLS 标记作为分类的最终表征。方框“F ocus CLS ”和“CLSi”分别代表附加的聚焦
+CLS 标记和冻结ViT第i阶段输出的图像 CLS 标记。</p>
+</blockquote>
+<h1 id="图像编码器">3.1.图像编码器</h1>
+<p>​  基于CLIP强大的预训练权重和高效的特征提取能力，我们采用CLIP-ViT[43]作为固定图像编码器，具体策略参照UniFD[39]的框架。对于输入的RGB图像
+$ x^{HW} $
+，其补丁嵌入层首先将图像分割为N个互不重叠的补丁，并将每个补丁投影到D维特征空间，形成补丁嵌入序列
+$ E_{patch}^{(N+1)D} $ 。随后在序列前添加 CLS
+标记，再通过多个视觉变换器模块进行处理，其中自注意力机制对表征进行优化。最终，输出的
+CLS 标记作为图像表示（记作( $ f_i^{1R} $
+），在CLIP-ViT模型的第i阶段使用。其中，H和W分别表示输入图像的高度和宽度，<span
+class="math inline">\(N=\frac
+{HW}{P^2}\)</span>为总补丁数，D则代表投影特征的维度。</p>
+<h2 id="权重共享引导模块">3.2. 权重共享引导模块</h2>
+<p>​  针对预训练CLIP-ViT模型提取通用图像特征时存在过度包含伪造无关信息的问题，我们提出了一种轻量级可训练的权重共享引导模块（WSGM），通过引导编码器聚焦伪造特征，同时最大限度减少额外参数。<br/>​  在标准视觉变换器（ViT）架构中，多头自注意力（MHSA）模块负责捕捉全局特征，而多层感知器（MLP）模块则对这些特征进行优化和非线性转换。为引导冻结的ViT模型在最小化可训练参数的同时聚焦伪造特征，我们引入了可训练的注意力机制（WSGM）。该机制在多个ViT模块间运作，对
+MHSA 输出的特征进行处理后再输入 MLP
+。通过优化全局特征并强化伪造相关信息， WSGM 确保 MLP
+接收的特征能有效支持伪造检测任务。这使得冻结的编码器能够逐步增强对伪造特征的关注。该过程可表述如下：
+<span class="math display">\[\begin{array}{l}{z_{l}={\bf M H S A}(L
+A(x_{l-1}))+x_{l-1},\quad l=1,\cdot\cdot\cdot,n}\\ {z_{l}^{\prime}={\bf
+W S G M}_{k}(z_{l})+z_{l},\quad k=1,\cdot\cdot\cdot,m}\\ {x_{l}={\bf M L
+P}(L N(z_{l}^{\prime}))+z_{l}^{\prime}}\end{array}\]</span> ​  其中<span
+class="math inline">\(x_{l-1}\)</span>和<span
+class="math inline">\(x_{l}\)</span>分别表示第l个冻结ViT模块的输入和输出特征。WSGMs在多个ViT模块间共享，确保每个
+WSGM 模块精确负责<span
+class="math inline">\(\frac{n}{m}\)</span>个模块，且<span
+class="math inline">\(\frac{n}{m}\)</span>为整数。具体而言，第k个 WSGM
+模块会先对其分配的模块组内的 MHSA 输出进行处理，再将其传递给 MLP
+模块。<br/>​  为进一步减少可训练参数数量， WSGM
+模块采用了瓶颈结构。该结构包含压缩层、扩展层、ReLU激活函数，以及一个专门引导ViT模块聚焦伪造特征的附加线性层，其数学表达式可表示为：
+<span class="math display">\[\mathrm{WSGM}(z)=W_{c o
+m}\cdot\mathrm{ReLU}(W_{m i d}\cdot\mathrm{ReLU}(W_{e x p}\cdot
+z))\]</span> ​  其中<span class="math inline">\(W_{c o
+m}\in\mathbb{R}^{d\times{\hat{d}}}\)</span>和<span
+class="math inline">\(W_{e x
+p}\in\mathbb{R}^{\hat{d}\times{d}}\)</span>分别表示压缩与扩展投影矩阵，<span
+class="math inline">\(\hat{d}\)</span>为满足<span
+class="math inline">\({\hat{d}}\ll d\)</span>的瓶颈中间维度，而<span
+class="math inline">\(W_{m i
+d}\in\mathbb{R}^{\hat{d}\times{\hat{d}}}\)</span>则代表额外的中间线性层。<br/>​  WSGM
+模块能有效引导冻结的预训练CLIP-ViT模型聚焦伪造特征，从而解决因冻结网络提取的通用特征中存在过多无关伪造信息而导致的准确率下降问题。</p>
+<h2 id="faformer">3.3. FAFormer</h2>
+<p>​  在完成伪造特征提取后，我们进一步探讨了浅层图像特征在伪造检测中的重要性[3,12,29]。为此，我们提出FAFormer——一种伪造感知特征整合器，通过整合多层级特征（包括低级和高级表征），精准捕捉伪造相关特征。<br/>​  基于经典Transformer[53]利用
+CLS
+标记捕捉输入序列完整表征的发现，该机制使模型能够将多种特征表征整合为统一的嵌入向量。作为全局表征，
+CLS
+代币通过自注意力机制整合所有输入代币的信息，从而有效筛选出输入序列中最相关的信息。此外，我们发现冻结的ViT模型在各阶段输出的
+CLS 标记<span class="math inline">\(CLS_i{\in}{\mathbb
+R}^D\)</span>，其本身已完全满足Transformer的输入要求，因此无需额外的嵌入变换。为此，我们将各阶段的
+CLS 标记进行拼接，并引入新的焦点 CLS 标记<span
+class="math inline">\(CLS_{focus}{\in}{\mathbb
+R}^D\)</span>作为全局表征，用于整合各阶段的信息。该复合表征可表示为：
+<span class="math display">\[c_{0}=[C L S_{f o c u s};C L S_{1};C L
+S_{2};\cdot\cdot\cdot\cdot\cdot-L S_{N}]\]</span>
+​  基于此，FAFormer被设计用于通过多阶段特征（包括低级和高级图像特征）来精炼伪造特定信息。该模块采用标准的视觉变换器（ViT）模块架构[16]，其工作流程可表述为：
+<span class="math display">\[\begin{array}{l c
+r}{c_{l}^{&#39;}={\mathrm{MHSA}(LN(c_{l-1}))+c_{l-1}}}\\
+{c_{l}={\mathrm{MLP}(LN(c_{l}^{&#39;}))+c_{l}}}\end{array}\]</span>
+​  其中<span class="math inline">\(c_{l}^{&#39;}\)</span>和<span
+class="math inline">\(c_l\)</span>分别表示标准ViT第l个模块中 MHSA 和 MLP
+模块的输出特征。<br/>​  FAFormer通过Transformer的自注意力机制，有效整合了从冻结的CLIP-ViT中提取的多阶段特征，将细粒度的低级细节与抽象的高级语义相结合。低级特征捕捉细微纹理和伪影，而高级特征则编码更丰富的语义和结构信息。通过优化这些多样化特征，FAFormer增强了伪造特征的表征能力，确保细粒度信息与抽象信息共同参与伪造检测。</p>
+<h1 id="实验设置">4.实验设置</h1>
+<h2 id="数据集">4.1.数据集</h2>
+<p>​  训练数据集<br/>​  为确保公平且一致的对比效果，我们沿用现有方法仅使用ProGAN生成的图像进行训练。具体而言，我们采用与先前研究[32,39,48]一致的ForenSynths[54]训练集和验证集。ForenSynths训练集包含20类真实图像（源自
+LSUN
+数据集[55]）及其对应的ProGAN合成假图[25]。参照既往研究，我们选取汽车、猫、椅子、马四个类别作为训练子集。为突出本方法仅需少量训练数据的优势，我们将训练集划分为包含1%、4%、20%、50%和100%数据的子集。更多训练集细节详见附录A.1。</p>
+<p>​  评估数据集<br/>​  为评估本方法的有效性和泛化能力，我们采用了广泛使用的数据集UniversalFakeDetect[39]。具体而言，该测试集包含19个子集，涵盖多种生成模型，包括ProGAN[25]、StyleGAN[26]、BigGAN[4]、CycleGAN[58]、StarGAN[9]、GauGAN[40]、Deepfake[46]、
+CRN [7]、 IMLE [30]、SAN[13]、 SITD [6]、引导扩散模型[15]、 LDM
+[45]、Glide[38]和dalle[44]。详细信息请参见附录A.2。</p>
+<h2 id="baselines">4.2.Baselines</h2>
+<p>​  为全面评估本方法，我们将其与各类伪造检测方法进行对比，这些方法可分为专业检测方法、预处理方法和冻结模型方法三大类。<br/>​  
+专业检测方法包括Patchfor[5]、F3Net[42]和FreqNet[49]。<br/>​  
+在基于预处理的检测方法中，我们纳入了CNN-Spot[54]、LGrad[47]和NPR[50]三种方案。<br/>​  
+在基于模型的冻结检测方法中，我们纳入了UniFD[39]、FatFormer[32]、 RINE
+[29]和C2PCLIP[48]。</p>
+<h2 id="评估指标">4.3.评估指标</h2>
+<p>​  基于先前研究[29,32,39]，我们采用准确率（Acc）和平均精度（AP）作为评估方法有效性的主要指标。为全面评估模型在不同生成对抗网络（GAN）和扩散模型子集上的泛化能力，我们报告了平均准确率和平均精度。</p>
+<h2 id="实施细节">4.4.实施细节</h2>
+<p>​  我们采用两阶段训练策略以确保训练稳定性。<br/>​  第一阶段冻结CLIP-ViT主干网络，仅训练
+WSGM
+网络。<br/>​  第二阶段保持所有先前网络冻结状态，将FAFormer集成到后端并独立训练。<br/>​  输入图像随机裁剪至224×224分辨率，训练时仅采用水平翻转增强，不进行其他数据增强。测试阶段仅使用中心裁剪。我们采用Adam优化器[28]（β参数设置为（0.9,0.999）），并使用二元交叉熵损失函数。所有实验均在Nvidia
+GeForce RTX 3090 GPU上使用PyTorch框架[41]完成，更多细节详见附录D。</p>
+<h1 id="结果与分析">5.结果与分析</h1>
+<h2 id="与竞争方法的比较">5.1. 与竞争方法的比较</h2>
+<figure>
+<img src="../postimages/ForgeLens/image-20251110105730113.png"
+alt="image-20251110105730113" />
+<figcaption aria-hidden="true">image-20251110105730113</figcaption>
+</figure>
+<figure>
+<img src="../postimages/ForgeLens/image-20251110105744544.png"
+alt="image-20251110105744544" />
+<figcaption aria-hidden="true">image-20251110105744544</figcaption>
+</figure>
+<p>​  表1和表2展示了我们提出的ForgeLens方法在UniversalFakeDetect[39]数据集上与现有伪造检测方法的准确率（Acc）和平均精度（AP）对比。实验结果表明，ForgeLens方法表现优于现有方法，展现出强大的泛化能力，所有子集的平均准确率达到94.99%，平均精度达到98.83%。<br/>​  具体而言，在各类专业方法中，最近提出的FreqNet方法在训练集相关的GAN子集上表现最佳，因其是在ProGAN上训练的。然而，当应用于扩散模型子集时，该方法存在局限性。相比之下，我们的方法在所有子集上都表现出较高的泛化能力，相较于FreqNet，平均准确率提升了9.9%，平均AP值提升了6.88%。<br/>​  在基于预处理的方法中，我们的方法表现更优，平均准确率（Acc）比最佳方法NPR高出7.43%，平均精度（AP）高出6.07%，在多个子集上实现了全面的准确率提升。<br/>​  对于基于冻结模型的方法，相较于使用原始冻结CLIP-ViT提取图像特征进行分类的基础模型UniFD，我们的方法使平均准确率提升了13.61%，平均精度提高了8.69%。<br/>​  此外，我们的方法在性能上超越了基于UniFD的先进方法
+RINE
+。这表明我们的方案有效解决了从冻结预训练编码器中提取的通用图像特征存在的问题——这些特征因包含过多与伪造无关的信息而不适合用于伪造检测。值得注意的是，与同时采用文本和图像编码器的FatFormer及最新前沿方法C2P-CLIP相比（这两种方法通过增加模型复杂度提升了性能），我们的方案以更简洁的架构实现了3.68%和1.2%的平均准确率提升，表现更胜一筹。</p>
+<h2 id="消融研究">5.2.消融研究</h2>
+<h2 id="稳健性评估">5.3.稳健性评估</h2>
+<h2 id="类激活图可视化">5.4.类激活图可视化</h2>
+<h1 id="结论">6.结论</h1>
+<p>​  在本研究中，我们推出了名为ForgeLens的数据高效特征引导框架，专为泛化性伪造检测设计。通过整合轻量级权重共享引导模块（WSGM）精准定位伪造焦点，并结合FAFormer多阶段优化伪造特征，ForgeLens有效突破了传统冻结网络方法的局限性——既能精简无关信息，又显著提升特征区分能力。在包含生成对抗网络（GAN）和扩散模型在内的19种生成模型上进行的大量实验表明，ForgeLens仅需极少量训练数据即可达到业界顶尖水平。</p>
+<p>​  局限性与未来工作<br/>​  需要指出的是，本研究方法存在一个局限性：为确保模型稳定性而采用两阶段训练策略，这会略微增加整体训练复杂度。此外，在第二阶段，FAFormer通过多阶段视觉表征网络（ViT）对伪造特征进行深度优化，导致模型对超参数选择更为敏感，需要进行细致的参数调优。未来，CLIP-ViT框架的开发将聚焦于应对这些挑战，从而提升框架的效率与稳健性。</p>
+<p>​</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/ForgeLens/">https://zhaozw-szu.github.io/ForgeLens/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/ForgeLens/image-20251110110219713.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Towards-Generalizable-Detector-for-Generated-Image/" title="Towards Generalizable Detector for Generated Image"><img class="cover" src="/postimages/Towards-Generalizable-Detector-for-Generated-Image/image-20251110170346642.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Towards Generalizable Detector for Generated Image</div></div></a></div><div class="next-post pull-right"><a href="/RankMatch/" title="RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation"><img class="cover" src="/postimages/RankMatch/image-20251104164701873.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E5%92%8C%E8%83%8C%E6%99%AF"><span class="toc-text">2.相关工作和背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E4%BC%AA%E9%80%A0%E5%9B%BE%E5%83%8F%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-text">2.1.专业伪造图像检测方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E9%A2%84%E5%A4%84%E7%90%86%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-text">2.2.基于预处理的检测方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%86%BB%E7%BB%93%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">2.3. 基于冻结预训练模型的方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%BC%96%E7%A0%81%E5%99%A8"><span class="toc-text">3.1.图像编码器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E5%85%B1%E4%BA%AB%E5%BC%95%E5%AF%BC%E6%A8%A1%E5%9D%97"><span class="toc-text">3.2. 权重共享引导模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#faformer"><span class="toc-text">3.3. FAFormer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.实验设置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">4.1.数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#baselines"><span class="toc-text">4.2.Baselines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="toc-text">4.3.评估指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%96%BD%E7%BB%86%E8%8A%82"><span class="toc-text">4.4.实施细节</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-text">5.结果与分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E7%AB%9E%E4%BA%89%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">5.1. 与竞争方法的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">5.2.消融研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%B3%E5%81%A5%E6%80%A7%E8%AF%84%E4%BC%B0"><span class="toc-text">5.3.稳健性评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E6%BF%80%E6%B4%BB%E5%9B%BE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">5.4.类激活图可视化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">6.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

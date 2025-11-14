@@ -1,0 +1,608 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MOODv2:Masked Image Modeling for Out-of-Distribution Detection | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于TIFS 2024，采用基于重构的方法实现 OOD 检测，发现无需微调，基于重构的预训练模型在OOD检测任务上表现优秀。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MOODv2:Masked Image Modeling for Out-of-Distribution Detection">
+<meta property="og:url" content="https://zhaozw-szu.github.io/MOODv2/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="发表于TIFS 2024，采用基于重构的方法实现 OOD 检测，发现无需微调，基于重构的预训练模型在OOD检测任务上表现优秀。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/MOODv2/image-20251112232724110.png">
+<meta property="article:published_time" content="2025-11-12T15:22:48.000Z">
+<meta property="article:modified_time" content="2025-11-12T16:05:07.465Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/MOODv2/image-20251112232724110.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/MOODv2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MOODv2:Masked Image Modeling for Out-of-Distribution Detection',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-13 00:05:07'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/MOODv2/image-20251112232724110.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊等级</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MOODv2:Masked Image Modeling for Out-of-Distribution Detection</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-11-12T15:22:48.000Z" title="创建于 2025-11-12 23:22:48">2025-11-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-12T16:05:07.465Z" title="更新于 2025-11-13 00:05:07">2025-11-13</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类期刊,TPAMI,2024</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IML/">IML</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/dvlab-research/MOOD"><img src="https://img.shields.io/github/stars/dvlab-research/MOOD?style=flat" alt="GitHub Stars: dvlab-research/MOOD" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MOODv2:Masked Image Modeling for Out-of-Distribution Detection"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">发表于TIFS 2024，采用基于重构的方法实现 OOD 检测，发现无需微调，基于重构的预训练模型在OOD检测任务上表现优秀。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>MOODv2: Masked Image Modeling for Out-of-Distribution Detection</p>
+<p>Jingyao Li ，Pengguang Chen ，Shaozuo Yu ，Shu Liu <em>, Member,
+IEEE</em>, and Jiaya Jia <em>, Fellow, IEEE</em></p>
+<h1 id="摘要">摘要</h1>
+<p>​  有效检测分布外样本（OOD，out-of-distribution）的关键在于获取与 OOD
+样本有区别的稳健分布内样本（ID，in-distribution）表征。虽然先前方法主要依赖基于识别的技术实现这一目标，但往往导致捷径式学习，缺乏全面的表征。在本研究中，我们通过探索不同的预训练任务并采用多种
+OOD
+评分函数，进行了全面分析。结果表明，通过重构预训练获得的特征表征显著提升了性能，并缩小了不同评分函数之间的差距。这说明即使简单的评分函数，在利用基于重构的预训练任务时也能与复杂函数相媲美。基于重构的预训练任务能很好地适配各类评分函数，因此具有广阔的应用前景。我们的
+OOD
+检测框架MOODv2采用了掩码图像建模预训练任务。不加修饰的MOODv2在ImageNet上将
+AUROC 从14.30%提升至95.68%，在 CIFAR
+-10上达到99.98%的准确率，表现令人瞩目。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  可靠的视觉识别系统不仅能对已知上下文（即分布内数据）做出准确预测，还能检测未知的分布外（OOD）样本，并将其拒收（或转移）至人工干预以确保安全处理。这促使人们在将输入数据输入下游网络前应用异常检测器——这正是
+OOD 检测的核心任务，该任务也被称为新奇性检测或异常检测。 OOD
+检测旨在判断测试样本是否偏离分布内数据（ID）范围。作为医疗诊断[1]、欺诈检测[2]、自动驾驶[3]等安全关键领域的基石技术，该检测在[4]
+[5]
+[6]等场景中发挥着重要作用。构建具有代表性的分布内特征空间表示，对于实现分布外检测具有关键意义。精心设计的特征表示能显著提升主流
+OOD 检测评分函数的性能。我们的研究致力于优化专为 OOD
+检测设计的特征表示方法，以推动整个领域的发展。<br/>​  现有方法通过对比学习[7]
+[8]或在大规模数据集上进行预训练分类[9] [10] [11] [12]来检测 OOD
+样本。前者根据伪标签对图像进行分类，后者则基于真实标签进行分类，其核心任务都是满足分类目标。然而，后门攻击研究[13]表明，当学习过程被表征为对数据进行分类时，网络往往会走捷径进行图像分类。在典型的后门攻击场景[13]中，攻击者会在原始训练图像上添加带有明显正确标签的秘密触发器。在测试过程中，受害模型会将带有秘密触发器的图像错误分类。该领域的研究表明，网络仅学习不同类别间可区分的特定模式，因为这是满足分类要求的捷径。然而，学习这些模式对
+OOD 检测效果不佳。因此，通过分类身份数据来学习 OOD
+检测的表征可能并不理想。例如，当 OOD
+样本中出现与某些身份类别相似的模式时，网络可能轻易将其误判为身份数据并错误分类，如图2所示。</p>
+<figure>
+<img src="../postimages/MOODv2/image-20251112232724110.png"
+alt="image-20251112232724110" />
+<figcaption aria-hidden="true">image-20251112232724110</figcaption>
+</figure>
+<blockquote>
+<p>图2.
+基于重构与基于分类方法的对比。在图像分类领域，神经网络常会走捷径进行图像分类[13]。例如，耳朵是区分猫狗的重要特征，传统分类模型通常假设尖耳朵的动物是猫，没有尖耳朵的则是狗。因此，当网络遇到分布外的动物（如长着尖耳朵的狐狸）时，很容易将其误判为猫。相比之下，基于重构的任务能有效缓解这一问题。通过随机遮蔽图像局部区域，模型避免学习局部化、刻板的特征（如被遮挡的耳朵），从而防止走捷径，转而获取有效的像素级特征表示。这显著提升了模型检测
+OOD 实例的能力。</p>
+</blockquote>
+<p>​  为解决这一问题，我们提出基于重构的预训练任务。不同于现有 OOD
+检测方法[7]
+[8]中的对比学习，我们的方法通过强制网络实现图像重构的训练目标，从而使其学习像素级特征表示。具体而言，我们采用掩码图像建模（MIM）[14]作为自监督预训练任务，该方法在自然语言处理[15]和计算机视觉[14]
+[16]领域均展现出巨大潜力。在MIM任务中，部分图像块会被随机遮蔽。网络通过分析剩余图像块的信息，推测被遮蔽区域并还原原始图像的特征。这种重建机制使模型能够从有效的ID特征表示中学习，而不仅仅是通过分类过程学习不同类别间的模式差异。我们的研究发现，预训练模型在重建ID图像时表现优异，但在处理
+OOD 领域时却表现出显著的领域差异（图4）。</p>
+<figure>
+<img src="../postimages/MOODv2/image-20251112232925523.png"
+alt="image-20251112232925523" />
+<figcaption aria-hidden="true">image-20251112232925523</figcaption>
+</figure>
+<blockquote>
+<p>图4展示了每对图像由原始图像（左）和重建图像（右）组成。这些图像来自ImageNet
+[37]、Texture [34]、iNaturalist [35]、ImageNet-O [38]和OpenImage-O
+[33]等数据集。每对图像左上角的数字表示两者的欧氏距离。</p>
+</blockquote>
+<p>​  这种视觉差异清晰揭示了ID与 OOD 数据在模型特征上的领域鸿沟，为 OOD
+检测提供了重要参考。<br/>​  为验证我们提出的ID特征表征方法的有效性，我们通过实验测试其在主流
+OOD 检测评分函数中的表现。实验采用的概率型评分函数[17]
+[18]、逻辑值型评分函数[18] [19]、特征型评分函数[10] [20]
+[21]，以及结合逻辑值与特征的混合方法[10]。在涵盖经典分类[22]、对比学习[23]
+[24]和掩码图像建模预训练任务[14]
+[25]的对比分析中，我们的研究结果突显了基于重构策略在 OOD
+检测领域的主导地位，如图1所示。</p>
+<figure>
+<img src="../postimages/MOODv2/image-20251112233107451.png"
+alt="image-20251112233107451" />
+<figcaption aria-hidden="true">image-20251112233107451</figcaption>
+</figure>
+<blockquote>
+<p>图1展示了在四个 OOD 数据集上测试的平均
+AUROC（%），这些数据集应用于具有不同预文本任务的ViT模型。蓝色方法使用特征空间，绿色方法使用logit值，黄色方法使用softmax概率，红色方法同时使用特征和logit值。星号标记表示各类方法的平均性能。</p>
+</blockquote>
+<p>​  此外，我们对实验结果进行了全面分析，发现该方法不仅显著提升了整体性能，还大幅缩小了不同评分函数间的差异。这一发现表明，只要采用具有代表性的ID特征表示，即便是简单的评分函数也能达到与复杂函数相当的性能水平。这些发现进一步强调了有效特征表示在
+OOD
+检测中的关键作用。更多细节参见第三章B节。最终，MOODv2展现出显著提升，实现了14.30%的大幅增长，在ImageNet上达到95.68%的
+AUROC 。在 CIFAR
+-10上，我们的结果显著提升至99.98%，相比之前的最先进水平提升了0.35%。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="a.-分布外检测">A. 分布外检测</h2>
+<p>​  研究人员开发了多种评分函数，用于区分分布内样本与分布外样本。这些函数的设计旨在利用ID示例通常具备而
+OOD 示例通常不具备的特性，反之亦然。这些评分主要来源于三个方面：</p>
+<ol type="1">
+<li>基于概率的指标：此类指标包含最大softmax概率[17]、softmax与均值条件分布间的最小KL散度[18]等。<br/>2.
+基于Logit的函数：这类函数依赖于最大对数几率[18]，以及对对数几率求和的对数和指数函数[19]等计算。<br/>3.
+基于特征的方法：这类函数主要涉及特征与其低维嵌入预像之间的残差范数[26]，以及特征与类别质心之间的最小马氏距离[21]等指标。</li>
+</ol>
+<p>​  在对性能及其与各类评分函数和预文本任务的相关性进行深入分析后，我们的研究采用了结合logit和特征的混合方法[10]，并将基于重构的方法作为预文本任务纳入。具体实现细节将在本文后续部分详细说明。</p>
+<h2 id="b.-自监督预训练任务">B. 自监督预训练任务</h2>
+<p>​  在计算机视觉和深度学习不断发展的领域中，人们设计了多种策略和技术来增强模型理解和处理视觉数据的能力：</p>
+<ol type="1">
+<li>分类任务：视觉模型通过经典分类任务进行预训练[22]。<br/>2.
+对比学习任务：MOCOv3 [23] 和 DINOv2 [24]
+是用于自监督表征学习的先进对比学习方法。这些方法通过对比正样本对（例如同一图像的不同增强形式）与负样本对（例如不同图像的增强形式）来学习表征。MOCOv3
+在MOCO框架 [27] 的基础上，通过引入动量编码器和动态队列来提升性能。DINOv2
+则通过引入聚类教师网络和非对称损失函数，实现了高效表征的学习。<br/>3.
+掩码图像建模任务：数据高效的图像变换器（BEiT系列[14]、[25]）属于自监督学习任务，其核心是掩码图像建模。这类任务通过随机遮蔽图像部分区域，要求模型预测被遮蔽像素，从而实现图像的自动补全。</li>
+</ol>
+<p>​  这些方法和任务代表了计算机视觉和深度学习领域的前沿方法。它们极大地提高了模型从未标记数据中学习有用视觉表征的能力，从而在各种下游视觉任务中表现更好。<br/>​  现有多种方法通过自监督任务指导
+OOD
+检测的表征学习。先前研究[7][8]采用对比学习模型作为特征提取器，但基于对比学习对转换图像进行分类的现有方法存在相似局限——模型往往学习到类别特定模式[13]
+[28]，这些模式虽有利于分类，却无助于理解内在身份表征。本研究通过为 OOD
+检测实施掩码图像建模任务，有效解决了这一问题。</p>
+<h2 id="c.-训练战略">C. 训练战略</h2>
+<p>​  针对训练损失中的OOD感知问题，学界已开发出多种解决方案[29]。这些方法通常通过引入正则化项来增强ID与
+OOD 特征间的区分能力[30]
+[31]。部分研究采用置信度估计分支，利用误分类的分布内样本作为分布外样本的代理[29]。MOS方法[31]通过引入预定义的组结构调整损失函数，使最小组别“else”类概率成为
+OOD
+分类的指标。另一种方案[30]则要求ID样本在训练过程中嵌入一维子空间的联合空间，并通过计算特征与类别子空间间的最小角度距离进行评估。<br/>​  与这些方法不同，我们的方法属于无需重新训练的轻量级方法[10]
+[32]，因此不仅应用更直接，还能保持分布内分类的准确性。</p>
+<h2 id="d.-moodv1">D. MOODv1</h2>
+<p>​  我们先前的MOODv1版本[32]在 OOD
+检测（MOOD）中引入了掩码图像建模预训练策略，并取得了令人鼓舞的成果。然而，仍存在以下问题：<br/>​  首先，以往研究[7]
+[8]
+[32]通常需要针对每个分布内数据集对模型进行微调。当需要评估大量分布内数据集时（例如在单类
+OOD 检测[7]
+[32]中），训练成本会显著攀升。然而通过实验验证，我们发现经过充分准备的掩码图像建模模型无需额外微调即可实现卓越检测性能，这在处理需要评估的海量分布内数据集时，能大幅节省微调资源消耗。<br/>​  其次，随着该领域涌现出更先进的
+OOD 评分函数[10] [17] [18] [19] [20] [21]和预训练技术[14] [22] [23] [24]
+[25]，人们不禁要问：掩码图像建模是否还能保持其领先地位？在MOODv2中，我们整合了预训练方法的最新进展，并采用一系列前沿
+OOD
+评分函数进行实验。这种更广泛的预训练方法和评分函数组合，使我们能够更全面地评估MOODv2的性能，使其更好地应对
+OOD
+检测日益复杂的挑战。<br/>​  最后需要指出的是，众所周知，如果网络在训练过程中接触过相似样本（无论是否经过预训练或微调），
+OOD 的性能表现将基本无差异[33]。先前研究[9]
+[32]依赖ImageNet-21K进行预训练，因此像 CIFAR [39]、Places[40]等基准 OOD
+数据集，很可能已被ImageNet-21K[37]数据集所影响。本研究中，MOODv2引入了最新的非自然数据集
+OOD ，从而彻底排除了 OOD 测试集与训练集存在重叠的可能性[33]
+[36]。<br/>​  总体而言，MOODv2在多个方面实现了突破：改进了评分函数、采用了先进的预训练技术、扩展了非自然
+OOD
+数据集范围，并构建了精简通用框架。如图3所示，MOODv2相比MOODv1的性能提升尤为显著。在ImageNet数据集上，其
+AUROC
+指标较MOODv1提升了2.17%。更令人瞩目的是，在未对ID数据集进行微调的情况下，MOODv2在
+CIFAR -10数据集上取得了高达99.98%的 AUROC 分数。</p>
+<h1 id="方法">3.方法</h1>
+<p>​  本节首先阐述 OOD
+检测任务重构的理论动机（见第三节A部分），随后在第三节B部分深入分析 OOD
+检测中起关键作用的核心特征。</p>
+<h2 id="a.动机寻求有效的id表示">A.动机：寻求有效的ID表示</h2>
+<p>​  大多数先前的 OOD 方法通过分类[9] [17]或对比学习[7]
+[8]在身份样本上学习ID表示，这些方法利用真实标签或伪标签来监督分类网络。另一方面，[13]的研究表明，分类网络仅学习训练类别间的差异模式，因为这是实现分类的捷径。研究表明，网络实际上并未学习有效的分布内表示。相比之下，基于重构的预训练任务迫使网络在训练过程中学习ID图像的像素级表征以重建图像，而非用于分类的模式。通过这种方式，网络能够学习到ID数据集更具代表性的特征。<br/>​  为验证这一结论，我们重建了ID和
+OOD
+数据，并计算原始图像与重建图像之间的欧氏距离。距离越大，说明重建图像与原始图像的偏差越大。我们收集了ID和
+OOD 数据的恢复距离数据。图4展示了重建效果的对比示例。</p>
+<figure>
+<img src="../postimages/MOODv2/image-20251112232925523.png"
+alt="image-20251112232925523" />
+<figcaption aria-hidden="true">image-20251112232925523</figcaption>
+</figure>
+<p>​  第一行ID图像中，预训练模型实现了有效重建。然而在后续行的非自然 OOD
+图像中，明显出现了领域差异。例如在纹理图像中，模型仍保留着类似自然图像的光照与阴影特征；而在草图图像中，模型生成的图像则显得更平滑明亮。这种差异直观地凸显了ID与
+OOD 数据在模型特征上的领域鸿沟，这一特性可被用于 OOD 检测。</p>
+<h2 id="b.-ood-检测的重建任务">B. OOD 检测的重建任务</h2>
+<p>​  本节将从 OOD
+检测的角度，对这些关键要素进行系统性分析。我们以ImageNet
+[37]作为分布内数据集，并在OpenImage-O [33]、Texture [34]、iNaturalist
+[35]和ImageNet-O
+[36]等具有挑战性的非自然分布数据集上，对任务前文本进行评估。通过多种预训练方法和
+OOD 评分函数（包括MSP[17]、Energy[19]、MaxLogit[18]、KL
+Matching[18]、Residual[10]、ReAct[20]、Mahalanobis[21]和ViM[10]）进行了广泛验证。</p>
+<figure>
+<img src="../postimages/MOODv2/image-20251112234734134.png"
+alt="image-20251112234734134" />
+<figcaption aria-hidden="true">image-20251112234734134</figcaption>
+</figure>
+<p>​  实验结果如表II所示。数据显示，当采用所有评分函数时，掩码图像建模预训练任务的表现优于分类任务和对比学习任务。这些评分函数的平均
+AUROC
+值较基准模型提升了15.96%。使用最佳评分函数的模型性能提升了14.30%。这一显著成果归功于其对身份数据（ID）特征空间的代表性表征，有效区分了ID与
+OOD 数据。该发现具有重要学术价值，因其能提升主流 OOD
+检测评分函数的性能，从而推动整个领域的发展。我们还采用 CIFAR
+-10数据集[39]作为身份数据集，并在附录中提供了在线可获取的结果。我们的方法取得了99.99%的
+AUROC 值，同时将FPR95值降至0.03%。</p>
+<figure>
+<img src="../postimages/MOODv2/image-20251112235046860.png"
+alt="image-20251112235046860" />
+<figcaption aria-hidden="true">image-20251112235046860</figcaption>
+</figure>
+<blockquote>
+<p>图5展示了不同 OOD 检测算法在ViT模型上应用于非自然 OOD 数据集时的
+AUROC（%）测试结果。预文本任务包括分类任务[22]、对比学习任务MoCov3[23]和DINOv2[24]，以及掩码图像建模任务BEiT系列[14]
+[25]。蓝色方法采用特征空间，绿色方法使用logit值，黄色方法利用softmax概率，红色方法则同时结合特征空间和logit值。星号表示对应颜色方法的平均
+AUROC 值，浅色垂直线表示标准差。</p>
+</blockquote>
+<p>​  为提升实验结果的可理解性，我们进行了全面的统计分析并以可视化形式呈现。如图5所示，我们的方法不仅显著提升了整体结果质量，还大幅降低了不同方法间的差异。以基于logit的ViT、MoCov3和DINOv2模型为例，其标准差分别为4.76%、5.04%和4.51%；而BEiT和BEiTv2模型则展现出更低的数值，分别降至0.13%和0.01%。这一发现表明，当采用有效的ID特征表示时，即便是简单的评分函数也能与复杂模型达到同等效果。</p>
+<figure>
+<img src="../postimages/MOODv2/image-20251112235150718.png"
+alt="image-20251112235150718" />
+<figcaption aria-hidden="true">image-20251112235150718</figcaption>
+</figure>
+<p>​  在表I中，我们重点突出了各模型的最佳方法。在 CIFAR
+-10数据集上，所有模型采用特征与logit组合方法时均取得最佳效果，准确率接近100%。这表明模型对
+CIFAR
+-10特征空间的把握非常到位。而在更大的ImageNet数据集上，我们观察到结果存在差异。值得注意的是，基于掩码图像建模的预训练模型在采用特征与logit组合方法时表现最佳，而其他模型则在概率型和特征型方法中更胜一筹。此外，我们的掩码图像建模预训练方法相比其他预训练策略展现出显著优势，这凸显了基于分类的预训练策略的局限性及其在有效利用高级评分函数方面的不足。这些发现强化了熟练特征表征在
+OOD 检测中的关键作用。此外，为提供更详细的信息，我们在附录中提供了ID和
+OOD 数据集的 OOD 评分分布曲线示意图，相关数据可在线获取。</p>
+<h2 id="c.-分布外掩膜图像建模v2">C. 分布外掩膜图像建模v2</h2>
+<p>​  综上所述，本节研究发现：预训练模型在身份检测任务中表现优异，但在
+OOD
+场景中却暴露出显著的领域差异（图4）。这种视觉差异鲜明地揭示了身份检测与
+OOD
+数据在模型特征上的本质区别。深入分析实验结果表明，掩码图像建模作为预训练任务，不仅显著提升了整体性能，更有效缩小了不同评分函数间的差距。这些发现凸显了有效特征表征在
+OOD
+检测中的关键作用，证明通过掩码图像建模任务能够显著增强特征质量。<br/>​  最后，我们提出面向分布外检测的掩码图像建模第二版（MOODv2）。该算法如算法1所示，主要包括以下阶段。</p>
+<p>​  1)
+使用预训练数据集，通过掩码图像建模对视觉编码器进行预训练。<br/>​  2)
+在内部数据集上对主干模型进行微调。<br/>​  3)
+从训练好的图像编码器中提取特征，并计算 OOD 检测的 OOD 分数距离。</p>
+<p>​  在 OOD
+评分函数方面，我们采用ViM[10]方法，该方法结合特征与logit值，并借鉴了掩码图像建模预训练模型的成果，该模型已展现出卓越性能。从数学角度而言，该评分函数可表示为</p>
+<p><span class="math display">\[s(x)=\frac{e^{\alpha\sqrt{x^{T}R
+R^{T}x}}}{\sum_{i=1}^{C}e^{l_{i}}+e^{\alpha\sqrt{x^{T}R
+R^{T}x}}}.\]</span> ​  其中，<span
+class="math inline">\(l_i\)</span>表示训练集X中特征x的第i个logit值；
+<span class="math inline">\(\alpha\)</span>为模型参数；<span
+class="math inline">\(R\in\mathbb{R}^{N\times(N-D)}\)</span>是特征矩阵Q的倒数第D+1列（N为主成分维度），C为类别数量。</p>
+<h1 id="实验">4.实验</h1>
+<p>​  本节将对我们的算法与最新 OOD
+检测方法进行全面对比。我们采用ViT-B/16模型，该模型在ImageNet-21K数据集上进行预训练，并结合不同方法的预训练任务，最终在ImageNet-1K数据集上以224×224分辨率进行微调。<br/>​  <strong>ID/
+OOD 数据集：</strong><br/>​  我们选用 CIFAR
+-10[39]和ImageNet-1K[37]作为ID数据集。根据既定流程[10]，为估算ImageNet的主空间，我们从训练集中随机抽取20万张图像。实验中涉及的
+OOD 数据集包括：</p>
+<p>​  1) OpenImage-O是一个新近收集的大型 OOD 数据集[33]。<br/>​  2)
+纹理[34]包含自然纹理图像，其中四个重叠类别（气泡状、蜂窝状、蛛网状、螺旋状）因与ImageNet图像库重合而被移除。<br/>​  3)
+iNaturalist [35]
+是一个精细的物种分类数据集，我们采用了该数据集在先前研究[31]中选定的特定子集。<br/>​  4)
+ImageNet-O [38] 数据集包含经过对抗性过滤的图像，旨在挑战 OOD
+检测器。</p>
+<p>​  尽管这些 OOD
+数据集是专门设计的，旨在确保其不包含ImageNet中的任何类别，而非针对 CIFAR
+-10定制，但如附录所述， CIFAR
+-10中的每个类别在ImageNet中都有对应的类别，这些数据集可在线获取。因此，我们同样使用这些
+OOD 数据集来处理 CIFAR -10。</p>
+<p>​  评估指标：<br/>​  我们采用两个常用指标 AUROC 和FPR95进行评估。 AUROC
+是无阈值指标，表示接收者操作特征曲线下面积，数值越高表示检测性能越优。FPR95，或TPR95中的
+FPR
+，表示当真阳性率为95%时的假阳性率，FPR95越小越好。这两个指标都以百分比表示。</p>
+<p>​  基线方法：<br/>​  基于先前研究[10]，我们将MOODv2与无需微调的基准算法进行对比，包括MSP[17]、Energy[19]、MaxLogit[18]、KL
+Matching[18]、Residual、ReAct[20]和Mahalanobis[21]。</p>
+<h2 id="a.-单类-ood-检测">A. 单类 OOD 检测</h2>
+<h2 id="b.-多类-ood-检测">B. 多类 OOD 检测</h2>
+<h1 id="结论">5.结论</h1>
+<p>​  在本研究中，我们聚焦于有效检测分布外样本（OOD）的关键环节——构建能够有效区分
+OOD 样本与分布内样本的稳健表征。通过采用多种预训练任务并运用不同 OOD
+评分函数进行系统性实验，研究发现：基于重构的预训练特征表征能显著提升模型性能，有效缩小不同评分函数间的性能差距。这表明即使采用简单的评分函数，在使用基于重构的预训练任务时也能达到复杂模型的同等效果。这些发现为
+OOD 检测技术的进一步发展指明了方向。最终，我们提出了MOODv2 OOD
+检测框架，通过采用掩码图像建模预训练任务，该框架在ImageNet数据集上实现了
+AUROC 指标14.30%的显著提升，达到95.68%的准确率，并将 CIFAR
+-10指标大幅优化至99.98%。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/MOODv2/">https://zhaozw-szu.github.io/MOODv2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/MOODv2/image-20251112232724110.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/Segment-Every-Out-of-Distribution-Object/" title="Segment Every Out-of-Distribution Object"><img class="cover" src="/postimages/Segment-Every-Out-of-Distribution-Object/image-20251112154258108.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Segment Every Out-of-Distribution Object</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">171</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-%E5%88%86%E5%B8%83%E5%A4%96%E6%A3%80%E6%B5%8B"><span class="toc-text">A. 分布外检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E8%87%AA%E7%9B%91%E7%9D%A3%E9%A2%84%E8%AE%AD%E7%BB%83%E4%BB%BB%E5%8A%A1"><span class="toc-text">B. 自监督预训练任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E8%AE%AD%E7%BB%83%E6%88%98%E7%95%A5"><span class="toc-text">C. 训练战略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-moodv1"><span class="toc-text">D. MOODv1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E5%8A%A8%E6%9C%BA%E5%AF%BB%E6%B1%82%E6%9C%89%E6%95%88%E7%9A%84id%E8%A1%A8%E7%A4%BA"><span class="toc-text">A.动机：寻求有效的ID表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-ood-%E6%A3%80%E6%B5%8B%E7%9A%84%E9%87%8D%E5%BB%BA%E4%BB%BB%E5%8A%A1"><span class="toc-text">B. OOD 检测的重建任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E5%88%86%E5%B8%83%E5%A4%96%E6%8E%A9%E8%86%9C%E5%9B%BE%E5%83%8F%E5%BB%BA%E6%A8%A1v2"><span class="toc-text">C. 分布外掩膜图像建模v2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-%E5%8D%95%E7%B1%BB-ood-%E6%A3%80%E6%B5%8B"><span class="toc-text">A. 单类 OOD 检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E5%A4%9A%E7%B1%BB-ood-%E6%A3%80%E6%B5%8B"><span class="toc-text">B. 多类 OOD 检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
