@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videosRongqin Liang a, Yuanman Li a, Yingxin Yi a, Jiantao Zhou b, Xia Li a,∗ 摘要 ​  在自动驾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos">
+<meta property="og:url" content="https://zhaozw-szu.github.io/A-memory-augmented-multi-task-collaborative-framework-for-unsupervisedtraffic-anomaly-detection-in-driving-videos/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videosRongqin Liang a, Yuanman Li a, Yingxin Yi a, Jiantao Zhou b, Xia Li a,∗ 摘要 ​  在自动驾">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg">
+<meta property="article:published_time" content="2025-11-22T06:45:18.000Z">
+<meta property="article:modified_time" content="2025-12-11T09:05:19.322Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/A-memory-augmented-multi-task-collaborative-framework-for-unsupervisedtraffic-anomaly-detection-in-driving-videos/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-12-11 17:05:19'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">182</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-11-22T06:45:18.000Z" title="创建于 2025-11-22 14:45:18">2025-11-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-11T09:05:19.322Z" title="更新于 2025-12-11 17:05:19">2025-12-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>A memory-augmented multi-task collaborative framework for
+unsupervised traffic anomaly detection in driving videos<br/>Rongqin
+Liang a, Yuanman Li a, Yingxin Yi a, Jiantao Zhou b, Xia Li a,∗</p>
+<h1 id="摘要">摘要</h1>
+<p>​  在自动驾驶和驾驶辅助系统中，识别行车视频中的交通异常对保障行车安全至关重要。针对驾驶事件长尾分布带来的潜在风险，现有交通异常检测方法主要依赖无监督学习。然而，多数传统无监督方法仅采用单一预任务，无论是基于外观特征还是未来目标定位的检测方法，都难以同时建模驾驶场景中的全局与局部运动，导致检测效果欠佳。本文提出一种创新的增强记忆多任务协同框架，通过光流重建与未来目标定位任务的协同工作，全面建模驾驶过程中的全局与局部运动，从而更精准地检测涉及本车与非本车的异常。此外，我们引入记忆增强型运动表征机制，充分挖掘不同类型运动表征间的关联性，并利用记忆中存储的常规交通模式高级特征来增强运动表征，从而显著扩大异常特征的识别差异。在公开数据集上的实验结果表明，本方法较现有最先进方法实现了性能提升。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  然而，由于驾驶场景的动态特性源于车辆的快速移动，基于外观特征的方法通常难以检测涉及非本车车辆的交通异常——这类异常通常仅引发局部场景变化。此外，基于未来目标定位的方法通过预测场景中物体的位置来检测交通异常。这类方法侧重于物体的运动状态（即局部运动），这有助于识别涉及非本车车辆的交通异常（例如与远处车辆的碰撞），但这类方法忽略了驾驶场景的整体运动建模，导致其在检测涉及全局场景变化的交通异常时效果欠佳。因此，如何准确检测涉及本车（即本车车辆相关交通异常）和非本车（即观测到的物体相关交通异常）的异常，对驾驶视频中的交通异常检测（TAD）至关重要。此外，交通异常检测本质上是识别与常规交通模式不同的异常值。因此，建立常规交通模式模型并提升对异常模式的敏感度，对于实现精准的交通异常检测具有重要意义。<br/>​  本研究提出通过融合光流重建与未来目标定位任务，实现全局与局部运动的综合建模。一方面，驾驶场景中的光流数据反映了车辆行驶时的全局运动特征，利用光流重建误差可有效检测涉及全局场景变化的交通异常。另一方面，未来目标定位聚焦于场景中物体的运动状态（即局部运动），有助于识别涉及局部场景变化的交通异常。此外，全局与局部运动之间存在相互关联性，主要基于以下原因：首先，全局运动本质上反映了驾驶车辆的自我运动特征，这有助于更精准地建模由场景中物体引发的局部运动；其次，局部运动提供了与驾驶场景局部动态相关的线索，可能提升全局运动特征描述的准确性。<br/>​  鉴于上述光流重建和未来对象定位的独特优势，我们提出了一种新的记忆增强多任务协作框架（MAMTCF），用于驾驶视频中的无监督交通异常检测。首先，我们提出了一种无监督多任务协作框架，以全面建模驾驶场景中的全局和局部运动。与基于单一预文本任务的现有交通异常检测方法相比，我们的框架通过协作完成光流重建和未来对象定位任务，从而建模驾驶场景的全局和局部运动，有助于检测涉及自车和非自车的异常，实现显著的性能提升。此外，我们提出了一种记忆增强运动表示（MAMR）机制，以充分探索不同类型运动表示之间的相互关系，并利用存储在记忆中的正常交通模式的高级特征来重建运动表示。这扩大了与异常交通模式表示的区分度，使得交通异常更容易被检测。具体而言，在训练阶段，
+MAMTCF
+被应用于训练光流重建和未来对象定位任务。在推理阶段，我们根据光流重建的误差和观察到的对象预测位置的方差，为驾驶视频帧获得一个异常分数。我们工作的主要贡献可以总结如下：</p>
+<ol type="1">
+<li>我们提出了一种新型多任务协作框架，用于无监督交通异常检测（TAD）。与以往基于单一预文本任务的TAD方法相比，我们的框架通过协同完成光流重建和未来目标定位任务，同时建模驾驶场景中的全局运动和局部运动。这种协作机制促进了对涉及自车和非自车异常的检测，显著提升了交通异常的检测效果。<br/>2.
+我们进一步提出一种记忆增强的运动表征机制，通过利用记忆中存储的正常交通模式的高级特征，全面探索不同类型运动表征之间的相互关系并重构运动表征。这种重构的运动表征有助于增强与异常情况的差异性，从而有利于交通异常的检测。<br/>3.
+该框架在两项已发表的大规模基准测试中实现了最先进的性能，为驾驶视频中的无监督交通异常检测提供了有前景的发展方向。</li>
+</ol>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="监视视频中的视频异常检测vad">2.1.
+监视视频中的视频异常检测（VAD）</h2>
+<h2 id="行车记录仪视频中的交通异常检测tad">2.2.
+行车记录仪视频中的交通异常检测（TAD）</h2>
+<h2 id="记忆网络">2.3. 记忆网络</h2>
+<p>​  记忆模块在神经网络中[48,49]作为读写全局记忆的一种类型，最近受到了广泛关注。例如，Memformer[49]利用外部动态记忆来编码和检索过去的信息，以实现高效的序列建模。最近，一些研究[6,12,50]将记忆网络应用于监控视频中的
+VAD
+任务。例如，Park等人[50]提出使用具有更新方案的记忆模块，其中记忆中的条目记录了训练数据的正常模式。
+𝐻𝐹2 - VAD
+[6]引入了记忆模块，用于存储光流重建的正常模式，以便通过重建误差敏感地识别异常事件。在本工作中，我们首次尝试探索一种记忆机制，以增强运动表示，用于驾驶视频中的交通异常检测。</p>
+<h1 id="提出的方法mamtcf">3.提出的方法：MAMTCF</h1>
+<p>​  MAMTCF 模型的整体框架如图1所示。它主要由三个部分组成：(1)
+特征提取模块，用于提取不同类型的运动表示；(2)
+记忆增强运动表示（MAMR）机制，用于协作处理不同类型的运动表示并输出记忆增强的运动表示；(3)
+多任务解码器，用于重建光流并预测物体未来的边界框。在推理阶段，重建误差和预测误差均用于交通异常检测。<br/>​  在接下来的部分中，我们将首先介绍特征提取模块，然后是
+MAMR
+机制，接着是多任务解码器，最后展示如何使用我们的模型进行驾驶视频中的交通异常检测。</p>
+<figure>
+<img
+src="../postimages/A-memory-augmented-multi-task-collaborative-framework-for-unsupervisedtraffic-anomaly-detection-in-driving-videos/image-20251122183434551.png"
+alt="image-20251122183434551" />
+<figcaption aria-hidden="true">image-20251122183434551</figcaption>
+</figure>
+<blockquote>
+<p>图1. 我们的 MAMTCF 算法框架。 MAMTCF
+主要由特征提取模块、记忆增强运动表示（MAMR）机制和多任务解码器组成。<br/>&gt;
+(1)首先，通过特征提取模块将驾驶视频帧的光流和场景中观察到的物体边界框编码为不同类型的运动表示；<br/>&gt;
+(2)然后， MAMR
+机制协同处理不同类型的运动表示，并输出记忆增强的运动表示；<br/>&gt;
+(3)记忆增强的运动表示分别通过多任务解码器来重建光流和预测物体未来的边界框；<br/>&gt;
+(4)最后，通过融合光流的重建误差和预测边界框的方差来获得异常分数。</p>
+</blockquote>
+<h2 id="特征提取">3.1.特征提取</h2>
+<p>​  在驾驶场景中同时建模全局和局部运动，有助于检测涉及自我和非自我交通异常。在本研究中，我们首先应用特征提取模块来提取不同类型运动表征。如图1所示，我们主要提取两类输入的表征，即视频帧的光流和观测场景中物体的边界框。<br/>​  实际上，视频帧的光流反映了驱动场景的整体运动。为了建模这种整体运动，我们将从帧
+𝑡 到 𝑡 +1的光流表示定义为时间步 𝑡 的整体运动，可以表示为： <span
+class="math display">\[F_{t}=\phi\left(I_{t};\;\mathcal{\Phi}_{f}\right),\]</span>
+​  其中<span class="math inline">\({\Phi}_{f}\)</span>是光流编码器<span
+class="math inline">\({\phi}(\cdot)\)</span>的参数，<span
+class="math inline">\(I_{t}\)</span>表示从帧 𝑡 到 𝑡 + 1
+的光流，该光流由预训练的 FlowNet 2.0 [51]
+获取。在我们的实验中，我们采用了与 𝐻𝐹2 - VAD [6]
+中光流编码器相同的网络架构。<br/>​  此外，场景中观测物体的边界框反映了物体的运动状态。因此，我们将观测场景中物体的运动状态定义为局部运动，其可表述为：
+<span
+class="math display">\[\chi_{t}=\varphi\left(X_{1:t}^{1:N};\,\,\Phi_{x}\right),\]</span>
+​  其中<span class="math inline">\(\Phi_{x}\)</span> 表示位置编码器<span
+class="math inline">\(\varphi(\cdot)\)</span>的参数。 <span
+class="math inline">\(X_{1:t}^{1:N}\)</span> 表示在观察到的 𝑡 场景中 𝑁
+个物体的边界框，这是通过预训练的 Mask- RCNN [52] 获得，然后使用
+Deep-SORT [53]
+算法进行跟踪。在我们的实验中，位置编码器由一个全连接层（FC）和一个门控循环神经网络（GRU）组成。此外，为了更好地感知物体的运动状态，我们进一步利用物体的光流来编码其当前的运动特征。具体来说，类似于
+[10,16]，我们使用感兴趣区域池化（RoIPool）操作和双线性插值从预计算的光流场中提取物体的运动特征。局部运动
+<span class="math inline">\(\Chi_{t}\)</span>可以如下更新： <span
+class="math display">\[\chi_{t}:=\chi_{t}+M L P\left(R o I P o o
+l\left(I_{t},\;X_{t}^{1:N}\right);\phi_{m}\right),\]</span> ​  其中 <span
+class="math inline">\(\phi_{m}\)</span>是多层感知机（MLP）的参数。在获得全局运动
+<span class="math inline">\(F_t\)</span> 和局部运动 <span
+class="math inline">\(\chi_{t}\)</span>后，我们的模型能够感知驾驶场景中的全局和局部运动，从而使我们的方法能够检测涉及自身和非自身交通异常。</p>
+<h2 id="用于协作多任务的增强记忆的运动表征机制">3.2.
+用于协作多任务的增强记忆的运动表征机制</h2>
+<p>​  通过结合不同类型的运动表征有助于检测各类交通异常。具体而言，关注驾驶场景全局变化的全局运动表征，能有效识别涉及驾驶者的异常；而侧重场景局部变化的局部运动表征，则更擅长检测非驾驶者相关的异常。直观来看，最简单的融合方式是将两种表征拼接后分别用于不同任务。但全局与局部运动表征之间存在内在关联：一方面，全局运动本质上反映了驾驶车辆的自身运动，有助于更精准地模拟场景中物体引发的局部运动；另一方面，局部运动提供了与场景动态相关的线索，可能提升全局运动表征的识别精度。此外，自编码器的泛化能力可能导致其学习到正常与异常交通的共性模式[12]，从而模糊正常与异常运动表征的界限，导致异常检测漏检。因此，简单拼接不同运动表征并非明智策略，表5的实验结果也印证了这一点。<br/>​  在我们的工作中，我们特别设计了一种记忆增强的运动表示（MAMR）机制用于交通异常检测。我们的机制利用注意力机制探索不同运动表示之间的相互关系，并进一步利用存储在记忆中的正常交通模式的高级特征来重建运动表示，从而提高对异常交通模式的敏感度。具体来说，如图2所示，我们的
+MAMR
+机制主要由一个运动间层和一个记忆增强的运动层组成。前者建模不同类型运动表示之间的相互关系，而后者则利用存储在记忆中的正常交通模式来重建运动表示，从而增加与异常情况的差异。</p>
+<figure>
+<img
+src="../postimages/A-memory-augmented-multi-task-collaborative-framework-for-unsupervisedtraffic-anomaly-detection-in-driving-videos/image-20251122184544378.png"
+alt="image-20251122184544378" />
+<figcaption aria-hidden="true">image-20251122184544378</figcaption>
+</figure>
+<blockquote>
+<p>图2. 提出的 MAMR 机制示意图。 MAMR
+机制主要由一个运动间层、一个记忆增强运动层和一个前馈网络组成。运动间层探索全局运动与局部运动之间的相互关系，而记忆增强运动层则检索存储在记忆中的正常交通模式的高级特征，并用正常交通模式重建运动表征。</p>
+</blockquote>
+<h3 id="交互运动层">3.3.1 交互运动层</h3>
+<p>​  为建立全局运动与局部运动的关联模型，我们首先设计了一个基于自注意力机制的运动交互层。具体而言，如图2所示，我们首先为全局运动和局部运动添加位置编码，以表征二者间的相对关系，其数学表达式可表述为：
+<span class="math display">\[\begin{array}{l}{M_{t}=C o n c a
+t(F_{t},X_{t}),}\\ {M_{t}:=M_{t}+P E(M_{t}),}\end{array}\]</span> ​  其中
+<span class="math inline">\(M_{t}\)</span>是全局运动<span
+class="math inline">\(F_{t}\)</span>和局部运动<span
+class="math inline">\(X_{t}\)</span>的拼接表示，<span
+class="math inline">\(P
+E(\cdot)\)</span>表示广泛使用的硬编码位置嵌入策略
+[54]。然后，我们应用自注意力机制来建模全局运动与局部运动之间的相互关系，其公式可以表示为：
+<span
+class="math display">\[\begin{array}{c}{Q_{m},K_{m},V_{m}=M_{t}W_{Q},M_{t}W_{K},M_{t}W_{V},}\\
+{A_{t}=M H A tt n\left(Q_{m},K_{m}\right),}\\ {H_{t}=M_{t}+L N(S o f t m
+a x\left(A_{t}\right)V_{m}),}\end{array}\]</span> ​  其中<span
+class="math inline">\(W_{Q}\)</span>，<span
+class="math inline">\(W_{K}\)</span> ，和 <span
+class="math inline">\(W_{V}\)</span> 是<span
+class="math inline">\(M_{t}\)</span>的查询 <span
+class="math inline">\(Q_{m}\)</span>，键<span
+class="math inline">\(K_{m}\)</span>和值<span
+class="math inline">\(V_{m}\)</span> 对应的参数，<span
+class="math inline">\(M H A tt n(\cdot)\)</span>表示多头自注意力，
+𝐿𝑁（⋅）是层归一化， 𝐻𝑡 模型描述了全局运动与局部运动之间的相互关系。</p>
+<h3 id="增强记忆的运动层">3.2.2 增强记忆的运动层</h3>
+<p>​  为了提高对异常交通模式的敏感度，我们进一步设计了一个基于交叉注意力的记忆增强运动层。该层利用存储在记忆中的正常交通模式的高级特征来重建运动表征，从而提高对异常交通模式的敏感度。<br/>​  具体来说，如图2所示，记忆被设计为一个矩阵<span
+class="math inline">\({\mathcal M}\in\mathbb{R}^{M\times
+C}\)</span>，包含固定维度 𝐶 的正常交通模式高级特征的 𝑀
+个槽位。需要注意的是，记忆<span class="math inline">\({\mathcal
+M}\)</span>在训练开始时是随机初始化的。对于每个输入<span
+class="math inline">\(H_t\)</span>，记忆增强运动层需要读取记忆以检索正常交通模式的相关高级特征。我们利用交叉注意力机制来实现这一功能：
+<span
+class="math display">\[\begin{array}{c}{Q_{h},K_{n},V_{n}=H_{t}W_{Q}^{\prime},M
+W_{K}^{\prime},M W_{V}^{\prime},}\\ {A_{n}=M H A t t
+n\left(Q_{h},K_{n}\right),}\\ {H_{n}=H_{t}+L N(H a r d S h r i n k a g
+e\left(A_{n}\right)V_{n}),}\end{array}\]</span>
+​  其中记忆存储槽向量以参数<span
+class="math inline">\(W_{K}^{\prime}\)</span>和参数<span
+class="math inline">\(W_{V}^{\prime}\)</span>投影到键<span
+class="math inline">\(K_n\)</span>和值<span
+class="math inline">\(V_n\)</span>中，而 <span
+class="math inline">\(𝐻_𝑡\)</span>则以参数<span
+class="math inline">\(W_{Q}^{\prime}\)</span>投影到查询<span
+class="math inline">\(Q_h\)</span>中。 <span
+class="math inline">\(𝐻_n\)</span>表示重构的运动表示。需要注意的是，为了使存储的正常交通模式的高级特征更具代表性，我们采用了文献
+[12] 中的硬收缩操作，以促进记忆<span class="math inline">\(\mathcal
+M\)</span>的稀疏性。 <span
+class="math display">\[\hat{a}_{i}=h\left(a_{i};\lambda\right)=\frac{R e
+L U\left(a_{i}-\lambda\right)\cdot
+a_{i}}{|a_{i}-\lambda|+\varepsilon},\]</span> ​  其中<span
+class="math inline">\(\varepsilon\)</span> 是一个非常小的正标量， 𝑎𝑖 ∈
+𝐴𝑛 ， 𝑖 ∈（1，𝑀）， 𝜆 表示收缩阈值， 𝑅𝑒𝐿𝑈 是 ReLU
+激活函数。硬收缩操作促使模型用更少但更相关的记忆项来重建 𝐻𝑡
+，从而促进学习更能代表正常交通模式的记忆中的高层次特征。此外，参考文献
+[12]，我们在训练过程中还对 <span class="math inline">\(\hat 𝐴_𝑛\)</span>
+进行稀疏正则化最小化，以促进记忆的稀疏性。 <span
+class="math display">\[L_{s}=\sum_{i=1}^{M}-{\hat{a}}_{i}\cdot\log\left({\hat{a}}_{i}\right),\]</span>
+​  其中 𝑎𝑖 ∈ 𝐴𝑛 且 𝑖
+∈（1，𝑀）。<br/>​  最后，我们在记忆增强运动层之后应用了一个前馈网络，其可以表述为：
+<span class="math display">\[M_{t}^{\prime}=H_{n}+L N\left(F F
+N\left(H_{n};\Theta_{f}\right)\right),\]</span> ​  其中 𝐹 𝐹
+𝑁（⋅）是一个由两个全连接层组成的模块， <span
+class="math inline">\(\Theta_{f}\)</span> 表示 𝐹 𝐹 𝑁（⋅）的参数， 𝑀𝑡 ′
+是增强记忆的运动表示。我们可以观察到，我们的 MAMR
+机制不仅建模了不同类型运动表示之间的相互关系，还利用了正常交通模式的高级特征来重建运动表示，从而提高了我们框架对交通异常的敏感度。与文献
+[6,12]
+中提出的记忆网络不同，我们特别设计了一个运动间层来建模不同类型运动表示之间的相互关系，并提出了一种增强记忆的运动层，以自适应地从记忆中检索与输入运动表示相关的正常交通模式的高级特征。</p>
+<h2
+id="用于交通异常检测的多任务解码器">3.3.用于交通异常检测的多任务解码器</h2>
+<p>​  在获得增强记忆的运动表征后，我们可轻松将其解码用于多项任务，如光流重建和未来目标定位。在推理阶段，基于多任务的重建误差和预测偏差，实施无监督TAD。</p>
+<h3 id="光流重建">3.3.1.光流重建</h3>
+<p>​  如图1所示，我们利用多任务解码器来重建视频帧的光流，并预测场景中观察到的物体未来的边界框。具体来说，运动表示
+𝑀𝑡 ′通过光流解码器来重建光流，这可以表述为： <span
+class="math display">\[\begin{array}{l c
+r}{F_{t}^{\prime},X_{t}^{\prime}=S p l i t(M_{t}^{\prime}),}\\
+{I_{t}^{\prime}=\phi_{d e c}(F_{t};\Theta_{f}),}\end{array}\]</span>
+​  其中 𝑆𝑝𝑙𝑖𝑡（⋅）表示 𝑀𝑡 ′ 的通道划分， 𝐹𝑡 ′ ，𝑋𝑡 ′
+分别表示增强记忆的全局运动和局部运动。 𝛩𝑓 是光流解码器 𝜙𝑑𝑒𝑐（⋅）的参数，
+𝐼𝑡 ′ 表示重建的光流。在我们的实验中，我们使用了与 𝐻𝐹2 -VAD [6].
+中光流解码器相同的网络架构。需要注意的是，为了更好地重建光流，我们将解码器倒数第二层的卷积层替换为
+SSPCAB 模块
+[43]。该模块将基于重建的功能整合到自监督预测架构的构建块中，具体细节参见
+[43]。<br/>​  事实上，在驾驶场景中，移动速度是导致交通异常的重要因素之一。因此，在本研究中，我们不仅监督光流的一致性，还强调重构外观变化的一致性。重构光流的损失函数如下：
+<span class="math display">\[\begin{array}{l}{L_{f}=L_{m o t i o n}+L_{r
+e c o n}}\\
+{\phantom{\frac{1}{f}}=\sqrt{\left(I_{x}-I_{x}^{\prime}\right)^{2}+\left(I_{y}-I_{y}^{\prime}\right)^{2}}+|I_{t}-I_{t}^{\prime}|,}\end{array}\]</span>
+​  其中（𝐼𝑥 ，𝐼𝑦）= 𝐼𝑡 表示图像在 𝑥 和 𝑦
+方向上的偏移量。公式（11）中的第一项 𝐿𝑚𝑜𝑡𝑖𝑜𝑛
+强调了外观变化的一致性，而最后一项 𝐿𝑟𝑒𝑐𝑜𝑛 则监督重建的光流。</p>
+<h3 id="未来对象定位">3.3.2.未来对象定位</h3>
+<p>​  对于未来的对象定位任务，如图3所示，我们利用位置解码器对运动表示 𝑀𝑡
+′进行循环解码，以得到对象的未来边界框，可以写成： <span
+class="math display">\[\begin{array}{r}{h_{t}=g(M_{t}^{\prime};\xi_{m}),}\\
+{h_{t+1}=G R U\left(e_{t},h_{t};\xi_{g}\right),}\\ {e_{t+1}=M L
+P\left(h_{t+1};\xi_{e}\right),}\\{\hat{Y}_{t+1}^{1:N}=M L
+P\left(h_{t+1};\xi_{y}\right),}\end{array}\]</span> ​  其中投影头
+𝑔（⋅）由一个线性层和一个 ReLU 激活层组成，而 MLP 也由一个线性层和一个
+ReLU 激活层组成。此外， 𝜉 ∗ 是可学习的参数， 𝑒0 初始值为零。 𝑌 1∶ 𝑁 𝑡 +1
+表示在时间步 𝑡 + 1 时预测的对象边界框，其中 𝑡 的范围是从 𝑡 到
+T-1。<br/>​  此外，预测边界框的损失函数可定义为： <span
+class="math display">\[L_{m s
+e}=\sum_{i=t+1}^{T}{\frac{1}{N}}\sum_{n=1}^{N}d\left(Y_{i}^{n},{\hat{Y}}_{i}^{n}\right),   \]</span>
+​  其中 𝑑（⋅）计算欧几里得距离。结合重构光流的损失函数 𝐿𝑓 和公式 (8)
+中的稀疏性损失 𝐿𝑠 ，我们的最终损失函数表述为： <span
+class="math display">\[L_{t o t a l}=\lambda_{1}L_{f}+\lambda_{2}L_{m s
+e}+\lambda_{3}L_{s},\]</span> ​  其中 𝜆1 、 𝜆2 和 𝜆3
+是不同损失的系数。</p>
+<h2 id="交通异常检测">3.3.3 交通异常检测</h2>
+<p>​  本节将阐述我们的多任务协作框架如何在推理阶段检测驾驶视频中的交通异常。<br/>​  我们融合了基于不同类型运动一致性得出的交通异常评分。具体而言，我们分别计算了光流重建误差和预测边界框的方差，具体方法如下：
+<span
+class="math display">\[\begin{array}{c}S_{e}=\sqrt{(I_{x}-I_{x}^{\prime})^{2}+(I_{y}-I_{y}^{\prime})^{2}},\\S_{I}=\operatorname*{max}_{\{1:N\}}(\operatorname*{mean}_{\{b
+b o x\}}((S T
+D(|\,|\,Y_{t,t-j}^{1:N}-\hat{Y}_{t,t-j}^{1:K}\,|\,)_{j=1}^{j=\delta}))))\end{array}\]</span>
+​  其中 𝑆𝑒 表示光流的重建误差， 𝑆𝑙 表示从时间 𝑡 −1 到 𝑡 −2 ，...，𝑡 − 𝛿
+预测的时间 𝑡 的 𝛿 边框方差。 𝑆𝑒
+关注驾驶场景的整体变化，有助于检测涉及自我的交通异常。𝑆𝑙
+强调场景中的局部变化，这有助于检测非自我异常。请注意，我们通过 𝑆𝑇
+𝐷（⋅）计算边界框左上角和右下角坐标（即 𝑏𝑏𝑜𝑥 = 𝑥𝑚𝑖𝑛 ，𝑦𝑚𝑖𝑛 ，𝑥𝑚𝑖𝑛
+，𝑦𝑚𝑖𝑛）的方差，并取其平均值作为该对象在时间 𝑡
+的预测误差。由于场景中存在异常的物体具有相对较大的相应预测误差，因此我们取场景中最大预测误差作为该驾驶视频在时间
+的异常分数。<br/>​  此外，我们将重构误差 𝑆𝑒 与边界框方差 𝑆𝑙
+融合，以获得最终的交通异常分数 𝑆𝑓 ，其公式可以表示为： <span
+class="math display">\[S_{f}=N o r m\left(\alpha N o r
+m\left(S_{e}\right)+(1-\alpha)N o r m\left(S_{I}\right)\right),\]</span>
+​  其中 𝑁𝑜𝑟𝑚（⋅）表示最大最小归一化， 𝛼 ∈ [0,1]表示融合系数。</p>
+<h1 id="结论">5.结论</h1>
+<p>​  本文提出了一种新颖的记忆增强多任务协作框架，用于驾驶视频中无监督的交通异常检测。与以往基于单一预文本任务的TAD方法不同，我们的方法通过在光流重建和未来物体定位任务上协作，同时建模驾驶场景中的全局和局部运动，从而更好地检测涉及自我和非自我异常。此外，提出的
+MAMR
+机制充分探索了不同类型运动表征之间的相互关系，并利用存储在记忆中的正常交通模式的高级特征增强运动表征，从而扩大了与异常的区分度。两个大规模数据集上的定量和定性实验结果均表明，我们的方法在各种情况下具有优越性。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/A-memory-augmented-multi-task-collaborative-framework-for-unsupervisedtraffic-anomaly-detection-in-driving-videos/">https://zhaozw-szu.github.io/A-memory-augmented-multi-task-collaborative-framework-for-unsupervisedtraffic-anomaly-detection-in-driving-videos/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/An-Interaction-Scene-Collaborative-Representation-Framework-for-Detecting-Traffic-Anomalies-in-Driving-Videos/" title="An Interaction-Scene Collaborative Representation Framework for Detecting Traffic Anomalies in Driving Videos"><img class="cover" src="/img/coverImage/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">An Interaction-Scene Collaborative Representation Framework for Detecting Traffic Anomalies in Driving Videos</div></div></a></div><div class="next-post pull-right"><a href="/FlyLoRA/" title="FlyLoRA"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">FlyLoRA</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">182</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E8%A7%86%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E8%A7%86%E9%A2%91%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8Bvad"><span class="toc-text">2.1.
+监视视频中的视频异常检测（VAD）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E8%BD%A6%E8%AE%B0%E5%BD%95%E4%BB%AA%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E4%BA%A4%E9%80%9A%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8Btad"><span class="toc-text">2.2.
+行车记录仪视频中的交通异常检测（TAD）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BF%86%E7%BD%91%E7%BB%9C"><span class="toc-text">2.3. 记忆网络</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%96%B9%E6%B3%95mamtcf"><span class="toc-text">3.提出的方法：MAMTCF</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-text">3.1.特征提取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%8D%8F%E4%BD%9C%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%A2%9E%E5%BC%BA%E8%AE%B0%E5%BF%86%E7%9A%84%E8%BF%90%E5%8A%A8%E8%A1%A8%E5%BE%81%E6%9C%BA%E5%88%B6"><span class="toc-text">3.2.
+用于协作多任务的增强记忆的运动表征机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92%E8%BF%90%E5%8A%A8%E5%B1%82"><span class="toc-text">3.3.1 交互运动层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E8%AE%B0%E5%BF%86%E7%9A%84%E8%BF%90%E5%8A%A8%E5%B1%82"><span class="toc-text">3.2.2 增强记忆的运动层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E4%BA%A4%E9%80%9A%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1%E8%A7%A3%E7%A0%81%E5%99%A8"><span class="toc-text">3.3.用于交通异常检测的多任务解码器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E6%B5%81%E9%87%8D%E5%BB%BA"><span class="toc-text">3.3.1.光流重建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AA%E6%9D%A5%E5%AF%B9%E8%B1%A1%E5%AE%9A%E4%BD%8D"><span class="toc-text">3.3.2.未来对象定位</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E9%80%9A%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="toc-text">3.3.3 交通异常检测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

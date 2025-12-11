@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>DETECTIVE SAM:ADAPTIVE AI-IMAGE FORGERY LOCALIZATION | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DETECTIVE SAM: ADAPTIVE AI-IMAGE FORGERY LOCALIZATION Anonymous authorsPaper under double-blind review ICLR 2026 rate： 6-6-6-4 摘要 ​  在生成式AI时代，图像伪造检测面临全新挑战：现代编辑流程生成的逼真图像经过语义连贯的处理后，能规避传统检测手段，而模型能力也在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DETECTIVE SAM:ADAPTIVE AI-IMAGE FORGERY LOCALIZATION">
+<meta property="og:url" content="https://zhaozw-szu.github.io/DETECTIVE-SAM-ADAPTIVE-AI-IMAGE-FORGERY-LOCALIZATION/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="DETECTIVE SAM: ADAPTIVE AI-IMAGE FORGERY LOCALIZATION Anonymous authorsPaper under double-blind review ICLR 2026 rate： 6-6-6-4 摘要 ​  在生成式AI时代，图像伪造检测面临全新挑战：现代编辑流程生成的逼真图像经过语义连贯的处理后，能规避传统检测手段，而模型能力也在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg">
+<meta property="article:published_time" content="2025-11-20T14:16:39.000Z">
+<meta property="article:modified_time" content="2025-12-11T09:06:12.094Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/DETECTIVE-SAM-ADAPTIVE-AI-IMAGE-FORGERY-LOCALIZATION/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DETECTIVE SAM:ADAPTIVE AI-IMAGE FORGERY LOCALIZATION',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-12-11 17:06:12'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">182</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">DETECTIVE SAM:ADAPTIVE AI-IMAGE FORGERY LOCALIZATION</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-11-20T14:16:39.000Z" title="创建于 2025-11-20 22:16:39">2025-11-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-11T09:06:12.094Z" title="更新于 2025-12-11 17:06:12">2025-12-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="DETECTIVE SAM:ADAPTIVE AI-IMAGE FORGERY LOCALIZATION"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>DETECTIVE SAM: ADAPTIVE AI-IMAGE FORGERY LOCALIZATION</p>
+<p>Anonymous authors<br/>Paper under double-blind review</p>
+<p>ICLR 2026 rate： 6-6-6-4</p>
+<h1 id="摘要">摘要</h1>
+<p>​  在生成式AI时代，图像伪造检测面临全新挑战：现代编辑流程生成的逼真图像经过语义连贯的处理后，能规避传统检测手段，而模型能力也在飞速进化。为此，我们开发了基于SAM2框架的Detective
+SAM系统。SAM2作为图像分割基础模型，通过结合扰动驱动的取证线索、轻量级特征适配器和掩码适配器，实现自动提示将取证线索转化为伪造掩码。为应对扩散模型的快速迭代，我们推出AutoEditForge自动化编辑生成流程，涵盖四种编辑类型。该流程不仅提供高质量数据以维持新编辑器下的检测精度，还能持续优化Detective
+SAM。在七个基准数据集和七种基线模型的测试中，Detective
+SAM展现出稳定的离分布性能，平均交并比达到36.99/44.19
+F1，较最优基线提升33.67%的交并比。此外，我们证明最先进的编辑会导致定位系统崩溃。当使用500个AutoEditForge样本时，Detective
+SAM能快速适应并恢复性能，使得随着编辑模型改进，检测系统可实现低摩擦度的实用更新。AutoEditForge、Detective
+SAM的预训练权重和训练脚本可在匿名存储库中获取：
+https://anonymous.4open.science/r/Detective-SAM-9057/.</p>
+<h1 id="引言">1 引言</h1>
+<p>​  深度学习技术让逼真图像生成变得触手可及。现代模型生成的合成图像对人眼而言往往难以辨识（拉梅什等人，2021）。即便图像主体真实，针对性的编辑操作仍能篡改身份、伪造证据，甚至误导观众（卡达等人，2025）。随着虚拟环境中此类内容泛滥，识别图像篡改痕迹已成为当务之急。在现代局部编辑技术背景下，图像伪造定位（IFL）面临巨大挑战——那些细微逼真的增删操作常常能逃过人类感知。图1展示了来自纳米香蕉（Gemini
+2.5 Flash Comanici等人，2025）的典型篡改案例及其预测结果。</p>
+<figure>
+<img
+src="../postimages/DETECTIVE-SAM-ADAPTIVE-AI-IMAGE-FORGERY-LOCALIZATION/image-20251120222055726.png"
+alt="image-20251120222055726" />
+<figcaption aria-hidden="true">image-20251120222055726</figcaption>
+</figure>
+<p>​  传统图像流形框架（Legacy
+IFL）主要针对剪接和复制-移动操作（Kwon等，2021）。通过利用编辑检测和定位的特征信号——即法医线索，该框架能够识别跨图像合并和图像内重复。然而，包括DALL-E等扩散模型在内的现代生成器技术，使得传统线索和方法逐渐过时（Ramesh等，2022；Zhang等，2024）。传统IFL的设计原理依赖于相机或压缩产生的伪影，而现代生成模型由于其伪影源自生成过程，因此缺乏这些特征（Kwon等，2021；Guillaro等，2023）。最新扩散数据集揭示了显著的定位精度下降（Nguyen等，2024；Zhang等，2024）；生成模型的快速发展形成了动态目标，需要持续更新的数据和训练。</p>
+<p>​  由扩散模型引发的范式转变，推动了对更强有力的取证线索研究热潮。其中部分研究在无需训练（Ricker等，2024；Tsai等，2024a；He等，2024）和零样本（Cozzolino等，2024）方法上取得了实证成功，这些方法通过在基础模型的嵌入空间中引入显式扰动伪影来实现。图像基础模型通过大规模自监督学习（Dosovitskiy等，2021；Oquab等，2024）获取嵌入向量。此类嵌入向量揭示了扩散模型在遭遇高斯噪声或模糊等扰动时输出的分布偏移，为识别扩散编辑提供了强有力的取证线索。</p>
+<p>​  近期发布的Segment Anything模型（SAM Kirillov等人，2023；SAM2
+Ravi等人，2024）作为图像分割领域的专用基础模型，采用强大的大规模预训练编码器。该模型在下游任务中的表现尤为突出（Chen等人，2024），已成功应用于阴影与伪装检测（Jie和Zhang，2023；Meeran等人，2024）以及IFL。在IFL领域，SAM模型被重新定向用于伪造区域分割。目前SAM在IFL中的应用仍在不断拓展：现有方法（Kwon等人，2024；Zhang等人，2025）仍侧重传统伪造方法，而忽视了更具扩散特异性特征的线索。</p>
+<p>​  当前IFL面临三个持久性问题：<br/>​  1）现有方案普遍忽视现代编辑特征的法证线索，未能充分挖掘基础模型中蕴含的先验信息；<br/>​  2）模型架构需支持实时整合新编辑数据，既能快速适应又可避免灾难性遗忘；<br/>​  3）系统需在近期主流编辑器上保持高效，但实验数据表明新版本模型表现持续下滑，这表明需要持续更新训练和评估数据。</p>
+<p>​  为此，我们提出Detective
+SAM框架——一个针对现代图像伪造检测（IFL）挑战的综合性解决方案。该框架基于两大核心突破：首先，通过大规模预训练的SAM2编码器可检测嵌入分布的偏移特征，将这种由扰动驱动的取证线索转化为SAM2的自动热图提示，有效解决问题1；其次，借助轻量级特征适配器（Chen等人，2024），将SAM2解码器从目标分割任务重新定向至伪造检测任务。在保持SAM2主干网络冻结不变的前提下，仅对自研模块进行训练，从而实现高效轻量级微调，支持新编辑器的持续迭代，完美解决问题2。图2直观展示了该架构与SAM2各模块间的交互关系。</p>
+<figure>
+<img
+src="../postimages/DETECTIVE-SAM-ADAPTIVE-AI-IMAGE-FORGERY-LOCALIZATION/image-20251120222334066.png"
+alt="image-20251120222334066" />
+<figcaption aria-hidden="true">image-20251120222334066</figcaption>
+</figure>
+<blockquote>
+<p>图2：Detective
+SAM流程图，其中白色部分为我们的可学习模块与流程，灰色部分为SAM2的冻结模块。输入参数包括：原始图像I、扰动图像I′i、热图提示M、自适应特征{eFs}及二值伪造掩码B。原始SAM2组件流程图详见附录B.2。</p>
+</blockquote>
+<p>​  最后，我们通过AutoEditForge直接实现挑战3，确保训练和评估数据始终保持最新。AutoEditForge是一个自动化流程，能够对真实图像进行类人本地生成式编辑，并通过替换、移除、添加和局部修改四种方法生成像素级精准的蒙版。该工具与Detective
+SAM形成协同效应：AutoEditForge持续提供新鲜的编辑后真实图像对，既支持评估又便于快速调整。<br/>​  我们在生成式编辑领域对IFL的贡献如下：</p>
+<ol type="1">
+<li><p>SAM检测架构 <br/>
+我们在SAM2框架基础上扩展了图像伪造检测任务，具体包含：(i)
+以扰动驱动的特征嵌入作为取证信号，（ii）专为伪造区域分割优化的轻量级适配器，以及（iii）可学习的提示模块——该模块通过将特征嵌入映射为热图提示，引导SAM2自动定位伪造区域。</p></li>
+<li><p>用于微调和评估的SAM检测器<br/>
+AutoEditForge作为基于指令的本地编辑自动化流程（支持替换/删除/添加/局部修改），可随编辑器迭代保持数据同步，实现持续微调与性能评估。配合Detective
+SAM的轻量级适配器，该系统能在保留原有性能的同时，快速恢复新编辑器的IoU/F1等关键指标。<br/>3.
+综合评价方法<br/> Detective
+SAM在七个基准数据集上进行了基准测试，提供了强大且稳定的分布外（OOD）结果，与最佳基线相比，平均
+OOD
+IoU提高了33.67%。我们证明了定位器在最近的扩散编辑中会崩溃，需要持续的微调。</p></li>
+</ol>
+<h1 id="相关工作">2 相关工作</h1>
+<h1 id="detective-sam">3 Detective SAM</h1>
+<p>​  我们研究图像伪造检测任务，给定一个包含三个通道的RGB图像I∈R³×H×W（高度H、宽度W），目标是预测一个二值掩码B∈{0,1}H×W，其中Bij=1表示像素（i，j）被编辑/篡改，否则为0。本研究严格聚焦于基于扩散的图像编辑流程生成的篡改。扩散模型通过处理指令来生成源图像的局部篡改，如图1所示。保持篡改区域周围不变的方法包括覆盖掩码内的潜在变量，或仅在被掩码区域注入噪声（Wu等，2025；Lugmayr等，2022）。</p>
+<h2 id="总览">3.1 总览</h2>
+<p>​  Detective
+SAM通过引入扰动驱动的特征流和轻量级适配器，对SAM2（Ravi等，2024）进行增强，同时保持其主干结构不变。特征适配器用于微调SAM2的解码器，而掩码适配器则对解码器进行提示。这种设计使解码器及其输入与伪造检测任务保持一致。该架构包含三个步骤：1.
+生成扰动嵌入特征；2. 通过特征适配器将原始特征与扰动特征进行校正；3.
+最后利用所有特征通过掩码适配器生成取证热图提示，具体步骤如图2所示。接下来我们将更详细地描述该过程，有关符号说明的概述请参见附录A。</p>
+<h2 id="模型体系结构">3.2 模型体系结构</h2>
+<p>​  我们基于SAM2（Ravi等人，2024）构建模型，这是一个可提示的图像/视频分割器，其特征包括：hiera图像编码器（Ryali等人，2023）在三个空间尺度上生成嵌入向量，提示编码器用于处理点、框或热图，以及一个输入提示和多尺度特征的掩码解码器。SAM2的骨干网络（hiera编码器、提示编码器、掩码解码器）保持冻结。我们的轻量级适配器联合训练，结果包括：<br/>​  (i)三个特征适配器（针对所有三个hiera尺度），它们将扰动后的图像嵌入向量作为法医线索，并执行∆Fs校正以输出适应后的特征{Fs}；<br/>​  (ii)一个掩码适配器，由自动提示网络组成，为解码器生成热图M。<br/>​  特征适配器为单卷积层，而掩码适配器包含一个在降尺度嵌入空间中操作的变压器，以保持模型参数数量适中：层宽为64时，特征适配器使用81k参数，掩码适配器使用887k参数。这意味着该模型可以在
+NVIDIA H100 GPU上用两小时完成训练。</p>
+<p>​  <strong>输入和编码</strong><br/>​  作为第一步，我们为适配器模块构建了法医特征嵌入。给定输入图像I，我们使用简单的图像空间操作符Perturbi(),
+i = 1, ..., N（例如高斯模糊、高斯噪声和JPEG压缩）生成N个扰动图像Ii‘ =
+Perturbi(I;θ)，其中扰动参数为 θ
+。扩散模型在这种扰动下显示出嵌入偏移（He等，2024；Tsai等，2024b）。Detective
+SAM利用这些作为法医线索，以定位先验的形式。<br/>​  I和Ii′均由冻结的SAM2层级编码器（Ryali等人，2023）编码，生成嵌入向量{FsI，FIsi}，在层级尺度（S=32,64,128）上以（H，W）=（512,512）分辨率输出。为匹配SAM2解码器预期的图像格式，我们采用SAM2的冻结无记忆（图像）嵌入进行填充（s=32），并使用SAM2的冻结卷积处理层Fs=ConvSAM（Xs）处理s∈{64,128}。为简洁起见且不损失一般性，我们仅采用单一扰动I′1，从而在不同层级生成六个特征嵌入向量{FsI，FIsi}。</p>
+<p>​  <strong>特征适配器（delta校正）</strong><br/>​  接下来，我们使用经过取证扰动的特征嵌入{F
+I ′ s 1}对基础特征嵌入{Fs
+I}进行校正，使解码器专注于伪造物定位而非通用对象分割。我们通过轻量级特征适配器{As}实现这一目标，该适配器将基础特征与扰动特征{Fs
+I，F I ′ s
+1}拼接输入，生成残差增量校正。这些∆Fs校正通过残差连接用于调整未扰动特征，从而生成特征；
+<span class="math display">\[\widetilde{F}_{s}\ =\ F_{s}^{Z}+\Delta
+F_{s},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \Delta
+F_{s}=A_{s}\big(\{F_{s}^{Z},F_{s}^{Z^{\prime}}\}\big),\]</span>
+其中注入SAM2解码器的特征遵循Chen等人（2024）提出的架构。特征适配器采用单层1×1卷积网络，将冻结的SAM2解码器专门化为下游IFL任务，同时保持最小的开销。</p>
+<p>​  <strong>Mask适配器（自动提示）。</strong><br/>​  通过专门针对IFL任务设计的解码器，我们用一个基于法医线索生成自动热图提示M的掩码适配器替换了SAM2的手动用户提示。这种提示可以是点、边界框或热图。我们选择热图是因为它能反映法医信号的空间结构。相比之下，基于点或框的提示大多忽略了这些信息。掩码适配器将所有特征映射到适合SAM解码器的热图提示M中。它接收所有特征{Fs
+I ，Fs I′1 ， Fˆs}，首先通过双线性上采样将它们转换到一个共同的精细网格
+sˆ = max
+S。然后我们进行跨尺度、跨流的卷积融合，以获得统一的特征张量Ffuse ∈ R d×
+ˆs × ˆs
+。这种融合在空间上与HRNet（Wang等，2020）一致，并且由于浅层跨尺度混合而轻量级。<br/>​  为了确保全局一致性，我们在粗分辨率下使用了一个轻量级的变压器；其自注意力机制聚合了补丁标记之间的上下文，并抑制空间不一致的伪造估计，具体示例见附录B.3。以输入Ffuse为例，变压器在降采样、补丁化的表示上操作，生成低分辨率的粗略逻辑值Lcoarse和不确定性逻辑值图U
+∈ R ˆs × ˆs 。其中，降采样因子被视为超参数。两者均被重新上采样回公共网格
+sˆ ，得到Lcoarse ∈ R ˆs × ˆs 和U ∈ R ˆs × ˆs
+。<br/>​  恢复精细边界需要将高层次上下文与局部细节结合；我们通过线性空间门控混合上下文来实现这一点，如（Chen等，2016）所述。我们通过两层卷积网络从Ffuse生成精细逻辑值Lrefine
+∈ R ˆs × ˆs 。最后，我们应用空间门g ∈ [0,1] sˆ × sˆ
+在线性混合精细和粗略预测到解码器掩码中： <span
+class="math display">\[\mathcal{M}\ =\
+g\,L_{\mathrm{refine}}+(1-g)\,L_{\mathrm{coarse}}.\]</span> ​  g门是一个1
+×
+1卷积层，后接一个Sigmoid函数，输入[Lcoarse，U]，在粗略掩码自信（或不确定）的区域降低精细度，防止未编辑区域过度锐化，同时允许在需要时进行细节修正。</p>
+<p>​  <strong>Mask解码器</strong><br/>​  在解码之前，我们将热图提示M和适应性特征{Fes}进行双线性上采样至256×256，以生成更精细的掩模，并将其输入冻结的SAM2掩模解码器以获得256×256的伪造概率
+Mˆ
+。我们选择256×256是因为它接近我们数据中的最小图像分辨率，这有助于避免最终二进制掩模中出现极端的外推伪影。最后，严格遵循SAM2的方法，我们将
+Mˆ 进行双线性上采样至图像分辨率，并通过Sigmoid操作将其转换为概率图：
+σ（Mˆ）。最终的伪造二进制掩模为B = 1{ σ(Mˆ)&gt;= 1/2 }。</p>
+<p>​  <em>损失函数</em><br/>​  训练掩码和特征适配器遵循SAM2的目标（Chen等，2024），结合了焦点损失（Lin等，2018）、Dice损失和IoU损失。Dice损失通过惩罚预测掩码与真实掩码的归一化差异，最大化两者之间的重叠区域。焦点损失进一步解决了信息伪造任务（IFL）中的类别不平衡问题。IoU损失通过伪造掩码的L1损失训练SAM2的IoU预测头。所有损失函数均以真实掩码和模型预测掩码作为输入，预测掩码仅基于篡改后的图像计算得出。正式而言，我们的最终目标是
+<span
+class="math display">\[\mathcal{L}=\mathcal{L}_{\mathrm{Dice}}+\lambda_{\mathrm{focal}}\mathcal{L}_{\mathrm{focal}}^{\alpha,\gamma}+\lambda_{\mathrm{IoU}}\mathcal{L}_{\mathrm{IoU}}.\]</span>
+​  聚焦参数 γ &gt;= 0 降低了分类良好的样本的权重。平衡因子 α ∈ [0,1]
+重新加权正负样本以对抗类别不平衡。我们借鉴了 SAM2 论文（Ravi
+等，2024）中的 λfocal = 20，λIoU = 1 并扫描（α ，γ）。</p>
+<h2
+id="autoeditforge-由-automating-ai-驱动的编辑为detective-sam-加油">3.3
+AUTOEDITFORGE： 由 AUTOMATING AI 驱动的编辑为Detective SAM 加油</h2>
+<p>​  为了应对伪造定位模型中高质量、最新测试和微调数据的严重短缺，我们引入了AutoEditForge，这是一种用于持续改进图像伪造鲁棒性的新型自动化基础设施。这个完全自动化的流程生成具有像素级精确分割掩码的真实图像编辑。与现有的合成数据集不同，这些数据集要么受限于劳动密集型的手动标注而影响规模，要么通过简单的修复技术牺牲真实感（Kwon等，2024），AutoEditForge利用最先进的（SOTA）扩散模型来模拟人类风格编辑的多样性，从而实现持续评估和微调。AutoEditForge采用两阶段架构，将轻量级分析与计算密集型编辑操作分离，从而实现大规模图像批次的高效处理。</p>
+<p>​  第一阶段：分析与决策。<br/>​  第二阶段：图像分割与图像修复。</p>
+<p>​  Detective SAM
+和AutoEditForge<br/>​  AutoEditForge持续输出基于最新生成式编辑模型的逼真指令引导编辑流。Detective
+SAM通过适配器微调技术吸收这些编辑流，将冻结的SAM2解码器及其提示与当前编辑技术分布相匹配。由此形成实用的终身学习循环：在新编辑中评估效果、发现错误、微调适配器并重新部署，同时保持主干架构固定，确保在不断演进的编辑器和指令中保持稳健性。</p>
+<h1 id="实验">4 实验</h1>
+<p>​  测试设置<br/>​  我们的结果分为三个阶段：<br/>​  (1)
+域内（ID）：在训练集的样本外测试集上进行测试。<br/>​  (2)
+域外（OOD）：在完全未见过的测试集上进行测试，以公平地与基线方法进行比较。<br/>​  (3)
+微调：在各自数据集的500个样本上对预训练的Detective
+SAM进行微调，以评估适应效率。</p>
+<h1 id="结论">5 结论</h1>
+<p>​  Detective
+SAM在基于扩散的伪造检测领域取得突破性进展，其平均分布外交集（IoU）值达到36.99，较传统分布外基线方法提升33.67%，且在三个测试集上均表现优异。研究证实，当存在强显式扰动法取证信号时，基于扩散的伪造检测系统（IFL）凭借其稳健的分割框架展现出更优性能。此外，持续微调的有效性已被确立为新型扩散编辑器发展的必要前提，而AutoEditForge系统正是这一过程的有力推动者。</p>
+<p>​  局限性。<br/>​  我们依赖扰动驱动的线索，这使得模型性能对特定线索和扰动强度都存在敏感性。后续研究应重点探索自适应扰动技术。传统复制-移动和剪接伪造技术不会产生类似的扩散敏感伪影，因此需要采用不同的信号特征和更广泛的训练数据进行验证。一个可快速部署的模型应当通过在完全合成图像和真实图像上进行训练，以降低误判率。</p>
+<p>​  通过阐明这些关键步骤，我们旨在推动增量式学习（IFL）领域的发展，使其与不断演进的生成式编辑工具保持同步。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/DETECTIVE-SAM-ADAPTIVE-AI-IMAGE-FORGERY-LOCALIZATION/">https://zhaozw-szu.github.io/DETECTIVE-SAM-ADAPTIVE-AI-IMAGE-FORGERY-LOCALIZATION/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/FlyLoRA/" title="FlyLoRA"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">FlyLoRA</div></div></a></div><div class="next-post pull-right"><a href="/MOODv2/" title="MOODv2:Masked Image Modeling for Out-of-Distribution Detection"><img class="cover" src="/postimages/MOODv2/image-20251112232724110.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MOODv2:Masked Image Modeling for Out-of-Distribution Detection</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">182</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1 引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2 相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#detective-sam"><span class="toc-text">3 Detective SAM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-text">3.1 总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">3.2 模型体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#autoeditforge-%E7%94%B1-automating-ai-%E9%A9%B1%E5%8A%A8%E7%9A%84%E7%BC%96%E8%BE%91%E4%B8%BAdetective-sam-%E5%8A%A0%E6%B2%B9"><span class="toc-text">3.3
+AUTOEDITFORGE： 由 AUTOMATING AI 驱动的编辑为Detective SAM 加油</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4 实验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5 结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
