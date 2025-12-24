@@ -1,0 +1,597 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Generalizable Synthetic Image Detection via Language-guided Contrastive Learning | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Generalizable Synthetic Image Detection via Language-guided Contrastive Learning Haiwei Wu, Member, IEEE, Jiantao Zhou, Senior Member, IEEE, and Shile Zhang 摘要 ​  人工智能生成图像的逼真度显著提升，这主要得益于生成对抗网络（GA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generalizable Synthetic Image Detection via Language-guided Contrastive Learning">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="Generalizable Synthetic Image Detection via Language-guided Contrastive Learning Haiwei Wu, Member, IEEE, Jiantao Zhou, Senior Member, IEEE, and Shile Zhang 摘要 ​  人工智能生成图像的逼真度显著提升，这主要得益于生成对抗网络（GA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg">
+<meta property="article:published_time" content="2025-12-12T13:57:40.000Z">
+<meta property="article:modified_time" content="2025-12-12T14:53:11.925Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover5.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Generalizable Synthetic Image Detection via Language-guided Contrastive Learning',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-12-12 22:53:11'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">189</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Generalizable Synthetic Image Detection via Language-guided Contrastive Learning</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-12-12T13:57:40.000Z" title="创建于 2025-12-12 21:57:40">2025-12-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-12T14:53:11.925Z" title="更新于 2025-12-12 22:53:11">2025-12-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Generalizable Synthetic Image Detection via Language-guided Contrastive Learning"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Generalizable Synthetic Image Detection via Language-guided
+Contrastive Learning</p>
+<p>Haiwei Wu, <em>Member, IEEE</em>, Jiantao Zhou, <em>Senior Member,
+IEEE</em>, and Shile Zhang</p>
+<h1 id="摘要">摘要</h1>
+<p>​  人工智能生成图像的逼真度显著提升，这主要得益于生成对抗网络（GAN）和扩散模型（DM）等合成模型的快速发展。然而，合成图像的恶意使用——例如传播假新闻或伪造个人资料——引发了人们对图像真实性的严重担忧。尽管已开发出多种用于检测合成图像的取证算法，但其性能（尤其是泛化能力）仍难以应对日益增多的合成模型。本研究提出了一种基于语言引导对比学习的简单却高效的合成图像检测方法。具体而言，我们通过精心设计的文本标签对训练图像进行增强，从而采用视觉-语言联合对比监督，学习具有更好泛化能力的取证特征空间。实验表明，我们提出的语言引导合成检测（<strong>LASTED</strong>）模型在未见过的图像生成模型上展现出显著提升的泛化能力，并在四个数据集上展现出远超现有顶尖算法的优异表现。</p>
+<p>代码可在以下网址获取：https://github.com/HighwayWu/LASTED</p>
+<p>​  影响声明<br/>​  合成图像检测技术已成为遏制数字平台视觉内容滥用的关键手段。然而现有检测方法在跨域测试场景中存在明显短板，研究显示高达35%的合成图像仍能逃过现有检测系统。本文提出的创新方法通过将检测准确率大幅提升至95%以上，有效解决了这些痛点。这项突破不仅增强了数字媒体的可信度，更将合成图像检测的应用范围拓展至在线内容审核、数字取证及知识产权保护等领域。此外，该研究成果为教育工作者和政策制定者提供了一项重要工具，助力打击虚假信息并维护数字内容的真实性。</p>
+<p>​  索引术语<br/>​  人工智能在数字人文中的应用、深度学习、数字图像取证、伪造检测</p>
+<h1 id="引言">1.引言</h1>
+<p>​  深度学习的迅猛发展催生了众多杰出的生成模型，其中生成对抗网络（GAN）和扩散模型（DM）尤为突出。这些模型生成的图像展现出的逼真度与创意性，正引发各界持续关注。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212220349821.png"
+alt="image-20251212220349821" />
+<figcaption aria-hidden="true">image-20251212220349821</figcaption>
+</figure>
+<p>​  2022年8月，一幅由扩散模型生成的《Theater d’Opera
+Spatial》（见图1(a)）在Colorado State Fair’s
+digital艺术竞赛中斩获头奖，使生成模型一跃成为焦点。尽管生成模型能为艺术家和设计师提供灵感，或作为娱乐工具，但其被恶意用于制造和传播虚假信息的潜在风险令人担忧（见图1(b)）。在此背景下，亟需开发具备普适性的取证算法，以实现合成图像与真实图像的精准鉴别。<br/>​  为提升合成图像检测器的泛化能力，学界提出了多种算法，包括模型迁移[7]、数据自适应[3]、数据增强[1][8]等。尽管这些算法已取得一定成效，但其性能表现——尤其是泛化能力——仍难以满足日益增多的合成模型需求。如图3所示，现有算法Wang[1]、HiFi[2]和UniDet[3]均未能有效泛化以检测未见过的合成方法。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212220850955.png"
+alt="image-20251212220850955" />
+<figcaption aria-hidden="true">image-20251212220850955</figcaption>
+</figure>
+<p>​  本研究旨在通过重新设计训练范式，提升合成图像检测器的泛化能力。从训练角度而言，大量研究[9]-[12]（及其引用文献）表明对比学习能增强神经网络的通用表征能力。其中，OpenAI开发的CLIP模型[10]通过图像与文本的关联学习，实现了对视觉概念的泛化理解。该模型基于语言监督和对比学习，其性能在多项任务中甚至可与监督学习模型相媲美。受此启发，我们提出了一种新型合成图像检测方法：语言引导合成检测（LanguAge-guided
+SynThEsis
+Detection，简称LASTED），该方法采用增强型语言监督技术以提升图像域法医特征提取的准确性。我们注意到训练数据（合成图像或真实图像）通常缺乏文本信息，因此建议通过精心设计的文本标签进行增强。首先根据图像来源分配主要标签“真实”或“合成”。考虑到单一主要标签可能无法充分捕捉多样化的图像分布，我们进一步基于图像内容设计了辅助标签。这些辅助标签由预训练的图像描述算法（如ClipCap[13]）生成，从而省去了人工标注的需要。在获得图像-文本对后，我们的LASTED模型在对比学习框架下联合训练图像编码器和文本编码器，以预测一批（图像，文本）样本的匹配对。本质上，增强后的文本标签提供了可学习的高维目标，这些目标无需由正交独热向量组成，从而使得语义解耦更易于优化。图2展示了我们LAST模型的对比训练过程。训练完成后，我们利用线性探针提取已学知识，并实现特定的合成检测。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212221129174.png"
+alt="image-20251212221129174" />
+<figcaption aria-hidden="true">image-20251212221129174</figcaption>
+</figure>
+<blockquote>
+<p>图2：本研究提出的持续训练方法示意图。训练图像首先通过精心设计的文本标签进行增强，随后对图像/文本编码器进行联合训练。</p>
+</blockquote>
+<p>​  实验结果表明，我们的LASTED模型在未见过的图像生成模型上展现出显著提升的泛化能力（见图3）。具体而言，LASTED在现有ForenSynths[1]和DF3[18]数据集上的表现远超现有最先进模型[1]-[3]
+[14]-[17]，平均精度（AP）分别提升5.5%和3.4%。值得注意的是，现有数据集[1]
+[18]主要聚焦于照片风格的合成图像，我们为此专门收集了绘画风格的新数据集。绘画作品通常包含奇幻元素且缺乏相机痕迹，这形成了完全不同的法医特征（详见第四章A节和图6）。这些新数据集将为各类检测算法提供更全面的评估依据。本研究的主要贡献可归纳为：</p>
+<ul>
+<li>通过引入精心设计的文本标签，我们开发出一种基于语言监督的合成图像检测方法，该方法能够在对比学习框架下，从联合视觉语言空间中提取具有高度区分性的法医特征。</li>
+<li>我们收集了具有绘画风格的合成图像数据集，以更好地模拟现实世界的多样性。</li>
+<li>实验结果表明，与现有最先进方法[1]–[3]、[14]–[17]相比，所提出的持续时间方法在四个不同数据集上均展现出优越性。</li>
+</ul>
+<h1 id="有关合成图像检测的研究">2.有关合成图像检测的研究</h1>
+<p>​  近年来，为应对人工智能生成图像可能被恶意利用的问题，学界提出了多种检测算法[1]
+[14] [16]
+[23]-[38]。这些算法通常利用图像合成过程中留下的独特痕迹，例如棋盘格纹理[23]、色彩特征[14]和渐变效果[16]。Dzanic等人[27]和Durall等人[28]通过频域分析发现，生成对抗网络（GAN）生成的图像在频谱分布上与真实数据存在显著差异。针对这一现象，部分研究[39]-[43]通过在振幅和相位频谱域引入频率感知注意力特征或可学习噪声模式，成功提取出合成伪影。考虑到检测器难以识别未知类型的图像，其他研究[1][8]和知识蒸馏[3]提出通过数据增强和知识蒸馏来提升检测器的泛化能力。尽管效果显著，但[42]
+[44]的研究表明，仅基于GAN图像训练的检测器在识别深度伪造（DM）图像时泛化能力不足。实验结果表明，DM图像具有与GAN图像截然不同的特征伪影。为提升泛化能力，近期研究[45]
+[46]探索了基于大型预训练视觉语言模型（VLMs）的轻量级微调策略，显著提升了跨领域评估的泛化性能。</p>
+<h1
+id="用于合成图像检测的lasted算法">3.用于合成图像检测的LASTED算法</h1>
+<p>​  我们的目标是设计一种名为LASTED的合成图像检测器，使其能够对未见过的数据进行良好泛化。通过借助语言监督改进训练范式，我们实现了这一目标。下文首先介绍采用增强语言监督的动机，随后详细阐述文本标签的设计方法，最后给出LASTED的具体训练流程。</p>
+<h2 id="a.动机">A.动机</h2>
+<p>​  基于对比学习的训练范式已被证实具有强大的泛化能力和零样本迁移能力，这在图像分类领域表现尤为突出[9]-[11]
+[20]。受此启发，我们尝试将对比学习引入合成图像检测任务。为探索最合适的对比学习范式，我们评估了三种广泛采用的范式——MoCo[11]、MAE[9]和CLIP[10]，考察它们提取通用表征的能力，用于区分未见过的真实绘画（Danbooru[21]）与合成绘画（Latent
+Diffusion[22]）。通过T-SNE[47]可视化提取的特征如图4所示。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212221636819.png"
+alt="image-20251212221636819" />
+<figcaption aria-hidden="true">image-20251212221636819</figcaption>
+</figure>
+<blockquote>
+<p>图4：不同训练范式（MoCo [11]、MAE [9]和CLIP
+[10]）导致不同的泛化能力。值得注意的是，所有模型均采用相同的ResNet50
+[19]架构，并在自然数据集ImageNet
+[20]上未经微调进行训练。测试在未见过的真实绘画图像（Danbooru
+[21]）和Latent Diffusion [22]合成的图像上进行。</p>
+</blockquote>
+<p>​  值得注意的是，实验未进行微调。可以看出，尽管这些模型仅在真实自然照片（如ImageNet[20]——一个广泛用于评估图像分类模型的大型数据集，包含数百万张标注图像及数千个类别）上训练，仍能从未见过的真实/合成绘画图像中提取出高度判别性的表征。特别是CLIP提取的表征，其区分Danbooru和Latent
+Diffusion绘画图像的能力更为出色。因此我们推测，尽管深度生成对抗网络（DM）或生成对抗网络（GAN）合成图像具有良好的视觉真实性，但在联合视觉-语言特征空间中仍可被轻易区分。<br/>​  我们将这种高度区分性的特征空间形成归因于信息的丰富性及多模态表征。具体而言，文本描述提供了超越固定标签的海量信息。这种多样性使检测器能够捕捉不同场景的区分特征，从而提升其辨别相似场景真实与合成的能力。另一方面，多模态目标监督机制不仅引导检测器识别图像的视觉特征，还指导其理解这些特征与文本描述之间的关联。这种监督机制有效塑造了特征空间，使表征实现更优的分离与组织。现在我们已准备好设计合适的文本标签，并基于这些标签开展多模态训练。</p>
+<h2 id="b.-文本标签增强">B. 文本标签增强</h2>
+<p>​  利用视觉-语言联合特征的首个挑战在于，训练图像（真实或合成）本身并不自然地附带文本信息。因此，设计一种专门适配合成图像检测任务的文本数据增强策略至关重要。一种简单粗暴的方法是，根据图像真实与否，人为地为训练数据集中的每张图像标注“真实”或“合成”（参见表I中的R1）。但实验发现，这种简单的标注方式会导致合成图像检测任务的泛化效果较差。这是因为真实图像（类似合成图像）存在不同类型，例如相机拍摄的图像（如ImageNet[20]）和通过Photoshop或数字绘图板绘制的人工图像（如Danbooru[21]）。显然，这两类真实图像具有显著不同的特征：真实照片中存在相机痕迹，而绘画图像中则包含虚构元素。因此，不应将它们简单归类为同一类别并统一标注为“真实”。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212222116454.png"
+alt="image-20251212222116454" />
+<figcaption aria-hidden="true">image-20251212222116454</figcaption>
+</figure>
+<p>​  为解决这一问题，我们可添加“照片”和“绘画”作为二级标签来区分前文提到的两类图像（参见表I中的R2）。除了使用“照片/绘画”标签外，还可通过图像语义进一步优化文本标签。具体而言，R3采用基于ImageNet数据库（包含1000个类别）训练的分类器对给定图像进行分类，并将预测标签作为这些图像的二级标签。类似地，可利用图像描述技术[13]
+[48]生成描述图像内容的句子作为R4标签。为更精准地整合“照片/绘画”语义信息，我们采用模板“A照片/绘画的[图像描述]”将R2和R4相结合，最终生成R5标签，该标签将作为训练过程中的文本标签使用。<br/>​  现在，我们准备介绍使用R5作为文本标签的训练过程。<br/>​  注：一个自然的想法是直接合并主标签和次标签，将R5转化为R6。然而，这种标注方法会显著干扰我们区分真实图像与合成图像的核心任务，导致学习到泛化语义特征。第四章F节将展示的消融研究显示，与R5相比，R6在检测性能上最多降低24.5%。</p>
+<h2 id="c.-lasted训练流程">C. LASTED训练流程</h2>
+<p>​  我们LASTED的训练过程如图5(a)所示，主要涉及两个编码器，即图像编码器
+fθ 和文本编码器 gϕ 。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212222348731.png"
+alt="image-20251212222348731" />
+<figcaption aria-hidden="true">image-20251212222348731</figcaption>
+</figure>
+<blockquote>
+<p>图5：我们提出的LASTED框架在训练过程中引入了语言引导的对比范式，以更好地解耦图像的语义信息，使检测器聚焦于法医信号。训练完成后，通过微调轻量级线性探针即可实现具体的合成/真实检测。</p>
+</blockquote>
+<p>​  给定一个由N对图像及其增强文本标签<span
+class="math inline">\(\{(\mathbf{X}_{i},\mathbf{Y}_{i}^{m},\mathbf{Y}_{i}^{s})\}_{i=1}^{N}\)</span>组成的数据集<span
+class="math inline">\(\cal D\)</span>，编码器首先提取视觉和文本表示<span
+class="math inline">\({\mathbf
+I}_{i}=f_{\theta}(\mathbf{X}_{i})\)</span>，<span
+class="math inline">\({\mathbf
+M}_{i}=g_{\phi}(\mathbf{Y}_{i}^m)\)</span>，<span
+class="math inline">\({\mathbf
+S}_{i}=g_{\phi}(\mathbf{Y}_{i}^s)\)</span>。其中，<span
+class="math inline">\(\mathbf{Y}_{i}^m\)</span>和<span
+class="math inline">\(\mathbf{Y}_{i}^s\)</span>分别是第i个图像<span
+class="math inline">\(\mathbf{X}_{i}\)</span>的主要和次要文本标签。通过对视觉和文本表示进行点积运算，我们获得主标签和次标签的相似度矩阵。目标函数旨在最大化匹配视觉和文本配对的余弦相似度（见图5(a)中的蓝色框），同时最小化未匹配配对（白色框）。形式上，沿图像轴的主相似度矩阵损失可表示为：
+<span
+class="math display">\[\mathcal{L_{I}^{m}}=\frac{1}{B}\sum_{i=1}^{B}-1{\mathrm{og}}\,\frac{\exp\left(\mathrm{L}_{i}\cdot\mathrm{M}_i/\tau\right)}{\sum_{j\in[1,C]}\exp\left(\mathrm{I}_{i}\cdot\mathrm{M}_j/\tau\right)}.\]</span>
+​  同样地，我们可通过以下方式计算沿文本轴的损失： <span
+class="math display">\[\mathcal{L}_{T}^{m}=\frac{1}{C}\sum_{j=1}^{C}-\log\frac{\sum_{k\in[1,B],\mathrm{M}_{k}=\mathrm{M}_{j}}\exp\left(\mathrm{M}_{k}\cdot\mathrm{I}_{k}/\tau\right)}{\sum_{i\in[1,N]}\exp\left(\mathrm{M}_{j}\cdot\mathrm{I}_{i}/\tau\right)},\]</span>
+​  其中<span class="math inline">\(\tau\)</span>是一个学习得到的温度参数
+[10]，C 表示当前批次中具有 B 张图像的不同标签数量。<span
+class="math inline">\([i,j]\)</span>表示从 i 到 j
+的整数区间。同样地，我们可以计算次级相似性矩阵的图像轴<span
+class="math inline">\(\mathcal{L_{I}^{s}}\)</span>和文本轴<span
+class="math inline">\(\mathcal{L}_{T}^{s}\)</span>。需要注意的是，由于相似性矩阵可能不总是方形的，对于具有相同文本标签的图像，我们只需取它们的相似度平均值。最终的总体损失函数变为
+<span
+class="math display">\[\mathcal{L}=\mathcal{L}_{I}^{m}+\mathcal{L}_{T}^{m}+\lambda(\mathcal{L}_{I}^{s}+\mathcal{L}_{T}^{s}),\]</span>
+​  其中<span
+class="math inline">\(\lambda\)</span>是主次损失之间的折衷参数。<br/>​  关于网络架构，我们分别采用ResNet50x64
+[10] 和文本变压器 [49] 作为图像编码器<span
+class="math inline">\(f_{\theta}\)</span>和文本编码器<span
+class="math inline">\(g_{\phi}\)</span>。还应指出的是，网络的选择是灵活的，只要提取的表示I、M和S共享相同的维度特征空间即可。关于使用不同图像编码器的消融研究将在第IV-F节中给出。</p>
+<h2 id="d.-lasted的检测流程">D. LASTED的检测流程</h2>
+<p>​  在编码器训练过程中，我们提出通过线性探针（LP）方法实现合成图像检测，如图5(b)所示。LP旨在提炼编码器学到的知识，以便更广泛地检测未见过的合成图像[3]，[50]。具体而言，我们在训练良好的图像编码器<span
+class="math inline">\(f_{\theta}\)</span>上增加了一个额外的线性层<span
+class="math inline">\(l_{\tau}\)</span>，并使用二元交叉熵损失对其进行监督：
+<span class="math display">\[{\mathcal{L}}_{c
+e}=-\sum_{i\in{\mathcal{D}}^{S}}\log(l_{\tau}(f_{\theta}({\mathbf{X}}_{i})))-\sum_{j\in{\mathcal{D}}^{R}}\log(1-l_{\tau}(f_{\theta}({\mathbf{X}}_{j}))),\]</span>
+​  其中<span class="math inline">\(\mathcal{D}^{R}\)</span>和<span
+class="math inline">\(\mathcal{D}^{S}\)</span>分别表示数据集 D
+的真实子集和合成子集的索引。需要注意的是，图像编码器<span
+class="math inline">\(f_{\theta}\)</span>保持冻结状态，无需进一步微调，主要是因为在之前的对比学习中已经监督过其具有良好的判别能力的特征空间。由于线性层<span
+class="math inline">\(l_{\tau}\)</span>包含的参数非常少（例如<span
+class="math inline">\(\tau\in{\mathbb
+R}^{1024}\)</span>），微调过程可以快速完成。<br/>​  或者，我们也可以通过最近邻（NN）匹配来实现检测过程。具体来说，我们首先分别提取“真实”和“合成”类别的文本表示<span
+class="math inline">\(\mathbf{M}_{r}\)</span>和<span
+class="math inline">\(\mathbf{M}_{s}\)</span>。给定一个查询图像<span
+class="math inline">\(\mathbf{X}_{t}\)</span>，我们随后计算其表示<span
+class="math inline">\({I}_{t}=f_{\theta}(\mathbf{X}_{t})\)</span>与Mr或Ms之间的余弦相似度。通过SoftMax函数可以推导出Xt属于“合成”类别的概率p：
+<span
+class="math display">\[p=\frac{\exp(\mathbf{I}_{t}\cdot\mathbf{M}_{s})}{\exp(\mathbf{I}_{t}\cdot\mathbf{M}_{r})+\exp(\mathbf{I}_{t}\cdot\mathbf{M}_{s})}.\]</span>
+​  如后文所述，我们通过实证研究发现，NN方法的性能逊于LP方法。这可能是由于“真实”与“合成”标签受到次要标签的影响，导致区分能力不足。</p>
+<h1 id="实验">4.实验</h1>
+<h2 id="a.设置">A.设置</h2>
+<p>​  <strong>数据集：</strong><br/>​  我们构建了四个具有挑战性的数据集，以全面评估所提出方法的性能。简要概述见表II。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212224259370.png"
+alt="image-20251212224259370" />
+<figcaption aria-hidden="true">image-20251212224259370</figcaption>
+</figure>
+<p>​  Tgan [1]：<br/>​  根据 [1]、[3]、[14]–[16] 的研究，我们采用了
+ForenSynths [1] 数据集（命名为 Tgan），该数据集由 11 种合成方法生成的 11
+个子集组成，包括 ProGAN [51]、StyleGAN [52]、BigGAN [53]、CycleGAN
+[54]、StarGAN [55]、GauGAN [56]、 CRN [57]、 IMLE [58]、 SITD [59]、SAN
+[6] 和 Deepfake
+[60]。为了评估合成图像检测器对未见过图像的泛化能力，仅使用 ProGAN
+子集进行训练，而其余 10 个子集用于测试。</p>
+<p>​  Tdf [18]：<br/>​  Ju 等人 [18] 指出，Tgan
+数据集无法反映现实世界的情况，因此他们通过结合 6 个高级生成模型和 5
+个反取证操作创建了 Tdf 数据集。具体来说，Tdf 包含 46,400 张由 3
+个生成对抗网络（3DGAN [61]、StyleGAN2 [62]、StyleGAN3 [63]）、2
+个潜在差分模型（LSGM [64]、Latent Diffusion [22]）和 1 个 Transformer
+[65]
+生成的合成图像。为了更好地模拟现实世界情况，应用了五种后处理操作以对抗取证算法，包括常用的后处理（如压缩和模糊）、混合、反取证（如
+CW 攻击 [66]）、多图像压缩以及上述操作的组合。需要注意的是，Tdf
+数据集仅用于测试，而训练则在 Tgan 上进行。</p>
+<p>​  Tfuse：<br/>​  考虑到Tgan和Tdf中未包含绘画图像，我们通过整合4类数据额外形成了一个融合数据集Tfuse。具体来说，真实和合成照片分别由
+LSUN
+[67]和ProGAN[51]生成。此外，真实和合成绘画分别来源于Danbooru[21]和稳定扩散（SD）[68]–[70]。此处使用的图像合成模型ProGAN和SD分别在
+LSUN
+和Danbooru上进行训练，迫使检测器从视觉相似的真实和合成图像中学习更具区分性的表征。每类包含20万张图像，其中1%的图像被划分为验证数据。在测试中，Tfuse采用7个具有代表性的图像合成模型生成跨域合成图像，包括3个GAN（BigGAN[53]、GauGAN[56]和StyleGAN[52]）和4个DM（dalle[71]、glide[72]、Guided
+Diffusion[73]和Latent
+Diffusion[22]）。同时，我们从4个真实数据集ImageNet[20]、Vision[74]、Danbooru[21]和Artist[75][76]中随机采样图像，采用平衡采样方法。</p>
+<p>​  Twild：<br/>​  除Tfuse外，我们还通过收集主流分享平台的图像构建了一个更具挑战性的测试数据集Twild。用户在分享平台上传播的真实世界合成图像，其质量远高于使用预训练GAN或DM生成的随机图像。Twild中的图像能更真实地反映现实场景。我们从DreamBooth[5]、Midjourney[4]、NightCafe[77]、StableAI[78]和YiJian[79]等平台共获取4K图像数据。此外，我们还从开源共享平台[75][76]获取了63位艺术家创作的2,229幅真实绘画图像。这些图像的预览展示见图6。</p>
+<p>​  <strong>比较方法与评估指标：</strong><br/>​  我们选取了以下前沿合成图像检测器作为对比方法：Wang[1]、CR[14]、Grag[15]、LGrad[16]、DIRE[17]、HiFi[2]和UniDet[3]。特别地，针对不同实现方式的检测器，我们将其归类为不同变体以进行更细致的对比。例如，Wang[1]包含两种自增强策略变体，其自增强概率分别为10%和50%。其官方模型（基于Tgan和Tdf训练）可通过论文链接获取。为确保公平性，除直接使用其公开版本外，我们还使用Tfuse和Twild对所有竞争者进行重新训练。遵循其传统，我们采用平均精度（AP）作为检测性能评估指标。</p>
+<p>​  <strong>实施细节：</strong><br/>​  我们使用PyTorch深度学习框架来实现我们的方法，其中采用默认参数的Adam
+[80]作为优化器。学习率初始化为1e-4，如果验证准确率在2个epoch内未能提高，则将学习率减半，直到收敛。图像编码器
+fθ 在ImageNet数据集上预训练，而文本编码器 gϕ
+则利用CLIP提供的权重。在训练/测试过程中，所有输入图像被随机/中心裁剪为448×448的块。图像域增强，包括压缩、模糊和缩放，以50%的概率应用，这与[1]、[14]中采用的方法类似。权衡参数
+λ 经实验设置为0.1。批量大小设为48，并在4个 NVIDIA A100 GPU
+40GB上进行训练。</p>
+<h2 id="b.-数据集tgan的评估">B. 数据集Tgan的评估</h2>
+<p>​  表III展示了Tgan的对比结果。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212224625936.png"
+alt="image-20251212224625936" />
+<figcaption aria-hidden="true">image-20251212224625936</figcaption>
+</figure>
+<p>​  总体而言，所有研究方法[1]、[3]、[14]–[16]在其他生成对抗网络（GAN）生成的图像上均展现出良好的泛化能力，在StyleGAN、CycleGAN、StarGAN和GauGAN等子集上实现了超过0.90的平均精度（AP）。这一现象并不令人意外，因为不同GAN及其类似生成模型往往会产生相似的生成痕迹。然而，现有方法在SAN和Deepfake上的检测性能明显不足，例如UniDet在SAN上的AP仅为0.790，在Deepfake上仅达到0.825，充分暴露了其泛化能力的局限性。如表III最后两行所示，我们的LASTED模型（NN和LP）在全部10个测试案例中均展现出优异的检测性能，尤其在SAN数据集上取得了0.929的高平均精度（AP）。总体而言，我们的LASTED模型以0.974的AP值大幅超越了所有竞品的最佳表现。这充分证明，我们的LASTED模型能够为GAN合成图像检测学习更具普适性的表征特征。</p>
+<h2 id="c.-数据集评估">C. 数据集评估</h2>
+<p>​  表IV显示，反取证操作会导致检测性能下降。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212224828502.png"
+alt="image-20251212224828502" />
+<figcaption aria-hidden="true">image-20251212224828502</figcaption>
+</figure>
+<p>​  例如，UniDet[3]在反取证和多压缩场景下的性能分别从0.965降至0.892和0.855。我们的模型仍能保持良好的抗干扰性能，平均AP值达0.952，较排名第二的UniDet的0.918提升3.4%。</p>
+<h2 id="d.-数据集tfuse的评估">D. 数据集Tfuse的评估</h2>
+<p>​  表V展示了Tfuse与其他竞争方法的检测结果对比。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212224917375.png"
+alt="image-20251212224917375" />
+<figcaption aria-hidden="true">image-20251212224917375</figcaption>
+</figure>
+<p>​  可以看出，Wang[1]、Grag[15]和CR[14]的检测性能相对较低：在真实图像中检测引导式与潜在扩散图像时，其平均AP值仅在0.50-0.70区间，表明这些模型在开放场景下难以提取具有区分度的表征。此外，UniDet[3]在区分真实图像与GAN合成图像时表现优异，这体现在其检测Danbooru和Artist数据集中的GauGAN时AP值高达0.992。但该模型在其他检测场景中仍存在泛化能力不足的问题——例如在ImageNet和视觉场景中区分滑翔图像时AP值仅为0.648，而在Danbooru和Artist数据集中分类引导式扩散图像时AP值为0.705。相比之下，借助语言监督的我们提出的lasted模型在多数测试场景中展现出优异的检测性能。需要说明的是，表V新增了“混合”列，用于展示Tfuse对所有类别的整合与同步推理能力，而此前各列仅进行单类别推理。实验结果表明，LASTED模型具有更强的泛化能力，能够在多个跨域测试数据集上提取高度区分度的表征。总体而言，我们的LASTED模型平均AP值达到0.913，较第二名竞争对手提升10.4个百分点，表现显著更优。</p>
+<h2 id="e.-数据集twild的评估">E. 数据集Twild的评估</h2>
+<p>​  现在让我们在更实用的数据集Twild上评估合成图像检测性能。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212225058114.png"
+alt="image-20251212225058114" />
+<figcaption aria-hidden="true">image-20251212225058114</figcaption>
+</figure>
+<p>​  如表VI所示，现有算法普遍表现优异。例如，Grag[15]在DreamBooth和MidjourneyV4上的平均精度（AP）分别达到0.902和0.913。然而，基于分类的训练算法[1]-[3]、[14]-[17]泛化能力较弱，导致检测性能欠佳。相比之下，我们提出的语言引导对比范式使模型能够学习更具泛化性的图像表征，平均AP达到0.941，较第二名提升5.1%。</p>
+<h2 id="f.消融研究">F.消融研究</h2>
+<p>​  本小节通过分析训练范式、语言监督、网络架构及损失参数对最终检测性能的贡献，对LASTED模型进行消融研究。表VII展示了其在Tgan、Tfuse和Twild数据集上的主要对比结果。</p>
+<figure>
+<img
+src="../postimages/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/image-20251212225217411.png"
+alt="image-20251212225217411" />
+<figcaption aria-hidden="true">image-20251212225217411</figcaption>
+</figure>
+<p>​  a)训练范式<br/>​  在表VII中，lasted实验的结果展示在第11行。我们还使用标准分类和图像-图像对比范式训练了相同的网络，结果分别列于第1行和第2行。具体来说，我们采用二元交叉熵损失来监督图像编码器，而在图像-图像对比范式中，我们使用循环损失[12]，且未涉及任何文本编码器。显然，分类范式不足以提取具有泛化能力的表征，仅达到0.842的平均精度（AP）。采用图像-图像对比范式训练的网络表现更差，AP值仅为0.803。需要强调的是，图像-图像对比范式的优化目标函数难度更高，容易导致模型陷入局部最优。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/">https://zhaozw-szu.github.io/Generalizable-Synthetic-Image-Detection-via-Language-guided-Contrastive-Learning/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Guard-Me-If-You-Know-Me/" title="Guard Me If You Know Me:Protecting Specific Face-Identity from Deepfakes"><img class="cover" src="/postimages/Guard-Me-If-You-Know-Me/image-20251215170537444.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Guard Me If You Know Me:Protecting Specific Face-Identity from Deepfakes</div></div></a></div><div class="next-post pull-right"><a href="/Qwen3-VL/" title="Qwen3-VL"><img class="cover" src="/img/coverImage/cover1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Qwen3-VL</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">189</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E5%85%B3%E5%90%88%E6%88%90%E5%9B%BE%E5%83%8F%E6%A3%80%E6%B5%8B%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="toc-text">2.有关合成图像检测的研究</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E4%BA%8E%E5%90%88%E6%88%90%E5%9B%BE%E5%83%8F%E6%A3%80%E6%B5%8B%E7%9A%84lasted%E7%AE%97%E6%B3%95"><span class="toc-text">3.用于合成图像检测的LASTED算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E5%8A%A8%E6%9C%BA"><span class="toc-text">A.动机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E6%96%87%E6%9C%AC%E6%A0%87%E7%AD%BE%E5%A2%9E%E5%BC%BA"><span class="toc-text">B. 文本标签增强</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-lasted%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B"><span class="toc-text">C. LASTED训练流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-lasted%E7%9A%84%E6%A3%80%E6%B5%8B%E6%B5%81%E7%A8%8B"><span class="toc-text">D. LASTED的检测流程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E8%AE%BE%E7%BD%AE"><span class="toc-text">A.设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E6%95%B0%E6%8D%AE%E9%9B%86tgan%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">B. 数据集Tgan的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%84%E4%BC%B0"><span class="toc-text">C. 数据集评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-%E6%95%B0%E6%8D%AE%E9%9B%86tfuse%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">D. 数据集Tfuse的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#e.-%E6%95%B0%E6%8D%AE%E9%9B%86twild%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="toc-text">E. 数据集Twild的评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#f.%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">F.消融研究</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

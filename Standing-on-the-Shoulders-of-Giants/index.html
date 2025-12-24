@@ -1,0 +1,561 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Standing on the Shoulders of Giants:Reprogramming Visual-Language Model for General Deepfake Detection | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Standing on the Shoulders of Giants: Reprogramming Visual-Language Model for General Deepfake DetectionKaiqing Lin1, Yuzhen Lin1, Weixiang Li1, Taiping Yao2, Bin Li1†1 广东省智能信息处理重点实验室，深圳媒体安全重点实验室，深圳">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Standing on the Shoulders of Giants:Reprogramming Visual-Language Model for General Deepfake Detection">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Standing-on-the-Shoulders-of-Giants/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="Standing on the Shoulders of Giants: Reprogramming Visual-Language Model for General Deepfake DetectionKaiqing Lin1, Yuzhen Lin1, Weixiang Li1, Taiping Yao2, Bin Li1†1 广东省智能信息处理重点实验室，深圳媒体安全重点实验室，深圳">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg">
+<meta property="article:published_time" content="2025-12-15T11:54:03.000Z">
+<meta property="article:modified_time" content="2025-12-16T09:03:08.363Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Standing-on-the-Shoulders-of-Giants/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Standing on the Shoulders of Giants:Reprogramming Visual-Language Model for General Deepfake Detection',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-12-16 17:03:08'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">189</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Standing on the Shoulders of Giants:Reprogramming Visual-Language Model for General Deepfake Detection</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-12-15T11:54:03.000Z" title="创建于 2025-12-15 19:54:03">2025-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-16T09:03:08.363Z" title="更新于 2025-12-16 17:03:08">2025-12-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Standing on the Shoulders of Giants:Reprogramming Visual-Language Model for General Deepfake Detection"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Standing on the Shoulders of Giants: Reprogramming Visual-Language
+Model for General Deepfake Detection<br/>Kaiqing Lin1<em>, Yuzhen
+Lin1</em>, Weixiang Li1, Taiping Yao2, Bin Li1†<br/>1
+广东省智能信息处理重点实验室，深圳媒体安全重点实验室，深圳大学 SZU
+-AFS人工智能技术联合创新中心<br/>2 Tencent Youtu Lab</p>
+<h1 id="摘要">摘要</h1>
+<p>​  深度伪造人脸的泛滥对我们的日常生活造成了巨大的潜在负面影响。尽管近年来深度伪造检测技术取得了显著进展，但现有方法在处理未见过的数据集或新兴生成模型创建的伪造内容时，其泛化能力仍然受限。本文受到视觉语言模型（VLMs）零样本优势的启发，提出了一种重新利用经过充分训练的
+VLM
+进行通用深度伪造检测的新方法。受模型重编程范式（通过输入扰动操纵模型预测）的启发，我们的方法仅需通过操纵输入参数即可重编程预训练的
+VLM
+模型（如CLIP），而无需调整内部参数。首先，使用可学习的视觉扰动来优化深度伪造检测的特征提取；其次，利用面部嵌入信息创建样本级别的自适应文本提示，从而提升性能。在多个流行基准数据集上的大量实验表明：<br/>​  (1)深度伪造检测的跨数据集和跨操纵性能得到了显著且一致的提升（例如，从FF++到WildDeepfake的跨数据集设置中AUC超过88%）；<br/>​  (2)在更少可训练参数的情况下实现了优异性能，这使其成为现实世界应用中极具前景的方法。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  Deepfake（深度伪造）是一系列基于深度学习的面部伪造技术（Li等，2020a；Xu等，2022；Chen等，2024a），能够将视频中人物的面部替换或重新演绎为他人。近年来，这类视频因其制造和传播虚假信息的潜力而引发广泛关注。因此，检测深度伪造已成为降低此类安全风险的关键研究课题。现有方法将深度伪造检测视为二分类问题，并主要采用卷积神经网络（如Xception或EfficientNet）作为分类器的骨干网络。此外，部分研究(Qian
+et al. 2020; Li et al.2020b; Zhao et al. 2021; Yan et al. 2023b,
+2024b)提出引入辅助线索，包括模态（如频率）或监督（如伪造面具）信息，用于学习细微伪造特征。尽管取得这些进展，但针对训练数据之外的未见数据集及未见方法合成的伪造内容进行评估，仍是深度伪造检测的实际应用中面临的重要挑战。<br/>​  视觉语言模型（VLMs），例如对比语言-图像预训练（CLIP）（Radford等人，2021年），在多种下游任务中展现出强大的零样本和少样本泛化能力。为了提高深度伪造检测器的泛化能力，
+VLFFD（Sun等人，2023年）完全微调了一个基于CLIP的模型，这表明CLIP的有效性。然而，预训练模型参数的过度调整可能会破坏大量预训练知识，导致性能不佳。因此，开发一种成本效益高的方法具有挑战性。<br/>​  鉴于深度网络对对抗性攻击的固有脆弱性，研究者提出了一种名为模型重编程（Model
+Reprogramming）的新方法（Elsayed、Goodfellow与Sohl-Dickstein，2019；Chen，2024），该方法通过学习通用输入扰动，无需修改源域模型参数，即可将源域训练的优质模型重新用于目标域任务。换句话说，只需在深度网络输入端施加一个加性偏移，就能让网络无需重新训练或微调内部参数，就能轻松适应新任务。相较于在模型内部反复调整大量参数，这种重编程范式所需可学习参数的数量要少得多。受这些技术突破的启发，我们认为：对经过充分训练的基础模型进行重编程以识别深度伪造，是提升泛化能力和训练效率的绝佳方案。<br/>​  本文提出了一种名为RepDFD的创新方法，通过重编程预训练CLIP模型实现高效通用的深度伪造检测。该方法在保持CLIP模型整体冻结的前提下，专门学习针对深度伪造检测的任务特定视觉扰动（即视觉提示）的像素空间特征。具体而言，我们引入输入转换技术将图像与视觉提示融合后输入CLIP的图像编码器；同时提出Face2Text提示生成技术，通过融合面部嵌入信息生成文本提示，再将其输入CLIP的文本编码器以优化视觉提示。这种简洁的方法使CLIP模型能够有效检测深度伪造。由于无需训练内部参数，基础CLIP模型可复用于其他视觉任务。在多个主流深度伪造基准测试中的大量实验表明：(1)通过为预训练CLIP模型配备RepDFD，跨数据集和跨操作性能可显著且持续提升；(2)在更少可训练参数下实现优异性能（见图1），这使其成为现实应用中极具潜力的解决方案。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251215195836366.png"
+alt="image-20251215195836366" />
+<figcaption aria-hidden="true">image-20251215195836366</figcaption>
+</figure>
+<blockquote>
+<p>图1：本方法与开源深度伪造检测模型在WildDeepfake数据集（基于FF++训练）上的性能对比。本方法在参数量最少的情况下实现了最佳性能。</p>
+</blockquote>
+<p>​  简言之，本研究的主要贡献可概括如下：</p>
+<ul>
+<li>这是首个探索深度伪造检测任务中模型重编程范式的研究工作。</li>
+<li>我们提出RepDFD方法，通过仅处理其图像和文本输入而无需调整内部参数，即可对预训练的CLIP模型进行重编程。因此，RepDFD可无缝适配其他基础模型。</li>
+<li>我们已在多个基准数据集上进行了大量实验，并证明RepDFD在深度伪造检测中具有通用性和高效性。</li>
+</ul>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  <strong>Deepfake
+检测</strong><br/>​  过去五年间，针对深度伪造的恶意使用，业界提出了多种防御方法。目前主流的深度伪造检测方法都基于深度学习，以通用卷积神经网络（如Xception、EfficientNet）作为分类器的骨干网络。此外，部分研究（如钱等人2020年、赵等人2021年）通过引入频率信息或定位伪造区域来提升检测性能。然而，泛化能力不足仍是深度伪造检测在实际场景中应用的瓶颈。为解决这一问题，多位学者（李等人2020b、绪原与山崎2022年、阮等人2024年、林等人2024b）在训练过程中引入了增强型深度伪造数据——通过融合两张不同人脸来提升检测效果。但这些方法通常需要重新训练骨干网络。总体而言，采用更强大的骨干网络（例如用视觉图卷积网络ViTs或视觉语言模型VLMs替代CNN）虽能提升检测性能，但训练阶段的计算成本也会相应增加。</p>
+<p>​  <strong>CLIP模型</strong><br/>​  CLIP是一个视觉-语言模型（Radford等人，2021），能够通过文本提示对未见过的类别进行灵活的零样本迁移。由于CLIP经过预训练以预测图像是否与文本描述匹配，因此自然适用于零样本识别。该模型通过将图像特征与文本编码器合成的分类权重进行比较来实现这一目标，其中文本编码器以指定目标类别的文本描述作为输入。CLIP模型包含图像编码器EI（·）和文本编码器ET（·），使得每对k的特征EI（xk）和ET（tk）之间的余弦相似度最大化。与传统分类器学习方法（通过随机向量学习闭集视觉概念）相比，视觉-语言预训练允许通过高容量文本编码器探索开放集视觉概念，从而扩展语义空间，使学习到的表征更易于迁移至各种视觉任务。多项研究（Sha等人，2023；Ojha、Li和Lee，2023；Cozzolino等人，2024）已探索使用CLIP模型检测生成对抗网络（GAN）和扩散模型生成的图像。
+VLFFD（视觉-语言伪造检测）（Sun等人，2023）提出通过细粒度文本提示对CLIP进行完全微调以实现深度伪造检测。在本研究中，我们提出了一种经济高效的方法，用于将预训练的CLIP模型适应于通用深度伪造检测。</p>
+<p>​  模型重编程<br/>​  参数高效微调（PEFT）方法（Tsao等人，2024）显著降低了计算和存储开销，因此受到越来越多的关注。通过仅微调少量额外参数，
+PEFT 能够使大型预训练模型适应目标任务，实现卓越性能。其中一种 PEFT
+方法——模型重编程（Chen，2024）——将提示融入输入，为模型在各种任务特定应用中的再利用提供了有效框架。该框架深受对抗性重编程的启发，后者最初由Elsayed等人（Elsayed、Goodfellow和Sohl-Dickstein，2019）提出。模型重编程旨在无需对模型内部参数进行根本性改变的情况下，从现有模型中重用并重新对齐数据表示以适应独立任务。这一范式通过战略性地转换输入和输出，绕过了广泛的模型内部参数微调，从而重新利用现有知识。近年来，重编程技术已广泛应用于各种任务（Wang等人，2022；Cai等人，2024）。视觉提示（VP）（Bahng等人，2022）则直接在输入数据中引入通用扰动，以促进任务特定微调，同时保持预训练模型的完整性。尽管这些
+PEFT 方法已在其他研究领域发展，但将 PEFT
+方法应用于面部伪造检测仍鲜有探索。在本研究中，我们介绍了一种新方法，通过仅使用少量可学习参数，重新编程预训练的CLIP模型以实现深度伪造检测，旨在利用预训练视觉语言模型（VLM）的强大泛化能力。</p>
+<h1 id="方法论">3.方法论</h1>
+<h2 id="总览">3.1.总览</h2>
+<p>​  本文提出了一种名为RepDFD的深度伪造检测方法，该方法无需调整模型内部参数，即可对预训练视觉语言模型CLIPs进行重编程。具体而言，给定一个经过充分训练的CLIP模型（包含图像编码器EI和文本编码器ET），我们通过在输入端添加视觉和文本提示，使冻结的EI和ET能够适应深度伪造检测任务。为实现这一目标，我们设计了输入转换模块和Face2Text提示模块，分别对图像和文本进行预处理后再输入到EI和ET中。这种重编程策略充分发挥了模型的潜力，既能保持模型内部参数和预训练知识，又能引导CLIPs专注于深度伪造检测任务。整体框架如图2所示。下文将详细阐述输入转换模块、Face2Text提示模块以及优化流程的具体实现细节。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216170301619.png"
+alt="image-20251216170301619" />
+<figcaption aria-hidden="true">image-20251216170301619</figcaption>
+</figure>
+<h2 id="输入变换">3.2.输入变换</h2>
+<p>​  RepDFD通过引入可学习的视觉提示（包含扰动参数），优化了预训练CLIP模型在深度伪造检测任务中的视觉特征。该方案借鉴了VP（Bahng等人，2022）和AutoVP（Tsao等人，2024）的类似架构，将视觉提示置于输入图像周围进行转换。具体流程是先将输入图像缩放至较小尺寸，再与视觉提示结合，以匹配预训练图像编码器EI的输入尺寸。图3展示了输入转换的具体实现细节。给定原始图像X，输入变换的目标是将通用视觉提示
+δ 与X合并。形式上，输入变换的过程可以描述为 <span
+class="math display">\[{\mathcal T}_{p}({\bf
+X},\delta)=\mathrm{Resi}{\bf Z}\mathrm{e}_{p}({\bf X})+\delta,\]</span>
+​  其中 p 为视觉提示的宽度。最后，将原始图像 X 的尺寸从 H × W 调整为 H′ ×
+W′ =（H − 2p）×（W − 2p），确保变换后的图像不与 δ
+重叠。该方法中的可训练参数数量与模型无关，可通过以下方式计算： <span
+class="math display">\[\#P a r a=3(H
+W-H^{\prime}W^{\prime})=6p(H+W)-12p^{2}.\]</span> ​  该表达式表示 δ
+应用于图像的RGB通道。因此，在训练或推理过程中，将Tp（X，δ）输入图像编码器EI以获取图像特征f，即
+<span
+class="math display">\[f=E_{I}(\mathcal{T}_{p}(\mathbf{X},\delta)).\]</span>
+## 3.3.Face2Text提示</p>
+<p>​  为了将模型输出映射到目标标签，CLIP模型通过文本提示在共享的潜在空间中对齐图像特征，通过匹配最接近的文本描述与图像特征实现分类。因此，每个类别都需要通过注入类别信息来创建特定的文本提示。例如，官方统一的文本提示模板之一是“[类别]的照片”，其中[类别]是类别标签的占位符。然而，在深度伪造检测的语境中，二元类别标签“真实人脸”和“伪造人脸”（或同义词）相比“猫”或“狗”等标签缺乏具体性，使得使用现有文本模板难以准确识别。为解决这一问题，
+VLFFD（Sun等人，2023）引入了细粒度文本描述，以手动微调CLIP模型中的EI（·）和ET（·）。然而，设计一个全面描述伪造线索的手工文本提示是困难且劳动密集型的。<br/>​  本研究致力于开发一种简洁高效的文本提示生成方法，充分发挥CLIP模型在深度伪造检测中的泛化能力。个性化图像生成方法的成功案例（Chen等，2024b；Papantoniou等，2024）表明，将预训练图像嵌入作为文本嵌入有助于保持生成对象的一致性。鉴于深度伪造涉及面部特征的篡改，真实与伪造人脸在面部表征上的差异性成为可靠线索。基于此，我们建议利用CLIP文本编码器将人脸嵌入整合到文本嵌入中。通过这种方式，原本难以用语言准确描述的样本级人脸信息得以融入文本提示，从而显著提升CLIP模型在深度伪造检测中的效能。<br/>​  为实现这一目标，本文提出Face2Text模块，具体细节如图4所示。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216095626124.png"
+alt="image-20251216095626124" />
+<figcaption aria-hidden="true">image-20251216095626124</figcaption>
+</figure>
+<p>​  提示模板T设计为“A [cls] photo of a [FE]
+person”。给定面部编码器EF，我们可为输入图像X生成面部嵌入向量S∗： <span
+class="math display">\[S^{*}=f_{\mathrm{map}}(E_{F}(\mathbf{X})).\]</span>
+​  其中，fmap表示一个冻结的线性层，该层通过随机初始化将面部嵌入向量投影至文本编码器ET的输入维度。通过文本到嵌入向量转换（TTE）操作，文本提示T首先被分词并转换为词嵌入t，其表达式可表示为
+<span class="math display">\[\mathrm{t}=T T E(\mathbf{T}).\]</span>
+​  随后，将占位符标记[FE]替换为面部嵌入向量S∗，如下所示 <span
+class="math display">\[\mathbf{t}=F a c e2T e x
+t(\mathbf{t},S^{*}).\]</span> ​  我们还考虑了简单的提示模板“A [cls] photo
+of a
+person”，该模板未被等式(6)处理。因此，我们为真实和虚假标签获得了四种不同的提示模板（见表1）。根据结果，一个有趣的发现是，针对真实和虚假类别设置的不对称场景（{T0，T3}）取得了最佳性能。深入分析将在后文讨论。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216111700579.png"
+alt="image-20251216111700579" />
+<figcaption aria-hidden="true">image-20251216111700579</figcaption>
+</figure>
+<p>​  因此，在训练或推理过程中，将文本嵌入t输入到预训练CLIP的文本编码器ET中，以获取文本特征w，即
+<span class="math display">\[w=E_{T}(\mathbf{t}),\]</span> ##
+3.4.优化管线</p>
+<p>​  遵循CLIP范式，预测概率的计算公式为： <span
+class="math display">\[P(y_{i}\mid
+x)={\frac{\exp(\cos(w_{i},f)/\tau)}{\sum_{j=0}^{1}\exp(\cos(w_{j},f)/\tau)}},i=\{0,1\}\]</span>
+​  其中cos（·）表示余弦相似度， τ
+为CLIP的温度参数，f为图像特征，wi为标签yi文本提示的文本特征。<br/>​  训练阶段，通过最大化正确标签的似然值来优化可学习的视觉提示
+δ 。推理阶段， δ
+被填充在缩小后的测试样本周围并用于预测。在训练数据集D上，优化目标是通过调整
+δ 来最小化L，这可表述为 <span
+class="math display">\[{\mathcal{L}}=\mathbb{E}_{\mathbf{X}\sim{\mathcal{D}}}\left[-\sum_{n}^{N}P(y_{n}|x_{n})\log(P(y_{n}|x_{n}))\right],\]</span>
+​  其中 N 代表训练数据集 D 的大小，xn 表示第 n 个图像样本，yn 是 xn
+的真实标签。我们将 δ
+初始化为零，并采用基于梯度的简单方法，通过反向传播直接优化视觉提示，即在第
+k 步更新 δ 为</p>
+<p><span
+class="math display">\[\delta^{k+1}=\delta^{k}-\gamma\nabla_{\delta^{k}}{\mathcal{L}},\]</span>
+​  其中γ为学习率。<br/>​  值得注意的是，若将文本特征[w0,
+w1]视为全连接层对真实与虚假类别的"权重"，则公式(8)与输入维度N、输出维度2的传统全连接层具有相似表达形式。鉴于本方法中每个输入图像都具备自适应文本特征，这意味着模型将基于样本级动态分类器进行分类决策。因此，Face2Text模块也将在优化过程中显著增强监督信息的丰富性。</p>
+<h1 id="实验">4.实验</h1>
+<h2 id="实验设置">4.1.实验设置</h2>
+<p>​  <strong>数据集</strong><br/>​  与先前研究类似，本研究主要基于FaceForensics++（FF++）数据集（Rossler等，2019）开展训练。该数据集包含1000段原始视频（PT，真实样本）和5000段通过五种伪造技术生成的虚假视频，包括深度伪造（DF）、Face2Face（F2F）、FaceSwap（FS）、NeuralTextures（NT）和FaceShifter（FSh）。此外，FF++还提供三种压缩质量等级：原始、高清（HQ）和低质量（LQ）。本文默认采用HQ版本。样本按照官方协议在视频层面划分为互不重叠的训练集、验证集和测试集。为展示跨数据集性能，我们额外采用了四个数据集：Celeb-DF-v2（CDF）（Li等，2020c）、DeepFake检测挑战赛预览版（DFDCP）（Dolhansky等，2019）、DeepFake检测挑战赛公开版（DFDC）（Dolhansky等，2020）以及WildDeepfake（Wild）（Zi等，2020）。</p>
+<p>​  <strong>实现细节</strong><br/>​  我们采用CLIP-ViT-L（Radford等人，2021）作为基础模型，该模型已在
+LAION
+-400M数据集上预训练。预训练的Transface（Dan等人，2023）被用作增强模型（EF）。基础模型的输入尺寸为224×224。我们为输入变换设置p=34，因此根据等式(2)，本方法的可训练参数为0.078M。我们采用AdamW优化器，学习率为1.0，权重衰减固定为0。此外，数据预处理变换与原始CLIP（Radford等人，2021）相同。值得注意的是，视觉提示
+δ 被初始化为零。</p>
+<p>​  <strong>评估指标</strong><br/>​  本研究主要采用受试者工作特征曲线下面积（AUC）作为评估指标，与既往研究进行对比。视频级结果通过计算评估视频中各帧预测值的平均值获得。为便于与现有方法进行全面比较，我们在附录（Lin等，2024a）中同时提供了等错误率（EER）的评估结果。</p>
+<h2 id="与先进水平的比较">4.2.与先进水平的比较</h2>
+<p>​  为了全面评估我们方法的可推广性，我们比较了过去三年发表的几种 SOTA
+方法的跨数据集和跨操作评估的性能。</p>
+<p>​  <strong>跨数据集评估</strong><br/>​  跨数据集评估仍然是一个具有挑战性的任务，因为训练集和测试集之间的未知域差距可能由不同的源数据、伪造方法和/或后处理引起。在本部分中，我们在跨数据集设置下评估了泛化性能，其中检测模型是在FF++（仅包含DF、F2F、FS和NT子集以确保公平比较）上训练，并在其他数据集上测试。我们的方法与过去三年提出的几种最先进的（SOTA）方法进行了比较，包括：UiA-ViT
+(Zhuang et al. 2022), DCL (Sun et al. 2022), CFM (Luo et al. 2023),
+AUNet (Bai et al. 2023), SLADD(Chen et al. 2022), SBI (Shiohara and
+Yamasaki 2022), FoCus (Tian et al. 2024), UCF (Yan et al. 2023a),
+TALL++(Xu et al. 2024), TALL (Xu et al. 2023), (Ba et al. 2024),SeeABLE
+(Larue et al. 2023), LSDA (Yan et al. 2024a),LAA-Net (Nguyen et al.
+2024), VLFFD (Sun et al. 2023),IID (Huang et al. 2023), SA3WT (Li et al.
+2024)和BiLIG (Jiang et al.
+2024)。表2展示了帧级和视频级AUC的实验结果。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216163600297.png"
+alt="image-20251216163600297" />
+<figcaption aria-hidden="true">image-20251216163600297</figcaption>
+</figure>
+<p>​  除了在CDF数据集上的中等表现外，我们的方法在Wild、 DFDC 和 DFDCP
+数据集上优于大多数竞争对手。我们还报告了在FF++/DF上训练的结果，发现我们的方法在Wild、
+DFDC 和 DFDCP
+数据集上仍然优于所有竞争对手。需要特别指出的是，所有竞争对手都需要重新训练骨干网络（如ResNet18和ViT），这些网络至少包含1000万个可训练参数。相比之下，我们的方法仅需0.078万个参数，这充分证明了其在参数量更少的情况下仍能保持卓越的通用性能。</p>
+<p>​  <strong>交叉伪造评估</strong><br/>​  现有面部伪造检测系统往往难以应对新兴的伪造技术。本研究通过跨伪造技术实验，对深度伪造（DF）、FaceSwap（FS）和FaceShifter（FSh）三种技术展开对比测试。我们采用针对单一伪造技术训练的模型，在其他三种技术上进行验证。如表3所示，我们的方法显著提升了跨技术检测性能。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216163652635.png"
+alt="image-20251216163652635" />
+<figcaption aria-hidden="true">image-20251216163652635</figcaption>
+</figure>
+<p>​  这些结果充分证明，该方法在对抗新型未见伪造技术方面具有显著优势。</p>
+<h2 id="消融研究">4.3.消融研究</h2>
+<p>​  在本部分中，我们通过多项评估来探究ReDFD的有效性。这些实验的主要结果是基于FF++/DF训练的跨数据集性能表现。</p>
+<p>​  <strong>重编程范式的影响</strong><br/>​  在这一部分，我们评估了我们的重编程范式与其他调优范式相比的有效性。具体来说，对于图像特征编码器EI的微调，我们评估了两种成熟的方法：全微调（FFT），即调整EI中的所有参数；以及线性探测（LP），该方法在保持EI冻结的同时引入了一个可学习的线性层。此外，我们还参考了最近的一项研究MoE-
+FFD（Kong等，2024），该研究提出了一种联合使用LoRA和Adapter范式来微调冻结的EI的深度伪造检测方法。<br/>​  除了这三种与图像特征提取相关的调优范式外，我们的研究还纳入了与文本特征提取相关的调优范式CoOp（Zhou等，2022），将其纳入比较。该范式在保持CLIP冻结的同时引入可学习的文本提示，以适应目标任务。如表4所示，我们的方法在大多数场景中优于其他方法。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216164037767.png"
+alt="image-20251216164037767" />
+<figcaption aria-hidden="true">image-20251216164037767</figcaption>
+</figure>
+<p>​  LP和CoOp未能充分促进基础CLIP模型向深度伪造检测任务的迁移，导致泛化性能不佳。我们认为这两种范式存在一个共同问题：它们影响的是图像特征的利用而非提取。相比之下，
+FFT 、MoE- FFD
+和我们的方法可以直接影响图像特征的提取，从而在多个数据集上提升整体性能。此外，我们的方法在显著减少参数数量的情况下实现了更优的泛化。尽管可训练参数数量没有增加，但使用更大CLIP模型时，我们的方法仍能获得性能提升。相反，MoE-
+FFD
+在更大模型上由于可训练参数增多而性能显著下降，这可能表明存在过拟合。我们推测，利用有限数量的参数来拟合深度伪造相关知识可能保留了基础模型的泛化能力。这揭示了我们的方法在有效扩展到更大模型方面的潜力。</p>
+<p>​  <strong>不同文本提示的影响</strong><br/>​  在本部分中，我们研究了不同文本提示配置对RepDFD检测任务的影响，包括固定文本提示、随机初始化文本提示以及我们提出的自适应人脸相关文本提示（称为动态文本提示）。实验结果表明，动态文本提示比固定文本提示更具优势。我们考虑了表1中所有真实/虚假文本模板组，即{T0，T1}、{T2，T1}、{T2，T3}。此外，我们还设计了一种名为“随机文本”的特殊文本提示设置，其包含两个完全随机初始化且冻结的文本嵌入，与“固定文本”（{T0，T1}）保持一致。如表5所示，当仅在虚假类文本提示中使用人脸嵌入时，对应动态文本提示设置{T0，T3}，检测性能达到最佳。我们发现“固定文本”（{T0，T1}）效果有限，其表现与缺乏实质性语义内容的“随机文本”相当。这一观察结果表明，在深度伪造检测任务中，语言的语义内容可能影响有限，因为该任务主要侧重于痕迹分析。相比之下，将人脸嵌入整合到文本提示中生成动态文本提示（对应{T2，T3}、{T2，T1}、{T0，T3}）可显著提升模型性能。这种设置能将精细且与人脸相关的视觉信息融入文本提示，从而补充那些难以用语言描述的细节。因此，动态文本提示不仅能丰富训练过程中的监督信息，还能提供样本级别的自适应信息以支持分类任务。</p>
+<p>​  <strong>不同人脸嵌入的影响</strong><br/>​  为验证Face2Text的普适性，我们研究了不同人脸嵌入方式对Face2Text提示的影响。通过对比ArcFace（Deng等人，2019）、BlendFace（Shiohara、Yang和Taketomi，2023）以及Transface（Dan等人，2023）等模型的实验结果，我们以固定文本（即使用文本提示组{T0，T1}）作为基准。如图5所示，我们的方法在多种人脸编码器EF上均展现出优异性能。</p>
+<h2 id="讨论">4.4.讨论</h2>
+<p>​  在本小节中，我们将在下文呈现若干深入分析，旨在探讨本方法的有效性。</p>
+<p>​  <strong>为什么不对称文本提示有效？<br/></strong>  在表5中，值得注意的是，当选择仅包含人脸嵌入的{T0，T3}配置时，性能达到最优。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216165032366.png"
+alt="image-20251216165032366" />
+<figcaption aria-hidden="true">image-20251216165032366</figcaption>
+</figure>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216165209156.png"
+alt="image-20251216165209156" />
+<figcaption aria-hidden="true">image-20251216165209156</figcaption>
+</figure>
+<p>​  为了探究原因，如表6所示，我们计算了初始视觉提示 δ
+提取的图像特征与文本提示（含人脸嵌入和不含人脸嵌入）之间的余弦相似度。我们的研究结果表明，使用不含人脸嵌入的文本提示时，真实标签（T0）的余弦相似度较高；而使用含人脸嵌入的文本提示时，虚假标签（T3）的余弦相似度较高。我们推测，具有更高余弦相似度的文本提示能为CLIP模型提供更好的初始化，从而更有效地微调目标模型。这一观察结果可能对未来的方法设计有所帮助。</p>
+<p>​  视觉特征分布的可视化<br/>​  在本实验中，我们展示了如图6所示的视觉特征分布t-SNE可视化结果。</p>
+<figure>
+<img
+src="../postimages/Standing-on-the-Shoulders-of-Giants/image-20251216165450594.png"
+alt="image-20251216165450594" />
+<figcaption aria-hidden="true">image-20251216165450594</figcaption>
+</figure>
+<p>​  视觉提示 δ
+的影响仅限于输入图像而非模型本身，这确保了图像特征能够占据一致的特征潜在空间。初步观察表明，原始特征分布中CDF数据集与FF数据集存在显著差异，这表明未经修改的CLIP模型具有内在的领域判别能力。此外，未使用视觉提示时，原始CLIP模型无法区分真实与伪造图像。相比之下，在FF数据集上，通过添加视觉提示可有效区分真实与伪造图像，这证明了我们方法的有效性。值得注意的是，尽管CDF数据集未用于训练，但基于FF数据集训练的视觉提示有效增强了模型在CDF数据集上检测深度伪造的能力。我们推测，由有限数量可调参数组成的视觉提示
+δ
+可能倾向于利用冻结模型的固有能力，而非直接引入额外的深度伪造信息，这或许有助于保护预训练模型的泛化能力并提升模型性能。除视觉特征可视化外，我们还在附录（Lin等，2024a）中提供了文本特征与人脸嵌入的可视化结果，揭示了不同数据集间共有的中间领域特征。这些观察结果需在后续研究中进一步探讨。</p>
+<h1 id="结论">5.结论</h1>
+<p>​  在本文中，我们提出了一种通用但参数效率高的方法RepDFD，通过重新编程经过充分训练的CLIP模型来检测人脸伪造。具体而言，我们采用输入转换技术，在将图像输入CLIP图像编码器前，先将图像与可学习的扰动融合。此外，我们引入Face2Text提示词，将面部嵌入信息非对称地整合到真实与伪造类别的文本提示中，这些提示随后被输入CLIP文本编码器以指导扰动优化。RepDFD通过仅处理输入图像和文本（排除内部模型参数）有效利用CLIP检测深度伪造。全面实验表明，我们的方法能在更少可训练参数下实现更优性能。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Standing-on-the-Shoulders-of-Giants/">https://zhaozw-szu.github.io/Standing-on-the-Shoulders-of-Giants/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Unsupervised-Domain-Adaptation-for-Face-Anti-Spoofing/" title="Unsupervised_Domain_Adaptation_for_Face_Anti-Spoofing"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Unsupervised_Domain_Adaptation_for_Face_Anti-Spoofing</div></div></a></div><div class="next-post pull-right"><a href="/Guard-Me-If-You-Know-Me/" title="Guard Me If You Know Me:Protecting Specific Face-Identity from Deepfakes"><img class="cover" src="/postimages/Guard-Me-If-You-Know-Me/image-20251215170537444.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Guard Me If You Know Me:Protecting Specific Face-Identity from Deepfakes</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">189</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="toc-text">3.方法论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-text">3.1.总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%8F%98%E6%8D%A2"><span class="toc-text">3.2.输入变换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1.实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%85%88%E8%BF%9B%E6%B0%B4%E5%B9%B3%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">4.2.与先进水平的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.3.消融研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A8%E8%AE%BA"><span class="toc-text">4.4.讨论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
