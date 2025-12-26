@@ -1,0 +1,593 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于CVPR2024,。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="发表于CVPR2024,。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225223441381.png">
+<meta property="article:published_time" content="2025-12-25T14:13:45.000Z">
+<meta property="article:modified_time" content="2025-12-25T16:57:10.271Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225223441381.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-12-26 00:57:10'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">191</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225223441381.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2025-12-25T14:13:45.000Z" title="创建于 2025-12-25 22:13:45">2025-12-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-25T16:57:10.271Z" title="更新于 2025-12-26 00:57:10">2025-12-26</time><span class="post-meta-separator">|</span><i class="fas fa-star fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><span class="post-rank">A类会议,CVPR,2024</span></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%88%E6%88%90%E5%9B%BE%E5%83%8F%E6%A3%80%E6%B5%8B/">合成图像检测</a></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/Michel-liu/FatFormer"><img src="https://img.shields.io/github/stars/Michel-liu/FatFormer?style=flat" alt="GitHub Stars: Michel-liu/FatFormer" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">发表于CVPR2024,。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>Forgery-aware Adaptive Transformer for Generalizable Synthetic Image
+Detection</p>
+<p>Huan Liu1<em>,</em>3* ，Zichang Tan2 ，Chuangchuang Tan1<em>,</em>3
+，Yunchao Wei1<em>,</em>3，Jingdong Wang2 ，Yao
+Zhao1<em>,</em>3†<br/>1北京交通大学信息科学研究所<br/>2 Baidu VIS<br/>3
+北京先进信息科学与网络技术重点实验室，北京，中国</p>
+<h1 id="摘要">摘要</h1>
+<p>​  本文研究可泛化合成图像检测问题，旨在从生成对抗网络（GANs）和扩散模型等多样化生成方法中识别伪造图像。当前前沿解决方案开始探索预训练模型的优势，主要遵循固定范式——仅训练附加分类器，例如在UniFD[43]中将冻结的CLIP-ViT与可学习线性层结合。然而我们的分析表明，这种固定范式容易导致检测器对伪造图像表征的学习能力不足。我们将关键挑战归因于伪造适应机制的缺失，并提出了一种新型防伪造自适应Transformer架构——FatFormer。基于CLIP预训练的视觉-语言空间，FatFormer通过两项核心设计实现泛化伪造表征的构建：首先，考虑到图像与频率分析对合成图像检测的双重重要性，我们开发了防伪造适配器，使图像特征能够识别并整合图像域与频率域中的局部伪造痕迹；其次，通过对比适配后的图像特征与文本提示嵌入（这一先前被忽视的维度），我们实现了显著的泛化性能提升。为此，FatFormer引入了语言引导对齐机制，通过图像与文本提示对伪造适应进行监督。实验表明，通过结合这两种设计，我们的方法在4类ProGAN数据上调优后展现出卓越的检测性能，对未见过的GAN模型平均准确率达到98%，更令人惊喜的是，其对未见过的扩散模型也实现了95%的准确率。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  近年来，生成对抗网络（GANs）[13,25–27]和扩散模型[9,14,16,42]等生成模型的涌现与进步引发广泛关注。这些模型能够生成高度逼真的合成图像，由此引发了对潜在滥用和隐私威胁的广泛担忧。针对此类安全问题，学界已开发出多种伪造检测[36,37,52,54,56,57,61]和反欺骗方法[33–35]，例如基于图像的方法[3,59]侧重于低级视觉伪影，而基于频率的方法[12,45]则依赖高频模式分析。然而，当将这些方法应用于GANs或最新扩散模型生成的未见图像时，我们观察到性能显著下降。如何解决这一问题已成为研究热点。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225221728577.png"
+alt="image-20251225221728577" />
+<figcaption aria-hidden="true">image-20251225221728577</figcaption>
+</figure>
+<blockquote>
+<p>图1.
+与固定预训练范式的对比。本图展示了UniFD[43]与FatFormer的总体架构。与训练附加分类器不同，FatFormer通过对比目标函数对图像和文本提示的表示进行对齐，构建了一个具有伪造感知能力的自适应Transformer。</p>
+</blockquote>
+<p>​  近期研究[43,55]开始探索预训练模型的应用，沿袭固定预训练范式——仅训练附加分类器，如图1(a)所示。该领域的一个典型范例是Ojha等人[43]提出的UniFD方法，该方法采用预训练的CLIP-ViT[10,46]将图像编码为特征，无需学习过程。随后通过调整线性层作为分类器来判断输入可信度。从宏观层面看，其成功关键在于采用冻结状态的预训练模型，从而提供经过预训练的学习通用表征，但未在当前合成图像检测任务中进行显式调优。通过这种方式，此类表征在训练过程中永远不会出现过拟合现象，从而保持了合理的泛化能力。然而我们认为，UniFD采用的这种冻结操作也会限制预训练模型学习强相关伪造特征的能力。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225221923717.png"
+alt="image-20251225221923717" />
+<figcaption aria-hidden="true">image-20251225221923717</figcaption>
+</figure>
+<p>​  为验证我们的假设，我们通过可视化UniFD[43]在不同生成模型中的logit分布（如图2顶部所示），对固定预训练范式在伪造品识别中的表现进行定性研究。该分布反映了测试过程中“real”与“fake”样本的分离程度，从而揭示了提取伪造特征表征的泛化能力。值得注意的是，当面对未见过的生成对抗网络（GAN）或扩散模型时（图2(b)-(d)），“real”与“fake”区域存在较大重叠，导致这些伪造样本被错误地归类为“real”类别。此外，即使在使用与训练数据相同生成模型的ProGAN[25]测试样本中，“real”与“fake”元素的区分度也逐渐模糊（图2(a)对比(e)）。我们得出结论：固定预训练范式容易产生对伪造特征学习不足的检测器，并将主要挑战归因于缺乏伪造适应能力，这限制了预训练模型潜在能力的充分释放。<br/>​  基于上述分析，我们提出了一种新型的伪造感知自适应Transformer方法（图1(b)），命名为FatFormer，用于通用合成图像检测。与UniFD[43]一致，FatFormer以CLIP[46]作为预训练模型，该模型由ViT[10]图像编码器和Transformer[58]文本编码器组成。基于CLIP预训练的视觉-语言空间，我们的方法通过整合两个核心设计实现了伪造适应，最终获得具有良好泛化能力的伪造表征，真实与伪造类别间具有明显边界（图2(e)-(h)）。
+<br/>​  首先，考虑到图像域和频域对合成图像检测都至关重要，我们开发了一种防伪感知适配器（FAA，forgery-aware
+adapter），该适配器包含一对图像与频域防伪提取器。在图像域中，采用轻量级卷积模块提取低级防伪特征，例如模糊纹理和色彩失配[32]。而在频域方面，我们构建了分组注意力机制，通过离散小波变换（DWT，discrete
+wavelet
+transform）[40]的不同频带动态聚合频率线索。通过整合这些多样化的防伪特征，FAA构建了图像特征的全局视图，这对有效识别伪造图像至关重要。<br/>​  其次，我们摒弃了传统的基于图像特征的二元交叉熵损失，转而采用图像与文本提示之间的对比目标——这一先前被忽视的创新方向。该方法的灵感源自CLIP-ViT预训练中的自然语言监督机制，该机制通过优化图像特征与文本提示嵌入的相似性，通常能更稳健地避免过拟合问题[18]。为此，我们提出语言引导对齐（LGA，language-guided
+alignment）框架，包含基于图像块的增强器和文本引导交互器。其中，增强器通过图像块标记对文本提示进行条件化处理，以增强其上下文相关性；交互器则将局部图像块标记与全局文本提示嵌入对齐，引导图像编码器聚焦伪造相关表征。实验结果表明，LGA监督的伪造适应机制能获得更具泛化性的伪造表征，从而显著提升检测的泛化能力。<br/>​  我们的自适应方法FatFormer在固定预训练范式下显著优于近期方法。值得注意的是，使用有限的ProGAN训练数据，我们在8种GAN类型上实现了98.4%的准确率（ACC）和99.7%的平均精度（AP），在10种未见过的扩散图像类型上达到了95.0%的ACC和98.8%的AP。我们希望这些发现能促进该领域预训练范式的开发。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<p>​  <strong>合成图像检测</strong><br/>​  随着生成模型引发的担忧日益加剧，学界提出了多种解决合成图像检测问题的方法，大致可分为基于图像的方法[29,41,50,60,64]、基于频率的方法[12,21,22]以及基于预训练模型的方法[43,55]。例如，Wang等人[59]通过采用多种数据增强技术及大规模生成对抗网络（GAN）图像，提升了模型对未见测试数据的泛化能力。Qian等人[45]则将频率分析引入检测框架，利用局部频率统计和高频分量分解进行伪造检测。近年来，受视觉语言模型（VLMs）在多领域进展的启发[20,24,62,67]，许多研究聚焦于固定预训练范式——冻结预训练模型并附加分类器进行伪造检测。例如，Ojha等人[43]提出UniFD方法，探索CLIP[46]等VLMs在合成图像检测中的潜力。他们发现训练深度网络难以检测新品种的伪造图像，因此采用冻结的CLIP-ViT[10,46]提取伪造特征，并通过线性分类器进行检测。本文的研究动机与密切相关的UniFD方法[43]不同。UniFD试图采用冻结预训练模型来提取伪造图像的表征‘无需学习’。相比之下，我们的方法表明，预训练模型的伪造适应性对于合成图像检测的泛化能力至关重要。</p>
+<p>​  <strong>高效迁移学习</strong><br/>​  迁移学习领域的最新进展表明，预训练模型的高效微调具有巨大潜力，尤其在自然语言处理（NLP）领域表现突出。与线性探测[15]、全微调[69]等传统策略不同，高效的迁移学习仅需添加少量参数的可学习模块，例如提示学习[30]和适配器方法[17,19]。受此启发，视觉领域[5,23]和视觉-语言模型[65,66]已涌现出诸多高效迁移学习方案。与采用线性探测的UniFD[43]不同，本文针对可泛化合成图像检测问题，首次提出基于对比目标的自适应Transformer架构。</p>
+<h1 id="fatformer">3.FatFormer</h1>
+<h2 id="总览">3.1.总览</h2>
+<p>​  FatFormer的整体架构如图3所示。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225223441381.png"
+alt="image-20251225223441381" />
+<figcaption aria-hidden="true">image-20251225223441381</figcaption>
+</figure>
+<blockquote>
+<p>图3.
+我们的FatFormer架构。ViT图像编码器通过集成防伪感知适配器，能有效从输入图像中提取视觉伪造特征。为监督伪造适应过程，我们引入了语言引导对齐机制。具体而言，以两幅输入图像为例，我们通过最大化配对图像特征（深灰色方块）与文本提示嵌入的余弦相似度，同时最小化未配对特征（浅灰色方块）的相似度。测试时仅需输入图像，即可通过这些相似度的softmax函数计算伪造概率。其中‘
+CLS ’和‘EOS’的平方表示图像 CLS 标记与文本提示嵌入。</p>
+</blockquote>
+<p>​  该框架包含两个预训练的编码器（分别处理图像和文本提示），以及第3.2节提出的防伪适配器和第3.3节的语言引导对齐机制。其预测机制通过计算图像特征与文本提示嵌入向量之间的余弦相似度的softmax值，从而确定伪造概率。</p>
+<p>​  <strong>Vanilla
+CLIP</strong><br/>​  基于UniFD[43]的研究框架，我们采用CLIP[46]作为预训练模型，分别搭配ViT[10]图像编码器和Transformer[58]文本编码器。对于尺寸为H×W的图像<span
+class="math inline">\(x\in\mathbb{R}^{3\times H\times
+W}\)</span>，CLIP将其转换为D维图像特征<span class="math inline">\(f_{i m
+s g}\in\mathbb{R}^{(1+N)\times D}\)</span>，其中1代表图像 CLS
+标记，<span class="math inline">\(N={\frac{H
+W}{P^{2}}}\)</span>表示图像块标记，P为块尺寸。与此同时，文本编码器接收语言文本t，通过附加的EOS标记生成文本提示嵌入<span
+class="math inline">\(f_{t e x t}=\mathbb{R}^{M\times
+D}\)</span>（M表示类别数量，本文中M=2）。两个编码器通过对比损失联合训练，以优化图像
+CLS
+标记与文本提示嵌入之间的余弦相似度。预训练完成后，我们可利用重构后的文本描述进行零样本测试，例如使用‘这张照片是[CLASS]’的简单模板，其中‘[CLASS]’可替换为‘real’或‘fake’等类别名称。根据测试图像和文本提示，我们得到类别i的预测相似度<span
+class="math inline">\(i\in\{0,1\}\)</span>，其中0表示‘real’，1表示‘fake’，具体如下
+<span class="math display">\[S(i)=\mathrm{cos}(f_{i m g}^{(0)},f_{t e x
+t}^{(i)}),\]</span> ​  其中cos（·）表示余弦相似度，<span
+class="math inline">\(f_{i m g}^{(0)}\)</span>表示<span
+class="math inline">\(f_{i m g}\)</span>第0个索引处的图像 CLS
+标记。此外，可通过softmax函数计算出相应的可能性。 <span
+class="math display">\[P(i)=\frac{\exp(S(i)/\tau)}{\sum_{k}\exp(S(k)/\tau)},\]</span>
+​  其中 τ 为温度参数。</p>
+<h2
+id="防伪感知适配器faaforgery-aware-adapter">3.2.防伪感知适配器（FAA，forgery-aware
+adapter）</h2>
+<p>​  为有效适应图像特征的伪造行为，我们在图像编码器中插入伪造感知适配器，以桥接相邻的视觉图卷积（ViT）阶段（如图3所示），每个适配器包含多个ViT层。这些适配器能够在图像域和频域中识别并整合伪造痕迹，从而实现对图像特征的全面局部视角分析。</p>
+<p>​  <strong>图像伪造提取器</strong><br/>​  在图像域中，FAA构建了一个轻量级图像伪造提取器，该提取器包含两个卷积层和一个ReLU层，用于捕获低级图像伪影，具体如下
+<span class="math display">\[\hat{g}_{i m
+g}^{(j)}=\mathrm{Conv}(\mathrm{ReLU}(\mathrm{Conv}(g_{i m
+g}^{(j)})),\]</span> ​  其中 <span class="math inline">\(\hat{g}_{i m
+g}^{(j)}\)</span>
+表示第j个视觉表征层阶段（ViT）中来自FAA的伪造感知图像特征，<span
+class="math inline">\(g_{i m
+g}^{(j)}\)</span>是第j个视觉表征层阶段中最后一个多头注意力模块的原始特征。此处省略了重塑算子。</p>
+<p>​  <strong>频率伪造检测器</strong><br/>​  针对频域分析，我们提出了一种分组注意力机制，用于挖掘离散小波变换（DWT）[40]频带中的伪造痕迹。尽管先前的检测方法[22,45]采用了快速傅里叶变换[1]和离散余弦变换[48]，但这些方法破坏了频域变换中的位置信息[31]，而位置信息在注意力建模[10]中至关重要。因此，我们采用DWT作为变换函数，保留图像特征的空间结构，将输入分解为4个独立频带：LL、LH、HL和HH。其中，‘L’与‘H’的组合代表低通与高通滤波器的联合应用。随后，我们提出两种分组注意力模块——带间注意力和带内注意力，用于提取频率线索。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225224945496.png"
+alt="image-20251225224945496" />
+<figcaption aria-hidden="true">image-20251225224945496</figcaption>
+</figure>
+<p>​  如图3所示，带间注意力明确探索不同频段间的交互作用，而带内注意力则构建各频段内部的交互关系。这种设计实现了不同位置和频段的动态聚合，而非像F3Net[45]那样采用人工加权。在实际应用中，我们通过多头注意力模块[58]来实现这些模块。最后，通过
+FFN 和逆离散小波变换（IDWT）获取防伪频率特征 <span
+class="math inline">\(\hat{g}_{i m
+g}^{(j)}\)</span>，这些特征被转换回图像域以便进一步整合。</p>
+<p>​  为避免引入超参数，我们采用可学习的缩放因子 λ
+来控制来自图像域和频率域的信息，作为ViT第j阶段的最终适配图像特征，这些特征将被传递至下一阶段（第j+1阶段）的第一个多头注意力模块。
+<span class="math display">\[\hat{g}^{(j)}=\hat{g}_{i m
+g}^{(j)}+\lambda\cdot\hat{g}_{f r e q}^{(j)}.\]</span></p>
+<h2
+id="语言引导对齐lgalanguage-guided-alignment框架">3.3.语言引导对齐（LGA，language-guided
+alignment）框架</h2>
+<p>​  为监督FatFormer的伪造适配，我们提出了一种基于语言引导的对齐方法，该方法通过对比图像与文本提示之间的目标来实现。具体而言，LGA包含一个基于图像块的增强器，用于丰富文本提示的上下文信息，以及一个文本引导的交互器，用于将局部图像块标记与全局文本提示嵌入进行对齐。最后，我们为损失计算实现了一个增强的对比目标。</p>
+<p>​  <strong>基于块的增强模块</strong><br/>​  FatFormer摒弃了传统手工模板作为提示的设计，转而采用基于自动上下文嵌入的软提示设计，这一方法参考了文献[65,66]。由于合成图像检测依赖于局部伪造细节[4,63]，我们开发了一种基于图像块的增强器，通过分析局部图像块标记的条件来提升提示的上下文相关性，从而生成与伪造相关的提示上下文。具体而言，我们首先在图像编码器中计算图像块标记<span
+class="math inline">\(f_{i m g}^{(1;N)}\,\in\,\mathbb{R}^{N\times
+D}\)</span>。接着，在给定C个上下文嵌入<span class="math inline">\(p_{c t
+x}\in\mathbb{R}^{C\times D}\)</span>的情况下，我们得到 <span
+class="math display">\[A_{p b e}=p_{c t x}\cdot(f_{i m
+g}^{(1;N)})^{T},\]</span> ​  其中 <span class="math inline">\(A_{p b
+e}\in\mathbb{R}^{C\times N}\)</span>
+为基于图像块的增强器中的相似性矩阵。我们使用 <span
+class="math inline">\(A_{p b e}\)</span>
+来表示图像块标记的强度，以构建每个上下文嵌入，具体如下 <span
+class="math display">\[\hat{p}_{c t x}=\mathrm{softmax}(A_{p b e})\cdot
+f_{i m g}^{(1;N)}+p_{c t x}.\]</span> ​  最终，我们通过结合增强的上下文
+<span class="math inline">\(\hat{p}_{c t x}\)</span>
+和M类嵌入向量，可获得一组可能的文本提示，并将其输入文本编码器。</p>
+<p>​  <strong>文本引导交互模块</strong><br/>​  为引导图像编码器聚焦伪造相关表征，我们提出一种文本引导交互器，该交互器将局部图像块标记与全局文本提示嵌入对齐。具体而言，给定文本编码器输出的文本提示嵌入
+$f_{text} $ 和图像块标记 <span class="math inline">\(f_{i m
+g}^{(1;N)}\)</span>，我们的文本引导交互器通过计算两者之间的相似度 <span
+class="math inline">\(A_{tgi}\)</span> 来实现对齐。 <span
+class="math display">\[A_{t g i}=f_{i m g}^{(1;N)}\cdot(f_{t e x
+t})^{T}.\]</span> ​  类似于等式(6)，对于<span class="math inline">\(A_{t
+g
+i}\)</span>，我们通过自适应增强文本表示，将图像块标记与文本提示嵌入对齐，如下所示
+<span class="math display">\[\hat{f}_{i m
+g}^{(1:N)}=\mathrm{softmax}(A_{t g i})\cdot f_{t e x t}+f_{i m
+g}^{(1:N)},\]</span> ​  其中<span class="math inline">\(\hat{f}_{i m
+g}^{(1:N)}\)</span>表示对齐后的图像块标记。结合增强型对比目标，图像编码器被引导专注于每个独立图像块中与伪造相关的表征。</p>
+<p>​  <strong>增强对比目标</strong><br/>​  在损失计算中，我们考虑了包含两个元素的增强对比目标。第一个是等式(1)中的余弦相似度，与原始CLIP相同。第二个是文本提示嵌入与对齐图像块标记<span
+class="math inline">\(\hat{f}_{i m
+g}^{(1:N)}\)</span>之间的相似度。其中t ∈ [1，N]且i ∈ {0,1}。 <span
+class="math display">\[S^{\prime}(i)=\frac{1}{N}\sum_{t}\cos(\hat{f}_{i
+m g}^{(t)},f_{t e x t}^{(i)}).\]</span>
+​  通过合并等式(1)和等式(9)的相似性，我们的FatFormer通过softmax函数描述了一个增强的概率
+Pˆ (i)，如下所示 <span
+class="math display">\[\hat{P}(i)=\frac{\exp((S(i)+S^{\prime}(i))/r)}{\sum_{k}\exp((S(k)+S^{\prime}(k))/r)}.\]</span>
+​  在实践中，我们对等式（10）应用交叉熵函数，标签y ∈
+{0,1}，以计算对比损失，方法与原始CLIP相同，如下所示 <span
+class="math display">\[\mathcal{L}=-y\cdot\log\hat{P}(y)-(1-y)\cdot\log(1-\hat{P}(y)).\]</span></p>
+<h1 id="实验">4.实验</h1>
+<h2 id="设置">4.1.设置</h2>
+<p>​  <strong>数据集</strong><br/>​  随着生成方法的不断涌现，我们遵循标准协议[43,55,59]，将训练数据限制为单一生成模型，同时使用未见过的数据（如其他生成对抗网络和扩散模型生成的合成图像）进行测试。<br/>​  具体而言，我们使用ProGAN[25]生成的图像训练FatFormer，采用两种不同设置：包含[59]中提供的2类数据（椅子、马）和4类数据（汽车、猫、椅子、马）。评估时，我们收集了[59]提供的测试生成对抗网络数据集和[43,60]中的扩散模型数据集，这些数据集包含合成图像及其对应的真实图像。测试生成对抗网络数据集包括ProGAN[25]、StyleGAN[26]、StyleGAN2[27]、BigGAN[2]、CycleGAN[68]、StarGAN[7]、GauGAN[44]和DeepFake[50]。另一方面，扩散模型部分包含
+PNDM [38]、Guided[9]、DALL-E[47]、 VQ -Diffusion[14]、 LDM
+[49]和Glide[42]。对于 LDM
+和Glide，我们还考虑了它们不同生成设置的变体。更多细节可参阅其官方论文。</p>
+<p>​  <strong>评估指标</strong><br/>​  在评估每个生成模型时，我们主要采用准确率（ACC）和平均精度（AP）作为核心指标，遵循标准流程[43,55,59]。为更全面评估GANs和扩散模型数据集的整体性能，我们还采用各数据集ACC与AP的平均值，分别记为
+ACCM 和APM。</p>
+<p>​  <strong>具体实现细节</strong><br/>​  我们的训练与测试设置沿用先前研究[43]：输入图像首先调整为256×256尺寸，随后通过图像裁剪获得224×224的最终分辨率。训练阶段采用随机裁剪和随机水平翻转，测试阶段则使用中心裁剪，均不添加其他增强技术。训练采用Adam优化器[28]，β参数设置为（0.9,0.999）。初始学习率设为4×10⁻⁴，训练周期为25轮，总批次大小为256。此外，学习率采用每10轮衰减0.9的递减策略。</p>
+<h2 id="主要结果">4.2.主要结果</h2>
+<p>​  本文旨在构建一种基于预训练模型的合成图像检测新范式。为此，我们主要将FatFormer与采用固定预训练范式的现有方法（如LGrad[55]和UniFD[43]）进行对比。为验证方法有效性，我们还与基于图像的现有方法[3,53,59]及基于频率的方法[11,12,21,22,45]展开比较。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225230623085.png"
+alt="image-20251225230623085" />
+<figcaption aria-hidden="true">image-20251225230623085</figcaption>
+</figure>
+<p>​  <strong>GANs数据集对比分析</strong><br/>​  表1展示了基于GANs数据集[59]的两种不同训练数据设置的对比结果。实验表明，我们的FatFormer模型在4类监督任务中持续超越基于预训练的LGrad[55]和UniFD[43]。具体而言，FatFormer在使用相同预训练CLIP模型时，其准确率（ACC）和平均精度（AP）分别达到98.4%和99.7%，较当前最先进方法UniFD显著提升9.3%和1.4%。此外，在其他二分类监督设置中，与基于预训练的方法相比，观察到的趋势与四分类监督下的结果相似。此外，我们在表1中还将FatFormer与具有代表性的基于图像的方法[59]及基于频率的方法[11,12,21,22,45]进行了比较。我们的方法也能轻松超越所有这些方法，并且改进幅度更大。<br/>​  上述证据表明，预训练模型需要进行伪造适应性调整。除性能表现优异外，更重要的是，我们的FatFormer为如何将预训练模型融入合成图像检测任务提供了有效范式。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225230759650.png"
+alt="image-20251225230759650" />
+<figcaption aria-hidden="true">image-20251225230759650</figcaption>
+</figure>
+<p>​  <strong>扩散模型数据集对比分析</strong><br/>​  为深入验证FatFormer的优越性，我们在扩散模型数据集[43]上与现有检测方法展开对比测试，结果详见表2。需要特别说明的是，所有对比方法均基于四类ProGAN数据集进行训练。该测试场景更具挑战性，因为伪造图像由多种扩散模型生成，其生成理论与生成过程与生成对抗网络（GAN）存在本质差异。出人意料的是，FatFormer在扩散模型上的泛化能力表现优异，最终取得95.0%的准确率（ACC）和98.8%的平均精度（AP）。<br/>​  与基于预训练的LGrad[55]和UniFD[43]相比，FatFormer在处理扩散模型时表现更优。例如，我们的方法在准确率（ACC）上比UniFD高出9.6%，平均精度（AP）也高出4.2%。值得注意的是，即使使用CLIP作为预训练模型，UniFD的准确率也仅能达到与PatchFor[3]相近的水平（约85%）。我们认为这主要是由于固定预训练范式容易导致检测器对伪造伪影的学习不足。因此，我们的FatFormer（一种采用伪造适应机制和合理对比目标的自适应Transformer框架）能够取得显著提升的性能表现。</p>
+<h2 id="消融研究">4.3.消融研究</h2>
+<p>​  我们通过多项消融实验验证FatFormer核心组件的有效性。除非另有说明，我们报告的是在4类ProGAN数据训练设置下，GANs数据集上准确率均值（<span
+class="math inline">\(ACC_M\)</span>）和平均精度（<span
+class="math inline">\(AP_M\)</span>）的数值。</p>
+<p>​  <strong>伪造感知适配器的消融</strong><br/>​  我们通过消融实验分析了图像域与频率域在伪造感知适配器中的作用。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225231324743.png"
+alt="image-20251225231324743" />
+<figcaption aria-hidden="true">image-20251225231324743</figcaption>
+</figure>
+<p>​  实验结果如表3a所示，当移除任一域时（尤其是频率域，准确率下降超过3.0%）性能会出现显著下滑。这表明在FatFormer合成图像检测系统中，图像域与频率域都不可或缺。图像伪造检测器负责捕捉局部低级伪造特征（如模糊纹理），而频率伪造检测器则通过分析不同频段间的伪造线索，共同构建完整的局部特征适配视角。对于频率伪造检测器而言，频带间与频带内的注意力机制所形成的交互作用至关重要。表3b展示了相关消融实验结果。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225231655894.png"
+alt="image-20251225231655894" />
+<figcaption aria-hidden="true">image-20251225231655894</figcaption>
+</figure>
+<p>​  <strong>监督学习在视觉-语言空间中的优势</strong><br/>​  表3c展示了FatFormer模型不同监督策略的对比结果，包括：(i)基于图像模态的线性探测，（ii）原始对比目标（通过图像
+CLS
+标记与文本提示嵌入对比，该方法屏蔽了文本引导的交互器），以及（iii）我们提出的增强对比目标。实验结果表明，引入文本提示进行对比监督能显著提升检测泛化能力。我们推测这主要是因为CLIP预训练能稳定匹配真实图像与文本表征，当处理带有文本提示的伪造图像时会产生表征失配。作为有力证据，我们发现仅采用线性生成对抗网络（LGA）仍可实现91.5%的准确率（表3e）。此外，我们观察到提出的增强对比目标能进一步提升泛化能力——通过引导图像编码器聚焦伪造相关表征，相较于原始方案可提升2.0%的准确率。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225231831600.png"
+alt="image-20251225231831600" />
+<figcaption aria-hidden="true">image-20251225231831600</figcaption>
+</figure>
+<p>​  <strong>文本提示设计</strong><br/>​  表3d展示了采用不同提示设计与图像条件构建文本提示的结果。实验结果表明，自动上下文嵌入与图像条件对文本提示设计均具有重要影响。相较于使用固定的手工模板（如‘这张照片是’），基于自动上下文嵌入的设计通过在词嵌入空间进行抽象探索，使准确率（ACC）提升了0.9%。此外，采用包含更多局部上下文细节的图像块标记作为条件，相较于全局图像
+CLS 标记，能更有效增强这些自动上下文嵌入的效果。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225231919233.png"
+alt="image-20251225231919233" />
+<figcaption aria-hidden="true">image-20251225231919233</figcaption>
+</figure>
+<p>​  <strong>模型组成</strong><br/>​  表3e展示了两个模型组件的消融实验结果：伪造感知适配器和语言引导对齐机制。当采用先前的固定预训练范式并移除伪造感知适配器时，性能出现显著下降（准确率下降6.9%，平均精度下降1.6%），这印证了预训练模型进行伪造适应的必要性。另一方面，我们提出的语言引导对齐机制通过在视觉-语言空间中引入增强对比目标，相比单纯采用二元标签能为伪造适应提供更优的监督，准确率提升3.1%，平均精度提升0.5%。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225231957432.png"
+alt="image-20251225231957432" />
+<figcaption aria-hidden="true">image-20251225231957432</figcaption>
+</figure>
+<p>​  如图4所示，语言引导对齐机制能更聚焦于语义前景区域——这类区域常出现不真实物体、纹理或结构等异常特征。因此，我们的FatFormer模型通过聚焦局部伪造细节，能够生成更具泛化性的伪造特征表征，从而显著提升合成图像检测的泛化能力。</p>
+<h2 id="更多分析">4.4.更多分析</h2>
+<p>​  本研究对FatFormer模型在不同架构及预训练策略下的表现进行了分析。关于图像后处理鲁棒性及效率评估的更多分析详见补充材料。</p>
+<figure>
+<img
+src="../postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225232105187.png"
+alt="image-20251225232105187" />
+<figcaption aria-hidden="true">image-20251225232105187</figcaption>
+</figure>
+<p>​  <strong>不同体系结构的分析</strong><br/>​  虽然FatFormer基于与UniFD[43]相同的CLIP框架[46]构建，但其提出的伪造适应策略可迁移至其他架构。表4上半部分展示了四种不同架构的
+ACCM
+和APM分数，包括两种基于CLIP预训练的多模态结构变体，以及两种基于ImageNet
+22k[8]预训练的图像Swin
+Transformer[39]变体。通过对比使用与未使用FatFormer的模型，验证了在不同预训练架构中整合伪造适应策略的有效性，显著提升了合成图像检测性能。</p>
+<p>​  <strong>针对不同预训练策略的分析</strong><br/>​  我们进一步评估了采用不同预训练策略的模型在伪造适应性方面的效果。以ViT-L[10]作为基准，我们验证了两种广为人知的预训练方法：MAE[15]和CAE[6]。评估结果如表4下段所示。我们发现，在FatFormer模型中整合伪造适应性后，无论采用何种预训练策略，性能都能保持稳定提升，这充分证明了我们方法的稳健性和迁移能力。</p>
+<h1 id="结论">5.结论</h1>
+<p>​  本文提出了一种新型自适应变换器FatFormer，用于通用化合成图像检测。该方法通过伪造感知适配器和语言引导对齐两大核心设计，实现了对预训练模型的伪造适应能力，其性能较传统固定预训练范式有显著提升。FatFormer的伪造适应机制还具有高度灵活性，可适配不同预训练策略的各类预训练架构。我们期待FatFormer能为探索如何更高效利用预训练模型在合成图像检测领域提供新思路。</p>
+<p>​  <strong>局限性与未来研究方向</strong><br/>​  FatFormer在多数生成方法上表现优异，但在扩散模型领域仍有提升空间，例如Guided
+[9]。要构建更强大的伪造检测系统，需深入解析扩散模型与生成对抗网络（GAN）生成图像间的差异与关联。该问题的研究将留待后续工作。此外，如何在预训练阶段构建更优的合成图像检测专用前文任务，也值得深入探讨。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/">https://zhaozw-szu.github.io/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20251225223441381.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Towards-Universal-Fake-Image-Detectors-That-Generalize-Across-Generative-Models/" title="Towards Universal Fake Image Detectors That Generalize Across Generative Models"><img class="cover" src="/img/coverImage/cover5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Towards Universal Fake Image Detectors That Generalize Across Generative Models</div></div></a></div><div class="next-post pull-right"><a href="/MarkDown%EF%BC%88%E5%9B%9B%EF%BC%89/" title="MarkDown（四）"><img class="cover" src="/img/coverImage/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MarkDown（四）</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">191</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fatformer"><span class="toc-text">3.FatFormer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-text">3.1.总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E4%BC%AA%E6%84%9F%E7%9F%A5%E9%80%82%E9%85%8D%E5%99%A8faaforgery-aware-adapter"><span class="toc-text">3.2.防伪感知适配器（FAA，forgery-aware
+adapter）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E5%BC%95%E5%AF%BC%E5%AF%B9%E9%BD%90lgalanguage-guided-alignment%E6%A1%86%E6%9E%B6"><span class="toc-text">3.3.语言引导对齐（LGA，language-guided
+alignment）框架</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C"><span class="toc-text">4.实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1.设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%BB%93%E6%9E%9C"><span class="toc-text">4.2.主要结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%9E%8D%E7%A0%94%E7%A9%B6"><span class="toc-text">4.3.消融研究</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%88%86%E6%9E%90"><span class="toc-text">4.4.更多分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
