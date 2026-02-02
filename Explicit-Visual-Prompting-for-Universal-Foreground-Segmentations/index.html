@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Explicit Visual Prompting for Universal Foreground Segmentations | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Explicit Visual Prompting for Universal Foreground Segmentations Weihuang Liu , Xi Shen , Chi-Man Pun , Senior Member, IEEE, and Xiaodong Cun 摘要 ​  前景分割是计算机视觉领域的基础性问题，涵盖显著目标检测、伪造检测、失焦模糊检测、阴影检测及伪装目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Explicit Visual Prompting for Universal Foreground Segmentations">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Explicit-Visual-Prompting-for-Universal-Foreground-Segmentations/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="Explicit Visual Prompting for Universal Foreground Segmentations Weihuang Liu , Xi Shen , Chi-Man Pun , Senior Member, IEEE, and Xiaodong Cun 摘要 ​  前景分割是计算机视觉领域的基础性问题，涵盖显著目标检测、伪造检测、失焦模糊检测、阴影检测及伪装目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg">
+<meta property="article:published_time" content="2026-01-14T08:05:25.000Z">
+<meta property="article:modified_time" content="2026-01-15T14:14:17.268Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Explicit-Visual-Prompting-for-Universal-Foreground-Segmentations/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Explicit Visual Prompting for Universal Foreground Segmentations',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-15 22:14:17'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">200</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Explicit Visual Prompting for Universal Foreground Segmentations</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2026-01-14T08:05:25.000Z" title="创建于 2026-01-14 16:05:25">2026-01-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-15T14:14:17.268Z" title="更新于 2026-01-15 22:14:17">2026-01-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Explicit Visual Prompting for Universal Foreground Segmentations"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Explicit Visual Prompting for Universal Foreground Segmentations</p>
+<p>Weihuang Liu , Xi Shen , Chi-Man Pun <em>, Senior Member, IEEE</em>,
+and Xiaodong Cun</p>
+<h1 id="摘要">摘要</h1>
+<p>​  前景分割是计算机视觉领域的基础性问题，涵盖显著目标检测、伪造检测、失焦模糊检测、阴影检测及伪装目标检测等场景。现有研究通常依赖领域特定方案来解决这些应用中的精度与鲁棒性问题。本文提出了一种统一框架，可解决多种前景分割任务而无需任务特定设计。我们借鉴自然语言处理领域广泛采用的预训练-提示调优方案，提出名为显式视觉提示（EVP）的新型视觉提示模型。与传统视觉提示通常采用数据集级隐式嵌入不同，我们的核心创新在于通过冻结图像中的显式视觉内容（即冻结块嵌入和高频成分特征）来约束可调参数。该方法通过冻结预训练模型，仅需少量额外参数即可学习任务特定知识。尽管引入的可调参数较少，
+EVP
+仍展现出优于全参数微调及其他参数高效微调方法的性能优势。在五个任务的十四组数据集实验中，该方法不仅性能超越其他任务特定方法，且实现方式更为简洁。实验结果表明，该方法在不同架构、预训练权重及任务类型中均展现出良好的可扩展性。</p>
+<p>​  索引术语：前景分割、通用模型、视觉提示、高效调优。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  前景分割是场景理解的基础研究课题之一，它根据图像中前景和背景的类内相似性和类间差异性，将图像分割为两个不重叠的子区域。前景分割包含多个子任务，包括检测显著物体[1]
+[2] [3]、分割操作区域[4] [5] [6]、识别离焦像素[7] [8]
+[9]、分离阴影区域[10] [11] [12]以及发现隐藏物体[13] [14]
+[15]等。相较于图像分类和目标检测，这些任务能提供更精确的几何描述，因此对自动对焦[16]、图像重定向[17]和目标追踪[18]等众多计算机视觉任务具有重要价值。<br/>​  当前，这类任务通常采用领域专用解决方案，这些方案通过精心设计的独特网络架构来学习任务相关特征。由于上述任务具有相同的输入/输出格式和分割前景的共同目标，因此采用了相似的编码器-解码器模型。这意味着专为特定目标设计的模型同样适用于其他场景。然而，目前尚未形成统一的框架来解决这类相似问题。<br/>​  我们提出了一种创新的前景分割方法，该方法通过统一框架根据任务特定知识对不同特征的前景进行分割。这一思路借鉴了近期在提示式学习[19]
+[20]
+[21]领域的突破性进展，该概念最初源自自然语言处理（NLP）[22]。其核心思想是通过最小化额外可训练参数，高效适配冻结的大规模基础模型以应对多种下游任务。由于基础模型已通过大规模数据集完成训练，提示式学习通常能显著提升模型在下游任务上的泛化能力[22]。同时，由于仅需存储共享的基础模型和任务感知提示，该方法还能大幅节省模型存储空间。值得注意的是，当前计算机视觉下游任务的进展往往依赖于对预训练模型进行微调，以利用其从大规模数据集中习得的场景理解能力。基于这些观察，我们开发了一种通用框架：<strong>通过学习少量任务特定提示来实现前景分割。</strong>该模型在大规模数据集上训练以捕捉通用视觉知识，同时学习任务特定提示以获取各任务相关特征。这种设计使模型能够通过通用框架适配多种前景分割任务，从而减少对任务特定架构的需求。我们采用在大规模数据集上预训练的模型并冻结其参数。为适应各项任务，我们通过额外的若干参数学习提示词。<br/>​  另一个重要发现来自手工设计的图像特征的有效性，例如SIFT[23]、光照[24]和噪声[25]。这些特征在传统方法的前景分割中扮演着关键角色[23]
+[26] [27]。此外，基于深度学习的最新方法[4] [28]
+[29]通过将这些手工设计的特征与学习特征相结合，显著提升了性能。基于这一观察，我们提出了显式视觉提示（EVP，explicit
+visual
+prompting）方法，该方法能从每张图像的特征中学习特定任务的知识。特别值得注意的是，通过重新调制图像特征，调优性能可获得大幅提升。需注意的是，这与
+VPT
+[19]学习隐式提示的方法不同。具体而言，我们针对任务设计了两种特征：首先是来自冻结块嵌入的特征，这对原始模型的分布迁移至关重要；其次是高频特征，因其在前景分割中起关键作用，而深度神经网络往往难以捕捉[30]
+[31]
+[32]。<br/>​  我们先前的会议研究成果[EVPv1]（参考文献33）验证了显式视觉提示的有效性。该方法首先通过线性层对冻结块嵌入特征进行调优，随后对输入图像应用快速傅里叶变换（FFT，Fast
+Fourier
+Transform），并使用固定掩码对频谱进行处理以提取高频成分（HFC，high-frequency
+components），同时学习HFC的额外嵌入特征。最终，提示器通过整合图像嵌入特征与HFC特征，在所有层级高效完成自适应调整。在不同任务中，EVPv1展现出优于其他参数高效微调方法及任务特定方法的性能优势。<br/>​  尽管取得了这些进展，EVPv1仍需通过手动提取高频成分并设置合适参数。本研究基于显式视觉提示理念，提出端到端解决方案EVPv2。我们创新性地引入傅里叶
+MLP 技术，该技术直接从图像嵌入中学习高频特征。具体而言，傅里叶 MLP
+首先对图像嵌入进行 FFT
+，随后生成频谱自适应掩码并重构高频特征。这些图像嵌入与高频特征被输入提示器生成提示，并与对应的Transformer层结合使用。此外，本文还针对目标任务、预训练模型及提示理解等方面进行了深入探讨并提供了更多研究成果。<br/>​  为验证所提方法的有效性，我们开展了全面实验。在涵盖前景分割五大核心任务的14个不同数据集上进行评估，这些任务包括显著目标检测、伪造检测、阴影检测、失焦模糊检测以及伪装目标检测。通过与特定任务解决方案的对比，我们的统一框架展现出显著优势。实验结果还表明，该方法在参数效率优化微调和全参数微调方面均优于其他同类方案。<br/>​  综上所述，本研究提出的方法为前景分割提供了一个统一框架，为减少任务特定架构需求及提升框架在相关任务中的可复用性提供了新视角。该方法展现出优异性能，优于其他参数高效微调方法及全微调方法。<br/>​  这一简单方法展现出与其他复杂任务特定模型相当甚至更优的性能。研究结果有力证明了其解决广泛问题的潜力。我们相信，这种简洁高效的框架将在各类前景分割任务中得到广泛应用，并为其他计算机视觉任务的统一框架开发发挥重要作用。</p>
+<p>​  综上所述，我们的主要贡献如下：</p>
+<ul>
+<li>据我们所知，我们首次为多个前景分割任务设计了一种统一方法，包括显著目标检测、伪造检测、失焦模糊检测、阴影检测以及伪装目标检测。</li>
+<li>我们提出了显式视觉提示（EVP）方法，该方法以冻结的块嵌入和高频特征作为提示。该方法优于其他参数高效调优方法和任务特定方法。</li>
+<li>所提出的方法在不同架构、预训练模型和前景分割任务中均展现出可扩展性。</li>
+</ul>
+<h1 id="方法">3.方法</h1>
+<p>​  我们提出显式视觉提示（EVP）方法，用于将预训练的视觉Transformer适配至前景分割任务。
+EVP
+保持主干网络冻结，仅包含少量可调参数，通过图像特征学习任务特异性知识。模型架构如图1所示。具体而言，第三章A节首先介绍视觉Transformer与视觉提示技术，第三章B节阐述显式视觉提示方法，并在B1和B2小节详细说明两种变体方案。</p>
+<figure>
+<img
+src="../postimages/Explicit-Visual-Prompting-for-Universal-Foreground-Segmentations/image-20260114161633923.png"
+alt="image-20260114161633923" />
+<figcaption aria-hidden="true">image-20260114161633923</figcaption>
+</figure>
+<blockquote>
+<p>图1.所提出的显式视觉提示（EVP）用于通用前景分割的概述。 <br/>&gt; EVP
+适用于普通视觉Transformer(a)和分层视觉Transformer(b)。 <br/>&gt; EVP
+为每张图像学习显式提示，并以提示方式将提示附加到Transformer模块中。</p>
+</blockquote>
+<h2 id="a.-预备知识">A. 预备知识</h2>
+<p>​  <strong>1)Vision Transformer：</strong><br/>​  Vision
+Transformer最初由[50]提出。一个标准的Vision
+Transformer由一个补丁嵌入层和若干Transformer模块组成。输入图像<span
+class="math inline">\(I\in\mathbb{R}^{H\times
+W\times3}\)</span>首先被分割为若干块<span
+class="math inline">\(p\in\mathbb{R}^{N\times h\times
+w\times3}\)</span>，其中H和W分别表示输入图像的高度和宽度，h和w为块的高度和宽度，<span
+class="math inline">\(N={\frac{H\times W}{h\times
+w}}\)</span>表示块的数量。随后，这些补丁被展平，并通过补丁嵌入层投影为d维标记
+<span class="math inline">\(x\in\mathbb{R}^{N\times
+d}\)</span>。一个额外的可学习分类标记[ CLS
+]和位置编码与嵌入标记结合后输入到Transformer模块。每个Transformer模块由多头自注意力（MSA）模块和多层感知机（MLP）模块组成。在MSA模块中，标记通过线性变换映射为Q、K、V三个向量，随后通过计算每个标记的缩放点积注意力来实现自注意力机制：
+<span
+class="math display">\[x={\mathrm{Attention}}(Q,K,V)=\mathrm{Softmax}\left(Q
+K^{T/}\sqrt{d}\right)V.\]</span> ​  输出标记x随后被送入由两个线性层和一个
+GELU 激活函数[75]组成的 MLP 模块，其数学表达式可表述为： <span
+class="math display">\[x=\mathrm{MLP}(\mathrm{LN}(x))+x,\]</span>
+其中LN代表LayerNorm[76]。<br/>  经过多个transformer模块后，最终视觉识别采用
+CLS 。</p>
+<p>​  SegFormer[77]是一种基于分层Transformer的结构，其语义分割解码器更为简洁。与传统CNN主干架构类似，SegFormer通过多阶段捕获多尺度特征。不同之处在于，每个阶段均通过特征嵌入层和视觉Transformer模块[50]构建。解码器则利用编码器和
+MLP 层输出的多尺度特征，进行具体类别的解码。</p>
+<p>(SegFormer在ViT[50]中对补丁嵌入采用了不同的定义。该方法利用重叠补丁嵌入来提取更密集的特征，并在每个阶段开始时将嵌入融合至更小的空间尺寸。)</p>
+<p>​  <strong>2)
+视觉提示：</strong><br/>​  提示调优法[22]作为一种强大的微调方法，无需修改原始模型权重即可将大规模数据集预训练的模型应用于下游任务。该方法通过引入指令集引导预训练模型执行特定任务。近年来，视觉提示[19]
+[21]
+[36]作为一种新颖方法崭露头角，通过向输入空间添加额外输入，在计算机视觉领域引发广泛关注。这些补充输入可以是标记、图像或其他形式的媒体，为需要额外信息的下游任务提供上下文支持。该创新方法因其能在保持模型性能的同时减少微调所需的计算资源，已引起学界极大关注。</p>
+<h2 id="b.-前景分割的显性视觉提示">B. 前景分割的显性视觉提示</h2>
+<p>​  通常，一组K个不同的前景分割任务可通过K种任务特定方法解决： <span
+class="math display">\[M_{p r e
+d}^{k}=\phi^{k}(I^{k}),~~k=1,2,....,K\]</span> ​  其中 <span
+class="math inline">\(\phi\)</span>
+表示任务特定架构，Mpred为预测结果。各模型在每个任务中均经过完全微调以适应任务需求。<br/>​  我们提出显式视觉提示（EVP）用于前景分割。
+EVP
+是一个通用框架，无需特定任务设计即可处理多种前景分割任务。形式上，该显式视觉提示框架可表述为：
+<span class="math display">\[M_{p r e d}^{k}=\phi_{d e}^{k}\left(\phi_{p
+t}(I^{k})+\phi_{v p}^{k}(I^{k})\right),\;\;\;k=1,2,\ldots,K\]</span>
+​  其中 <span class="math inline">\(\phi_{p t}\)</span>
+表示冻结的预训练主干网络， <span class="math inline">\(\phi_{v
+p}\)</span> 和 <span class="math inline">\(\phi_{d e}\)</span>
+分别为视觉提示和解码器的可调参数集。 EVP
+通过使用通用冻结主干网络，利用有限数量的可调参数为每张图像学习显式提示，从而处理多种任务。<br/>​  我们的核心洞见是从图像嵌入和频域中学习显式提示。我们学习前者以将分布从预训练数据集转移到目标数据集。学习后者的动机在于高频特征对前景分割至关重要，但深度神经网络难以有效提取。在每个Transformer模块中，我们根据输入图像生成提示词，并将其与Transformer特征结合进行后续处理。如图1所示，该方法可扩展应用于不同视觉Transformer架构。对于单阶段视觉Transformer架构，我们使用补丁嵌入层生成提示词；而对于多阶段视觉Transformer架构，各阶段的提示词由对应阶段的补丁嵌入层生成。<br/>​  下文介绍两种变体。<br/>​  第一种是显式视觉提示与提示器（Explicit
+Visual Prompting with
+Prompter）：该方法通过手动分离输入图像中的高频成分（HFC），学习HFC的额外补丁嵌入层，再利用轻量级提示器高效生成提示。<br/>​  第二种是显式视觉提示与自适应提示器（Explicit
+Visual Prompting with Adaptive Prompter）：该方法采用提出的傅里叶 MLP
+自动从图像嵌入中提取高频特征，进而生成提示。</p>
+<p>​  1)显式视觉提示与提示器：<br/>​  本节提出一种基于提示器的显式视觉提示方法，如图2所示。</p>
+<figure>
+<img
+src="../postimages/Explicit-Visual-Prompting-for-Universal-Foreground-Segmentations/image-20260114163629368.png"
+alt="image-20260114163629368" />
+<figcaption aria-hidden="true">image-20260114163629368</figcaption>
+</figure>
+<blockquote>
+<p>图2.
+高频分量生成流程（上图）。我们通过对输入图像频谱应用固定掩模来获取高频分量。所提出的显式视觉提示与提示器架构（下图）。我们采用嵌入调谐和高频分量调谐来优化提取特征。该提示器旨在高效整合这些特征。</p>
+</blockquote>
+<p>​  该方法包含三个核心模块：补丁嵌入调优、高频成分调优及提示器。其中，补丁嵌入调优和高频成分调优负责为提示器初始化嵌入向量，而提示器则用于高效生成不同Transformer层的提示词。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Explicit-Visual-Prompting-for-Universal-Foreground-Segmentations/">https://zhaozw-szu.github.io/Explicit-Visual-Prompting-for-Universal-Foreground-Segmentations/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/SIDA/" title="SIDA:Social Media Image Deepfake Detection, Localization and Explanation with Large Multimodal Model"><img class="cover" src="/postimages/SIDA/image-20260202165744887.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SIDA:Social Media Image Deepfake Detection, Localization and Explanation with Large Multimodal Model</div></div></a></div><div class="next-post pull-right"><a href="/Pre-training-free-Image-Manipulation-Localization-through-Non-Mutually-Contrastive-Learning/" title="Pre-training-free_Image_Manipulation_Localization_through_Non-Mutually_Contrastive_Learning"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Pre-training-free_Image_Manipulation_Localization_through_Non-Mutually_Contrastive_Learning</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">200</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="toc-text">A. 预备知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-%E5%89%8D%E6%99%AF%E5%88%86%E5%89%B2%E7%9A%84%E6%98%BE%E6%80%A7%E8%A7%86%E8%A7%89%E6%8F%90%E7%A4%BA"><span class="toc-text">B. 前景分割的显性视觉提示</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Model Synthesis for Zero-Shot Model Attribution | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Model Synthesis for Zero-Shot Model Attribution Tianyun Yang , Danding Wang , Juan Cao , and Chang Xu , Member, IEEE 摘要 ​  当前，生成模型正在艺术、设计和人机交互等领域引发变革，但同时也伴随着版权侵权和内容管理难题。针对这一挑战，现有研究致力于识别生成图像的独特特征指纹">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Model Synthesis for Zero-Shot Model Attribution">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Model-Synthesis-for-Zero-Shot-Model-Attribution/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="Model Synthesis for Zero-Shot Model Attribution Tianyun Yang , Danding Wang , Juan Cao , and Chang Xu , Member, IEEE 摘要 ​  当前，生成模型正在艺术、设计和人机交互等领域引发变革，但同时也伴随着版权侵权和内容管理难题。针对这一挑战，现有研究致力于识别生成图像的独特特征指纹">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg">
+<meta property="article:published_time" content="2026-01-06T12:58:37.000Z">
+<meta property="article:modified_time" content="2026-01-06T14:28:16.826Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/img/coverImage/cover1.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Model-Synthesis-for-Zero-Shot-Model-Attribution/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Model Synthesis for Zero-Shot Model Attribution',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-06 22:28:16'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">200</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/coverImage/cover1.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Model Synthesis for Zero-Shot Model Attribution</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2026-01-06T12:58:37.000Z" title="创建于 2026-01-06 20:58:37">2026-01-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-06T14:28:16.826Z" title="更新于 2026-01-06 22:28:16">2026-01-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Model Synthesis for Zero-Shot Model Attribution"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Model Synthesis for Zero-Shot Model Attribution</p>
+<p>Tianyun Yang , Danding Wang , Juan Cao , and Chang Xu , Member,
+IEEE</p>
+<h1 id="摘要">摘要</h1>
+<p>​  当前，生成模型正在艺术、设计和人机交互等领域引发变革，但同时也伴随着版权侵权和内容管理难题。针对这一挑战，现有研究致力于识别生成图像的独特特征指纹，从而实现对生成图像的源模型归属。然而，现有方法仅能识别分类器训练中静态集合内的模型，无法动态适应新出现的未知模型。为填补这一空白，本文提出一种通用模型指纹提取器，能够在零样本归属场景下有效识别未接触过的模型。该方法的核心在于模型合成技术——通过生成大量模拟真实生成模型特征指纹的合成模型。该合成技术的设计基于对基础生成模型架构模块和参数影响特征指纹模式的观察，并通过设计的评估指标验证合成模型的保真度。实验表明，仅基于合成模型训练的指纹提取器在多种真实生成模型上展现出卓越的零样本泛化能力，相较于现有方法，对未知模型的识别准确率提升超过40%，验证准确率提升15%。</p>
+<p>​  索引术语—模型指纹、模型归因、模型合成、零样本适应。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  近年来，先进的生成式（视觉）模型在艺术创作、设计及人机交互等领域引发了革命性变革[1]
+[2] [3]
+[4]。尽管这些模型带来了积极影响，但也引发了版权侵权和内容监管等新问题。为解决这些问题，模型溯源技术——即识别生成内容来源模型的过程——正受到越来越多的关注[5]
+[6] [7] [8] [9]
+[10]。该机制能有效遏制未经授权的复制与传播行为，使内容创作者和权利持有人能够证明所有权并采取法律行动应对侵权行为。此外，模型归属机制使监管机构能够识别并针对那些利用生成模型从事有害、非法或不道德行为的实体采取行动。<br/>​  模型归属识别技术通过分析源模型生成图像中的独特特征指纹，能够追溯生成图像的原始模型。当前主流的模型归属范式将任务定义为多分类问题[6]
+[8] [9]
+[10]。具体而言，训练阶段使用有限且静态的模型集合生成图像，每个图像都标注有唯一的模型ID。测试时，若测试图像来自训练集中的已知模型，分类器就能根据其学习到的模型指纹识别出对应的模型ID[6]
+[8]
+[9]。虽然这种框架颇具前景，但存在重大缺陷：传统方法无法对训练数据中未出现的模型进行归属，导致对新模型的分类标签错误。在当今模型快速迭代的环境中，这种局限性难以接受。尽管部分研究[10]
+[11]尝试通过为新模型分配“未知”标签来应对开放集场景，但这些方法仍难以动态适应新出现的未见模型。<br/>​  为应对模型灵活性挑战，我们致力于开发一种更通用的模型归因方法，该方法能够实现零样本模型归因——无需在这些模型上进行任何训练，即可高效归因未见过的模型。不同于依赖分类头将生成图像分类到训练中包含的静态已知模型集合，我们将模型归因视为测试样本与模型库中各模型指纹之间的“指纹”距离比较。该框架使我们能够轻松处理新出现的模型：只需采集新模型样本，使用指纹提取器生成其指纹，并动态更新模型库，无需对这些模型进行任何训练。<br/>​  如何训练一个能泛化到未见过模型的有效指纹提取器？传统观点认为应仅用有限的真实世界模型进行训练。但这种方法在未见过模型上的泛化能力较差，如图1所示。</p>
+<figure>
+<img
+src="../postimages/Model-Synthesis-for-Zero-Shot-Model-Attribution/image-20260106210315019.png"
+alt="image-20260106210315019" />
+<figcaption aria-hidden="true">image-20260106210315019</figcaption>
+</figure>
+<blockquote>
+<p>图1.
+现有方法（上）与我们方法（下）对比示意图。现有方法依赖有限的真实世界模型进行训练，难以有效区分Stable
+Diffusion（SD）和DALL-E系列等新兴未见模型。相比之下，我们的方法通过大量合成模型训练，这些模型能复现更广泛的模型特征指纹，从而有效区分并识别未见模型。</p>
+</blockquote>
+<p>​  为解决这一问题，我们提出使用数量大幅增加的合成模型（例如实验中增加100倍）对提取器进行预训练。这类合成模型虽然与真实世界模型具有相似的指纹特征，但其多样性要强得多。<br/>​  我们的模型合成策略基于频域分析，该方法受先前研究[12]
+[13]启发，这些研究证实指纹特征在空间域不可观测，但在频域中显著显现。为理解现实世界生成模型独特指纹模式的形成机制，我们从生成模型的基本构建模块角度进行分析。研究结果表明：</p>
+<ul>
+<li>基础网络组件的类型——包括上采样、激活函数、归一化及卷积层参数——对生成图像的频谱模式具有显著影响。</li>
+<li>由于上采样层会自然衰减前几层的高频成分，大型模型中最后几个生成模块对输出频谱模式的决定性作用更为突出。</li>
+</ul>
+<p>​  基于这些发现，我们提出假设：通过组合不同基础组件构建浅层生成模块，能够有效表征未见过模型的特征空间。为此，我们开发了一种简单高效的模型合成策略。<br/>​  受上述分析启发，我们采用较典型生成模型更少生成模块的浅层自编码器架构来构建合成模型。通过调整基础组件（包括上采样层类型、激活函数、归一化层、这些层的数量与顺序以及训练种子），我们显著提升了合成模型的多样性。通过最小化重构损失，最终在288种不同架构中获得了5760个合成模型。该合成策略在保真度与效率方面均具有优势。通过对比合成模型与真实世界模型的频谱分布，我们的研究结果表明：所提出的合成方案能使合成模型的频谱分布更贴近真实生成模型的特征。此外，使用单个3090
+GPU合成模型平均仅需83秒，这比从头训练最先进的生成模型（即朴素的模型合成方案）快得多。例如，训练一个生成256×256分辨率图像的StyleGAN[14]模型需要14天22小时，明显慢于我们的方法。<br/>​  我们利用这些合成模型训练指纹提取器，从模型中提取指纹特征并进行区分。通过结合分类任务与度量损失函数，我们提升了学习到的指纹嵌入的区分能力。实验结果表明：<br/>​  1）尽管我们的指纹提取器仅基于合成模型训练，但在包括经典生成对抗网络（GAN）、
+VAE 、Flow模型以及新兴扩散模型（如Stable
+Diffusion和DalleE-3）在内的广泛生成模型上，仍展现出强大的零样本归因能力。部分可视化结果如图1（下图）所示。<br/>​  2）我们研究了两种模型归因场景，包括模型识别与模型验证。该方法在未见过的模型上显著优于现有方法，分别实现了超过40%和15%的准确率提升。<br/>​  3）仅通过生成图像，我们的方法就能将LoRA变体追溯至其基础模型，为防范模型知识产权侵权提供了高效防御工具。</p>
+<p>​  我们的主要贡献可归纳为以下两点：<br/>​  1)我们提出解决零样本模型归因问题，将归因目标扩展至训练集之外的未见模型。<br/>​  2)我们通过训练大量模拟真实生成模型特征指纹的合成模型来解决零样本归因问题。该合成策略的灵感源自对生成模型架构组件及参数如何影响特征指纹模式的观察研究。该策略在保真度和效率方面具有优势。<br/>​  3)实验结果表明，基于合成模型训练的指纹提取器在多种真实生成模型上均展现出强大的泛化能力。与现有方法相比，我们在未见过的模型上分别提升了超过40%的模型识别准确率和15%的验证准确率。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="a.模型归因">A.模型归因</h2>
+<p>​  本质上，模型归因方法依赖于生成模型内部状态与生成图像之间的某种关联。本文主要聚焦于基于指纹的模型归因方法，该方法通过生成模型输出图像上的独特指纹模式进行识别。Marra等人[5]采用平均噪声残差作为模型指纹的表征，发现这些指纹具有周期性特征。后续研究[6]
+[8]
+[9]不仅验证了这些指纹的存在，还通过固定有限模型集的闭集分类方法实现了高精度。Asnani等人[15]将研究拓展至追踪生成图像模型的架构组件，这已超出本文研究范围。在实际场景中，图像常源自训练过程中未涉及的未知模型。近期研究[10]
+[11]采用开放集方法，通过归因已知模型并排除训练未包含的未知模型来解决这一问题。然而随着生成技术的持续发展，未知模型的多样性不断扩展，现有方法在动态适应现实场景时面临挑战。为弥合这一差距，我们的目标是开发一种更通用的模型指纹提取器，能够实现零样本模型归因——无需对未知模型样本进行任何训练即可高效完成归因。表I总结了本方法与上述相关工作的差异。</p>
+<h2 id="b.生成模型的频谱差异">B.生成模型的频谱差异</h2>
+<p>​  尽管指纹在空间域中不可见，但在频域中更为显著，常表现为频谱中的差异。现有研究[13]、[16]、[17]、[18]、[19]、[20]、[21]试图解释生成图像与真实图像之间的频谱差异，特别是通过研究上采样层和卷积层的影响。<br/>​  [16]、[17]、[18]的研究表明，上采样操作会导致真实图像与生成图像在高频段产生显著差异。Zhang等人[16]发现，上采样层会在频谱中形成周期性网格结构。Durall[17]指出，上采样层引发的高频偏差使得生成模型难以准确拟合真实图像的分布特征。Schwarz等人[18]揭示，不同上采样方式会使生成器偏向特定频谱特性。其他研究[19]、[20]通过分析卷积层的影响发现，真实图像与生成图像的频率差异源于卷积滤波器频谱中的线性依赖关系，这种特性会阻碍高频信号的学习。<br/>​  现有研究主要聚焦于真实图像与生成图像的差异，而针对不同模型生成图像间频率差异的分析则相对较少。本研究进一步探究了不同类型激活层与归一化层的影响，以及各类卷积参数的作用。我们新发现不同生成模块的差异性影响，为模型特征指纹的形成机制提供了新的见解。</p>
+<h2 id="c.基于合成数据的预训练">C.基于合成数据的预训练</h2>
+<p>​  我们的研究聚焦于利用合成数据提升模型泛化能力。Baradad[22]发现，多样化的噪声数据能捕捉真实数据的特定结构特征，在图像分类任务的自监督学习中展现出优异性能。Baek[23]通过借鉴自然图像在功率谱分布、结构特征及显著性分布等通用属性，开发出创新的数据合成策略。基于合成数据集预训练的生成对抗网络（GAN）可有效实现小样本适应。Mishra[24]提出任务感知合成策略，通过优化光照、姿态、材质等参数来适配下游任务需求。<br/>​  与这些研究不同，我们的创新点在于通过合成模型而非图像，来模拟模型特征指纹的分布模式，而非直接模仿自然图像。</p>
+<h1 id="方法">3.方法</h1>
+<p>​  本研究的主要目标是设计一种指纹提取器，使其能够泛化到开放世界中未见过的模型。为实现这一目标，我们提出了一种新方法，即利用合成模型来模拟真实世界生成模型的指纹模式。通过这种方法，我们显著拓宽了指纹提取器的训练数据范围，从而有效缩小了泛化差距。接下来，我们首先分析生成模型影响指纹模式的关键因素（详见第三节A部分）。基于分析结果，第三节B部分将设计模型合成策略。最后在第三节D部分，我们利用合成模型训练指纹提取器完成模型归因任务。</p>
+<h2 id="a.模型指纹的初步分析">A.模型指纹的初步分析</h2>
+<p>​  本研究的灵感源自近期多项研究[5] [6]
+[13]，这些研究表明：不同架构或参数的生成模型会在生成图像上留下独特的模式，即模型指纹。虽然这些指纹在空间域通常难以察觉，但在频域中则更为明显。</p>
+<figure>
+<img
+src="../postimages/Model-Synthesis-for-Zero-Shot-Model-Attribution/image-20260106211142517.png"
+alt="image-20260106211142517" />
+<figcaption aria-hidden="true">image-20260106211142517</figcaption>
+</figure>
+<blockquote>
+<p>图2.
+生成模型生成的图像（上）及其对应的（平均）傅里叶频谱（下）。傅里叶频谱的独特特征可视为生成模型的指纹特征，可用于模型归属。该频谱通过高通滤波图像经去噪处理后获得。</p>
+</blockquote>
+<p>​  如图2所示，每个生成模型在平均傅里叶频谱中均呈现独特的特征模式。为深入理解这些模式的复制机制，我们首先探究生成模型为何会表现出独特的频谱特征。<br/>​  图像生成模型的通用架构通常包含多个核心组件，这些组件旨在从潜在表示或输入数据中生成高质量图像。目前应用最广泛的架构包括生成对抗网络（GANs）、变分自编码器（VAEs）、扩散模型等。无论具体类型如何，图像生成模型通常由一系列生成模块构成。每个模块通过多次运算逐步将噪声/潜在向量转化为图像。为构建统一的数学基础，我们可以考虑一个常见的生成模块架构：该架构包含上采样层、卷积层、激活层和归一化层，这些层作用于高斯噪声输入z。模块的输出y可表示为：
+<span class="math display">\[\mathbf{y}={\mathcal{N}}(\phi\,(F(U{\mathbf
+z}))),\]</span>
+​  其中：U：上采样算子。F：卷积算子，其核为Wconv，偏置为b。 φ
+：非线性激活函数。N：归一化函数。</p>
+<p>​  下文将探讨这些基础组件及不同生成模块对输出频谱模式的影响。为验证理论推论，我们在附录中使用ProGAN、
+SNGAN
+和StyleGAN2模型进行实验，通过调整网络组件分析其对输出图像频谱的影响。</p>
+<p>​  <strong>1)上采样的影响：</strong><br/>​  在空间域中，上采样操作Uz相当于对输入信号z进行零插值处理，再施加标准卷积运算，其表达式为：
+<span
+class="math display">\[U\mathbf{z}=\mathrm{Zerofinier}(\mathbf{z})\otimes\mathbf{K}_{\mathrm{up}},\]</span>
+​  其中ZeroInter(z)表示输入信号z的零插值处理，即在空间采样点之间插入零值。⊗表示空间域中的卷积运算。Kup代表上采样核。<br/>​  根据卷积定理，频域中的上采样操作可表示为：
+<span
+class="math display">\[{\mathcal{F}}\{U\mathbf{z}\}(\omega)=\operatorname{Repeat}_{2,2}({\mathcal{F}}\{\mathbf{z}\})(\omega)\cdot{\mathcal{F}}\{\operatorname{K}_{\mathrm{wp}}\}(\omega),\]</span>
+​  其中<span
+class="math inline">\(\operatorname{Repeat}_{2,2}\)</span>表示将输入频谱F{z}沿两个频率维度进行2倍复制。F{Kup}表示上采样核Kup的傅里叶变换。·表示频域中的逐点乘法。<br/>​  指纹特征：上采样核Kup决定了复制频谱的加权方式。其幅值<span
+class="math inline">\(|{\mathcal{F}}\{\operatorname{K}_{\mathrm{wp}}\}(\omega)|\)</span>直接塑造输出信号。现有研究探讨了不同类型的上采样方法以保留不同的频谱特性[16]
+[18]。基础核函数如最近邻核或双线性核对应低通频率响应，会衰减高频成分。相比之下，学习转置卷积核既能保留、增强，也可选择性滤除特定频段，因此更倾向于保留高频成分[16]。因此，上采样“指纹”本质上是通过上采样核的频率整形形成的特征性频谱模式。</p>
+<p>​  <strong>2)卷积的影响：</strong><br/>​  应用卷积定理，空间域中的卷积F在频域中转化为乘法运算：
+<span
+class="math display">\[{\mathcal{F}}\{F\mathbf{x}\}(\omega)={\mathcal{F}}\{\mathbf{W}_{c
+o m
+v}\}(\omega)\cdot{\mathcal{F}}\{\mathbf{x}\}(\omega)+\mathbf{b}\cdot\delta(\omega),\]</span>
+​  其中x为输入信号，Wconv和b分别为卷积运算符的核函数与偏置项。<br/>​  指纹特征：输出频谱的形态由<span
+class="math inline">\(|{\mathcal{F}}\{\mathbf{W}_{c o m
+v}\}(\omega)|\)</span>决定。每个训练得到的卷积核如同频率选择性滤波器，既能增强特定频段又可抑制其他频段，由此形成由卷积核频率响应决定的频谱“指纹”。</p>
+<p>​  <strong>3)非线性激活的影响：</strong><br/>​  在空间域中， φ
+(x)的计算是逐元素进行的。而在频域中，逐元素的非线性效应并不等同于简单的逐点操作，而是对应着类似卷积的频率混合过程。为简化分析，非线性效应可通过泰勒级数展开进行近似。对于较小的x值，ReLU、Sigmoid和Tanh等常见非线性激活函数均可通过其泰勒级数展开进行近似：</p>
+<ul>
+<li>relu扩展是：</li>
+</ul>
+<p><span class="math display">\[R e L U({\bf
+x})\approx\frac{\log({\bf2})}{10}+\frac{1}{2}{\bf x}-\frac{5}{4}{\bf
+x}^{2}+\frac{5}{4\bf x}{\bf x}^{3}+{\mathcal O}({\bf
+x}^{4}).\]</span></p>
+<ul>
+<li>Tanh扩展是：</li>
+</ul>
+<p><span
+class="math display">\[\operatorname{tanh}(\mathbf{x})\approx\mathbf{x}-{\frac{\mathbf{x}^{3}}{3}}+{\mathcal
+O}(\mathbf{x}^{5}).\]</span></p>
+<ul>
+<li>Sigmoid扩展是：</li>
+</ul>
+<p><span
+class="math display">\[{\mathrm{sigmoid}}(\mathbf{x})\approx{\frac{1}{2}}+{\frac{\mathbf{x}}{4}}-{\frac{\mathbf{x}^{3}}{48}}+{\mathcal
+O}(\mathbf{x}^{5}).\]</span></p>
+<p>​  在频域中，高阶项（如x²）会导致输入信号的傅里叶变换H（ω）与其自身重复卷积：
+<span
+class="math display">\[{\mathcal{F}}\{\mathbf{x}^{n}\}(\omega)=\underbrace{H(\omega)*H(\omega)*\cdot\cdot\cdot*H(\omega)}_{n{\mathrm{~imes}}},\]</span>
+​  其中<span
+class="math inline">\(H(\omega)={\mathcal{F}}\{\mathbf{x}\}(\omega)\)</span>。该卷积运算会在输入频率
+ω 的整数倍处生成谐波。例如，<span
+class="math inline">\(H(\omega)*H(\omega)\)</span>会引入偶次谐波（如
+2ω）以及直流分量（ω
+=0）。<br/>​  指纹特征：非线性激活函数的频域“指纹”表现为谐波与频率混合模式的引入，将输入信号转化为更宽泛的频谱分布。例如，ReLU函数因二次项（<span
+class="math inline">\(\frac{5}{4}{\mathrm
+x}^2\)</span>）引入显著的偶次谐波；而Tanh和Sigmoid函数则添加微弱的奇次谐波（<span
+class="math inline">\(\frac{\mathrm x^3}{3}\)</span>和<span
+class="math inline">\(\frac{\mathrm x^3}{48}\)</span>）。</p>
+<p>​  <strong>4)标准化的影响：</strong><br/>​  标准化技术通过调整数据的均值和方差来实现数据的标准化。在频域中，不同类型的数据正态化具有相同的公式如下：
+<span
+class="math display">\[{\mathcal{F}}\{\hat{\mathbf{x}}\}(\omega)={\frac{\gamma}{\sigma}}{\mathcal{F}}\{\mathbf{x}-\mu\}(\omega)+{\mathcal{F}}\{\beta\}(\omega),\]</span>
+​  其中 μ 和 σ 分别表示均值和标准差。 γ 和 β 是可学习的缩放和平移参数。 μ
+和 σ
+的计算方式因方法而异，例如批量归一化[25]会针对整个批次进行计算，而实例归一化[26]则针对每个样本单独计算。<br/>​  指纹特征：尽管采用相同的频率公式，但由于所构建的优化景观存在差异，不同类型的归一化处理可导致参数分布的显著差异[26]，进而产生不同的频谱模式。</p>
+<p>​  <strong>5)不同生成模块的影响：</strong><br/>​  前文讨论主要聚焦于基础组件的作用。接下来需要重点分析的是，生成过程中各个模块如何共同作用，最终形成图像的光谱特征。生成模型通常由多个生成模块组成，其中上采样层作为这些模块之间的连接器发挥关键作用，可使输入特征图的分辨率翻倍。如前所述，常用的上采样层（如双线性插值和最近邻插值）本质上具有低通滤波特性。这一特性会导致它们衰减前层的高频成分。现有研究表明[6]，模型指纹特征主要存在于高频成分中。由此可见，模型架构中后置模块对输出图像的指纹特征影响更为显著，因为前层高频模式可能已被滤除。</p>
+<figure>
+<img
+src="../postimages/Model-Synthesis-for-Zero-Shot-Model-Attribution/image-20260106220649927.png"
+alt="image-20260106220649927" />
+<figcaption aria-hidden="true">image-20260106220649927</figcaption>
+</figure>
+<blockquote>
+<p>图3. (a)–(c)
+最后生成模块在生成模型指纹中的重要性验证。在训练阶段(a)中，使用两个模型生成的图像训练二元分类器。第一个测试场景(b)中，我们使用来自两个模型的非重叠测试样本进行测试。第二个测试场景(c)中，我们使用由两个模型的最后生成模块参数互换构建的组合模型样本进行测试。<br/>&gt;
+(d)–(e)
+第一和第二测试场景的混淆矩阵。模型1和模型2分别缩写为M1和M2，组合模型1和组合模型2分别缩写为CM1和CM2。</p>
+</blockquote>
+<p>为验证这一假设，我们设计了如图3所示的实验方案，包含三个关键步骤：</p>
+<ul>
+<li>训练：使用具有相同架构的两种不同生成模型（模型1和模型2）生成的图像傅里叶频谱，训练分类器。</li>
+<li>测试I：使用模型1和模型2生成的测试集图像测量分类结果。</li>
+<li>测试II：从第i个区块开始，依次将模型1的后续区块交换到模型2，反之亦然。每次交换后，使用组合模型生成新图像集，并评估分类器在该新数据集上的分类结果。图3(c)展示了交换最后一个区块的操作过程。</li>
+</ul>
+<p>​  图3(d)、(e)展示了两个实验在测试I和测试II中的混淆矩阵。我们为模型1和模型2分别采用了两种ProGAN模型：在(d)中，我们使用最近邻上采样层构建模型；在(e)中，则采用双线性上采样层。如图所示，在测试I中，分类器表现出高准确率，这从混淆矩阵中对角线值的高值可以明显看出。然而在测试II中，当交换最后几个模块后，混淆矩阵揭示了模型归因结果的显著反转。具体来说，当交换最后两个模块时，反转准确率达到了0.9。这些变化结果表明，区分模型的最显著频谱模式主要由模型的最后两个模块生成。相比之下，随着生成过程的推进，早期模块留下的模式似乎变得越来越不明显。</p>
+<h2 id="b.模型综合策略">B.模型综合策略</h2>
+<p>​  在本节中，我们将介绍用于创建指纹特征提取器训练模型的合成策略。直观来说，优秀的合成策略应当生成与真实生成模型指纹模式高度相似的模型，使这些合成模型能在开放环境中有效模拟新模型。根据第三节A部分的讨论，需要重点考虑以下因素：首先，输出图像的最后几个生成模块对可区分频谱模式的影响更为显著。因此，采用少量生成模块的合成架构能确保对指纹特征的精准模拟。其次，通过多样化上采样层类型、激活函数、归一化层及参数设置来提升模型多样性至关重要。我们明确将这些考量因素纳入方法体系。此外，为进一步增强多样性，我们还考虑了层数与层序的变体。</p>
+<figure>
+<img
+src="../postimages/Model-Synthesis-for-Zero-Shot-Model-Attribution/image-20260106221144477.png"
+alt="image-20260106221144477" />
+<figcaption aria-hidden="true">image-20260106221144477</figcaption>
+</figure>
+<blockquote>
+<p>图4.
+我们提出的模型合成策略。合成模型以真实图像作为输入，生成包含与该合成模型相关联的独特指纹特征的指纹图像。</p>
+</blockquote>
+<p>​  总体而言，我们的模型合成策略如图4所示。该合成模型的结构可视为一个浅层自编码器，由K个下采样模块和K个上采样模块组成。根据上述讨论，K值可选择较小数值（如1或2）。每个下采样模块采用固定架构：通过池化层将输入分辨率降低一半，再通过两个卷积层提升特征维度。下采样模块输出的特征随后输入上采样模块，这些模块与标准生成模型中的生成模块共享相同组件，但提供了多种架构选择。<br/>​  综上所述，合成模型的架构由选项{K，L，U，A，N，S}定义。</p>
+<ul>
+<li>K表示合成模型中下采样/上采样模块的数量，可为1或2个。</li>
+<li>L代表每个模块的卷积层数，可为1或2层。</li>
+<li>U表示上采样操作类型，包括最近邻上采样、双线性上采样或步长2转置卷积层。</li>
+<li>A是激活函数类型，可选用ReLU、Sigmoid、Tanh或不激活。</li>
+<li>N表示归一化类型，可采用批量归一化、实例归一化或不归一化。</li>
+<li>S表示相对于卷积层的激活与归一化顺序。</li>
+</ul>
+<p>​  通过调整这些配置参数，我们可在构建空间内获得2×2×3×4×3×2=288种不同架构。针对每种架构，我们采用不同训练种子对M个模型进行训练，从而为每个架构生成M个参数各异的独立模型。实验中M值设定为20。<br/>​  我们深知速度是模型合成的关键要素。在本方案中，我们将目标简化为聚焦重建过程，通过生成式神经网络专门负责最小化输入图像的重建损失。这种方法不仅易于实现，还能快速完成训练。其他训练方法的探索将留待后续研究。我们将最小重建残差约束设定为
+η
+=0.005，以减少输出图像中的伪影。最终生成的合成模型总数达5760个，可广泛模拟具有不同架构和参数的各类生成模型。</p>
+<h2 id="c.模型综合的有效性">C.模型综合的有效性</h2>
+<p>​  我们从保真度和效率两个维度评估模型合成策略的有效性。保真度用于衡量合成模型对真实生成模型频谱/指纹模式的复现程度，效率则用于考察在大量合成模型上进行训练的速度。</p>
+<figure>
+<img
+src="../postimages/Model-Synthesis-for-Zero-Shot-Model-Attribution/image-20260106222606106.png"
+alt="image-20260106222606106" />
+<figcaption aria-hidden="true">image-20260106222606106</figcaption>
+</figure>
+<blockquote>
+<p>图5. (a) 单一模型上的谱图模式表示。(b)
+Frechet频率距离的计算过程。</p>
+</blockquote>
+<p>​  保真度Fidelity：目前尚无现成工具能定量衡量合成模型与真实模型在指纹分布上的差异。为填补这一空白，我们提出一种名为Frechet
+频率距离（FFD，Frechet Frequency
+Distance）的新指标，其灵感源自Frechet初始距离（FID，Frechet Inception
+Distance）[27]。选择Frechet
+距离是基于其实用价值和广泛认可度，尤其适用于比较分布特征，特别是在均值和协方差能有效反映数据平均含量与变异性的场景。不同于通过比较初始特征分布距离来评估生成图像保真度的FID（特征信息距离），
+FFD 通过比较谱特征分布距离来评估合成模型指纹的保真度。该 FFD
+的计算主要分为两个步骤：</p>
+<ul>
+<li>（步骤I）频谱模式表征：我们提取生成图像的频谱模式，用以表征每个合成模型与真实模型的特征指纹。如图5(a)所示，针对每个模型，我们首先生成N张图像（例如100张），然后参照文献[13]的方法，通过应用噪声提取器[28]去除图像中的语义内容来增强频谱模式。随后，利用这些经过降噪处理的图像，通过方位积分（AI）技术对二维傅里叶频谱的径向频率进行处理，计算出简化的1维功率谱[17]。最终，我们从这N张图像中计算平均频谱，作为各模型的频谱模式表征。</li>
+<li>（步骤II）Frechet距离计算：如图5(b)所示，我们首先计算表III中所有现实世界模型的频谱表示的均值和协方差，该表涵盖了从GAN、
+VAE
+、Flow到Diffusion等主流生成模型。随后，我们以相同方式计算第III-B节中合成模型的频谱表示的均值和协方差。最后，计算这些分布之间的Frechet距离。具体而言，对于真实分布的均值
+μr 与协方差 Σr ，以及合成分布的均值 μs 与协方差 Σs
+，它们之间的距离由以下公式给出：</li>
+</ul>
+<p><span
+class="math display">\[\mathrm{FFD}=\|\mu_{r}-\mu_{s}\|^{2}+\mathrm{Tr}\left(\Sigma_{r}+\Sigma_{s}-2\left(\Sigma_{r}\Sigma_{s}\right)^{1/2}\right)\]</span></p>
+<p>​  其中Tr表示矩阵的迹。低 FFD
+值表明合成模型在频谱模式方面与真实模型高度相似。</p>
+<p>​  在表II中，我们通过对比不同合成方案与真实模型的弗雷歇频率距离（Frechet
+Frequency
+Distance），评估了合成模型的性能差异。架构变化包括：“无K”和“无L”分别表示仅使用单个下/上采样模块和单层结构；“无S”采用单一序列处理方式——卷积后仅进行归一化和激活；“无U”仅使用双线性插值进行上采样；“无A”和“无N”则分别表示省略激活层和归一化层。我们还设置了“无种子”组别，即不为各架构设置不同种子。数据显示，减少合成选项数量往往会增大弗雷歇频率距离（FFD），表明分布对齐效果变差。值得注意的是，取消激活函数和上采样方法的多样性会导致
+FFD
+显著增加。这可能是因为这些因素在变化时，主要会提升合成模型的多样性。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Model-Synthesis-for-Zero-Shot-Model-Attribution/">https://zhaozw-szu.github.io/Model-Synthesis-for-Zero-Shot-Model-Attribution/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/coverImage/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Pre-training-free-Image-Manipulation-Localization-through-Non-Mutually-Contrastive-Learning/" title="Pre-training-free_Image_Manipulation_Localization_through_Non-Mutually_Contrastive_Learning"><img class="cover" src="/img/coverImage/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Pre-training-free_Image_Manipulation_Localization_through_Non-Mutually_Contrastive_Learning</div></div></a></div><div class="next-post pull-right"><a href="/Exploring-Intrinsic-Normal-Prototypes-within-a-Single-Image-for-Universal-Anomaly-Detection/" title="Exploring_Intrinsic_Normal_Prototypes_within_a_Single_Image_for_Universal_Anomaly_Detection"><img class="cover" src="/img/coverImage/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Exploring_Intrinsic_Normal_Prototypes_within_a_Single_Image_for_Universal_Anomaly_Detection</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">200</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E6%A8%A1%E5%9E%8B%E5%BD%92%E5%9B%A0"><span class="toc-text">A.模型归因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%91%E8%B0%B1%E5%B7%AE%E5%BC%82"><span class="toc-text">B.生成模型的频谱差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.%E5%9F%BA%E4%BA%8E%E5%90%88%E6%88%90%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A2%84%E8%AE%AD%E7%BB%83"><span class="toc-text">C.基于合成数据的预训练</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">3.方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E6%A8%A1%E5%9E%8B%E6%8C%87%E7%BA%B9%E7%9A%84%E5%88%9D%E6%AD%A5%E5%88%86%E6%9E%90"><span class="toc-text">A.模型指纹的初步分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E6%A8%A1%E5%9E%8B%E7%BB%BC%E5%90%88%E7%AD%96%E7%95%A5"><span class="toc-text">B.模型综合策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.%E6%A8%A1%E5%9E%8B%E7%BB%BC%E5%90%88%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">C.模型综合的有效性</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
