@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png">
+<meta property="article:published_time" content="2026-02-27T13:44:48.000Z">
+<meta property="article:modified_time" content="2026-02-27T13:54:40.828Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-27 21:54:40'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">206</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">36</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2026-02-27T13:44:48.000Z" title="创建于 2026-02-27 21:44:48">2026-02-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-27T13:54:40.828Z" title="更新于 2026-02-27 21:54:40">2026-02-27</time></span><span class="post-meta-separator">|</span><a target="_blank" rel="noopener" href="https://github.com/vpsg-research/CMB-Net"><img src="https://img.shields.io/github/stars/vpsg-research/CMB-Net?style=flat" alt="GitHub Stars: vpsg-research/CMB-Net" loading="lazy"></a></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>Bridging Semantic Logic Gaps: A Cognition Inspired Multimodal
+Boundary Preserving Network for Image Manipulation Localization</p>
+<p>Songlin Li, Zhiqing Guo*, Yuanman Li, Zeyu Li, Yunfeng Diao, Gaobo
+Yang, and Liejun Wang</p>
+<h1 id="摘要">摘要</h1>
+<p>​  现有的图像篡改检测（IML）模型主要依赖视觉线索，却忽视了内容特征间的语义逻辑关联。事实上，真实图像传递的内容语义往往符合人类认知规律。然而图像篡改技术通常会破坏内容特征间的内在关联，导致语义线索难以被
+IML
+识别。<br/>​  本文提出一种认知启发式多模态边界保留网络（CMB-Net，<strong>cognition
+inspired multimodal boundary preserving
+network</strong>）。具体而言，CMB-Net利用大语言模型（LLMs）分析图像中的篡改区域，并生成基于提示的文本信息以弥补视觉信息中语义关联的缺失。考虑到由LLMs幻觉诱导的错误文本会损害
+IML 准确性，我们提出图像-文本中心模糊模块（ITCAM，<strong>image-text
+central ambiguity
+module</strong>），通过量化文本与图像特征间的模糊度为文本特征赋予权重，从而确保文本信息的积极作用。同时提出图像-文本交互模块（ITIM，<strong>image-text
+interaction
+module</strong>），利用相关矩阵实现视觉与文本特征的精细交互。最后，受可逆神经网络启发，我们提出恢复边缘解码器（RED，<strong>restoration
+edge
+decoder</strong>），通过双向生成输入与输出特征来无损保留篡改区域的边界信息。大量实验表明，CMB-Net在性能上超越了大多数现有
+IML
+模型。<br/>​  我们的代码可在以下平台获取：https://github.com/vpsg-research/CMB-Net</p>
+<h3 id="模型架构">模型架构</h3>
+<ul>
+<li><strong>整体框架</strong>：CMB-Net以PVTv2作为视觉编码器，BERT作为文本编码器，包含ITCAM、ITIM和RED三个核心模块。首先，LLMs分析图像潜在篡改区域生成提示文本，经BERT提取文本特征；PVTv2提取图像多级特征，生成高层语义表示后与文本特征输入ITCAM加权，再经ITIM交互融合，最后通过RED生成预测掩码。</li>
+<li><strong>图像-文本中心模糊模块（ITCAM）</strong>：为解决LLMs幻觉导致的文本错误问题，该模块利用KNN技术构建图像和文本的中心特征，通过KL散度量化两者模糊度。先将图像特征重塑并计算自相关特征图，用KNN选择近邻特征构建差异加权特征，经卷积和池化提取图像中心特征，同理获取文本中心特征；再将中心特征建模为高斯分布，计算对称KL散度平均值得模糊度a，以（1-a）加权文本特征，减少幻觉影响。</li>
+<li><strong>图像-文本交互模块（ITIM）</strong>：为实现视觉与文本特征细粒度交互，该模块通过1×1卷积将图像特征转换为查询、键、值，文本特征转换为键和值，计算图像区域相似度和图像-文本相似度，生成相关系数矩阵CS；结合可学习缩放参数调整相似度特征，最终融合图像和文本的加权表示，增强模型对复杂语义关系的理解。</li>
+<li><strong>恢复边缘解码器（RED）</strong>：为防止多尺度特征融合中边界信息稀释，RED包含四个解码器块（DB），每个DB有边缘引导残差模块（EGRM）和边缘细化模块（ERM）。ERM采用可逆神经网络，通过仿射耦合层对特征可逆变换，生成边界图Ei；EGRM将Ei注入特征融合过程，经卷积和激活等操作生成预测图Mi，实现边界信息无损保留。</li>
+</ul>
+<figure>
+<img
+src="../postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png"
+alt="image-20260227215032360" />
+<figcaption aria-hidden="true">image-20260227215032360</figcaption>
+</figure>
+<blockquote>
+<p>图2展示了CMB-Net的整体架构。<br/>&gt;
+该模型采用PVTv2[9]作为视觉编码器，BERT[10]作为文本编码器，并包含三个核心模块：图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）以及边缘恢复解码器（RED）。值得注意的是，RED由四个解码器模块（DB）构成，每个DB包含两个组件：边缘引导残差模块（EGRM）和边缘精炼模块（ERM）。</p>
+</blockquote>
+<h3 id="实验设计">实验设计</h3>
+<ul>
+<li><p><strong>数据集</strong>：实验使用多个主流IML基准数据集，包括CASIAv2（5123张，仅训练）、CASIAv1（920张，仅测试）、Coverage（100张，70训练30测试）、Columbia（180张，130训练50测试）、NIST16（564张，414训练150测试），还在CocoGlide、ITW、Korus、IMD2020等数据集验证泛化能力。</p></li>
+<li><p><strong>评估指标</strong>：采用F1分数和IoU作为评估指标，F1是精确率和召回率的调和平均，IoU评估预测掩码与真实掩码相似度，阈值设为0.5。</p></li>
+<li><p><strong>实现细节</strong>：训练时输入图像 resize
+为512×512，批大小32，使用AdamW优化器，初始学习率1e-4，每50
+epoch衰减0.1，训练120 epoch，使用4块NVIDIA 3090 GPU。</p></li>
+<li><p><strong>对比方法</strong>：与MVSS-Net、PSCC-Net、TruFor、IML-ViT、MFI-Net、PIM-Net、SparseViT、Mesorch等8种现有SOTA方法对比，还对比了使用GPT-4.1和Qwen-VL-Max生成文本的模型性能。</p></li>
+</ul>
+<div class="line-block">Dataset | Nums | #CM | #SP | #IP | #Train |
+#Test | <br/>| :----: | :----: | :----:|:----: | :----: | :----: |
+:----: |<br />
+CASIAv2.0 | 5123 | 3295 |1828 | 0 | 5123 | 0 |<br />
+CASIAv1.0 | 920 | 459 |461 | 0 | 0 | 920 |<br />
+Coverage | 100 | 100 |0 | 0 | 70 | 30 |<br />
+Columbia | 180 | 0 |180 | 0 | 130 | 50 |<br />
+NIST16 | 564 | 68 |288 | 208 | 414 | 150 |</div>
+<h3 id="结果与分析">结果与分析</h3>
+<ul>
+<li><strong>与SOTA方法对比</strong>：CMB-Net在多个数据集上F1和IoU指标均优于对比方法。使用Qwen-VL-Max文本时，NIST16的F1为0.935、IoU为0.891，Coverage的F1为0.875、IoU为0.812，CASIAv1的F1为0.779、IoU为0.729，Columbia的F1和IoU均为0.986、0.972，平均F1
+0.894、IoU
+0.851。Qwen-VL-Max生成的文本比GPT-4.1更精炼，语义更丰富，使模型性能更优。</li>
+<li><strong>消融实验</strong>：仅图像特征（B）时平均F1 0.660、IoU
+0.601；加入RED后平均F1 0.850、IoU 0.800；再加入ITIM平均F1 0.875、IoU
+0.830；加入ITCAM（完整模型）平均F1 0.894、IoU
+0.851，表明各模块均提升性能，ITCAM效果最显著。</li>
+<li><strong>ITCAM中k值选择</strong>：在k=5、7、10、12、15的实验中，k=10时模型在多个数据集上综合性能最优，平衡了局部细节和全局结构。</li>
+<li><strong>鲁棒性评估</strong>：在Facebook、WeiBo、WeChat、WhatsApp等社交平台图像压缩场景及
+resize、高斯噪声、高斯模糊、JPEG压缩等攻击下，CMB-Net整体表现优于对比方法，仅在强高斯模糊（k=11）时略逊于Mesorch。</li>
+<li><strong>域外数据集测试</strong>：在IMD2020、CocoGlide、ITW、Korus等域外数据集上，CMB-Net仍表现出强泛化能力，验证了文本信息补充语义逻辑的有效性。</li>
+</ul>
+<h3 id="总体结论">总体结论</h3>
+<p>CMB-Net通过利用LLMs生成文本补充视觉语义关系，结合ITCAM量化图像-文本模糊度减轻幻觉影响，ITIM实现跨模态细粒度交互，RED基于可逆神经网络保留边界信息，显著提升了图像篡改定位性能。实验表明，CMB-Net在多个数据集上超越现有SOTA方法，且具有良好的鲁棒性和泛化能力，为图像篡改定位领域提供了新的有效思路。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/">https://zhaozw-szu.github.io/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/ALL-IN-ONE-Divide-and-Conquer-Strategy-for-Multi-Manipulation-Image-Classification-and-Localization/" title="ALL-IN-ONE:Divide-and-Conquer Strategy for Multi-Manipulation Image Classification and Localization"><img class="cover" src="/postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004113308304.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ALL-IN-ONE:Divide-and-Conquer Strategy for Multi-Manipulation Image Classification and Localization</div></div></a></div><div class="next-post pull-right"><a href="/Deep-Robust-Reversible-Watermarking/" title="Deep_Robust_Reversible_Watermarking"><img class="cover" src="/postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Deep_Robust_Reversible_Watermarking</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">206</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">36</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="toc-text">模型架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1"><span class="toc-text">实验设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%E4%B8%8E%E5%88%86%E6%9E%90"><span class="toc-text">结果与分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E7%BB%93%E8%AE%BA"><span class="toc-text">总体结论</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

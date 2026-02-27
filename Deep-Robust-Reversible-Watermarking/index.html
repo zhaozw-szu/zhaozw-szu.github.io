@@ -1,0 +1,718 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Deep_Robust_Reversible_Watermarking | 喵</title><meta name="author" content="Zhaozw"><meta name="copyright" content="Zhaozw"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发表于arxiv，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible Watermarking（DRRW），通过整数可逆水印网络（iIWN）实现整数数据分布间的可逆映射，解决传统鲁棒可逆水印（RRW）方法设计复杂、计算成本高和鲁棒性差等问题，在多个数据集上验证了其性能优势。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep_Robust_Reversible_Watermarking">
+<meta property="og:url" content="https://zhaozw-szu.github.io/Deep-Robust-Reversible-Watermarking/index.html">
+<meta property="og:site_name" content="喵">
+<meta property="og:description" content="发表于arxiv，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible Watermarking（DRRW），通过整数可逆水印网络（iIWN）实现整数数据分布间的可逆映射，解决传统鲁棒可逆水印（RRW）方法设计复杂、计算成本高和鲁棒性差等问题，在多个数据集上验证了其性能优势。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhaozw-szu.github.io/postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png">
+<meta property="article:published_time" content="2026-02-27T07:15:16.000Z">
+<meta property="article:modified_time" content="2026-02-27T14:29:26.233Z">
+<meta property="article:author" content="Zhaozw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhaozw-szu.github.io/postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhaozw-szu.github.io/Deep-Robust-Reversible-Watermarking/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Deep_Robust_Reversible_Watermarking',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-27 22:29:26'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" type="text/css" href="/config/css/heoMainColor.css"><link rel="stylesheet" type="text/css" href="/config/css/categoryBar.css"><link rel="stylesheet" type="text/css" href="/config/css/icat.css"><link rel="stylesheet" type="text/css" href="/config/css/emoticon.css"><link rel="stylesheet" href="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.css" media="print" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">206</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">36</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png')"><nav id="nav"><span id="blog-info"><a href="/" title="喵"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">喵</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-chart-simple"></i><span> 文库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/rank/"><i class="fa-fw fas fa-line-chart"></i><span> 等级</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-line-chart"></i><span> 期刊</span></a></li><li><a class="site-page child" href="/competition/"><i class="fa-fw fas fa-database"></i><span> 比赛</span></a></li><li><a class="site-page child" href="/code/"><i class="fa-fw fas fa-code"></i><span> 代码</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-sun"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li><li><a class="site-page child" href="/essay/"><i class="fa-fw fas fa-music"></i><span> 日记</span></a></li><li><a class="site-page child" href="/game/"><i class="fa-fw fas fa-gamepad"></i><span> 小游戏</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Deep_Robust_Reversible_Watermarking</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">创建于</span><time class="post-meta-date-created" datetime="2026-02-27T07:15:16.000Z" title="创建于 2026-02-27 15:15:16">2026-02-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-27T14:29:26.233Z" title="更新于 2026-02-27 22:29:26">2026-02-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%B2%81%E6%A3%92%E5%8F%AF%E9%80%86%E6%B0%B4%E5%8D%B0/">鲁棒可逆水印</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Deep_Robust_Reversible_Watermarking"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div id="article-description">发表于arxiv，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible Watermarking（DRRW），通过整数可逆水印网络（iIWN）实现整数数据分布间的可逆映射，解决传统鲁棒可逆水印（RRW）方法设计复杂、计算成本高和鲁棒性差等问题，在多个数据集上验证了其性能优势。<div class="disclaimer">博主观点不代表文章作者观点</div></div><article class="post-content" id="article-container"><p>Deep Robust Reversible Watermarking</p>
+<p>Jiale Chen, Wei Wang, Chongyang Shi, Li Dong, Yuanman Li, Xiping
+Hu</p>
+<h1 id="摘要">摘要</h1>
+<p>​  鲁棒可逆水印技术（RRW，<strong>Robust Reversible
+Watermarking</strong>）能够在无损信道中完美恢复封面图像和水印，同时确保在有损信道下仍能稳健提取水印。然而，现有
+RRW
+方法大多基于非深度学习，存在设计复杂、计算成本高、鲁棒性差等问题，限制了其实际应用。为解决这些问题，本文提出深度鲁棒可逆水印（DRRW，<strong>Deep
+Robust Reversible Watermarking</strong>），一种基于深度学习的 RRW 方案。
+DRRW 引入整数可逆水印网络（iIWN，<strong>Integer Invertible Watermark
+Network</strong>），通过实现整数数据分布间的可逆映射，从根本上突破了传统
+RRW 方法的局限。与传统 RRW 方法需要针对不同失真进行任务特定设计不同，
+DRRW
+采用编码器-噪声层-解码器框架，通过端到端训练实现对多种失真的自适应鲁棒性。在推理阶段，封面图像和水印被映射到溢出的隐写图像和潜在变量中。算术编码高效压缩这些数据生成紧凑的比特流，通过可逆数据隐藏技术嵌入，确保图像和水印的无损恢复。为减少像素溢出，我们引入溢出惩罚损失，显著缩短辅助比特流长度，同时提升鲁棒性和隐写图像质量。此外，我们提出了一种自适应权重调整策略，无需手动预设水印损失权重，从而确保训练稳定性和性能提升。多数据集实验表明，
+DRRW 实现了显著的性能优势。与最先进的 RRW 方法相比， DRRW
+在鲁棒性方面提升55.14倍，在嵌入、提取和恢复复杂度方面分别降低5.95倍和3.57倍。辅助比特流缩短43.86倍，可逆嵌入在Pascal
+VOC 2012数据集的16,762张图像中成功应用，标志着向实用 RRW
+应用迈出了重要一步。值得注意的是， DRRW
+在严格保持可逆性的同时，实现了优于现有不可逆鲁棒水印方法的鲁棒性和视觉质量。</p>
+<h1 id="引言">1.引言</h1>
+<p>​  随着数字内容和互联网技术的快速发展，知识产权保护与数据安全已成为亟待解决的紧迫问题。数字水印技术作为关键解决方案应运而生，通过将可识别标记直接嵌入多媒体内容，实现了所有权验证、内容完整性认证以及数字媒体的安全分发[1][2]。其中，鲁棒可逆水印（RRW）因其在保持抗失真能力的同时确保原始图像和水印位元无损恢复的独特优势而备受关注。这种双重功能使得
+RRW
+在数据完整性验证、版权确认等高风险应用场景中不可或缺，例如安全内容传输、数字媒体存储，以及需要绝对保真度的医疗图像处理等场景[3]
+[4]。<br/>​  传统 RRW 方法主要分为两大方向：基于直方图移位的 RRW
+[5]-[11]和基于两阶段嵌入的 RRW
+[12]-[16]，其中两阶段嵌入策略最具代表性。该方法首先通过鲁棒水印技术将水印位元嵌入原始图像，随后利用可逆数据隐藏技术将恢复原始图像所需的辅助信息隐藏到隐写图像中，如图1(a)所示。尽管这些方法在稳健性与可逆性之间达到了某种平衡，但它们通常涉及复杂的设计，并导致嵌入时间增加，从而限制了其实用性。</p>
+<figure>
+<img
+src="../postimages/Deep-Robust-Reversible-Watermarking/image-20260227152319038.png"
+alt="image-20260227152319038" />
+<figcaption aria-hidden="true">image-20260227152319038</figcaption>
+</figure>
+<blockquote>
+<p>图1.传统 RRW 与所提 DRRW 的对比。<br/>&gt;
+(a)传统方法采用常规鲁棒图像水印技术嵌入鲁棒水印；<br/>&gt; (b)所提 DRRW
+采用整数可逆水印网络嵌入鲁棒水印。</p>
+</blockquote>
+<p>​  近年来，可逆神经网络（INNs）在数字水印[18]
+[19]和隐写术[20]-[25]等领域备受关注。这类网络通过可逆函数实现图像与水印的映射转换，特别适合用于隐写和水印任务。其核心优势在于既能嵌入水印，又能保持原始图像的高不可见性，这对版权保护和安全数据传输等应用场景至关重要。尽管存在这些优势，当前大多数基于INN的图像数据隐藏方法仍面临重大挑战。这些方法主要在实值域运行，因此也可称为实值流数据隐藏技术。其核心缺陷在于，这类实值流方法仅能映射实值数据分布，导致图像存储存在固有问题：需要将生成的隐写图像量化为8位整数进行存储。这种量化过程会引入信息损失，严重影响实值流隐写技术的性能表现。例如，我们评估了量化对经典图像到图像隐写方法HiNet[20]的影响。</p>
+<figure>
+<img
+src="../postimages/Deep-Robust-Reversible-Watermarking/image-20260227152519544.png"
+alt="image-20260227152519544" />
+<figcaption aria-hidden="true">image-20260227152519544</figcaption>
+</figure>
+<p>​  如图2所示，当隐写图像未受限于有效8位像素值时，解密后的秘密图像展现出卓越的视觉质量。但经过量化处理后，解密图像的视觉质量显著下降。</p>
+<figure>
+<img
+src="../postimages/Deep-Robust-Reversible-Watermarking/image-20260227164801790.png"
+alt="image-20260227164801790" />
+<figcaption aria-hidden="true">image-20260227164801790</figcaption>
+</figure>
+<p>​  通过分析图3所示的解密图像 PSNR
+，我们发现：当隐写图像被限制为8位图像格式后，解密图像的 PSNR
+会急剧下降约30分贝。该实验凸显了量化对隐写技术的深远影响，表明在基于INN的隐写技术中，秘密信息往往隐藏在像素值的分数分量之中。因此，采用HDR或TIFF等格式存储未量化隐写图像虽能缓解该问题，但会降低存储效率。综上所述，这种量化导致的信息损失不仅会削弱图像隐写技术的性能，还会限制其在稳健可逆水印任务中的应用。<br/>​  为解决这一问题，我们提出了一种新颖的两阶段鲁棒可逆水印框架——深度鲁棒可逆水印（DRRW，Deep
+Robust Reversible Watermarking），如图1(b)所示。 DRRW
+的核心在于采用整数可逆水印网络（iIWNs，integer Invertible Watermark
+Networks），该网络能够在整数离散数据分布之间建立无损可逆映射。通过在水印图像与隐写图像之间建立可逆映射，iIWN从根本上消除了基于实值流数据隐藏方法中量化误差导致的不可逆性问题。在训练过程中，
+DRRW
+采用编码器-噪声层-解码器框架来学习对各种失真现象的鲁棒性。在推理过程中，iIWN将封面图像-水印对映射到溢出隐写图像和一个潜在变量，随后需解决三个挑战：1）溢出隐写图像中的像素值可能超出有效范围[0,255]；2）潜在变量必须无损存储于隐写图像中；3）辅助信息需压缩为短比特流，以便通过
+RDH
+嵌入到裁剪后的隐写图像中。为应对这些挑战，我们在训练过程中引入溢出惩罚损失，以将像素值限制在允许范围内。此外，针对溢出像素，我们计算溢出图，并通过算术编码[26]将其与潜在变量压缩为紧凑的比特流，随后使用
+RDH
+将其嵌入裁剪后的隐写图像中。这确保了对掩蔽图像和嵌入水印的无损重建。<br/>​  
+本研究的主要贡献如下：</p>
+<ul>
+<li>我们提出了一种名为深度鲁棒可逆水印（DRRW）的两阶段鲁棒可逆水印框架。
+DRRW
+利用整数可逆水印网络，学习在不同失真下的鲁棒性，并实现覆盖图像-水印对与隐写图像之间的无损可逆映射。</li>
+<li>我们在 DRRW
+训练过程中引入溢出惩罚损失。该损失不仅显著缩短辅助比特流的长度，还能提升隐写图像的视觉质量并增强水印的鲁棒性，实现三重效益。</li>
+<li>我们提出一种在 DRRW
+中自动调整水印损失权重的训练策略。该策略根据训练过程自适应调整水印损失权重，无需手动超参数调优，确保模型在不同设置下都能收敛至最优性能。</li>
+<li>实验结果表明， DRRW
+框架具有显著优势，其性能优于传统的稳健可逆与不可逆水印技术。该框架已成功应用于大规模数据集，充分证明了其实用价值与扩展能力。</li>
+</ul>
+<p>​  本文其余部分结构安排如下：第二节综述相关研究，第三节阐述 DRRW
+框架，第四节展示实验结果，第五节总结全文。</p>
+<h1 id="相关工作">2.相关工作</h1>
+<h2 id="a.鲁棒可逆水印">A.鲁棒可逆水印</h2>
+<p>​  可逆数据隐藏（RDH，Reversible data
+hiding）是一种水印技术，旨在实现原始图像的无损恢复以及在无损信道中提取嵌入的水印位。早期
+RDH 研究主要聚焦于空间域技术，典型方法包括差分扩展（DE，Difference
+Expansion）[27]、直方图移位（HS，Histogram
+Shifting）[17]和预测误差扩展（PEE，Prediction-Error
+Expansion）[28]。然而随着应用需求转向对有损信道的鲁棒性要求，鲁棒可逆水印（RRW，robust
+reversible watermarking）作为 RDH 的专项延伸应运而生。 RRW
+不仅能确保原始图像和水印在无损信道中的无损恢复，还能增强水印在有损信道中抵抗失真的能力。相较于传统鲁棒水印方法，这种兼具鲁棒性与可逆性的双重目标增加了技术复杂度。<br/>​  主流
+RRW 方法主要包括基于直方图偏移的 RRW [5]-[11]和基于两阶段嵌入的 RRW
+[12]-[16]
+[29]-[31]。基于直方图偏移的方法通过调整图像特征的鲁棒性来嵌入水印。例如该领域的开创性研究中，Ni等人提出了一种利用拼接理论统计量的鲁棒无损数据隐藏方法，既实现了对JPEG压缩的鲁棒性又保持了无损特性[6]。Gao等人[8]提出的无损数据嵌入框架采用广义统计量直方图，具备对多种图像类型的适应性和不同容量的扩展性，该方法显著提升了对JPEG压缩的鲁棒性。此外，An等人[9]提出的
+WSQHSC
+是一种基于小波域直方图偏移与聚类的鲁棒可逆水印框架，通过增强像素级掩码技术在鲁棒性与隐蔽性之间取得平衡，实现了跨图像类型的卓越性能。这些策略虽以简洁高效著称，但在处理复杂失真时往往面临扩展性挑战。<br/>​  相比之下，基于两阶段嵌入的RRWs专注于将鲁棒水印与可逆数据隐藏技术相结合。该策略最早由Coltuc[13]提出：首先采用鲁棒水印方案嵌入水印，随后通过
+RDH
+将恢复掩码和水印所需的比特流隐藏到隐写图像中。例如，Kumar等人[15]提出了一种采用双层嵌入策略的
+RRW
+方案，通过使用PEE将秘密数据嵌入高有效位平面，该方案在实现高嵌入容量的同时，能有效抵御JPEG压缩等非恶意攻击。Hu等人[12]提出了一种利用低阶泽尼克矩的无掩码损失鲁棒水印方案，可抵抗缩放和旋转等几何变形。近期，Tang等人[16]提出了一种基于攻击模拟自适应归一化的
+RRW
+方案，通过使用极坐标谐波变换矩作为水印掩码，并在扩展变换抖动调制中通过多级量化优化嵌入强度，从而增强水印的鲁棒性和嵌入容量。该方法能有效抵御常见信号处理和几何变形，但通常具有较高的时间复杂度且设计复杂。<br/>​  此外，采用基于深度学习的鲁棒水印技术[32]的两阶段嵌入式的RRWs方法，[33]首先通过基于CNN的鲁棒水印技术嵌入水印。由于CNN过程的不可逆性，覆盖图像与隐写图像之间的残差图像随后通过
+RDH 嵌入隐写图像。然而，这些方法 RDH
+容量，使其难以适用于大规模数据集。</p>
+<h2 id="b.基于实值流的数据隐藏">B.基于实值流的数据隐藏</h2>
+<p>​  归一化流已成为密度估计[34]和生成建模[35]
+[36]领域的强大工具。这类模型通过耦合层构建可逆映射，能够将复杂数据分布映射为简单易处理的形式，并实现精确的似然评估[36]。耦合层的双输入结构使基于流的模型在信息隐藏任务中表现尤为突出，例如鲁棒图像水印[18]
+[19]和图像嵌入图像的隐写术[20]-[25]。然而，现有基于流的水印和隐写方法在前向和逆向过程中主要依赖实值计算。因此，尽管掩模图像为离散整数值，但模型输出为连续值，需要通过量化步骤将输出映射为有效像素强度以满足图像存储和实际应用需求。这种量化过程不可避免地导致信息丢失，阻碍了可逆水印应用中掩模图像的精确恢复。近期研究尝试通过实值流方法最小化掩模图像与隐写图像之间的残差误差[24]，但这些方法仍无法完全规避量化导致的信息丢失引发的性能下降，尤其在高保真恢复场景中，精度至关重要。</p>
+<h2 id="c.整数离散流">C.整数离散流</h2>
+<p>​  整数离散流（IDFs，Integer Discrete
+Flows）[37]通过在正向和逆向变换中仅使用整数运算，专门用于离散数据建模。这种设计确保数据在编码和解码过程中始终保持整数形式，从而省去了量化步骤，避免了实值流模型中常见的信息丢失问题。与依赖连续值耦合层的实值流不同，IDFs采用整数耦合层来更好地保持离散数据表征的完整性和精度。这种基于整数的方法在无损数据压缩[37]-[41]和生成建模[42]等领域获得了广泛关注和认可。在可逆水印和信息隐藏领域，IDFs尤其具有应用前景，因为其零量化误差和固有可逆性与这些任务的严苛要求高度契合，特别是在需要精确图像复原和无失真重建时。</p>
+<h1 id="提出的深度鲁棒可逆水印方法">3.提出的深度鲁棒可逆水印方法</h1>
+<p>​  本节介绍 DRRW 方法，该方法包含三个关键组件。</p>
+<figure>
+<img
+src="../postimages/Deep-Robust-Reversible-Watermarking/image-20260227170244881.png"
+alt="image-20260227170244881" />
+<figcaption aria-hidden="true">image-20260227170244881</figcaption>
+</figure>
+<p>​  首先，我们设计了如图4所示的整数可逆水印网络（iIWNs，integer
+Invertible Watermark
+Networks），该网络采用整数耦合层。这种设计确保了整数值数据的无损正向与逆向映射，避免了量化误差导致的不可逆问题。其次，
+DRRW 采用如图6所示的编码器-噪声层-解码器训练框架。与现有 RRW 方法相比，
+DRRW 通过可微分噪声池学习了对不同失真的鲁棒性。第三，如图7所示的 DRRW
+推理过程遵循两阶段嵌入机制，与传统 RRW 方法类似。</p>
+<h2 id="a.-整数可逆水印网络">A. 整数可逆水印网络</h2>
+<p>​  基于流的网络可视为由L个耦合层构成的组合，形成一个可逆神经网络，记为<span
+class="math inline">\({\mathcal F}_{\theta}~=~{\mathcal
+G}_{\theta}^{1}~\circ~{\mathcal
+G}_{\theta}^{2}~\circ~\cdot\cdot\cdot\circ~{\mathcal
+G}_{\theta}^{L}\)</span>，其中逆函数 <span
+class="math inline">\({\mathcal F}_{\theta}^{-1}\)</span>具有相同的参数
+θ
+。实值流与整数离散流的主要区别在于其可逆映射能力：实值流作用于实值数据分布（<span
+class="math inline">\(\mathrm{x,y}\in\mathbb{R}\)</span>），而整数离散流映射于离散数据分布（<span
+class="math inline">\(\mathrm{x,y}\in\mathbb{Z}\)</span>），其中<span
+class="math inline">\(y={\mathcal
+F}_{\theta}(x)\)</span>。<br/>​  流模型中设计的耦合层已成为构建此类信息网络神经网络（INN）的基础模块。其双输入结构可同时处理图像和水印，显著提升了水印嵌入与提取的适用性。因此，信息网络神经网络已广泛应用于图像隐写术和水印技术领域。现有基于流的水印方法均采用实值流模型，将水印嵌入与提取过程建模为可逆函数
+<span class="math inline">\({\mathcal
+F}_{\theta}(\cdot)\)</span>，其中嵌入对应函数的正向映射，提取对应逆向映射。设<span
+class="math inline">\({\mathbf I}_{\mathrm org} \in
+\{0,1,...,255\}^{H×W×C}\)</span>表示覆盖图像，<span
+class="math inline">\(w\in\{0,1\}^M\)</span>表示水印比特。水印嵌入过程可表示为<span
+class="math inline">\(\left[{\mathbf I}_{\mathrm stego},{\mathbf
+z}\right]={\mathcal F}_{\theta}(\left[{\mathbf I}_{\mathrm org},{\mathbf
+z}\right])\)</span>，而提取过程则表示为<span
+class="math inline">\(\left[{\mathbf I}_{\mathrm rec},\hat{\mathbf
+w}\right]={\mathcal F}_{\theta}^{-1}(\left[{\mathbf I}_{\mathrm
+stego},\hat{\mathbf z}\right])\)</span>，其中 <span
+class="math inline">\(\hat{\mathbf z}\)</span>
+是从可处理分布中采样的，<span class="math inline">\({\mathbf I}_{\mathrm
+rec}\)</span>是重建的覆盖图像， <span class="math inline">\(\hat{\mathbf
+w}\)</span>
+是提取的水印比特。虽然实值流方法在图像隐写和水印任务中表现良好，但其本质上是为实值数据分布设计的，无法处理整数数据分布之间的映射。<br/>​  <br/>​  1)整数耦合层：<br/>​  为解决基于实值流模型的局限性，我们设计了iIWN（整数耦合网络），该网络通过整数耦合层实现离散数据分布间的可逆映射。如图4所示，对于第i个整数耦合层，前一层的输出<span
+class="math inline">\({\mathbf r}_1^i\)</span>和<span
+class="math inline">\({\mathbf r}_2^i\)</span>将进行如下正向映射：</p>
+<p><span
+class="math display">\[\begin{array}{l}\mathbf{s}_{i}^{1}={\mathbf
+r}_{i}^{1}+\lfloor{\cal U}_{i}({\mathbf r}_{i}^{2})\rceil\\
+\mathbf{s}_{i}^{2}={\mathbf
+r}_{i}^{2}\odot{\lfloor\mathrm{exp}(\sigma(G(S_{i}^{1})))\rceil}+\lfloor{\cal
+Q}_{i}({\mathbf s}_{i}^{1})\rceil,\end{array}\]</span></p>
+<p>其中<span class="math inline">\(\odot\)</span>表示逐元素乘法， <span
+class="math inline">\(\sigma(\cdot)\)</span>是Sigmoid函数，<span
+class="math inline">\(\lfloor\cdot\rceil\)</span>表示取整运算。</p>
+<p>​  相反，逆映射由以下公式给出：</p>
+<p><span
+class="math display">\[\begin{array}{l}{\mathbf{r}_{i}^{2}=(\mathbf{s}_{i}^{2}-\lfloor{\cal
+Q}_{i}({\mathbf
+s}_{i}^{1})\rceil)\oslash{\lfloor\mathrm{exp}(\sigma(G(S_{i}^{1})))\rceil}},\\{\mathbf
+r}_{i}^{1}=\mathbf{s}_{i}^{1}-\lfloor{\cal U}_{i}({\mathbf
+r}_{i}^{2})\rceil\end{array}\]</span></p>
+<p>其中 <span class="math inline">\(\oslash\)</span>
+表示逐元素除法，<span class="math inline">\(\mathbf{s}_{i}^{1}\)</span>
+和 <span class="math inline">\(\mathbf{s}_{i}^{2}\)</span>
+为当前层的输出。此处，<span class="math inline">\({\cal
+U}_{i}(\cdot)\)</span>和 <span class="math inline">\({\cal
+S}_{i}(\cdot)\)</span>、<span class="math inline">\({\cal
+Q}_{i}(\cdot)\)</span>分别为上采样网络和下采样网络。</p>
+<p>​  在设计耦合层时，必须确保<span
+class="math inline">\(\exp(\sigma({\mathcal
+S}_{i}(\mathrm{s}_{i}^{1})))~\not\in~(-1,1)\)</span>，特别是对于<span
+class="math inline">\({\mathbf{r}_{i}^{2}}·\mathrm{exp}(\sigma({\mathcal
+S}_{i}(\mathrm{s}_{i}^{1})))\)</span>这一项。该约束可避免方程(2)中逆映射时出现除以零的问题，从而防止非法数值运算。<br/>​  虽然公式(1)和(2)中的取整运算符（<span
+class="math inline">\(\lfloor\cdot\rceil\)</span>）能确保离散整数数据之间实现无损且可逆的映射，但该运算符的梯度在几乎所有情况下都为零，导致无法通过反向传播优化模型参数。为解决这一问题，我们采用直通估计器[43]进行处理。对于变量<span
+class="math inline">\(y=\lfloor\mathbf{x}\rceil\)</span>，其关于x的梯度可近似表示为<span
+class="math inline">\(\nabla_{x}\lfloor{\mathbf{x}}\rceil\approx\mathbf{I}\)</span>。具体实现方式如下：</p>
+<p><span class="math display">\[y=\mathbf{x} +
+\text{stop\_gradient}(\lfloor\mathbf{x}\rceil-\mathbf{x})\]</span></p>
+<p>​  该近似方法解决了梯度消失问题，从而有效优化了网络参数。<br/>​  <br/>​  2)上下采样网络架构：<br/>​  考虑到图像与水印的维度通常存在显著差异，整数耦合层中的网络架构<span
+class="math inline">\({\cal U}_{i}(\cdot)\)</span>、<span
+class="math inline">\({\cal Q}_{i}(\cdot)\)</span>和<span
+class="math inline">\({\cal
+S}_{i}(\cdot)\)</span>也采用了不同的设计。这种差异源于数值运算时必须保持维度一致性，以确保运算结果的数学有效性。具体而言，<span
+class="math inline">\({\cal
+U}_{i}(\cdot)\)</span>通常作为上采样网络，通过增加输入特征的维度使其与水印保持一致；而<span
+class="math inline">\({\cal Q}_{i}(\cdot)\)</span>和<span
+class="math inline">\({\cal
+S}_{i}(\cdot)\)</span>则被设计为下采样网络，通过降低维度来优化特征提取任务。</p>
+<figure>
+<img
+src="../postimages/Deep-Robust-Reversible-Watermarking/image-20260227201524949.png"
+alt="image-20260227201524949" />
+<figcaption aria-hidden="true">image-20260227201524949</figcaption>
+</figure>
+<blockquote>
+<p>图5. DRRW
+框架的上采样/下采样网络架构。上采样与下采样网络采用对称结构，其中红色箭头代表下采样网络，蓝色箭头代表上采样网络。两个网络均包含初始卷积层、多个采样模块及最终卷积层。</p>
+</blockquote>
+<p>​  在提出的 DRRW
+框架中，上采样和下采样网络具有结构对称性，如图5所示。两者均由三个基本组件构成：初始卷积层、多个采样模块和最终卷积层。初始卷积层将输入图像映射为固定数量的特征图，为后续采样模块提供关键特征。假设输入图像为x∈ℝ^{C×H×W}，初始卷积层后的输出特征可表示为</p>
+<p><span
+class="math display">\[\mathbf{z}_\mathrm{initial}=\mathrm{Conv2D}(\mathbf{x},\mathbf{w}_\mathrm{initial},\mathbf{b}_\mathrm{initial}),\]</span></p>
+<p>其中，<span
+class="math inline">\(\mathbf{w}_\mathrm{initial}\)</span>和<span
+class="math inline">\(\mathbf{b}_\mathrm{initial}\)</span>分别表示卷积权重和偏置项。输出特征<span
+class="math inline">\(\mathbf{z}_\mathrm{initial}\in\mathbb{R}^{N_f×H×W}\)</span>包含<span
+class="math inline">\(N_f\)</span>个特征通道。<br/>  后续各层由若干下采样模块构成。每个模块包含卷积层、空间注意力模块和下采样卷积层。设z
+l
+i−1表示第(i−1)个下采样模块的输出。第i个采样模块内的变换过程可表示为：</p>
+<p><span
+class="math display">\[\begin{array}{l}{\mathrm{z}_{i}^{\mathrm{f}}=\mathrm{Conv2D}(z_{i-1}^{\mathrm{i}},{\mathbf{w}}_{i}^{\mathrm{f}}),}\\
+{\mathrm{z}_{i}^{\mathrm{s}}=\mathrm{SpaialAtenion}({\bf
+z}_{i}^{\mathrm{f}}),}\\
+{\mathrm{z}_{i}^{\mathrm{i}}=\mathrm{Conv2D}(z_{i}^{\mathrm{s}},{\mathbf{w}}_{i}^{\mathrm{i}}).}\end{array}\]</span></p>
+<p>​  需特别说明的是，最终输出特征z l
+i的空间分辨率降至原始特征的一半，同时特征通道数量增加Nf。经过Nd降采样模块处理后，最终特征表示被输入卷积层，从而获得水印特征表示。</p>
+<p><span class="math display">\[{\bf z}_{w}=\mathrm{Conv2D}({\bf
+z}_{N_{d}}^{1},{\bf w}_{l},{\bf b}_{l}),\]</span></p>
+<p>其中zw ∈ R L×L表示最终水印特征图</p>
+<p>​  如图5所示，蓝色箭头标示上采样网络。由于上采样网络与下采样网络对称，其主要区别在于：下采样网络中的下采样卷积被上采样网络中的转置卷积所替代，后者用于提升特征维度。这种设计使得上采样能够提取隐写图像的特征。</p>
+<h2 id="b.训练">B.训练</h2>
+<p>​  如图6所示，在训练过程中我们采用编码器-噪声层-解码器架构：在正向映射阶段，通过
+Fθ 将掩模图像Iorg和水印w映射为溢出隐写图像I o stego及隐变量z（即I o
+stego，z = Fθ ([Iorg，w])）。随后，I o
+stego通过噪声层N（·）进行失真处理，生成噪声图像Inoised = N(I o
+stego)。在反向映射阶段，利用噪声图像Inoised和从高斯分布中采样的隐变量 zˆ
+，通过逆映射 Fθ −1重建掩模图像，并提取水印位元[Inoised，z] = Fθ
+−1([Inoised，z)]。</p>
+<figure>
+<img
+src="../postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png"
+alt="image-20260227202155444" />
+<figcaption aria-hidden="true">image-20260227202155444</figcaption>
+</figure>
+<blockquote>
+<p>图6. DRRW 的训练框架。 DRRW
+采用与其他深度学习水印方法相同的编码器-噪声层-解码器训练结构。与传统鲁棒可逆水印方法不同，
+DRRW 通过学习增强对各种失真的鲁棒性。</p>
+</blockquote>
+<p>​  1)可微分噪声池：<br/>​  为增强水印的鲁棒性，溢出的隐写图像I o
+stego会被输入可微分噪声池N（·）进行处理。该噪声池会对隐写图像施加多种失真处理，生成含噪隐写图像Inoised=N(I
+o
+stego)。可微分噪声池包含六种常见失真：JPEG压缩、高斯模糊、高斯噪声、椒盐噪声、中值滤波和数据丢弃。<br/>​  <br/>​  2)损失函数：<br/>​  本方法的损失函数包含正向损失和反向损失。正向损失旨在减少溢出像素数量，同时最小化溢出隐写图像与原始掩蔽图像之间的差异。隐写图像的损失定义为：</p>
+<p><span
+class="math display">\[{\mathcal{L}}_{s}=\mathbf{MSE}(\mathbf{I}_{\mathrm{stego}}^{o},\mathbf{I}_{\mathrm{org}}),\quad{\mathcal{L}}_{1}=\mathbf{LPIPS}(\mathbf{I}_{\mathrm{stego}}^{o},\mathbf{I}_{\mathrm{org}}).\]</span></p>
+<p>其中 LPIPS（·，·）表示学习到的感知图像块相似度[44]。</p>
+<p>​  此外，为抑制<span
+class="math inline">\(\mathbf{I}_{\mathrm{stego}}^{o}\)</span>中的像素溢出，我们提出一种惩罚损失，其定义为：</p>
+<p><span
+class="math display">\[{\mathcal{L}}_{\mathrm{p}}=\mathbf{MSE}(\mathbf{I}_{\mathrm{stego}}^{+},\mathbf{0})+\mathbf{MSE}(\mathbf{I}_{\mathrm{stego}}^{-},\mathbf{0}),\]</span></p>
+<p>其中<span class="math inline">\(\mathbf{I}_{\mathrm{stego}}^{+} =
+relu (\mathbf{I}_{\mathrm{stego}}^{o} − 255)\)</span>，<span
+class="math inline">\(\mathbf{I}_{\mathrm{stego}}^{-} = relu
+(0-\mathbf{I}_{\mathrm{stego}}^{o})\)</span>。relu（·）函数可抑制超出有效范围[0,255]的像素值，通过惩罚超出该范围的像素，不仅解决了溢出和下溢问题，还提升了隐写图像的视觉质量。此外，我们在潜在变量z上引入了正则化损失项，定义如下：</p>
+<p><span
+class="math display">\[{\mathcal{L}}_{z}=\operatorname{MSE}(\mathbf{z},\mathbf{0}).\]</span></p>
+<p>​  该正则化损失可惩罚导致推理过程中数值溢出的过大的网络参数，并缩短编码比特流的长度。实验分析详见第IV-D节。<br/>​  在反向映射中，目标是提高水印提取的准确性。水印提取的损失函数可表述为：</p>
+<p><span
+class="math display">\[{\mathcal{L}}_{\mathrm{w}}=\operatorname{MSE}(\mathbf{\hat
+w},\mathbf{w}),\]</span></p>
+<p>其中 wˆ 和w分别表示提取的水印和原始水印。</p>
+<p>​  将所有损失函数相加后，整体损失函数可表示为：</p>
+<p><span
+class="math display">\[{\mathcal{L}}=\lambda_{s}\cdot{\mathcal{L}}_{\mathbb{s}}+\lambda_{l}\cdot{\mathcal{L}}_{1}+\lambda_{z}\cdot{\mathcal{L}}_{2}+\lambda_{p}\cdot{\mathcal{L}}_{\mathrm{p}}+\lambda_{w}\cdot{\mathcal{L}}_{\mathrm{w}}.\]</span></p>
+<p>​  其中 λs 、 λl 、 λz 、 λp 和 λw
+代表用于平衡各损失项贡献的权重系数。<br/>​  <br/>​  3）训练策略：<br/>​  训练过程中，不同损失项通常需要精细调整权重以稳定优化过程。然而，调整这些权重通常既费时又耗计算资源。为此，我们提出一种自适应损失权重调整策略。<br/>​  在水印任务中，核心目标是在保持图像质量的前提下嵌入水印并实现精准提取。值得注意的是，在训练过程中，水印提取精度往往比图像不可见性更受重视。那么，我们能否通过固定其他损失函数的权重，调整水印损失权重来逐步平衡提取精度与不可见性？我们认为这一思路具有可行性。具体而言，我们采用初始值较大的水印损失权重，并根据最近若干训练周期的提取精度进行自适应调整。<br/>​  设<span
+class="math inline">\(\mathbf{A}\ =\
+[a_{t-n},\ldots,a_{t}]\)</span>表示从第t−n到第t周期的提取精度，其平均精度计算公式为：</p>
+<p><span
+class="math display">\[\operatorname{acc}={\frac{1}{n}}\sum_{i=t-n}^{t}\mathbf{A}(i),\]</span></p>
+<p>​  其中n为平均窗口尺寸。当acc超过目标阈值或提取误差低于预设容差 δ
+时，表明当前权重 λ t_w下的水印嵌入稳定。随后降低权重以提升图像质量：</p>
+<p><span
+class="math display">\[\lambda_{\mathrm{w}}^{t+1}=\lambda_{\mathrm{w}}^{t}\times
+v,\quad\mathrm{if~acc}\gt 1-\delta,\]</span></p>
+<p>​  其中 δ
+∈(0,1)表示容许误差，v∈(0,1)为折扣因子。这种自适应调整机制可稳定训练过程，并在水印鲁棒性与图像质量之间实现渐进平衡。此外，我们采用随机轮次进行训练。如图6所示，量化输出会添加均匀分布噪声，即<span
+class="math inline">\(y=\mathbf{x} +
+\text{stop\_gradient}(\lfloor\mathbf{x}\rceil-\mathbf{x})+\mathbf{u}\)</span>，其中<span
+class="math inline">\(\mathbf{u}\)</span>服从U(−0.5，+0.5)分布。</p>
+<h2 id="c.推理">C.推理</h2>
+<p>​  推理阶段的流程如图7所示。通过iIWN前向映射生成的溢出隐写图像与训练阶段的处理过程类似。同时，溢出映射和潜在变量通过算术编码[26]无损压缩为比特流。随后，该比特流通过
+RDH
+[28]嵌入隐写图像中。<br/>​  <br/>​  1)嵌入过程：<br/>​  在嵌入过程中，需解决两大核心问题：(1)
+对隐写图像中溢出像素的存储，(2)
+潜在变量的存储。<br/>​  针对溢出像素，我们提取其溢出部分作为溢出图O，其定义为：
+<span
+class="math display">\[\mathbf{O}(i,j,c)=\left\{\begin{array}{ll}{\mathbf{I}_{\mathrm{stego}}^{\circ}(i,j,c)-255,}&amp;{\mathrm{if~}\mathbf{I}_{\mathrm{stego}}^{\circ}(i,j,c)&gt;255,}\\{0-\mathbf{I}_{\mathrm{stego}}^{\circ}(i,j,c),}&amp;{\mathrm{if~}\mathbf{I}_{\mathrm{stego}}^{\circ}(i,j,c)&lt;0,}\\{0,}&amp;{\mathrm{otherwise}.}\end{array}\right.\]</span></p>
+<p>​  在此，有效范围内的像素值在O中记录为零，而溢出的像素值则以溢出量形式存储在O中。O和潜在变量z均通过算术编码转换为比特流。该比特流随后通过
+RDH 嵌入<span
+class="math inline">\(\mathbf{I}_{\mathrm{stego}}^{\mathrm{clip}}=\mathrm{clip}(\mathbf{I}_{\mathrm{stego}}^{\circ},0,255)\)</span>中，最终生成隐写图像<span
+class="math inline">\(\mathbf{I}_{\mathrm{stego}}\)</span>。<br/>​  <br/>​  2)水印提取与无损复原：<br/>​  分别在有损信道和无损信道上进行水印提取与无损复原。<br/>​  <br/>​  a)有损信道：<br/>​  对于有损信道，主要目标是实现鲁棒的水印提取。给定带噪声的隐写图像Inoised，水印通过逆映射提取，即[Irec，wˆ
+]= Fθ
+−1([Inoised，z)]。<br/>​  <br/>​  b)无损信道：<br/>​  对于无损信道，我们的主要目标是恢复原始封面图像和水印位。首先，我们使用
+RDH
+方法从隐写图像Istego中提取辅助比特流。然后，我们通过算术编码解码该辅助比特流，以恢复溢出图O和潜在变量z。随后，溢出的隐写图像IoStego被重构为：
+<span
+class="math display">\[\mathbf{I}_{\mathrm{stego}}^{\mathrm{o}}=\mathbf{I}_{\mathrm{stego}}^{\mathrm{clip}}+\mathbf{I}_{\mathrm{mask}}^{255}\odot\mathbf{O}-\mathbf{I}_{\mathrm{mask}}^{0}\odot\mathbf{O},\]</span></p>
+<p>​  其中mask的定义为：</p>
+<p><span
+class="math display">\[\mathbf{I}_{\mathrm{mask}}^{255}(i,j,c)=\left\{\begin{array}{ll}{1,\mathrm{if}~\mathbf{O}(i,j,c)&gt;0,}\\{0,\mathrm{otherwise},}\end{array}\right.\]</span></p>
+<p><span
+class="math display">\[\mathbf{I}_{\mathrm{mask}}^{0}(i,j,c)=\left\{\begin{array}{ll}{1,\mathrm{if}~\mathbf{O}(i,j,c)&lt;0,}\\{0,\mathrm{otherwise},}\end{array}\right.\]</span></p>
+<p>​  需要说明的是，通过 RDH
+技术可恢复被剪切的图像Iclipstego。最后，通过逆向映射技术恢复原始封面图像Iorg和水印w，确保两者完美还原。<br/>​  <br/>​  综上所述，
+DRRW
+技术在有损信道中实现稳健的水印提取，在无损信道中则能完美还原封面图像和水印。</p>
+<h1 id="实验结果">4.实验结果</h1>
+<p>​  实验分析包含四个部分。第四章A节详细阐述实验设置，包括训练集与测试集的描述、实现细节及超参数配置。第四章B节对提出的
+DRRW 框架与 SOTA 两阶段 RRW
+方法进行对比评估，评估指标包括水印不可见性、抗各种失真能力、恢复所需的比特流长度以及计算复杂度。第四章C节通过与不可逆鲁棒水印方法的对比分析，证明
+DRRW
+不仅具备竞争力的鲁棒性，还能在无损信道中实现掩蔽图像恢复。第四章D节通过消融实验研究
+DRRW 框架各组件的贡献。总体而言，实验结果表明，提出的 DRRW
+框架相较于现有方法展现出显著且不可替代的优势，标志着 RRW
+技术向实际应用迈出关键一步。</p>
+<h2 id="a.实验设置">A.实验设置</h2>
+<p>​  1)训练集与测试集：<br/>​  所有实验中，基于学习方法的训练集均采用
+DIVK 数据集[45]。测试集主要包含两个数据集：经典USC- SIPI
+[46]和Kodak24[47]。<br/>​  <br/>​  2)实现细节：<br/>​  所有对比方法均在
+NVIDIA 4090TiGPU上使用与 DRRW 相同的训练集进行训练。 DRRW
+框架基于PyTorch实现，并采用AdamW优化器（批量大小 8，γ = 10−4 ，β1 =
+0.5，β2 = 0.999).）。该框架包含L=5个整数耦合层， δ =10−2，v = 0.75，λp =
+106 ，λw = 104 ，λs = 1，λl = 5，λz =
+10−3。第二阶段中，算术编码[26]和PEE[28]分别实现了无损压缩和辅助信息的可逆嵌入。其他方法的详细信息详见其对应的对比章节。</p>
+<h2 id="b.-drrw-与传统鲁棒可逆水印技术的比较">B. DRRW
+与传统鲁棒可逆水印技术的比较</h2>
+<h2 id="c.-drrw-与不可逆鲁棒图像水印">C. DRRW 与不可逆鲁棒图像水印</h2>
+<h2 id="d.-消融实验">D. 消融实验</h2>
+<h1 id="结论">5.结论</h1>
+<p>​  本文提出深度鲁棒可逆水印（DeepRobustReversibleWatermarking，
+DRRW）技术，这是一种创新的水印方法，可在无损信道中实现无损图像复原，并在有损信道中提供鲁棒的水印提取。
+DRRW
+有效克服了传统鲁棒可逆水印（RRW）方法的局限性，如设计复杂、时间复杂度高、鲁棒性有限以及难以处理大规模数据集。我们开发了整数可逆水印网络（iIWN），用于将水印与图像进行可逆映射。训练阶段，
+DRRW 采用编码器-噪声层-解码器架构来学习各类失真的鲁棒性。推理阶段， DRRW
+将盖水印对映射为溢出的隐写图像及潜在变量，将其压缩为比特流，并通过可逆数据隐藏技术嵌入裁剪后的隐写图像中，以实现可逆性。<br/>​  为提升实用性，
+DRRW 引入了惩罚损失机制，相较于现有 RRW
+方法将辅助比特流长度缩短43.86倍，同时显著提升隐写图像的视觉质量与水印鲁棒性，实现了三重效益。此外，我们开发了自适应权重调整策略，通过动态优化训练过程中的水印损失权重，省去人工调优环节并确保收敛稳定性。实验表明，
+DRRW
+在鲁棒性和视觉质量方面均超越现有可逆与不可逆水印方法，嵌入效率提升55.14倍，提取效率提升5.95倍，恢复效率提升3.57倍。尤为可贵的是，
+DRRW 成功实现了16,762张图像的可逆嵌入，极大推动了 RRW
+技术的实际应用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io">Zhaozw</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhaozw-szu.github.io/Deep-Robust-Reversible-Watermarking/">https://zhaozw-szu.github.io/Deep-Robust-Reversible-Watermarking/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zhaozw-szu.github.io" target="_blank">喵</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/" title="Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization"><img class="cover" src="/postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization</div></div></a></div><div class="next-post pull-right"><a href="/From-Pixels-to-Semantics-A-Novel-MLLM-Driven-Approach-for-Explainable-Tampered-Text-Detection/" title="From Pixels to Semantics:A Novel MLLM-Driven Approach for Explainable Tampered Text Detection"><img class="cover" src="/postimages/From-Pixels-to-Semantics-A-Novel-MLLM-Driven-Approach-for-Explainable-Tampered-Text-Detection/image-20260226224720151.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">From Pixels to Semantics:A Novel MLLM-Driven Approach for Explainable Tampered Text Detection</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-tools"><div class="comment-randomInfo"><a onclick="addRandomCommentInfo()" href="javascript:void(0)" rel="external nofollow" data-pjax-state="">匿名评论</a></div></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div><script>function addRandomCommentInfo() {
+  if (!confirm('开启匿名评论后，任何人将无法回复你的评论（包括博主），是否开启？')) {
+    return;
+  }
+  var inputElements = document.getElementsByClassName('el-input__inner');
+  const adjectives = ['幽默的', '豁达的', '温暖的', '优雅的', '活泼的', '迷人的', '甜美的', '聪明的', '坚定的', '善于思考的'];
+  const nouns = ['橙子', '茄子', '西瓜', '辣椒', '草莓', '葡萄', '胡萝卜', '柠檬', '苹果', '香蕉'];
+  for(var i = 0; i < inputElements.length; i++) {
+    var input = inputElements[i];
+    var name = input.getAttribute('name');
+    const randomAdj = adjectives[Math.floor(Math.random() * adjectives.length)];
+    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+
+    switch (name) {
+      case 'nick':
+        input.value = `${randomAdj}${randomNoun}`;
+        break;
+      case 'mail':
+        input.value = 'zhaozw-szu@users.noreply.github.com';
+        break;
+      case 'link':
+        input.value = 'https://zhaozw-szu.github.io/';
+        break;
+      default:
+        break;
+    }
+  }  
+}</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhaozw</div><div class="author-info__description">人完成了引以为豪的事,才能够感到荣耀，否则,虚伪的自豪只会腐蚀心灵。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">206</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">36</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhaozw-szu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zhaozw-szu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2300432033@email.szu.edu.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><a href="/code">代码页面</a>：收罗图像取证安全领域已公布/待公布的代码 <br>,<a href="/competition">比赛页面</a>：收罗图像取证安全领域的比赛</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">1.引言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">2.相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E9%B2%81%E6%A3%92%E5%8F%AF%E9%80%86%E6%B0%B4%E5%8D%B0"><span class="toc-text">A.鲁棒可逆水印</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E5%9F%BA%E4%BA%8E%E5%AE%9E%E5%80%BC%E6%B5%81%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9A%90%E8%97%8F"><span class="toc-text">B.基于实值流的数据隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.%E6%95%B4%E6%95%B0%E7%A6%BB%E6%95%A3%E6%B5%81"><span class="toc-text">C.整数离散流</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E5%87%BA%E7%9A%84%E6%B7%B1%E5%BA%A6%E9%B2%81%E6%A3%92%E5%8F%AF%E9%80%86%E6%B0%B4%E5%8D%B0%E6%96%B9%E6%B3%95"><span class="toc-text">3.提出的深度鲁棒可逆水印方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.-%E6%95%B4%E6%95%B0%E5%8F%AF%E9%80%86%E6%B0%B4%E5%8D%B0%E7%BD%91%E7%BB%9C"><span class="toc-text">A. 整数可逆水印网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.%E8%AE%AD%E7%BB%83"><span class="toc-text">B.训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.%E6%8E%A8%E7%90%86"><span class="toc-text">C.推理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">4.实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#a.%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="toc-text">A.实验设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b.-drrw-%E4%B8%8E%E4%BC%A0%E7%BB%9F%E9%B2%81%E6%A3%92%E5%8F%AF%E9%80%86%E6%B0%B4%E5%8D%B0%E6%8A%80%E6%9C%AF%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-text">B. DRRW
+与传统鲁棒可逆水印技术的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c.-drrw-%E4%B8%8E%E4%B8%8D%E5%8F%AF%E9%80%86%E9%B2%81%E6%A3%92%E5%9B%BE%E5%83%8F%E6%B0%B4%E5%8D%B0"><span class="toc-text">C. DRRW 与不可逆鲁棒图像水印</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d.-%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C"><span class="toc-text">D. 消融实验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-text">5.结论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Zhaozw</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><script src="https://cdn.bootcdn.net/ajax/libs/mermaid/8.13.8/mermaid.min.js"></script></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script defer src="https://npm.elemecdn.com/swiper@8.4.2/swiper-bundle.min.js"></script><script defer data-pjax src="/js/custom/swiper_init.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'all'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+  //- console.log('MathJax loaded')
+} else {
+  // 重置 TeX 状态并重新渲染
+  MathJax.startup.promise.then(() => {
+    MathJax.texReset();  // 重置 TeX 编号等状态
+    MathJax.typesetPromise();
+  });
+
+  //- MathJax.startup.document.state(0)
+  //- MathJax.texReset()
+  //- MathJax.typesetPromise()
+  //- console.log('MathJax reset')
+}</script><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://zhaozw.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script async defer src="/config/js/categoryBar.js"></script><script type="text/javascript" src="/config/js/about.js"></script><script async src="/config/js/waterfall.js"></script><script defer src="/config/js/essay.js"></script><script defer src="/config/js/emoticon.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
