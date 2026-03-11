@@ -4,7 +4,7 @@
       "title": "Text-Guided Channel Perturbation and Pretrained Knowledge Integration for Unified Multi-Modality Image Fusion",
       "link": "/papers/urhi1ryx/",
       "date": "2026-03-04T16:57:34.000Z",
-      "cover": "/postimages/Text-Guided-Channel-Perturbation-and-Pretrained-Knowledge-Integration-for-Unified-Multi-Modality-Image-Fusion/image-20260304171647307.png",
+      "cover": "/assets/image-20260304171647307-CjHMyD53.png",
       "description": "发表于arxiv 2025，探究不同模态图像融合结果。",
       "rank": [
         "D类文章",
@@ -16,7 +16,7 @@
       "title": "Unravelling Digital Forgeries:A Systematic Survey on Image Manipulation Detection and Localization",
       "link": "/papers/unzis9zy/",
       "date": "2026-03-03T20:20:07.000Z",
-      "cover": "/postimages/Unravelling-Digital-Forgeries-A-Systematic-Survey-on-Image-Manipulation-Detection-and-Localization/image-20260303203752037.png",
+      "cover": "/assets/image-20260303203752037-CaCe8ym3.png",
       "description": "发表于ACM Computing Surveys 2024的总数文章，详细说明了图像篡改检测相关的发展情况。",
       "rank": [
         "D类文章",
@@ -28,7 +28,7 @@
       "title": "InfoNCE Induces Gaussian Distribution",
       "link": "/papers/7vg3dg22/",
       "date": "2026-03-03T11:12:29.000Z",
-      "cover": "/postimages/Employing-Reinforcement-Learning-to-Construct-a-Decision-Making-Environment-for-Image-Forgery-Localization/image-20250604112223716.png",
+      "cover": "/assets/image-20250604112223716-Clg7Czta.png",
       "description": "发表于ICLR 2026 oral，分析了infoNCE对比学习之后，模型将遵循高斯分布吗，并给予了证明。",
       "rank": [
         "A类会议",
@@ -59,7 +59,7 @@
       "title": "Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization",
       "link": "/papers/u4jpm5l2/",
       "date": "2026-02-27T21:44:48.000Z",
-      "cover": "/postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png",
+      "cover": "/assets/image-20260227215032360-Bx7BnSVu.png",
       "description": "提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。",
       "code": "https://github.com/vpsg-research/CMB-Net",
       "available": "×",
@@ -69,14 +69,14 @@
       "title": "Deep_Robust_Reversible_Watermarking",
       "link": "/papers/zu1u3ak4/",
       "date": "2026-02-27T15:15:16.000Z",
-      "cover": "/postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png",
+      "cover": "/assets/image-20260227202155444-DXPGnNv9.png",
       "description": "发表于arxiv，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible"
     },
     {
       "title": "From Pixels to Semantics:A Novel MLLM-Driven Approach for Explainable Tampered Text Detection",
       "link": "/papers/mnnj3mzn/",
       "date": "2026-02-26T22:40:19.000Z",
-      "cover": "/postimages/From-Pixels-to-Semantics-A-Novel-MLLM-Driven-Approach-for-Explainable-Tampered-Text-Detection/image-20260226224720151.png",
+      "cover": "/assets/image-20260226224720151-CTWElmFA.png",
       "description": "发表于ACMMM 2025，基于MLLMs的文本篡改检测算法，TVSIP",
       "rank": [
         "A类会议",
@@ -111,7 +111,7 @@
       "title": "SIDA:Social Media Image Deepfake Detection, Localization and Explanation with Large Multimodal Model",
       "link": "/papers/rmt5me75/",
       "date": "2026-02-02T16:37:09.000Z",
-      "cover": "/postimages/SIDA/image-20260202165744887.png",
+      "cover": "/assets/image-20260202165744887-DBcLJikw.png",
       "description": "发表于CVPR2025，提出来一种数据集生成方法，具体而言，首先使用GPT-4o从标题中提取对象，接着通过Language-SAM获取对象掩码，随后建立替换词典以生成伪造图像，最后采用Latent",
       "rank": [
         "A类会议",
@@ -126,7 +126,7 @@
       "title": "Explicit Visual Prompting for Universal Foreground Segmentations",
       "link": "/papers/0efvovma/",
       "date": "2026-01-14T16:05:25.000Z",
-      "cover": "/postimages/Explicit-Visual-Prompting-for-Universal-Foreground-Segmentations/image-20260308180112658.png",
+      "cover": "/assets/image-20260308180112658-lMArDK6Y.png",
       "description": "发表于TPAMI 2025，前景分割是计算机视觉领域的基础性问题，涵盖显著目标检测、伪造检测、失焦模糊检测、阴影检测及伪装目标检测等场景。现有研究通常依赖领域特定方案来解决这些应用中的精度与鲁棒性问题。本文提出了一种统一框架，可解决多种前景分割任务而无需任务特定设计。我们借鉴自然语言处理领域广泛采用的预训练-提示调优方案，提出名为显式视觉提示（EVP）的新型视觉提示模型。",
       "rank": [
         "A类期刊",
@@ -138,7 +138,7 @@
       "title": "Pre-Training-Free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
       "link": "/papers/trferohd/",
       "date": "2026-01-09T17:22:25.000Z",
-      "cover": "/postimages/Pre-training-free-Image-Manipulation-Localization-through-Non-Mutually-Contrastive-Learning/image-20260308181222604.png",
+      "cover": "/assets/image-20260308181222604-vZtcHl7J.png",
       "description": "发表于ICCV 2023，将对比学习引入图像篡改检测，其设计互斥对比学习，精细化对比学习对象，得出不多结果。",
       "rank": [
         "A类会议",
@@ -153,7 +153,7 @@
       "title": "Model Synthesis for Zero-Shot Model Attribution",
       "link": "/papers/unwx5yt5/",
       "date": "2026-01-06T20:58:37.000Z",
-      "cover": "/postimages/Model-Synthesis-for-Zero-Shot-Model-Attribution/image-20260308182024242.png",
+      "cover": "/assets/image-20260308182024242-DH9e0nBW.png",
       "description": "发表于ICCV 2023，零样本归属场景下有效识别未接触过的模型。",
       "rank": [
         "A类期刊",
@@ -203,7 +203,7 @@
       "title": "Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection",
       "link": "/papers/dlxotp5n/",
       "date": "2025-12-25T22:13:45.000Z",
-      "cover": "/postimages/Forgery-aware-Adaptive-Transformer-for-Generalizable-Synthetic-Image-Detection/image-20260225222710792.png",
+      "cover": "/assets/image-20260225222710792-BnRjMdbw.png",
       "description": "发表于CVPR2024,。",
       "rank": [
         "A类会议",
@@ -223,7 +223,7 @@
       "title": "Pixel-Level Anomaly Detection via Uncertainty-aware Prototypical Transformer",
       "link": "/papers/y6ycxctf/",
       "date": "2025-12-18T16:47:16.000Z",
-      "cover": "/postimages/Pixel-Level-Anomaly-Detection-via-Uncertainty-aware-Prototypical-Transformer/image-20251218170406438.png",
+      "cover": "/assets/image-20251218170406438-Cri1jDsG.png",
       "description": "发表于ACM MM 2022，基于不确定性感知原型transformer，该模型同时考虑异常区域的多样性和不确定性，从而实现精准的像素级视觉异常检测。",
       "rank": [
         "A类会议",
@@ -250,7 +250,7 @@
       "title": "Guard Me If You Know Me:Protecting Specific Face-Identity from Deepfakes",
       "link": "/papers/ezmz2w5h/",
       "date": "2025-12-15T16:08:17.000Z",
-      "cover": "/postimages/Guard-Me-If-You-Know-Me/image-20251215170537444.png",
+      "cover": "/assets/image-20251215170537444-mz5Qkfqk.png",
       "description": "arxiv文章，基于大语言模型完成人脸篡改的检测任务，其核心的创新点是利用已知面部特征实现个性化、精准且可解释的检测框架VIPGuard。评价：其提出来一种新的MLLM的训练模式，第一阶段让MLLM正确描述人脸，第二阶段让MLLM正确区分人脸，第三阶段让MLLM正确认识给定的身份信息。",
       "rank": [
         "D类文章",
@@ -272,7 +272,7 @@
       "title": "VLForgery Face Triad:Detection, Localization and Attribution via Multimodal Large Language Models",
       "link": "/papers/aww4n9pb/",
       "date": "2025-12-09T17:02:48.000Z",
-      "cover": "/postimages/VLForgery-Face-Triad/image-20251215152230555.png",
+      "cover": "/assets/image-20251215152230555-CfnBNLzz.png",
       "description": "arxiv文章，基于大语言模型完成人脸篡改的检测、定位和溯源任务，其核心的创新点是构建了部分合成面部数据集，以及一个基于MLLM的LoRA微调模型和一个基于MLLM的篡改思维链EKCot。评价：其使用低级视觉模型对图片的多个方面打分作为视觉低级线索，然后和精心设计的prompt拼接来微调大语言模型MLLM。",
       "rank": [
         "D类文章",
@@ -332,7 +332,7 @@
       "title": "MOODv2:Masked Image Modeling for Out-of-Distribution Detection",
       "link": "/papers/fpd94zku/",
       "date": "2025-11-12T23:22:48.000Z",
-      "cover": "/postimages/MOODv2/image-20251112232724110.png",
+      "cover": "/assets/image-20251112232724110-QsEnxGdF.png",
       "description": "发表于TIFS 2024，采用基于重构的方法实现 OOD 检测，发现无需微调，基于重构的预训练模型在OOD检测任务上表现优秀。",
       "rank": [
         "A类期刊",
@@ -347,7 +347,7 @@
       "title": "Segment Every Out-of-Distribution Object",
       "link": "/papers/c6t1qcdw/",
       "date": "2025-11-12T15:21:58.000Z",
-      "cover": "/postimages/Segment-Every-Out-of-Distribution-Object/image-20251112154258108.png",
+      "cover": "/assets/image-20251112154258108-BuEualZN.png",
       "description": "发表于CVPR",
       "rank": [
         "A类会议",
@@ -362,7 +362,7 @@
       "title": "Rethinking Out-of-distribution (OOD) Detection:Masked Image Modeling is All You Need",
       "link": "/papers/jp7u92et/",
       "date": "2025-11-11T21:08:22.000Z",
-      "cover": "/postimages/MOOD/framework.png",
+      "cover": "/assets/framework-BQurkqHv.png",
       "description": "发表于CVPR 2023，采用基于重构的方法实现 OOD 检测，认为掩码图像建模任务可以顺利学习到图像自身的分布，实验结果达到了sota。",
       "rank": [
         "A类会议",
@@ -377,7 +377,7 @@
       "title": "Towards Generalizable Detector for Generated Image",
       "link": "/papers/gqmz08fn/",
       "date": "2025-11-10T16:25:46.000Z",
-      "cover": "/postimages/Towards-Generalizable-Detector-for-Generated-Image/image-20251110170346642.png",
+      "cover": "/assets/image-20251110170346642-DJS7PS30.png",
       "description": "发表于NeurIPS",
       "rank": [
         "A类会议",
@@ -392,7 +392,7 @@
       "title": "ForgeLens:Data-Efficient Forgery Focus for Generalizable Forgery Image Detection",
       "link": "/papers/pct66c4x/",
       "date": "2025-11-10T10:06:23.000Z",
-      "cover": "/postimages/ForgeLens/image-20251110110219713.png",
+      "cover": "/assets/image-20251110110219713-OpGmlCq8.png",
       "description": "发表于ICCV 2025。",
       "rank": [
         "A类会议",
@@ -407,7 +407,7 @@
       "title": "RankMatch:Exploring the Better Consistency Regularization for Semi-supervised Semantic Segmentation",
       "link": "/papers/179qptgg/",
       "date": "2025-11-04T16:14:20.000Z",
-      "cover": "/postimages/RankMatch/image-20251104164701873.png",
+      "cover": "/assets/image-20251104164701873-C89JSoWb.png",
       "description": "发表于CVPR2024，其为每个像素设置代理模型以超越常规像素级一致性，还通过建模代理间关系实现等级感知的关联一致性，从而充分释放代理潜力。",
       "rank": [
         "A类会议",
@@ -458,7 +458,7 @@
       "title": "Forensics-Bench:A Comprehensive Forgery Detection Benchmark Suite for Large Vision Language Models",
       "link": "/papers/ofmiz517/",
       "date": "2025-09-15T21:33:43.000Z",
-      "cover": "/postimages/Forensics-Bench/image-20250915214229334.png",
+      "cover": "/assets/image-20250915214229334-BdVIVSsJ.png",
       "description": "发表于CVPR2025，提出了Forensics-Bench，统一了所有基于大型视觉语言模型LVLMs的伪造检测器，并基于基准实验，提出了独特的发现。",
       "rank": [
         "A类会议",
@@ -473,7 +473,7 @@
       "title": "Poster:Query-efficient Black-box Attack for Image Forgery Localization via Reinforcement Learning",
       "link": "/papers/uxg6b9pe/",
       "date": "2025-09-12T22:46:47.000Z",
-      "cover": "/postimages/Poster-Query-efficient-Black-box-Attack-for-Image-Forgery-Localization-via-Reinforcement-Learning/image-20250912230026476.png",
+      "cover": "/assets/image-20250912230026476-BwTNyqa0.png",
       "description": "发表于CVPR2022。",
       "rank": [
         "A类会议",
@@ -485,7 +485,7 @@
       "title": "ForensicsSAM:Toward Robust and Unified Image Forgery Detection and Localization Resisting to Adversarial Attack",
       "link": "/papers/x8sfkzwv/",
       "date": "2025-09-11T21:00:09.000Z",
-      "cover": "/postimages/ForensicsSAM/image-20250912113924270.png",
+      "cover": "/assets/image-20250912113924270-CYfRVdkv.png",
       "description": "发表于arxiv。",
       "rank": [
         "D类文章",
@@ -506,7 +506,7 @@
       "title": "PRCL:Probabilistic Representation Contrastive Learning for Semi-Supervised Semantic Segmentation",
       "link": "/papers/cirjcfoa/",
       "date": "2025-09-04T23:05:52.000Z",
-      "cover": "/postimages/PRCL/image-20250905113253704.png",
+      "cover": "/assets/image-20250905113253704-Al5mPEfO.png",
       "description": "发表于IJCV2024，同时是AAAI",
       "rank": [
         "A类期刊",
@@ -556,7 +556,7 @@
       "title": "MUN:Image Forgery Localization Based on M3 Encoder and UN Decoder",
       "link": "/papers/r9tavzgs/",
       "date": "2025-08-21T15:45:31.000Z",
-      "cover": "/postimages/MUN-Image-Forgery-Localization-Based-on-M-Encoder-and-UN-Decoder/image-20250821160058549.png",
+      "cover": "/assets/image-20250821160058549-Cva62Q7S.png",
       "description": "发表于AAAI 2025，其使用了Noiseprint++作为低级特征提取器，使用双流结构，其使用池化操作之后的结构作为查询向量，进行融合是最大的创新点。",
       "rank": [
         "A类会议",
@@ -576,7 +576,7 @@
       "title": "Omni-IML:Towards Unified Image Manipulation Localization",
       "link": "/papers/fpy0ffpn/",
       "date": "2025-08-15T21:07:41.000Z",
-      "cover": "/postimages/Omni-IML-TowardsUnified-Image-Manipulation-Localization/image-20250815211540814.png",
+      "cover": "/assets/image-20250815211540814-CDmtttZD.png",
       "description": "发表于arxiv。",
       "rank": [
         "D类文章",
@@ -596,7 +596,7 @@
       "title": "Imbalance-Aware Discriminative Clustering for Unsupervised Semantic Segmentation",
       "link": "/papers/4cxp607j/",
       "date": "2025-08-15T16:19:47.000Z",
-      "cover": "/postimages/Imbalance-Aware-Discriminative-Clustering-for-Unsupervised-Semantic-Segmentation/image-20250815163719782.png",
+      "cover": "/assets/image-20250815163719782-iALqt74z.png",
       "description": "发表于IJCV",
       "rank": [
         "A类期刊",
@@ -641,7 +641,7 @@
       "title": "Exploring Multi-view Pixel Contrast for General and Robust Image Forgery Localization",
       "link": "/papers/z9wgvmpf/",
       "date": "2025-08-01T15:50:48.000Z",
-      "cover": "/postimages/Exploring-Multi-view-Pixel-Contrast-for-General-and-Robust-Image-Forgery-Localization/image-20250801155942589.png",
+      "cover": "/assets/image-20250801155942589-C4lRIpN8.png",
       "description": "发表于TIFS",
       "rank": [
         "A类期刊",
@@ -656,7 +656,7 @@
       "title": "GIM:A Million-scale Benchmark for Generative Image Manipulation Detection and Localization",
       "link": "/papers/03uk2y8g/",
       "date": "2025-08-01T15:08:32.000Z",
-      "cover": "/postimages/GIM-A-Million-scale-Benchmark-for-Generative-Image-Manipulation-Detection-and-Localization/image-20250801151443340.png",
+      "cover": "/assets/image-20250801151443340-DaPwS1yR.png",
       "description": "发表于AAAI2025，提出了GIM数据集，提出了双流网络GIMFormer。",
       "rank": [
         "A类会议",
@@ -671,7 +671,7 @@
       "title": "Loupe:A Generalizable and Adaptive Framework for Image Forgery Detection",
       "link": "/papers/2p5k48ji/",
       "date": "2025-07-26T22:23:56.000Z",
-      "cover": "/postimages/Loupe/image-20250908153551133.png",
+      "cover": "/assets/image-20250908153551133-D6hK238W.png",
       "description": "发表于IJCAI",
       "rank": [
         "A类会议",
@@ -686,7 +686,7 @@
       "title": "Neural Clustering based Visual Representation Learning",
       "link": "/papers/7ke58450/",
       "date": "2025-07-22T11:43:44.000Z",
-      "cover": "/postimages/Neural-Clustering-based-Visual-Representation-Learning/image-20250722173244493.png",
+      "cover": "/assets/image-20250722173244493-DFkmIw35.png",
       "description": "发表于CVPR2024，认为现有图像视觉提取器基于图片是平滑的这一假设设计了基于网格式的架构，因此提出了聚类特征提取FEC，在图像处理中，FEC算法通过两种交替操作实现：首先将像素分组为独立簇以提取抽象特征，随后利用当前特征向量更新像素的深度特征。这种迭代机制通过多层神经网络实现，最终生成的特征向量可直接应用于下游任务。各层间的聚类分配过程可供人工观察验证，使得FEC的前向计算过程完全透明化，并赋予其出色的自适应可解释性。",
       "rank": [
         "A类会议",
@@ -728,7 +728,7 @@
       "title": "Robust Watermarking Using Generative Priors Against Image Editing:From Benchmarking to Advances",
       "link": "/papers/xf35pl0g/",
       "date": "2025-07-18T16:16:29.000Z",
-      "cover": "/postimages/Robust-Watermarking-Using-Generative-Priors-Against-Image-Editing-From-Benchmarking-to-Advances/image-20250718165536854.png",
+      "cover": "/assets/image-20250718165536854-H4zpAy3t.png",
       "description": "发表于ICLR2025，在本工作中，介绍了W-Bench，这是第一个全面的基准，旨在评估水印方法对广泛的图像编辑技术的鲁棒性，包括图像再生、全局编辑、局部编辑和图像到视频生成。通过实验发现图像编辑一般会消除中高频的信息，所以需要将水印信息保存在低频中",
       "rank": [
         "A类会议",
@@ -758,7 +758,7 @@
       "title": "TruFor:Leveraging all-round clues for trustworthy image forgery detection and localization",
       "link": "/papers/9g8050bq/",
       "date": "2025-07-15T22:57:16.000Z",
-      "cover": "/postimages/TruFor/image-20260226225220300.png",
+      "cover": "/assets/image-20260226225220300-BRqHpp8J.png",
       "description": "发表于CVPR2023，该框架通过基于Transformer的融合架构，同时提取高阶特征与低阶特征：前者整合RGB图像与自适应学习的噪声敏感指纹，后者则通过仅使用真实数据进行自监督训练，精准捕捉相机内外部处理产生的伪影特征。",
       "rank": [
         "A类会议",
@@ -773,7 +773,7 @@
       "title": "Pixel-Inconsistency Modeling for Image Manipulation Localization",
       "link": "/papers/82hvec7s/",
       "date": "2025-07-15T21:36:35.000Z",
-      "cover": "/postimages/Pixel-Inconsistency-Modeling-for-Image-Manipulation-Localization/image-20250715215031753.png",
+      "cover": "/assets/image-20250715215031753-BTEE5qZr.png",
       "description": "发表于TPAMI2025，将输入图像分割成多个区块后，分别使用掩码自注意力和差异卷积分别建模全局和局部像素依赖，同时设计了新型的学习加权模块来融合全局和局部的特征，还设计了像素不一致性数据增强方法增强鲁棒性。但其比较论文实验的结果和原本论文在相同数据集相同指标下的结果相差太多，之后尝试在已给代码上进行测试，再完成之后阅读。",
       "rank": [
         "A类期刊",
@@ -788,7 +788,7 @@
       "title": "M2SFormer:Multi-Spectral and Multi-Scale Attention with Edge-Aware Difficulty Guidance for Image Forgery Localization",
       "link": "/papers/am2mifyr/",
       "date": "2025-07-15T21:17:36.000Z",
-      "cover": "/postimages/M2SFormer/image-20250715212113564.png",
+      "cover": "/assets/image-20250715212113564-18ZdqmWq.png",
       "description": "发表于ICCV2025，拿到了Highlight，M2SFormer通过在跳跃连接中统一多频段和多尺度注意力机制，借助全局上下文信息，能更精准捕捉各类伪造特征。此外，框架通过采用全局先验图（一种反映伪造检测难度的曲率度量指标）来解决上采样过程中细节丢失的问题。该方法使用分割的指标而不是图像篡改的传统指标，而且比较的方法并不是公认的sota。",
       "rank": [
         "A类会议",
@@ -813,7 +813,7 @@
       "title": "Unlocking the Capabilities of Large Vision-Language Models for Generalizable and Explainable Deepfake Detection",
       "link": "/papers/ekjgd39l/",
       "date": "2025-07-07T19:21:37.000Z",
-      "cover": "/postimages/Unlocking-the-Capabilities-of-Large-Vision-Language-Models-for-Generalizable-and-Explainable-Deepfake-Detection/image-20250707193258253.png",
+      "cover": "/assets/image-20250707193258253-CkqVxZYE.png",
       "description": "发表于ICML2025，将细粒度的伪造特征转化为语言模型的输入，在LLM提示调优后，得到解释性的deepfake检测结果。",
       "rank": [
         "A类会议",
@@ -828,7 +828,7 @@
       "title": "Rethinking Image Forgery Detection via Soft Contrastive Learning and Unsupervised Clustering",
       "link": "/papers/gr49p1oa/",
       "date": "2025-07-03T17:08:03.000Z",
-      "cover": "/postimages/FOCAL/image-20250703230604933.png",
+      "cover": "/assets/image-20250703230604933-B3Wlnc5h.png",
       "description": "TDSC2025的文章，首次使用对比学习加聚类的方法做图像篡改检测。",
       "rank": [
         "A类期刊",
@@ -843,7 +843,7 @@
       "title": "Cluster Triplet Loss for Unsupervised Domain Adaptation on Histology Images",
       "link": "/papers/fntt1d2g/",
       "date": "2025-07-02T16:41:37.000Z",
-      "cover": "/postimages/Cluster-Triplet-Loss-for-Unsupervised-Domain-Adaptation-on-Histology-Images/image-20250702204429106.png",
+      "cover": "/assets/image-20250702204429106-DDMmcwyW.png",
       "description": "发表于CVPR2024，提出了一种新的无监督域适应方法，该方法采用聚类三元组损失函数，仅使用源域中的少量信息，从而提升目标域的性能。以源域中的重要节点的聚类中心为锚点，通过三元组损失，将目标域锚定到这些固定的聚类中心。源域的完美结构应该与目标域的完美结构相似，才能用作锚点。",
       "rank": [
         "A类会议",
@@ -855,7 +855,7 @@
       "title": "Stacking Brick by Brick:Aligned Feature Isolation for Incremental Face Forgery Detection",
       "link": "/papers/afy0l1ii/",
       "date": "2025-07-02T15:58:19.000Z",
-      "cover": "/postimages/Stacking-Brick-by-Brick/image-20250702160852295.png",
+      "cover": "/assets/image-20250702160852295-DKkq6O4e.png",
       "description": "发表于CVPR2025，一个未经充分训练的IFFD模型在处理新的伪造时容易出现灾难性遗忘，这是因为将所有伪造都视为单一的“假”类别，导致不同类型的伪造品相互覆盖，从而导致早期任务中独特特征的遗忘，这存在于所有的IDF任务中，该论文提出了一种方法，通过将先前任务和新任务的潜在特征分布逐块堆叠，实现特征的对齐隔离。为了保留已学习到的伪造信息，并通过最小化分布重叠来积累新知识，从而减轻灾难性遗忘。首先引入了稀疏均匀回放（SUR），以获取可以视为先前全局分布的均匀稀疏版本的代表性子集。接着，我们提出了一个潜在空间增量检测器（LID），该检测器利用SUR数据来隔离和对齐分布。",
       "rank": [
         "A类会议",
@@ -870,7 +870,7 @@
       "title": "ClusterFomer:Clustering As A Universal Visual Learner",
       "link": "/papers/8pqf5bmt/",
       "date": "2025-07-01T15:35:18.000Z",
-      "cover": "/postimages/clusterformer/image-20250701155045781.png",
+      "cover": "/assets/image-20250701155045781-CcgiqoMi.png",
       "description": "发表于NeurIPS2023，本文介绍了一种基于CLUSTERing范式与TransFORMER的通用视觉模型——CLUSTERFORMER。该模型包含两个创新设计：①循环交叉注意力聚类，重新定义了TransFORMER中的交叉注意力机制，通过递归更新聚类中心，促进强大的表示学习；②特征调度，利用更新后的聚类中心，通过基于相似性的度量重新分配图像特征，形成一个透明的处理流程。",
       "rank": [
         "A类会议",
@@ -905,7 +905,7 @@
       "title": "Image Operation Chain Detection with Machine Translation Framework",
       "link": "/papers/vtfop6j9/",
       "date": "2025-06-06T23:16:08.000Z",
-      "cover": "/postimages/Employing-Reinforcement-Learning-to-Construct-a-Decision-Making-Environment-for-Image-Forgery-Localization/image-20250604112223716.png",
+      "cover": "/assets/image-20250604112223716-Clg7Czta.png",
       "description": "发表于TMM2022，将机器学习应用到操作链检测的任务中，将每一个操作视为一个元素进行翻译。",
       "rank": [
         "B类期刊",
@@ -920,7 +920,7 @@
       "title": "Employing Reinforcement Learning to Construct a Decision-Making Environment for Image Forgery Localization",
       "link": "/papers/vbg995ik/",
       "date": "2025-05-19T15:29:07.000Z",
-      "cover": "/postimages/Employing-Reinforcement-Learning-to-Construct-a-Decision-Making-Environment-for-Image-Forgery-Localization/image-20250604112223716.png",
+      "cover": "/assets/image-20250604112223716-Clg7Czta.png",
       "description": "发表于TIFS2024，将强化学习引入到了图像篡改检测。",
       "rank": [
         "A类期刊",
@@ -935,7 +935,7 @@
       "title": "Reinforced Multi-teacher Knowledge Distillation for Efficient General Image Forgery Detection and Localization",
       "link": "/papers/wlmlwe2o/",
       "date": "2025-05-12T20:26:22.000Z",
-      "cover": "/postimages/Reinforced-Multi-teacher-Knowledge-Distillation-for-Efficient-General-Image-Forgery-Detection-and-Localization/image-20250512210419473.png",
+      "cover": "/assets/image-20250512210419473-CjZdwqKp.png",
       "description": "发表于AAAI2025，该框架的核心是Re-DTS策略，动态选择最合适的教师模型，将专业知识转移到学生模型。这一策略增强了学生模型处理各种篡改痕迹的能力，并提高了IFDL性能，将强化学习引入到了图像篡改检测。",
       "rank": [
         "A类会议",
@@ -952,7 +952,7 @@
       "title": "Rethinking Image Editing Detection in the Era of Generative AI Revolution",
       "link": "/papers/h6lsqtu3/",
       "date": "2025-03-27T20:05:11.000Z",
-      "cover": "/postimages/Rethinking-Image-Editing-Detection-in-the-Era-of-Generative-AI-Revolution/image-20250726220712108.png",
+      "cover": "/assets/image-20250726220712108-m2k8plo3.png",
       "description": "发表于ACMMM 2025，提出了基于图像编辑技术的新数据集。",
       "rank": [
         "A类会议",
@@ -987,7 +987,7 @@
       "title": "Image Copy-Move Forgery Detection via Deep PatchMatch and Pairwise Ranking Learning",
       "link": "/papers/fqa19bia/",
       "date": "2025-03-10T17:06:42.000Z",
-      "cover": "/postimages/Image-Copy-Move-Forgery-Detection-via-Deep-PatchMatch-and-Pairwise-Ranking-Learning/image-20250310173223082.png",
+      "cover": "/assets/image-20250310173223082-D1o9nU7W.png",
       "description": "发表于TIP 2024，图像复制-移动伪造检测方向的图像篡改检测方法。",
       "rank": [
         "A类期刊",
@@ -999,7 +999,7 @@
       "title": "DiRLoc:Disentanglement Representation Learning for Robust Image Forgery Localization",
       "link": "/papers/bcf94kis/",
       "date": "2025-03-10T16:52:11.000Z",
-      "cover": "/postimages/DiRLoc/image-20250325195228354.png",
+      "cover": "/assets/image-20250325195228354-K3J0Q30f.png",
       "description": "发表于TDSC2024，针对JPEG压缩导致的性能下降，使用解纠缠的方法，分离出jpeg压缩对篡改痕迹的影响，提出了一种鲁棒的图像伪造定位框架。",
       "rank": [
         "A类期刊",
@@ -1032,7 +1032,7 @@
       "title": "Image as Set of Points",
       "link": "/papers/8rtrklwn/",
       "date": "2025-02-24T22:24:01.000Z",
-      "cover": "/postimages/Image-as-Set-of-Points/image-20250224225440089.png",
+      "cover": "/assets/image-20250224225440089-CpFllN5X.png",
       "description": "发表于ICLR2023，将图像视为一组无组织的点，并通过简化的聚类算法提取特征。具体地说，每个点都包括原始特征（如颜色）和位置信息（如坐标），并采用简化的聚类算法对深度特征进行分层分组和提取。",
       "rank": [
         "A类会议",
@@ -1047,7 +1047,7 @@
       "title": "SparseViT:Nonsemantics-Centered, Parameter-Efficient Image Manipulation Localization through Spare-Coding Transformer",
       "link": "/papers/sry44478/",
       "date": "2025-02-19T16:29:05.000Z",
-      "cover": "/postimages/SparseViT/image-20250221114324242.png",
+      "cover": "/assets/image-20250221114324242-aSbXnudx.png",
       "description": "发表于AAAI2025，SparseViT认为图像篡改检测应该是非语义的，非语义特征与上下文无关，且对篡改敏感。也就是说，在图像中，除非发生篡改，否则它们在各个补丁之间是一致的，而图像块之间的稀疏和离散交互足以提取非语义特征，非语义特征由于其局部独立性，可以通过稀疏编码实现全局交互。",
       "rank": [
         "A类会议",
@@ -1077,7 +1077,7 @@
       "title": "Deep Clustering for Unsupervised Learning of Visual Features",
       "link": "/papers/n6ldzkmy/",
       "date": "2025-02-17T11:40:43.000Z",
-      "cover": "/postimages/Deep-Clustering-for-Unsupervised-Learning-of-Visual-Features/image-20250217154520065.png",
+      "cover": "/assets/image-20250217154520065-as4CWoZs.png",
       "description": "发表于CVPR2020，其提出了在线深度聚类的方法，即设计并维护了两个动态内存模块，即用于存储样本标签和特征的样本内存，以及用于质心进化的质心内存，将突然的全局聚类分解为稳定的内存更新和批量标签重新分配。",
       "rank": [
         "A类会议",
@@ -1112,7 +1112,7 @@
       "title": "A Lightweight Clustering Framework for Unsupervised Semantic Segmentation",
       "link": "/papers/hb8xbgp4/",
       "date": "2025-02-15T21:55:48.000Z",
-      "cover": "/postimages/A-Lightweight-Clustering-Framework-for-Unsupervised-Semantic-Segmentation/image-20250215220915193.png",
+      "cover": "/assets/image-20250215220915193-DEe0cKjU.png",
       "description": "arxiv文章，面对无监督语义分割，使用多级聚类的方法来实现。",
       "rank": [
         "D类文章",
@@ -1129,7 +1129,7 @@
       "title": "DiffForensics:Leveraging Diffusion Prior to Image Forgery Detection and Localization",
       "link": "/papers/z8cgd64y/",
       "date": "2025-01-15T19:56:36.000Z",
-      "cover": "/postimages/DiffForensics/image-20250115211126117.png",
+      "cover": "/assets/image-20250115211126117-WNEHZ9Sb.png",
       "description": "发表于CVPR2024，两阶段的训练过程，该框架包括自监督去噪扩散的训练前阶段和多任务微调阶段，提出了一种新的边缘提示增强模块，该模块集成在多个尺度的解码器中，以增强被篡改的边缘痕迹从粗到细。",
       "rank": [
         "A类会议",
@@ -1142,7 +1142,7 @@
       "title": "SUMI-IFL:An Information-Theoretic Framework for Image Forgery Localization with Sufficiency and Minimality Constraints",
       "link": "/papers/yrgqcm8l/",
       "date": "2025-01-15T16:46:19.000Z",
-      "cover": "/postimages/SUMI-IFL/image-20250902150414390.png",
+      "cover": "/assets/image-20250902150414390-C9XIuJZX.png",
       "description": "发表于arxiv，使用信息瓶颈理论完成图像篡改任务，没和NP++、IFL-VIT比较。",
       "rank": [
         "A类会议",
@@ -1154,7 +1154,7 @@
       "title": "EditGuard:Versatile Image Watermarking for Tamper Localization and Copyright Protection",
       "link": "/papers/duu9r8lw/",
       "date": "2025-01-13T22:40:47.000Z",
-      "cover": "/postimages/EditGuard/image-20250113232835654.png",
+      "cover": "/assets/image-20250113232835654-Dihtnvg1.png",
       "description": "发表于CVPR2024，将版权水印和图像篡改主动保护两个任务联合起来。",
       "rank": [
         "A类会议",
@@ -1220,7 +1220,7 @@
       "title": "A Survey on Deep Clustering:From the Prior Perspective",
       "link": "/papers/m3sg90h7/",
       "date": "2025-01-07T22:20:13.000Z",
-      "cover": "/postimages/A-Survey-on-Deep-Clustering-From-the-Prior-Perspective/image-20250107223309527.png",
+      "cover": "/assets/image-20250107223309527-Lrl4huqU.png",
       "description": "发表于Vicinagearth",
       "rank": [
         "D类期刊",
@@ -1244,7 +1244,7 @@
       "title": "Forgery-aware Adaptive Learning with Vision Transformer for Generalized Face Forgery Detection",
       "link": "/papers/nwqbfq9q/",
       "date": "2024-12-26T10:50:46.000Z",
-      "cover": "/postimages/Forgery-aware-Adaptive-Learning-with-Vision-Transformer-for-Generalized-Face-Forgery-Detection/image-20241226110937373.png",
+      "cover": "/assets/image-20241226110937373-BKwDiEb2.png",
       "description": "发表于TCSVT 2024。",
       "rank": [
         "B类期刊",
@@ -1256,7 +1256,7 @@
       "title": "Deep Adaptive Fuzzy Clustering for Evolutionary Unsupervised Representation Learning",
       "link": "/papers/yze4n749/",
       "date": "2024-12-23T16:43:50.000Z",
-      "cover": "/postimages/Deep-Adaptive-Fuzzy-Clustering-for-Evolutionary-Unsupervised-Representation-Learning/image-20241223165700880.png",
+      "cover": "/assets/image-20241223165700880-NH88ZYga.png",
       "description": "发表于IEEE Transactions on Neural Networks and Learning Systems",
       "rank": [
         "B类期刊",
@@ -1273,7 +1273,7 @@
       "title": "A survey on deep learning-based image forgery detection",
       "link": "/papers/oy9bbwz0/",
       "date": "2024-12-18T14:44:25.000Z",
-      "cover": "/postimages/A-survey-on-deep-learning-based-image-forgery-detection/image-20241218144724434.png",
+      "cover": "/assets/image-20241218144724434-CdsMig5X.png",
       "description": "发表于Pattern Recognition 2023，基于深度学习的图像伪造检测综述。",
       "rank": [
         "B类期刊",
@@ -1290,7 +1290,7 @@
       "title": "Deep Fuzzy K-Means With Adaptive Loss and Entropy Regularization",
       "link": "/papers/0jonq4vu/",
       "date": "2024-12-04T21:29:38.000Z",
-      "cover": "/postimages/Deep-Fuzzy-K-Means-With-Adaptive-Loss-and-Entropy-Regularization/image-20241204215225997.png",
+      "cover": "/assets/image-20241204215225997-atRcB7CH.png",
       "description": "发表于IEEE Transactions on Fuzzy Systems",
       "rank": [
         "B类期刊",
@@ -1302,7 +1302,7 @@
       "title": "Robust deep fuzzy K-means clustering for image data",
       "link": "/papers/od2ht3pz/",
       "date": "2024-12-03T08:57:34.000Z",
-      "cover": "/postimages/Robust-deep-fuzzy-k-means-clustering-for-image-data/image-20250106112717777.png",
+      "cover": "/assets/image-20250106112717777-EzgW56bq.png",
       "description": "发表于JCR一区、CCF B类期刊的Pattern Recognition",
       "rank": [
         "B类期刊",
@@ -1317,7 +1317,7 @@
       "title": "Robust deep k-means:An effective and simple method for data clustering",
       "link": "/papers/mwu7km1q/",
       "date": "2024-12-02T21:14:20.000Z",
-      "cover": "/postimages/Robust-deep-k-means/image-20250107102610266.png",
+      "cover": "/assets/image-20250107102610266-Ck5rbnnE.png",
       "description": "发表于PR 2021。",
       "rank": [
         "B类期刊",
@@ -1329,7 +1329,7 @@
       "title": "K-means clustering algorithms:A comprehensive review, variants analysis, and advances in the era of big data",
       "link": "/papers/xrsc3hlk/",
       "date": "2024-12-02T20:36:50.000Z",
-      "cover": "/postimages/K-means-clustering-algorithms/image-20241202203941768.png",
+      "cover": "/assets/image-20241202203941768-B0iJ10QU.png",
       "description": "发表于Information Sciences 2023。",
       "rank": [
         "B类期刊",
@@ -1367,7 +1367,7 @@
       "title": "Image Manipulation Detection With Implicit Neural Representation and Limited Supervision",
       "link": "/papers/xbw33e9x/",
       "date": "2024-11-19T10:15:22.000Z",
-      "cover": "/postimages/Image-Manipulation-Detection-With-Implicit-Neural-Representation-and-Limited-Supervision/image-20241119110904314.png",
+      "cover": "/assets/image-20241119110904314-CKCcboQZ.png",
       "description": "发表于ECCV 2024。",
       "rank": [
         "B类会议",
@@ -1389,7 +1389,7 @@
       "title": "Unified Frequency-Assisted Transformer Framework for Detecting and Grounding Multi-modal Manipulation",
       "link": "/papers/cxt2tl2r/",
       "date": "2024-10-21T09:07:34.000Z",
-      "cover": "/postimages/Unified-Frequency-Assisted-Transformer-Framework-for-Detecting-and-Grounding-Multi-modal-Manipulation/image-20250107113241178.png",
+      "cover": "/assets/image-20250107113241178-Bh5BcLbF.png",
       "description": "发表于IJCV 2024，多模态的图像篡改检测。",
       "rank": [
         "A类期刊",
@@ -1430,7 +1430,7 @@
       "title": "Unsupervised Learning of Image Segmentation Based on Differentiable Feature Clustering",
       "link": "/papers/82qzkn5g/",
       "date": "2024-10-07T10:13:01.000Z",
-      "cover": "/postimages/Unsupervised-Learning-of-Image-Segmentation-Based-on-Differentiable-Feature-Clustering/image-20241007102733276.png",
+      "cover": "/assets/image-20241007102733276-BDIPkPfl.png",
       "description": "发表于TIP 2020，无监督语义分割和可微聚类方法。",
       "rank": [
         "A类期刊",
@@ -1456,7 +1456,7 @@
       "title": "Deep Clustering:A Comprehensive Survey",
       "link": "/papers/j214jn9t/",
       "date": "2024-09-29T10:44:40.000Z",
-      "cover": "/postimages/Deep-Clustering/image-20240929105628373.png",
+      "cover": "/assets/image-20240929105628373-Bzhrg140.png",
       "description": "发表于IEEE Transactions on Neural Networks and Learning Systems 2024，深度聚类的综合综述。",
       "rank": [
         "B类期刊",
@@ -1468,7 +1468,7 @@
       "title": "Attentive and Contrastive Image Manipulation Localization With Boundary Guidance",
       "link": "/papers/bijoedih/",
       "date": "2024-09-10T10:46:55.000Z",
-      "cover": "/postimages/Attentive-and-Contrastive-Image-Manipulation-Localization-With-Boundary-Guidance/image-20240910110200920.png",
+      "cover": "/assets/image-20240910110200920-DImHNolK.png",
       "description": "发表于TIFS2024，被篡改区域的边界是分离被篡改和未被篡改像素的关键位置，在这项工作中，我们提出了一种图像操作检测的边界感知方案，其中我们引入了充分利用篡改区域的边界信息，并从注意和特征学习两个角度实现了我们的方案。",
       "rank": [
         "A类期刊",
@@ -1486,7 +1486,7 @@
       "title": "Robust Image Forgery Detection over Online Social Network Shared Images",
       "link": "/papers/j7i3wvhp/",
       "date": "2024-09-04T09:26:12.000Z",
-      "cover": "/postimages/ImageForensicsOSN/image-20240904213429555.png",
+      "cover": "/assets/image-20240904213429555-BEuYHPta.png",
       "description": "发表于CVPR2022。",
       "rank": [
         "A类会议",
@@ -1501,7 +1501,7 @@
       "title": "Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning",
       "link": "/papers/6t1f4i73/",
       "date": "2024-09-02T20:16:56.000Z",
-      "cover": "/postimages/Robust-Camera-Model-Identification-Over-Online-Social-Network-Shared-Images-via-Multi-Scenario-Learning/image-20240902210022345.png",
+      "cover": "/assets/image-20240902210022345-5Rfq0dyk.png",
       "description": "发表于TIFS2023，随着互联网的蓬勃发展，在线社交网络（OSNs， online social",
       "rank": [
         "A类期刊",
@@ -1513,7 +1513,7 @@
       "title": "Towards Modern Image Manipulation Localization A Large-Scale Dataset and Novel Methods",
       "link": "/papers/xfuftw97/",
       "date": "2024-08-26T09:26:05.000Z",
-      "cover": "/postimages/Towards-Modern-Image-Manipulation-Localization-A-Large-Scale-Dataset-and-Novel-Methods/image-20240826165320985.png",
+      "cover": "/assets/image-20240826165320985-CZVXFprT.png",
       "description": "发表于CVPR2024型，CAAA可以像素级自动和精确地注释大量的人工伪造的图像，进一步提出了一种新的度量QES，以方便不可靠注释的自动过滤。",
       "rank": [
         "A类会议",
@@ -1528,7 +1528,7 @@
       "title": "Multi-view Feature Extraction via Tunable Prompts is Enough for Image Manipulation Localization",
       "link": "/papers/w41xyhdv/",
       "date": "2024-08-24T15:47:02.000Z",
-      "cover": "/postimages/Multi-view-Feature-Extraction-via-Tunable-Prompts-is-Enough-for-Image-Manipulation-Localization/image-20240824155623293.png",
+      "cover": "/assets/image-20240824155623293-B1yfiyLK.png",
       "description": "发表于ACMMM2024,针对IML任务中公共训练数据集的稀缺，通过采用可调提示来利用预训练模型的丰富先验知识，即Prompt-IML框架,即插即用的特征对齐和融合模块。",
       "rank": [
         "A类会议",
@@ -1619,7 +1619,7 @@
       "title": "Pre-training-free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
       "link": "/papers/oead1idg/",
       "date": "2024-05-16T16:14:36.000Z",
-      "cover": "/postimages/Pre-training-free-Image-Manipulation-Localization-through-Non-Mutually-Exclusive-Contrastive-Learning/image-20240920091847744.png",
+      "cover": "/assets/image-20240920091847744-B4mMLUeA.png",
       "description": "发表于ICCV2023，关注边界的信息，使用边界监督。",
       "rank": [
         "A类会议",
@@ -1644,7 +1644,7 @@
       "title": "Towards Generic Image Manipulation Detection with Weakly-Supervised Self-Consistency Learning",
       "link": "/papers/ca33nsft/",
       "date": "2024-05-10T16:58:15.000Z",
-      "cover": "/postimages/Towards-Generic-Image-Manipulation-Detection-with-Weakly-Supervised-Self-Consistency-Learning/image-20240510171253974.png",
+      "cover": "/assets/image-20240510171253974-ChyYCEoC.png",
       "description": "发表于ICCV2023，为弱监督图像篡改检测，具体来说，学习了两个一致性属性，多源一致性（MSC, multi-source",
       "rank": [
         "A类会议",
@@ -1659,7 +1659,7 @@
       "title": "Towards Effective Image Manipulation Detection with Proposal Contrastive Learning",
       "link": "/papers/8egf8zku/",
       "date": "2024-05-05T17:50:58.000Z",
-      "cover": "/postimages/Towards-Effective-Image-Manipulation-Detection-with-Proposal-Contrastive-Learning/image-20250107105329585.png",
+      "cover": "/assets/image-20250107105329585-qOY9qprS.png",
       "description": "发表于TCSVT 2023。",
       "rank": [
         "B类期刊",
@@ -1671,7 +1671,7 @@
       "title": "CatmullRom Splines-Based Regression for Image Forgery Localization",
       "link": "/papers/y5b1yj3s/",
       "date": "2024-05-03T16:32:21.000Z",
-      "cover": "/postimages/CatmullRom-Splines-Based-Regression-for-Image-Forgery-Localization/image-20240503215025883.png",
+      "cover": "/assets/image-20240503215025883-C7JNRKRB.png",
       "description": "发表于AAAI2024，提出基于CatmullRom样条的回归网络，为了明确抑制假阳性样本和避免不确定性边界，综合再评分算法（CRA,Comprehensive",
       "rank": [
         "A类会议",
@@ -1683,7 +1683,7 @@
       "title": "CFL-Net:Image Forgery Localization Using Contrastive Learning",
       "link": "/papers/rlbbyfpf/",
       "date": "2024-04-10T16:28:35.000Z",
-      "cover": "/postimages/CFL-Net-Image-Forgery-Localization-Using-Contrastive-Learning/archnew.png",
+      "cover": "/assets/archnew-ze7bBHLt.png",
       "description": "发表于WACV 2023，RGB频域双通道多尺度特征网络。",
       "rank": [
         "C类会议",
@@ -1700,7 +1700,7 @@
       "title": "Learning Discriminative Noise Guidance for Image Forgery Detection and Localization",
       "link": "/papers/r8g1a0l9/",
       "date": "2024-04-01T17:00:38.000Z",
-      "cover": "/postimages/Learning-Discriminative-Noise-Guidance-for-Image-Forgery-Detection-and-Localization/image-20240822204529012.png",
+      "cover": "/assets/image-20240822204529012-DJtJEvg8.png",
       "description": "发表于AAAI2024，一种两阶段判别噪声引导的方法，第一阶段训练一个噪声提取器，以明确地扩大真实区域和伪造区域之间的噪声分布差异，第二阶段将噪声不一致和RGB数据集成，以进行伪造检测和定位。",
       "rank": [
         "A类会议",
@@ -1712,7 +1712,7 @@
       "title": "MGQFormer:Mask-Guided Query-Based Transformer for Image Manipulation Localization",
       "link": "/papers/1nx16gw2/",
       "date": "2024-03-31T17:48:42.000Z",
-      "cover": "/postimages/MGQFormer-Mask-Guided-Query-Based-Transformer-for-Image-Manipulation-Localization/image-20240401164940206.png",
+      "cover": "/assets/image-20240401164940206-VCADGN5Y.png",
       "description": "发表于AAAI2024，为应对交叉熵损失优先考虑逐像素精度，但忽略了篡改区域的空间位置和形状细节，设计了基于掩码引导查询的转换器框架（MGQFormer），该框架使用GroundTruth掩码来引导可学习查询令牌（LQT）识别伪造区域。",
       "rank": [
         "A类会议",
@@ -1735,7 +1735,7 @@
       "title": "A New Benchmark and Model for Challenging Image Manipulation Detection",
       "link": "/papers/0mq3w8af/",
       "date": "2024-03-28T21:42:41.000Z",
-      "cover": "/postimages/A-New-Benchmark-and-Model-for-Challenging-Image-Manipulation-Detection/image-20240326151650512.png",
+      "cover": "/assets/image-20240326151650512-BFVtUE35.png",
       "description": "发表于AAAI2024，包含RGB和频率特征的hrnet双分支架构，能够检测双压缩伪影的压缩伪影学习模型。",
       "rank": [
         "A类会议",
@@ -1750,7 +1750,7 @@
       "title": "Exploring Multi-Modal Fusion for Image Manipulation Detection and Localization",
       "link": "/papers/x9oud452/",
       "date": "2024-03-28T21:14:48.000Z",
-      "cover": "/postimages/Exploring-Multi-Modal-Fusion-for-Image-Manipulation-Detection-and-Localization/architecture.png",
+      "cover": "/assets/architecture-CoPYQ6gH.png",
       "description": "发表于MMM2024。",
       "rank": [
         "C类会议",
