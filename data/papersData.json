@@ -91,7 +91,7 @@
       "title": "Towards Explainable Fake Image Detection with Multi-Modal Large Language Models",
       "link": "/papers/iat2zm70/",
       "date": "2026-02-26T22:27:42.000Z",
-      "cover": "/postimages/Towards-Explainable-Fake-Image-Detection-with-Multi-Modal-Large-Language-Models/image-20260226223228492.png",
+      "cover": "/assets/image-20260226223228492-BXyx-1Zw.png",
       "description": "发表于ACMMM 2025，本文提出了一种基于多模态大型语言模型（MLLMs）的可解释性虚假图像检测框架，通过融合六种专门的检测范式，对图像的不同方面进行分析，以提供基于证据的推理和最终判断。",
       "rank": [
         "A类会议",
@@ -526,7 +526,7 @@
       "title": "SegFormer:Simple and Efficient Design for Semantic Segmentation with Transformers",
       "link": "/papers/jamiagmo/",
       "date": "2025-09-04T16:30:04.000Z",
-      "cover": "/postimages/SegFormer/image-20250909210548471.png",
+      "cover": "/assets/image-20250909210548471-BSIpN1-P.png",
       "description": "发表于CVPR2022。",
       "rank": [
         "A类会议",
@@ -621,7 +621,7 @@
       "title": "Mesoscopic Insights:Orchestrating Multi-Scale & Hybrid Architecture for Image Manipulation Localization",
       "link": "/papers/bn5hr3sr/",
       "date": "2025-08-06T20:24:34.000Z",
-      "cover": "/postimages/Mesoscopic-Insights/image-20250903224303989.png",
+      "cover": "/assets/image-20250903224303989--Ys6dERw.png",
       "description": "发表于AAAI2025，该论文Mesorch同时构建IML所需的微观与宏观信息介观表征，并提出Mesorch架构，一种融合卷积神经网络和Transformer模型优势的混合模型，通过动态调整尺度权重，能高效捕捉介观层面的伪影特征。",
       "rank": [
         "A类会议",
@@ -701,7 +701,7 @@
       "title": "Mind marginal non-crack regions:Clustering-inspired representation learning for crack segmentation",
       "link": "/papers/hfknlw9f/",
       "date": "2025-07-21T22:34:45.000Z",
-      "cover": "/postimages/Mind-marginal-non-crack-regions/image-20250721225401970.png",
+      "cover": "/assets/image-20250721225401970-Bcd-0S1R.png",
       "description": "发表于CVPR2024，提出了一种基于聚类启发的表征学习框架，该框架包含自动裂缝分割的双阶段策略。第一阶段通过预处理步骤实现边缘非裂缝区域的精确定位。在第二阶段，为学习这些区域的判别性特征，我们设计了聚类启发式损失（CI",
       "rank": [
         "A类会议",
@@ -885,7 +885,7 @@
       "title": "OmniGuard:Hybrid Manipulation Localization via Augmented Versatile Deep Image Watermarking",
       "link": "/papers/dufg28k1/",
       "date": "2025-07-01T10:36:10.000Z",
-      "cover": "/postimages/OmniGuard/image-20250701111018844.png",
+      "cover": "/assets/image-20250701111018844-CN-46Wfp.png",
       "description": "发表于CVPR2025，将版权水印和图像篡改主动保护两个任务联合起来。",
       "rank": [
         "A类会议",
@@ -1012,7 +1012,7 @@
       "title": "IMDL-BenCo:A Comprehensive Benchmark and Codebase for Image Manipulation Detection & Localization",
       "link": "/papers/2t93e9vz/",
       "date": "2025-03-06T15:49:37.000Z",
-      "cover": "/postimages/IMDL-BenCo/image-20250306170503847.png",
+      "cover": "/assets/image-20250306170503847-Bs-37qGa.png",
       "description": "发表于NeurIPS",
       "rank": [
         "A类会议",
@@ -1062,7 +1062,7 @@
       "title": "Contextrast:Contextual Contrastive Learning for Semantic Segmentation",
       "link": "/papers/6ha425at/",
       "date": "2025-02-17T22:15:04.000Z",
-      "cover": "/postimages/Contextrast/image-20250818215507816.png",
+      "cover": "/assets/image-20250818215507816-RwdCO-bs.png",
       "description": "发表于CVPR2024，该论文面向语义分割任务中不准确的分割边界，提出了Contextrast，即设计了一个基于INfoNCE损失的新损失函数，以保证在不同尺度下的特征（不同类别的平均特征）的空间关系保持一致，还提出了基于边界引导的负样本挖掘方法，旨在提高负样本的质量。（代码未公布）",
       "rank": [
         "A类会议",
@@ -1169,7 +1169,7 @@
       "title": "UGEE-Net:Uncertainty-guided and edge-enhanced network for image splicing localization",
       "link": "/papers/sb5nj5ax/",
       "date": "2025-01-12T22:18:56.000Z",
-      "cover": "/postimages/DH-GAN/image-20240824153543322.png",
+      "cover": "/assets/image-20240824153543322-DJSOsq-f.png",
       "description": "发表于NeuralNetworks 2024。",
       "rank": [
         "B类期刊",
@@ -1232,7 +1232,7 @@
       "title": "Pixel and region level information fusion in membership regularized fuzzy clustering for image segmentation",
       "link": "/papers/7o8ytsol/",
       "date": "2024-12-29T22:13:57.000Z",
-      "cover": "/postimages/DH-GAN/image-20240824153543322.png",
+      "cover": "/assets/image-20240824153543322-DJSOsq-f.png",
       "description": "发表于Information Fusion 2023。",
       "rank": [
         "B类期刊",
@@ -1404,7 +1404,7 @@
       "title": "Circle Loss A Unified Perspective of Pair Similarity Optimization",
       "link": "/papers/s31quvi7/",
       "date": "2024-10-14T22:09:50.000Z",
-      "cover": "/postimages/Circle-Loss/image-20241014230803132.png"
+      "cover": "/assets/image-20241014230803132-g1hPK-tn.png"
     },
     {
       "title": "Unsupervised_Semantic_Segmentation",
@@ -1415,7 +1415,7 @@
       "title": "EAGLE:Eigen Aggregation Learning for Object-Centric Unsupervised Semantic Segmentation",
       "link": "/papers/huqaobjk/",
       "date": "2024-10-08T16:01:14.000Z",
-      "cover": "/postimages/EAGLE/image-20241008161231496.png",
+      "cover": "/assets/image-20241008161231496-BeTd-5C5.png",
       "description": "发表于CVPR2024。",
       "rank": [
         "A类会议",
@@ -1541,7 +1541,7 @@
       "title": "DH-GAN:Image manipulation localization via a dual homology-aware generative adversarial network",
       "link": "/papers/13id4dsa/",
       "date": "2024-08-24T15:26:52.000Z",
-      "cover": "/postimages/DH-GAN/image-20240824153543322.png",
+      "cover": "/assets/image-20240824153543322-DJSOsq-f.png",
       "description": "发表于Pattern Recognition 2024，双同源感知生成对抗网络（DH-GAN）,选择性金字塔（SAP）校准多尺度特征。",
       "rank": [
         "B类期刊",
