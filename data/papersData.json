@@ -743,7 +743,7 @@
       "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
       "link": "/papers/7b3qszds/",
       "date": "2025-07-17T22:34:41.000Z",
-      "cover": "/postimages/ForensicHub/image-20250717231040099.png",
+      "cover": "/assets/image-20250717231040099-CIX_zCHg.png",
       "description": "发表于arxiv上的论文，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
       "rank": [
         "A类会议",
@@ -1092,7 +1092,7 @@
       "title": "DivClust:Controlling Diversity in Deep Clustering",
       "link": "/papers/b7x7j4qb/",
       "date": "2025-02-16T13:18:02.000Z",
-      "cover": "/postimages/DivClust/image-20250217101153060.png",
+      "cover": "/assets/image-20250217101153060-D_MF35Xx.png",
       "description": "发表于CVPR2023，共识聚类是一种无监督的集成聚类方法，旨在通过多次重采样和聚类分析来评估聚类结果的稳定性，从而确定数据集中最优的聚类数目（k值）及其成员结构。该论文提出了DivClust，一种多样性控制损失，可以纳入现有的深度聚类框架，以产生具有所需多样性程度的多个聚类。",
       "rank": [
         "A类会议",
@@ -1193,7 +1193,7 @@
       "title": "How to Use K-means for Big Data Clustering?",
       "link": "/papers/6pt2jaxr/",
       "date": "2025-01-08T22:00:02.000Z",
-      "cover": "/postimages/How-to-Use-K-means-for-Big-Data-Clustering/image-20250109150522036.png",
+      "cover": "/assets/image-20260312171728322-qTmJ3ysZ.png",
       "description": "发表于Pattern Recognition 2023， 设计了一个优化kmeans的算法BigMeans。",
       "rank": [
         "B类期刊",
@@ -1205,7 +1205,7 @@
       "title": "PiCIE:Unsupervised Semantic Segmentation using Invariance and Equivariance in Clustering",
       "link": "/papers/jbq9cx5t/",
       "date": "2025-01-08T10:41:01.000Z",
-      "cover": "/postimages/PiCIE/image-20250108110707600.png",
+      "cover": "/assets/image-20250108110707600-B7Wy6_uc.png",
       "description": "发表于CVPR2021，无监督语义分割，使用聚类伪标签和交叉熵损失，同时使用数据增强，利用增强不变性，提高模型泛化性，使模型不关注噪声。",
       "rank": [
         "A类会议",
@@ -1351,7 +1351,7 @@
       "title": "AdaIFL:Adaptive Image Forgery Localization via a Dynamic and Importance-aware",
       "link": "/papers/AdaIFL/",
       "date": "2024-11-19T21:12:46.000Z",
-      "cover": "/postimages/AdaIFL/image-20250106165435130.png",
+      "cover": "/assets/image-20241119220644639-BBEI7m-N.png",
       "description": "发表于ECCV2024，提出了AdaIFL，为不同的网络组件定制不同的专家组，构建多个不同的特征子空间，利用自适应激活的专家网络，AdaIFL可以捕获与伪造模式相关的判别特征，增强了模型的泛化能力。提出了一种特征重要性感知注意力，自适应地感知不同区域的重要性，并将区域特征聚集成可变长度的标记，将模型的注意力导向更有区别和信息的区域。",
       "rank": [
         "B类会议",
@@ -1444,7 +1444,7 @@
       "title": "Efficient Deep Embedded Subspace Clustering",
       "link": "/papers/q75s6ldp/",
       "date": "2024-10-04T11:18:03.000Z",
-      "cover": "/postimages/Efficient-Deep-Embedded-Subspace-Clustering/image-20241004113308304.png",
+      "cover": "/assets/image-20241004113308304-DfZm_BLi.png",
       "description": "发表于CVPR2022。",
       "rank": [
         "A类会议",
@@ -1601,7 +1601,7 @@
       "title": "CMX:Cross-Modal Fusion for RGB-X Semantic Segmentation With Transformers",
       "link": "/papers/qkrccr57/",
       "date": "2024-05-16T17:04:22.000Z",
-      "cover": "/postimages/CMX-Cross-Modal-Fusion-for-RGB-X-Semantic-Segmentation-With-Transformers/image-20240516170446816.png"
+      "cover": "/assets/image-20240516170446816-yT_KA59e.png"
     },
     {
       "title": "Uncertainty-guided Learning for Improving Image Manipulation Detection",
