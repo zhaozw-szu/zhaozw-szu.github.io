@@ -33,16 +33,30 @@
       "date": "2026-02-27T21:44:48.000Z",
       "cover": "/postimages/Bridging-Semantic-Logic-Gaps-A-Cognition-Inspired-Multimodal-Boundary-Preserving-Network-for-Image-Manipulation-Localization/image-20260227215032360.png",
       "description": "提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。",
+      "authors": [
+        "Songlin Li",
+        "Yuanman Li",
+        "Zhiqing Guo"
+      ],
       "code": "https://github.com/vpsg-research/CMB-Net",
       "available": "×",
       "method": "CMB-Net"
     },
     {
-      "title": "Deep_Robust_Reversible_Watermarking",
+      "title": "Deep Robust Reversible Watermarking",
       "link": "/papers/zu1u3ak4/",
       "date": "2026-02-27T15:15:16.000Z",
       "cover": "/postimages/Deep-Robust-Reversible-Watermarking/image-20260227202155444.png",
-      "description": "发表于arxiv，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible"
+      "description": "发表于TPAMI 2026 ，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible",
+      "rank": [
+        "A类期刊",
+        "TPAMI",
+        "2026"
+      ],
+      "authors": [
+        "Jiale Chen",
+        "Yuanman Li"
+      ]
     },
     {
       "title": "ALDEN:Dual-Level Disentanglement with Meta-learning for Generalizable Audio Deepfake Detection",
@@ -69,6 +83,9 @@
       "link": "/papers/k8rgxfmb/",
       "date": "2025-11-22T14:45:18.000Z",
       "authors": [
+        "Rongqin Liang",
+        "Yuanman Li",
+        "Jiantao Zhou",
         "Xia Li"
       ]
     },
@@ -499,6 +516,11 @@
         "ICCV",
         "2023"
       ],
+      "authors": [
+        "Wentao Feng",
+        "Jizhe Zhou",
+        "Xiaochen Ma"
+      ],
       "code": "'https://github.com/Knightzjz/NCL-IML'",
       "available": "'✓'",
       "method": "NCL-IML"
@@ -620,7 +642,12 @@
     {
       "title": "Generalizable Synthetic Image Detection via Language-guided Contrastive Learning",
       "link": "/papers/1h74hnuk/",
-      "date": "2025-12-12T21:57:40.000Z"
+      "date": "2025-12-12T21:57:40.000Z",
+      "authors": [
+        "Haiwei Wu",
+        "Jiantao Zhou",
+        "Shile Zhang"
+      ]
     },
     {
       "title": "Qwen3-VL",
@@ -652,7 +679,20 @@
     {
       "title": "Text-Driven Traffic Anomaly Detection With Temporal High-Frequency Modeling in Driving Videos",
       "link": "/papers/y29o5nxm/",
-      "date": "2025-11-23T09:52:57.000Z"
+      "date": "2025-11-23T09:52:57.000Z",
+      "cover": "/postimages/Text-Driven-Traffic-Anomaly-Detection-With-Temporal-High-Frequency-Modeling-in-Driving-Videos/image-20251123101220559.png",
+      "description": "发表于TCSVT 2024，在本文中，我们介绍了一种新的单阶段方法 TTHF ，该方法通过文本提示对齐视频片段，为交通异常检测提供了新的视角。与以往方法不同，我们的监督信号来源于语言而非正交独热向量，从而提供了更全面的表征。此外，关于视觉表征，我们提出在时域中建模驾驶视频的高频特性。这种建模捕捉了驾驶场景的动态变化，增强了对驾驶行为的感知，并显著提高了交通异常的检测效果。此外，为了更好地感知各种类型的交通异常，我们精心设计了一种注意力异常聚焦机制，该机制通过视觉和语言引导模型自适应地关注感兴趣的视觉上下文，从而促进交通异常的检测。。",
+      "rank": [
+        "B类期刊",
+        "TCSVT",
+        "2024"
+      ],
+      "authors": [
+        "Yuanman Li",
+        "Rongqin Liang",
+        "Jiantao Zhou",
+        "Xia Li"
+      ]
     },
     {
       "title": "FlyLoRA",
@@ -933,6 +973,11 @@
         "AAAI",
         "2025"
       ],
+      "authors": [
+        "Xuekang Zhu",
+        "Xiaochen Ma",
+        "Jizhe Zhou"
+      ],
       "code": "https://github.com/scu-zjz/Mesorch",
       "available": "✓",
       "method": "Mesorch"
@@ -1034,11 +1079,20 @@
       "link": "/papers/7b3qszds/",
       "date": "2025-07-17T22:34:41.000Z",
       "cover": "/postimages/ForensicHub/image-20250717231040099.png",
-      "description": "发表于arxiv上的论文，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+      "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
       "rank": [
         "A类会议",
         "NeurIPS",
         "2025"
+      ],
+      "authors": [
+        "Jian Liu",
+        "Jizhe Zhou",
+        "Bo Du",
+        "Xuekang Zhu",
+        "Chenfan Qu",
+        "Kaiwen Feng",
+        "Xiaochen Ma"
       ],
       "code": "https://github.com/scu-zjz/ForensicHub",
       "available": "✓",
@@ -1125,6 +1179,11 @@
         "TDSC",
         "2025"
       ],
+      "authors": [
+        "Haiwei Wu",
+        "Yuanman Li",
+        "Jiantao Zhou"
+      ],
       "code": "https://github.com/HighwayWu/FOCAL",
       "available": "✓",
       "method": "FOCAL"
@@ -1177,7 +1236,12 @@
     {
       "title": "Operation History Estimation and Its Application to Multi-Degraded Image Restoration",
       "link": "/papers/5lza5jc7/",
-      "date": "2025-06-08T14:33:29.000Z"
+      "date": "2025-06-08T14:33:29.000Z",
+      "authors": [
+        "Yuanman Li",
+        "Jie Du",
+        "Xia Li"
+      ]
     },
     {
       "title": "Image Operation Chain Detection with Machine Translation Framework",
@@ -1189,6 +1253,11 @@
         "B类期刊",
         "TMM",
         "2022"
+      ],
+      "authors": [
+        "Yuanman Li",
+        "Jiantao Zhou",
+        "Xia Li"
       ],
       "code": "https://github.com/YuanmanLi/github-TransDetect",
       "available": "×",
@@ -1271,6 +1340,12 @@
         "A类期刊",
         "TIP",
         "2024"
+      ],
+      "authors": [
+        "Haiwei Wu",
+        "Yuanman Li",
+        "Changsheng Chen",
+        "Jiantao Zhou"
       ]
     },
     {
@@ -1283,6 +1358,10 @@
         "A类会议",
         "NeurIPS",
         "2024"
+      ],
+      "authors": [
+        "Jizhe Zhou",
+        "Xiaochen Ma"
       ],
       "code": "https://github.com/scu-zjz/IMDLBenCo",
       "available": "✓",
@@ -1333,6 +1412,12 @@
         "A类会议",
         "AAAI",
         "2025"
+      ],
+      "authors": [
+        "Ziqi Sheng",
+        "Wei Lu",
+        "Xiangyang Luo",
+        "Jiantao Zhou"
       ]
     },
     {
@@ -1579,6 +1664,10 @@
         "CVPR",
         "2022"
       ],
+      "authors": [
+        "Haiwei Wu",
+        "Jiantao Zhou"
+      ],
       "code": "https://github.com/HighwayWu/ImageForensicsOSN",
       "available": "✓",
       "method": "ImageForensicsOSN"
@@ -1593,6 +1682,10 @@
         "A类期刊",
         "TIFS",
         "2023"
+      ],
+      "authors": [
+        "Haiwei Wu",
+        "Jiantao Zhou"
       ]
     },
     {
@@ -1689,6 +1782,11 @@
         "ICCV",
         "2023"
       ],
+      "authors": [
+        "Jizhe Zhou",
+        "Wentao Feng",
+        "Xiaochen Ma"
+      ],
       "code": "https://github.com/Knightzjz/NCL-IML",
       "available": "✓",
       "method": "NCL-IML"
@@ -1775,14 +1873,474 @@
   ],
   "authors": [
     {
-      "name": "Xia Li",
-      "slug": "xia-li",
-      "paperCount": 1,
+      "name": "Jiantao Zhou",
+      "slug": "jiantao-zhou",
+      "paperCount": 9,
       "papers": [
         {
           "title": "A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos",
           "link": "/papers/k8rgxfmb/",
           "date": "2025-11-22T14:45:18.000Z"
+        },
+        {
+          "title": "Rethinking Image Forgery Detection via Soft Contrastive Learning and Unsupervised Clustering",
+          "link": "/papers/gr49p1oa/",
+          "date": "2025-07-03T17:08:03.000Z",
+          "description": "TDSC2025的文章，首次使用对比学习加聚类的方法做图像篡改检测。",
+          "rank": [
+            "A类期刊",
+            "TDSC",
+            "2025"
+          ]
+        },
+        {
+          "title": "Generalizable Synthetic Image Detection via Language-guided Contrastive Learning",
+          "link": "/papers/1h74hnuk/",
+          "date": "2025-12-12T21:57:40.000Z"
+        },
+        {
+          "title": "Image Copy-Move Forgery Detection via Deep PatchMatch and Pairwise Ranking Learning",
+          "link": "/papers/fqa19bia/",
+          "date": "2025-03-10T17:06:42.000Z",
+          "description": "发表于TIP 2024，图像复制-移动伪造检测方向的图像篡改检测方法。",
+          "rank": [
+            "A类期刊",
+            "TIP",
+            "2024"
+          ]
+        },
+        {
+          "title": "Image Operation Chain Detection with Machine Translation Framework",
+          "link": "/papers/vtfop6j9/",
+          "date": "2025-06-06T23:16:08.000Z",
+          "description": "发表于TMM2022，将机器学习应用到操作链检测的任务中，将每一个操作视为一个元素进行翻译。",
+          "rank": [
+            "B类期刊",
+            "TMM",
+            "2022"
+          ]
+        },
+        {
+          "title": "Robust Image Forgery Detection over Online Social Network Shared Images",
+          "link": "/papers/j7i3wvhp/",
+          "date": "2024-09-04T09:26:12.000Z",
+          "description": "发表于CVPR2022。",
+          "rank": [
+            "A类会议",
+            "CVPR",
+            "2022"
+          ]
+        },
+        {
+          "title": "Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning",
+          "link": "/papers/6t1f4i73/",
+          "date": "2024-09-02T20:16:56.000Z",
+          "description": "发表于TIFS2023，随着互联网的蓬勃发展，在线社交网络（OSNs， online social",
+          "rank": [
+            "A类期刊",
+            "TIFS",
+            "2023"
+          ]
+        },
+        {
+          "title": "SUMI-IFL:An Information-Theoretic Framework for Image Forgery Localization with Sufficiency and Minimality Constraints",
+          "link": "/papers/yrgqcm8l/",
+          "date": "2025-01-15T16:46:19.000Z",
+          "description": "发表于arxiv，使用信息瓶颈理论完成图像篡改任务，没和NP++、IFL-VIT比较。",
+          "rank": [
+            "A类会议",
+            "AAAI",
+            "2025"
+          ]
+        },
+        {
+          "title": "Text-Driven Traffic Anomaly Detection With Temporal High-Frequency Modeling in Driving Videos",
+          "link": "/papers/y29o5nxm/",
+          "date": "2025-11-23T09:52:57.000Z",
+          "description": "发表于TCSVT 2024，在本文中，我们介绍了一种新的单阶段方法 TTHF ，该方法通过文本提示对齐视频片段，为交通异常检测提供了新的视角。与以往方法不同，我们的监督信号来源于语言而非正交独热向量，从而提供了更全面的表征。此外，关于视觉表征，我们提出在时域中建模驾驶视频的高频特性。这种建模捕捉了驾驶场景的动态变化，增强了对驾驶行为的感知，并显著提高了交通异常的检测效果。此外，为了更好地感知各种类型的交通异常，我们精心设计了一种注意力异常聚焦机制，该机制通过视觉和语言引导模型自适应地关注感兴趣的视觉上下文，从而促进交通异常的检测。。",
+          "rank": [
+            "B类期刊",
+            "TCSVT",
+            "2024"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Yuanman Li",
+      "slug": "yuanman-li",
+      "paperCount": 8,
+      "papers": [
+        {
+          "title": "A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos",
+          "link": "/papers/k8rgxfmb/",
+          "date": "2025-11-22T14:45:18.000Z"
+        },
+        {
+          "title": "Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization",
+          "link": "/papers/u4jpm5l2/",
+          "date": "2026-02-27T21:44:48.000Z",
+          "description": "提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。"
+        },
+        {
+          "title": "Deep Robust Reversible Watermarking",
+          "link": "/papers/zu1u3ak4/",
+          "date": "2026-02-27T15:15:16.000Z",
+          "description": "发表于TPAMI 2026 ，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible",
+          "rank": [
+            "A类期刊",
+            "TPAMI",
+            "2026"
+          ]
+        },
+        {
+          "title": "Rethinking Image Forgery Detection via Soft Contrastive Learning and Unsupervised Clustering",
+          "link": "/papers/gr49p1oa/",
+          "date": "2025-07-03T17:08:03.000Z",
+          "description": "TDSC2025的文章，首次使用对比学习加聚类的方法做图像篡改检测。",
+          "rank": [
+            "A类期刊",
+            "TDSC",
+            "2025"
+          ]
+        },
+        {
+          "title": "Image Copy-Move Forgery Detection via Deep PatchMatch and Pairwise Ranking Learning",
+          "link": "/papers/fqa19bia/",
+          "date": "2025-03-10T17:06:42.000Z",
+          "description": "发表于TIP 2024，图像复制-移动伪造检测方向的图像篡改检测方法。",
+          "rank": [
+            "A类期刊",
+            "TIP",
+            "2024"
+          ]
+        },
+        {
+          "title": "Image Operation Chain Detection with Machine Translation Framework",
+          "link": "/papers/vtfop6j9/",
+          "date": "2025-06-06T23:16:08.000Z",
+          "description": "发表于TMM2022，将机器学习应用到操作链检测的任务中，将每一个操作视为一个元素进行翻译。",
+          "rank": [
+            "B类期刊",
+            "TMM",
+            "2022"
+          ]
+        },
+        {
+          "title": "Operation History Estimation and Its Application to Multi-Degraded Image Restoration",
+          "link": "/papers/5lza5jc7/",
+          "date": "2025-06-08T14:33:29.000Z"
+        },
+        {
+          "title": "Text-Driven Traffic Anomaly Detection With Temporal High-Frequency Modeling in Driving Videos",
+          "link": "/papers/y29o5nxm/",
+          "date": "2025-11-23T09:52:57.000Z",
+          "description": "发表于TCSVT 2024，在本文中，我们介绍了一种新的单阶段方法 TTHF ，该方法通过文本提示对齐视频片段，为交通异常检测提供了新的视角。与以往方法不同，我们的监督信号来源于语言而非正交独热向量，从而提供了更全面的表征。此外，关于视觉表征，我们提出在时域中建模驾驶视频的高频特性。这种建模捕捉了驾驶场景的动态变化，增强了对驾驶行为的感知，并显著提高了交通异常的检测效果。此外，为了更好地感知各种类型的交通异常，我们精心设计了一种注意力异常聚焦机制，该机制通过视觉和语言引导模型自适应地关注感兴趣的视觉上下文，从而促进交通异常的检测。。",
+          "rank": [
+            "B类期刊",
+            "TCSVT",
+            "2024"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Haiwei Wu",
+      "slug": "haiwei-wu",
+      "paperCount": 5,
+      "papers": [
+        {
+          "title": "Rethinking Image Forgery Detection via Soft Contrastive Learning and Unsupervised Clustering",
+          "link": "/papers/gr49p1oa/",
+          "date": "2025-07-03T17:08:03.000Z",
+          "description": "TDSC2025的文章，首次使用对比学习加聚类的方法做图像篡改检测。",
+          "rank": [
+            "A类期刊",
+            "TDSC",
+            "2025"
+          ]
+        },
+        {
+          "title": "Generalizable Synthetic Image Detection via Language-guided Contrastive Learning",
+          "link": "/papers/1h74hnuk/",
+          "date": "2025-12-12T21:57:40.000Z"
+        },
+        {
+          "title": "Image Copy-Move Forgery Detection via Deep PatchMatch and Pairwise Ranking Learning",
+          "link": "/papers/fqa19bia/",
+          "date": "2025-03-10T17:06:42.000Z",
+          "description": "发表于TIP 2024，图像复制-移动伪造检测方向的图像篡改检测方法。",
+          "rank": [
+            "A类期刊",
+            "TIP",
+            "2024"
+          ]
+        },
+        {
+          "title": "Robust Image Forgery Detection over Online Social Network Shared Images",
+          "link": "/papers/j7i3wvhp/",
+          "date": "2024-09-04T09:26:12.000Z",
+          "description": "发表于CVPR2022。",
+          "rank": [
+            "A类会议",
+            "CVPR",
+            "2022"
+          ]
+        },
+        {
+          "title": "Robust Camera Model Identification Over Online Social Network Shared Images via Multi-Scenario Learning",
+          "link": "/papers/6t1f4i73/",
+          "date": "2024-09-02T20:16:56.000Z",
+          "description": "发表于TIFS2023，随着互联网的蓬勃发展，在线社交网络（OSNs， online social",
+          "rank": [
+            "A类期刊",
+            "TIFS",
+            "2023"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jizhe Zhou",
+      "slug": "jizhe-zhou",
+      "paperCount": 5,
+      "papers": [
+        {
+          "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
+          "link": "/papers/7b3qszds/",
+          "date": "2025-07-17T22:34:41.000Z",
+          "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2025"
+          ]
+        },
+        {
+          "title": "IMDL-BenCo:A Comprehensive Benchmark and Codebase for Image Manipulation Detection & Localization",
+          "link": "/papers/2t93e9vz/",
+          "date": "2025-03-06T15:49:37.000Z",
+          "description": "发表于NeurIPS",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2024"
+          ]
+        },
+        {
+          "title": "Mesoscopic Insights:Orchestrating Multi-Scale & Hybrid Architecture for Image Manipulation Localization",
+          "link": "/papers/bn5hr3sr/",
+          "date": "2025-08-06T20:24:34.000Z",
+          "description": "发表于AAAI2025，该论文Mesorch同时构建IML所需的微观与宏观信息介观表征，并提出Mesorch架构，一种融合卷积神经网络和Transformer模型优势的混合模型，通过动态调整尺度权重，能高效捕捉介观层面的伪影特征。",
+          "rank": [
+            "A类会议",
+            "AAAI",
+            "2025"
+          ]
+        },
+        {
+          "title": "Pre-Training-Free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
+          "link": "/papers/trferohd/",
+          "date": "2026-01-09T17:22:25.000Z",
+          "description": "发表于ICCV 2023，将对比学习引入图像篡改检测，其设计互斥对比学习，精细化对比学习对象，得出不多结果。",
+          "rank": [
+            "A类会议",
+            "ICCV",
+            "2023"
+          ]
+        },
+        {
+          "title": "Pre-training-free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
+          "link": "/papers/oead1idg/",
+          "date": "2024-05-16T16:14:36.000Z",
+          "description": "发表于ICCV2023，关注边界的信息，使用边界监督。",
+          "rank": [
+            "A类会议",
+            "ICCV",
+            "2023"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Xiaochen Ma",
+      "slug": "xiaochen-ma",
+      "paperCount": 5,
+      "papers": [
+        {
+          "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
+          "link": "/papers/7b3qszds/",
+          "date": "2025-07-17T22:34:41.000Z",
+          "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2025"
+          ]
+        },
+        {
+          "title": "IMDL-BenCo:A Comprehensive Benchmark and Codebase for Image Manipulation Detection & Localization",
+          "link": "/papers/2t93e9vz/",
+          "date": "2025-03-06T15:49:37.000Z",
+          "description": "发表于NeurIPS",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2024"
+          ]
+        },
+        {
+          "title": "Mesoscopic Insights:Orchestrating Multi-Scale & Hybrid Architecture for Image Manipulation Localization",
+          "link": "/papers/bn5hr3sr/",
+          "date": "2025-08-06T20:24:34.000Z",
+          "description": "发表于AAAI2025，该论文Mesorch同时构建IML所需的微观与宏观信息介观表征，并提出Mesorch架构，一种融合卷积神经网络和Transformer模型优势的混合模型，通过动态调整尺度权重，能高效捕捉介观层面的伪影特征。",
+          "rank": [
+            "A类会议",
+            "AAAI",
+            "2025"
+          ]
+        },
+        {
+          "title": "Pre-Training-Free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
+          "link": "/papers/trferohd/",
+          "date": "2026-01-09T17:22:25.000Z",
+          "description": "发表于ICCV 2023，将对比学习引入图像篡改检测，其设计互斥对比学习，精细化对比学习对象，得出不多结果。",
+          "rank": [
+            "A类会议",
+            "ICCV",
+            "2023"
+          ]
+        },
+        {
+          "title": "Pre-training-free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
+          "link": "/papers/oead1idg/",
+          "date": "2024-05-16T16:14:36.000Z",
+          "description": "发表于ICCV2023，关注边界的信息，使用边界监督。",
+          "rank": [
+            "A类会议",
+            "ICCV",
+            "2023"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Xia Li",
+      "slug": "xia-li",
+      "paperCount": 4,
+      "papers": [
+        {
+          "title": "A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos",
+          "link": "/papers/k8rgxfmb/",
+          "date": "2025-11-22T14:45:18.000Z"
+        },
+        {
+          "title": "Image Operation Chain Detection with Machine Translation Framework",
+          "link": "/papers/vtfop6j9/",
+          "date": "2025-06-06T23:16:08.000Z",
+          "description": "发表于TMM2022，将机器学习应用到操作链检测的任务中，将每一个操作视为一个元素进行翻译。",
+          "rank": [
+            "B类期刊",
+            "TMM",
+            "2022"
+          ]
+        },
+        {
+          "title": "Operation History Estimation and Its Application to Multi-Degraded Image Restoration",
+          "link": "/papers/5lza5jc7/",
+          "date": "2025-06-08T14:33:29.000Z"
+        },
+        {
+          "title": "Text-Driven Traffic Anomaly Detection With Temporal High-Frequency Modeling in Driving Videos",
+          "link": "/papers/y29o5nxm/",
+          "date": "2025-11-23T09:52:57.000Z",
+          "description": "发表于TCSVT 2024，在本文中，我们介绍了一种新的单阶段方法 TTHF ，该方法通过文本提示对齐视频片段，为交通异常检测提供了新的视角。与以往方法不同，我们的监督信号来源于语言而非正交独热向量，从而提供了更全面的表征。此外，关于视觉表征，我们提出在时域中建模驾驶视频的高频特性。这种建模捕捉了驾驶场景的动态变化，增强了对驾驶行为的感知，并显著提高了交通异常的检测效果。此外，为了更好地感知各种类型的交通异常，我们精心设计了一种注意力异常聚焦机制，该机制通过视觉和语言引导模型自适应地关注感兴趣的视觉上下文，从而促进交通异常的检测。。",
+          "rank": [
+            "B类期刊",
+            "TCSVT",
+            "2024"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Rongqin Liang",
+      "slug": "rongqin-liang",
+      "paperCount": 2,
+      "papers": [
+        {
+          "title": "A memory-augmented multi-task collaborative framework for unsupervised traffic anomaly detection in driving videos",
+          "link": "/papers/k8rgxfmb/",
+          "date": "2025-11-22T14:45:18.000Z"
+        },
+        {
+          "title": "Text-Driven Traffic Anomaly Detection With Temporal High-Frequency Modeling in Driving Videos",
+          "link": "/papers/y29o5nxm/",
+          "date": "2025-11-23T09:52:57.000Z",
+          "description": "发表于TCSVT 2024，在本文中，我们介绍了一种新的单阶段方法 TTHF ，该方法通过文本提示对齐视频片段，为交通异常检测提供了新的视角。与以往方法不同，我们的监督信号来源于语言而非正交独热向量，从而提供了更全面的表征。此外，关于视觉表征，我们提出在时域中建模驾驶视频的高频特性。这种建模捕捉了驾驶场景的动态变化，增强了对驾驶行为的感知，并显著提高了交通异常的检测效果。此外，为了更好地感知各种类型的交通异常，我们精心设计了一种注意力异常聚焦机制，该机制通过视觉和语言引导模型自适应地关注感兴趣的视觉上下文，从而促进交通异常的检测。。",
+          "rank": [
+            "B类期刊",
+            "TCSVT",
+            "2024"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Xuekang Zhu",
+      "slug": "xuekang-zhu",
+      "paperCount": 2,
+      "papers": [
+        {
+          "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
+          "link": "/papers/7b3qszds/",
+          "date": "2025-07-17T22:34:41.000Z",
+          "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2025"
+          ]
+        },
+        {
+          "title": "Mesoscopic Insights:Orchestrating Multi-Scale & Hybrid Architecture for Image Manipulation Localization",
+          "link": "/papers/bn5hr3sr/",
+          "date": "2025-08-06T20:24:34.000Z",
+          "description": "发表于AAAI2025，该论文Mesorch同时构建IML所需的微观与宏观信息介观表征，并提出Mesorch架构，一种融合卷积神经网络和Transformer模型优势的混合模型，通过动态调整尺度权重，能高效捕捉介观层面的伪影特征。",
+          "rank": [
+            "A类会议",
+            "AAAI",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wentao Feng",
+      "slug": "wentao-feng",
+      "paperCount": 2,
+      "papers": [
+        {
+          "title": "Pre-Training-Free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
+          "link": "/papers/trferohd/",
+          "date": "2026-01-09T17:22:25.000Z",
+          "description": "发表于ICCV 2023，将对比学习引入图像篡改检测，其设计互斥对比学习，精细化对比学习对象，得出不多结果。",
+          "rank": [
+            "A类会议",
+            "ICCV",
+            "2023"
+          ]
+        },
+        {
+          "title": "Pre-training-free Image Manipulation Localization through Non-Mutually Exclusive Contrastive Learning",
+          "link": "/papers/oead1idg/",
+          "date": "2024-05-16T16:14:36.000Z",
+          "description": "发表于ICCV2023，关注边界的信息，使用边界监督。",
+          "rank": [
+            "A类会议",
+            "ICCV",
+            "2023"
+          ]
         }
       ]
     },
@@ -1817,6 +2375,152 @@
           "rank": [
             "B类会议",
             "ECCV",
+            "2024"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Songlin Li",
+      "slug": "songlin-li",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization",
+          "link": "/papers/u4jpm5l2/",
+          "date": "2026-02-27T21:44:48.000Z",
+          "description": "提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。"
+        }
+      ]
+    },
+    {
+      "name": "Zhiqing Guo",
+      "slug": "zhiqing-guo",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "Bridging Semantic Logic Gaps:A Cognition Inspired Multimodal Boundary Preserving Network for Image Manipulation Localization",
+          "link": "/papers/u4jpm5l2/",
+          "date": "2026-02-27T21:44:48.000Z",
+          "description": "提出一种认知启发的多模态边界保留网络（CMB-Net），利用大型语言模型（LLMs）生成文本信息补充视觉语义关系，通过图像-文本中心模糊模块（ITCAM）、图像-文本交互模块（ITIM）和恢复边缘解码器（RED）提升图像篡改定位性能。"
+        }
+      ]
+    },
+    {
+      "name": "Jiale Chen",
+      "slug": "jiale-chen",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "Deep Robust Reversible Watermarking",
+          "link": "/papers/zu1u3ak4/",
+          "date": "2026-02-27T15:15:16.000Z",
+          "description": "发表于TPAMI 2026 ，本文提出了一种基于深度学习的鲁棒可逆水印方案Deep Robust Reversible",
+          "rank": [
+            "A类期刊",
+            "TPAMI",
+            "2026"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jian Liu",
+      "slug": "jian-liu",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
+          "link": "/papers/7b3qszds/",
+          "date": "2025-07-17T22:34:41.000Z",
+          "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bo Du",
+      "slug": "bo-du",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
+          "link": "/papers/7b3qszds/",
+          "date": "2025-07-17T22:34:41.000Z",
+          "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chenfan Qu",
+      "slug": "chenfan-qu",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
+          "link": "/papers/7b3qszds/",
+          "date": "2025-07-17T22:34:41.000Z",
+          "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kaiwen Feng",
+      "slug": "kaiwen-feng",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "ForensicHub:A Unified Benchmark & Codebase for All-Domain Fake Image Detection and Localization",
+          "link": "/papers/7b3qszds/",
+          "date": "2025-07-17T22:34:41.000Z",
+          "description": "NeurIPS 2025 DB Track Paper，非常棒的工作！其整合了深度伪造检测、图像篡改检测/定位、AI生成图像检测和文档图像处理定位四大任务，并基于基准实验，提出了独特的发现。",
+          "rank": [
+            "A类会议",
+            "NeurIPS",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Shile Zhang",
+      "slug": "shile-zhang",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "Generalizable Synthetic Image Detection via Language-guided Contrastive Learning",
+          "link": "/papers/1h74hnuk/",
+          "date": "2025-12-12T21:57:40.000Z"
+        }
+      ]
+    },
+    {
+      "name": "Changsheng Chen",
+      "slug": "changsheng-chen",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "Image Copy-Move Forgery Detection via Deep PatchMatch and Pairwise Ranking Learning",
+          "link": "/papers/fqa19bia/",
+          "date": "2025-03-10T17:06:42.000Z",
+          "description": "发表于TIP 2024，图像复制-移动伪造检测方向的图像篡改检测方法。",
+          "rank": [
+            "A类期刊",
+            "TIP",
             "2024"
           ]
         }
@@ -1871,6 +2575,72 @@
           "rank": [
             "A类期刊",
             "TMM",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jie Du",
+      "slug": "jie-du",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "Operation History Estimation and Its Application to Multi-Degraded Image Restoration",
+          "link": "/papers/5lza5jc7/",
+          "date": "2025-06-08T14:33:29.000Z"
+        }
+      ]
+    },
+    {
+      "name": "Ziqi Sheng",
+      "slug": "ziqi-sheng",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "SUMI-IFL:An Information-Theoretic Framework for Image Forgery Localization with Sufficiency and Minimality Constraints",
+          "link": "/papers/yrgqcm8l/",
+          "date": "2025-01-15T16:46:19.000Z",
+          "description": "发表于arxiv，使用信息瓶颈理论完成图像篡改任务，没和NP++、IFL-VIT比较。",
+          "rank": [
+            "A类会议",
+            "AAAI",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wei Lu",
+      "slug": "wei-lu",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "SUMI-IFL:An Information-Theoretic Framework for Image Forgery Localization with Sufficiency and Minimality Constraints",
+          "link": "/papers/yrgqcm8l/",
+          "date": "2025-01-15T16:46:19.000Z",
+          "description": "发表于arxiv，使用信息瓶颈理论完成图像篡改任务，没和NP++、IFL-VIT比较。",
+          "rank": [
+            "A类会议",
+            "AAAI",
+            "2025"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Xiangyang Luo",
+      "slug": "xiangyang-luo",
+      "paperCount": 1,
+      "papers": [
+        {
+          "title": "SUMI-IFL:An Information-Theoretic Framework for Image Forgery Localization with Sufficiency and Minimality Constraints",
+          "link": "/papers/yrgqcm8l/",
+          "date": "2025-01-15T16:46:19.000Z",
+          "description": "发表于arxiv，使用信息瓶颈理论完成图像篡改任务，没和NP++、IFL-VIT比较。",
+          "rank": [
+            "A类会议",
+            "AAAI",
             "2025"
           ]
         }
