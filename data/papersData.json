@@ -521,7 +521,7 @@
         "Jizhe Zhou",
         "Xiaochen Ma"
       ],
-      "code": "'https://github.com/Knightzjz/NCL-IML'",
+      "code": "https://github.com/Knightzjz/NCL-IML",
       "available": "'✓'",
       "method": "NCL-IML"
     },
@@ -551,7 +551,7 @@
         "CVPR",
         "2025"
       ],
-      "code": "'https://github.com/luow23/INP-Former'",
+      "code": "https://github.com/luow23/INP-Former",
       "available": "'✓'",
       "method": "INP-Former"
     },
