@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T15:23:07.535Z",
+  "generatedAt": "2026-09-20T15:47:05.363Z",
   "source": "docs/papers/*.md",
   "version": 1,
   "stats": {
@@ -7554,15 +7554,6 @@
           "../postimages/TruFor/image-20260128223518768.png",
           "../postimages/TruFor/image-20260128224443411.png",
           "../postimages/TruFor/image-20260128224954487.png"
-        ]
-      },
-      {
-        "file": "Video-Source-Characterization-Using-Encoding-and-Encapsulation-Characteristics.md",
-        "count": 3,
-        "sample": [
-          "..\\postimages\\Video-Source-Characterization-Using-Encoding-and-Encapsulation-Characteristics\\image-20250928120519305.png",
-          "..\\postimages\\Video-Source-Characterization-Using-Encoding-and-Encapsulation-Characteristics\\image-20250928120904900.png",
-          "..\\postimages\\Video-Source-Characterization-Using-Encoding-and-Encapsulation-Characteristics\\image-20250928121058186.png"
         ]
       },
       {
